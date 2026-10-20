@@ -7,7 +7,16 @@ namespace App\Modules\Auth\Http\Requests;
 use App\Modules\Auth\DTO\LoginDTO;
 use App\Services\Translator;
 use Illuminate\Foundation\Http\FormRequest;
+use OpenApi\Attributes as OA;
 
+#[OA\Schema(
+    schema: 'LoginRequest',
+    required: ['email', 'password'],
+    properties: [
+        new OA\Property(property: 'email', type: 'string', format: 'email', maxLength: 254, example: 'student@example.com'),
+        new OA\Property(property: 'password', type: 'string', format: 'password', maxLength: 72, example: 'Password123'),
+    ],
+)]
 final class LoginRequest extends FormRequest
 {
     /**

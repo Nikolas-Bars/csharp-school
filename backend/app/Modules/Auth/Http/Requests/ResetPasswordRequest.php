@@ -7,7 +7,17 @@ namespace App\Modules\Auth\Http\Requests;
 use App\Modules\Auth\DTO\ResetPasswordDTO;
 use App\Services\Translator;
 use Illuminate\Foundation\Http\FormRequest;
+use OpenApi\Attributes as OA;
 
+#[OA\Schema(
+    schema: 'ResetPasswordRequest',
+    required: ['token', 'email', 'password'],
+    properties: [
+        new OA\Property(property: 'token', description: 'Из ссылки в письме', type: 'string', maxLength: 255),
+        new OA\Property(property: 'email', description: 'Из ссылки в письме', type: 'string', format: 'email', maxLength: 254, example: 'student@example.com'),
+        new OA\Property(property: 'password', description: 'Как при регистрации; bcrypt учитывает только первые 72 байта', type: 'string', format: 'password', maxLength: 72, minLength: 8, example: 'Password123'),
+    ],
+)]
 final class ResetPasswordRequest extends FormRequest
 {
     /**

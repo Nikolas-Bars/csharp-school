@@ -19,7 +19,8 @@
         "larastan/larastan": "^3.0",
         "mockery/mockery": "^1.6",
         "phpstan/phpstan-strict-rules": "^2.0",
-        "phpunit/phpunit": "^11.5.50"
+        "phpunit/phpunit": "^11.5.50",
+        "zircote/swagger-php": "^6.12"
     },
     "autoload": {
         "psr-4": {
@@ -47,6 +48,7 @@
             "@php artisan config:clear --ansi",
             "phpunit"
         ],
+        "openapi": "openapi app --exclude Tests --output openapi.json",
         "check": [
             "@lint-check",
             "@phpstan",

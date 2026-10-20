@@ -31,6 +31,13 @@ Laravel 12, PHP 8.3, RoadRunner, MariaDB 11.4, Redis 7, Laravel Sanctum (Bearer-
 
 API: http://localhost:8290/api. Тесты идут на SQLite в памяти (`phpunit.xml`).
 
+Документация API — `openapi.json` (OpenAPI 3.1, из атрибутов `#[OA\…]`, `ARCHITECTURE.md`).
+После изменения эндпоинта, формы или ресурса: `make composer cmd=openapi`, иначе `make check`
+упадёт. Посмотреть: открыть файл в IDE с поддержкой OpenAPI или Swagger UI локально —
+`docker run --rm -p 8291:8080 -e SWAGGER_JSON=/openapi.json -v "$PWD/openapi.json:/openapi.json:ro" swaggerapi/swagger-ui:v5.17.14`
+→ http://localhost:8291 (для «Try it out» — `http://localhost:8291` в `CORS_ALLOWED_ORIGINS`).
+В production страницы документации нет.
+
 Если git пересоздал папку `../content` (rebase, переключение веток, где её нет), контейнер
 видит её пустой («course.json: файла нет») — пересоздать: `docker compose up -d --force-recreate php`.
 

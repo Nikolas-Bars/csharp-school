@@ -1,0 +1,1574 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "C# School API",
+        "description": "API обучающей платформы C# School.\n\nКаждый ответ — JSON одного вида: `{ status, message, data, errors }`. `status` — `success` или `error`, `message` — текст для человека на языке запроса (`Accept-Language`: `ru` или `en`, иначе `ru`), `data` — данные (у ошибки `null`), `errors` — ошибки по полям формы (без ошибок — `{}`).\n\nВход — по токену: `Authorization: Bearer <token>`, токен приходит в ответ на регистрацию и вход.",
+        "license": {
+            "name": "MIT",
+            "identifier": "MIT"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8290",
+            "description": "Локально (Docker)"
+        }
+    ],
+    "paths": {
+        "/api/auth/forgot-password": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Письмо со ссылкой для нового пароля",
+                "description": "Ответ одинаковый для любой почты, а поиск аккаунта и отправка письма идут после ответа — по ответу не понять, есть ли аккаунт. Ссылка в письме ведёт на сайт (/reset-password?token=…&email=…) и действует 60 минут. Не больше 5 запросов в минуту с адреса и 3 за 10 минут на одну почту.",
+                "operationId": "forgotPassword",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/AcceptLanguage"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ForgotPasswordRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Запрос принят (письмо — только если аккаунт есть)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/ApiSuccess"
+                                        },
+                                        {
+                                            "properties": {
+                                                "data": {
+                                                    "type": "null"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationFailed"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/TooManyRequests"
+                    }
+                },
+                "security": []
+            }
+        },
+        "/api/auth/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Вход по почте и паролю",
+                "description": "Почта сравнивается без пробелов по краям и без учёта регистра. Не больше 5 попыток в минуту на пару «адрес + почта».",
+                "operationId": "login",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/AcceptLanguage"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Вошёл: токен и ученик",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/ApiSuccess"
+                                        },
+                                        {
+                                            "properties": {
+                                                "data": {
+                                                    "$ref": "#/components/schemas/Session"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Неверная почта или пароль — что именно, не говорится",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                },
+                                "example": {
+                                    "status": "error",
+                                    "message": "Неверная почта или пароль.",
+                                    "data": null,
+                                    "errors": {}
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationFailed"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/TooManyRequests"
+                    }
+                },
+                "security": []
+            }
+        },
+        "/api/auth/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Выход на этом устройстве",
+                "description": "Отзывает только токен этого запроса: на других устройствах вход остаётся.",
+                "operationId": "logout",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/AcceptLanguage"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Вышел",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/ApiSuccess"
+                                        },
+                                        {
+                                            "properties": {
+                                                "data": {
+                                                    "type": "null"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/auth/me": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Текущий ученик",
+                "operationId": "me",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/AcceptLanguage"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ученик, которому выдан токен",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/ApiSuccess"
+                                        },
+                                        {
+                                            "properties": {
+                                                "data": {
+                                                    "$ref": "#/components/schemas/User"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthenticated"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/auth/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Регистрация",
+                "description": "Регистрация и сразу вход: в ответе токен. Язык аккаунта — язык запроса (`Accept-Language`). Почта уже занята — 422 с ошибкой поля `email`. Не больше 10 регистраций в минуту с одного адреса.",
+                "operationId": "register",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/AcceptLanguage"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegisterRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Аккаунт создан: токен и ученик",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/ApiSuccess"
+                                        },
+                                        {
+                                            "properties": {
+                                                "data": {
+                                                    "$ref": "#/components/schemas/Session"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationFailed"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/TooManyRequests"
+                    }
+                },
+                "security": []
+            }
+        },
+        "/api/auth/reset-password": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Новый пароль по ссылке из письма",
+                "description": "Ссылка одноразовая; после смены пароля все токены входа ученика удаляются. Не больше 10 попыток в минуту с адреса и 5 на одну почту.",
+                "operationId": "resetPassword",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/AcceptLanguage"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ResetPasswordRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Пароль изменён",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/ApiSuccess"
+                                        },
+                                        {
+                                            "properties": {
+                                                "data": {
+                                                    "type": "null"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ссылка не подходит: устарела, уже использована или почта другая — что именно, не говорится",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiError"
+                                },
+                                "example": {
+                                    "status": "error",
+                                    "message": "Ссылка для нового пароля не подходит: она устарела или уже использована. Запроси новую.",
+                                    "data": null,
+                                    "errors": {}
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationFailed"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/TooManyRequests"
+                    }
+                },
+                "security": []
+            }
+        },
+        "/api/courses/{course}": {
+            "get": {
+                "tags": [
+                    "Course"
+                ],
+                "summary": "Карта курса",
+                "description": "Модули и уроки без содержимого, тексты — на языке запроса. Открыто всем, вход не нужен.",
+                "operationId": "showCourse",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Course"
+                    },
+                    {
+                        "$ref": "#/components/parameters/AcceptLanguage"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Карта курса",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/ApiSuccess"
+                                        },
+                                        {
+                                            "properties": {
+                                                "data": {
+                                                    "$ref": "#/components/schemas/Course"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "security": []
+            }
+        },
+        "/api/courses/{course}/modules/{module}/lessons/{lesson}": {
+            "get": {
+                "tags": [
+                    "Course"
+                ],
+                "summary": "Урок",
+                "description": "Шаги урока по порядку: теория (Markdown), задачи (проверки выполняет runner в браузере), проверка знаний. Эталонные и неверные решения сюда не попадают. Открыто всем, вход не нужен.",
+                "operationId": "showLesson",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Course"
+                    },
+                    {
+                        "$ref": "#/components/parameters/Module"
+                    },
+                    {
+                        "$ref": "#/components/parameters/Lesson"
+                    },
+                    {
+                        "$ref": "#/components/parameters/AcceptLanguage"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Урок на языке запроса",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/ApiSuccess"
+                                        },
+                                        {
+                                            "properties": {
+                                                "data": {
+                                                    "$ref": "#/components/schemas/Lesson"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "security": []
+            }
+        },
+        "/api/progress/courses/{course}/steps": {
+            "post": {
+                "tags": [
+                    "Progress"
+                ],
+                "summary": "Засчитать пройденные шаги",
+                "description": "Один шаг (задача только что решена) или прогресс гостя пачкой после входа (`guest: true`). Результат проверки присылает браузер, поэтому шаг засчитывается один раз, неизвестные уроки и шаги пропускаются, шаг без кода сохранённый код не стирает. Не больше 30 запросов в минуту.",
+                "operationId": "completeSteps",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Course"
+                    },
+                    {
+                        "$ref": "#/components/parameters/AcceptLanguage"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CompleteStepsRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Сохранено: прогресс по курсу после записи",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/ApiSuccess"
+                                        },
+                                        {
+                                            "properties": {
+                                                "data": {
+                                                    "$ref": "#/components/schemas/CourseProgress"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationFailed"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/TooManyRequests"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/progress/courses/{course}": {
+            "get": {
+                "tags": [
+                    "Progress"
+                ],
+                "summary": "Прогресс по курсу",
+                "description": "Какие шаги каждого урока пройдены — для карты курса, без кода решений. Нет такого курса — пустой список уроков. Чтение прогресса — не больше 120 запросов в минуту.",
+                "operationId": "showCourseProgress",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Course"
+                    },
+                    {
+                        "$ref": "#/components/parameters/AcceptLanguage"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Прогресс по урокам курса",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/ApiSuccess"
+                                        },
+                                        {
+                                            "properties": {
+                                                "data": {
+                                                    "$ref": "#/components/schemas/CourseProgress"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/TooManyRequests"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/progress/courses/{course}/modules/{module}/lessons/{lesson}": {
+            "get": {
+                "tags": [
+                    "Progress"
+                ],
+                "summary": "Прогресс урока",
+                "description": "Пройденные шаги урока и последний зачтённый код задач — чтобы продолжить на любом устройстве. Чтение прогресса — не больше 120 запросов в минуту.",
+                "operationId": "showLessonProgress",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Course"
+                    },
+                    {
+                        "$ref": "#/components/parameters/Module"
+                    },
+                    {
+                        "$ref": "#/components/parameters/Lesson"
+                    },
+                    {
+                        "$ref": "#/components/parameters/AcceptLanguage"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Прогресс урока",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/ApiSuccess"
+                                        },
+                                        {
+                                            "properties": {
+                                                "data": {
+                                                    "$ref": "#/components/schemas/LessonProgress"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/TooManyRequests"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ForgotPasswordRequest": {
+                "required": [
+                    "email"
+                ],
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "student@example.com",
+                        "maxLength": 254
+                    }
+                },
+                "type": "object"
+            },
+            "LoginRequest": {
+                "required": [
+                    "email",
+                    "password"
+                ],
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "student@example.com",
+                        "maxLength": 254
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "password",
+                        "example": "Password123",
+                        "maxLength": 72
+                    }
+                },
+                "type": "object"
+            },
+            "RegisterRequest": {
+                "required": [
+                    "nickname",
+                    "email",
+                    "password"
+                ],
+                "properties": {
+                    "nickname": {
+                        "description": "Ник: пробелы по краям обрезаются",
+                        "type": "string",
+                        "example": "Anya",
+                        "maxLength": 32,
+                        "minLength": 2
+                    },
+                    "email": {
+                        "description": "Почта: без пробелов по краям и в нижнем регистре, Anya@Mail.ru и anya@mail.ru — один аккаунт",
+                        "type": "string",
+                        "format": "email",
+                        "example": "anya@example.com",
+                        "maxLength": 254
+                    },
+                    "password": {
+                        "description": "bcrypt учитывает только первые 72 байта",
+                        "type": "string",
+                        "format": "password",
+                        "example": "Password123",
+                        "maxLength": 72,
+                        "minLength": 8
+                    }
+                },
+                "type": "object"
+            },
+            "ResetPasswordRequest": {
+                "required": [
+                    "token",
+                    "email",
+                    "password"
+                ],
+                "properties": {
+                    "token": {
+                        "description": "Из ссылки в письме",
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "email": {
+                        "description": "Из ссылки в письме",
+                        "type": "string",
+                        "format": "email",
+                        "example": "student@example.com",
+                        "maxLength": 254
+                    },
+                    "password": {
+                        "description": "Как при регистрации; bcrypt учитывает только первые 72 байта",
+                        "type": "string",
+                        "format": "password",
+                        "example": "Password123",
+                        "maxLength": 72,
+                        "minLength": 8
+                    }
+                },
+                "type": "object"
+            },
+            "Session": {
+                "required": [
+                    "user",
+                    "token"
+                ],
+                "properties": {
+                    "user": {
+                        "$ref": "#/components/schemas/User",
+                        "description": "Ответ на регистрацию и вход. Фронт: AuthSession в src/types/api.ts."
+                    },
+                    "token": {
+                        "description": "Для заголовка `Authorization: Bearer <token>`",
+                        "type": "string",
+                        "example": "1|secret-token-example"
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "description": "Ученик",
+                "required": [
+                    "id",
+                    "nickname",
+                    "email",
+                    "locale"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "Ученик в ответах Auth. Фронт: User в src/types/api.ts.",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "nickname": {
+                        "type": "string",
+                        "example": "Anya"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "anya@example.com"
+                    },
+                    "locale": {
+                        "description": "Язык аккаунта",
+                        "type": "string",
+                        "example": "ru",
+                        "enum": [
+                            "ru",
+                            "en"
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "Course": {
+                "description": "Карта курса: модули и уроки без содержимого",
+                "required": [
+                    "slug",
+                    "title",
+                    "modules"
+                ],
+                "properties": {
+                    "slug": {
+                        "description": "Карта курса: модули и уроки без содержимого. Фронт: Course в src/types/api.ts.",
+                        "type": "string",
+                        "example": "csharp"
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "C# с нуля до первой игры"
+                    },
+                    "modules": {
+                        "type": "array",
+                        "items": {
+                            "required": [
+                                "slug",
+                                "title",
+                                "description",
+                                "lessons"
+                            ],
+                            "properties": {
+                                "slug": {
+                                    "type": "string",
+                                    "example": "01-first-programs"
+                                },
+                                "title": {
+                                    "type": "string",
+                                    "example": "Первые программы"
+                                },
+                                "description": {
+                                    "type": "string"
+                                },
+                                "lessons": {
+                                    "type": "array",
+                                    "items": {
+                                        "required": [
+                                            "slug",
+                                            "title",
+                                            "tasks",
+                                            "steps"
+                                        ],
+                                        "properties": {
+                                            "slug": {
+                                                "type": "string",
+                                                "example": "02-variables"
+                                            },
+                                            "title": {
+                                                "type": "string",
+                                                "example": "Переменные"
+                                            },
+                                            "tasks": {
+                                                "description": "Сколько в уроке задач с кодом",
+                                                "type": "integer",
+                                                "example": 2
+                                            },
+                                            "steps": {
+                                                "description": "Засчитываемые шаги: id задач и `quiz`. Урок пройден, когда пройдены все — так и гость видит, пройден ли урок",
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                },
+                                                "example": [
+                                                    "hero-health",
+                                                    "take-damage",
+                                                    "quiz"
+                                                ]
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Lesson": {
+                "description": "Урок: тексты уже на языке запроса",
+                "required": [
+                    "slug",
+                    "title",
+                    "module",
+                    "course",
+                    "steps"
+                ],
+                "properties": {
+                    "slug": {
+                        "description": "Урок на языке запроса: экраны теории (Markdown), задачи (условие, стартовый код, проверки\nдля runner, сообщения и подсказки), проверка знаний. Фронт: Lesson в src/types/api.ts.\nПроверки задач (Check) — формат runner: runner/src/Runner.Core/Protocol/Checks.cs.",
+                        "type": "string",
+                        "example": "02-variables"
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Переменные"
+                    },
+                    "module": {
+                        "required": [
+                            "slug",
+                            "title"
+                        ],
+                        "properties": {
+                            "slug": {
+                                "type": "string",
+                                "example": "01-first-programs"
+                            },
+                            "title": {
+                                "type": "string",
+                                "example": "Первые программы"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "course": {
+                        "required": [
+                            "slug",
+                            "title"
+                        ],
+                        "properties": {
+                            "slug": {
+                                "type": "string",
+                                "example": "csharp"
+                            },
+                            "title": {
+                                "type": "string",
+                                "example": "C# с нуля до первой игры"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "steps": {
+                        "description": "Шаги урока по порядку",
+                        "type": "array",
+                        "items": {
+                            "oneOf": [
+                                {
+                                    "$ref": "#/components/schemas/TheoryStep"
+                                },
+                                {
+                                    "$ref": "#/components/schemas/TaskStep"
+                                },
+                                {
+                                    "$ref": "#/components/schemas/QuizStep"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "TheoryStep": {
+                "description": "Экран теории — одна идея",
+                "required": [
+                    "type",
+                    "text"
+                ],
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "theory"
+                        ]
+                    },
+                    "text": {
+                        "description": "Markdown",
+                        "type": "string",
+                        "example": "# Переменные\n\nПеременная — коробка с именем…"
+                    }
+                },
+                "type": "object"
+            },
+            "TaskStep": {
+                "description": "Задача с кодом. Проверки выполняет runner в браузере ученика, сервер код не запускает",
+                "required": [
+                    "type",
+                    "id",
+                    "title",
+                    "statement",
+                    "starter",
+                    "checks",
+                    "messages",
+                    "hints"
+                ],
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "task"
+                        ]
+                    },
+                    "id": {
+                        "description": "Id задачи — шаг для прогресса",
+                        "type": "string",
+                        "example": "hero-health"
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Здоровье героя"
+                    },
+                    "statement": {
+                        "description": "Условие: Markdown",
+                        "type": "string"
+                    },
+                    "starter": {
+                        "description": "Стартовый код в редакторе",
+                        "type": "string",
+                        "example": "using System;\n"
+                    },
+                    "checks": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Check"
+                        }
+                    },
+                    "messages": {
+                        "description": "Что не так и куда смотреть — по одному на проверку, в том же порядке",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "hints": {
+                        "description": "Ровно три: намёк → подробнее → почти решение",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "QuizStep": {
+                "description": "Проверка знаний в конце урока",
+                "required": [
+                    "type",
+                    "questions"
+                ],
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "quiz"
+                        ]
+                    },
+                    "questions": {
+                        "type": "array",
+                        "items": {
+                            "required": [
+                                "question",
+                                "options",
+                                "answer",
+                                "explanation"
+                            ],
+                            "properties": {
+                                "question": {
+                                    "type": "string",
+                                    "example": "Какой тип у числа 5?"
+                                },
+                                "options": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "example": [
+                                        "int",
+                                        "string"
+                                    ]
+                                },
+                                "answer": {
+                                    "description": "Номер верного варианта в options, с 0",
+                                    "type": "integer",
+                                    "example": 0
+                                },
+                                "explanation": {
+                                    "description": "Почему так — показывается после ответа",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Check": {
+                "description": "Проверка решения для runner. Текст при провале — в `messages` задачи",
+                "oneOf": [
+                    {
+                        "title": "output",
+                        "description": "Программа с таким вводом печатает такой текст",
+                        "required": [
+                            "kind",
+                            "expected"
+                        ],
+                        "properties": {
+                            "kind": {
+                                "type": "string",
+                                "enum": [
+                                    "output"
+                                ]
+                            },
+                            "expected": {
+                                "type": "string",
+                                "example": "Привет"
+                            },
+                            "stdin": {
+                                "description": "Что ввести с клавиатуры",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ]
+                            },
+                            "match": {
+                                "description": "exact — вывод целиком, contains — текст где-то в выводе",
+                                "type": "string",
+                                "default": "exact",
+                                "enum": [
+                                    "exact",
+                                    "contains"
+                                ]
+                            }
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "title": "variable",
+                        "description": "В коде объявлена переменная с таким именем (регистр важен) и, если задан, такого типа",
+                        "required": [
+                            "kind",
+                            "name"
+                        ],
+                        "properties": {
+                            "kind": {
+                                "type": "string",
+                                "enum": [
+                                    "variable"
+                                ]
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "hp"
+                            },
+                            "type": {
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "example": "int"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "title": "construct",
+                        "description": "Конструкция встречается в коде не меньше `min` раз",
+                        "required": [
+                            "kind",
+                            "construct"
+                        ],
+                        "properties": {
+                            "kind": {
+                                "type": "string",
+                                "enum": [
+                                    "construct"
+                                ]
+                            },
+                            "construct": {
+                                "type": "string",
+                                "enum": [
+                                    "if",
+                                    "else",
+                                    "for",
+                                    "foreach",
+                                    "while",
+                                    "doWhile",
+                                    "switch",
+                                    "method",
+                                    "class"
+                                ]
+                            },
+                            "min": {
+                                "type": "integer",
+                                "default": 1,
+                                "minimum": 1
+                            }
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "title": "call",
+                        "description": "В коде вызывается метод",
+                        "required": [
+                            "kind",
+                            "method"
+                        ],
+                        "properties": {
+                            "kind": {
+                                "type": "string",
+                                "enum": [
+                                    "call"
+                                ]
+                            },
+                            "method": {
+                                "description": "Полное имя",
+                                "type": "string",
+                                "example": "System.Console.WriteLine"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "CompleteStepsRequest": {
+                "required": [
+                    "steps"
+                ],
+                "properties": {
+                    "steps": {
+                        "type": "array",
+                        "items": {
+                            "required": [
+                                "module",
+                                "lesson",
+                                "step"
+                            ],
+                            "properties": {
+                                "module": {
+                                    "type": "string",
+                                    "pattern": "^[a-z0-9][a-z0-9-]{0,63}$",
+                                    "example": "01-first-programs"
+                                },
+                                "lesson": {
+                                    "type": "string",
+                                    "pattern": "^[a-z0-9][a-z0-9-]{0,63}$",
+                                    "example": "02-variables"
+                                },
+                                "step": {
+                                    "description": "Id задачи или `quiz`",
+                                    "type": "string",
+                                    "pattern": "^[a-z0-9][a-z0-9-]{0,63}$",
+                                    "example": "hero-health"
+                                },
+                                "code": {
+                                    "description": "Код, который прошёл проверки (для задачи). Нет или `null` — сохранённый код не меняется",
+                                    "type": [
+                                        "string",
+                                        "null"
+                                    ],
+                                    "example": "using System;\n\nint hp = 100;\nConsole.WriteLine(hp);",
+                                    "maxLength": 20000
+                                }
+                            },
+                            "type": "object",
+                            "additionalProperties": false
+                        },
+                        "maxItems": 500,
+                        "minItems": 1
+                    },
+                    "guest": {
+                        "description": "Прогресс гостя после входа: дополняет аккаунт, сохранённый код не заменяет",
+                        "type": "boolean",
+                        "default": false
+                    }
+                },
+                "type": "object"
+            },
+            "CourseProgress": {
+                "description": "Прогресс по курсу для карты, без кода решений",
+                "required": [
+                    "lessons"
+                ],
+                "properties": {
+                    "lessons": {
+                        "type": "array",
+                        "items": {
+                            "required": [
+                                "module",
+                                "lesson",
+                                "steps",
+                                "completed",
+                                "done"
+                            ],
+                            "properties": {
+                                "module": {
+                                    "description": "Прогресс по курсу для карты: какие шаги каждого урока пройдены. Без кода решений.\nФронт: CourseProgress в src/types/api.ts.",
+                                    "type": "string",
+                                    "example": "01-first-programs"
+                                },
+                                "lesson": {
+                                    "type": "string",
+                                    "example": "02-variables"
+                                },
+                                "steps": {
+                                    "description": "Все засчитываемые шаги урока по порядку",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "example": [
+                                        "hero-health",
+                                        "take-damage",
+                                        "quiz"
+                                    ]
+                                },
+                                "completed": {
+                                    "description": "Пройденные из них",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "example": [
+                                        "hero-health"
+                                    ]
+                                },
+                                "done": {
+                                    "description": "Урок пройден: пройдены все шаги",
+                                    "type": "boolean",
+                                    "example": false
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "LessonProgress": {
+                "required": [
+                    "completed",
+                    "solutions"
+                ],
+                "properties": {
+                    "completed": {
+                        "description": "Пройденные шаги урока",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "example": [
+                            "hero-health",
+                            "quiz"
+                        ]
+                    },
+                    "solutions": {
+                        "description": "Id задачи → последний зачтённый код. Без решений — `{}`",
+                        "type": "object",
+                        "example": {
+                            "hero-health": "using System;\n\nint hp = 100;\nConsole.WriteLine(hp);"
+                        },
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "ApiSuccess": {
+                "description": "Успешный ответ ApiResponder. Что лежит в `data` — у каждого эндпоинта своё",
+                "required": [
+                    "status",
+                    "message",
+                    "data",
+                    "errors"
+                ],
+                "properties": {
+                    "status": {
+                        "description": "Единственный формат ответа API: { \"status\": \"success\"|\"error\", \"message\", \"data\", \"errors\" }.\nmessage — всегда переведённый текст (Translator::get), поэтому значения по умолчанию у него нет.\nСхемы ApiSuccess и ApiError ниже — этот же формат в спецификации OpenAPI (openapi.json).",
+                        "type": "string",
+                        "enum": [
+                            "success"
+                        ]
+                    },
+                    "message": {
+                        "description": "Текст для человека на языке запроса",
+                        "type": "string"
+                    },
+                    "data": {
+                        "description": "Данные ответа"
+                    },
+                    "errors": {
+                        "description": "У успешного ответа всегда пусто",
+                        "type": "object",
+                        "additionalProperties": false
+                    }
+                },
+                "type": "object"
+            },
+            "ApiError": {
+                "description": "Ошибка: что случилось — в `message`, ошибки полей формы — в `errors`",
+                "required": [
+                    "status",
+                    "message",
+                    "data",
+                    "errors"
+                ],
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "error"
+                        ]
+                    },
+                    "message": {
+                        "description": "Текст для человека на языке запроса",
+                        "type": "string"
+                    },
+                    "data": {
+                        "type": "null"
+                    },
+                    "errors": {
+                        "description": "Поле формы → список сообщений; у ошибок не по полям — `{}`",
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "responses": {
+            "Unauthenticated": {
+                "description": "Не вошёл: нет токена, он неверный или отозван",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ApiError"
+                        },
+                        "example": {
+                            "status": "error",
+                            "message": "Сначала войди в аккаунт.",
+                            "data": null,
+                            "errors": {}
+                        }
+                    }
+                }
+            },
+            "NotFound": {
+                "description": "Нет такого адреса или записи (курса, урока). Текст — свой у каждой записи: «Такого курса нет.»",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ApiError"
+                        },
+                        "example": {
+                            "status": "error",
+                            "message": "Такого адреса или записи нет.",
+                            "data": null,
+                            "errors": {}
+                        }
+                    }
+                }
+            },
+            "ValidationFailed": {
+                "description": "Поля заполнены неправильно: сообщения по каждому полю — в `errors`",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ApiError"
+                        },
+                        "example": {
+                            "status": "error",
+                            "message": "Проверь, правильно ли заполнены поля.",
+                            "data": null,
+                            "errors": {
+                                "email": [
+                                    "В поле «Почта» нужен адрес почты, например anya@example.com."
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
+            "TooManyRequests": {
+                "description": "Слишком много запросов: повторить через `Retry-After` секунд",
+                "headers": {
+                    "Retry-After": {
+                        "description": "Через сколько секунд можно повторить",
+                        "schema": {
+                            "type": "integer",
+                            "example": 42
+                        }
+                    }
+                },
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ApiError"
+                        },
+                        "example": {
+                            "status": "error",
+                            "message": "Слишком много попыток. Подожди минуту и попробуй снова.",
+                            "data": null,
+                            "errors": {}
+                        }
+                    }
+                }
+            }
+        },
+        "parameters": {
+            "AcceptLanguage": {
+                "name": "Accept-Language",
+                "in": "header",
+                "description": "Язык текстов ответа: `ru` или `en`. Другой или не указан — `ru`",
+                "required": false,
+                "schema": {
+                    "type": "string",
+                    "example": "ru"
+                }
+            },
+            "Course": {
+                "name": "course",
+                "in": "path",
+                "description": "Slug курса",
+                "required": true,
+                "schema": {
+                    "type": "string",
+                    "example": "csharp"
+                }
+            },
+            "Module": {
+                "name": "module",
+                "in": "path",
+                "description": "Slug модуля курса",
+                "required": true,
+                "schema": {
+                    "type": "string",
+                    "example": "01-first-programs"
+                }
+            },
+            "Lesson": {
+                "name": "lesson",
+                "in": "path",
+                "description": "Slug урока",
+                "required": true,
+                "schema": {
+                    "type": "string",
+                    "example": "02-variables"
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearer": {
+                "type": "http",
+                "description": "Токен Laravel Sanctum из ответа `auth/register` или `auth/login`. Действует, пока ученик не выйдет на этом устройстве.",
+                "bearerFormat": "{id}|{секрет}",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "Регистрация, вход, выход и текущий ученик"
+        },
+        {
+            "name": "Course",
+            "description": "Курс: карта и уроки. Открыто всем, учиться можно без аккаунта"
+        },
+        {
+            "name": "Progress",
+            "description": "Пройденные шаги и код решений. Только вошедшим"
+        }
+    ]
+}

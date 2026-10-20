@@ -10,12 +10,47 @@ use App\Modules\Course\Models\Lesson;
 use App\Services\Localized;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use OpenApi\Attributes as OA;
 
 /**
  * Карта курса: модули и уроки без содержимого. Фронт: Course в src/types/api.ts.
  *
  * @property Course $resource
  */
+#[OA\Schema(
+    schema: 'Course',
+    description: 'Карта курса: модули и уроки без содержимого',
+    required: ['slug', 'title', 'modules'],
+    properties: [
+        new OA\Property(property: 'slug', type: 'string', example: 'csharp'),
+        new OA\Property(property: 'title', type: 'string', example: 'C# с нуля до первой игры'),
+        new OA\Property(property: 'modules', type: 'array', items: new OA\Items(
+            required: ['slug', 'title', 'description', 'lessons'],
+            properties: [
+                new OA\Property(property: 'slug', type: 'string', example: '01-first-programs'),
+                new OA\Property(property: 'title', type: 'string', example: 'Первые программы'),
+                new OA\Property(property: 'description', type: 'string'),
+                new OA\Property(property: 'lessons', type: 'array', items: new OA\Items(
+                    required: ['slug', 'title', 'tasks', 'steps'],
+                    properties: [
+                        new OA\Property(property: 'slug', type: 'string', example: '02-variables'),
+                        new OA\Property(property: 'title', type: 'string', example: 'Переменные'),
+                        new OA\Property(property: 'tasks', description: 'Сколько в уроке задач с кодом', type: 'integer', example: 2),
+                        new OA\Property(
+                            property: 'steps',
+                            description: 'Засчитываемые шаги: id задач и `quiz`. Урок пройден, когда пройдены все — так и гость видит, пройден ли урок',
+                            type: 'array',
+                            items: new OA\Items(type: 'string'),
+                            example: ['hero-health', 'take-damage', 'quiz'],
+                        ),
+                    ],
+                    type: 'object',
+                )),
+            ],
+            type: 'object',
+        )),
+    ],
+)]
 final class CourseResource extends JsonResource
 {
     /**
