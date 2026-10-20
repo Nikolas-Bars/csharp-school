@@ -16,11 +16,21 @@
         document.documentElement.dataset.theme = themes.includes(saved) ? saved : dark ? 'dark' : 'light'
       } catch {}
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Основной текст (Inter) — сразу, параллельно с бандлом: иначе браузер узнает о шрифте
+         только после запуска JS и отрисовки. Пути — как в src/assets/fonts.css -->
     <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="preload"
+      href="/node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/node_modules/@fontsource-variable/inter/files/inter-cyrillic-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
     <title>C# School</title>
   </head>
