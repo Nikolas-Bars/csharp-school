@@ -13,6 +13,8 @@ CLAUDE.md, Makefile и Docker:
   внутри Web Worker. Сборка кладётся во фронт (`public/runner`).
 - `content` — учебный курс файлами: теория (Markdown), задачи, проверки, эталоны и неверные
   решения (`content/README.md`). Тесты — в runner (`tests/Content.Tests`), в базу — `course:import`.
+- `deploy` — production: `docker-compose.prod.yml` (Caddy с HTTPS → API → MariaDB, Redis),
+  образы `*/.docker/Dockerfile_prod`, команды `make prod-*` из корня (`deploy/README.md`).
 
 Правила (`rules/`) — в репозитории. План (`plans/`) — только на этой машине, в `.gitignore`.
 
@@ -56,7 +58,8 @@ CLAUDE.md, Makefile и Docker:
 Порты (не пересекаются с artverse): API `8290`, MariaDB `33270`, Redis `6590`, веб `5390`.
 Из корня папки: `make start` поднимает бэкенд, собирает runner во фронт и поднимает фронт;
 `make check` проверяет все три части. У runner нет сервиса: только `start`/`build`, `test`,
-`check` (сборка и тесты — в контейнере .NET SDK).
+`check` (сборка и тесты — в контейнере .NET SDK). `make prod-check` — собрать production-образы и
+проверить их отдельным стеком на порту `15390` (потом всё удаляется; стек разработки не трогает).
 
 ## Принятые решения
 

@@ -1,0 +1,31 @@
+version: '3'
+
+# Production: только API (статику и сжатие отдаёт Caddy во фронте, deploy/README.md).
+# Порт 8080 — процесс работает не от root
+
+rpc:
+  listen: 'tcp://127.0.0.1:6001'
+
+server:
+  command: "php vendor/bin/rr-worker start --laravel-path=/var/www/html --worker-mode=http"
+  relay: "pipes"
+  relay_timeout: "20s"
+
+http:
+  address: 0.0.0.0:8080
+  # МБ: API принимает только JSON (код решений, прогресс)
+  max_request_size: 2
+  pool:
+    num_workers: ${RR_NUM_WORKERS:-4}
+    # Воркер пересоздаётся через N запросов и при росте памяти — страховка от утечек
+    max_jobs: ${RR_MAX_JOBS:-1000}
+    allocate_timeout: 60s
+    destroy_timeout: 30s
+    supervisor:
+      exec_ttl: 30s
+      max_worker_memory: 192
+
+logs:
+  mode: production
+  level: warn
+  encoding: json

@@ -1,0 +1,164 @@
+# Production-стек C# School (deploy/README.md):
+#   интернет → web (Caddy: HTTPS, SPA, runner, /api) → api (RoadRunner + Laravel) → mariadb, redis
+#   queue и scheduler — тот же образ API: очередь и задачи по расписанию.
+# Наружу открыт только web (80/443). Секреты — только из deploy/.env (в git не попадает),
+# образец — .env.production.example. Команды — make prod-* в корне репозитория.
+name: csharp-school-prod
+
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "5"
+
+# Общее для api, queue и scheduler
+x-backend: &backend
+  image: ${IMAGE_PREFIX:-csharp-school}-api:${IMAGE_TAG:-latest}
+  restart: unless-stopped
+  env_file: ${ENV_FILE:-.env}
+  # Эти значения задаёт стек, а не .env: адреса сервисов и режим production
+  environment:
+    APP_ENV: production
+    APP_DEBUG: "false"
+    APP_KEY: ${APP_KEY:?APP_KEY не задан}
+    LOG_CHANNEL: stderr
+    DB_CONNECTION: mariadb
+    DB_HOST: mariadb
+    DB_PORT: "3306"
+    DB_DATABASE: ${DB_DATABASE:-csharp_school}
+    DB_USERNAME: ${DB_USERNAME:-csharp_school}
+    DB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD не задан}
+    REDIS_CLIENT: phpredis
+    REDIS_HOST: redis
+    REDIS_PORT: "6379"
+    REDIS_PASSWORD: ${REDIS_PASSWORD:?REDIS_PASSWORD не задан}
+    CACHE_STORE: redis
+    QUEUE_CONNECTION: redis
+    SESSION_DRIVER: array
+    COURSE_CONTENT_PATH: /var/www/content
+    # Caddy (web) — в этой же сети Docker: частные подсети, снаружи сюда не попасть
+    TRUSTED_PROXIES: ${TRUSTED_PROXIES:-10.0.0.0/8,172.16.0.0/12,192.168.0.0/16}
+  # Файловая система только для чтения: пишутся лишь временные storage и кэши (узел без состояния)
+  read_only: true
+  # (82 — www-data в образе php:alpine)
+  tmpfs:
+    - /tmp
+    - /var/www/html/storage:uid=82,gid=82,mode=0755
+    - /var/www/html/bootstrap/cache:uid=82,gid=82,mode=0755
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  logging: *logging
+  depends_on:
+    mariadb:
+      condition: service_healthy
+    redis:
+      condition: service_healthy
+
+services:
+  api:
+    <<: *backend
+    build:
+      context: ../backend
+      dockerfile: .docker/Dockerfile_prod
+      additional_contexts:
+        content: ../content
+    stop_grace_period: 30s
+
+  # У воркеров нет HTTP: «здоров» = главный процесс жив (упадёт — Docker перезапустит).
+  # Раз в час воркер очереди выходит сам и перезапускается — страховка от утечек памяти
+  queue:
+    <<: *backend
+    command: ["php", "artisan", "queue:work", "--queue=default", "--sleep=3", "--tries=3", "--timeout=120", "--max-time=3600"]
+    healthcheck: &process-alive
+      test: ["CMD", "kill", "-0", "1"]
+      interval: 30s
+      timeout: 3s
+      start_period: 20s
+    # Задача может идти до --timeout=120: дать её закончить
+    stop_grace_period: 130s
+
+  scheduler:
+    <<: *backend
+    command: ["php", "artisan", "schedule:work"]
+    healthcheck: *process-alive
+
+  web:
+    image: ${IMAGE_PREFIX:-csharp-school}-web:${IMAGE_TAG:-latest}
+    build:
+      context: ../frontend
+      dockerfile: .docker/Dockerfile_prod
+      additional_contexts:
+        runner-src: ../runner
+    restart: unless-stopped
+    ports:
+      - "${HTTP_PORT:-80}:80"
+      - "${HTTPS_PORT:-443}:443"
+      - "${HTTPS_PORT:-443}:443/udp"
+    environment:
+      SITE_ADDRESS: ${SITE_ADDRESS:?SITE_ADDRESS не задан (домен, например csharp.example.org)}
+      ACME_EMAIL: ${ACME_EMAIL:?ACME_EMAIL не задан (почта для Let's Encrypt)}
+      CADDY_TRUSTED_PROXIES: ${CADDY_TRUSTED_PROXIES:-127.0.0.1/32}
+    volumes:
+      # Сертификаты и ключи ACME: потерять — значит выпускать заново (лимиты Let's Encrypt)
+      - caddy_data:/data
+      - caddy_config:/config
+    read_only: true
+    tmpfs:
+      - /tmp
+    # Не root; порты 80/443 — по capability бинарника caddy (поэтому без no-new-privileges)
+    cap_drop: [ALL]
+    cap_add: [NET_BIND_SERVICE]
+    logging: *logging
+    depends_on:
+      api:
+        condition: service_healthy
+
+  mariadb:
+    image: mariadb:11.4
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: ${DB_DATABASE:-csharp_school}
+      MARIADB_USER: ${DB_USERNAME:-csharp_school}
+      MARIADB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD не задан}
+      # Пароль root не нужен никому: приложение и резервные копии работают от своего пользователя
+      MARIADB_RANDOM_ROOT_PASSWORD: "1"
+      # Новая версия образа сама обновляет системные таблицы
+      MARIADB_AUTO_UPGRADE: "1"
+    volumes:
+      - mariadb:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+      start_period: 20s
+    logging: *logging
+
+  redis:
+    image: redis:7.4-alpine
+    restart: unless-stopped
+    user: redis
+    # Пароль — файлом настроек в памяти (tmpfs), а не аргументом: не виден в списке процессов.
+    # appendonly — очередь и лимиты переживают перезапуск
+    command: ["sh", "-c", "printf 'requirepass %s\\nappendonly yes\\ndir /data\\n' \"$$REDIS_PASSWORD\" > /tmp/redis.conf && exec redis-server /tmp/redis.conf"]
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD:?REDIS_PASSWORD не задан}
+    volumes:
+      - redis:/data
+    healthcheck:
+      test: ["CMD-SHELL", "REDISCLI_AUTH=\"$$REDIS_PASSWORD\" redis-cli ping | grep -q PONG"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    logging: *logging
+
+volumes:
+  mariadb:
+  redis:
+  caddy_data:
+  caddy_config:

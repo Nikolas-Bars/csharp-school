@@ -13,6 +13,7 @@ use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Lang;
@@ -28,6 +29,13 @@ return Application::configure(basePath: dirname(__DIR__))
         // Для всех запросов, а не только для группы api: ответы 404 и 405 появляются до того,
         // как найден маршрут, и тоже должны быть JSON на языке запроса
         $middleware->prepend([ForceJsonResponse::class, SetLocale::class]);
+
+        // За обратным прокси (deploy/): каким прокси верить — config/trustedproxy.php (TRUSTED_PROXIES).
+        // Только нужные заголовки: без X-Forwarded-Prefix и заголовков AWS ELB
+        $middleware->trustProxies(headers: Request::HEADER_X_FORWARDED_FOR
+            | Request::HEADER_X_FORWARDED_HOST
+            | Request::HEADER_X_FORWARDED_PORT
+            | Request::HEADER_X_FORWARDED_PROTO);
 
         // Маршруты модулей получают группу api сами (config/route-attributes.php)
         $middleware->group('api', [SubstituteBindings::class]);

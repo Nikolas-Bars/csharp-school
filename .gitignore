@@ -4,3 +4,5 @@
 /.old-*/
 .idea/
 .DS_Store
+# Настройки и секреты production (образец — deploy/.env.production.example)
+/deploy/.env

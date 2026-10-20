@@ -1,0 +1,70 @@
+# syntax=docker/dockerfile:1.7
+#
+# Production-образ веба (deploy/README.md): Caddy отдаёт собранный SPA и runner, проксирует /api
+# на бэкенд и сам получает HTTPS-сертификат. Стадии:
+#   runner-build — runner (.NET → WebAssembly) из исходников ../runner, как `make build` в runner;
+#   web-build    — Vite-сборка, заранее сжатые .br/.gz, Caddyfile с хешами встроенных скриптов для CSP;
+#   production   — только Caddy и готовые файлы.
+#
+# Сборка из корня репозитория (runner — отдельный контекст):
+#   docker build -f frontend/.docker/Dockerfile_prod --build-context runner-src=runner frontend
+
+# Результат одинаков на любой платформе — сборочные стадии работают на платформе машины сборки
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:10.0 AS runner-build
+ENV DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_NOLOGO=1
+WORKDIR /runner
+COPY --from=runner-src global.json Directory.Build.props Directory.Packages.props ./
+COPY --from=runner-src build ./build
+COPY --from=runner-src src ./src
+# Версии пакетов — строго по lock-файлам. Сжатые .br/.gz runner кладёт рядом сам.
+# bin/obj — от сборок на машине разработчика, если есть: собирается с нуля
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    rm -rf src/*/bin src/*/obj \
+    && dotnet restore src/Runner.Browser --locked-mode \
+    && dotnet publish src/Runner.Browser -c Release -o /out --no-restore \
+    && test -f /out/wwwroot/_framework/dotnet.js
+
+FROM --platform=$BUILDPLATFORM node:24-alpine AS web-build
+WORKDIR /app
+RUN apk add --no-cache brotli
+COPY package.json package-lock.json ./
+RUN --mount=type=cache,target=/root/.npm npm ci --no-audit --no-fund
+
+COPY . .
+# Пусто — API на том же домене (/api проксирует Caddy). Отдельный домен API — полный адрес,
+# тогда его же нужно добавить в connect-src (Caddyfile) и в CORS_ALLOWED_ORIGINS бэкенда
+ARG VITE_API_URL=""
+ENV VITE_API_URL=$VITE_API_URL
+RUN npm run build-only
+
+# Текстовые файлы сжимаются один раз при сборке: Caddy отдаёт готовые .br/.gz (precompressed)
+RUN find dist -type f \( -name '*.js' -o -name '*.css' -o -name '*.html' -o -name '*.svg' \
+        -o -name '*.json' -o -name '*.txt' -o -name '*.ico' -o -name '*.map' \) \
+        -exec gzip -9 -k -n {} + \
+        -exec brotli -q 11 -k {} +
+
+# В CSP — хеши встроенных скриптов index.html (тема до первой отрисовки): без 'unsafe-inline'
+COPY .docker/prod/Caddyfile .docker/prod/csp-hashes.mjs /build/
+RUN hashes="$(node /build/csp-hashes.mjs dist/index.html)" \
+    && sed "s|__CSP_SCRIPT_HASHES__|${hashes}|" /build/Caddyfile > /build/Caddyfile.out \
+    && ! grep -q __CSP_SCRIPT_HASHES__ /build/Caddyfile.out
+
+FROM caddy:2.11-alpine AS production
+
+# Не root: на 80/443 Caddy пускает file capability образа (cap_net_bind_service)
+RUN addgroup -S -g 10001 web \
+    && adduser -S -D -H -u 10001 -G web web \
+    && mkdir -p /data /config \
+    && chown -R web:web /data /config
+
+COPY --from=web-build /app/dist /srv
+COPY --from=runner-build /out/wwwroot/_framework /srv/runner/_framework
+COPY --from=web-build /build/Caddyfile.out /etc/caddy/Caddyfile
+# Ошибка в Caddyfile — ошибка сборки, а не падение при запуске (адрес и почта — пробные)
+RUN SITE_ADDRESS=:80 ACME_EMAIL=check@example.org caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
+
+USER web
+EXPOSE 80 443 443/udp
+
+HEALTHCHECK --interval=10s --timeout=3s --start-period=10s --retries=6 \
+    CMD wget -qO /dev/null http://127.0.0.1:8081/ || exit 1

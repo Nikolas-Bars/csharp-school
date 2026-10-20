@@ -1,0 +1,47 @@
+name: deploy
+
+# Production-образы собираются и проверяются целиком (deploy/check.sh): стек поднимается на
+# раннере, deploy/smoke.sh проверяет API, SPA, runner, сжатие и заголовки. Образы никуда не
+# публикуются. Запускается при изменении сборки, зависимостей и самой папки deploy/
+on:
+  pull_request:
+    paths:
+      - 'deploy/**'
+      - 'backend/.docker/**'
+      - 'backend/.dockerignore'
+      - 'backend/composer.lock'
+      - 'backend/bootstrap/**'
+      - 'backend/config/**'
+      - 'frontend/.docker/**'
+      - 'frontend/.dockerignore'
+      - 'frontend/package-lock.json'
+      - 'frontend/index.html'
+      - 'frontend/vite.config.ts'
+      - 'runner/Directory.Packages.props'
+      - 'runner/global.json'
+      - '.github/workflows/deploy.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'deploy/**'
+      - 'backend/**'
+      - 'frontend/**'
+      - 'runner/src/**'
+      - 'runner/*.props'
+      - 'runner/global.json'
+      - 'content/**'
+      - '.github/workflows/deploy.yml'
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  images:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Сборка образов, запуск стека и проверка
+        run: deploy/check.sh

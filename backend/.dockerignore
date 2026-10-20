@@ -13,3 +13,5 @@ storage/framework/views/*
 deploy/.env
 tests
 app/Modules/*/Tests
+.phpunit.result.cache
+bootstrap/cache/*.php
