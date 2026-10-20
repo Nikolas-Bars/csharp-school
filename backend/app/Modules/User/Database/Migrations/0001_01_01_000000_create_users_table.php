@@ -6,13 +6,15 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-// Данных об ученике — минимум (среди учеников есть несовершеннолетние): имя, почта, язык
+// Данных об ученике — минимум (среди учеников есть несовершеннолетние): ник, почта, язык.
+// Настоящее имя и возраст не храним
 return new class extends Migration {
     public function up(): void
     {
         Schema::create('users', static function (Blueprint $table): void {
             $table->id();
-            $table->string('name');
+            // Как ученика видят другие; не обязательно уникален
+            $table->string('nickname', 32);
             $table->string('email')->unique();
             // Язык интерфейса и уроков, один из app.supported_locales
             $table->string('locale', 8)->default('ru');
