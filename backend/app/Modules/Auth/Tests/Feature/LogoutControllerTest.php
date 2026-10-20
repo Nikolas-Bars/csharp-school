@@ -18,7 +18,7 @@ final class LogoutControllerTest extends TestCase
 
         $this->postJson('/api/auth/logout', [], ['Authorization' => "Bearer {$phone}"])
             ->assertOk()
-            ->assertJsonPath('message', 'Ты вышел из аккаунта.');
+            ->assertJsonPath('message', 'Выход выполнен.');
 
         // Guard запоминает пользователя между запросами одного теста — сбрасываем, как будто новый запрос
         Auth::forgetGuards();

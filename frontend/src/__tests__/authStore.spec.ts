@@ -100,6 +100,36 @@ describe('useAuthStore', () => {
     expect(tokenStorage.get()).toBeNull()
   })
 
+  it('письмо для нового пароля и сам новый пароль — запросы без входа в аккаунт', async () => {
+    fetchMock.mockImplementation(async () => reply(200))
+    const auth = useAuthStore()
+
+    await auth.forgotPassword({ email: 'anya@example.com' })
+    await auth.resetPassword({ token: 'abc', email: 'anya@example.com', password: 'password1' })
+
+    expect(fetchMock.mock.calls.map(([url, init]) => [url, init?.method])).toEqual([
+      [expect.stringMatching(/\/api\/auth\/forgot-password$/), 'POST'],
+      [expect.stringMatching(/\/api\/auth\/reset-password$/), 'POST'],
+    ])
+    const [, init] = fetchMock.mock.calls[1]!
+    expect(JSON.parse(String(init?.body))).toEqual({
+      token: 'abc',
+      email: 'anya@example.com',
+      password: 'password1',
+    })
+    expect(auth.status).toBe('guest')
+    expect(tokenStorage.get()).toBeNull()
+  })
+
+  it('ошибка сброса пароля доходит до формы', async () => {
+    fetchMock.mockResolvedValue(reply(400, null, 'Ссылка не подходит.'))
+    const auth = useAuthStore()
+
+    await expect(
+      auth.resetPassword({ token: 'old', email: 'anya@example.com', password: 'password1' }),
+    ).rejects.toMatchObject({ status: 400, message: 'Ссылка не подходит.' })
+  })
+
   it('401 на любом запросе выводит из аккаунта', async () => {
     fetchMock.mockResolvedValueOnce(reply(200, { user: anya, token: '1|secret' }))
     const auth = useAuthStore()

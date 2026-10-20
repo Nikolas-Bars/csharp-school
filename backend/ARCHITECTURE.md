@@ -43,10 +43,19 @@ app/Modules/Course/
 Модули:
 
 - `User` — ученики (ник, почта, язык, пароль). Отдаёт контракт `UserAccounts`
-  (регистрация, поиск по почте и паролю, по ID) с `UserDTO`; модель наружу не выходит.
+  (регистрация, поиск по почте и паролю, по почте, по ID, смена пароля) с `UserDTO`; модель
+  наружу не выходит.
 - `Auth` — токены входа (таблица Sanctum, пользователь — «user» + ID) и эндпоинты
   `auth/register`, `auth/login`, `auth/logout`, `auth/me`; ограничение частоты — в
   `AuthServiceProvider`. Пользователей берёт только через `UserAccounts`.
+  Сброс пароля: `auth/forgot-password` → письмо (встроенное уведомление Laravel `ResetPassword`,
+  текст — `lang/*/mail.php`, язык — ученика, ссылка — `app.frontend_url` + `/reset-password?token=…&email=…`)
+  → `auth/reset-password`. Таблица `password_reset_tokens` (формат Laravel, токен — SHA-256,
+  срок — `auth.passwords.users.expire`, ссылка одноразовая). Ответ на запрос письма одинаковый для
+  любой почты, а поиск аккаунта и отправка идут после ответа (`defer`) — ни по тексту, ни по времени
+  не понять, есть ли аккаунт. Лимиты — по адресу и по почте. После сброса все токены входа ученика
+  удаляются. Исключение из «ссылка на чужое — ID» (согласовано): строка сброса привязана к почте, как
+  в формате Laravel — с ним работают брокер паролей и `auth:clear-resets`.
 - `Course` — курс → модули курса → уроки (шаги урока — JSON). Источник — файлы `../content`
   (формат — `content/README.md`), в базу их загружает `course:import` (и сидер). API только для
   чтения и открыт гостям: `courses/{course}` (карта), `courses/{course}/modules/{module}/lessons/{lesson}`.
@@ -112,6 +121,8 @@ Request (валидация) → Controller → DTO → Action::run() → Task::
 - `exceptions.php` — ошибки; `validation.php` — правила валидации (английские — из Laravel);
   с первыми эндпоинтами появятся `messages.php` (успешные ответы) и `fields.php` (названия
   полей, по формам: `fields.register.email`).
+- `mail.php` — письма ученику (на языке аккаунта); `ru.json` — служебные строки шаблона писем
+  Laravel («All rights reserved.» и т. п.), английские у Laravel свои.
 - Ключи — через `App\Services\Translator::get()`. Язык ответа — из `Accept-Language`
   (middleware `SetLocale`, для всех запросов), иначе `ru`.
 - **[тест]** `tests/Unit/LocaleFilesTest.php`: в каждом языке есть все ключи русского с теми же

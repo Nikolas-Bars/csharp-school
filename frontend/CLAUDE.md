@@ -34,11 +34,13 @@ oxlint + ESLint, Prettier (без точек с запятой, одинарны
     воркера), `explain.ts` (ошибки компилятора и программы простыми словами — `compiler.*`,
     `runtime.*` в локалях). Компоненты берут его через `composables/useRunner.ts`.
   - `src/utils/` — чистые функции (`safeRedirect` — возврат после входа только внутри сайта;
+    `queryText` — параметр адреса строкой;
     `markdown` — разбор Markdown урока в структуру; `csharpTokens` — подсветка C# для теории
     и редактора).
 - Вход: токен Sanctum в `localStorage` (`api/tokenStorage.ts`), `http.ts` шлёт его в
   `Authorization`; 401 на любом запросе — токен забывается (`onUnauthorized`), стор выходит.
-  Страницы только для гостя — `meta.guestOnly` в роутере.
+  Страницы только для гостя — `meta.guestOnly` в роутере. Забыли пароль: `/forgot-password` →
+  письмо → `/reset-password?token=…&email=…` (адрес собирает бэкенд) → `/login?reset=done`.
 - Курс: `/courses/:course` — карта, `/courses/:course/:module/:lesson?step=N` — урок, шаг в адресе.
   Код задачи — черновиком в `localStorage` (`useDraft`); без черновика — последний зачтённый код
   из прогресса (на любом устройстве).

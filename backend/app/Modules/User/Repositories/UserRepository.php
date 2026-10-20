@@ -7,6 +7,7 @@ namespace App\Modules\User\Repositories;
 use App\Modules\User\Models\User;
 use App\Repositories\BaseRepository;
 use Illuminate\Database\UniqueConstraintViolationException;
+use SensitiveParameter;
 
 /**
  * @extends BaseRepository<User>
@@ -35,6 +36,25 @@ final class UserRepository extends BaseRepository
         } catch (UniqueConstraintViolationException) {
             return null;
         }
+    }
+
+    /**
+     * Пароль присваивается модели, а не пишется запросом UPDATE: так его хэширует cast hashed.
+     *
+     * @return bool false — такого ученика нет
+     */
+    public function updatePassword(int $id, #[SensitiveParameter] string $password): bool
+    {
+        $user = $this->findById($id);
+
+        if ($user === null) {
+            return false;
+        }
+
+        $user->password = $password;
+        $user->save();
+
+        return true;
     }
 
     protected function model(): string

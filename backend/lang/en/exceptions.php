@@ -20,6 +20,7 @@ return [
     'auth' => [
         'invalid_credentials' => 'Wrong email or password.',
         'email_taken'         => 'This email is already taken. If it is your account, log in.',
+        'invalid_reset_token' => 'This password reset link does not work: it has expired or was already used. Request a new one.',
     ],
 
     'course' => [

@@ -10,6 +10,8 @@ Laravel 12, PHP 8.3, RoadRunner, MariaDB 11.4, Redis 7, Laravel Sanctum (Bearer-
   - `User` — ученики (`nickname`, `email`, `locale`, `password`), контракт `UserAccounts`;
     сидер: `student@example.com`, пароль `Password123`;
   - `Auth` — регистрация, вход, выход, текущий пользователь (`api/auth/*`), токены Sanctum;
+    сброс пароля по почте (при разработке `MAIL_MAILER=log`: письмо со ссылкой — в `make logs`;
+    ссылка ведёт на фронт — `FRONTEND_URL`);
   - `Course` — курс из `../content` (смонтирован в контейнер только для чтения):
     `make artisan cmd='course:import'` после правки уроков; `api/courses/*`;
   - `Progress` — пройденные шаги и код решений (`api/progress/*`, только вошедшим).

@@ -10,6 +10,9 @@ use Illuminate\Foundation\Http\FormRequest;
 
 final class RegisterRequest extends FormRequest
 {
+    /** Требования к паролю — одни и те же при регистрации и сбросе. bcrypt учитывает только первые 72 байта */
+    public const array PASSWORD_RULES = ['required', 'string', 'min:8', 'max:72'];
+
     /**
      * @return array<string, list<string>>
      */
@@ -18,8 +21,7 @@ final class RegisterRequest extends FormRequest
         return [
             'nickname' => ['required', 'string', 'min:2', 'max:32'],
             'email'    => ['required', 'string', 'email', 'max:254'],
-            // bcrypt учитывает только первые 72 байта
-            'password' => ['required', 'string', 'min:8', 'max:72'],
+            'password' => self::PASSWORD_RULES,
         ];
     }
 

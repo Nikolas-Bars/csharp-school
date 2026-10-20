@@ -44,7 +44,7 @@ describe('AppHeader', () => {
     setActivePinia(pinia)
     useAuthStore().user = { id: 1, nickname: 'anya', email: 'anya@example.com', locale: 'ru' }
     const user = await mountHeader(pinia)
-    expect(user.text()).toContain('Ты вошёл как anya')
+    expect(user.text()).toContain('Аккаунт: anya')
     expect(user.findAll('nav a').map((link) => link.text())).toEqual(['Курс'])
     expect(user.findAll('button').map((button) => button.text())).toContain('Выйти')
   })

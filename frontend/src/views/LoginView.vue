@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { computed, reactive } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
 
 import AuthCard from '@/components/auth/AuthCard.vue'
@@ -17,6 +17,11 @@ const { submitting, fieldErrors, formError, submit } = useFormSubmit()
 
 const form = reactive({ email: '', password: '' })
 
+// Сюда возвращает страница нового пароля: ?reset=done
+const notice = computed(() =>
+  route.query.reset === 'done' ? t('auth.login.passwordChanged') : undefined,
+)
+
 async function login() {
   if (await submit(() => auth.login(form))) {
     await router.push(safeRedirect(route.query.redirect))
@@ -25,7 +30,12 @@ async function login() {
 </script>
 
 <template>
-  <AuthCard :title="t('auth.login.title')" :lead="t('auth.login.lead')" :error="formError">
+  <AuthCard
+    :title="t('auth.login.title')"
+    :lead="t('auth.login.lead')"
+    :error="formError"
+    :notice="notice"
+  >
     <form class="auth-form" novalidate @submit.prevent="login">
       <BaseField
         v-model="form.email"
@@ -43,6 +53,12 @@ async function login() {
         autocomplete="current-password"
         required
       />
+      <!-- Набранная почта переходит на страницу «Забыли пароль?», чтобы не вводить её снова -->
+      <RouterLink
+        class="auth-form__forgot"
+        :to="{ name: 'forgot-password', query: form.email ? { email: form.email } : {} }"
+        >{{ t('auth.login.forgot') }}</RouterLink
+      >
       <BaseButton type="submit" :loading="submitting">
         {{ submitting ? t('auth.login.submitting') : t('auth.login.submit') }}
       </BaseButton>
@@ -61,5 +77,13 @@ async function login() {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
+}
+
+/* Ссылка под полем пароля: зона касания не меньше 44 px */
+.auth-form__forgot {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
 }
 </style>

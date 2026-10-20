@@ -12,6 +12,14 @@ return [
         'email'    => 'Email',
         'password' => 'Password',
     ],
+    'forgot_password' => [
+        'email' => 'Email',
+    ],
+    'reset_password' => [
+        'token'    => 'Link from the email',
+        'email'    => 'Email',
+        'password' => 'New password',
+    ],
     'progress' => [
         'steps' => 'Completed steps',
         'code'  => 'Solution code',

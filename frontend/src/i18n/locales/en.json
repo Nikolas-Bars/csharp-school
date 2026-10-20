@@ -98,7 +98,8 @@
       "nicknameHint": "Your nickname is the name others see on the site. Your real name isn't needed.",
       "email": "Email",
       "password": "Password",
-      "passwordHint": "At least 8 characters. A few words in a row are easier to remember than random symbols."
+      "passwordHint": "At least 8 characters. A few words in a row are easier to remember than random symbols.",
+      "newPassword": "New password"
     },
     "login": {
       "title": "Log in",
@@ -106,7 +107,9 @@
       "submit": "Log in",
       "submitting": "Logging in…",
       "noAccount": "No account?",
-      "toRegister": "Create one"
+      "toRegister": "Create one",
+      "forgot": "Forgot your password?",
+      "passwordChanged": "Password changed. Log in with your new password — on this and other devices."
     },
     "register": {
       "title": "Create account",
@@ -115,6 +118,24 @@
       "submitting": "Creating…",
       "hasAccount": "Already have an account?",
       "toLogin": "Log in"
+    },
+    "forgot": {
+      "title": "New password",
+      "lead": "Enter your account email — we will send a link where you can set a new password.",
+      "submit": "Send link",
+      "submitting": "Sending…",
+      "sent": "Done! If an account with {email} exists, the email with a link is on its way. No email after a couple of minutes? Check your spam folder.",
+      "remembered": "Remembered your password?",
+      "toLogin": "Log in"
+    },
+    "reset": {
+      "title": "Set a new password",
+      "lead": "Your old password will stop working, and you will need to log in again on every device.",
+      "submit": "Save password",
+      "submitting": "Saving…",
+      "brokenLink": "Something is missing in this link. Open it from the email again or request a new one.",
+      "linkTrouble": "Link not working?",
+      "requestNew": "Request a new one"
     }
   },
   "course": {

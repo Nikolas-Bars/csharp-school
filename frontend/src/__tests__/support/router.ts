@@ -9,6 +9,8 @@ export async function testRouter(path = '/') {
       { path: '/', name: 'home', component: page },
       { path: '/login', name: 'login', component: page },
       { path: '/register', name: 'register', component: page },
+      { path: '/forgot-password', name: 'forgot-password', component: page },
+      { path: '/reset-password', name: 'reset-password', component: page },
       { path: '/courses/:course', name: 'course', component: page },
       { path: '/courses/:course/:module/:lesson', name: 'lesson', component: page },
     ],

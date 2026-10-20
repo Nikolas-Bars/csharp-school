@@ -70,6 +70,16 @@ export const useAuthStore = defineStore('auth', () => {
     start(await authApi.login(form))
   }
 
+  /** «Забыли пароль?» — письмо со ссылкой. Состояния не меняет: ученик пока гость */
+  async function forgotPassword(form: { email: string }) {
+    await authApi.forgotPassword(form)
+  }
+
+  /** Новый пароль по ссылке. Сервер закрывает все входы, поэтому дальше — обычный вход */
+  async function resetPassword(form: { token: string; email: string; password: string }) {
+    await authApi.resetPassword(form)
+  }
+
   /** Выход на этом устройстве. Сеть недоступна — всё равно выходим локально */
   async function logout() {
     try {
@@ -84,5 +94,15 @@ export const useAuthStore = defineStore('auth', () => {
   // Токен перестал действовать на любом запросе (вышли на другом устройстве, истёк срок)
   onUnauthorized(forget)
 
-  return { user, status, isLoggedIn, restore, register, login, logout }
+  return {
+    user,
+    status,
+    isLoggedIn,
+    restore,
+    register,
+    login,
+    logout,
+    forgotPassword,
+    resetPassword,
+  }
 })
