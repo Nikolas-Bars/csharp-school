@@ -5,6 +5,7 @@ import ThemeToggle from '@/components/layout/ThemeToggle.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import { t } from '@/i18n'
 import { useAuthStore } from '@/stores/auth'
+import { MAIN_COURSE } from '@/utils/course'
 
 const auth = useAuthStore()
 const router = useRouter()
@@ -22,6 +23,9 @@ async function logout() {
       <span class="header__name" aria-hidden="true">{{ t('brand.name') }}</span>
     </RouterLink>
     <nav class="header__nav" :aria-label="t('nav.label')">
+      <RouterLink class="header__link" :to="{ name: 'course', params: { course: MAIN_COURSE } }">
+        {{ t('nav.course') }}
+      </RouterLink>
       <template v-if="auth.isLoggedIn">
         <span class="header__account">{{
           t('nav.account', { nickname: auth.user?.nickname ?? '' })
@@ -123,5 +127,17 @@ async function logout() {
 .header__cta:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
+}
+
+/* Телефон: шапка не должна съедать экран урока — без надписи «Ты вошёл как…» и с меньшими отступами */
+@media (max-width: 40rem) {
+  .header {
+    padding: var(--space-3) var(--space-4);
+    gap: var(--space-2);
+  }
+
+  .header__account {
+    display: none;
+  }
 }
 </style>

@@ -21,17 +21,23 @@ oxlint + ESLint, Prettier (без точек с запятой, одинарны
   - `src/components/ui/Base*.vue` — базовые компоненты без бизнес-логики (`BaseIcon`,
     `BaseButton`, `BaseField` — поле с подписью, подсказкой и ошибкой, связанными для диктора).
   - `src/components/layout/` — оболочка приложения (`AppHeader`, `ThemeToggle`).
-  - `src/components/{feature}/` — компоненты фичи (`lesson/`, `course/`).
+  - `src/components/{feature}/` — компоненты фичи. `lesson/`: `LessonTask` (условие, подсказки,
+    редактор, проверки через runner; на телефоне — вкладки), `LessonQuiz`, `MarkdownView` (текст
+    урока без v-html), `CodeBlock`, `CodeEditor` (CodeMirror 6, грузится лениво, ~105 КБ gzip).
   - `src/views/*View.vue` — страницы маршрутов, лениво загружаются в роутере.
   - `src/runner/` — мост к runner (компилятор C# в Web Worker), без компонентов Vue:
     `protocol.ts` (зеркало протокола runner), `runner.worker.ts` (загружает .NET из
     `public/runner`), `client.ts` (очередь запросов, таймаут бесконечного цикла, перезапуск
     воркера), `explain.ts` (ошибки компилятора и программы простыми словами — `compiler.*`,
     `runtime.*` в локалях). Компоненты берут его через `composables/useRunner.ts`.
-  - `src/utils/` — чистые функции (`safeRedirect` — возврат после входа только внутри сайта).
+  - `src/utils/` — чистые функции (`safeRedirect` — возврат после входа только внутри сайта;
+    `markdown` — разбор Markdown урока в структуру; `csharpTokens` — подсветка C# для теории
+    и редактора).
 - Вход: токен Sanctum в `localStorage` (`api/tokenStorage.ts`), `http.ts` шлёт его в
   `Authorization`; 401 на любом запросе — токен забывается (`onUnauthorized`), стор выходит.
   Страницы только для гостя — `meta.guestOnly` в роутере.
+- Курс: `/courses/:course` — карта, `/courses/:course/:module/:lesson?step=N` — урок, шаг в адресе.
+  Код задачи — черновиком в `localStorage` (`useDraft`), пока нет модуля Progress.
 - Зависимости только вниз: `views → components → composables/stores → api → http`.
   Компонент не вызывает `fetch` и `api/*` напрямую. Фича не импортирует внутренности другой фичи.
 - Язык интерфейса: `src/i18n/locale.ts` (`SUPPORTED_LOCALES` — подмножество

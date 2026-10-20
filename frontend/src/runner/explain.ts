@@ -1,7 +1,7 @@
 import { t } from '@/i18n'
 import ru from '@/i18n/locales/ru.json'
 
-import type { Diagnostic, RuntimeError } from './protocol'
+import type { Check, Diagnostic, RuntimeError } from './protocol'
 
 type Group = 'compiler' | 'runtime'
 type Known<G extends Group> = Exclude<keyof (typeof ru)[G], 'unknown'>
@@ -31,4 +31,21 @@ export function explainRuntimeError(error: RuntimeError): string {
   return isKnown('runtime', error.type)
     ? t(`runtime.${error.type}`)
     : t('runtime.unknown', { type: error.type })
+}
+
+/** Что проверяет проверка задачи — подпись в списке ✓/✗ */
+export function describeCheck(check: Check): string {
+  switch (check.kind) {
+    case 'output':
+      return t('checks.output')
+    case 'variable':
+      return check.type
+        ? t('checks.variableTyped', { name: check.name, type: check.type })
+        : t('checks.variable', { name: check.name })
+    case 'construct':
+      return t('checks.construct', { construct: t(`checks.constructs.${check.construct}`) })
+    case 'call':
+      // System.Console.WriteLine → Console.WriteLine: пространство имён ученику не нужно
+      return t('checks.call', { method: check.method.replace(/^System\./, '') })
+  }
 }
