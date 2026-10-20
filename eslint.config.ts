@@ -16,7 +16,8 @@ export default defineConfigWithVueTs(
     files: ['**/*.{vue,ts,mts,tsx}'],
   },
 
-  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**']),
+  // public/runner — собранный runner (.NET), не наш код
+  globalIgnores(['**/dist/**', '**/dist-ssr/**', '**/coverage/**', 'public/runner/**']),
 
   ...pluginVue.configs['flat/essential'],
   vueTsConfigs.recommended,

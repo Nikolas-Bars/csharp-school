@@ -24,5 +24,64 @@
   "errors": {
     "network": "No connection to the server. Check your internet.",
     "requestFailed": "The request failed (code {status})."
+  },
+  "runner": {
+    "loading": "Loading the C# compiler. The first time takes a few seconds.",
+    "timeout": "The program ran too long, so we stopped it. Maybe it has an endless loop — a loop whose condition never becomes false.",
+    "crashed": "The compiler stopped unexpectedly. Try running again.",
+    "outputLimit": "The program printed too much text, so we stopped it. Maybe printing is inside an endless loop.",
+    "place": "Line {line}, character {column}",
+    "line": "Line {line}",
+    "original": "The compiler says: {message}"
+  },
+  "compiler": {
+    "unknown": "The compiler found an error. Its explanation is below.",
+    "CS1002": "A semicolon «;» is missing. In C# every command ends with «;» — that is how the computer knows where it ends.",
+    "CS0103": "The name «{arg0}» was not found. Check that it is declared above and has no typo. C# tells capital and small letters apart: «hp» and «HP» are different names.",
+    "CS0246": "The type «{arg0}» was not found. A type is a kind of data: int is a whole number, string is text. Check the spelling.",
+    "CS0029": "A value of type {arg0} can't go into a variable of type {arg1}. For example, text in quotes is a string, not a number.",
+    "CS0266": "A value of type {arg0} can't just go into {arg1}: some data may be lost — for example, the fractional part of a number.",
+    "CS0165": "The variable «{arg0}» is used, but nothing has been put into it yet. Assign a value before reading a variable.",
+    "CS0128": "The variable «{arg0}» is already declared above. To declare means to write a type and a name; you don't need to do it twice.",
+    "CS1010": "The text is not closed: a quote «\"» is missing at the end of the line.",
+    "CS1513": "A closing curly brace «{'}'}» is missing. Every «{'{'}» needs its pair.",
+    "CS1026": "A closing parenthesis «)» is missing. Every «(» needs its pair.",
+    "CS0117": "{arg0} has no «{arg1}». Check the spelling: C# tells capital and small letters apart.",
+    "CS1061": "A value of type {arg0} has no «{arg1}». Check the spelling: C# tells capital and small letters apart.",
+    "CS0019": "The operation «{arg0}» can't be done with values of types {arg1} and {arg2}. For example, you can't subtract a number from text.",
+    "CS1501": "The method «{arg0}» doesn't take this many arguments ({arg1}). Arguments are the values in parentheses when you call a method.",
+    "CS0161": "The method {arg0} must return a value, but there is a case where it ends without return.",
+    "CS0201": "This line does nothing. A command can be, for example, an assignment (hp = 10) or a method call (Console.WriteLine(hp)).",
+    "CS1525": "«{arg0}» can't be here: a value or an expression is needed in this place.",
+    "CS0219": "A value was put into the variable «{arg0}», but it is never used after that.",
+    "CS0168": "The variable «{arg0}» is declared but never used.",
+    "CS8773": "This is only allowed in C# {arg1} and newer. We learn C# 9 — the version Unity understands.",
+    "CS8803": "Program commands must come before class declarations: commands first, classes at the end of the file.",
+    "CS5001": "The program has no commands to run. Add at least one, for example printing with Console.WriteLine."
+  },
+  "runtime": {
+    "unknown": "The program stopped with the error {type}.",
+    "DivideByZeroException": "Division by zero. A whole number can't be divided by zero — check the divisor.",
+    "IndexOutOfRangeException": "The array has no element with this number. Numbers (indexes) start at 0: in an array of 3 elements the last one is 2.",
+    "ArgumentOutOfRangeException": "A number is out of the allowed range. For example, a list element number is bigger than the number of elements.",
+    "NullReferenceException": "Access to an empty value (null): the variable doesn't point to anything.",
+    "FormatException": "The text couldn't be turned into a number. For example, int.Parse(\"ten\") won't work — it needs \"10\".",
+    "OverflowException": "The number is too big or too small for this type.",
+    "InvalidCastException": "The value can't be turned into this type.",
+    "KeyNotFoundException": "The dictionary has no such key.",
+    "InvalidOperationException": "This action can't be done right now. For example, taking the first element of an empty list."
+  },
+  "playground": {
+    "title": "Runner check",
+    "lead": "Service page: compiling and running C# right in the browser. Visible only during development.",
+    "code": "Code",
+    "stdin": "Input for Console.ReadLine",
+    "run": "Run",
+    "running": "Running…",
+    "output": "Output",
+    "noOutput": "The program printed nothing.",
+    "errors": "Errors and warnings",
+    "crash": "The program crashed",
+    "time": "Answered in {ms} ms"
   }
 }

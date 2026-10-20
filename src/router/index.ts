@@ -8,6 +8,16 @@ const router = createRouter({
       name: 'home',
       component: () => import('@/views/HomeView.vue'),
     },
+    // Служебная страница проверки runner — только при разработке, в сборку не попадает
+    ...(import.meta.env.DEV
+      ? [
+          {
+            path: '/dev/runner',
+            name: 'dev-runner',
+            component: () => import('@/views/dev/RunnerPlaygroundView.vue'),
+          },
+        ]
+      : []),
   ],
 })
 

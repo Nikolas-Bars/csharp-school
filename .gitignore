@@ -39,3 +39,6 @@ __screenshots__/
 *.timestamp-*-*.mjs
 
 .env
+
+# Собранный runner (make build в csharp-school-runner)
+/public/runner/

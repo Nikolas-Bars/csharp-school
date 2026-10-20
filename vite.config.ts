@@ -13,6 +13,10 @@ export default defineConfig({
     __VUE_I18N_LEGACY_API__: false,
     __INTLIFY_PROD_DEVTOOLS__: false,
   },
+  // Web Worker runner — ES-модуль: он сам загружает .NET через import() (src/runner/runner.worker.ts)
+  worker: {
+    format: 'es',
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

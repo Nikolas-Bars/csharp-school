@@ -21,7 +21,11 @@ oxlint + ESLint, Prettier (без точек с запятой, одинарны
   - `src/components/layout/` — оболочка приложения (`AppHeader`, `ThemeToggle`).
   - `src/components/{feature}/` — компоненты фичи (`lesson/`, `course/`).
   - `src/views/*View.vue` — страницы маршрутов, лениво загружаются в роутере.
-  - `src/runner/` — мост к компилятору C# в Web Worker, без Vue (появится в задаче runner).
+  - `src/runner/` — мост к runner (компилятор C# в Web Worker), без компонентов Vue:
+    `protocol.ts` (зеркало протокола runner), `runner.worker.ts` (загружает .NET из
+    `public/runner`), `client.ts` (очередь запросов, таймаут бесконечного цикла, перезапуск
+    воркера), `explain.ts` (ошибки компилятора и программы простыми словами — `compiler.*`,
+    `runtime.*` в локалях). Компоненты берут его через `composables/useRunner.ts`.
   - `src/utils/` — чистые функции.
 - Зависимости только вниз: `views → components → composables/stores → api → http`.
   Компонент не вызывает `fetch` и `api/*` напрямую. Фича не импортирует внутренности другой фичи.
@@ -43,6 +47,11 @@ oxlint + ESLint, Prettier (без точек с запятой, одинарны
   ставит `data-theme` на `<html>`; скрипт в `index.html` — то же до первой отрисовки.
 - `src/__tests__/themes.spec.ts` сверяет реестр с файлами тем, `main.css`, переводами и скриптом
   `index.html` и падает на `#…`/`rgb(…)` в `<style>` компонентов.
+
+## Runner
+
+`public/runner/` — сборка `csharp-school-runner` (`make build` там), в git не попадает.
+Служебная страница проверки — `/dev/runner`, есть только при разработке (`import.meta.env.DEV`).
 
 ## Команды
 
