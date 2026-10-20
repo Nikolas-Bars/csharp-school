@@ -1,0 +1,6 @@
+# Обходчик дерева для правил про циклы. Подключается в phpstan.neon и в тестах правил
+services:
+    -
+        class: Tests\PHPStanRules\LoopBodyVisitor
+        tags:
+            - phpstan.parser.richParserNodeVisitor

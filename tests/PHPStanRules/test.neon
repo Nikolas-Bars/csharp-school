@@ -1,0 +1,5 @@
+# Конфиг тестов правил: как в phpstan.neon (Larastan знает типы Eloquent) плюс обходчик циклов.
+# Классы из Fixtures подключает ProjectRuleTestCase
+includes:
+    - ../../vendor/larastan/larastan/extension.neon
+    - services.neon
