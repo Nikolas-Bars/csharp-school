@@ -1,0 +1,19 @@
+FROM node:24-alpine
+
+WORKDIR /app
+
+# Зависимости ставятся в образ, а node_modules живёт в отдельном volume:
+# пакеты собраны под Linux и не конфликтуют с node_modules на Mac
+COPY package.json package-lock.json ./
+RUN npm ci --no-audit --no-fund
+
+COPY . .
+
+ENV CHOKIDAR_USEPOLLING=1
+
+EXPOSE 5390
+
+HEALTHCHECK --interval=5s --timeout=3s --start-period=10s --retries=12 \
+    CMD wget -qO- http://127.0.0.1:5390 > /dev/null || exit 1
+
+CMD ["npm", "run", "dev"]

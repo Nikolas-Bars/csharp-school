@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <script>
+      // Тема до загрузки бандла, чтобы страница не мигнула другой темой. Делает то же, что
+      // useThemeStore: сохранённая тема, иначе по схеме устройства (SYSTEM_THEMES).
+      // Список id — как THEMES в src/theme/themes.ts (сверяет themes.spec.ts)
+      try {
+        const themes = ['light', 'dark']
+        const saved = localStorage.getItem('theme')
+        const dark = matchMedia('(prefers-color-scheme: dark)').matches
+        document.documentElement.dataset.theme = themes.includes(saved) ? saved : dark ? 'dark' : 'light'
+      } catch {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap"
+    />
+    <title>C# School</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+/* Построена от светлой: те же роли, контраст текста не ниже WCAG AA */
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-background: #121318;
+  --color-surface: #1b1d24;
+  --color-surface-muted: #23262f;
+  --color-border: #2e313c;
+  --color-text: #ecedf0;
+  --color-text-muted: #a9acb7;
+
+  --color-primary: #6a50ff;
+  --color-primary-hover: #5b3df5;
+  --color-primary-soft: #2a2450;
+  --color-on-accent: #ffffff;
+  --color-accent-text: #b8a9ff;
+
+  --color-danger: #d4382b;
+  --color-danger-hover: #b42318;
+  --color-danger-soft: #3a1d1b;
+  --color-danger-text: #ffb4ab;
+  --color-success: #1e7f4f;
+  --color-success-hover: #186a42;
+  --color-success-soft: #173a2a;
+  --color-success-text: #7fe0a8;
+  --color-warning-soft: #3a2c12;
+  --color-warning-text: #ffd48a;
+
+  --color-inverse: #ecedf0;
+  --color-inverse-text: #17181c;
+
+  --color-overlay: rgb(0 0 0 / 0.6);
+  --color-shadow: rgb(0 0 0 / 0.4);
+}

@@ -1,0 +1,28 @@
+{
+  "brand": {
+    "mark": "C#",
+    "name": "School",
+    "home": "C# School — home"
+  },
+  "nav": {
+    "label": "Main menu"
+  },
+  "home": {
+    "badge": "Free · no videos",
+    "title": "Really learn C#. Then make your own game.",
+    "lead": "A short bit of theory, then a task right away. Code runs right in the browser, and tests honestly tell you what works."
+  },
+  "theme": {
+    "system": "same as system",
+    "light": "light",
+    "dark": "dark",
+    "toggle": "Theme: {current}. Press to switch to: {next}"
+  },
+  "lessons": {
+    "count": "{n} lesson | {n} lessons"
+  },
+  "errors": {
+    "network": "No connection to the server. Check your internet.",
+    "requestFailed": "The request failed (code {status})."
+  }
+}
