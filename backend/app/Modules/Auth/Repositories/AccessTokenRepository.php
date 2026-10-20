@@ -47,6 +47,15 @@ final class AccessTokenRepository extends BaseRepository
             ->delete();
     }
 
+    /** Выход на всех устройствах — например, после смены пароля */
+    public function deleteAllOf(int $userId): void
+    {
+        $this->query()
+            ->where('tokenable_type', self::USER_TYPE)
+            ->where('tokenable_id', $userId)
+            ->delete();
+    }
+
     protected function model(): string
     {
         return PersonalAccessToken::class;

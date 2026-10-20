@@ -22,6 +22,7 @@ async function mountLogin(path = '/login') {
       { path: '/', name: 'home', component: {} },
       { path: '/login', name: 'login', component: LoginView },
       { path: '/register', name: 'register', component: {} },
+      { path: '/forgot-password', name: 'forgot-password', component: {} },
       { path: '/lessons/1', component: {} },
     ],
   })
@@ -85,6 +86,31 @@ describe('LoginView', () => {
       'Заполни поле «Почта».',
     )
     expect(wrapper.find('[role="alert"]').exists()).toBe(false)
+  })
+
+  it('«Забыли пароль?» ведёт на страницу письма и несёт уже набранную почту', async () => {
+    const { wrapper, router } = await mountLogin()
+    const link = () => wrapper.get('a.auth-form__forgot')
+
+    expect(link().text()).toBe('Забыли пароль?')
+    expect(link().attributes('href')).toBe('/forgot-password')
+
+    await wrapper.get('input[type="email"]').setValue('anya@example.com')
+    expect(link().attributes('href')).toBe('/forgot-password?email=anya@example.com')
+
+    await link().trigger('click')
+    await flushPromises()
+    expect(router.currentRoute.value.name).toBe('forgot-password')
+  })
+
+  it('после смены пароля — сообщение над формой', async () => {
+    const plain = await mountLogin()
+    expect(plain.wrapper.find('[role="status"]').exists()).toBe(false)
+
+    const { wrapper } = await mountLogin('/login?reset=done')
+    expect(wrapper.get('[role="status"]').text()).toBe(
+      'Пароль изменён. Войди с новым паролем — на этом и на других устройствах.',
+    )
   })
 
   it('после входа возвращает туда, откуда пришли, но только внутри сайта', async () => {

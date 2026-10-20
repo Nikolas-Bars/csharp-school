@@ -21,4 +21,16 @@ interface UserAccounts
     public function findByCredentials(string $email, string $password): ?UserDTO;
 
     public function find(int $userId): ?UserDTO;
+
+    /**
+     * @return UserDTO|null null — такой почты нет
+     */
+    public function findByEmail(string $email): ?UserDTO;
+
+    /**
+     * Новый пароль открытым текстом — хэшируется при сохранении.
+     *
+     * @return bool false — ученика уже нет
+     */
+    public function changePassword(int $userId, string $password): bool;
 }

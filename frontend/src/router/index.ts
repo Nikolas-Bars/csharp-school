@@ -4,7 +4,7 @@ import { useAuthStore } from '@/stores/auth'
 
 declare module 'vue-router' {
   interface RouteMeta {
-    /** Только для гостя: вошедшего ученика уводим на главную (вход, регистрация) */
+    /** Только для гостя: вошедшего ученика уводим на главную (вход, регистрация, смена пароля) */
     guestOnly?: boolean
   }
 }
@@ -37,6 +37,19 @@ const router = createRouter({
       path: '/register',
       name: 'register',
       component: () => import('@/views/RegisterView.vue'),
+      meta: { guestOnly: true },
+    },
+    {
+      path: '/forgot-password',
+      name: 'forgot-password',
+      component: () => import('@/views/ForgotPasswordView.vue'),
+      meta: { guestOnly: true },
+    },
+    // Сюда ведёт ссылка из письма: ?token=…&email=… (адрес собирает бэкенд, app.frontend_url)
+    {
+      path: '/reset-password',
+      name: 'reset-password',
+      component: () => import('@/views/ResetPasswordView.vue'),
       meta: { guestOnly: true },
     },
     // Служебная страница проверки runner — только при разработке, в сборку не попадает

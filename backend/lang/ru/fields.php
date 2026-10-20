@@ -13,6 +13,14 @@ return [
         'email'    => 'Почта',
         'password' => 'Пароль',
     ],
+    'forgot_password' => [
+        'email' => 'Почта',
+    ],
+    'reset_password' => [
+        'token'    => 'Ссылка из письма',
+        'email'    => 'Почта',
+        'password' => 'Новый пароль',
+    ],
     'progress' => [
         'steps' => 'Пройденные шаги',
         'code'  => 'Код решения',

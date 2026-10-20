@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 return [
     'auth' => [
-        'registered' => 'Account created. Welcome!',
-        'logged_in'  => 'You are logged in.',
-        'logged_out' => 'You are logged out.',
-        'me'         => 'Your account.',
+        'registered'      => 'Account created. Welcome!',
+        'logged_in'       => 'You are logged in.',
+        'logged_out'      => 'You are logged out.',
+        'me'              => 'Your account.',
+        'reset_link_sent' => 'If an account with this email exists, we have sent it a link to set a new password. Check your spam folder too.',
+        'password_reset'  => 'Password changed. Now log in with your new password.',
     ],
     'course' => [
         'course'   => 'Course.',

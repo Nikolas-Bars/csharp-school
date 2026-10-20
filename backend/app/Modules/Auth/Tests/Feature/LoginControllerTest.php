@@ -15,7 +15,7 @@ final class LoginControllerTest extends TestCase
 
         $this->postJson('/api/auth/login', ['email' => 'Student@Example.com ', 'password' => UserFactory::PASSWORD])
             ->assertOk()
-            ->assertJsonPath('message', 'Ты вошёл в аккаунт.')
+            ->assertJsonPath('message', 'Вход выполнен.')
             ->assertJsonPath('data.user.nickname', 'student')
             ->assertJson(['data' => ['token' => true]]);
     }

@@ -8,6 +8,7 @@ use App\Modules\User\Contracts\NewUserDTO;
 use App\Modules\User\Contracts\UserAccounts;
 use App\Modules\User\Contracts\UserDTO;
 use App\Modules\User\Models\User;
+use App\Modules\User\Tasks\ChangePasswordTask;
 use App\Modules\User\Tasks\CreateUserTask;
 use App\Modules\User\Tasks\FindUserByEmailTask;
 use App\Modules\User\Tasks\FindUserTask;
@@ -20,6 +21,7 @@ final readonly class UserAccountsService implements UserAccounts
         private CreateUserTask $createUser,
         private FindUserByEmailTask $findUserByEmail,
         private FindUserTask $findUser,
+        private ChangePasswordTask $changePassword,
     ) {}
 
     public function register(NewUserDTO $user): ?UserDTO
@@ -46,6 +48,18 @@ final readonly class UserAccountsService implements UserAccounts
         $user = $this->findUser->run($userId);
 
         return $user === null ? null : self::toDTO($user);
+    }
+
+    public function findByEmail(string $email): ?UserDTO
+    {
+        $user = $this->findUserByEmail->run($email);
+
+        return $user === null ? null : self::toDTO($user);
+    }
+
+    public function changePassword(int $userId, #[SensitiveParameter] string $password): bool
+    {
+        return $this->changePassword->run($userId, $password);
     }
 
     private static function toDTO(User $user): UserDTO

@@ -1,6 +1,14 @@
 <script setup lang="ts">
-/** Оболочка форм входа и регистрации: заголовок, пояснение, форма и ссылка на соседнюю форму */
-const { title, lead, error } = defineProps<{ title: string; lead: string; error?: string }>()
+/**
+ * Оболочка форм входа, регистрации и смены пароля: заголовок, пояснение, форма и ссылка на
+ * соседнюю форму. notice — хорошая новость («пароль изменён»), error — что пошло не так.
+ */
+const { title, lead, error, notice } = defineProps<{
+  title: string
+  lead: string
+  error?: string
+  notice?: string
+}>()
 </script>
 
 <template>
@@ -8,6 +16,7 @@ const { title, lead, error } = defineProps<{ title: string; lead: string; error?
     <section class="auth__card" :aria-labelledby="'auth-title'">
       <h1 id="auth-title" class="auth__title">{{ title }}</h1>
       <p class="auth__lead">{{ lead }}</p>
+      <p v-if="notice" class="auth__notice" role="status">{{ notice }}</p>
       <p v-if="error" class="auth__error" role="alert">{{ error }}</p>
       <slot />
       <p class="auth__footer"><slot name="footer" /></p>
@@ -46,6 +55,14 @@ const { title, lead, error } = defineProps<{ title: string; lead: string; error?
 .auth__footer {
   margin: 0;
   color: var(--color-text-muted);
+}
+
+.auth__notice {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: var(--color-success-soft);
+  color: var(--color-success-text);
 }
 
 .auth__error {
