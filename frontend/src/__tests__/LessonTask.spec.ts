@@ -211,4 +211,18 @@ describe('LessonTask', () => {
     expect(again.get('textarea').element.value).toBe('using System;\n')
     expect(localStorage.getItem('draft:test/hello')).toBeNull()
   })
+
+  it('без черновика — последний зачтённый код, но черновик важнее него', async () => {
+    async function withSolution() {
+      const wrapper = mount(LessonTask, {
+        props: { task: helloTask, draftKey: 'test/hello', solution: 'Console.Write("решено");' },
+      })
+      await flushPromises()
+      return wrapper.get('textarea').element.value
+    }
+    expect(await withSolution()).toBe('Console.Write("решено");')
+
+    localStorage.setItem('draft:test/hello', 'Console.Write("черновик");')
+    expect(await withSolution()).toBe('Console.Write("черновик");')
+  })
 })

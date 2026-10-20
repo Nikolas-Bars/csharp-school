@@ -40,6 +40,9 @@ final class ModuleStructureRuleTest extends ProjectRuleTestCase
             'Modules/Arena/Services/HeroDirectoryService.php',
             'Modules/Arena/Http/Controllers/ShowHeroController.php',
             'Modules/Arena/Tests/Feature/ShowHeroControllerTest.php',
+            'Modules/Arena/Tasks/LabelItemsTask.php',
+            'Modules/Shop/Contracts/ItemDTO.php',
+            'Modules/Access/Models/Pass.php',
         ), []);
     }
 

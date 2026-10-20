@@ -12,4 +12,8 @@ return [
         'email'    => 'Email',
         'password' => 'Password',
     ],
+    'progress' => [
+        'steps' => 'Completed steps',
+        'code'  => 'Solution code',
+    ],
 ];

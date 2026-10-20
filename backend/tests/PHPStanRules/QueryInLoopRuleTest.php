@@ -19,6 +19,7 @@ final class QueryInLoopRuleTest extends ProjectRuleTestCase
         $this->analyse(self::fixtures(
             'Modules/Arena/Actions/StartBattleAction.php',
             'Modules/Arena/Repositories/HeroRepository.php',
+            'Modules/Arena/Tasks/LabelItemsTask.php',
         ), [
             ['Вызов App\Modules\Arena\Repositories\HeroRepository' . $suffix, 41],
             ['Вызов App\Modules\Shop\Contracts\ItemCatalog' . $suffix, 42],

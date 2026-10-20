@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Modules\Course\Tests\Feature;
 
+use App\Modules\Course\Contracts\LessonDirectory;
 use App\Modules\Course\Models\Course;
 use App\Modules\Course\Models\Lesson;
 use App\Modules\Course\Tests\CourseTestCase;
 use Illuminate\Support\Facades\File;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class ImportCourseCommandTest extends CourseTestCase
 {
@@ -61,6 +63,44 @@ final class ImportCourseCommandTest extends CourseTestCase
             ->assertFailed();
 
         self::assertSame(0, Course::query()->count());
+    }
+
+    /**
+     * @return iterable<string, array{string}>
+     */
+    public static function lessonsProgressCannotCount(): iterable
+    {
+        yield 'без проверки знаний' => ['{"title":{"ru":"x"},"steps":[]}'];
+        yield 'две проверки знаний' => ['{"title":{"ru":"x"},"steps":[{"type":"quiz","questions":[]},{"type":"quiz","questions":[]}]}'];
+        yield 'задача дважды' => ['{"title":{"ru":"x"},"steps":[{"type":"task","task":"say-hi"},{"type":"task","task":"say-hi"},{"type":"quiz","questions":[]}]}'];
+        yield 'задача с id quiz' => ['{"title":{"ru":"x"},"steps":[{"type":"task","task":"quiz"},{"type":"quiz","questions":[]}]}'];
+    }
+
+    #[DataProvider('lessonsProgressCannotCount')]
+    public function testLessonMustBeCountableForProgress(string $lesson): void
+    {
+        $this->copy = $this->copyFixture();
+        File::copyDirectory("{$this->copy}/01-basics/01-first/tasks/say-hi", "{$this->copy}/01-basics/01-first/tasks/quiz");
+        File::put("{$this->copy}/01-basics/01-first/lesson.json", $lesson);
+
+        $this->artisan('course:import', ['path' => $this->copy])
+            ->expectsOutputToContain('01-basics/01-first/lesson.json')
+            ->assertFailed();
+    }
+
+    public function testReimportRefreshesLessonSteps(): void
+    {
+        $this->copy = $this->copyFixture();
+        $this->artisan('course:import', ['path' => $this->copy])->assertSuccessful();
+        $directory = $this->app?->make(LessonDirectory::class);
+        self::assertInstanceOf(LessonDirectory::class, $directory);
+        self::assertSame(['say-hi', 'quiz'], $directory->lessonsOf('test-course')[0]->steps);
+
+        // Задачу убрали из урока: Progress видит это сразу, а не после сброса кэша вручную
+        File::put("{$this->copy}/01-basics/01-first/lesson.json", '{"title":{"ru":"x"},"steps":[{"type":"quiz","questions":[]}]}');
+        $this->artisan('course:import', ['path' => $this->copy])->assertSuccessful();
+
+        self::assertSame(['quiz'], $directory->lessonsOf('test-course')[0]->steps);
     }
 
     public function testPathsOutsideContentAreRejected(): void

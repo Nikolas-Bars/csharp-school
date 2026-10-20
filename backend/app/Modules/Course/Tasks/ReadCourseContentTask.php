@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Modules\Course\Tasks;
 
+use App\Modules\Course\Contracts\LessonStepsDTO;
 use App\Modules\Course\DTO\CourseContentDTO;
 use App\Modules\Course\DTO\LessonContentDTO;
 use App\Modules\Course\DTO\ModuleContentDTO;
@@ -64,7 +65,30 @@ final readonly class ReadCourseContentTask
             };
         }
 
-        return new LessonContentDTO($slug, $this->texts($lesson, 'title', $file), $steps);
+        $title = $this->texts($lesson, 'title', $file);
+        $this->countedSteps($steps, $file);
+
+        return new LessonContentDTO($slug, $title, $steps);
+    }
+
+    /**
+     * Прогресс считает урок пройденным, когда пройдены все задачи и проверка знаний: у каждой
+     * задачи свой id, «quiz» — только у проверки, и она в уроке одна (без неё урок не пройти).
+     *
+     * @param list<array<string, mixed>> $steps
+     */
+    private function countedSteps(array $steps, string $file): void
+    {
+        /** @var list<string> $tasks id задачи — имя её папки, всегда строка */
+        $tasks = array_column(array_filter($steps, static fn(array $step): bool => $step['type'] === 'task'), 'id');
+        $quizzes = \count(array_filter($steps, static fn(array $step): bool => $step['type'] === 'quiz'));
+
+        if ($quizzes !== 1) {
+            throw $this->invalid($file, 'в уроке ровно одна проверка знаний (quiz)');
+        }
+        if (\in_array(LessonStepsDTO::QUIZ, $tasks, true) || \count($tasks) !== \count(array_unique($tasks))) {
+            throw $this->invalid($file, 'папки задач урока — разные и не «quiz»');
+        }
     }
 
     /**

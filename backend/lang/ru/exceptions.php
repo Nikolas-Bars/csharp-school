@@ -29,4 +29,8 @@ return [
         'lesson_not_found' => 'Такого урока нет. Возможно, он переехал — открой карту курса.',
         'invalid_content'  => 'Ошибка в контенте курса — :where: :reason',
     ],
+
+    'progress' => [
+        'lesson_not_found' => 'Такого урока нет.',
+    ],
 ];

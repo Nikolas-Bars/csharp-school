@@ -26,6 +26,9 @@ use Spatie\LaravelData\Data;
  */
 final class ModuleStructureRule implements Rule
 {
+    /** Слова на -s в единственном числе: новое такое имя модуля — дописать сюда */
+    private const array SINGULAR_ON_S = ['Access', 'Address', 'Class', 'News', 'Progress', 'Status'];
+
     private const array SUFFIXES = [
         'Actions'           => 'Action',
         'Tasks'             => 'Task',
@@ -73,7 +76,8 @@ final class ModuleStructureRule implements Rule
         $layer = $location->layer;
         $errors = [];
 
-        if (str_ends_with($location->module, 's')) {
+        // «Courses», «Users» — множественное; «Progress», «Status» — единственное (SINGULAR_ON_S)
+        if (str_ends_with($location->module, 's') && !\in_array($location->module, self::SINGULAR_ON_S, true)) {
             $errors[] = $this->error("Модуль {$location->module}: имя модуля — в единственном числе.", 'module.singular');
         }
 

@@ -34,6 +34,8 @@ final class CourseResource extends JsonResource
                     'slug'  => $lesson->slug,
                     'title' => Localized::pick($lesson->title),
                     'tasks' => \count(array_filter($lesson->steps, static fn(array $step): bool => $step['type'] === 'task')),
+                    // Засчитываемые шаги (id задач и quiz) — чтобы и гость видел, пройден ли урок
+                    'steps' => $lesson->countedSteps(),
                 ])->values(),
             ])->values(),
         ];

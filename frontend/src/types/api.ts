@@ -44,6 +44,8 @@ export interface LessonSummary {
   title: string
   /** Сколько в уроке задач с кодом */
   tasks: number
+  /** Засчитываемые шаги: id задач и «quiz». Урок пройден, когда пройдены все */
+  steps: string[]
 }
 
 /** Урок — LessonResource модуля Course: тексты уже на языке запроса */
@@ -88,4 +90,23 @@ export interface QuizQuestion {
   options: string[]
   answer: number
   explanation: string
+}
+
+/** Прогресс по курсу — CourseProgressResource модуля Progress (без кода решений) */
+export interface CourseProgress {
+  lessons: { module: string; lesson: string; steps: string[]; completed: string[]; done: boolean }[]
+}
+
+/** Прогресс урока — LessonProgressResource: пройденные шаги и последний зачтённый код задач */
+export interface LessonProgress {
+  completed: string[]
+  solutions: Record<string, string>
+}
+
+/** Пройденный шаг: для задачи — с кодом, который прошёл проверки */
+export interface StepCompletion {
+  module: string
+  lesson: string
+  step: string
+  code?: string | null
 }

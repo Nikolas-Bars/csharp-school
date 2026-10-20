@@ -16,8 +16,13 @@ import type { TaskStep } from '@/types/api'
  * Задача урока по макету: слева условие и подсказки по шагам, справа редактор и проверки.
  * На телефоне — вкладки «Условие / Код / Проверки». Код проверяет runner в браузере.
  */
-const { task, draftKey } = defineProps<{ task: TaskStep; draftKey: string }>()
-const emit = defineEmits<{ passed: []; next: [] }>()
+/** solution — последний зачтённый код этой задачи (из прогресса), если черновика нет */
+const { task, draftKey, solution } = defineProps<{
+  task: TaskStep
+  draftKey: string
+  solution?: string
+}>()
+const emit = defineEmits<{ passed: [code: string]; next: [] }>()
 
 // Редактор тяжёлый (CodeMirror) — грузится только на шаге с задачей
 const CodeEditor = defineAsyncComponent(() => import('@/components/lesson/CodeEditor.vue'))
@@ -26,7 +31,7 @@ const editor = useTemplateRef<{ insert(text: string, cursorOffset?: number): voi
 const runner = useRunner()
 runner.preload()
 
-const code = useDraft(draftKey, task.starter)
+const code = useDraft(draftKey, solution ?? task.starter)
 const hintsShown = ref(0)
 const tab = ref<'statement' | 'code' | 'checks'>('statement')
 const state = ref<
@@ -65,7 +70,7 @@ async function run() {
   state.value = { kind: 'done', response: outcome.response }
   diagnostics.value = outcome.response.diagnostics
   if (outcome.response.passed) {
-    emit('passed')
+    emit('passed', code.value)
   }
 }
 

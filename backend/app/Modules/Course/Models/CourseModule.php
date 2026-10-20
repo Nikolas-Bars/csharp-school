@@ -44,7 +44,8 @@ final class CourseModule extends Model
      */
     public function lessons(): HasMany
     {
-        return $this->hasMany(Lesson::class)->orderBy('position');
+        // chaperone: у загруженных уроков сразу заполнен $lesson->module — без лишних запросов
+        return $this->hasMany(Lesson::class)->orderBy('position')->chaperone('module');
     }
 
     /**
