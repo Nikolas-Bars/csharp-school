@@ -9,12 +9,15 @@
     "login": "Log in",
     "register": "Create account",
     "logout": "Log out",
-    "account": "Logged in as {nickname}"
+    "account": "Logged in as {nickname}",
+    "course": "Course"
   },
   "home": {
     "badge": "Free · no videos",
     "title": "Really learn C#. Then make your own game.",
-    "lead": "A short bit of theory, then a task right away. Code runs right in the browser, and tests honestly tell you what works."
+    "lead": "A short bit of theory, then a task right away. Code runs right in the browser, and tests honestly tell you what works.",
+    "start": "First lesson — 5 minutes",
+    "program": "See the program"
   },
   "theme": {
     "system": "same as system",
@@ -112,5 +115,89 @@
       "hasAccount": "Already have an account?",
       "toLogin": "Log in"
     }
+  },
+  "course": {
+    "module": "Module {n}",
+    "lessonBadge": "Lesson {n}",
+    "tasks": "{n} task | {n} tasks",
+    "noTasks": "No tasks",
+    "startLabel": "Where to start",
+    "start": "Start: {title}",
+    "startLead": "Lessons go in order: each one builds on the previous.",
+    "goalLabel": "Course goal",
+    "goalTitle": "Your own game prototype in Unity",
+    "goalText": "Everything you learn here is the same C# used for Unity scripts.",
+    "loading": "Loading the course…",
+    "retry": "Try again"
+  },
+  "lesson": {
+    "back": "Back to the course map",
+    "step": "Step {current} of {total}",
+    "stepKind": {
+      "theory": "theory",
+      "task": "task",
+      "quiz": "quiz"
+    },
+    "goToStep": "Step {n}: {kind}",
+    "next": "Next",
+    "loading": "Loading the lesson…"
+  },
+  "task": {
+    "label": "Task",
+    "hint": "I need a hint",
+    "moreHint": "One more hint ({shown} of {total})",
+    "hintTitle": "Hint {n}",
+    "run": "Run and check",
+    "running": "Checking…",
+    "reset": "Reset",
+    "file": "Program.cs",
+    "editor": "Program code",
+    "editorHelp": "To leave the editor with the keyboard: Esc, then Tab.",
+    "keys": "Symbols missing from a phone keyboard",
+    "idle": "Press «Run and check»: the code will be compiled and go through {n} check | Press «Run and check»: the code will be compiled and go through {n} checks",
+    "checks": "Checks",
+    "compiles": "The program compiles",
+    "compileErrors": "The program doesn't compile. Fix the errors — they are underlined in the code:",
+    "passed": "Passed {passed} of {total}",
+    "allPassed": "All checks passed!",
+    "output": "Program output",
+    "noOutput": "The program printed nothing.",
+    "expected": "Expected",
+    "crash": "The program crashed",
+    "next": "Next →",
+    "tabs": {
+      "statement": "Task",
+      "code": "Code",
+      "checks": "Checks"
+    }
+  },
+  "checks": {
+    "output": "The program prints what is needed",
+    "variable": "There is a variable {name}",
+    "variableTyped": "There is a variable {name} of type {type}",
+    "construct": "{construct} is used",
+    "call": "{method} is called",
+    "constructs": {
+      "if": "if",
+      "else": "else",
+      "for": "for",
+      "foreach": "foreach",
+      "while": "while",
+      "doWhile": "do … while",
+      "switch": "switch",
+      "method": "a method",
+      "class": "class"
+    }
+  },
+  "quiz": {
+    "title": "Check yourself",
+    "lead": "A couple of questions about the lesson. Mistakes are fine — the explanation shows up right away.",
+    "question": "Question {n}",
+    "check": "Check answers",
+    "correct": "Correct!",
+    "wrong": "Not quite.",
+    "done": "All correct — lesson complete!",
+    "toMap": "Back to the course map",
+    "answerAll": "Answer all the questions."
   }
 }

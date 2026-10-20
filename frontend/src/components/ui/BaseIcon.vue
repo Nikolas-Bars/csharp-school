@@ -10,6 +10,8 @@ const PATHS = {
     'M4 4h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z',
     'M8 20h8M12 16v4',
   ],
+  play: ['M7 4l13 8-13 8z'],
+  'chevron-left': ['M15 18l-6-6 6-6'],
 } as const
 
 export type IconName = keyof typeof PATHS
