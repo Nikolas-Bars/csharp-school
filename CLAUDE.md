@@ -11,6 +11,8 @@ CLAUDE.md, Makefile и Docker:
 - `frontend` — веб: Vue 3, Vite, TypeScript, Pinia, vue-i18n.
 - `runner` — компилятор и запуск C# в браузере: Roslyn + .NET 10 в WebAssembly,
   внутри Web Worker. Сборка кладётся во фронт (`public/runner`).
+- `content` — учебный курс файлами: теория (Markdown), задачи, проверки, эталоны и неверные
+  решения (`content/README.md`). Тесты — в runner (`tests/Content.Tests`), в базу — `course:import`.
 
 Правила (`rules/`) — в репозитории. План (`plans/`) — только на этой машине, в `.gitignore`.
 

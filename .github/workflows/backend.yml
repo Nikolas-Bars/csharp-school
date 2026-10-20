@@ -1,12 +1,12 @@
 name: backend
 
-# Только при изменениях в backend/ (или в самом этом файле)
+# При изменениях в backend/ и в content/ (тест импортирует настоящий курс)
 on:
   pull_request:
-    paths: ['backend/**', '.github/workflows/backend.yml']
+    paths: ['backend/**', 'content/**', '.github/workflows/backend.yml']
   push:
     branches: [main]
-    paths: ['backend/**', '.github/workflows/backend.yml']
+    paths: ['backend/**', 'content/**', '.github/workflows/backend.yml']
 
 concurrency:
   group: backend-${{ github.ref }}

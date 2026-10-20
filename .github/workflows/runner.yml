@@ -1,12 +1,12 @@
 name: runner
 
-# Только при изменениях в runner/ (или в самом этом файле)
+# При изменениях в runner/ и в учебном контенте (его тесты — в runner/tests/Content.Tests)
 on:
   pull_request:
-    paths: ['runner/**', '.github/workflows/runner.yml']
+    paths: ['runner/**', 'content/**', '.github/workflows/runner.yml']
   push:
     branches: [main]
-    paths: ['runner/**', '.github/workflows/runner.yml']
+    paths: ['runner/**', 'content/**', '.github/workflows/runner.yml']
 
 concurrency:
   group: runner-${{ github.ref }}

@@ -1,0 +1,25 @@
+{
+  "title": { "ru": "Привет, мир!" },
+  "statement": { "ru": "statement.ru.md" },
+  "starter": "starter.cs",
+  "checks": [
+    { "kind": "output", "expected": "Привет, мир!" },
+    { "kind": "call", "method": "System.Console.WriteLine" }
+  ],
+  "messages": [
+    { "ru": "Программа должна напечатать ровно «Привет, мир!» — с запятой и восклицательным знаком." },
+    { "ru": "Для вывода используй Console.WriteLine." }
+  ],
+  "hints": [
+    { "ru": "Нужна одна команда вывода — как в примере из теории." },
+    { "ru": "Команда выглядит так: Console.WriteLine(\"…\"); — в кавычках текст, который нужно напечатать." },
+    { "ru": "Напиши после using System; строку Console.WriteLine(\"Привет, мир!\"); — и не забудь точку с запятой." }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    { "file": "wrong-text.cs", "fails": [0], "why": "Другой текст: без запятой" },
+    { "file": "wrong-no-quotes.cs", "compileError": "CS0103", "why": "Текст без кавычек компилятор считает именами" },
+    { "file": "wrong-no-semicolon.cs", "compileError": "CS1002", "why": "Нет точки с запятой" },
+    { "file": "wrong-lowercase.cs", "compileError": "CS0103", "why": "console со строчной буквы — другое имя" }
+  ]
+}

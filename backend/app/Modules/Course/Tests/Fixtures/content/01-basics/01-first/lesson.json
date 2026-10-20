@@ -1,0 +1,13 @@
+{
+  "title": { "ru": "Первый урок", "en": "First lesson" },
+  "steps": [
+    { "type": "theory", "text": { "ru": "theory.ru.md", "en": "theory.en.md" } },
+    { "type": "task", "task": "say-hi" },
+    {
+      "type": "quiz",
+      "questions": [
+        { "question": { "ru": "Вопрос?" }, "options": [{ "ru": "Да" }, { "ru": "Нет" }], "answer": 0, "explanation": { "ru": "Потому что да." } }
+      ]
+    }
+  ]
+}

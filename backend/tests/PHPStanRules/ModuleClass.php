@@ -30,6 +30,8 @@ final readonly class ModuleClass
         'Http\\Requests',
         'Http\\Resources',
         'Database',
+        // Artisan-команды модуля: Console/Commands/*Command
+        'Console',
         'Providers',
         'Tests',
     ];

@@ -9,4 +9,9 @@ return [
         'logged_out' => 'You are logged out.',
         'me'         => 'Your account.',
     ],
+    'course' => [
+        'course'   => 'Course.',
+        'lesson'   => 'Lesson.',
+        'imported' => 'Course :course imported: :modules modules, :lessons lessons.',
+    ],
 ];

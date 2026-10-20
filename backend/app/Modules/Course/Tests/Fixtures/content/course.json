@@ -1,0 +1,1 @@
+{ "slug": "test-course", "title": { "ru": "Тестовый курс", "en": "Test course" }, "modules": ["01-basics"] }
