@@ -16,4 +16,9 @@ return [
         '429'     => 'Too many attempts. Wait a minute and try again.',
         '503'     => 'The site is under maintenance. We will be back soon.',
     ],
+
+    'auth' => [
+        'invalid_credentials' => 'Wrong email or password.',
+        'email_taken'         => 'This email is already taken. If it is your account, log in.',
+    ],
 ];

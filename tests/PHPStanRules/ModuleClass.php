@@ -22,6 +22,8 @@ final readonly class ModuleClass
         'Models',
         'Enums',
         'Contracts',
+        // Реализации контрактов модуля: собирают Tasks, как Action
+        'Services',
         'Events',
         'Exceptions',
         'Http\\Controllers',

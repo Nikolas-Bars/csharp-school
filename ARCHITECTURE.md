@@ -19,6 +19,7 @@ app/Modules/Course/
 ├── Models/           # Eloquent-модели
 ├── Enums/            # enum
 ├── Contracts/        # Что модуль отдаёт другим: интерфейсы и их DTO
+├── Services/         # Реализации своих контрактов: UserAccountsService, собирают Tasks
 ├── Events/           # Доменные события: только ID и скаляры
 ├── Exceptions/       # LessonLockedException extends ApiException
 ├── Http/
@@ -32,15 +33,21 @@ app/Modules/Course/
 
 - **[PHPStan]** Имя модуля — в единственном числе (`Course`, не `Courses`); других папок нет;
   класс в папке слоя носит его суффикс (`Actions/*Action`, `Tasks/*Task`, `DTO/*DTO`,
-  `Http/Controllers/*Controller`…) и наследует его базу (`Repositories` — `BaseRepository`,
+  `Http/Controllers/*Controller`, `Services/*Service`…) и наследует его базу (`Repositories` — `BaseRepository`,
   `DTO` — `Data`, `Exceptions` — `ApiException`, `Providers` — `ModuleServiceProvider`…);
   в `Enums` — только enum, в `Contracts` — только интерфейсы и DTO.
 - Общее для всех модулей — в `app/` вне модулей: `ApiResponder`, `Translator`, `ApiException`,
   `BaseRepository`, `ModuleServiceProvider`, middleware. Своих модулей это ядро не знает.
 
-Модули по плану: `User` (пользователь, язык), `Auth` (регистрация, вход, выход),
-`Course` (курсы, модули, уроки, задачи — для учеников только чтение), `Progress` (решения,
-пройденные задачи, проверки знаний, контрольные).
+Модули:
+
+- `User` — ученики (ник, почта, язык, пароль). Отдаёт контракт `UserAccounts`
+  (регистрация, поиск по почте и паролю, по ID) с `UserDTO`; модель наружу не выходит.
+- `Auth` — токены входа (таблица Sanctum, пользователь — «user» + ID) и эндпоинты
+  `auth/register`, `auth/login`, `auth/logout`, `auth/me`; ограничение частоты — в
+  `AuthServiceProvider`. Пользователей берёт только через `UserAccounts`.
+- Дальше по плану: `Course` (курсы, модули, уроки, задачи — для учеников только чтение),
+  `Progress` (решения, пройденные задачи, проверки знаний, контрольные).
 
 ## Поток запроса
 
@@ -128,7 +135,8 @@ Request (валидация) → Controller → DTO → Action::run() → Task::
   и Eloquent-связей; ссылка на чужое — колонка с ID (`lesson_id`) без внешнего ключа.
   Исключение — `user_id` с внешним ключом на `users`. **[ревью]**
 - **Контракт** — интерфейс в `{Module}/Contracts/`, на входе и выходе DTO; данные — пачкой по
-  списку ID. Реализация привязывается в провайдере модуля:
+  списку ID. «Не нашлось» и «занято» — `null`, а не исключение: исключения модуля другой модуль
+  не видит. Реализация — в `{Module}/Services/`, привязывается в провайдере модуля:
 
   ```php
   // app/Modules/Course/Contracts/LessonDirectory.php
@@ -141,6 +149,9 @@ Request (валидация) → Controller → DTO → Action::run() → Task::
   // CourseServiceProvider::register()
   $this->app->bind(LessonDirectory::class, LessonDirectoryService::class);
   ```
+
+- **Полиморфные ссылки** (как `tokenable` у токенов Sanctum) — по псевдониму из morph map
+  модуля-владельца (`user`), а не по имени класса: `Relation::enforceMorphMap` в его провайдере.
 
 - **События между модулями** — `{Module}/Events/*Event` с ID и скалярами. Подписчик ставит задачу
   в очередь; повторная обработка не создаёт дублей (`Cache::add`, уникальные индексы).

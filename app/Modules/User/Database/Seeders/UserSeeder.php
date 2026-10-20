@@ -14,7 +14,7 @@ final class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        UserFactory::new()->create(['name' => 'Ученица', 'email' => 'student@example.com']);
+        UserFactory::new()->create(['nickname' => 'student', 'email' => 'student@example.com']);
         UserFactory::new()->count(3)->create();
 
         $this->command->info('Пользователи: student@example.com и ещё 3, пароль ' . UserFactory::PASSWORD);

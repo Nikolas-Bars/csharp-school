@@ -13,7 +13,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 /**
  * @property      int         $id
- * @property      string      $name
+ * @property      string      $nickname
  * @property      string      $email      он же логин
  * @property      string      $locale     язык из app.supported_locales
  * @property      string      $password   хэш; присваивается открытый пароль — хэшируется сам
@@ -31,7 +31,7 @@ final class User extends Authenticatable
     /**
      * @var list<string>
      */
-    protected $fillable = ['name', 'email', 'locale', 'password'];
+    protected $fillable = ['nickname', 'email', 'locale', 'password'];
 
     /**
      * @var list<string>

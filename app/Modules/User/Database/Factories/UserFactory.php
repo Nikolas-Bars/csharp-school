@@ -29,7 +29,7 @@ final class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'     => fake()->firstName(),
+            'nickname' => fake()->userName(),
             'email'    => fake()->unique()->safeEmail(),
             'locale'   => 'ru',
             'password' => self::$passwordHash ??= Hash::make(self::PASSWORD),
