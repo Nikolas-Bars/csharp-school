@@ -1,3 +1,4 @@
+import { tokenStorage } from '@/api/tokenStorage'
 import { t } from '@/i18n'
 import { locale } from '@/i18n/locale'
 import type { ApiResponse, FieldErrors } from '@/types/api'
@@ -16,6 +17,14 @@ export class ApiError extends Error {
 
 const API_URL = (import.meta.env.VITE_API_URL ?? '').replace(/\/+$/, '')
 
+const unauthorizedListeners = new Set<() => void>()
+
+/** Подписка на «токен перестал действовать» — стор входа сбрасывает сессию. Возвращает отписку */
+export function onUnauthorized(listener: () => void): () => void {
+  unauthorizedListeners.add(listener)
+  return () => unauthorizedListeners.delete(listener)
+}
+
 /**
  * Единственное место, где фронт ходит в сеть. Бэкенд всегда отвечает
  * { status, message, data, errors }: успех разворачивается до data, остальное — ApiError
@@ -28,6 +37,10 @@ async function request<T>(method: string, path: string, body?: unknown): Promise
   }
   if (body !== undefined) {
     headers['Content-Type'] = 'application/json'
+  }
+  const token = tokenStorage.get()
+  if (token !== null) {
+    headers.Authorization = `Bearer ${token}`
   }
 
   let response: Response
@@ -44,6 +57,12 @@ async function request<T>(method: string, path: string, body?: unknown): Promise
   // 204 — успех без тела
   if (response.status === 204) {
     return undefined as T
+  }
+
+  // Токен больше не действует (вышли на другом устройстве, истёк): забыть его и сказать подписчикам
+  if (response.status === 401 && token !== null) {
+    tokenStorage.clear()
+    unauthorizedListeners.forEach((listener) => listener())
   }
 
   const payload = (await response.json().catch(() => null)) as ApiResponse<T> | null
