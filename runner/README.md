@@ -4,7 +4,7 @@
 Сервер код учеников не выполняет никогда.
 
 ```bash
-make build   # собрать и положить во фронт: ../csharp-school-frontend/public/runner
+make build   # собрать и положить во фронт: ../frontend/public/runner
 make check   # стиль + тесты ядра
 make help    # остальные команды
 ```

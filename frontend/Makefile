@@ -15,7 +15,7 @@ start: env ## Собрать и поднять фронт одной коман�
 	$(COMPOSE) up -d --wait
 	@echo ""
 	@echo "  Фронт:  http://localhost:$${WEB_PORT:-5390}"
-	@echo "  API:    $$(grep '^VITE_API_URL=' .env | cut -d= -f2) (поднимается отдельно: make start в csharp-school-backend)"
+	@echo "  API:    $$(grep '^VITE_API_URL=' .env | cut -d= -f2) (поднимается отдельно: make start в backend)"
 	@echo ""
 
 up: env ## Поднять без пересборки

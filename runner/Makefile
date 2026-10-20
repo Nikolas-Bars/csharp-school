@@ -3,7 +3,7 @@ SDK_IMAGE      = mcr.microsoft.com/dotnet/sdk:10.0
 DOTNET         = docker run --rm -v "$(CURDIR)":/src -v csharp-school-nuget:/root/.nuget/packages -w /src $(SDK_IMAGE) dotnet
 DOTNET_TTY     = docker run --rm -it -v "$(CURDIR)":/src -v csharp-school-nuget:/root/.nuget/packages -w /src $(SDK_IMAGE)
 PUBLISH_DIR    = artifacts/browser
-FRONTEND_DIR   = ../csharp-school-frontend/public/runner
+FRONTEND_DIR   = ../frontend/public/runner
 
 .DEFAULT_GOAL := help
 .PHONY: help start build test format lint check shell clean

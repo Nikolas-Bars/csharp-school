@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.WebAssembly">
   <!--
     Оболочка runner для браузера: .NET в WebAssembly внутри Web Worker фронта.
-    Наружу — RunnerExports (JSON протокола). Сборка: make build → ../csharp-school-frontend/public/runner/
+    Наружу — RunnerExports (JSON протокола). Сборка: make build → ../frontend/public/runner/
   -->
   <PropertyGroup>
     <OutputType>Exe</OutputType>

@@ -1,8 +1,18 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
 
 import ThemeToggle from '@/components/layout/ThemeToggle.vue'
+import BaseButton from '@/components/ui/BaseButton.vue'
 import { t } from '@/i18n'
+import { useAuthStore } from '@/stores/auth'
+
+const auth = useAuthStore()
+const router = useRouter()
+
+async function logout() {
+  await auth.logout()
+  await router.push({ name: 'home' })
+}
 </script>
 
 <template>
@@ -12,6 +22,19 @@ import { t } from '@/i18n'
       <span class="header__name" aria-hidden="true">{{ t('brand.name') }}</span>
     </RouterLink>
     <nav class="header__nav" :aria-label="t('nav.label')">
+      <template v-if="auth.isLoggedIn">
+        <span class="header__account">{{
+          t('nav.account', { nickname: auth.user?.nickname ?? '' })
+        }}</span>
+        <BaseButton variant="ghost" @click="logout">{{ t('nav.logout') }}</BaseButton>
+      </template>
+      <!-- Пока сохранённый вход проверяется, кнопок нет: иначе «Войти» мигнёт у вошедшего -->
+      <template v-else-if="auth.status === 'guest'">
+        <RouterLink class="header__link" :to="{ name: 'login' }">{{ t('nav.login') }}</RouterLink>
+        <RouterLink class="header__cta" :to="{ name: 'register' }">{{
+          t('nav.register')
+        }}</RouterLink>
+      </template>
       <ThemeToggle />
     </nav>
   </header>
@@ -59,7 +82,46 @@ import { t } from '@/i18n'
 
 .header__nav {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: var(--space-2);
+}
+
+.header__account {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+/* Ссылки шапки по макету: текстовая «Войти» и тёмная кнопка */
+.header__link,
+.header__cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.header__link {
+  color: var(--color-text);
+}
+
+.header__link:hover {
+  background: var(--color-surface-muted);
+}
+
+.header__cta {
+  padding-inline: var(--space-5);
+  background: var(--color-inverse);
+  color: var(--color-inverse-text);
+  font-weight: 600;
+}
+
+.header__link:focus-visible,
+.header__cta:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 </style>

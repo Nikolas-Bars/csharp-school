@@ -17,7 +17,7 @@ const diagnostic = (code: string, args: string[] = []): Diagnostic => ({
 
 /**
  * Коды, порядок аргументов которых зафиксирован тестами runner
- * (csharp-school-runner/tests/Runner.Core.Tests/CommonMistakesTests.cs)
+ * (runner/tests/Runner.Core.Tests/CommonMistakesTests.cs)
  */
 const RUNNER_CODES = [
   'CS1002',

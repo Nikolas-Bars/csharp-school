@@ -4,7 +4,7 @@ namespace CSharpSchool.Runner.Tests;
 
 /// <summary>
 /// Частые ошибки новичка: код ошибки компилятора и её аргументы. Фронт переводит их на русский
-/// по коду и подставляет аргументы (csharp-school-frontend: compiler.* в src/i18n/locales),
+/// по коду и подставляет аргументы (frontend: compiler.* в src/i18n/locales),
 /// поэтому порядок аргументов здесь — договорённость с фронтом.
 /// </summary>
 public sealed class CommonMistakesTests

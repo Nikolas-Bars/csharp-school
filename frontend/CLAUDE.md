@@ -1,6 +1,6 @@
 # C# School Web
 
-Vue 3 + Vite + TypeScript SPA обучающей платформы C# School для API в `../csharp-school-backend`
+Vue 3 + Vite + TypeScript SPA обучающей платформы C# School для API в `../backend`
 (`../CLAUDE.md` — общие правила, `../rules/` — подробности). Router, Pinia, vue-i18n, Vitest,
 oxlint + ESLint, Prettier (без точек с запятой, одинарные кавычки, ширина 100). Настройки
 инструментов — стандартные из `create-vue`; наши добавки — в `vite.config.ts` (порт, Docker, i18n).
@@ -15,9 +15,11 @@ oxlint + ESLint, Prettier (без точек с запятой, одинарны
     остальное — `ApiError(message, status, errors)`, текст уже на языке ученика. Рядом — **один
     файл на модуль бэкенда** (`api/auth.ts`, `api/courses.ts`, `api/progress.ts`).
   - `src/types/` — типы ответов API, зеркалят ресурсы бэкенда (`types/api.ts`).
-  - `src/stores/` — Pinia; стор — единственный владелец состояния своей области.
+  - `src/stores/` — Pinia; стор — единственный владелец состояния своей области
+    (`auth` — вход: гость — нормальное состояние, учиться можно без аккаунта).
   - `src/composables/` — переиспользуемая реактивная логика (`useXxx`).
-  - `src/components/ui/Base*.vue` — базовые компоненты без бизнес-логики (`BaseIcon`).
+  - `src/components/ui/Base*.vue` — базовые компоненты без бизнес-логики (`BaseIcon`,
+    `BaseButton`, `BaseField` — поле с подписью, подсказкой и ошибкой, связанными для диктора).
   - `src/components/layout/` — оболочка приложения (`AppHeader`, `ThemeToggle`).
   - `src/components/{feature}/` — компоненты фичи (`lesson/`, `course/`).
   - `src/views/*View.vue` — страницы маршрутов, лениво загружаются в роутере.
@@ -26,7 +28,10 @@ oxlint + ESLint, Prettier (без точек с запятой, одинарны
     `public/runner`), `client.ts` (очередь запросов, таймаут бесконечного цикла, перезапуск
     воркера), `explain.ts` (ошибки компилятора и программы простыми словами — `compiler.*`,
     `runtime.*` в локалях). Компоненты берут его через `composables/useRunner.ts`.
-  - `src/utils/` — чистые функции.
+  - `src/utils/` — чистые функции (`safeRedirect` — возврат после входа только внутри сайта).
+- Вход: токен Sanctum в `localStorage` (`api/tokenStorage.ts`), `http.ts` шлёт его в
+  `Authorization`; 401 на любом запросе — токен забывается (`onUnauthorized`), стор выходит.
+  Страницы только для гостя — `meta.guestOnly` в роутере.
 - Зависимости только вниз: `views → components → composables/stores → api → http`.
   Компонент не вызывает `fetch` и `api/*` напрямую. Фича не импортирует внутренности другой фичи.
 - Язык интерфейса: `src/i18n/locale.ts` (`SUPPORTED_LOCALES` — подмножество
@@ -50,7 +55,7 @@ oxlint + ESLint, Prettier (без точек с запятой, одинарны
 
 ## Runner
 
-`public/runner/` — сборка `csharp-school-runner` (`make build` там), в git не попадает.
+`public/runner/` — сборка `runner` (`make build` там), в git не попадает.
 Служебная страница проверки — `/dev/runner`, есть только при разработке (`import.meta.env.DEV`).
 
 ## Команды

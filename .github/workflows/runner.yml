@@ -1,24 +1,30 @@
-name: CI
+name: runner
 
+# Только при изменениях в runner/ (или в самом этом файле)
 on:
   pull_request:
+    paths: ['runner/**', '.github/workflows/runner.yml']
   push:
     branches: [main]
+    paths: ['runner/**', '.github/workflows/runner.yml']
 
 concurrency:
-  group: ci-${{ github.ref }}
+  group: runner-${{ github.ref }}
   cancel-in-progress: true
 
 # То же, что make check, плюс сборка под браузер (ловит ошибки обрезки) и уязвимости пакетов
 jobs:
   checks:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: runner
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-dotnet@v4
         with:
-          global-json-file: global.json
+          global-json-file: runner/global.json
 
       - run: dotnet restore CSharpSchool.Runner.slnx --locked-mode
 

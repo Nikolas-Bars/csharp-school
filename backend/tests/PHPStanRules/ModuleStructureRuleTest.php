@@ -37,6 +37,7 @@ final class ModuleStructureRuleTest extends ProjectRuleTestCase
             'Modules/Arena/Models/Hero.php',
             'Modules/Arena/Enums/BattleStatus.php',
             'Modules/Arena/Contracts/HeroDirectory.php',
+            'Modules/Arena/Services/HeroDirectoryService.php',
             'Modules/Arena/Http/Controllers/ShowHeroController.php',
             'Modules/Arena/Tests/Feature/ShowHeroControllerTest.php',
         ), []);
