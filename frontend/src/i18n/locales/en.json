@@ -5,7 +5,11 @@
     "home": "C# School — home"
   },
   "nav": {
-    "label": "Main menu"
+    "label": "Main menu",
+    "login": "Log in",
+    "register": "Create account",
+    "logout": "Log out",
+    "account": "Logged in as {nickname}"
   },
   "home": {
     "badge": "Free · no videos",
@@ -83,5 +87,30 @@
     "errors": "Errors and warnings",
     "crash": "The program crashed",
     "time": "Answered in {ms} ms"
+  },
+  "auth": {
+    "fields": {
+      "nickname": "Nickname",
+      "nicknameHint": "Your nickname is the name others see on the site. Your real name isn't needed.",
+      "email": "Email",
+      "password": "Password",
+      "passwordHint": "At least 8 characters. A few words in a row are easier to remember than random symbols."
+    },
+    "login": {
+      "title": "Log in",
+      "lead": "Log in to continue where you left off — on any device.",
+      "submit": "Log in",
+      "submitting": "Logging in…",
+      "noAccount": "No account?",
+      "toRegister": "Create one"
+    },
+    "register": {
+      "title": "Create account",
+      "lead": "An account saves your progress and opens it on any device. You can learn without it too.",
+      "submit": "Create account",
+      "submitting": "Creating…",
+      "hasAccount": "Already have an account?",
+      "toLogin": "Log in"
+    }
   }
 }

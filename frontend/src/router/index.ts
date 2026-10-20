@@ -1,5 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+import { useAuthStore } from '@/stores/auth'
+
+declare module 'vue-router' {
+  interface RouteMeta {
+    /** Только для гостя: вошедшего ученика уводим на главную (вход, регистрация) */
+    guestOnly?: boolean
+  }
+}
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -7,6 +16,18 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: () => import('@/views/HomeView.vue'),
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('@/views/LoginView.vue'),
+      meta: { guestOnly: true },
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: () => import('@/views/RegisterView.vue'),
+      meta: { guestOnly: true },
     },
     // Служебная страница проверки runner — только при разработке, в сборку не попадает
     ...(import.meta.env.DEV
@@ -19,6 +40,15 @@ const router = createRouter({
         ]
       : []),
   ],
+})
+
+router.beforeEach(async (to) => {
+  if (!to.meta.guestOnly) {
+    return true
+  }
+  const auth = useAuthStore()
+  await auth.restore()
+  return auth.isLoggedIn ? { name: 'home' } : true
 })
 
 export default router
