@@ -27,4 +27,8 @@ return [
         'lesson_not_found' => 'There is no such lesson. It may have moved — open the course map.',
         'invalid_content'  => 'Error in course content — :where: :reason',
     ],
+
+    'progress' => [
+        'lesson_not_found' => 'There is no such lesson.',
+    ],
 ];

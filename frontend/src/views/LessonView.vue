@@ -10,6 +10,7 @@ import BaseButton from '@/components/ui/BaseButton.vue'
 import BaseIcon from '@/components/ui/BaseIcon.vue'
 import { useLoader } from '@/composables/useLoader'
 import { t } from '@/i18n'
+import { useProgressStore } from '@/stores/progress'
 
 /**
  * Урок: шаги по порядку — теория, задачи, проверка знаний. Текущий шаг — в адресе (?step=3),
@@ -26,11 +27,19 @@ const path = computed(() => ({
 
 // Ключ — строка: смена шага (?step=) не меняет урок и не должна загружать его заново
 const key = computed(() => `${path.value.course}/${path.value.module}/${path.value.lesson}`)
-const {
-  data: lesson,
-  error,
-  loading,
-} = useLoader(key, () => coursesApi.lesson(path.value.course, path.value.module, path.value.lesson))
+const progress = useProgressStore()
+// Урок и последний зачтённый код его задач (для вошедшего — с сервера, у гостя — из браузера).
+// Код — после загрузки прогресса: только что вошедший гость сначала переносит свои решения
+const { data, error, loading } = useLoader(key, async () => {
+  const { course, module, lesson } = path.value
+  const [content, solutions] = await Promise.all([
+    coursesApi.lesson(course, module, lesson),
+    progress.load(course).then(() => progress.solutions(course, module, lesson)),
+  ])
+  return { content, solutions }
+})
+const lesson = computed(() => data.value?.content ?? null)
+const solutions = computed(() => data.value?.solutions ?? {})
 
 const total = computed(() => lesson.value?.steps.length ?? 0)
 const index = computed(() => {
@@ -41,15 +50,45 @@ const index = computed(() => {
 })
 const step = computed(() => lesson.value?.steps[index.value] ?? null)
 
-/** Пройденные в этот раз шаги — для полосок прогресса. Сохранение прогресса — модуль Progress */
-const done = ref(new Set<number>())
+/** Шаги, пройденные в этот раз (и теория, которую прочитали) — для полосок */
+const visited = ref(new Set<number>())
+
+/** Шаг пройден: задача или проверка знаний — по прогрессу, теория — если её прочитали */
+function isDone(itemIndex: number): boolean {
+  const item = lesson.value?.steps[itemIndex]
+  if (!item) {
+    return false
+  }
+  if (visited.value.has(itemIndex)) {
+    return true
+  }
+  const key = item.type === 'task' ? item.id : item.type === 'quiz' ? 'quiz' : null
+  return key !== null && progress.isCompleted(path.value.module, path.value.lesson, key)
+}
+
+/** Задача решена или проверка знаний пройдена — в прогресс (у гостя — в браузер) */
+function record(stepKey: string, code: string | null = null) {
+  complete()
+  void progress.complete(path.value.course, {
+    module: path.value.module,
+    lesson: path.value.lesson,
+    step: stepKey,
+    code,
+  })
+}
 
 function goTo(target: number) {
   void router.push({ query: { ...route.query, step: target + 1 } })
 }
 
+function onTaskPassed(code: string) {
+  if (step.value?.type === 'task') {
+    record(step.value.id, code)
+  }
+}
+
 function complete() {
-  done.value = new Set(done.value).add(index.value)
+  visited.value = new Set(visited.value).add(index.value)
 }
 
 function next() {
@@ -88,12 +127,15 @@ const draftKey = (id: string) =>
             type="button"
             class="lesson__step"
             :class="{
-              'lesson__step--done': done.has(itemIndex),
+              'lesson__step--done': isDone(itemIndex),
               'lesson__step--current': itemIndex === index,
             }"
             :aria-current="itemIndex === index ? 'step' : undefined"
             :aria-label="
-              t('lesson.goToStep', { n: itemIndex + 1, kind: t(`lesson.stepKind.${item.type}`) })
+              t(isDone(itemIndex) ? 'lesson.goToDoneStep' : 'lesson.goToStep', {
+                n: itemIndex + 1,
+                kind: t(`lesson.stepKind.${item.type}`),
+              })
             "
             @click="goTo(itemIndex)"
           ></button>
@@ -116,11 +158,17 @@ const draftKey = (id: string) =>
           :key="step.id"
           :task="step"
           :draft-key="draftKey(step.id)"
-          @passed="complete"
+          :solution="solutions[step.id]"
+          @passed="onTaskPassed"
           @next="next"
         />
 
-        <LessonQuiz v-else :key="`quiz-${index}`" :questions="step.questions" @done="complete">
+        <LessonQuiz
+          v-else
+          :key="`quiz-${index}`"
+          :questions="step.questions"
+          @done="record('quiz')"
+        >
           <template #done>
             <RouterLink class="lesson__map-link" :to="mapRoute">{{ t('quiz.toMap') }}</RouterLink>
           </template>
@@ -188,17 +236,16 @@ const draftKey = (id: string) =>
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-1);
 }
 
-/* Полоска шага — кнопка; область нажатия 44 px по высоте, сама полоска тонкая */
+/* Полоска шага — кнопка 44 × 44 px; сама полоска тонкая, промежуток между полосками — внутри кнопки */
 .lesson__step {
-  width: 2.25rem;
+  width: 2.75rem;
   height: 2.75rem;
   padding: 0;
   border: none;
-  background: linear-gradient(var(--color-border), var(--color-border)) center / 100% 0.5rem
-    no-repeat;
+  background: linear-gradient(var(--color-border), var(--color-border)) center /
+    calc(100% - var(--space-1) * 2) 0.5rem no-repeat;
   cursor: pointer;
 }
 

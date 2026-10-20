@@ -11,8 +11,8 @@ Laravel 12, PHP 8.3, RoadRunner, MariaDB 11.4, Redis 7, Laravel Sanctum (Bearer-
     сидер: `student@example.com`, пароль `Password123`;
   - `Auth` — регистрация, вход, выход, текущий пользователь (`api/auth/*`), токены Sanctum;
   - `Course` — курс из `../content` (смонтирован в контейнер только для чтения):
-    `make artisan cmd='course:import'` после правки уроков; `api/courses/*`.
-  Дальше по плану: `Progress`.
+    `make artisan cmd='course:import'` после правки уроков; `api/courses/*`;
+  - `Progress` — пройденные шаги и код решений (`api/progress/*`, только вошедшим).
 - `app/` вне модулей — общее ядро: `ApiResponder`, `Translator`, `ApiException`, `BaseRepository`,
   `ModuleServiceProvider`, middleware `SetLocale` и `ForceJsonResponse`.
 - `bootstrap/app.php` — ответы на ошибки в общем формате.

@@ -128,7 +128,13 @@
     "goalTitle": "Your own game prototype in Unity",
     "goalText": "Everything you learn here is the same C# used for Unity scripts.",
     "loading": "Loading the course…",
-    "retry": "Try again"
+    "retry": "Try again",
+    "progressLabel": "Your progress",
+    "lessonsDone": "lessons completed",
+    "continue": "Continue: {title}",
+    "finished": "All lessons completed — well done!",
+    "done": "Completed",
+    "current": "Now"
   },
   "lesson": {
     "back": "Back to the course map",
@@ -138,6 +144,7 @@
       "task": "task",
       "quiz": "quiz"
     },
+    "goToDoneStep": "Step {n}: {kind}, completed",
     "goToStep": "Step {n}: {kind}",
     "next": "Next",
     "loading": "Loading the lesson…"

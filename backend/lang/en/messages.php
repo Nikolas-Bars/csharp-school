@@ -14,4 +14,9 @@ return [
         'lesson'   => 'Lesson.',
         'imported' => 'Course :course imported: :modules modules, :lessons lessons.',
     ],
+    'progress' => [
+        'course' => 'Course progress.',
+        'lesson' => 'Lesson progress.',
+        'saved'  => 'Progress saved.',
+    ],
 ];

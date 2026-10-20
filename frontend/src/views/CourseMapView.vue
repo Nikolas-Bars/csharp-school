@@ -6,18 +6,52 @@ import { coursesApi } from '@/api/courses'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import { useLoader } from '@/composables/useLoader'
 import { t } from '@/i18n'
+import { useProgressStore } from '@/stores/progress'
 
 /** Карта курса по макету: модули и уроки по порядку, слева — с чего начать и цель курса */
 const route = useRoute()
 const courseSlug = computed(() => String(route.params.course))
 
-const { data: course, error, loading } = useLoader(courseSlug, (slug) => coursesApi.course(slug))
-
-const first = computed(() => {
-  const module = course.value?.modules[0]
-  const lesson = module?.lessons[0]
-  return module && lesson ? { module, lesson } : null
+const progress = useProgressStore()
+const {
+  data: course,
+  error,
+  loading,
+} = useLoader(courseSlug, (slug) => {
+  void progress.load(slug)
+  return coursesApi.course(slug)
 })
+
+/** Все уроки курса по порядку — с модулем и состоянием */
+const lessons = computed(() =>
+  (course.value?.modules ?? []).flatMap((module) =>
+    module.lessons.map((lesson) => ({
+      module,
+      lesson,
+      done: progress.isLessonDone(module.slug, lesson.slug, lesson.steps),
+    })),
+  ),
+)
+const doneCount = computed(() => lessons.value.filter((item) => item.done).length)
+/** «Сейчас» — первый непройденный урок: с него и продолжать */
+const current = computed(() => lessons.value.find((item) => !item.done) ?? null)
+
+type LessonState = 'done' | 'current' | 'open'
+
+/** Состояние каждого урока «модуль/урок» — считается один раз на изменение прогресса */
+const states = computed(
+  () =>
+    new Map<string, LessonState>(
+      lessons.value.map((item) => [
+        `${item.module.slug}/${item.lesson.slug}`,
+        item.done ? 'done' : item === current.value ? 'current' : 'open',
+      ]),
+    ),
+)
+
+function state(module: string, lesson: string): LessonState {
+  return states.value.get(`${module}/${lesson}`) ?? 'open'
+}
 
 function lessonRoute(module: string, lesson: string) {
   return { name: 'lesson', params: { course: courseSlug.value, module, lesson } }
@@ -38,12 +72,40 @@ function reload() {
 
     <template v-else-if="course">
       <aside class="map__aside">
-        <div v-if="first" class="map__card">
-          <span class="map__eyebrow">{{ t('course.startLabel') }}</span>
-          <p class="map__muted">{{ t('course.startLead') }}</p>
-          <RouterLink class="map__cta" :to="lessonRoute(first.module.slug, first.lesson.slug)">
-            {{ t('course.start', { title: first.lesson.title }) }}
+        <div class="map__card">
+          <span class="map__eyebrow">{{
+            doneCount > 0 ? t('course.progressLabel') : t('course.startLabel')
+          }}</span>
+          <template v-if="doneCount > 0">
+            <strong class="map__count">{{ doneCount }} / {{ lessons.length }}</strong>
+            <div
+              class="map__bar"
+              role="progressbar"
+              :aria-valuenow="doneCount"
+              aria-valuemin="0"
+              :aria-valuemax="lessons.length"
+              :aria-label="t('course.lessonsDone')"
+            >
+              <span
+                class="map__bar-fill"
+                :style="{ width: `${(doneCount / lessons.length) * 100}%` }"
+              ></span>
+            </div>
+            <span class="map__muted">{{ t('course.lessonsDone') }}</span>
+          </template>
+          <p v-else class="map__muted">{{ t('course.startLead') }}</p>
+          <RouterLink
+            v-if="current"
+            class="map__cta"
+            :to="lessonRoute(current.module.slug, current.lesson.slug)"
+          >
+            {{
+              doneCount > 0
+                ? t('course.continue', { title: current.lesson.title })
+                : t('course.start', { title: current.lesson.title })
+            }}
           </RouterLink>
+          <strong v-else class="map__finished">{{ t('course.finished') }}</strong>
         </div>
         <div class="map__card map__card--dark">
           <span class="map__eyebrow map__eyebrow--light">{{ t('course.goalLabel') }}</span>
@@ -66,11 +128,25 @@ function reload() {
 
           <ol class="map__lessons">
             <li v-for="(lesson, lessonIndex) in module.lessons" :key="lesson.slug">
-              <RouterLink class="map__lesson" :to="lessonRoute(module.slug, lesson.slug)">
+              <RouterLink
+                class="map__lesson"
+                :class="`map__lesson--${state(module.slug, lesson.slug)}`"
+                :to="lessonRoute(module.slug, lesson.slug)"
+                :aria-current="state(module.slug, lesson.slug) === 'current' ? 'step' : undefined"
+              >
                 <span class="map__lesson-head">
-                  <span class="map__badge">{{
-                    t('course.lessonBadge', { n: lessonIndex + 1 })
-                  }}</span>
+                  <span
+                    class="map__badge"
+                    :class="`map__badge--${state(module.slug, lesson.slug)}`"
+                  >
+                    {{
+                      state(module.slug, lesson.slug) === 'done'
+                        ? t('course.done')
+                        : state(module.slug, lesson.slug) === 'current'
+                          ? t('course.current')
+                          : t('course.lessonBadge', { n: lessonIndex + 1 })
+                    }}
+                  </span>
                   <span class="map__muted">
                     {{ lesson.tasks > 0 ? t('course.tasks', lesson.tasks) : t('course.noTasks') }}
                   </span>
@@ -230,6 +306,47 @@ function reload() {
   color: var(--color-text-muted);
   font-size: var(--font-size-sm);
   font-weight: 600;
+}
+
+.map__lesson--current {
+  /* Рамка толще без сдвига карточки: вторая линия — тенью */
+  border-color: var(--color-primary);
+  box-shadow:
+    0 0 0 1px var(--color-primary),
+    var(--shadow);
+}
+
+.map__badge--done {
+  background: var(--color-success-soft);
+  color: var(--color-success-text);
+}
+
+.map__badge--current {
+  background: var(--color-primary);
+  color: var(--color-on-accent);
+}
+
+.map__count {
+  font-family: var(--font-display);
+  font-size: var(--font-size-xxl);
+}
+
+.map__bar {
+  height: 0.625rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-primary-soft);
+  overflow: hidden;
+}
+
+.map__bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--color-primary);
+}
+
+.map__finished {
+  color: var(--color-success-text);
 }
 
 .map__lesson-title {

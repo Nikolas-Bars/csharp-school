@@ -52,6 +52,11 @@ final readonly class QueryInLoopRule implements Rule
         ];
     }
 
+    private function isInterface(string $class): bool
+    {
+        return $this->reflectionProvider->hasClass($class) && $this->reflectionProvider->getClass($class)->isInterface();
+    }
+
     private function describeModuleCall(MethodCall|StaticCall $node, Scope $scope): ?string
     {
         // Свой метод ($this->query() в репозитории) — не обращение к другому слою
@@ -62,7 +67,8 @@ final readonly class QueryInLoopRule implements Rule
         foreach ($scope->getType($node->var)->getObjectClassNames() as $class) {
             $layer = ModuleClass::layerOf($class, $this->reflectionProvider);
 
-            if ($layer === 'Repositories' || $layer === 'Contracts') {
+            // Из Contracts запрос — вызов интерфейса; методы DTO рядом с ним — просто данные
+            if ($layer === 'Repositories' || ($layer === 'Contracts' && $this->isInterface($class))) {
                 return 'Вызов ' . $class;
             }
         }

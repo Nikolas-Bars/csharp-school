@@ -49,8 +49,8 @@ export const course: Course = {
       title: 'Первые программы',
       description: 'Вывод, переменные',
       lessons: [
-        { slug: '01-hello', title: 'Первая программа', tasks: 2 },
-        { slug: '02-errors', title: 'Ошибки — это нормально', tasks: 0 },
+        { slug: '01-hello', title: 'Первая программа', tasks: 1, steps: ['hello-world', 'quiz'] },
+        { slug: '02-errors', title: 'Ошибки — это нормально', tasks: 0, steps: ['quiz'] },
       ],
     },
   ],

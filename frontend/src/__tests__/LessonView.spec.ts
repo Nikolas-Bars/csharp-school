@@ -1,4 +1,5 @@
 import { flushPromises, mount } from '@vue/test-utils'
+import { createPinia } from 'pinia'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import LessonView from '@/views/LessonView.vue'
@@ -23,7 +24,7 @@ vi.mock('@/components/lesson/CodeEditor.vue', () => ({
 
 async function mountLesson(path = '/courses/csharp/01-first-programs/01-hello') {
   const router = await testRouter(path)
-  const wrapper = mount(LessonView, { global: { plugins: [router] } })
+  const wrapper = mount(LessonView, { global: { plugins: [createPinia(), router] } })
   await flushPromises()
   return { wrapper, router }
 }
@@ -31,6 +32,7 @@ async function mountLesson(path = '/courses/csharp/01-first-programs/01-hello') 
 describe('LessonView', () => {
   beforeEach(() => {
     vi.stubGlobal('fetch', fetchMock)
+    localStorage.clear()
     fetchMock.mockImplementation(async () => apiReply(lesson))
   })
   afterEach(() => {
@@ -81,5 +83,37 @@ describe('LessonView', () => {
     const { wrapper } = await mountLesson('/courses/csharp/01-first-programs/01-hello?step=99')
 
     expect(wrapper.text()).toContain('Шаг 3 из 3')
+  })
+
+  it('проверка знаний пройдена — шаг засчитан в прогресс гостя', async () => {
+    const { wrapper } = await mountLesson('/courses/csharp/01-first-programs/01-hello?step=3')
+
+    await wrapper.get('input[type="radio"]').setValue(true)
+    await wrapper
+      .findAll('button')
+      .find((button) => button.text() === 'Проверить ответы')!
+      .trigger('click')
+    await flushPromises()
+
+    expect(JSON.parse(localStorage.getItem('progress:csharp') ?? '{}')).toEqual({
+      '01-first-programs/01-hello': { quiz: null },
+    })
+    expect(wrapper.findAll('.lesson__step--done')).toHaveLength(1)
+  })
+
+  it('решение задачи из прогресса гостя подставляется в редактор', async () => {
+    localStorage.setItem(
+      'progress:csharp',
+      JSON.stringify({
+        '01-first-programs/01-hello': { 'hello-world': 'Console.WriteLine("Привет, мир!");' },
+      }),
+    )
+    const { wrapper } = await mountLesson('/courses/csharp/01-first-programs/01-hello?step=2')
+
+    expect(wrapper.findComponent({ name: 'LessonTask' }).props('solution')).toBe(
+      'Console.WriteLine("Привет, мир!");',
+    )
+    // Задача уже решена — полоска шага отмечена
+    expect(wrapper.findAll('.lesson__step')[1]!.classes()).toContain('lesson__step--done')
   })
 })

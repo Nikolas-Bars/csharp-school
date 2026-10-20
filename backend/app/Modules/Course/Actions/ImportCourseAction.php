@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Modules\Course\Actions;
 
 use App\Modules\Course\DTO\CourseContentDTO;
+use App\Modules\Course\Tasks\ForgetLessonStepsTask;
 use App\Modules\Course\Tasks\ReadCourseContentTask;
 use App\Modules\Course\Tasks\SaveCourseTask;
 use Illuminate\Support\Facades\DB;
@@ -15,6 +16,7 @@ final readonly class ImportCourseAction
     public function __construct(
         private ReadCourseContentTask $readContent,
         private SaveCourseTask $saveCourse,
+        private ForgetLessonStepsTask $forgetLessonSteps,
     ) {}
 
     public function run(string $contentPath): CourseContentDTO
@@ -22,6 +24,7 @@ final readonly class ImportCourseAction
         $content = $this->readContent->run($contentPath);
 
         DB::transaction(fn() => $this->saveCourse->run($content));
+        $this->forgetLessonSteps->run($content->slug);
 
         return $content;
     }
