@@ -1,0 +1,13 @@
+<Project>
+  <!--
+    Сборки .NET, которые доступны коду ученика. Один список на два места:
+    - Runner.Core: против их «справочника» (reference assemblies) компилируется код ученика;
+    - Runner.Browser: при сборке под WebAssembly они не обрезаются (trimming), иначе код ученика
+      наткнулся бы на вырезанный метод. Типы из System.Runtime живут в System.Private.CoreLib —
+      она тоже сохраняется целиком.
+    Только то, что нужно в курсе: базовые типы и Math, Console, коллекции, LINQ.
+  -->
+  <ItemGroup>
+    <StudentReference Include="System.Runtime;System.Console;System.Collections;System.Linq" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+# То же, что make check, плюс сборка под браузер (ловит ошибки обрезки) и уязвимости пакетов
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - run: dotnet restore CSharpSchool.Runner.slnx --locked-mode
+
+      - name: Стиль
+        run: dotnet format CSharpSchool.Runner.slnx --verify-no-changes --no-restore
+
+      - name: Тесты
+        run: dotnet test --no-restore
+
+      - name: Сборка под браузер
+        run: dotnet publish src/Runner.Browser -c Release -o artifacts/browser --no-restore
+
+      - name: Уязвимые пакеты
+        run: |
+          dotnet list CSharpSchool.Runner.slnx package --vulnerable --include-transitive | tee vulnerable.txt
+          ! grep -q "has the following vulnerable packages" vulnerable.txt

@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk.WebAssembly">
+  <!--
+    Оболочка runner для браузера: .NET в WebAssembly внутри Web Worker фронта.
+    Наружу — RunnerExports (JSON протокола). Сборка: make build → ../csharp-school-frontend/public/runner/
+  -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>CSharpSchool.Runner.Browser</AssemblyName>
+    <RootNamespace>CSharpSchool.Runner.Browser</RootNamespace>
+    <!-- Нужно для [JSExport] / [JSImport] -->
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <!-- Тексты исключений, а не ключи ресурсов (Arg_DivideByZero): ученик видит оригинал рядом с переводом -->
+    <UseSystemResourceKeys>false</UseSystemResourceKeys>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Runner.Core/Runner.Core.csproj" />
+  </ItemGroup>
+
+  <!--
+    Обрезка (trimming) убирает неиспользуемый код и почти вдвое уменьшает загрузку (6 МБ brotli
+    вместо 11). Целиком сохраняется то, что вызывает код ученика (StudentReferences.props),
+    и компилятор Roslyn. Его предупреждения о рефлексии (IL2104) — про загрузку анализаторов
+    и генераторов, которые runner не использует.
+  -->
+  <Import Project="../../build/StudentReferences.props" />
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);IL2104</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <TrimmerRootAssembly Include="System.Private.CoreLib;@(StudentReference)" />
+    <TrimmerRootAssembly Include="Microsoft.CodeAnalysis;Microsoft.CodeAnalysis.CSharp" />
+  </ItemGroup>
+</Project>

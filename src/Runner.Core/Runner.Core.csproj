@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Ядро runner без привязки к браузеру: компиляция кода ученика (Roslyn), запуск, проверки задачи.
+    Одно и то же ядро работает в браузере (Runner.Browser) и в тестах на обычном .NET.
+  -->
+  <PropertyGroup>
+    <RootNamespace>CSharpSchool.Runner</RootNamespace>
+    <AssemblyName>CSharpSchool.Runner.Core</AssemblyName>
+    <IsTrimmable>false</IsTrimmable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" />
+  </ItemGroup>
+
+  <!-- Справочник для компиляции кода ученика встраивается в эту библиотеку: браузеру не нужно скачивать его отдельно -->
+  <Import Project="../../build/StudentReferences.props" />
+  <PropertyGroup>
+    <StudentReferenceDir>$(NetCoreTargetingPackRoot)/Microsoft.NETCore.App.Ref/$(BundledNETCoreAppPackageVersion)/ref/$(TargetFramework)/</StudentReferenceDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="@(StudentReference->'$(StudentReferenceDir)%(Identity).dll')" LogicalName="refs/%(Filename).dll" />
+  </ItemGroup>
+</Project>
