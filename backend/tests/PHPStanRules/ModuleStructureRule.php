@@ -38,6 +38,7 @@ final class ModuleStructureRule implements Rule
         'Http\\Resources'   => 'Resource',
         'Providers'         => 'ServiceProvider',
         'Services'          => 'Service',
+        'Console'           => 'Command',
     ];
 
     private const array PARENTS = [

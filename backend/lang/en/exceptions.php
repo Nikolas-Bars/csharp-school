@@ -21,4 +21,10 @@ return [
         'invalid_credentials' => 'Wrong email or password.',
         'email_taken'         => 'This email is already taken. If it is your account, log in.',
     ],
+
+    'course' => [
+        'course_not_found' => 'There is no such course.',
+        'lesson_not_found' => 'There is no such lesson. It may have moved — open the course map.',
+        'invalid_content'  => 'Error in course content — :where: :reason',
+    ],
 ];

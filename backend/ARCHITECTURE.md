@@ -26,6 +26,7 @@ app/Modules/Course/
 │   ├── Controllers/  # Один контроллер — один эндпоинт: ShowLessonController::__invoke
 │   ├── Requests/     # Валидация: ShowLessonRequest extends FormRequest
 │   └── Resources/    # Ответ: LessonResource extends JsonResource
+├── Console/Commands/ # Artisan-команды модуля: ImportCourseCommand (регистрируются в провайдере)
 ├── Database/         # Migrations/ (подключаются сами), Factories/, Seeders/
 ├── Providers/        # CourseServiceProvider extends ModuleServiceProvider — подключается сам
 └── Tests/            # Feature/ — тест на каждый контроллер, Unit/
@@ -46,8 +47,11 @@ app/Modules/Course/
 - `Auth` — токены входа (таблица Sanctum, пользователь — «user» + ID) и эндпоинты
   `auth/register`, `auth/login`, `auth/logout`, `auth/me`; ограничение частоты — в
   `AuthServiceProvider`. Пользователей берёт только через `UserAccounts`.
-- Дальше по плану: `Course` (курсы, модули, уроки, задачи — для учеников только чтение),
-  `Progress` (решения, пройденные задачи, проверки знаний, контрольные).
+- `Course` — курс → модули курса → уроки (шаги урока — JSON). Источник — файлы `../content`
+  (формат — `content/README.md`), в базу их загружает `course:import` (и сидер). API только для
+  чтения и открыт гостям: `courses/{course}` (карта), `courses/{course}/modules/{module}/lessons/{lesson}`.
+  Эталоны и неверные решения в базу и API не попадают.
+- Дальше по плану: `Progress` (решения, пройденные задачи, проверки знаний, контрольные).
 
 ## Поток запроса
 
@@ -161,6 +165,11 @@ Request (валидация) → Controller → DTO → Action::run() → Task::
 - **Маршруты** модуля — под своим префиксом (`courses/…`, `progress/…`).
 - **Счётчики** — в строке-владельце, `increment` / `decrement`.
 - **Ломающие изменения API** — новым полем или эндпоинтом.
+
+## Тексты на языке запроса
+
+Тексты учебного контента — по языкам `{"ru": "…"}`; в ответ — одна строка через
+`App\Services\Localized::pick()`: язык запроса, иначе русский.
 
 ## Настройки
 

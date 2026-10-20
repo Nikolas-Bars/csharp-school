@@ -15,6 +15,12 @@ parameters:
         - app/Modules/*/Tests/*
     checkMissingCallableSignature: true
     checkUninitializedProperties: true
+    ignoreErrors:
+        # Ложное срабатывание strict-rules с Larastan: orderBy, whereIn… Eloquent Builder пробрасывает
+        # в Query Builder через __call, и правило принимает их за статические
+        -
+            identifier: staticMethod.dynamicCall
+            message: '#^Dynamic call to static method Illuminate\\Database\\Eloquent\\Builder<#'
 
 # Правила проекта — ARCHITECTURE.md; у каждого есть тест в tests/PHPStanRules
 rules:

@@ -1,0 +1,10 @@
+{
+  "title": { "ru": "Скажи привет" },
+  "statement": { "ru": "statement.ru.md" },
+  "starter": "starter.cs",
+  "checks": [{ "kind": "output", "expected": "Привет" }],
+  "messages": [{ "ru": "Нужно напечатать «Привет»." }],
+  "hints": [{ "ru": "Один" }, { "ru": "Два" }, { "ru": "Три" }],
+  "solution": "solution.cs",
+  "wrong": [{ "file": "wrong.cs", "fails": [0], "why": "Не тот текст" }]
+}

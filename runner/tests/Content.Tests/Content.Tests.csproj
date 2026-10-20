@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Тесты учебного контента (../../../content): эталоны, неверные решения, код из теории — через тот же runner -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>CSharpSchool.Content.Tests</RootNamespace>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="xunit.v3" />
+    <ProjectReference Include="../../src/Runner.Core/Runner.Core.csproj" />
+    <Using Include="Xunit" />
+  </ItemGroup>
+</Project>

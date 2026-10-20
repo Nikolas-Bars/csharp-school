@@ -5,6 +5,11 @@ declare(strict_types=1);
 // В config/*.php — только отличия от настроек по умолчанию: остальное Laravel берёт из своих
 // vendor/laravel/framework/config/*.php и читает из .env
 return [
+    // Язык по умолчанию — русский: для консольных команд, очередей и любых запусков без .env
+    // (у HTTP-запросов язык выбирает SetLocale по Accept-Language)
+    'locale'          => env('APP_LOCALE', 'ru'),
+    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'ru'),
+
     // Языки ответов API (lang/{ru,en}); первый — язык по умолчанию. Фронт: src/i18n/locale.ts
     'supported_locales' => ['ru', 'en'],
 ];

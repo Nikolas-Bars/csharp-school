@@ -12,6 +12,8 @@ services:
       - "${APP_PORT:-8290}:80"
     volumes:
       - .:/var/www/html
+      # Учебный контент (../content) — только читать: course:import загружает его в базу
+      - ../content:/var/www/content:ro
       # vendor живёт в образе: на macOS bind-mount с тысячами файлов заметно тормозит
       - /var/www/html/vendor
     depends_on:

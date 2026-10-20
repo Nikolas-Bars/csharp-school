@@ -10,4 +10,9 @@ return [
         'logged_out' => 'Ты вышел из аккаунта.',
         'me'         => 'Твой аккаунт.',
     ],
+    'course' => [
+        'course'   => 'Курс.',
+        'lesson'   => 'Урок.',
+        'imported' => 'Курс :course загружен: модулей — :modules, уроков — :lessons.',
+    ],
 ];

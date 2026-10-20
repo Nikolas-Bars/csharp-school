@@ -16,6 +16,9 @@ use ReflectionMethod;
  * Контроллер — один эндпоинт: единственный публичный метод __invoke (и конструктор),
  * а в {Module}/Tests/Feature есть {Контроллер}Test.php.
  *
+ * Правило смотрит на файлы тестов, а кэш результатов PHPStan об этом не знает: появившийся или
+ * удалённый тест не перепроверил бы контроллер. Поэтому composer phpstan сбрасывает кэш.
+ *
  * @implements Rule<InClassNode>
  */
 final class ControllerRule implements Rule

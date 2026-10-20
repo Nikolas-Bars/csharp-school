@@ -39,7 +39,10 @@
         ],
         "lint": "php-cs-fixer fix",
         "lint-check": "php-cs-fixer fix --dry-run --diff",
-        "phpstan": "phpstan analyse --memory-limit=1G",
+        "phpstan": [
+            "phpstan clear-result-cache -q",
+            "phpstan analyse --memory-limit=1G"
+        ],
         "test": [
             "@php artisan config:clear --ansi",
             "phpunit"

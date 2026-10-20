@@ -31,13 +31,14 @@ abstract class ApiException extends Exception
     /**
      * @param array<string, int|float|string> $replace подстановки в текст: ['minutes' => 5]
      */
-    public function __construct(private readonly array $replace = [])
+    public function __construct(array $replace = [])
     {
-        parent::__construct(static::TRANSLATION_KEY);
+        // Сразу переведённый текст: его же видит и консольная команда, и лог
+        parent::__construct(Translator::get(static::TRANSLATION_KEY, $replace));
     }
 
     public function render(): JsonResponse
     {
-        return ApiResponder::error(Translator::get(static::TRANSLATION_KEY, $this->replace), static::STATUS);
+        return ApiResponder::error($this->getMessage(), static::STATUS);
     }
 }

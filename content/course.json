@@ -1,0 +1,5 @@
+{
+  "slug": "csharp",
+  "title": { "ru": "C# с нуля до первой игры" },
+  "modules": ["01-first-programs"]
+}
