@@ -59,6 +59,11 @@ RUN find /var/www/content \( -name 'solution.cs' -o -name 'wrong-*.cs' -o -name 
 # Запуск
 FROM base AS production
 
+# Метки: GHCR связывает образ с репозиторием, deploy.sh по title чистит старые образы
+LABEL org.opencontainers.image.title="csharp-school" \
+      org.opencontainers.image.source="https://github.com/Nikolas-Bars/csharp-school" \
+      org.opencontainers.image.licenses="MIT"
+
 ENV APP_ENV=production \
     APP_DEBUG=false \
     LOG_CHANNEL=stderr \

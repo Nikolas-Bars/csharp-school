@@ -15,6 +15,8 @@ CLAUDE.md, Makefile и Docker:
   решения (`content/README.md`). Тесты — в runner (`tests/Content.Tests`), в базу — `course:import`.
 - `deploy` — production: `docker-compose.prod.yml` (Caddy с HTTPS → API → MariaDB, Redis),
   образы `*/.docker/Dockerfile_prod`, команды `make prod-*` из корня (`deploy/README.md`).
+  Сейчас — на сервере мессенджера (`ssh starter`, https://csharp.call-yansburg.com) за его Caddy
+  (`docker-compose.edge.yml`), с лимитами памяти; образы — из GHCR, обновление — `deploy/deploy.sh`.
 
 Правила (`rules/`) — в репозитории. План (`plans/`) — только на этой машине, в `.gitignore`.
 

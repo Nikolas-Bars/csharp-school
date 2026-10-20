@@ -1,0 +1,20 @@
+# Режим «общий сервер»: C# School живёт на сервере мессенджера Kolyansburg рядом с ним
+# (deploy/README.md, «Сервер мессенджера»). HTTPS и сертификат для csharp.call-yansburg.com — у Caddy
+# мессенджера: он передаёт запросы нашему web по общей сети edge (её создаёт compose мессенджера).
+# Поэтому у web нет портов наружу, а наш Caddy слушает только HTTP (в .env: SITE_ADDRESS=:80,
+# CADDY_TRUSTED_PROXIES=private_ranges — чтобы видеть настоящий IP ученика из X-Forwarded-For).
+#
+# Подключается вместе с основным файлом: COMPOSE_FILE=docker-compose.prod.yml:docker-compose.edge.yml
+services:
+  web:
+    ports: !reset []
+    networks:
+      default:
+      edge:
+        aliases:
+          - csharp-school-web
+
+networks:
+  edge:
+    external: true
+    name: edge

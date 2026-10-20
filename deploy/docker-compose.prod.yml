@@ -3,6 +3,9 @@
 #   queue и scheduler — тот же образ API: очередь и задачи по расписанию.
 # Наружу открыт только web (80/443). Секреты — только из deploy/.env (в git не попадает),
 # образец — .env.production.example. Команды — make prod-* в корне репозитория.
+# На общем сервере (за Caddy мессенджера) — вместе с docker-compose.edge.yml.
+# Лимиты памяти и процессора — чтобы стек не отнимал ресурсы у соседей по серверу: в сумме не
+# больше ~1.1 ГБ, обычно ~0.6 ГБ (api — RR_NUM_WORKERS=2). Свой сервер — лимиты можно поднять.
 name: csharp-school-prod
 
 x-logging: &logging
@@ -63,6 +66,8 @@ services:
       additional_contexts:
         content: ../content
     stop_grace_period: 30s
+    mem_limit: ${API_MEM_LIMIT:-384m}
+    cpus: 1.0
 
   # У воркеров нет HTTP: «здоров» = главный процесс жив (упадёт — Docker перезапустит).
   # Раз в час воркер очереди выходит сам и перезапускается — страховка от утечек памяти
@@ -76,11 +81,15 @@ services:
       start_period: 20s
     # Задача может идти до --timeout=120: дать её закончить
     stop_grace_period: 130s
+    mem_limit: 128m
+    cpus: 0.5
 
   scheduler:
     <<: *backend
     command: ["php", "artisan", "schedule:work"]
     healthcheck: *process-alive
+    mem_limit: 128m
+    cpus: 0.25
 
   web:
     image: ${IMAGE_PREFIX:-csharp-school}-web:${IMAGE_TAG:-latest}
@@ -108,6 +117,8 @@ services:
     # Не root; порты 80/443 — по capability бинарника caddy (поэтому без no-new-privileges)
     cap_drop: [ALL]
     cap_add: [NET_BIND_SERVICE]
+    mem_limit: 128m
+    cpus: 0.5
     logging: *logging
     depends_on:
       api:
@@ -116,6 +127,14 @@ services:
   mariadb:
     image: mariadb:11.4
     restart: unless-stopped
+    # Данных мало (ученики, прогресс, курс): небольшой буфер InnoDB и без performance_schema
+    command:
+      - --innodb-buffer-pool-size=${DB_BUFFER_POOL:-64M}
+      - --max-connections=40
+      - --performance-schema=OFF
+      - --skip-name-resolve
+    mem_limit: ${DB_MEM_LIMIT:-256m}
+    cpus: 0.5
     environment:
       MARIADB_DATABASE: ${DB_DATABASE:-csharp_school}
       MARIADB_USER: ${DB_USERNAME:-csharp_school}
@@ -140,7 +159,10 @@ services:
     user: redis
     # Пароль — файлом настроек в памяти (tmpfs), а не аргументом: не виден в списке процессов.
     # appendonly — очередь и лимиты переживают перезапуск
-    command: ["sh", "-c", "printf 'requirepass %s\\nappendonly yes\\ndir /data\\n' \"$$REDIS_PASSWORD\" > /tmp/redis.conf && exec redis-server /tmp/redis.conf"]
+    # maxmemory + noeviction: при нехватке памяти — ошибка записи, а не тихая потеря задач очереди
+    command: ["sh", "-c", "printf 'requirepass %s\\nappendonly yes\\ndir /data\\nmaxmemory 40mb\\nmaxmemory-policy noeviction\\n' \"$$REDIS_PASSWORD\" > /tmp/redis.conf && exec redis-server /tmp/redis.conf"]
+    mem_limit: 64m
+    cpus: 0.25
     environment:
       REDIS_PASSWORD: ${REDIS_PASSWORD:?REDIS_PASSWORD не задан}
     volumes:
