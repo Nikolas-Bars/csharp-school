@@ -1,0 +1,15 @@
+.git
+.idea
+.vscode
+vendor
+node_modules
+storage/logs/*
+storage/framework/cache/*
+storage/framework/views/*
+.phpstan-cache
+.php-cs-fixer.cache
+.phpunit.cache
+.env
+deploy/.env
+tests
+app/Modules/*/Tests

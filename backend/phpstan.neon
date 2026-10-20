@@ -1,0 +1,30 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+    - tests/PHPStanRules/services.neon
+
+parameters:
+    level: 10
+    tmpDir: .phpstan-cache
+    paths:
+        - app
+        - bootstrap/app.php
+        - database
+        - routes
+    excludePaths:
+        - app/Modules/*/Tests/*
+    checkMissingCallableSignature: true
+    checkUninitializedProperties: true
+
+# Правила проекта — ARCHITECTURE.md; у каждого есть тест в tests/PHPStanRules
+rules:
+    - Tests\PHPStanRules\ModuleStructureRule
+    - Tests\PHPStanRules\ModuleBoundaryRule
+    - Tests\PHPStanRules\ControllerRule
+    - Tests\PHPStanRules\LayerDependencyRule
+    - Tests\PHPStanRules\DbAccessRule
+    - Tests\PHPStanRules\QueryInLoopRule
+    - Tests\PHPStanRules\InArrayInLoopRule
+    - Tests\PHPStanRules\NoCodeExecutionRule
+    - Tests\PHPStanRules\NoDebugFunctionsRule
+    - Tests\PHPStanRules\VariableCamelCaseRule
