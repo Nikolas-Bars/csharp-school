@@ -1,0 +1,79 @@
+# Production: SPA, runner (.NET WebAssembly) и /api на бэкенд — один домен (deploy/README.md).
+# SITE_ADDRESS — домен (csharp.example.org): Caddy сам получает и продлевает сертификат Let's Encrypt,
+# с http перенаправляет на https. «:80» — без HTTPS: за внешним прокси, который сам держит TLS,
+# или для локальной проверки (deploy/check.sh).
+# __CSP_SCRIPT_HASHES__ подставляется при сборке образа (Dockerfile_prod, csp-hashes.mjs).
+{
+	# Конфигурация меняется только новым образом — API администрирования не нужен
+	admin off
+	email {$ACME_EMAIL}
+
+	servers {
+		# Внешний прокси перед Caddy (балансировщик хостинга): только ему верить в X-Forwarded-*.
+		# Без него Caddy сам ставит X-Forwarded-For/Proto по настоящему соединению
+		trusted_proxies static {$CADDY_TRUSTED_PROXIES:127.0.0.1/32}
+	}
+}
+
+(security_headers) {
+	header {
+		-Server
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Cross-Origin-Opener-Policy "same-origin"
+		Cross-Origin-Resource-Policy "same-origin"
+		Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+		# runner: WebAssembly в Web Worker — 'wasm-unsafe-eval' (компиляция .wasm), worker-src 'self'
+		# (воркер из /assets), connect-src 'self' (загрузка .wasm и запросы к /api).
+		# style-src 'unsafe-inline': CodeMirror добавляет свои стили элементом <style>.
+		# font-src 'self': шрифты — свои файлы, сторонних доменов нет.
+		Content-Security-Policy "default-src 'self'; script-src 'self' 'wasm-unsafe-eval' __CSP_SCRIPT_HASHES__; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'"
+	}
+}
+
+# Проверка живости контейнера (HEALTHCHECK), снаружи недоступна
+http://127.0.0.1:8081 {
+	bind 127.0.0.1
+	respond "ok" 200
+}
+
+{$SITE_ADDRESS} {
+	import security_headers
+
+	# API и проверка живости бэкенда. JSON сжимается на лету — ответы маленькие
+	@api path /api /api/* /up
+	handle @api {
+		encode zstd gzip
+		reverse_proxy {$API_UPSTREAM:api:8080}
+	}
+
+	handle {
+		root * /srv
+
+		# Файлы с отпечатком содержимого в имени (Vite: /assets/index-Bx3k9.js; runner:
+		# System.Linq.ybphyau9d1.wasm) не меняются никогда — кэш на год. Остальное (index.html,
+		# dotnet.js без отпечатка — в нём список файлов runner) — каждый раз сверять с сервером
+		@fingerprinted path_regexp ^/(assets/.+|runner/_framework/.+\.[a-z0-9]{10}\.[a-z]+)$
+		header @fingerprinted Cache-Control "public, max-age=31536000, immutable"
+		header ?Cache-Control "no-cache"
+
+		# Готовые .br/.gz рядом с файлами (runner — до 30 МБ: на лету не сжимается).
+		# Нет файла — 404, а не index.html: иначе вместо .wasm пришла бы страница
+		@static path /assets/* /runner/*
+		handle @static {
+			file_server {
+				precompressed br gzip
+			}
+		}
+
+		# Остальные адреса — маршруты SPA: отдаётся index.html
+		handle {
+			try_files {path} /index.html
+			file_server {
+				precompressed br gzip
+			}
+		}
+	}
+}

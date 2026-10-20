@@ -215,7 +215,8 @@ Request (валидация) → Controller → DTO → Action::run() → Task::
 
 В `config/` — только отличия от настроек Laravel по умолчанию (остальное фреймворк берёт из
 `vendor/laravel/framework/config` и `.env`): языки, модель пользователя, CORS, диск без
-раздачи файлов, Sanctum без cookie, папки контроллеров.
+раздачи файлов, Sanctum без cookie, папки контроллеров, доверенные обратные прокси
+(`trustedproxy.php`, `TRUSTED_PROXIES`; production — `../deploy/README.md`).
 
 ## Зависимости
 
