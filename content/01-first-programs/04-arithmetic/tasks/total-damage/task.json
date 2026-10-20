@@ -1,0 +1,56 @@
+{
+  "title": {
+    "ru": "Критический удар"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "variable",
+      "name": "totalDamage",
+      "type": "int"
+    },
+    {
+      "kind": "output",
+      "expected": "34"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Сохрани результат в переменную totalDamage типа int."
+    },
+    {
+      "ru": "Должно получиться 34. Сначала сложи урон меча и силу, потом умножь сумму на 2 — умножение выполняется раньше сложения."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Сначала сумма, потом умножение — как в математике."
+    },
+    {
+      "ru": "Чтобы сложение выполнилось первым, возьми его в круглые скобки."
+    },
+    {
+      "ru": "int totalDamage = (swordDamage + strength) * 2; и Console.WriteLine(totalDamage);"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-no-brackets.cs",
+      "fails": [
+        1
+      ],
+      "why": "Без скобок удваивается только сила"
+    },
+    {
+      "file": "wrong-name.cs",
+      "fails": [
+        0
+      ],
+      "why": "Другое имя переменной"
+    }
+  ]
+}

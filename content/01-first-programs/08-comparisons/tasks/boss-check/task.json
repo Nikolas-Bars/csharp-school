@@ -1,0 +1,48 @@
+{
+  "title": {
+    "ru": "Перед боссом"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "output",
+      "expected": "Уровень выше босса: True\nЗдоровье полное: True\nУровни равны: False"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужны три строки: уровень выше босса — True, здоровье полное — True, уровни равны — False. «Равно» в сравнении пишется двумя знаками: ==."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Сравнение можно поставить прямо в фигурные скобки интерполяции — напечатается True или False."
+    },
+    {
+      "ru": "«Больше» — это >, «равно» — ==. Здоровье полное, когда hp равно maxHp."
+    },
+    {
+      "ru": "Console.WriteLine($\"Уровень выше босса: {level > bossLevel}\"); и так же для hp == maxHp и level == bossLevel."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-single-equals.cs",
+      "fails": [
+        0
+      ],
+      "why": "Один = кладёт 10 в level вместо сравнения"
+    },
+    {
+      "file": "wrong-not-equal.cs",
+      "fails": [
+        0
+      ],
+      "why": "!= вместо =="
+    }
+  ]
+}

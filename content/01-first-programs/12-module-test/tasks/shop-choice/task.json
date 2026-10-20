@@ -1,0 +1,71 @@
+{
+  "title": {
+    "ru": "Покупка в лавке"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "if",
+      "min": 2
+    },
+    {
+      "kind": "construct",
+      "construct": "else",
+      "min": 2
+    },
+    {
+      "kind": "output",
+      "expected": "Куплено зелье\nОсталось золота: 55"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужны два условия: if для меча и else if для зелья."
+    },
+    {
+      "ru": "В конце цепочки добавь else — когда не хватает ни на что."
+    },
+    {
+      "ru": "Для меча нужен 5-й уровень, а у героя 4-й, поэтому покупается зелье и золота остаётся 55. Не забудь вычесть цену из gold."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Сначала проверь меч: хватает ли золота и подходит ли уровень. Если нет — проверь зелье."
+    },
+    {
+      "ru": "Условие для меча: gold >= swordPrice && level >= minLevel. Внутри блока — вывод и gold -= swordPrice;"
+    },
+    {
+      "ru": "if (…меч…) { … } else if (gold >= potionPrice) { Console.WriteLine(\"Куплено зелье\"); gold -= potionPrice; } else { Console.WriteLine(\"Ничего не куплено\"); } и в конце — вывод остатка."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-or.cs",
+      "fails": [
+        2
+      ],
+      "why": "|| вместо &&: меч куплен без уровня"
+    },
+    {
+      "file": "wrong-no-pay.cs",
+      "fails": [
+        2
+      ],
+      "why": "Цена не вычтена"
+    },
+    {
+      "file": "wrong-no-else.cs",
+      "fails": [
+        1
+      ],
+      "why": "Нет варианта «ничего не куплено»"
+    }
+  ]
+}

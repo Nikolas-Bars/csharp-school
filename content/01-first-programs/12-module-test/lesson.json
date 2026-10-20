@@ -1,0 +1,106 @@
+{
+  "title": {
+    "ru": "Контрольная: бой с гоблином"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-intro.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "goblin-fight"
+    },
+    {
+      "type": "task",
+      "task": "shop-choice"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "Какой тип подходит для имени героя «Аня»?"
+          },
+          "options": [
+            {
+              "ru": "string"
+            },
+            {
+              "ru": "int"
+            },
+            {
+              "ru": "bool"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "Текст — это string."
+          }
+        },
+        {
+          "question": {
+            "ru": "string s = \"Дракон\"; Что напечатает Console.WriteLine(s == \"дракон\");?"
+          },
+          "options": [
+            {
+              "ru": "False"
+            },
+            {
+              "ru": "True"
+            },
+            {
+              "ru": "Дракон"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "Строки сравниваются буква в букву, а заглавная Д и строчная д — разные буквы."
+          }
+        },
+        {
+          "question": {
+            "ru": "int hp = 10; hp -= 15; hp = Math.Max(hp, 0); Чему равно hp?"
+          },
+          "options": [
+            {
+              "ru": "-5"
+            },
+            {
+              "ru": "10"
+            },
+            {
+              "ru": "0"
+            }
+          ],
+          "answer": 2,
+          "explanation": {
+            "ru": "После удара hp = -5, а Math.Max(-5, 0) возвращает 0."
+          }
+        },
+        {
+          "question": {
+            "ru": "bool a = true; bool b = false; Что напечатает Console.WriteLine(a && !b);?"
+          },
+          "options": [
+            {
+              "ru": "False"
+            },
+            {
+              "ru": "Ошибку"
+            },
+            {
+              "ru": "True"
+            }
+          ],
+          "answer": 2,
+          "explanation": {
+            "ru": "!b — это true, а true && true — тоже true."
+          }
+        }
+      ]
+    }
+  ]
+}

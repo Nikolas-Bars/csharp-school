@@ -1,0 +1,57 @@
+{
+  "title": {
+    "ru": "Зелье лечения"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "call",
+      "method": "System.Math.Min"
+    },
+    {
+      "kind": "output",
+      "expected": "100"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Используй Math.Min: он выберет меньшее — здоровье после лечения или максимум."
+    },
+    {
+      "ru": "Здоровье не может быть больше maxHp: должно получиться 100."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "После лечения сравни здоровье с максимумом и возьми меньшее."
+    },
+    {
+      "ru": "Math.Min(a, b) возвращает меньшее из двух чисел."
+    },
+    {
+      "ru": "hp = Math.Min(hp + heal, maxHp); и Console.WriteLine(hp);"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-overheal.cs",
+      "fails": [
+        0,
+        1
+      ],
+      "why": "Лечение выше максимума"
+    },
+    {
+      "file": "wrong-max.cs",
+      "fails": [
+        0,
+        1
+      ],
+      "why": "Max вместо Min выбирает 115"
+    }
+  ]
+}

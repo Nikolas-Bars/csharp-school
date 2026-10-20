@@ -1,5 +1,22 @@
 {
-  "title": { "ru": "Первые программы" },
-  "description": { "ru": "Вывод на экран, переменные, типы, условия" },
-  "lessons": ["01-hello"]
+  "title": {
+    "ru": "Первые программы"
+  },
+  "description": {
+    "ru": "Вывод на экран, переменные, типы, условия"
+  },
+  "lessons": [
+    "01-hello",
+    "02-variables",
+    "03-types",
+    "04-arithmetic",
+    "05-strings",
+    "06-updating",
+    "07-math",
+    "08-comparisons",
+    "09-if",
+    "10-else-if",
+    "11-logic",
+    "12-module-test"
+  ]
 }

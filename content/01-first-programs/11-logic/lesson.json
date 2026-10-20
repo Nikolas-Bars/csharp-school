@@ -1,0 +1,98 @@
+{
+  "title": {
+    "ru": "И, или, не"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-and.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "02-or.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "03-not.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "dungeon-gate"
+    },
+    {
+      "type": "task",
+      "task": "time-to-rest"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "Чему равно true && false?"
+          },
+          "options": [
+            {
+              "ru": "false"
+            },
+            {
+              "ru": "true"
+            },
+            {
+              "ru": "Это ошибка"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "&& верно, только если верны обе части."
+          }
+        },
+        {
+          "question": {
+            "ru": "Чему равно !true?"
+          },
+          "options": [
+            {
+              "ru": "true"
+            },
+            {
+              "ru": "0"
+            },
+            {
+              "ru": "false"
+            }
+          ],
+          "answer": 2,
+          "explanation": {
+            "ru": "! переворачивает значение bool."
+          }
+        },
+        {
+          "question": {
+            "ru": "В замок пускают героев от 5-го уровня, у которых есть пропуск. Какое условие верное?"
+          },
+          "options": [
+            {
+              "ru": "level >= 5 && hasPass"
+            },
+            {
+              "ru": "level >= 5 || hasPass"
+            },
+            {
+              "ru": "!hasPass && level >= 5"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "Нужны оба условия сразу — это &&. А !hasPass значит «пропуска нет»."
+          }
+        }
+      ]
+    }
+  ]
+}

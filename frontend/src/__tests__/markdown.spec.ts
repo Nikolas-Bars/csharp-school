@@ -27,6 +27,7 @@ describe('parseMarkdown', () => {
       { kind: 'code', language: 'csharp', code: 'Console.WriteLine("Привет");' },
       {
         kind: 'list',
+        ordered: false,
         items: [
           [
             { kind: 'code', text: ';' },
@@ -38,6 +39,20 @@ describe('parseMarkdown', () => {
           ],
         ],
       },
+    ])
+  })
+
+  it('нумерованный список отдельно от обычного', () => {
+    expect(parseMarkdown('1. Удар героя.\n2. Ответ гоблина.\n- Итог')).toEqual([
+      {
+        kind: 'list',
+        ordered: true,
+        items: [
+          [{ kind: 'text', text: 'Удар героя.' }],
+          [{ kind: 'text', text: 'Ответ гоблина.' }],
+        ],
+      },
+      { kind: 'list', ordered: false, items: [[{ kind: 'text', text: 'Итог' }]] },
     ])
   })
 

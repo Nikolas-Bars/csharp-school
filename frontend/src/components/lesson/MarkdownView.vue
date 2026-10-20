@@ -30,7 +30,11 @@ const blocks = computed(() => parseMarkdown(source))
           <template v-else>{{ part.text }}</template>
         </template>
       </p>
-      <ul v-else-if="block.kind === 'list'" class="markdown__list">
+      <component
+        :is="block.ordered ? 'ol' : 'ul'"
+        v-else-if="block.kind === 'list'"
+        class="markdown__list"
+      >
         <li v-for="(item, itemIndex) in block.items" :key="itemIndex">
           <template v-for="(part, partIndex) in item" :key="partIndex">
             <strong v-if="part.kind === 'strong'">{{ part.text }}</strong>
@@ -38,7 +42,7 @@ const blocks = computed(() => parseMarkdown(source))
             <template v-else>{{ part.text }}</template>
           </template>
         </li>
-      </ul>
+      </component>
       <CodeBlock v-else :code="block.code" :language="block.language || 'text'" />
     </template>
   </div>

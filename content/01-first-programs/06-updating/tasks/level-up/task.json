@@ -1,0 +1,62 @@
+{
+  "title": {
+    "ru": "Новый уровень"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "variable",
+      "name": "xp",
+      "type": "int"
+    },
+    {
+      "kind": "variable",
+      "name": "level",
+      "type": "int"
+    },
+    {
+      "kind": "output",
+      "expected": "Опыт: 120\nУровень: 2"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужна переменная xp типа int."
+    },
+    {
+      "ru": "Нужна переменная level типа int."
+    },
+    {
+      "ru": "Ожидается «Опыт: 120» и «Уровень: 2». Опыт копится: каждый раз прибавляй 40 к тому, что уже есть."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Опыт не заменяется, а прибавляется к старому."
+    },
+    {
+      "ru": "xp += 40; прибавляет 40 к опыту, а level++; поднимает уровень на 1."
+    },
+    {
+      "ru": "Трижды xp += 40; потом level++; и вывод через $\"Опыт: {xp}\" и $\"Уровень: {level}\"."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-replace.cs",
+      "fails": [
+        2
+      ],
+      "why": "Опыт заменяется, а не копится"
+    },
+    {
+      "file": "wrong-plus-one.cs",
+      "compileError": "CS0201",
+      "why": "level + 1 ничего никуда не кладёт"
+    }
+  ]
+}

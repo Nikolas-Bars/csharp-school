@@ -1,0 +1,61 @@
+{
+  "title": {
+    "ru": "Здоровье героя"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "variable",
+      "name": "hp",
+      "type": "int"
+    },
+    {
+      "kind": "output",
+      "expected": "100"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужна переменная с именем hp и типом int. Проверь написание: hp — строчными буквами."
+    },
+    {
+      "ru": "Программа должна напечатать 100 — значение переменной. Передай в Console.WriteLine имя переменной без кавычек."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Переменная создаётся так: тип, имя, знак = и значение, а в конце — точка с запятой."
+    },
+    {
+      "ru": "Тип целого числа — int. Чтобы напечатать значение, передай имя переменной в Console.WriteLine — без кавычек."
+    },
+    {
+      "ru": "Сначала int hp = 100; а на следующей строке — Console.WriteLine(hp);"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-quotes.cs",
+      "fails": [
+        1
+      ],
+      "why": "Имя в кавычках — печатаются буквы hp"
+    },
+    {
+      "file": "wrong-uppercase.cs",
+      "fails": [
+        0
+      ],
+      "why": "HP заглавными — другая переменная"
+    },
+    {
+      "file": "wrong-text-value.cs",
+      "compileError": "CS0029",
+      "why": "Текст в кавычках нельзя положить в int"
+    }
+  ]
+}

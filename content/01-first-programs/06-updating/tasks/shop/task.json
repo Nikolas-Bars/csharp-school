@@ -1,0 +1,54 @@
+{
+  "title": {
+    "ru": "Поход в лавку"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "variable",
+      "name": "gold",
+      "type": "int"
+    },
+    {
+      "kind": "output",
+      "expected": "70\n115"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужна переменная gold типа int."
+    },
+    {
+      "ru": "После покупки должно остаться 70, после сундука — 115. Каждый раз меняй gold, а потом выводи."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Новое значение считается из старого: вычти цену, потом прибавь находку."
+    },
+    {
+      "ru": "gold -= 30; значит то же, что gold = gold - 30. Знаки идут в таком порядке: сначала минус, потом равно."
+    },
+    {
+      "ru": "gold -= 30; Console.WriteLine(gold); gold += 45; Console.WriteLine(gold);"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-reversed-sign.cs",
+      "fails": [
+        1
+      ],
+      "why": "=- вместо -=: в gold кладут -30"
+    },
+    {
+      "file": "wrong-redeclare.cs",
+      "compileError": "CS0128",
+      "why": "Повторное объявление gold"
+    }
+  ]
+}

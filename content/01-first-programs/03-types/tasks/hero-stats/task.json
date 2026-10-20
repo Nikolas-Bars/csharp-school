@@ -1,0 +1,84 @@
+{
+  "title": {
+    "ru": "Характеристики героя"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "variable",
+      "name": "heroName",
+      "type": "string"
+    },
+    {
+      "kind": "variable",
+      "name": "level",
+      "type": "int"
+    },
+    {
+      "kind": "variable",
+      "name": "speed",
+      "type": "double"
+    },
+    {
+      "kind": "variable",
+      "name": "hasSword",
+      "type": "bool"
+    },
+    {
+      "kind": "output",
+      "expected": "Аня\n5\n1.5\nTrue"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужна переменная heroName типа string — для текста."
+    },
+    {
+      "ru": "Нужна переменная level типа int — уровень целый."
+    },
+    {
+      "ru": "Нужна переменная speed типа double — скорость дробная."
+    },
+    {
+      "ru": "Нужна переменная hasSword типа bool — меч либо есть, либо нет."
+    },
+    {
+      "ru": "Выведи четыре значения по порядку: имя, уровень, скорость, меч. Значение bool печатается как True — так и должно быть."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Для каждой переменной — свой тип: текст, целое число, дробное число, «да или нет»."
+    },
+    {
+      "ru": "Типы: string, int, double, bool. Дробное число пишется через точку: 1.5. Значение bool — true, без кавычек."
+    },
+    {
+      "ru": "int level = 5; double speed = 1.5; bool hasSword = true; — а потом четыре Console.WriteLine по порядку."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-speed-int.cs",
+      "compileError": "CS0266",
+      "why": "Дробное число в int"
+    },
+    {
+      "file": "wrong-bool-text.cs",
+      "fails": [
+        3,
+        4
+      ],
+      "why": "Да/нет строкой: тип string и вывод true вместо True"
+    },
+    {
+      "file": "wrong-level-text.cs",
+      "compileError": "CS0029",
+      "why": "Текст \"5\" в int"
+    }
+  ]
+}
