@@ -1,0 +1,65 @@
+{
+  "title": {
+    "ru": "Колчаны лучника"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "variable",
+      "name": "fullQuivers",
+      "type": "int"
+    },
+    {
+      "kind": "variable",
+      "name": "leftover",
+      "type": "int"
+    },
+    {
+      "kind": "output",
+      "expected": "4\n3"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужна переменная fullQuivers типа int — колчаны считаем целыми."
+    },
+    {
+      "ru": "Нужна переменная leftover типа int — сколько стрел осталось."
+    },
+    {
+      "ru": "Ожидается 4, а под ним 3. Проверь, какой знак даёт целое частное, а какой — остаток."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Целые числа делятся нацело, а остаток от деления даёт знак %."
+    },
+    {
+      "ru": "Полные колчаны — arrows / quiverSize, оставшиеся стрелы — arrows % quiverSize."
+    },
+    {
+      "ru": "int fullQuivers = arrows / quiverSize; int leftover = arrows % quiverSize; и выведи обе переменные по очереди."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-swapped.cs",
+      "fails": [
+        2
+      ],
+      "why": "Перепутаны / и %"
+    },
+    {
+      "file": "wrong-fraction.cs",
+      "fails": [
+        0,
+        2
+      ],
+      "why": "Дробное деление: 4.6 колчана"
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "title": {
+    "ru": "Бой с гоблином"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "call",
+      "method": "System.Math.Max"
+    },
+    {
+      "kind": "construct",
+      "construct": "if"
+    },
+    {
+      "kind": "construct",
+      "construct": "else"
+    },
+    {
+      "kind": "output",
+      "expected": "Гоблин: 18 HP\nГерой: 41 HP\nГоблин: 0 HP\nПобеда!"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Используй Math.Max, чтобы здоровье гоблина не ушло ниже нуля."
+    },
+    {
+      "ru": "Проверь здоровье гоблина через if, чтобы объявить победу."
+    },
+    {
+      "ru": "Добавь else — на случай, если гоблин ещё жив."
+    },
+    {
+      "ru": "Сравни вывод с ожидаемым построчно: после первого обмена ударами у гоблина 18, у героя 41; после двойного удара у гоблина 0 и «Победа!»."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Делай по шагам из условия: удар героя, ответ гоблина, вывод, двойной удар, вывод, проверка."
+    },
+    {
+      "ru": "Урон по гоблину: goblinHp = Math.Max(goblinHp - heroAttack, 0); двойной удар — heroAttack * 2. Строки удобно выводить так: $\"Гоблин: {goblinHp} HP\"."
+    },
+    {
+      "ru": "В конце: if (goblinHp == 0) { Console.WriteLine(\"Победа!\"); } else { Console.WriteLine(\"Бой продолжается\"); }"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-no-max.cs",
+      "fails": [
+        0,
+        3
+      ],
+      "why": "Без Max здоровье гоблина -6, победа не засчитана"
+    },
+    {
+      "file": "wrong-crit-plus.cs",
+      "fails": [
+        3
+      ],
+      "why": "+ 2 вместо * 2"
+    },
+    {
+      "file": "wrong-assign.cs",
+      "compileError": "CS0029",
+      "why": "Один = в условии"
+    }
+  ]
+}

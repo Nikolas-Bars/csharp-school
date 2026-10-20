@@ -1,0 +1,95 @@
+{
+  "title": {
+    "ru": "Типы данных"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-types.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "02-type-errors.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "hero-stats"
+    },
+    {
+      "type": "task",
+      "task": "potion-card"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "Какой тип подходит для числа монет: 120?"
+          },
+          "options": [
+            {
+              "ru": "double"
+            },
+            {
+              "ru": "int"
+            },
+            {
+              "ru": "string"
+            },
+            {
+              "ru": "bool"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "Монеты считают целыми — это int."
+          }
+        },
+        {
+          "question": {
+            "ru": "Как правильно записать дробное число в C#?"
+          },
+          "options": [
+            {
+              "ru": "2,5"
+            },
+            {
+              "ru": "\"2.5\""
+            },
+            {
+              "ru": "2.5"
+            }
+          ],
+          "answer": 2,
+          "explanation": {
+            "ru": "Дробную часть отделяют точкой. В кавычках это была бы уже строка, а не число."
+          }
+        },
+        {
+          "question": {
+            "ru": "Что можно положить в переменную типа bool?"
+          },
+          "options": [
+            {
+              "ru": "Только true или false"
+            },
+            {
+              "ru": "Любое число"
+            },
+            {
+              "ru": "Любой текст"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "bool — «да или нет»: true или false."
+          }
+        }
+      ]
+    }
+  ]
+}

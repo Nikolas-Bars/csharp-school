@@ -1,0 +1,61 @@
+{
+  "title": {
+    "ru": "Хватит ли золота"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "variable",
+      "name": "canBuy",
+      "type": "bool"
+    },
+    {
+      "kind": "output",
+      "expected": "False"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужна переменная canBuy типа bool."
+    },
+    {
+      "ru": "При 40 золотых и цене 50 купить нельзя — должно напечататься False. Проверь, в какую сторону смотрит знак сравнения."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Денег хватает, если золота столько же или больше, чем цена."
+    },
+    {
+      "ru": "«Больше или равно» записывается как >=. Результат сравнения — bool, его можно сразу положить в переменную."
+    },
+    {
+      "ru": "bool canBuy = gold >= price; и Console.WriteLine(canBuy);"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-reversed.cs",
+      "fails": [
+        1
+      ],
+      "why": "Сравнение в обратную сторону"
+    },
+    {
+      "file": "wrong-text.cs",
+      "fails": [
+        0
+      ],
+      "why": "Ответ строкой вместо сравнения"
+    },
+    {
+      "file": "wrong-assign.cs",
+      "compileError": "CS0029",
+      "why": "Один знак = вместо сравнения"
+    }
+  ]
+}

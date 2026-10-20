@@ -35,6 +35,7 @@ public sealed class CommonMistakesTests
         { "namespace Game;\nclass Hero { }", "CS8773", ["file-scoped namespace", "10.0"] },
         { "class Hero { }\nSystem.Console.WriteLine(1);", "CS8803", [] },
         { "class Hero { }", "CS5001", [] },
+        { "double weight = 0,3;", "CS1001", [] },
     };
 
     [Theory]

@@ -42,6 +42,7 @@ const RUNNER_CODES = [
   'CS8773',
   'CS8803',
   'CS5001',
+  'CS1001',
 ]
 
 describe('объяснение ошибок', () => {

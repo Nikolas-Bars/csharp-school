@@ -64,6 +64,7 @@
     "CS0168": "The variable «{arg0}» is declared but never used.",
     "CS8773": "This is only allowed in C# {arg1} and newer. We learn C# 9 — the version Unity understands.",
     "CS8803": "Program commands must come before class declarations: commands first, classes at the end of the file.",
+    "CS1001": "A name is expected here — for example, a variable name. If you wrote a decimal number, separate the fraction with a dot: 0.3, not 0,3.",
     "CS5001": "The program has no commands to run. Add at least one, for example printing with Console.WriteLine."
   },
   "runtime": {

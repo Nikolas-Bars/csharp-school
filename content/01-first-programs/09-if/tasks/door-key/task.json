@@ -1,0 +1,62 @@
+{
+  "title": {
+    "ru": "Запертая дверь"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "if"
+    },
+    {
+      "kind": "construct",
+      "construct": "else"
+    },
+    {
+      "kind": "output",
+      "expected": "Дверь заперта. Нужен ключ."
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Используй if, чтобы проверить, есть ли ключ."
+    },
+    {
+      "ru": "Добавь else — что делать, если ключа нет."
+    },
+    {
+      "ru": "Ключа нет (hasKey = false), поэтому должно напечататься «Дверь заперта. Нужен ключ.»."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Переменная bool — уже условие: if (hasKey) значит «если ключ есть»."
+    },
+    {
+      "ru": "После блока if добавь else, а в его фигурных скобках — сообщение для случая без ключа."
+    },
+    {
+      "ru": "if (hasKey) { Console.WriteLine(\"Дверь открыта.\"); } else { Console.WriteLine(\"Дверь заперта. Нужен ключ.\"); }"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-swapped.cs",
+      "fails": [
+        2
+      ],
+      "why": "Сообщения перепутаны"
+    },
+    {
+      "file": "wrong-no-else.cs",
+      "fails": [
+        1
+      ],
+      "why": "Без else «заперта» печаталось бы и с ключом"
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "title": {
+    "ru": "Арифметика"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-operators.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "02-division.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "total-damage"
+    },
+    {
+      "type": "task",
+      "task": "arrows"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "Что напечатает Console.WriteLine(2 + 3 * 2);?"
+          },
+          "options": [
+            {
+              "ru": "8"
+            },
+            {
+              "ru": "10"
+            },
+            {
+              "ru": "232"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "Умножение выполняется раньше сложения: 3 * 2 = 6, потом 2 + 6 = 8."
+          }
+        },
+        {
+          "question": {
+            "ru": "Чему равно 9 / 2, если оба числа int?"
+          },
+          "options": [
+            {
+              "ru": "4.5"
+            },
+            {
+              "ru": "5"
+            },
+            {
+              "ru": "4"
+            }
+          ],
+          "answer": 2,
+          "explanation": {
+            "ru": "При делении целых чисел дробная часть отбрасывается."
+          }
+        },
+        {
+          "question": {
+            "ru": "Что даёт 9 % 2?"
+          },
+          "options": [
+            {
+              "ru": "4.5"
+            },
+            {
+              "ru": "1 — остаток от деления"
+            },
+            {
+              "ru": "18"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "9 = 2 · 4 + 1, остаток — 1."
+          }
+        }
+      ]
+    }
+  ]
+}

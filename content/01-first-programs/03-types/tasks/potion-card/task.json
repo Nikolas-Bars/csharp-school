@@ -1,0 +1,83 @@
+{
+  "title": {
+    "ru": "Карточка зелья"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "variable",
+      "name": "itemName",
+      "type": "string"
+    },
+    {
+      "kind": "variable",
+      "name": "price",
+      "type": "int"
+    },
+    {
+      "kind": "variable",
+      "name": "weight",
+      "type": "double"
+    },
+    {
+      "kind": "variable",
+      "name": "isMagic",
+      "type": "bool"
+    },
+    {
+      "kind": "output",
+      "expected": "Зелье лечения\n25\n0.3\nTrue"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужна переменная itemName типа string — название зелья."
+    },
+    {
+      "ru": "Нужна переменная price типа int — монеты целые."
+    },
+    {
+      "ru": "Нужна переменная weight типа double — вес дробный."
+    },
+    {
+      "ru": "Нужна переменная isMagic типа bool."
+    },
+    {
+      "ru": "Выведи четыре значения по порядку: название, цена, вес, волшебное ли."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Подбери тип под каждое значение: текст, целое, дробное, «да или нет»."
+    },
+    {
+      "ru": "Цена — int, а не string: с числом потом можно будет считать, сколько стоят три зелья."
+    },
+    {
+      "ru": "string itemName = \"Зелье лечения\"; int price = 25; double weight = 0.3; bool isMagic = true; и четыре вывода."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-price-text.cs",
+      "fails": [
+        1
+      ],
+      "why": "Цена строкой: на экране то же, но тип не тот"
+    },
+    {
+      "file": "wrong-weight-int.cs",
+      "compileError": "CS0266",
+      "why": "Дробный вес в int"
+    },
+    {
+      "file": "wrong-comma.cs",
+      "compileError": "CS1001",
+      "why": "Дробная часть через запятую"
+    }
+  ]
+}

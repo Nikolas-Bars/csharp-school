@@ -1,0 +1,92 @@
+{
+  "title": {
+    "ru": "Сравнения"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-compare.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "02-bool-variables.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "can-buy"
+    },
+    {
+      "type": "task",
+      "task": "boss-check"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "Что напечатает Console.WriteLine(5 >= 5);?"
+          },
+          "options": [
+            {
+              "ru": "True"
+            },
+            {
+              "ru": "False"
+            },
+            {
+              "ru": "5"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "5 равно 5, а >= — «больше или равно». Значит, верно."
+          }
+        },
+        {
+          "question": {
+            "ru": "Чем == отличается от =?"
+          },
+          "options": [
+            {
+              "ru": "Ничем"
+            },
+            {
+              "ru": "== работает только с текстом"
+            },
+            {
+              "ru": "== сравнивает, = кладёт значение в переменную"
+            }
+          ],
+          "answer": 2,
+          "explanation": {
+            "ru": "Один знак — присваивание, два — сравнение."
+          }
+        },
+        {
+          "question": {
+            "ru": "Какой тип у результата hp > 0?"
+          },
+          "options": [
+            {
+              "ru": "int"
+            },
+            {
+              "ru": "string"
+            },
+            {
+              "ru": "bool"
+            }
+          ],
+          "answer": 2,
+          "explanation": {
+            "ru": "Любое сравнение даёт true или false — это bool."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "title": {
+    "ru": "Не ниже нуля"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "call",
+      "method": "System.Math.Max"
+    },
+    {
+      "kind": "output",
+      "expected": "0"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Используй Math.Max: он выберет большее из двух чисел — здоровье после удара или 0."
+    },
+    {
+      "ru": "Здоровье не должно уйти ниже нуля: при 30 здоровья и ударе на 45 нужно напечатать 0."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Сравни здоровье после удара с нулём и возьми большее."
+    },
+    {
+      "ru": "Math.Max(a, b) возвращает большее из a и b. Здесь a — это hp - damage, а b — 0."
+    },
+    {
+      "ru": "hp = Math.Max(hp - damage, 0); и Console.WriteLine(hp);"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-no-max.cs",
+      "fails": [
+        0,
+        1
+      ],
+      "why": "Без Max здоровье уходит в минус"
+    },
+    {
+      "file": "wrong-print-zero.cs",
+      "fails": [
+        0
+      ],
+      "why": "Ответ напечатан вручную, без расчёта"
+    }
+  ]
+}

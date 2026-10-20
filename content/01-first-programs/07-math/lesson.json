@@ -1,0 +1,98 @@
+{
+  "title": {
+    "ru": "Готовые расчёты: Math"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-methods.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "02-math.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "03-clamp.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "no-negative-hp"
+    },
+    {
+      "type": "task",
+      "task": "healing-potion"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "Что вернёт Math.Max(3, 8)?"
+          },
+          "options": [
+            {
+              "ru": "3"
+            },
+            {
+              "ru": "11"
+            },
+            {
+              "ru": "8"
+            }
+          ],
+          "answer": 2,
+          "explanation": {
+            "ru": "Max возвращает большее из двух чисел."
+          }
+        },
+        {
+          "question": {
+            "ru": "Что напечатает Console.WriteLine(Math.Abs(-7));?"
+          },
+          "options": [
+            {
+              "ru": "-7"
+            },
+            {
+              "ru": "0"
+            },
+            {
+              "ru": "7"
+            }
+          ],
+          "answer": 2,
+          "explanation": {
+            "ru": "Abs убирает минус: модуль числа -7 — это 7."
+          }
+        },
+        {
+          "question": {
+            "ru": "Как не дать здоровью уйти ниже нуля?"
+          },
+          "options": [
+            {
+              "ru": "hp = Math.Max(hp, 0);"
+            },
+            {
+              "ru": "hp = Math.Min(hp, 0);"
+            },
+            {
+              "ru": "hp = Math.Abs(hp);"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "Max выберет 0, если hp отрицательное. А Abs превратил бы -10 в 10 — герой бы вылечился!"
+          }
+        }
+      ]
+    }
+  ]
+}
