@@ -4,8 +4,9 @@
 REPOS    = backend runner frontend
 SERVICES = backend frontend
 
-# Production-стек (deploy/README.md): настройки и секреты — deploy/.env
-PROD = docker compose -f deploy/docker-compose.prod.yml
+# Production-стек (deploy/README.md): настройки и секреты — deploy/.env.
+# EDGE=1 — режим общего сервера (за Caddy мессенджера). На сервере вместо make — deploy/deploy.sh
+PROD = docker compose -f deploy/docker-compose.prod.yml $(if $(EDGE),-f deploy/docker-compose.edge.yml)
 
 .DEFAULT_GOAL := help
 .PHONY: help start up down check \

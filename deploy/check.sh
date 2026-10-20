@@ -46,6 +46,15 @@ sed -e 's|^SITE_ADDRESS=.*|SITE_ADDRESS=:80|' \
     -e "s|^REDIS_PASSWORD=.*|REDIS_PASSWORD=$(openssl rand -hex 24)|" \
     .env.production.example > "$env_file"
 
+echo "== Режим общего сервера (docker-compose.edge.yml): файл собирается, у web нет портов"
+edge_config=$(ENV_FILE="$env_file" docker compose -p "$PROJECT" -f docker-compose.prod.yml -f docker-compose.edge.yml \
+    --env-file "$env_file" config --format json)
+if ! grep -q '"csharp-school-web"' <<< "$edge_config" || docker compose -p "$PROJECT" -f docker-compose.prod.yml \
+    -f docker-compose.edge.yml --env-file "$env_file" config | sed -n '/^  web:/,/^  [a-z]*:$/p' | grep -q 'published:'; then
+    echo "docker-compose.edge.yml: у web должны быть сеть edge с именем csharp-school-web и ни одного порта" >&2
+    exit 1
+fi
+
 echo "== Сборка образов (тег $TAG)"
 compose build
 
@@ -66,3 +75,6 @@ done
 
 echo "== Проверка снаружи"
 ./smoke.sh "http://localhost:$PORT"
+
+echo "== Память после проверки (лимиты — docker-compose.prod.yml)"
+docker stats --no-stream --format '  {{.Name}}\t{{.MemUsage}}' $(compose ps -q)

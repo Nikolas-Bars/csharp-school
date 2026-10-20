@@ -1,8 +1,10 @@
 name: deploy
 
 # Production-образы собираются и проверяются целиком (deploy/check.sh): стек поднимается на
-# раннере, deploy/smoke.sh проверяет API, SPA, runner, сжатие и заголовки. Образы никуда не
-# публикуются. Запускается при изменении сборки, зависимостей и самой папки deploy/
+# раннере, deploy/smoke.sh проверяет API, SPA, runner, сжатие и заголовки. На Pull Request образы
+# никуда не публикуются; после мёржа в main проверенные образы уходят в GHCR
+# (ghcr.io/<владелец>/csharp-school-{api,web}: коммит и latest) — их забирает deploy/deploy.sh на
+# сервере (собирать там нельзя: сборке runner нужно 2+ ГБ памяти). Сам деплой — вручную.
 on:
   pull_request:
     paths:
@@ -40,8 +42,29 @@ jobs:
   images:
     runs-on: ubuntu-latest
     timeout-minutes: 40
+    permissions:
+      contents: read
+      packages: write
     steps:
       - uses: actions/checkout@v4
 
       - name: Сборка образов, запуск стека и проверка
         run: deploy/check.sh
+        env:
+          # В main проверенные образы остаются для публикации
+          KEEP_IMAGES: ${{ github.event_name == 'push' && '1' || '0' }}
+
+      - name: Публикация в GHCR
+        if: github.event_name == 'push'
+        env:
+          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          prefix="ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/csharp-school"
+          echo "$GHCR_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+          for image in api web; do
+            for tag in "$GITHUB_SHA" latest; do
+              docker tag "csharp-school-$image:check" "$prefix-$image:$tag"
+              docker push --quiet "$prefix-$image:$tag"
+            done
+          done
+          echo "Образы: $prefix-{api,web}:$GITHUB_SHA" >> "$GITHUB_STEP_SUMMARY"

@@ -51,6 +51,11 @@ RUN hashes="$(node /build/csp-hashes.mjs dist/index.html)" \
 
 FROM caddy:2.11-alpine AS production
 
+# Метки: GHCR связывает образ с репозиторием, deploy.sh по title чистит старые образы
+LABEL org.opencontainers.image.title="csharp-school" \
+      org.opencontainers.image.source="https://github.com/Nikolas-Bars/csharp-school" \
+      org.opencontainers.image.licenses="MIT"
+
 # Не root: на 80/443 Caddy пускает file capability образа (cap_net_bind_service)
 RUN addgroup -S -g 10001 web \
     && adduser -S -D -H -u 10001 -G web web \

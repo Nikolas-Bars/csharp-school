@@ -17,9 +17,96 @@ Production-стек — Docker Compose на одном сервере. Всё п
 | `backend/.docker/Dockerfile_prod` | Образ API: PHP 8.3 + RoadRunner, без dev-зависимостей, с курсом из `content/` |
 | `frontend/.docker/Dockerfile_prod` | Образ веба: сборка runner (.NET SDK) и Vite → Caddy |
 | `frontend/.docker/prod/Caddyfile` | HTTPS, кэш, сжатие, заголовки безопасности, прокси `/api` |
+| `deploy/docker-compose.edge.yml` | Режим общего сервера: без портов, за Caddy мессенджера по сети `edge` |
+| `deploy/deploy.sh` | Обновление на сервере: образы из GHCR, миграции, курс, перезапуск |
 | `deploy/check.sh`, `deploy/smoke.sh` | Проверка образов локально / проверка работающего сайта |
 
-Команды — в корневом `Makefile`: `make prod-*` (`make help`).
+Команды — в корневом `Makefile`: `make prod-*` (`make help`; `EDGE=1` — режим общего сервера).
+
+## Сейчас: сервер мессенджера — https://csharp.call-yansburg.com
+
+Своего сервера у C# School пока нет: стек живёт на сервере мессенджера Kolyansburg
+(`185.17.1.109`, `ssh starter`, Ubuntu 24.04, 4 vCPU, 2.9 ГБ памяти) в `/opt/csharp-school`, рядом
+с мессенджером и Inkroom, со своими базой и Redis. Так же устроен Inkroom
+(`artverse-backend/deploy/README.md`).
+
+```
+браузер ──https──▶ Caddy мессенджера ──http, сеть edge──▶ csharp-school-web (наш Caddy, :80) ──▶ api …
+```
+
+- **HTTPS** для `csharp.call-yansburg.com` делает Caddy мессенджера (DNS-запись `A csharp` →
+  `185.17.1.109` в Cloudflare, без прокси Cloudflare). Наш `web` портов наружу не открывает
+  (`docker-compose.edge.yml`), слушает HTTP внутри сервера.
+- **Память** — главное ограничение сервера: лимиты в `docker-compose.prod.yml` дают стеку не больше
+  ~1.1 ГБ (обычно ~0.6 ГБ): api 384 МБ (2 воркера), MariaDB 256 МБ, очередь и планировщик по 128 МБ,
+  Caddy 128 МБ, Redis 64 МБ. Когда учеников станет много — больше памяти у хостинга или свой сервер.
+- **Образы на сервере не собираются**: сборке runner нужно 2+ ГБ памяти — это уронило бы
+  мессенджер. Их собирает и проверяет GitHub Actions (workflow `deploy`) после мёржа в `main` и
+  кладёт в GHCR: `ghcr.io/nikolas-bars/csharp-school-api` и `-web`, теги — коммит и `latest`.
+- **Автодеплоя нет**: обновление — вручную (ниже).
+
+### Первый запуск
+
+1. **DNS:** в Cloudflare запись `A csharp` → `185.17.1.109`, прокси выключен (серое облако).
+2. **Caddy мессенджера** (`starter-backend/deploy/Caddyfile`, рядом с блоком Inkroom) — и
+   после мёржа там перезагрузить его конфиг без остановки мессенджера:
+   `cd /opt/starter/starter-backend/deploy && git pull && docker compose exec web caddy reload --config /etc/caddy/Caddyfile`:
+
+   ```
+   # C# School живёт на этом сервере своим docker compose в /opt/csharp-school (его deploy/README.md).
+   # Сертификат получает этот Caddy, запросы уходят в Caddy C# School по сети edge. Не запущен — 502,
+   # мессенджер это не задевает
+   csharp.{$DOMAIN} {
+   	reverse_proxy csharp-school-web:80
+   }
+   ```
+
+3. **Образы публичные:** после первого мёржа в `main` — GitHub → профиль → Packages →
+   `csharp-school-api` и `csharp-school-web` → Package settings → Change visibility → Public
+   (код открыт под MIT, секретов в образах нет). Иначе на сервере нужен `docker login ghcr.io`
+   с токеном `read:packages`.
+4. **Сервер:**
+
+   ```bash
+   ssh starter
+   git clone https://github.com/Nikolas-Bars/csharp-school.git /opt/csharp-school
+   cd /opt/csharp-school/deploy
+   cp .env.production.example .env && chmod 600 .env
+   ```
+
+   В `.env`:
+
+   ```bash
+   COMPOSE_FILE=docker-compose.prod.yml:docker-compose.edge.yml
+   SITE_ADDRESS=:80
+   ACME_EMAIL=unused@localhost            # при :80 не используется
+   CADDY_TRUSTED_PROXIES=private_ranges   # Caddy мессенджера — в частной сети edge
+   IMAGE_PREFIX=ghcr.io/nikolas-bars/csharp-school
+   IMAGE_TAG=latest
+   APP_URL=https://csharp.call-yansburg.com
+   FRONTEND_URL=https://csharp.call-yansburg.com
+   RR_NUM_WORKERS=2
+   # APP_KEY, DB_PASSWORD, REDIS_PASSWORD — сгенерировать (комментарии в образце);
+   # MAIL_* — почтовый сервис, пока его нет — MAIL_MAILER=log (письма только в журнал)
+   ```
+
+   Запуск: `./deploy.sh`.
+
+### Обновление, откат, остановка
+
+```bash
+ssh starter /opt/csharp-school/deploy/deploy.sh           # latest — последний main
+ssh starter /opt/csharp-school/deploy/deploy.sh <sha>     # конкретный коммит main; откат — прошлый
+```
+
+Остановить C# School, не трогая мессенджер и Inkroom: `cd /opt/csharp-school/deploy && docker
+compose down` (данные остаются в томах).
+
+Сеть `edge` создаёт compose мессенджера: без неё `docker compose up` здесь не запустится.
+
+Переезд на свой сервер: убрать `docker-compose.edge.yml` из `COMPOSE_FILE`, `SITE_ADDRESS` — домен,
+`ACME_EMAIL` — настоящая почта, `CADDY_TRUSTED_PROXIES=127.0.0.1/32`; лимиты памяти и
+`RR_NUM_WORKERS` — по серверу; база — дампом (раздел «Резервные копии»).
 
 ## Почему так
 
@@ -170,9 +257,10 @@ HSTS, `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Poli
 
 ### Образы на другой машине
 
-`make prod-build` на любой машине, затем перенос: `docker save csharp-school-api:<тег>
-csharp-school-web:<тег> | ssh server docker load`. Реестр образов (GHCR) — когда понадобится:
-`IMAGE_PREFIX=ghcr.io/<владелец>/csharp-school`.
+Обычный путь — GHCR: workflow `deploy` после мёржа в `main` публикует проверенные образы,
+на сервере `IMAGE_PREFIX=ghcr.io/nikolas-bars/csharp-school` и `deploy.sh`. Без реестра:
+`make prod-build` на любой машине (x86-64 — как сервер), затем `docker save csharp-school-api:<тег>
+csharp-school-web:<тег> | ssh server docker load`.
 
 ## Проверка на своей машине
 
