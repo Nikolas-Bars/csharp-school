@@ -6,7 +6,15 @@ namespace App\Modules\Auth\Http\Requests;
 
 use App\Services\Translator;
 use Illuminate\Foundation\Http\FormRequest;
+use OpenApi\Attributes as OA;
 
+#[OA\Schema(
+    schema: 'ForgotPasswordRequest',
+    required: ['email'],
+    properties: [
+        new OA\Property(property: 'email', type: 'string', format: 'email', maxLength: 254, example: 'student@example.com'),
+    ],
+)]
 final class ForgotPasswordRequest extends FormRequest
 {
     /**

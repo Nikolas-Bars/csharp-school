@@ -7,12 +7,41 @@ namespace App\Services;
 use Illuminate\Contracts\Pagination\CursorPaginator;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
+use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Единственный формат ответа API: { "status": "success"|"error", "message", "data", "errors" }.
  * message — всегда переведённый текст (Translator::get), поэтому значения по умолчанию у него нет.
+ * Схемы ApiSuccess и ApiError ниже — этот же формат в спецификации OpenAPI (openapi.json).
  */
+#[OA\Schema(
+    schema: 'ApiSuccess',
+    description: 'Успешный ответ ApiResponder. Что лежит в `data` — у каждого эндпоинта своё',
+    required: ['status', 'message', 'data', 'errors'],
+    properties: [
+        new OA\Property(property: 'status', type: 'string', enum: ['success']),
+        new OA\Property(property: 'message', description: 'Текст для человека на языке запроса', type: 'string'),
+        new OA\Property(property: 'data', description: 'Данные ответа'),
+        new OA\Property(property: 'errors', description: 'У успешного ответа всегда пусто', type: 'object', additionalProperties: false),
+    ],
+)]
+#[OA\Schema(
+    schema: 'ApiError',
+    description: 'Ошибка: что случилось — в `message`, ошибки полей формы — в `errors`',
+    required: ['status', 'message', 'data', 'errors'],
+    properties: [
+        new OA\Property(property: 'status', type: 'string', enum: ['error']),
+        new OA\Property(property: 'message', description: 'Текст для человека на языке запроса', type: 'string'),
+        new OA\Property(property: 'data', type: 'null'),
+        new OA\Property(
+            property: 'errors',
+            description: 'Поле формы → список сообщений; у ошибок не по полям — `{}`',
+            type: 'object',
+            additionalProperties: new OA\AdditionalProperties(type: 'array', items: new OA\Items(type: 'string')),
+        ),
+    ],
+)]
 final class ApiResponder
 {
     public static function ok(mixed $data, string $message): JsonResponse

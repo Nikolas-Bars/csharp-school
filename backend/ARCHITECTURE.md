@@ -114,6 +114,27 @@ Request (валидация) → Controller → DTO → Action::run() → Task::
   `exceptions.http.{код}`, сбой (500) — без подробностей (с `APP_DEBUG=true` — стандартный ответ
   Laravel с трассировкой). Тесты — `tests/Feature/ApiErrorResponseTest.php`.
 
+## Документация API (OpenAPI)
+
+`openapi.json` (OpenAPI 3.1) собирается из PHP-атрибутов `#[OA\…]` пакета zircote/swagger-php
+(только dev, без doctrine/annotations): `make composer cmd=openapi`. Где что описано:
+эндпоинт — `#[OA\Get]`/`#[OA\Post]` на `__invoke` контроллера рядом с маршрутом, тело запроса —
+`#[OA\Schema]` на FormRequest, `data` ответа — `#[OA\Schema]` на Resource, обёртка ответа — на
+`ApiResponder`, общее (вход, параметры, ошибки 401/404/422/429) — `app/Http/ApiSpecification.php`.
+Схемы подключаются ссылкой-строкой `'#/components/schemas/Lesson'`: при нескольких схемах в
+классе ссылка `LessonResource::class` берёт последнюю.
+
+- **[тест]** `tests/Feature/OpenApiTest.php`: файл собран из текущего кода, описан каждый маршрут
+  `api/*` и ничего лишнего, вход (`security`, 401), лимиты (429), параметры пути и поля формы —
+  как у маршрута и в `rules()`.
+- **[тест]** Каждый ответ feature-тестов к описанному эндпоинту сверяется со схемой
+  (`Tests\TestCase::createTestResponse`, `tests/OpenApi`): код ответа описан, типы совпадают,
+  лишних полей нет.
+- Почему не генерация без атрибутов (dedoc/scramble): версия 0.x, общую обёртку и формат ошибок
+  она выводит неточно — нужны свои расширения, а схемы с `mixed` (шаги урока) остаются
+  размытыми. Атрибуты дают точную схему, а расхождение с кодом ловят тесты выше. Свой
+  YAML без пакета — описание далеко от кода, генерировать нечем.
+
 ## Языки
 
 Всё, что читает клиент, переводится: `lang/{ru,en}/` (`app.supported_locales`). Обращение — на «ты».
@@ -208,4 +229,5 @@ Request (валидация) → Controller → DTO → Action::run() → Task::
 2. Модель, миграция в `Database/Migrations`, фабрика (`#[UseFactory]` на модели).
 3. Repository → Tasks → Action → Request/DTO → Controller с атрибутом маршрута → Resource.
 4. Переводы в `lang/ru` и `lang/en`.
-5. Feature-тест на каждый контроллер, `make check`.
+5. Атрибуты OpenAPI на Controller, Request и Resource, `make composer cmd=openapi`.
+6. Feature-тест на каждый контроллер, `make check`.
