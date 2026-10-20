@@ -1,18 +1,24 @@
-name: CI
+name: backend
 
+# Только при изменениях в backend/ (или в самом этом файле)
 on:
   pull_request:
+    paths: ['backend/**', '.github/workflows/backend.yml']
   push:
     branches: [main]
+    paths: ['backend/**', '.github/workflows/backend.yml']
 
 concurrency:
-  group: ci-${{ github.ref }}
+  group: backend-${{ github.ref }}
   cancel-in-progress: true
 
 # То же, что make check, плюс проверка уязвимостей зависимостей
 jobs:
   checks:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
     steps:
       - uses: actions/checkout@v4
 
@@ -25,7 +31,7 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: ~/.cache/composer
-          key: composer-${{ hashFiles('composer.lock') }}
+          key: composer-${{ hashFiles('backend/composer.lock') }}
           restore-keys: composer-
 
       - run: composer install --no-interaction --no-progress --prefer-dist

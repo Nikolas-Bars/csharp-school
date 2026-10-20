@@ -1,11 +1,11 @@
 /**
- * Web Worker с runner: .NET в WebAssembly (csharp-school-runner, сборка — в public/runner).
+ * Web Worker с runner: .NET в WebAssembly (runner, сборка — в public/runner).
  * Отдельный поток: бесконечный цикл ученика не вешает страницу, а client.ts по таймауту
  * просто убивает этот worker и запускает новый.
  */
 import type { RunnerMethod, WorkerMessage, WorkerRequest } from './protocol'
 
-/** Методы RunnerExports (csharp-school-runner/src/Runner.Browser): JSON протокола в обе стороны */
+/** Методы RunnerExports (runner/src/Runner.Browser): JSON протокола в обе стороны */
 type RunnerExports = Record<'Compile' | 'Run' | 'Test', (request: string) => string> & {
   Warmup(): void
 }

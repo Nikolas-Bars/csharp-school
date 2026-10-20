@@ -1,6 +1,6 @@
 /**
  * Протокол runner — зеркало CSharpSchool.Runner.Protocol
- * (csharp-school-runner/src/Runner.Core/Protocol). JSON в camelCase.
+ * (runner/src/Runner.Core/Protocol). JSON в camelCase.
  */
 
 export interface CompileRequest {

@@ -15,7 +15,7 @@
   - `Execution/ProgramRunner` — запуск: свой Console (ввод, вывод с лимитом), исключение и строка
     кода ученика (по PDB, сами — см. комментарии);
   - `Checks/CheckRunner` — проверки задачи: вывод, переменная, конструкция, вызов метода;
-  - `Protocol/` — JSON протокола (camelCase), зеркало — `csharp-school-frontend/src/runner/protocol.ts`;
+  - `Protocol/` — JSON протокола (camelCase), зеркало — `frontend/src/runner/protocol.ts`;
   - `RunnerService` — вход: compile, run, test.
 - `src/Runner.Browser` — оболочка WebAssembly: `RunnerExports` ([JSExport]) для
   `src/runner/runner.worker.ts` фронта. Таймаут бесконечного цикла — на фронте: worker убивается.
@@ -37,7 +37,7 @@
 
 ## Команды
 
-`make help` — список. `make build` (WebAssembly → `../csharp-school-frontend/public/runner`),
+`make help` — список. `make build` (WebAssembly → `../frontend/public/runner`),
 `make test`, `make check` (стиль + тесты), `make format`, `make shell`, `make clean`.
 
 ## Правила

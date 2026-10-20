@@ -1,6 +1,6 @@
 # C# School Web
 
-Vue 3 + Vite + TypeScript SPA обучающей платформы C# School для API в `../csharp-school-backend`
+Vue 3 + Vite + TypeScript SPA обучающей платформы C# School для API в `../backend`
 (`../CLAUDE.md` — общие правила, `../rules/` — подробности). Router, Pinia, vue-i18n, Vitest,
 oxlint + ESLint, Prettier (без точек с запятой, одинарные кавычки, ширина 100). Настройки
 инструментов — стандартные из `create-vue`; наши добавки — в `vite.config.ts` (порт, Docker, i18n).
@@ -55,7 +55,7 @@ oxlint + ESLint, Prettier (без точек с запятой, одинарны
 
 ## Runner
 
-`public/runner/` — сборка `csharp-school-runner` (`make build` там), в git не попадает.
+`public/runner/` — сборка `runner` (`make build` там), в git не попадает.
 Служебная страница проверки — `/dev/runner`, есть только при разработке (`import.meta.env.DEV`).
 
 ## Команды
