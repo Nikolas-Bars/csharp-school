@@ -1,4 +1,5 @@
 /* Темы: правила — rules/frontend-styles.md; список тем — src/theme/themes.ts */
+@import './fonts.css';
 @import './tokens.css';
 @import './themes/light.css';
 @import './themes/dark.css';

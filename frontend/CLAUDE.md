@@ -59,6 +59,10 @@ oxlint + ESLint, Prettier (без точек с запятой, одинарны
 Только через токены, без цветов литералами в компонентах. Подробно — `../rules/frontend-styles.md`.
 
 - `src/assets/tokens.css` — общие для всех тем: шрифты, шкалы, отступы, радиусы, `--color-code-*`.
+- `src/assets/fonts.css` — `@font-face` шрифтов, отдаёт сам сайт: файлы из пакетов Fontsource
+  (`@fontsource-variable/inter`, `@fontsource/unbounded`, `@fontsource/jetbrains-mono`), только
+  нужные толщины и подмножества latin + cyrillic. Inter предзагружается в `index.html`.
+  `src/__tests__/fonts.spec.ts` сверяет их и падает на шрифты со сторонних доменов.
 - `src/assets/themes/<id>.css` — по файлу на тему; `light` — основная (с макета), `dark` — от неё.
 - `src/theme/themes.ts` — реестр тем; `useThemeStore` — выбор (как в системе / светлая / тёмная),
   ставит `data-theme` на `<html>`; скрипт в `index.html` — то же до первой отрисовки.
