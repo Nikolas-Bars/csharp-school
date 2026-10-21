@@ -1,0 +1,84 @@
+{
+  "title": {
+    "ru": "Лестница в башню"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "for",
+      "min": 3
+    },
+    {
+      "kind": "output",
+      "expected": "   #\n  ##\n ###\n####"
+    },
+    {
+      "kind": "output",
+      "expected": "  #\n ##\n###",
+      "set": {
+        "height": 3
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужно три цикла for: внешний по строкам и два внутренних — для пробелов и для блоков."
+    },
+    {
+      "ru": "Сравни вывод с ожидаемым: в 1-й строке три пробела и один #, в последней — четыре # без пробелов. Проверь границы обоих внутренних циклов."
+    },
+    {
+      "ru": "Программа должна работать при любом значении height — не печатай готовый ответ, считай циклом."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Пробелы — тоже символы: Console.Write(\" \"). Их печатает первый внутренний цикл."
+    },
+    {
+      "ru": "В строке row: пробелов height - row, блоков row. Оба внутренних цикла стоят друг за другом в теле внешнего, после них — Console.WriteLine()."
+    },
+    {
+      "ru": "for (int row = 1; row <= height; row++) { for (int space = 1; space <= height - row; space++) { Console.Write(\" \"); } for (int block = 1; block <= row; block++) { Console.Write(\"#\"); } Console.WriteLine(); }"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-formal.cs",
+      "fails": [
+        2
+      ],
+      "why": "Формальный цикл и готовый ответ: при других значениях вывод тот же"
+    },
+    {
+      "file": "wrong-no-spaces.cs",
+      "fails": [
+        0,
+        1,
+        2
+      ],
+      "why": "Без пробелов лестница прижата к левому краю"
+    },
+    {
+      "file": "wrong-extra-space.cs",
+      "fails": [
+        1,
+        2
+      ],
+      "why": "Пробелов на один больше: <= height - row + 1"
+    },
+    {
+      "file": "wrong-blocks.cs",
+      "fails": [
+        1,
+        2
+      ],
+      "why": "Блоков всегда height: граница не зависит от строки"
+    }
+  ]
+}

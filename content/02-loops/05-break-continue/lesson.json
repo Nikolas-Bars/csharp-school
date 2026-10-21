@@ -1,0 +1,98 @@
+{
+  "title": {
+    "ru": "break и continue"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-break.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "arena-retreat"
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "02-continue.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "03-careful.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "trap-jumps"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "for (int i = 1; i <= 5; i++) { if (i == 3) { break; } Console.WriteLine(i); } — что напечатается?"
+          },
+          "options": [
+            {
+              "ru": "1, 2, 4, 5"
+            },
+            {
+              "ru": "1, 2"
+            },
+            {
+              "ru": "1, 2, 3"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "При i = 3 срабатывает break: цикл заканчивается раньше, чем 3 успевает напечататься."
+          }
+        },
+        {
+          "question": {
+            "ru": "Что напечатает тот же цикл, если break заменить на continue?"
+          },
+          "options": [
+            {
+              "ru": "1, 2"
+            },
+            {
+              "ru": "3"
+            },
+            {
+              "ru": "1, 2, 4, 5"
+            }
+          ],
+          "answer": 2,
+          "explanation": {
+            "ru": "continue пропускает только итерацию с i = 3, дальше цикл идёт как обычно."
+          }
+        },
+        {
+          "question": {
+            "ru": "Чем continue отличается от break?"
+          },
+          "options": [
+            {
+              "ru": "continue выходит из цикла, break — нет"
+            },
+            {
+              "ru": "continue пропускает итерацию, break выходит"
+            },
+            {
+              "ru": "Ничем: это два имени одной команды"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "break заканчивает цикл совсем, а continue — только текущую итерацию."
+          }
+        }
+      ]
+    }
+  ]
+}

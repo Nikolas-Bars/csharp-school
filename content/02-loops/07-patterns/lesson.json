@@ -1,0 +1,92 @@
+{
+  "title": {
+    "ru": "Узоры из символов"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-depends.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "quiver"
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "02-spaces.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "tower-stairs"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "for (int row = 1; row <= 5; row++) { for (int col = 1; col <= row; col++) { Console.Write(\"*\"); } Console.WriteLine(); } — сколько звёздочек в 3-й строке?"
+          },
+          "options": [
+            {
+              "ru": "5"
+            },
+            {
+              "ru": "1"
+            },
+            {
+              "ru": "3"
+            }
+          ],
+          "answer": 2,
+          "explanation": {
+            "ru": "В строке row звёздочек ровно row: в 3-й строке — три."
+          }
+        },
+        {
+          "question": {
+            "ru": "for (int row = 1; row <= 5; row++) { for (int col = 1; col <= row; col++) { Console.Write(\"*\"); } Console.WriteLine(); } — сколько всего звёздочек напечатает этот узор?"
+          },
+          "options": [
+            {
+              "ru": "15"
+            },
+            {
+              "ru": "25"
+            },
+            {
+              "ru": "5"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "1 + 2 + 3 + 4 + 5 = 15. 25 было бы у квадрата 5 на 5."
+          }
+        },
+        {
+          "question": {
+            "ru": "Как сдвинуть звёздочку в строке вправо?"
+          },
+          "options": [
+            {
+              "ru": "Напечатать перед ней пробелы"
+            },
+            {
+              "ru": "Поставить в начало Console.WriteLine()"
+            },
+            {
+              "ru": "Заменить Write на WriteLine"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "Пробел — тоже символ: каждый пробел перед звёздочкой сдвигает её на одну позицию."
+          }
+        }
+      ]
+    }
+  ]
+}

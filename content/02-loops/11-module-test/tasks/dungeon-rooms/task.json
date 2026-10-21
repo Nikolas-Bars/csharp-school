@@ -1,0 +1,88 @@
+{
+  "title": {
+    "ru": "Гоблины в комнатах"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "for",
+      "min": 2
+    },
+    {
+      "kind": "call",
+      "method": "System.Random.Next"
+    },
+    {
+      "kind": "output",
+      "expected": "Комната 1: ГГГ\nКомната 2: Г\nКомната 3: Г\nКомната 4: ГГ\nВсего гоблинов: 7"
+    },
+    {
+      "kind": "output",
+      "expected": "Комната 1: ГГ\nКомната 2: ГГГ\nКомната 3: ГГ\nВсего гоблинов: 7",
+      "set": {
+        "seed": 7,
+        "rooms": 3
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужны два цикла for: внешний по комнатам и внутренний, который рисует гоблинов."
+    },
+    {
+      "ru": "Число гоблинов в комнате выдаёт генератор: вызови random.Next."
+    },
+    {
+      "ru": "Сравни вывод с ожидаемым. Если числа гоблинов другие — проверь, где создан генератор и какие числа стоят в Next. Если строки разъехались — проверь, где Write, а где WriteLine."
+    },
+    {
+      "ru": "Программа должна работать при любых значениях seed и rooms — не печатай готовый ответ, считай циклом."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "В каждой итерации внешнего цикла: бросок, прибавить к сумме, нарисовать строку комнаты."
+    },
+    {
+      "ru": "Начало строки — Console.Write($\"Комната {room}: \"), потом внутренний цикл печатает goblins букв через Console.Write(\"Г\"), потом Console.WriteLine(). Сумму объяви до цикла с нулём."
+    },
+    {
+      "ru": "int total = 0; for (int room = 1; room <= rooms; room++) { int goblins = random.Next(1, 4); total += goblins; Console.Write(…); for (int i = 1; i <= goblins; i++) { Console.Write(\"Г\"); } Console.WriteLine(); } и вывод total."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-formal.cs",
+      "fails": [
+        3
+      ],
+      "why": "Формальный цикл и готовый ответ: при других значениях вывод тот же"
+    },
+    {
+      "file": "wrong-new-in-loop.cs",
+      "fails": [
+        2,
+        3
+      ],
+      "why": "Генератор в цикле: в каждой комнате по 3 гоблина"
+    },
+    {
+      "file": "wrong-writeline.cs",
+      "fails": [
+        2,
+        3
+      ],
+      "why": "WriteLine во внутреннем цикле: каждый гоблин на своей строке"
+    },
+    {
+      "file": "wrong-total-inside.cs",
+      "compileError": "CS0103",
+      "why": "Сумма объявлена в теле цикла и не видна после него"
+    }
+  ]
+}
