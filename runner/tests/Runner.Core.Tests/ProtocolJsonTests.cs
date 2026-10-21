@@ -54,6 +54,37 @@ public sealed class ProtocolJsonTests
     }
 
     [Fact]
+    public void ReadsArrayInSetAndEmptyExpectedOutput()
+    {
+        const string request = """
+            {
+              "code": "int[] scores = { 3, 4 };\nforeach (int score in scores) { System.Console.WriteLine(score); }",
+              "checks": [
+                { "kind": "output", "expected": "5\n9", "set": { "scores": [5, 9] } },
+                { "kind": "output", "expected": "", "set": { "scores": [] } },
+                { "kind": "output", "expected": "", "set": { "scores": 5 } },
+                { "kind": "construct", "construct": "constructor" },
+                { "kind": "construct", "construct": "property" },
+                { "kind": "construct", "construct": "privateSet" },
+                { "kind": "construct", "construct": "this" },
+                { "kind": "access", "member": "Hero.hp", "min": 2 }
+              ]
+            }
+            """;
+
+        var response = Service.TestJson(request);
+
+        Assert.Contains("{\"index\":0,\"passed\":true", response, StringComparison.Ordinal);
+        Assert.Contains("{\"index\":1,\"passed\":true", response, StringComparison.Ordinal);
+        Assert.Contains("\"setError\":{\"variable\":\"scores\",\"problem\":\"wrongType\",\"type\":\"int[]\"}", response, StringComparison.Ordinal);
+        Assert.Contains("{\"index\":3,\"passed\":false,\"expected\":\"1\",\"actual\":\"0\"", response, StringComparison.Ordinal);
+        Assert.Contains("{\"index\":4,\"passed\":false,\"expected\":\"1\",\"actual\":\"0\"", response, StringComparison.Ordinal);
+        Assert.Contains("{\"index\":5,\"passed\":false,\"expected\":\"1\",\"actual\":\"0\"", response, StringComparison.Ordinal);
+        Assert.Contains("{\"index\":6,\"passed\":false,\"expected\":\"1\",\"actual\":\"0\"", response, StringComparison.Ordinal);
+        Assert.Contains("{\"index\":7,\"passed\":false,\"expected\":\"2\",\"actual\":\"0\"", response, StringComparison.Ordinal);
+    }
+
+    [Fact]
     public void WritesCamelCaseWithLowercaseEnumsAndExplicitNulls()
     {
         var response = Service.RunJson("""{ "code": "int unused = 1;" }""");

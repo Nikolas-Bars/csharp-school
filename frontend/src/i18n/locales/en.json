@@ -50,7 +50,7 @@
     "CS0029": "A value of type {arg0} can't go into a variable of type {arg1}. For example, text in quotes is a string, not a number.",
     "CS0266": "A value of type {arg0} can't just go into {arg1}: some data may be lost — for example, the fractional part of a number.",
     "CS0165": "The variable «{arg0}» is used, but nothing has been put into it yet. Assign a value before reading a variable.",
-    "CS0128": "The name «{arg0}» is already taken — a variable or a method already has it. Choose another name.",
+    "CS0128": "The name «{arg0}» is already taken — a variable or a method already has it. Choose another name. If you want to change the value of a variable that already exists, remove the type before the name: «hp = 85;» instead of «int hp = 85;».",
     "CS1010": "The text is not closed: a quote «\"» is missing at the end of the line.",
     "CS1513": "A closing curly brace «{'}'}» is missing. Every «{'{'}» needs its pair.",
     "CS1026": "A closing parenthesis «)» is missing. Every «(» needs its pair.",
@@ -75,13 +75,45 @@
     "CS0106": "The word «{arg0}» can't be written here — remove it. In the main code, methods and variables are written without public and private.",
     "CS0428": "«{arg0}» is the name of a method, not its answer. To call the method, add parentheses: {arg0}().",
     "CS0136": "The name «{arg0}» is already taken in an outer block — for example, by a variable declared above, before the loop. A block is code in curly braces. Give this variable another name.",
-    "CS8321": "The method «{arg0}» is declared but never called. It is not an error, but its commands won't run without a call."
+    "CS8321": "The method «{arg0}» is declared but never called. It is not an error, but its commands won't run without a call.",
+    "CS1003": "A writing mistake: the symbol «{arg0}» should be here. Check whether it is missing — for example, a comma between values: {'{'} 1, 2, 3 {'}'}.",
+    "CS0162": "The program never gets to this place, so the commands here won't run. This happens when a command comes after break, continue or return: they leave the loop or the method at once. Move the command higher or remove it.",
+    "CS0642": "There is a semicolon «;» right after if (…), for (…) or while (…). It ends the command: the condition or the loop stops here, and the block in curly braces below always runs — once and without a check. And while (…); can loop forever: the loop has no body, so the condition never changes. Remove the «;» after the parentheses.",
+    "CS0020": "Division by zero: the number you divide by is 0. You can't divide by zero — use another number.",
+    "CS0023": "The operation «{arg0}» can't be applied to a value of type {arg1}. For example, «!» («not») works only with true and false (type bool): !alive is fine, but !hp is not. Compare a number first: hp <= 0.",
+    "CS0841": "The variable «{arg0}» is used before it is declared. The program runs from top to bottom — move the line that declares «{arg0}» above this one.",
+    "CS1012": "Single quotes hold exactly one character: 'a' is a char. Text of several characters goes in double quotes: \"abc\" is a string.",
+    "CS0664": "A number with a dot (for example, 2.5) is a double in C#. To put it into {arg1}, add the letter {arg0} at the end: for float — 2.5f, for decimal — 2.5m.",
+    "CS0200": "«{arg0}» can only be read, not changed. For example, the length of an array (Length) is set once, when it is created: new int[4]. Need a different number of elements — create a new array.",
+    "CS1955": "«{arg0}» is not a method, so it has no parentheses after it. For example, the length of a text is name.Length, without (). Parentheses are needed only to call a method: name.ToUpper().",
+    "CS1656": "You can't put a value into «{arg0}»: it is not a variable. For example, a method name is not a place for a value: a method is called with parentheses.",
+    "CS1526": "After new and the type you need brackets: round ones — new Random(), square ones with a size — new int[3], or curly ones with values — new int[] {'{'} 1, 2 {'}'}.",
+    "CS0030": "A value of type {arg0} can't be turned into {arg1}. For example, (int) doesn't turn text into a number: (int)\"5\" won't work.",
+    "CS0847": "The array length in square brackets doesn't match the number of values in curly braces: there should be {arg0} values. Fix the number in [ ] or remove it — C# will count by itself: new int[] {'{'} 1, 2, 3 {'}'}.",
+    "CS1579": "A value of type {arg0} can't be looped over with foreach: you can only loop over a set of elements — an array, a list or a text. Check that a set, not a single value, comes after in.",
+    "CS0665": "The condition has a single «=» — it puts a value into the variable instead of comparing. To compare, write two signs: ==.",
+    "CS1660": "There is «=>» here — that is how C# writes a lambda (a short form of a method), but a value of type {arg1} is needed. If you compare «greater than or equal», write >=: hp >= 5.",
+    "CS0122": "«{arg0}» can be accessed only inside its class — make it public if you need it outside.",
+    "CS0120": "«{arg0}» is used through an object, not through the class name. First create an object — for example, Hero hero = new Hero(); — and use it: hero.hp. If the value is shared by all objects, mark it with the word static.",
+    "CS0104": "The name «{arg0}» exists in two namespaces (sets of types you connect with using): {arg1} and {arg2}. C# doesn't know which one to take. Write the full name, for example {arg2}, or rename your class.",
+    "CS8801": "«{arg0}» from the main code can't be seen inside a class: variables and methods of the main code are available only there. Pass the value into the class through a constructor or method parameter, or make «{arg0}» a part of the class itself.",
+    "CS0542": "A field or a method can't have the same name as its class («{arg0}»). Give it another name. If it is a constructor, write it without a return type: public {arg0}(), without void.",
+    "CS0272": "The set of «{arg0}» is private: the value can be changed only inside the class, and outside it can only be read. Change the value through a method of the class.",
+    "CS1729": "The class {arg0} has no constructor that takes this many arguments ({arg1}). Compare them with the constructor parameters. When a class has its own constructor, the empty one — new {arg0}() — no longer appears by itself: add it if you need it.",
+    "CS0649": "Nothing is ever put into the field «{arg0}», so it will always be {arg1} — the default value. Assign it, for example, in the constructor.",
+    "CS1717": "A variable is assigned to itself — nothing changes. If a constructor parameter has the same name as a field, write this.hp = hp: this.hp is the object's field, and hp is the parameter.",
+    "CS0176": "«{arg0}» is marked static — it belongs to the class, not to an object. Remove static from a method or field of an object, and use a static member through the class name: {arg0}."
   },
   "compilerCases": {
     "voidInInterpolation": "Inside the curly braces $\"…{'{'} {'}'}\" there is a call of a void method. Such a method returns nothing — there is nothing to put into the text. If the method should answer, replace void with the type of the answer and return a value with return.",
     "interpolationValue": "Inside the curly braces $\"…{'{'} {'}'}\" there is something that can't be put into text. You can put values there: variables, numbers and calls of methods that return an answer.",
     "voidValue": "The method returns nothing (void), so its result can't be put into a variable or passed on. If the method should answer, replace void with the type of the answer and return a value with return.",
-    "methodGroup": "There is a method name without parentheses here — that is not a call yet. To call the method and get its answer, add parentheses, for example Damage()."
+    "methodGroup": "There is a method name without parentheses here — that is not a call yet. To call the method and get its answer, add parentheses, for example Damage().",
+    "assignInCondition": "Here is a value of type {arg0}, but true or false is needed. If you compare, write two signs ==; a single = puts a value into a variable.",
+    "countOrLength": "A list's number of elements is Count, an array's is Length.",
+    "missingSeparator": "A sign is missing: most likely «;» at the end of a command on this line or above, or «,» between values.",
+    "foreachVariable": "You can't assign a new value to «{arg0}»: it is a foreach loop variable, it only shows the elements one by one. To change an array element, use a for loop and an index — the element's number: items[i] = 5.",
+    "stringChar": "A character in a string can't be changed: a string in C# doesn't change after it is created. Build a new string from the parts you need and put it into the variable."
   },
   "runtime": {
     "unknown": "The program stopped with the error {type}.",
@@ -89,11 +121,11 @@
     "IndexOutOfRangeException": "The array has no element with this number. Numbers (indexes) start at 0: in an array of 3 elements the last one is 2.",
     "ArgumentOutOfRangeException": "A number is out of the allowed range. For example, a list element number is bigger than the number of elements.",
     "NullReferenceException": "Access to an empty value (null): the variable doesn't point to anything.",
-    "FormatException": "The text couldn't be turned into a number. For example, int.Parse(\"ten\") won't work — it needs \"10\".",
+    "FormatException": "The text is not written the way it should be. For example, the text «ten» can't be turned into a number — it needs «10».",
     "OverflowException": "The number is too big or too small for this type.",
     "InvalidCastException": "The value can't be turned into this type.",
     "KeyNotFoundException": "The dictionary has no such key.",
-    "InvalidOperationException": "This action can't be done right now. For example, taking the first element of an empty list."
+    "InvalidOperationException": "This action can't be done right now. For example, you can't add or remove list elements while a foreach loop goes through the list, and you can't take the first element of an empty list."
   },
   "playground": {
     "title": "Runner check",
@@ -224,6 +256,7 @@
     "construct": "{construct} is used",
     "call": "{method} is called",
     "callFrom": "The method {method} is called from {caller}",
+    "access": "The value {name} of a {type} object is used",
     "constructs": {
       "if": "if",
       "else": "else",
@@ -235,7 +268,11 @@
       "method": "a method",
       "class": "class",
       "break": "break (leaving a loop)",
-      "continue": "continue (jumping to the next loop step)"
+      "continue": "continue (jumping to the next loop step)",
+      "constructor": "a constructor",
+      "property": "a property",
+      "privateSet": "private set (can be changed only inside the class)",
+      "this": "this (a field of its own object)"
     },
     "setError": {
       "notFound": "This check runs the program with another value of {variable}, but there is no variable {variable} in the main code. Declare it with a value at the start of the program, outside loops and methods, as in the starting code, and don't rename it.",

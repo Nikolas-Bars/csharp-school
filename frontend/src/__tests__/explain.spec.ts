@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
+import en from '@/i18n/locales/en.json'
 import ru from '@/i18n/locales/ru.json'
 import {
   explainDiagnostic,
@@ -62,6 +63,33 @@ const RUNNER_CODES = [
   'CS0428',
   'CS0136',
   'CS8321',
+  'CS1003',
+  'CS0162',
+  'CS0642',
+  'CS0020',
+  'CS0023',
+  'CS0841',
+  'CS1012',
+  'CS0664',
+  'CS0200',
+  'CS1955',
+  'CS1656',
+  'CS1526',
+  'CS0030',
+  'CS0847',
+  'CS1579',
+  'CS0665',
+  'CS1660',
+  'CS0122',
+  'CS0120',
+  'CS0104',
+  'CS8801',
+  'CS0542',
+  'CS0272',
+  'CS1729',
+  'CS0649',
+  'CS1717',
+  'CS0176',
 ]
 
 describe('объяснение ошибок', () => {
@@ -126,6 +154,93 @@ describe('объяснение ошибок', () => {
     expect(explainDiagnostic(diagnostic('CS0815', ['null']))).toBe(ru.compiler.unknown)
   })
 
+  it('= вместо == там, где нужен bool, и Length/Count — особый текст', () => {
+    const countOrLength = ru.compilerCases.countOrLength
+    // if (hp = 20) и bool canBuy = gold = price — как в CommonMistakesTests
+    expect(explainDiagnostic(diagnostic('CS0029', ['int', 'bool']))).toBe(
+      'Здесь значение типа int, а нужно true или false. Если ты сравниваешь — пиши два знака ==; один = кладёт значение в переменную.',
+    )
+    expect(explainDiagnostic(diagnostic('CS0029', ['void', 'bool']))).toBe(
+      ru.compilerCases.voidValue,
+    )
+    expect(explainDiagnostic(diagnostic('CS1061', ['List<int>', 'Length']))).toBe(countOrLength)
+    expect(explainDiagnostic(diagnostic('CS1061', ['List<string>', 'Length']))).toBe(countOrLength)
+    expect(explainDiagnostic(diagnostic('CS1061', ['int[]', 'Count']))).toBe(countOrLength)
+    // Остальные — обычный текст
+    expect(explainDiagnostic(diagnostic('CS1061', ['string', 'Lenght']))).toContain(
+      'У значения типа string нет «Lenght»',
+    )
+    expect(explainDiagnostic(diagnostic('CS1061', ['int[]', 'Length']))).toContain('нет «Length»')
+    expect(explainDiagnostic(diagnostic('CS1061', ['List<int>', 'Count']))).toContain('нет «Count»')
+    expect(explainDiagnostic(diagnostic('CS1061', []))).toContain('У значения типа')
+  })
+
+  it('забытая «;» после объявления (CS1003 с «,»), foreach и символ строки — особый текст', () => {
+    expect(explainDiagnostic(diagnostic('CS1003', [',']))).toBe(
+      'Не хватает знака: скорее всего «;» в конце команды на этой строке или выше, или «,» между значениями.',
+    )
+    expect(explainDiagnostic(diagnostic('CS1003', ['(']))).toContain('символ «(»')
+
+    expect(explainDiagnostic(diagnostic('CS1656', ['x', 'foreach iteration variable']))).toContain(
+      'Переменной «x» нельзя присвоить новое значение: это переменная цикла foreach',
+    )
+    // Имя метода слева от = — общий текст, без foreach
+    const method = explainDiagnostic(diagnostic('CS1656', ['Hit', 'method group']))
+    expect(method).toContain('В «Hit» нельзя положить значение')
+    expect(method).not.toContain('foreach')
+
+    expect(explainDiagnostic(diagnostic('CS0200', ['string.this[int]']))).toBe(
+      ru.compilerCases.stringChar,
+    )
+    expect(explainDiagnostic(diagnostic('CS0200', ['Array.Length']))).toContain(
+      '«Array.Length» можно только читать',
+    )
+  })
+
+  it('классы и объекты: аргументы подставляются по порядку', () => {
+    expect(explainDiagnostic(diagnostic('CS0122', ['Hero.hp']))).toBe(
+      'Доступ к «Hero.hp» есть только внутри его класса — сделай его public, если он нужен снаружи.',
+    )
+    expect(explainDiagnostic(diagnostic('CS8801', ['hp']))).toContain('не видно «hp»')
+    expect(explainDiagnostic(diagnostic('CS1729', ['Hero', '2']))).toContain(
+      'У класса Hero нет конструктора, который принимает столько аргументов (2)',
+    )
+    expect(explainDiagnostic(diagnostic('CS0649', ['Hero.hp', '0']))).toContain('всегда будет 0')
+    expect(explainDiagnostic(diagnostic('CS0176', ['Hero.LevelUp()']))).toContain(
+      '«Hero.LevelUp()» помечен static',
+    )
+    expect(explainDiagnostic({ ...diagnostic('CS1717'), severity: 'warning' })).toContain(
+      'this.hp = hp',
+    )
+  })
+
+  it('уже занятое имя: подсказка, как поменять значение без повторного объявления', () => {
+    expect(explainDiagnostic(diagnostic('CS0128', ['hp']))).toContain(
+      'убери тип перед именем: «hp = 85;»',
+    )
+  })
+
+  it('аргументы новых ошибок подставляются по порядку', () => {
+    expect(explainDiagnostic(diagnostic('CS0664', ['F', 'float']))).toContain(
+      'положить его в float, допиши в конце букву F',
+    )
+    expect(explainDiagnostic(diagnostic('CS0023', ['!', 'int']))).toContain(
+      'Операцию «!» нельзя применить к значению типа int',
+    )
+    expect(explainDiagnostic(diagnostic('CS1660', ['lambda expression', 'bool']))).toContain(
+      'нужно значение типа bool',
+    )
+    expect(
+      explainDiagnostic(diagnostic('CS0104', ['Random', 'Game.Random', 'System.Random'])),
+    ).toContain('Game.Random и System.Random')
+    expect(explainDiagnostic(diagnostic('CS0847', ['3']))).toContain('значений должно быть 3')
+    expect(explainDiagnostic(diagnostic('CS1526'))).toContain('new int[] { 1, 2 }')
+    // Предупреждения без аргументов
+    const emptyStatement = explainDiagnostic({ ...diagnostic('CS0642'), severity: 'warning' })
+    expect(emptyStatement).toContain('точка с запятой')
+    expect(emptyStatement).toContain('while (…); может зациклиться')
+  })
+
   it('CS8773: void в $"{…}", другое значение в $"{…}" и просто новая версия C#', () => {
     // Как в CommonMistakesTests: CS1503 с void лежит внутри места CS8773
     const feature = diagnostic('CS8773', ['interpolated string handlers', '10.0'], {
@@ -169,6 +284,18 @@ describe('объяснение ошибок', () => {
     expect(gendered).toEqual([])
   })
 
+  it('в текстах нет того, что vue-i18n принимает за HTML (List<int>() и т. п.)', () => {
+    // Та же проверка, что у intlify: иначе в консоли предупреждение о HTML в сообщении
+    const html = /<\/?[\w\s="/.':;#-/]+>/
+    const texts = [ru, en].flatMap((locale) => [
+      ...Object.values(locale.compiler),
+      ...Object.values(locale.compilerCases),
+      ...Object.values(locale.runtime),
+    ])
+
+    expect(texts.filter((text) => html.test(text))).toEqual([])
+  })
+
   it('проверка с другими значениями: почему не получилось подменить', () => {
     expect(explainSetError({ variable: 'height', problem: 'notFound', type: null })).toContain(
       'переменной height в основном коде не нашлось',
@@ -187,6 +314,13 @@ describe('объяснение ошибок', () => {
   it('исключения программы — по типу, незнакомые — с именем типа', () => {
     expect(explainRuntimeError({ type: 'DivideByZeroException', message: '', line: 4 })).toContain(
       'Деление на ноль',
+    )
+    expect(
+      explainRuntimeError({ type: 'InvalidOperationException', message: '', line: 3 }),
+    ).toContain('пока он перебирается циклом foreach')
+    // Ввода в курсе нет: пример без int.Parse
+    expect(explainRuntimeError({ type: 'FormatException', message: '', line: 3 })).not.toContain(
+      'Parse',
     )
     expect(explainRuntimeError({ type: 'StackOverflowException', message: '', line: null })).toBe(
       'Программа остановилась с ошибкой StackOverflowException.',

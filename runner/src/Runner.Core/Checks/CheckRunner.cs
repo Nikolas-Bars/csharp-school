@@ -3,6 +3,7 @@ using CSharpSchool.Runner.Compilation;
 using CSharpSchool.Runner.Execution;
 using CSharpSchool.Runner.Protocol;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpSchool.Runner.Checks;
@@ -25,6 +26,7 @@ internal sealed class CheckRunner(StudentCompiler compiler, ProgramRunner runner
             VariableCheck variable => Variable(index, variable, root, model),
             ConstructCheck construct => Construct(index, construct, root),
             CallCheck call => Call(index, call, root, model),
+            AccessCheck access => Access(index, access, root, model),
             _ => throw new NotSupportedException($"Неизвестная проверка {check.GetType().Name}"),
         })];
     }
@@ -107,6 +109,11 @@ internal sealed class CheckRunner(StudentCompiler compiler, ProgramRunner runner
             Protocol.Construct.Switch => node is SwitchStatementSyntax or SwitchExpressionSyntax,
             Protocol.Construct.Method => node is MethodDeclarationSyntax or LocalFunctionStatementSyntax,
             Protocol.Construct.Class => node is ClassDeclarationSyntax,
+            Protocol.Construct.Constructor => node is ConstructorDeclarationSyntax,
+            Protocol.Construct.Property => node is PropertyDeclarationSyntax,
+            Protocol.Construct.PrivateSet => node is AccessorDeclarationSyntax accessor
+                && accessor.IsKind(SyntaxKind.SetAccessorDeclaration) && accessor.Modifiers.Any(SyntaxKind.PrivateKeyword),
+            Protocol.Construct.This => node is ThisExpressionSyntax,
             Protocol.Construct.Break => node is BreakStatementSyntax && ExitsLoop(node),
             Protocol.Construct.Continue => node is ContinueStatementSyntax,
             _ => false,
@@ -132,17 +139,52 @@ internal sealed class CheckRunner(StudentCompiler compiler, ProgramRunner runner
     }
 
     /// <summary>
-    /// Вызов — в теле метода с этим именем, на любой глубине: во вложенном методе или лямбде внутри него
-    /// тоже. Сравнивается полное имя, поэтому перегрузки (методы с одним именем) не различаются.
+    /// Вызов — в теле метода, конструктора или свойства с этим именем, на любой глубине: во вложенном методе
+    /// или лямбде внутри него тоже. Сравнивается полное имя, поэтому перегрузки (методы с одним именем) не различаются.
     /// </summary>
     private static bool InsideCaller(SyntaxNode invocation, string caller, SemanticModel model) =>
         invocation.Ancestors()
-            .Where(node => node is MethodDeclarationSyntax or LocalFunctionStatementSyntax)
-            .Any(method => Name(model.GetDeclaredSymbol(method) as IMethodSymbol) == caller);
+            .Where(node => node is MethodDeclarationSyntax or LocalFunctionStatementSyntax or ConstructorDeclarationSyntax or PropertyDeclarationSyntax)
+            .Any(member => Name(model.GetDeclaredSymbol(member)) == caller);
 
-    /// <summary>Полное имя, как в проверке: «System.Console.WriteLine», свои методы — «Program.Report».</summary>
-    private static string? Name(IMethodSymbol? method) =>
-        method is null ? null : $"{method.ContainingType.ToDisplayString(FullName)}.{method.Name}";
+    /// <summary>
+    /// Полное имя, как в проверке: «System.Console.WriteLine», свои методы — «Program.Report», метод класса —
+    /// «Hero.Heal», конструктор — «Hero.Hero» (а не внутреннее «.ctor»), поле и свойство — «Hero.hp».
+    /// </summary>
+    private static string? Name(ISymbol? symbol) => symbol switch
+    {
+        IMethodSymbol { MethodKind: MethodKind.Constructor or MethodKind.StaticConstructor } constructor =>
+            $"{constructor.ContainingType.ToDisplayString(FullName)}.{constructor.ContainingType.Name}",
+        IMethodSymbol or IPropertySymbol or IFieldSymbol => $"{symbol.ContainingType.ToDisplayString(FullName)}.{symbol.Name}",
+        _ => null,
+    };
+
+    private static CheckResult Access(int index, AccessCheck check, SyntaxNode root, SemanticModel model)
+    {
+        var count = root.DescendantNodes()
+            .OfType<SimpleNameSyntax>()
+            .Select(name => (Name: name, Symbol: model.GetSymbolInfo(name).Symbol))
+            .Count(found => found.Symbol is IFieldSymbol or IPropertySymbol && Name(found.Symbol) == check.Member && !IsWritten(found.Name));
+
+        return new CheckResult(index, count >= check.Min, Text(check.Min), Text(count));
+    }
+
+    /// <summary>Имя — то, во что записывают: слева от =, +=, у ++ и --, после out (hero.hp и this.hp — целиком).</summary>
+    private static bool IsWritten(SimpleNameSyntax name)
+    {
+        ExpressionSyntax target = name.Parent is MemberAccessExpressionSyntax access && access.Name == name ? access : name;
+
+        return target.Parent switch
+        {
+            AssignmentExpressionSyntax assignment => assignment.Left == target,
+            PostfixUnaryExpressionSyntax or PrefixUnaryExpressionSyntax => target.Parent.IsKind(SyntaxKind.PostIncrementExpression)
+                || target.Parent.IsKind(SyntaxKind.PostDecrementExpression)
+                || target.Parent.IsKind(SyntaxKind.PreIncrementExpression)
+                || target.Parent.IsKind(SyntaxKind.PreDecrementExpression),
+            ArgumentSyntax argument => argument.RefKindKeyword.IsKind(SyntaxKind.OutKeyword),
+            _ => false,
+        };
+    }
 
     private static string Text(int value) => value.ToString(CultureInfo.InvariantCulture);
 }

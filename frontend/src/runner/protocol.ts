@@ -27,16 +27,24 @@ export type Check =
       match?: 'exact' | 'contains'
       /**
        * Запустить с другими начальными значениями: «имя переменной основного кода → значение».
-       * Runner подменяет значение при объявлении (int height = 4; → int height = 5;) только для этой проверки
+       * Runner подменяет значение при объявлении (int height = 4; → int height = 5;) только для этой проверки.
+       * Массив значений — для int[] и List<int>: [5, 9, 1] → new int[] { 5, 9, 1 }
        */
       set?: Record<string, SetValue> | null
     }
   | { kind: 'variable'; name: string; type?: string | null }
   | { kind: 'construct'; construct: Construct; min?: number }
-  /** caller — вызов засчитывается, только если он в теле этого метода (полное имя: Program.Report) */
+  /**
+   * caller — вызов засчитывается, только если он в теле этого метода (полное имя: Program.Report,
+   * Hero.Heal), конструктора (Hero.Hero) или свойства (Hero.Hp)
+   */
   | { kind: 'call'; method: string; caller?: string | null }
+  /** Поле или свойство (Hero.hp) читается не меньше min раз; запись (=, +=, ++) не считается */
+  | { kind: 'access'; member: string; min?: number }
 
-export type SetValue = number | string | boolean
+export type SetScalar = number | string | boolean
+
+export type SetValue = SetScalar | SetScalar[]
 
 export type Construct =
   | 'if'
@@ -51,6 +59,13 @@ export type Construct =
   /** break, который выходит из цикла (break в switch не считается) */
   | 'break'
   | 'continue'
+  /** Объявление конструктора класса */
+  | 'constructor'
+  /** Объявление свойства */
+  | 'property'
+  /** Метод доступа set с private: { get; private set; } */
+  | 'privateSet'
+  | 'this'
 
 /** Ошибка или предупреждение компилятора; позиции с 1, message — оригинал на английском */
 export interface Diagnostic {
