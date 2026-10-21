@@ -31,8 +31,9 @@ const createRunnerWorker = () =>
 
 /**
  * Мост к runner в Web Worker. Запросы идут строго по очереди. Таймаут считается с момента,
- * когда runner сообщил о начале выполнения кода ученика, — долгая первая загрузка .NET
- * и компиляция за бесконечный цикл не принимаются.
+ * когда runner сообщил о начале выполнения кода ученика, до сообщения о его конце, — долгая
+ * первая загрузка .NET и компиляция (в том числе копий кода для проверок с set) за бесконечный
+ * цикл не принимаются.
  */
 export class RunnerClient {
   private worker: Worker | null = null
@@ -105,6 +106,10 @@ export class RunnerClient {
           // Каждый запуск программы (у проверки вывода их несколько) — свой отсчёт
           clearTimeout(timer)
           timer = setTimeout(() => finish({ status: 'timeout' }, true), this.executionTimeoutMs)
+        } else if (data.type === 'executed') {
+          // Между запусками runner компилирует копии кода для проверок с set — это не код ученика
+          clearTimeout(timer)
+          timer = undefined
         } else if (data.type === 'result') {
           finish({ status: 'done', response: data.response as RunnerMethods[M]['response'] })
         } else {

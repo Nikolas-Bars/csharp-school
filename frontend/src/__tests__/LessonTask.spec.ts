@@ -5,6 +5,7 @@ import { defineComponent, h } from 'vue'
 import LessonTask from '@/components/lesson/LessonTask.vue'
 import type { RunnerOutcome } from '@/runner/client'
 import type { CompileResponse, TestResponse } from '@/runner/protocol'
+import type { TaskStep } from '@/types/api'
 
 import { helloTask } from './lessonFixtures'
 
@@ -80,6 +81,7 @@ describe('LessonTask', () => {
             actual: 'Привет мир!',
             outputLimitExceeded: false,
             error: null,
+            setError: null,
           },
           {
             index: 1,
@@ -88,6 +90,7 @@ describe('LessonTask', () => {
             actual: '1',
             outputLimitExceeded: false,
             error: null,
+            setError: null,
           },
         ],
       }),
@@ -146,6 +149,7 @@ describe('LessonTask', () => {
             actual: 'Привет, мир!\n',
             outputLimitExceeded: false,
             error: null,
+            setError: null,
           },
           {
             index: 1,
@@ -154,6 +158,7 @@ describe('LessonTask', () => {
             actual: '1',
             outputLimitExceeded: false,
             error: null,
+            setError: null,
           },
         ],
       }),
@@ -170,6 +175,44 @@ describe('LessonTask', () => {
     expect(wrapper.text()).toContain('Все проверки пройдены!')
     expect(wrapper.emitted('passed')).toHaveLength(1)
     expect(wrapper.emitted('next')).toHaveLength(1)
+  })
+
+  it('проверка с другими значениями: подпись, почему не подменилось, вывод — из обычного запуска', async () => {
+    const task = {
+      ...helloTask,
+      checks: [
+        { kind: 'output', expected: '###', set: { height: 3 } },
+        { kind: 'output', expected: '##' },
+      ] satisfies TaskStep['checks'],
+      messages: ['Программа должна работать при любой высоте.', 'Нарисуй лесенку.'],
+    }
+    const result = { expected: null, outputLimitExceeded: false, error: null }
+    runner.test.mockResolvedValue(
+      done({
+        results: [
+          {
+            ...result,
+            index: 0,
+            passed: false,
+            actual: null,
+            setError: { variable: 'height', problem: 'notFound', type: null },
+          },
+          { ...result, index: 1, passed: true, actual: '##\n', setError: null },
+        ],
+      }),
+    )
+    const wrapper = mount(LessonTask, { props: { task, draftKey: 'test/stairs' } })
+    await flushPromises()
+
+    await runButton(wrapper).trigger('click')
+    await flushPromises()
+
+    const text = wrapper.text()
+    expect(text).toContain('✗ Программа печатает то, что нужно, при height = 3')
+    expect(text).toContain('Программа должна работать при любой высоте.')
+    expect(text).toContain('переменной height в основном коде не нашлось')
+    expect(text).toContain('✓ Программа печатает то, что нужно')
+    expect(wrapper.get('pre').text()).toBe('##')
   })
 
   it('бесконечный цикл — объяснение про таймаут', async () => {

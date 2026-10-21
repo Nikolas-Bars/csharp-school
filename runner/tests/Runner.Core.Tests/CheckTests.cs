@@ -85,6 +85,134 @@ public sealed class CheckTests
     }
 
     [Fact]
+    public void BreakCountsOnlyWhenItLeavesLoopAndContinueAlways()
+    {
+        const string code = """
+            for (int i = 0; i < 5; i++)
+            {
+                switch (i)
+                {
+                    case 1:
+                        continue;
+                    default:
+                        break;
+                }
+
+                while (true)
+                {
+                    break;
+                }
+            }
+            """;
+
+        var response = Test(
+            code,
+            new ConstructCheck(Construct.Break),
+            new ConstructCheck(Construct.Break, Min: 2),
+            new ConstructCheck(Construct.Continue));
+
+        Assert.Equal([true, false, true], response.Results.Select(result => result.Passed));
+        Assert.Equal("1", response.Results[1].Actual);
+    }
+
+    [Fact]
+    public void NoBreakOrContinueInCode()
+    {
+        var response = Test(
+            "switch (1) { case 1: break; }",
+            new ConstructCheck(Construct.Break),
+            new ConstructCheck(Construct.Continue));
+
+        Assert.Equal([false, false], response.Results.Select(result => result.Passed));
+        Assert.Equal("0", response.Results[0].Actual);
+    }
+
+    [Fact]
+    public void CallFromCallerCountsOnlyInsideThatMethod()
+    {
+        const string code = """
+            using System;
+            Report(5);
+            Console.WriteLine(GetStatus(1));
+
+            void Report(int hp)
+            {
+                Func<string> later = () => GetStatus(hp);
+                Console.WriteLine(later());
+            }
+
+            string GetStatus(int hp)
+            {
+                return hp > 0 ? "Жив" : "Побеждён";
+            }
+            """;
+
+        var response = Test(
+            code,
+            new CallCheck("Program.GetStatus"),
+            new CallCheck("Program.GetStatus", Caller: "Program.Report"),
+            new CallCheck("Program.Report", Caller: "Program.GetStatus"),
+            new CallCheck("System.Console.WriteLine", Caller: "Program.Report"));
+
+        Assert.Equal([true, true, false, true], response.Results.Select(result => result.Passed));
+        Assert.Equal(("2", "1"), (response.Results[0].Actual, response.Results[1].Actual));
+    }
+
+    [Fact]
+    public void CallFromNestedMethodCountsForOuterCaller()
+    {
+        const string code = """
+            Report();
+
+            void Report()
+            {
+                void Inner()
+                {
+                    GetStatus();
+                }
+
+                Inner();
+            }
+
+            string GetStatus() => "Жив";
+            """;
+
+        var response = Test(
+            code,
+            new CallCheck("Program.GetStatus", Caller: "Program.Report"),
+            new CallCheck("Program.GetStatus", Caller: "Program.Inner"));
+
+        Assert.True(response.Passed);
+    }
+
+    [Fact]
+    public void ExecutionEndIsReportedAfterEachRun()
+    {
+        var events = new List<string>();
+        var response = Service.Test(
+            new TestRequest("int height = 3;\nSystem.Console.Write(height);", [
+                new OutputCheck("3"),
+                new OutputCheck("5", Set: new Dictionary<string, System.Text.Json.JsonElement> { ["height"] = System.Text.Json.JsonSerializer.SerializeToElement(5) }),
+                new ConstructCheck(Construct.For),
+            ]),
+            () => events.Add("start"),
+            () => events.Add("end"));
+
+        Assert.Equal([true, true, false], response.Results.Select(result => result.Passed));
+        Assert.Equal(["start", "end", "start", "end"], events);
+    }
+
+    [Fact]
+    public void CallFromMainCodeDoesNotCountForCaller()
+    {
+        var response = Test(
+            "int Twice(int a) => a * 2;\nint Show() => 1;\nSystem.Console.Write(Twice(Show()));",
+            new CallCheck("Program.Twice", Caller: "Program.Show"));
+
+        Assert.False(response.Passed);
+    }
+
+    [Fact]
     public void CallsAreFoundBySymbolNotByText()
     {
         var response = Test(

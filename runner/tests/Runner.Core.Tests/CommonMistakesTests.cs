@@ -36,6 +36,22 @@ public sealed class CommonMistakesTests
         { "class Hero { }\nSystem.Console.WriteLine(1);", "CS8803", [] },
         { "class Hero { }", "CS5001", [] },
         { "double weight = 0,3;", "CS1001", [] },
+        // Методы (локальные функции после основного кода) и циклы
+        { "int Damage(int a, int b) { return a + b; }\nSystem.Console.WriteLine(Damage(1));", "CS7036", ["b", "Damage(int, int)"] },
+        { "void Show(int hp, string name) { }\nShow(1, 2);", "CS1503", ["2", "int", "string"] },
+        { "int hp = 5;\nSystem.Console.WriteLine(Twice());\nstatic int Twice() { return hp * 2; }", "CS8421", ["hp"] },
+        { "Hit();\nvoid Hit() { return 5; }", "CS0127", ["Hit()"] },
+        { "System.Console.WriteLine(Hit());\nint Hit() { return; }", "CS0126", ["int"] },
+        { "Hit();\npublic void Hit() { }", "CS0106", ["public"] },
+        { "int x = Hit;\nSystem.Console.WriteLine(x);\nint Hit() { return 1; }", "CS0428", ["Hit", "int"] },
+        { "int i = 0;\nfor (int i = 0; i < 3; i++) { }\nSystem.Console.WriteLine(i);", "CS0136", ["i"] },
+        { "System.Console.WriteLine(1);\nvoid Unused() { }", "CS8321", ["Unused"] },
+        { "System.Console.WriteLine(Score(1));\nint Score(int a) { if (a > 0) { return 1; } }", "CS0161", ["Score(int)"] },
+        // void-метод там, где нужно значение: особый текст на фронте по аргументу «void»
+        { "int x = Hello();\nvoid Hello() { }", "CS0029", ["void", "int"] },
+        { "Show(Hello());\nvoid Hello() { }\nvoid Show(int a) { }", "CS1503", ["1", "void", "int"] },
+        { "var x = Hello();\nvoid Hello() { }", "CS0815", ["void"] },
+        { "System.Console.WriteLine($\"{Hello()}\");\nvoid Hello() { }", "CS8773", ["interpolated string handlers", "10.0"] },
     };
 
     [Theory]
@@ -46,6 +62,34 @@ public sealed class CommonMistakesTests
 
         var diagnostic = Assert.Single(diagnostics, d => d.Code == expectedCode);
         Assert.Equal(expectedArguments, diagnostic.Arguments);
+    }
+
+    [Theory]
+    [InlineData("System.Console.WriteLine($\"Итог: {Hello()}\");\nvoid Hello() { }", "void")]
+    [InlineData("System.Console.WriteLine($\"Итог: {Hello}\");\nint Hello() => 1;", "method group")]
+    public void InterpolationHoleErrorLiesInsideFeatureError(string code, string source)
+    {
+        // Фронт узнаёт «void в $"{…}"» по CS1503 с типом void внутри места CS8773
+        var diagnostics = Service.Compile(new CompileRequest(code)).Diagnostics;
+        var feature = Assert.Single(diagnostics, d => d.Code == "CS8773");
+        var hole = Assert.Single(diagnostics, d => d.Code == "CS1503");
+
+        Assert.Equal(source, hole.Arguments[1]);
+        Assert.True((feature.Line, feature.Column).CompareTo((hole.Line, hole.Column)) <= 0, "CS1503 начинается раньше CS8773");
+        Assert.True((hole.EndLine, hole.EndColumn).CompareTo((feature.EndLine, feature.EndColumn)) <= 0, "CS1503 кончается позже CS8773");
+    }
+
+    [Fact]
+    public void LocalFunctionNamesAreReadable()
+    {
+        // Без внутренних имён компилятора вроде <<Main>$>g__Damage|0_0
+        const string code = "int x = Damage(1);\nDamage(1, \"a\");\nvoid Hit() { return 1; }\nint Damage(int a, int b) { if (a > 0) { return 1; } }\nvoid Unused() { }";
+
+        var arguments = Service.Compile(new CompileRequest(code)).Diagnostics.SelectMany(d => d.Arguments).ToList();
+
+        Assert.Contains("Damage(int, int)", arguments);
+        Assert.Contains("Unused", arguments);
+        Assert.DoesNotContain(arguments, argument => argument.Contains('<', StringComparison.Ordinal) || argument.Contains('$', StringComparison.Ordinal));
     }
 
     [Fact]

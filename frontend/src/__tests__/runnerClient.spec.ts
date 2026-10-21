@@ -82,6 +82,31 @@ describe('RunnerClient', () => {
     await expect(outcome).resolves.toMatchObject({ status: 'done' })
   })
 
+  it('между запусками (компиляция копии для set) таймаут не идёт', async () => {
+    const outcome = client.test('int height = 3;', [
+      { kind: 'output', expected: '3' },
+      { kind: 'output', expected: '5', set: { height: 5 } },
+    ])
+    await flush()
+
+    workers[0]!.reply({ type: 'executing', id: 1 })
+    await vi.advanceTimersByTimeAsync(900)
+    workers[0]!.reply({ type: 'executed', id: 1 })
+    // Медленная компиляция второй копии на слабом телефоне
+    await vi.advanceTimersByTimeAsync(10_000)
+    workers[0]!.reply({ type: 'executing', id: 1 })
+    await vi.advanceTimersByTimeAsync(900)
+    workers[0]!.reply({ type: 'executed', id: 1 })
+    workers[0]!.reply({
+      type: 'result',
+      id: 1,
+      response: { compiled: true, diagnostics: [], passed: true, results: [] },
+    })
+
+    await expect(outcome).resolves.toMatchObject({ status: 'done' })
+    expect(workers[0]!.terminated).toBe(false)
+  })
+
   it('бесконечный цикл: по таймауту worker убит, следующий запрос идёт в новый', async () => {
     const endless = client.run('while (true) { }')
     const next = client.run('Console.Write(1);')

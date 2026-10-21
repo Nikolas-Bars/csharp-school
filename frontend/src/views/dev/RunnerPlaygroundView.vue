@@ -4,7 +4,7 @@ import { computed, ref } from 'vue'
 import { useRunner } from '@/composables/useRunner'
 import { t } from '@/i18n'
 import type { RunnerOutcome } from '@/runner/client'
-import { explainDiagnostic, explainRuntimeError } from '@/runner/explain'
+import { explainDiagnostic, explainRuntimeError, visibleDiagnostics } from '@/runner/explain'
 import type { RunResponse } from '@/runner/protocol'
 
 /** Служебная страница для проверки runner в браузере; маршрут есть только при разработке */
@@ -70,12 +70,12 @@ async function run() {
           <h2 class="playground__heading">{{ t('playground.errors') }}</h2>
           <ul class="playground__diagnostics">
             <li
-              v-for="diagnostic in response.diagnostics"
+              v-for="diagnostic in visibleDiagnostics(response.diagnostics)"
               :key="`${diagnostic.code}:${diagnostic.line}:${diagnostic.column}`"
               :class="['playground__diagnostic', `playground__diagnostic--${diagnostic.severity}`]"
             >
               <strong>{{ t('runner.place', diagnostic) }} · {{ diagnostic.code }}</strong>
-              <span>{{ explainDiagnostic(diagnostic) }}</span>
+              <span>{{ explainDiagnostic(diagnostic, response.diagnostics) }}</span>
               <span class="playground__muted">{{ t('runner.original', diagnostic) }}</span>
             </li>
           </ul>

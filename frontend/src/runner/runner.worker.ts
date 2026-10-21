@@ -49,6 +49,7 @@ async function load(): Promise<RunnerExports> {
 
   runtime.setModuleImports('runner', {
     executionStarted: () => scope.postMessage({ type: 'executing', id: currentId }),
+    executionFinished: () => scope.postMessage({ type: 'executed', id: currentId }),
   })
 
   const assembly = runtime.getConfig().mainAssemblyName ?? 'CSharpSchool.Runner.Browser'

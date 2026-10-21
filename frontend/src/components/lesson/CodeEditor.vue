@@ -19,7 +19,7 @@ import {
 import { tags } from '@lezer/highlight'
 import { onBeforeUnmount, onMounted, useTemplateRef, watch } from 'vue'
 
-import { explainDiagnostic } from '@/runner/explain'
+import { explainDiagnostic, visibleDiagnostics } from '@/runner/explain'
 import type { Diagnostic } from '@/runner/protocol'
 import { PATTERNS, wordKind, type TokenKind } from '@/utils/csharpTokens'
 
@@ -123,7 +123,7 @@ function offset(doc: Text, line: number, column: number): number {
 }
 
 function toEditor(doc: Text, list: Diagnostic[]): EditorDiagnostic[] {
-  return list.map((diagnostic) => {
+  return visibleDiagnostics(list).map((diagnostic) => {
     let from = offset(doc, diagnostic.line, diagnostic.column)
     let to = Math.max(offset(doc, diagnostic.endLine, diagnostic.endColumn), from)
     // Ошибка нулевой длины («не хватает ;» после «)») — подчёркиваем символ перед ней, а в начале
@@ -140,7 +140,7 @@ function toEditor(doc: Text, list: Diagnostic[]): EditorDiagnostic[] {
       from,
       to,
       severity: diagnostic.severity,
-      message: `${explainDiagnostic(diagnostic)}\n${diagnostic.code}: ${diagnostic.message}`,
+      message: `${explainDiagnostic(diagnostic, list)}\n${diagnostic.code}: ${diagnostic.message}`,
     }
   })
 }
