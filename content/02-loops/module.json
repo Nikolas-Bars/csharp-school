@@ -1,0 +1,21 @@
+{
+  "title": {
+    "ru": "Циклы"
+  },
+  "description": {
+    "ru": "Повторение команд: while, for, do-while, break и continue, вложенные циклы, случайные числа"
+  },
+  "lessons": [
+    "01-while",
+    "02-for",
+    "03-for-step",
+    "04-sum-count",
+    "05-break-continue",
+    "06-nested",
+    "07-patterns",
+    "08-random",
+    "09-do-while",
+    "10-infinite-loop",
+    "11-module-test"
+  ]
+}
