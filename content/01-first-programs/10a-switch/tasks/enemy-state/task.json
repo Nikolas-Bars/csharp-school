@@ -1,0 +1,99 @@
+{
+  "title": {
+    "ru": "Состояние врага"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "switch"
+    },
+    {
+      "kind": "output",
+      "expected": "Враг атакует"
+    },
+    {
+      "kind": "output",
+      "expected": "Враг спит",
+      "set": {
+        "state": 0
+      }
+    },
+    {
+      "kind": "output",
+      "expected": "Враг патрулирует",
+      "set": {
+        "state": 1
+      }
+    },
+    {
+      "kind": "output",
+      "expected": "Враг растерян",
+      "set": {
+        "state": 5
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Используй switch по переменной state — по case на каждое состояние."
+    },
+    {
+      "ru": "При state = 2 должно напечататься «Враг атакует». Проверь текст в case 2: буква в букву, как в условии."
+    },
+    {
+      "ru": "Программа должна работать при любом state: при 0 враг спит. Проверь case 0 и не печатай готовый ответ — состояние выбирает switch."
+    },
+    {
+      "ru": "При state = 1 враг патрулирует. Проверь case 1: текст буква в букву, как в условии."
+    },
+    {
+      "ru": "Для чисел, которых нет среди case, нужен вариант «Враг растерян». Вспомни, как в switch называется вариант «для всех остальных»."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "switch (state) { … } — внутри по case на каждое число и вариант для всех остальных."
+    },
+    {
+      "ru": "Каждый вариант: case 0: команда вывода, а в конце break;. Вариант для остальных чисел — default:."
+    },
+    {
+      "ru": "switch (state) { case 0: Console.WriteLine(\"Враг спит\"); break; case 1: … break; case 2: … break; default: Console.WriteLine(\"Враг растерян\"); break; }"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-no-break.cs",
+      "compileError": "CS0163",
+      "why": "Нет break в конце case 0"
+    },
+    {
+      "file": "wrong-no-default.cs",
+      "fails": [
+        4
+      ],
+      "why": "Нет default: при неизвестном числе ничего не печатается"
+    },
+    {
+      "file": "wrong-else-if.cs",
+      "fails": [
+        0
+      ],
+      "why": "Цепочка else if вместо switch"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        2,
+        3,
+        4
+      ],
+      "why": "Готовый ответ: варианты пустые, состояние напечатано вручную"
+    }
+  ]
+}

@@ -23,22 +23,22 @@
       "questions": [
         {
           "question": {
-            "ru": "Какой тип подходит для имени героя «Аня»?"
+            "ru": "Что напечатает Console.WriteLine((int)7.9);?"
           },
           "options": [
             {
-              "ru": "string"
+              "ru": "8"
             },
             {
-              "ru": "int"
+              "ru": "7"
             },
             {
-              "ru": "bool"
+              "ru": "7.9"
             }
           ],
-          "answer": 0,
+          "answer": 1,
           "explanation": {
-            "ru": "Текст — это string."
+            "ru": "(int) не округляет, а отбрасывает дробную часть: остаётся 7."
           }
         },
         {
@@ -47,38 +47,38 @@
           },
           "options": [
             {
-              "ru": "False"
-            },
-            {
               "ru": "True"
             },
             {
               "ru": "Дракон"
+            },
+            {
+              "ru": "False"
             }
           ],
-          "answer": 0,
+          "answer": 2,
           "explanation": {
             "ru": "Строки сравниваются буква в букву, а заглавная Д и строчная д — разные буквы."
           }
         },
         {
           "question": {
-            "ru": "int hp = 10; hp -= 15; hp = Math.Max(hp, 0); Чему равно hp?"
+            "ru": "int floor = 5; В switch (floor) есть case 1, case 2 и default. Что выполнится?"
           },
           "options": [
             {
-              "ru": "-5"
+              "ru": "default"
             },
             {
-              "ru": "10"
+              "ru": "case 1"
             },
             {
-              "ru": "0"
+              "ru": "Ничего"
             }
           ],
-          "answer": 2,
+          "answer": 0,
           "explanation": {
-            "ru": "После удара hp = -5, а Math.Max(-5, 0) возвращает 0."
+            "ru": "Ни один case не подошёл, поэтому выполнится default — вариант для всех остальных значений."
           }
         },
         {
@@ -90,13 +90,13 @@
               "ru": "False"
             },
             {
-              "ru": "Ошибку"
+              "ru": "True"
             },
             {
-              "ru": "True"
+              "ru": "Ошибку"
             }
           ],
-          "answer": 2,
+          "answer": 1,
           "explanation": {
             "ru": "!b — это true, а true && true — тоже true."
           }

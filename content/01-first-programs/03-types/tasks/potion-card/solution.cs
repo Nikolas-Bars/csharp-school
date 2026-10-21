@@ -1,7 +1,7 @@
 using System;
 
 string itemName = "Зелье лечения";
-int price = 25;
+const int price = 25;
 double weight = 0.3;
 bool isMagic = true;
 

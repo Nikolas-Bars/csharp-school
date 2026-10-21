@@ -1,0 +1,80 @@
+{
+  "title": {
+    "ru": "Критический удар"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "variable",
+      "name": "critDamage",
+      "type": "int"
+    },
+    {
+      "kind": "call",
+      "method": "System.Math.Round"
+    },
+    {
+      "kind": "output",
+      "expected": "21"
+    },
+    {
+      "kind": "output",
+      "expected": "15",
+      "set": {
+        "damage": 9.9
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужна переменная critDamage типа int — урон крита целым числом."
+    },
+    {
+      "ru": "Округли урон методом Math.Round: (int) сам только отбрасывает дробную часть."
+    },
+    {
+      "ru": "Должно напечататься 21. Сначала умножь урон на 1.5, потом округли, а уже потом превращай в int."
+    },
+    {
+      "ru": "Программа должна работать при любом уроне — не печатай готовый ответ, считай из damage."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Три шага: умножить damage на 1.5, округлить до целого, превратить в int."
+    },
+    {
+      "ru": "Math.Round(…) округляет, но возвращает double — поэтому перед ним нужен (int)."
+    },
+    {
+      "ru": "int critDamage = (int)Math.Round(damage * 1.5); и Console.WriteLine(critDamage);"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-int-only.cs",
+      "fails": [
+        1,
+        2,
+        3
+      ],
+      "why": "Без Math.Round: (int) отбрасывает дробь, 20 вместо 21"
+    },
+    {
+      "file": "wrong-no-cast.cs",
+      "compileError": "CS0266",
+      "why": "Math.Round возвращает double, без (int) в int не кладётся"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        3
+      ],
+      "why": "Готовый ответ: 21 посчитано в уме"
+    }
+  ]
+}

@@ -90,6 +90,10 @@ const RUNNER_CODES = [
   'CS0649',
   'CS1717',
   'CS0176',
+  'CS0163',
+  'CS8070',
+  'CS0131',
+  'CS0145',
 ]
 
 describe('объяснение ошибок', () => {
@@ -222,7 +226,7 @@ describe('объяснение ошибок', () => {
 
   it('аргументы новых ошибок подставляются по порядку', () => {
     expect(explainDiagnostic(diagnostic('CS0664', ['F', 'float']))).toContain(
-      'положить его в float, допиши в конце букву F',
+      'положить его в float, допиши в конце букву: f (или F)',
     )
     expect(explainDiagnostic(diagnostic('CS0023', ['!', 'int']))).toContain(
       'Операцию «!» нельзя применить к значению типа int',

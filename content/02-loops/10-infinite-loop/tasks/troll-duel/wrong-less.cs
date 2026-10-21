@@ -20,7 +20,7 @@ while (true)
     heroHp -= trollAttack;
     if (heroHp < 0)
     {
-        Console.WriteLine($"Поражение в раунде {round}");
+        Console.WriteLine($"Поражение в раунде {round}!");
         break;
     }
 

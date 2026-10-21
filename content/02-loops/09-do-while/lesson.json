@@ -20,6 +20,12 @@
       "task": "stat-roll"
     },
     {
+      "type": "theory",
+      "text": {
+        "ru": "03-before-do.ru.md"
+      }
+    },
+    {
       "type": "task",
       "task": "lockpick"
     },
