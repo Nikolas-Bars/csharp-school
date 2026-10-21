@@ -1,0 +1,94 @@
+{
+  "title": {
+    "ru": "Удар по площади"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "class"
+    },
+    {
+      "kind": "variable",
+      "name": "enemies",
+      "type": "List<Enemy>"
+    },
+    {
+      "kind": "call",
+      "method": "Enemy.TakeDamage"
+    },
+    {
+      "kind": "call",
+      "method": "Enemy.IsAlive"
+    },
+    {
+      "kind": "output",
+      "expected": "Гоблин: 0 HP\nОрк: 10 HP\nТролль: 70 HP\nЖивых врагов: 2"
+    },
+    {
+      "kind": "output",
+      "expected": "Гоблин: 0 HP\nОрк: 0 HP\nТролль: 20 HP\nЖивых врагов: 1",
+      "set": {
+        "blast": 100
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Объяви класс Enemy ниже основного кода."
+    },
+    {
+      "ru": "Нужен список enemies типа List<Enemy> — в нём лежат враги."
+    },
+    {
+      "ru": "Урон наноси через метод TakeDamage каждого врага."
+    },
+    {
+      "ru": "Живых считай через метод IsAlive каждого врага."
+    },
+    {
+      "ru": "Сравни вывод построчно. Здоровье не уходит ниже нуля, а живых считают уже после удара."
+    },
+    {
+      "ru": "При другой силе удара здоровье и число живых меняются. Бей каждого врага в цикле на blast."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Сначала один цикл foreach — удар по каждому врагу. Потом второй — вывод и подсчёт живых."
+    },
+    {
+      "ru": "List<Enemy> enemies = new List<Enemy> { new Enemy(\"Гоблин\", 30), … }; В первом цикле — enemy.TakeDamage(blast);"
+    },
+    {
+      "ru": "Во втором цикле: вывод через интерполяцию и if (enemy.IsAlive()) { alive++; } После цикла — Console.WriteLine($\"Живых врагов: {alive}\");"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-count-before.cs",
+      "fails": [
+        4,
+        5
+      ],
+      "why": "Живые посчитаны до удара"
+    },
+    {
+      "file": "wrong-remove-in-foreach.cs",
+      "fails": [
+        4,
+        5
+      ],
+      "why": "Мёртвые удаляются из списка внутри foreach — программа останавливается"
+    },
+    {
+      "file": "wrong-add-without-new.cs",
+      "compileError": "CS1501",
+      "why": "В Add переданы имя и здоровье, а не объект new Enemy(…)"
+    }
+  ]
+}

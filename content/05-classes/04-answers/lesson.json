@@ -1,0 +1,92 @@
+{
+  "title": {
+    "ru": "Методы с ответом"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-return.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "ogre-fight"
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "02-calls.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "weapon-info"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "public bool IsAlive() { return hp > 0; } У объекта hp = 0. Что вернёт IsAlive()?"
+          },
+          "options": [
+            {
+              "ru": "true"
+            },
+            {
+              "ru": "false"
+            },
+            {
+              "ru": "0"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "0 > 0 — неверно, поэтому метод вернёт false. Ответ метода — bool, а не число."
+          }
+        },
+        {
+          "question": {
+            "ru": "Как внутри класса Hero вызвать его же метод IsAlive?"
+          },
+          "options": [
+            {
+              "ru": "IsAlive()"
+            },
+            {
+              "ru": "hero.IsAlive()"
+            },
+            {
+              "ru": "Hero.IsAlive()"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "Внутри класса свои методы зовут по имени. Переменную hero из основного кода внутри класса использовать нельзя (CS8801), а через Hero — ошибка CS0120: нужен объект."
+          }
+        },
+        {
+          "question": {
+            "ru": "Метод объекта должен ответить числом. Что пишут перед его именем?"
+          },
+          "options": [
+            {
+              "ru": "public void"
+            },
+            {
+              "ru": "public static"
+            },
+            {
+              "ru": "public int"
+            }
+          ],
+          "answer": 2,
+          "explanation": {
+            "ru": "Перед именем — тип ответа: int для целого числа. void значит «без ответа», а static лишил бы метод полей объекта."
+          }
+        }
+      ]
+    }
+  ]
+}

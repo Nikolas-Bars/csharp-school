@@ -1,0 +1,118 @@
+{
+  "title": {
+    "ru": "null и скрипты Unity"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-null.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "02-null-reference.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "weapon-slot"
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "03-unity.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "find-target"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "Hero hero = null; Что будет при hero.hp = 10;?"
+          },
+          "options": [
+            {
+              "ru": "hp станет равно 10"
+            },
+            {
+              "ru": "Ошибка NullReferenceException"
+            },
+            {
+              "ru": "Создастся новый герой"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "В hero нет объекта — у пустоты нет полей. Программа остановится с NullReferenceException. Объект создаёт только new."
+          }
+        },
+        {
+          "question": {
+            "ru": "Какое значение по умолчанию у поля типа Weapon?"
+          },
+          "options": [
+            {
+              "ru": "null"
+            },
+            {
+              "ru": "0"
+            },
+            {
+              "ru": "new Weapon()"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "Поле-объект по умолчанию ни на что не ссылается — в нём null. Оружие появится, только когда в поле положат объект."
+          }
+        },
+        {
+          "question": {
+            "ru": "Что такое Start и Update в скрипте Unity?"
+          },
+          "options": [
+            {
+              "ru": "Методы класса-скрипта"
+            },
+            {
+              "ru": "Отдельные программы Unity"
+            },
+            {
+              "ru": "Методы со словом static"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "Скрипт Unity — класс, а Start и Update — его методы без static. Вызывает их сам Unity."
+          }
+        },
+        {
+          "question": {
+            "ru": "Как проверить, что у героя есть оружие?"
+          },
+          "options": [
+            {
+              "ru": "if (weapon == true)"
+            },
+            {
+              "ru": "if (weapon != 0)"
+            },
+            {
+              "ru": "if (weapon != null)"
+            }
+          ],
+          "answer": 2,
+          "explanation": {
+            "ru": "Оружия нет — в поле null. Значит, оружие есть, когда weapon != null. С true и 0 объект не сравнить."
+          }
+        }
+      ]
+    }
+  ]
+}

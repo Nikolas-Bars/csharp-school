@@ -1,0 +1,95 @@
+{
+  "title": {
+    "ru": "Лекарь отряда"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "method",
+      "min": 3
+    },
+    {
+      "kind": "call",
+      "method": "Program.FindWeakest"
+    },
+    {
+      "kind": "call",
+      "method": "Unit.IsAlive",
+      "caller": "Program.FindWeakest"
+    },
+    {
+      "kind": "call",
+      "method": "Unit.Heal"
+    },
+    {
+      "kind": "output",
+      "expected": "Лечение: Рыцарь, 70/100 HP\nЛечение: Лучник, 70/70 HP\nЖивых: 2 из 3"
+    },
+    {
+      "kind": "output",
+      "expected": "Лечение: Рыцарь, 40/100 HP\nЛечение: Рыцарь, 50/100 HP\nЖивых: 2 из 3",
+      "set": {
+        "potion": 10
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужны три метода: IsAlive и Heal в классе Unit и FindWeakest со static выше класса."
+    },
+    {
+      "ru": "Самого слабого бойца ищи через метод FindWeakest — объяви его со static и вызови в основном коде."
+    },
+    {
+      "ru": "Внутри FindWeakest проверяй бойцов через IsAlive: павшего мага лечить нельзя."
+    },
+    {
+      "ru": "Лечи через метод Heal бойца: weakest.Heal(…)."
+    },
+    {
+      "ru": "Сравни вывод построчно. Второе лечение достаётся тому, кто теперь слабее всех, — это может быть уже другой боец. Здоровье не может быть больше maxHp."
+    },
+    {
+      "ru": "При другом зелье лечение идёт по-другому: рыцарь может остаться самым слабым и получить оба лечения. Лечи на potion и каждый раз ищи слабого заново."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "FindWeakest — поиск минимума, как в модуле «Массивы и списки», только сравниваются поля hp, а мёртвые пропускаются. Запомни найденного бойца в переменной типа Unit, в начале — null."
+    },
+    {
+      "ru": "В цикле FindWeakest: if (unit.IsAlive() && (weakest == null || unit.hp < weakest.hp)) { weakest = unit; } после цикла — return weakest; Heal: hp = Math.Min(hp + amount, maxHp);"
+    },
+    {
+      "ru": "В основном коде: цикл for на 2 повтора, внутри Unit weakest = FindWeakest(squad); проверка на null, weakest.Heal(potion); и вывод. Потом подсчёт живых через IsAlive и squad.Count."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-heal-dead.cs",
+      "fails": [
+        2,
+        4,
+        5
+      ],
+      "why": "FindWeakest не пропускает павших: лечится маг с 0 HP"
+    },
+    {
+      "file": "wrong-no-cap.cs",
+      "fails": [
+        4
+      ],
+      "why": "Heal без Math.Min: здоровье больше максимума"
+    },
+    {
+      "file": "wrong-static-heal.cs",
+      "compileError": "CS0120",
+      "why": "Heal со static не видит полей бойца"
+    }
+  ]
+}

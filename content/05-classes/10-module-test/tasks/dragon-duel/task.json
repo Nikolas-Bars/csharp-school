@@ -1,0 +1,108 @@
+{
+  "title": {
+    "ru": "Рыцарь против дракона"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "class"
+    },
+    {
+      "kind": "construct",
+      "construct": "privateSet",
+      "min": 3
+    },
+    {
+      "kind": "call",
+      "method": "Fighter.TakeDamage",
+      "caller": "Fighter.Hit"
+    },
+    {
+      "kind": "call",
+      "method": "Fighter.IsAlive"
+    },
+    {
+      "kind": "call",
+      "method": "Fighter.Hit"
+    },
+    {
+      "kind": "output",
+      "expected": "Рыцарь -> Дракон: 70 HP\nДракон -> Рыцарь: 55 HP\nРыцарь -> Дракон: 40 HP\nДракон -> Рыцарь: 30 HP\nРыцарь -> Дракон: 10 HP\nДракон -> Рыцарь: 5 HP\nРыцарь -> Дракон: 0 HP\nПобеда: Рыцарь"
+    },
+    {
+      "kind": "output",
+      "expected": "Рыцарь -> Дракон: 120 HP\nДракон -> Рыцарь: 55 HP\nРыцарь -> Дракон: 90 HP\nДракон -> Рыцарь: 30 HP\nРыцарь -> Дракон: 60 HP\nДракон -> Рыцарь: 5 HP\nРыцарь -> Дракон: 30 HP\nДракон -> Рыцарь: 0 HP\nПобеда: Дракон",
+      "set": {
+        "bossHp": 150
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Объяви класс Fighter ниже основного кода."
+    },
+    {
+      "ru": "У всех трёх свойств бойца менять значение должен только сам класс: нужен private set."
+    },
+    {
+      "ru": "Hit должен наносить урон через TakeDamage цели: вызови target.TakeDamage(…) внутри Hit."
+    },
+    {
+      "ru": "Проверяй, жив ли боец, через метод IsAlive — и в условии цикла, и перед ответным ударом."
+    },
+    {
+      "ru": "Бойцы бьют друг друга через метод Hit: knight.Hit(dragon)."
+    },
+    {
+      "ru": "Сравни вывод построчно. Урон получает цель, а не тот, кто бьёт. Повергнутый дракон не бьёт в ответ, а здоровье не уходит ниже нуля."
+    },
+    {
+      "ru": "При другом здоровье дракона бой идёт иначе, и победить может дракон. Строки должны печататься в цикле, а победитель — определяться через IsAlive."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Сначала класс: свойства с private set, конструктор, TakeDamage с Math.Max, IsAlive. Hit — последним: он пользуется методами цели."
+    },
+    {
+      "ru": "Hit: target.TakeDamage(Attack); и вывод — своё имя Name, имя цели target.Name и её target.Hp. Бой — цикл while (knight.IsAlive() && dragon.IsAlive())."
+    },
+    {
+      "ru": "В цикле: knight.Hit(dragon); if (dragon.IsAlive()) { dragon.Hit(knight); } После цикла: if (knight.IsAlive()) — победа рыцаря, иначе — дракона."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-hit-self.cs",
+      "fails": [
+        5,
+        6
+      ],
+      "why": "Hit наносит урон самому бьющему, а не цели"
+    },
+    {
+      "file": "wrong-dead-hits-back.cs",
+      "fails": [
+        5
+      ],
+      "why": "Повергнутый дракон всё равно бьёт в ответ"
+    },
+    {
+      "file": "wrong-hp-outside.cs",
+      "compileError": "CS0272",
+      "why": "Hp меняется в основном коде, а у него private set"
+    },
+    {
+      "file": "wrong-public-set.cs",
+      "fails": [
+        1
+      ],
+      "why": "Свойства без private set: здоровье можно менять снаружи"
+    }
+  ]
+}

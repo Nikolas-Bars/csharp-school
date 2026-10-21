@@ -1,0 +1,88 @@
+{
+  "title": {
+    "ru": "Рюкзак с весом"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "class",
+      "min": 2
+    },
+    {
+      "kind": "variable",
+      "name": "bag",
+      "type": "Inventory"
+    },
+    {
+      "kind": "call",
+      "method": "Inventory.TotalWeight",
+      "caller": "Inventory.Add"
+    },
+    {
+      "kind": "output",
+      "expected": "Взят: Меч\nВзят: Щит\nНе влезает: Латы\nВес: 10/10"
+    },
+    {
+      "kind": "output",
+      "expected": "Взят: Меч\nВзят: Щит\nВзят: Латы\nВес: 16/20",
+      "set": {
+        "capacity": 20
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Объяви класс Inventory — ниже класса Item."
+    },
+    {
+      "ru": "Нужна переменная bag типа Inventory — рюкзак, созданный через new."
+    },
+    {
+      "ru": "Add должен узнавать текущий вес у TotalWeight — вызови TotalWeight внутри Add."
+    },
+    {
+      "ru": "Сравни вывод. Щит влезает ровно впритык: 5 + 5 = 10 — это не больше 10. Если программа остановилась на null, проверь, что конструктор создаёт список."
+    },
+    {
+      "ru": "При другой вместимости в рюкзак влезает другое. Передай capacity в конструктор и печатай вес через TotalWeight."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Пиши Inventory по порядку: поля, конструктор, TotalWeight, Add. В основном коде — цикл по loot."
+    },
+    {
+      "ru": "Конструктор Inventory: this.maxWeight = maxWeight; items = new List<Item>(); TotalWeight — сумма item.weight в цикле foreach."
+    },
+    {
+      "ru": "Add: if (TotalWeight() + item.weight <= maxWeight) { items.Add(item); return true; } return false; В основном коде: if (bag.Add(item)) { … } else { … }"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-no-list.cs",
+      "fails": [
+        3,
+        4
+      ],
+      "why": "Конструктор не создал список: items — null, программа останавливается"
+    },
+    {
+      "file": "wrong-less.cs",
+      "fails": [
+        3
+      ],
+      "why": "< вместо <=: вещь, которая влезает впритык, не берётся"
+    },
+    {
+      "file": "wrong-items-outside.cs",
+      "compileError": "CS0122",
+      "why": "Основной код кладёт вещи прямо в private-список items"
+    }
+  ]
+}

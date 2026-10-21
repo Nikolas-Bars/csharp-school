@@ -1,0 +1,20 @@
+{
+  "title": {
+    "ru": "Классы и объекты"
+  },
+  "description": {
+    "ru": "Свои типы: поля, методы, конструктор, свойства, списки объектов"
+  },
+  "lessons": [
+    "01-class",
+    "02-objects",
+    "03-methods",
+    "04-answers",
+    "05-constructor",
+    "06-access",
+    "07-properties",
+    "08-lists",
+    "09-null-unity",
+    "10-module-test"
+  ]
+}

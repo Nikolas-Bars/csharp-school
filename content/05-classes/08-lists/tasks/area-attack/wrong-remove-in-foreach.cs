@@ -1,0 +1,48 @@
+using System;
+using System.Collections.Generic;
+
+int blast = 50;
+
+List<Enemy> enemies = new List<Enemy>
+{
+    new Enemy("Гоблин", 30),
+    new Enemy("Орк", 60),
+    new Enemy("Тролль", 120)
+};
+
+foreach (Enemy enemy in enemies)
+{
+    enemy.TakeDamage(blast);
+    if (!enemy.IsAlive())
+    {
+        enemies.Remove(enemy);
+    }
+}
+
+foreach (Enemy enemy in enemies)
+{
+    Console.WriteLine($"{enemy.name}: {enemy.hp} HP");
+}
+Console.WriteLine($"Живых врагов: {enemies.Count}");
+
+class Enemy
+{
+    public string name;
+    public int hp;
+
+    public Enemy(string name, int hp)
+    {
+        this.name = name;
+        this.hp = hp;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        hp = Math.Max(hp - damage, 0);
+    }
+
+    public bool IsAlive()
+    {
+        return hp > 0;
+    }
+}

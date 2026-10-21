@@ -1,0 +1,94 @@
+{
+  "title": {
+    "ru": "Описание оружия"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "class"
+    },
+    {
+      "kind": "call",
+      "method": "Weapon.GetDamage",
+      "caller": "Weapon.Describe"
+    },
+    {
+      "kind": "call",
+      "method": "Weapon.Describe"
+    },
+    {
+      "kind": "variable",
+      "name": "text",
+      "type": "string"
+    },
+    {
+      "kind": "output",
+      "expected": "Меч +2: урон 20"
+    },
+    {
+      "kind": "output",
+      "expected": "Меч +5: урон 35",
+      "set": {
+        "upgrades": 5
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Объяви класс Weapon ниже основного кода."
+    },
+    {
+      "ru": "Describe должен узнавать урон у GetDamage — вызови GetDamage внутри Describe, а не считай урон второй раз."
+    },
+    {
+      "ru": "Выведи описание меча через его метод Describe."
+    },
+    {
+      "ru": "Положи ответ Describe в переменную text типа string. Если не собирается — проверь, что Describe возвращает string, а не void."
+    },
+    {
+      "ru": "Сравни вывод: при уровне 2 урон 10 + 2 * 5 = 20. Проверь формулу в GetDamage — умножается только уровень."
+    },
+    {
+      "ru": "При другом уровне заточки описание должно измениться. Уровень бери из upgrades."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Describe возвращает string, GetDamage — int. Внутри класса свои методы зовут просто по имени."
+    },
+    {
+      "ru": "GetDamage: return damage + level * 5; Describe: return и строка с интерполяцией, где урон — вызов GetDamage()."
+    },
+    {
+      "ru": "return $\"{name} +{level}: урон {GetDamage()}\"; а в основном коде — string text = sword.Describe(); Console.WriteLine(text);"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-no-getdamage.cs",
+      "fails": [
+        1
+      ],
+      "why": "Describe считает урон сам, GetDamage не вызван"
+    },
+    {
+      "file": "wrong-object-inside.cs",
+      "compileError": "CS8801",
+      "why": "Внутри класса вызов через sword: переменные основного кода в классе использовать нельзя"
+    },
+    {
+      "file": "wrong-formula.cs",
+      "fails": [
+        4,
+        5
+      ],
+      "why": "Скобки не там: (damage + level) * 5"
+    }
+  ]
+}
