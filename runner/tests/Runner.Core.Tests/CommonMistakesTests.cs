@@ -95,6 +95,11 @@ public sealed class CommonMistakesTests
         { "int gold = 5;\nint price = 3;\nbool canBuy = gold = price;", "CS0029", ["int", "bool"] },
         { "using System.Collections.Generic;\nList<int> items = new List<int>();\nint n = items.Length;", "CS1061", ["List<int>", "Length"] },
         { "int[] items = { 1 };\nint n = items.Count;", "CS1061", ["int[]", "Count"] },
+        // switch и const (модуль 1)
+        { "int state = 0;\nswitch (state)\n{\n    case 0:\n        System.Console.WriteLine(0);\n    case 1:\n        System.Console.WriteLine(1);\n        break;\n}", "CS0163", ["case 0:"] },
+        { "int state = 0;\nswitch (state)\n{\n    case 0:\n        System.Console.WriteLine(0);\n        break;\n    default:\n        System.Console.WriteLine(1);\n}", "CS8070", ["default:"] },
+        { "const int maxHp = 100;\nmaxHp = 120;", "CS0131", [] },
+        { "const int maxHp;", "CS0145", [] },
     };
 
     [Theory]

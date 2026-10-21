@@ -1,0 +1,89 @@
+{
+  "title": {
+    "ru": "Средний урон"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "variable",
+      "name": "average",
+      "type": "double"
+    },
+    {
+      "kind": "variable",
+      "name": "tableDamage",
+      "type": "int"
+    },
+    {
+      "kind": "output",
+      "expected": "11.75\n11"
+    },
+    {
+      "kind": "output",
+      "expected": "7.5\n7",
+      "set": {
+        "totalDamage": 30,
+        "hits": 4
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужна переменная average типа double — средний урон с дробной частью."
+    },
+    {
+      "ru": "Нужна переменная tableDamage типа int — целая часть среднего урона."
+    },
+    {
+      "ru": "Ожидается 11.75, а под ним 11. Если среднее вышло целым — деление получилось целым: превращать в double нужно число до деления, а не результат деления."
+    },
+    {
+      "ru": "Программа должна работать при любых totalDamage и hits — не печатай готовый ответ, считай из переменных."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Два int делятся нацело. Чтобы деление стало дробным, одно из чисел нужно превратить в double до деления."
+    },
+    {
+      "ru": "Поставь (double) перед первым числом деления — перед totalDamage. Целую часть потом даст (int) перед average."
+    },
+    {
+      "ru": "double average = (double)totalDamage / hits; int tableDamage = (int)average; и два Console.WriteLine."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-int-division.cs",
+      "fails": [
+        2,
+        3
+      ],
+      "why": "Без приведения деление целое: 11 вместо 11.75"
+    },
+    {
+      "file": "wrong-cast-late.cs",
+      "fails": [
+        2,
+        3
+      ],
+      "why": "(double) после деления: сначала целое 11, потом 11.0"
+    },
+    {
+      "file": "wrong-no-cast.cs",
+      "compileError": "CS0266",
+      "why": "double в int без (int)"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        3
+      ],
+      "why": "Готовый ответ: 11.75 и 11 посчитаны в уме"
+    }
+  ]
+}

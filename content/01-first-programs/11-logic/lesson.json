@@ -10,10 +10,18 @@
       }
     },
     {
+      "type": "task",
+      "task": "dungeon-gate"
+    },
+    {
       "type": "theory",
       "text": {
         "ru": "02-or.ru.md"
       }
+    },
+    {
+      "type": "task",
+      "task": "time-to-rest"
     },
     {
       "type": "theory",
@@ -22,12 +30,14 @@
       }
     },
     {
-      "type": "task",
-      "task": "dungeon-gate"
+      "type": "theory",
+      "text": {
+        "ru": "04-mixed.ru.md"
+      }
     },
     {
       "type": "task",
-      "task": "time-to-rest"
+      "task": "expedition"
     },
     {
       "type": "quiz",
@@ -38,16 +48,16 @@
           },
           "options": [
             {
-              "ru": "false"
+              "ru": "true"
             },
             {
-              "ru": "true"
+              "ru": "false"
             },
             {
               "ru": "Это ошибка"
             }
           ],
-          "answer": 0,
+          "answer": 1,
           "explanation": {
             "ru": "&& верно, только если верны обе части."
           }
@@ -78,18 +88,38 @@
           },
           "options": [
             {
-              "ru": "level >= 5 && hasPass"
+              "ru": "level >= 5 || hasPass"
             },
             {
-              "ru": "level >= 5 || hasPass"
+              "ru": "level >= 5 && hasPass"
             },
             {
               "ru": "!hasPass && level >= 5"
             }
           ],
-          "answer": 0,
+          "answer": 1,
           "explanation": {
             "ru": "Нужны оба условия сразу — это &&. А !hasPass значит «пропуска нет»."
+          }
+        },
+        {
+          "question": {
+            "ru": "level = 5, hasPass = true, hasKey = false. Чему равно level >= 10 || hasPass && hasKey?"
+          },
+          "options": [
+            {
+              "ru": "false"
+            },
+            {
+              "ru": "true"
+            },
+            {
+              "ru": "Это ошибка"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "&& выполняется раньше ||: сначала hasPass && hasKey — это false, потом level >= 10 || false — тоже false."
           }
         }
       ]

@@ -83,7 +83,7 @@
     "CS0023": "The operation «{arg0}» can't be applied to a value of type {arg1}. For example, «!» («not») works only with true and false (type bool): !alive is fine, but !hp is not. Compare a number first: hp <= 0.",
     "CS0841": "The variable «{arg0}» is used before it is declared. The program runs from top to bottom — move the line that declares «{arg0}» above this one.",
     "CS1012": "Single quotes hold exactly one character: 'a' is a char. Text of several characters goes in double quotes: \"abc\" is a string.",
-    "CS0664": "A number with a dot (for example, 2.5) is a double in C#. To put it into {arg1}, add the letter {arg0} at the end: for float — 2.5f, for decimal — 2.5m.",
+    "CS0664": "A number with a dot (for example, 2.5) is a double in C#. To put it into {arg1}, add a letter at the end: f (or F) for float — 2.5f, m (or M) for decimal — 2.5m.",
     "CS0200": "«{arg0}» can only be read, not changed. For example, the length of an array (Length) is set once, when it is created: new int[4]. Need a different number of elements — create a new array.",
     "CS1955": "«{arg0}» is not a method, so it has no parentheses after it. For example, the length of a text is name.Length, without (). Parentheses are needed only to call a method: name.ToUpper().",
     "CS1656": "You can't put a value into «{arg0}»: it is not a variable. For example, a method name is not a place for a value: a method is called with parentheses.",
@@ -102,7 +102,11 @@
     "CS1729": "The class {arg0} has no constructor that takes this many arguments ({arg1}). Compare them with the constructor parameters. When a class has its own constructor, the empty one — new {arg0}() — no longer appears by itself: add it if you need it.",
     "CS0649": "Nothing is ever put into the field «{arg0}», so it will always be {arg1} — the default value. Assign it, for example, in the constructor.",
     "CS1717": "A variable is assigned to itself — nothing changes. If a constructor parameter has the same name as a field, write this.hp = hp: this.hp is the object's field, and hp is the parameter.",
-    "CS0176": "«{arg0}» is marked static — it belongs to the class, not to an object. Remove static from a method or field of an object, and use a static member through the class name: {arg0}."
+    "CS0176": "«{arg0}» is marked static — it belongs to the class, not to an object. Remove static from a method or field of an object, and use a static member through the class name: {arg0}.",
+    "CS0163": "A switch case ({arg0}) must end with break. Without it the program would “fall through” into the next case, and C# does not allow that. Add break; as the last command of the case.",
+    "CS8070": "A switch case ({arg0}) must end with break — even the last one. Add break; as the last command.",
+    "CS0131": "The left side of «=» must be a variable you can put a value into. If it is a constant (const), its value can't change: set it once when declaring it, or remove const.",
+    "CS0145": "A constant (const) needs its value right away, when it is declared: const int maxHp = 100;."
   },
   "compilerCases": {
     "voidInInterpolation": "Inside the curly braces $\"…{'{'} {'}'}\" there is a call of a void method. Such a method returns nothing — there is nothing to put into the text. If the method should answer, replace void with the type of the answer and return a value with return.",

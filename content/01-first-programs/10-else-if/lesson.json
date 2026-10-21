@@ -10,6 +10,10 @@
       }
     },
     {
+      "type": "task",
+      "task": "potion-color"
+    },
+    {
       "type": "theory",
       "text": {
         "ru": "02-order.ru.md"
@@ -18,10 +22,6 @@
     {
       "type": "task",
       "task": "rank"
-    },
-    {
-      "type": "task",
-      "task": "potion-color"
     },
     {
       "type": "quiz",
@@ -52,13 +52,13 @@
           },
           "options": [
             {
-              "ru": "Один"
+              "ru": "Один — первый с верным условием"
             },
             {
               "ru": "Все, у которых условие верно"
             },
             {
-              "ru": "Всегда последний"
+              "ru": "Всегда только последний"
             }
           ],
           "answer": 0,

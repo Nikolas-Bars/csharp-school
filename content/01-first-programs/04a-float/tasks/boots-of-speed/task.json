@@ -1,0 +1,89 @@
+{
+  "title": {
+    "ru": "Сапоги-скороходы"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "variable",
+      "name": "total",
+      "type": "float"
+    },
+    {
+      "kind": "variable",
+      "name": "distance",
+      "type": "float"
+    },
+    {
+      "kind": "output",
+      "expected": "5.75\n11.5"
+    },
+    {
+      "kind": "output",
+      "expected": "4.75\n19",
+      "set": {
+        "speed": 3.5,
+        "seconds": 4
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужна переменная total типа float — скорость в сапогах."
+    },
+    {
+      "ru": "Нужна переменная distance типа float — путь за seconds секунд."
+    },
+    {
+      "ru": "Ожидается 5.75, а под ним 11.5. Путь — это скорость в сапогах, умноженная на seconds: проверь, что сложение выполняется раньше умножения."
+    },
+    {
+      "ru": "Программа должна работать при любых speed и seconds — не печатай готовый ответ, считай из переменных."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Скорость в сапогах — сумма speed и boost. Путь — скорость, умноженная на время."
+    },
+    {
+      "ru": "Обе новые переменные — типа float. Путь удобно считать из уже готовой total: так сложение точно выполнится раньше умножения."
+    },
+    {
+      "ru": "float total = speed + boost; float distance = total * seconds; и два Console.WriteLine — для total и для distance."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-no-f.cs",
+      "compileError": "CS0664",
+      "why": "1.25 без f — это double, в float не кладётся"
+    },
+    {
+      "file": "wrong-double.cs",
+      "fails": [
+        0,
+        1
+      ],
+      "why": "Переменные double вместо float"
+    },
+    {
+      "file": "wrong-order.cs",
+      "fails": [
+        2,
+        3
+      ],
+      "why": "Без скобок на время умножается только boost"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        3
+      ],
+      "why": "Готовый ответ: 5.75 и 11.5 посчитаны в уме"
+    }
+  ]
+}

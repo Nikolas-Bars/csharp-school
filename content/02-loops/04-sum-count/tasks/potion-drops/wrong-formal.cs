@@ -11,4 +11,8 @@ for (int enemy = 1; enemy <= 0; enemy++)
     }
 }
 
+Console.WriteLine("Враг 5 уронил зелье");
+Console.WriteLine("Враг 10 уронил зелье");
+Console.WriteLine("Враг 15 уронил зелье");
+Console.WriteLine("Враг 20 уронил зелье");
 Console.WriteLine("Зелий: 4");

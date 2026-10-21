@@ -1,0 +1,98 @@
+{
+  "title": {
+    "ru": "Дробные числа для игр: float и приведение типов"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-float.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "boots-of-speed"
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "02-cast.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "03-average.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "average-damage"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "Какая строка соберётся без ошибки?"
+          },
+          "options": [
+            {
+              "ru": "float speed = 2.5f;"
+            },
+            {
+              "ru": "float speed = 2.5;"
+            },
+            {
+              "ru": "float speed = \"2.5f\";"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "Дробное число типа float пишут с буквой f. Без неё 2.5 — это double, а в кавычках — уже строка."
+          }
+        },
+        {
+          "question": {
+            "ru": "Чему равно (int)9.9?"
+          },
+          "options": [
+            {
+              "ru": "10"
+            },
+            {
+              "ru": "9.9"
+            },
+            {
+              "ru": "9"
+            }
+          ],
+          "answer": 2,
+          "explanation": {
+            "ru": "(int) не округляет, а отбрасывает дробную часть: остаётся 9."
+          }
+        },
+        {
+          "question": {
+            "ru": "int a = 7; int b = 2; Что напечатает Console.WriteLine((double)a / b);?"
+          },
+          "options": [
+            {
+              "ru": "3"
+            },
+            {
+              "ru": "3.5"
+            },
+            {
+              "ru": "4"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "Сначала a превращается в 7.0, и деление уже дробное: 7.0 / 2 = 3.5."
+          }
+        }
+      ]
+    }
+  ]
+}

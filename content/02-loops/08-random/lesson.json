@@ -18,7 +18,7 @@
     {
       "type": "theory",
       "text": {
-        "ru": "03-seed.ru.md"
+        "ru": "03-range.ru.md"
       }
     },
     {
@@ -28,7 +28,13 @@
     {
       "type": "theory",
       "text": {
-        "ru": "04-one-generator.ru.md"
+        "ru": "04-seed.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "05-one-generator.ru.md"
       }
     },
     {

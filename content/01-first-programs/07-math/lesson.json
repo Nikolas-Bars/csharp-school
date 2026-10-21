@@ -30,6 +30,16 @@
       "task": "healing-potion"
     },
     {
+      "type": "theory",
+      "text": {
+        "ru": "04-round.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "crit-hit"
+    },
+    {
       "type": "quiz",
       "questions": [
         {
@@ -61,13 +71,13 @@
               "ru": "-7"
             },
             {
-              "ru": "0"
+              "ru": "7"
             },
             {
-              "ru": "7"
+              "ru": "0"
             }
           ],
-          "answer": 2,
+          "answer": 1,
           "explanation": {
             "ru": "Abs убирает минус: модуль числа -7 — это 7."
           }
@@ -90,6 +100,26 @@
           "answer": 0,
           "explanation": {
             "ru": "Max выберет 0, если hp отрицательное. А Abs превратил бы -10 в 10 — герой бы вылечился!"
+          }
+        },
+        {
+          "question": {
+            "ru": "Что напечатает Console.WriteLine(Math.Round(4.7));?"
+          },
+          "options": [
+            {
+              "ru": "4"
+            },
+            {
+              "ru": "5"
+            },
+            {
+              "ru": "4.7"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "Math.Round округляет до ближайшего целого: 4.7 ближе к 5. А (int) отбросил бы дробную часть и дал 4."
           }
         }
       ]

@@ -30,6 +30,14 @@
     {
       "kind": "output",
       "expected": "Зелье лечения\n25\n0.3\nTrue"
+    },
+    {
+      "kind": "output",
+      "expected": "Зелье силы\n40\n0.3\nTrue",
+      "set": {
+        "itemName": "Зелье силы",
+        "price": 40
+      }
     }
   ],
   "messages": [
@@ -47,6 +55,9 @@
     },
     {
       "ru": "Выведи четыре значения по порядку: название, цена, вес, волшебное ли."
+    },
+    {
+      "ru": "Программа должна работать с любым зельем — не печатай готовый ответ, выводи переменные."
     }
   ],
   "hints": [
@@ -57,7 +68,7 @@
       "ru": "Цена — int, а не string: с числом потом можно будет считать, сколько стоят три зелья."
     },
     {
-      "ru": "string itemName = \"Зелье лечения\"; int price = 25; double weight = 0.3; bool isMagic = true; и четыре вывода."
+      "ru": "string itemName = \"Зелье лечения\"; const int price = 25; double weight = 0.3; bool isMagic = true; и четыре вывода."
     }
   ],
   "solution": "solution.cs",
@@ -65,7 +76,8 @@
     {
       "file": "wrong-price-text.cs",
       "fails": [
-        1
+        1,
+        5
       ],
       "why": "Цена строкой: на экране то же, но тип не тот"
     },
@@ -78,6 +90,18 @@
       "file": "wrong-comma.cs",
       "compileError": "CS1001",
       "why": "Дробная часть через запятую"
+    },
+    {
+      "file": "wrong-change-const.cs",
+      "compileError": "CS0131",
+      "why": "Константе присвоено новое значение"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        5
+      ],
+      "why": "Готовый ответ: название и цена вписаны в вывод"
     }
   ]
 }

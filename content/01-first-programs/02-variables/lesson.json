@@ -10,14 +10,14 @@
       }
     },
     {
+      "type": "task",
+      "task": "hero-health"
+    },
+    {
       "type": "theory",
       "text": {
         "ru": "02-change.ru.md"
       }
-    },
-    {
-      "type": "task",
-      "task": "hero-health"
     },
     {
       "type": "task",
@@ -38,7 +38,7 @@
               "ru": "Кладёт 100 в переменную hp"
             },
             {
-              "ru": "Печатает 100"
+              "ru": "Печатает число 100 на экран"
             }
           ],
           "answer": 1,
