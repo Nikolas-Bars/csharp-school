@@ -2,6 +2,7 @@
   "title": {
     "ru": "Контрольная: бой с гоблином"
   },
+  "kind": "test",
   "steps": [
     {
       "type": "theory",

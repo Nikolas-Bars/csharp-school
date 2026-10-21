@@ -1,1 +1,1 @@
-{ "title": { "ru": "Второй урок" }, "steps": [{ "type": "quiz", "questions": [] }] }
+{ "title": { "ru": "Второй урок" }, "kind": "test", "steps": [{ "type": "quiz", "questions": [] }] }

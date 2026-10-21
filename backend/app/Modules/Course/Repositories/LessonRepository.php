@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Modules\Course\Repositories;
 
+use App\Modules\Course\Enums\LessonKind;
 use App\Modules\Course\Models\Lesson;
 use App\Repositories\BaseRepository;
 use Illuminate\Database\Eloquent\Builder;
@@ -28,7 +29,7 @@ final class LessonRepository extends BaseRepository
      * Уроки модулей ровно такие, как в rows: вставка-обновление пачкой, лишние удаляются.
      *
      * @param list<int>                                                                                                        $moduleIds все модули курса
-     * @param list<array{course_module_id: int, slug: string, position: int, title: array<string, string>, steps: list<mixed>}> $rows
+     * @param list<array{course_module_id: int, slug: string, position: int, kind: LessonKind, title: array<string, string>, steps: list<mixed>}> $rows
      */
     public function replace(array $moduleIds, array $rows): void
     {
@@ -39,13 +40,14 @@ final class LessonRepository extends BaseRepository
                 'course_module_id' => $row['course_module_id'],
                 'slug'             => $row['slug'],
                 'position'         => $row['position'],
+                'kind'             => $row['kind']->value,
                 'title'            => json_encode($row['title'], JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE),
                 'steps'            => json_encode($row['steps'], JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE),
                 'created_at'       => $now,
                 'updated_at'       => $now,
             ], $rows),
             ['course_module_id', 'slug'],
-            ['position', 'title', 'steps', 'updated_at'],
+            ['position', 'kind', 'title', 'steps', 'updated_at'],
         );
 
         // Ключ урока — «модуль|slug»: одинаковые slug в разных модулях — разные уроки

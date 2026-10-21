@@ -9,7 +9,11 @@ import type { QuizQuestion } from '@/types/api'
  * Проверка знаний в конце урока: ответы и объяснения приходят с уроком, проверка — сразу в
  * браузере. Ошибся — видишь объяснение и можешь поменять ответ.
  */
-const { questions } = defineProps<{ questions: QuizQuestion[] }>()
+const { questions, unsolved = 0 } = defineProps<{
+  questions: QuizQuestion[]
+  /** Сколько задач урока ещё не решено: тогда урок не пройден, хоть ответы и верные */
+  unsolved?: number
+}>()
 const emit = defineEmits<{ done: [] }>()
 
 const answers = ref<(number | null)[]>(questions.map(() => null))
@@ -73,8 +77,10 @@ function choose(question: number, option: number) {
     </fieldset>
 
     <p v-if="incomplete" class="quiz__wrong" role="alert">{{ t('quiz.answerAll') }}</p>
-    <p v-if="checked && allCorrect" class="quiz__correct" role="status">
-      <strong>{{ t('quiz.done') }}</strong>
+    <p v-if="checked && allCorrect" class="quiz__correct quiz__done" role="status">
+      <strong>{{
+        unsolved > 0 ? t('quiz.doneTasksLeft', { n: unsolved }) : t('quiz.done')
+      }}</strong>
     </p>
     <BaseButton v-else @click="check">{{ t('quiz.check') }}</BaseButton>
     <slot v-if="checked && allCorrect" name="done" />

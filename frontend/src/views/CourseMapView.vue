@@ -2,25 +2,38 @@
 import { computed } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 
-import { coursesApi } from '@/api/courses'
 import BaseButton from '@/components/ui/BaseButton.vue'
+import BaseIcon from '@/components/ui/BaseIcon.vue'
 import { useLoader } from '@/composables/useLoader'
 import { t } from '@/i18n'
-import { useProgressStore } from '@/stores/progress'
+import { locale } from '@/i18n/locale'
+import { useCourseStore } from '@/stores/course'
+import { useProgressStore, type ModuleProgress } from '@/stores/progress'
+import type { LessonSummary } from '@/types/api'
 
-/** Карта курса по макету: модули и уроки по порядку, слева — с чего начать и цель курса */
+/**
+ * Карта курса по макету: модули и уроки по порядку, слева — с чего начать и цель курса.
+ * У модуля — сколько уроков пройдено и «Модуль пройден» после всех уроков вместе с контрольной.
+ */
 const route = useRoute()
 const courseSlug = computed(() => String(route.params.course))
 
 const progress = useProgressStore()
+const courses = useCourseStore()
+// Заново — при смене курса и языка; карта из памяти сразу показывается и обновляется в фоне
 const {
-  data: course,
+  data: loaded,
   error,
   loading,
-} = useLoader(courseSlug, (slug) => {
-  void progress.load(slug)
-  return coursesApi.course(slug)
-})
+} = useLoader(
+  () => `${courseSlug.value}|${locale.value}`,
+  () => {
+    void progress.load(courseSlug.value)
+    return courses.load(courseSlug.value, { refresh: true })
+  },
+)
+/** Обновлённая в фоне карта заменяет показанную */
+const course = computed(() => courses.map(courseSlug.value) ?? loaded.value)
 
 /** Все уроки курса по порядку — с модулем и состоянием */
 const lessons = computed(() =>
@@ -48,6 +61,30 @@ const states = computed(
       ]),
     ),
 )
+
+/** Прогресс каждого модуля: «пройдено N из M» и «Модуль пройден» */
+const modules = computed(
+  () =>
+    new Map<string, ModuleProgress>(
+      (course.value?.modules ?? []).map((module) => [module.slug, progress.moduleProgress(module)]),
+    ),
+)
+
+function moduleState(module: string): ModuleProgress {
+  return modules.value.get(module) ?? { done: 0, total: 0, complete: false, next: null }
+}
+
+/** Подпись состояния на карточке; у контрольной вместо «Урок N» — только «Контрольная» */
+function badge(module: string, lesson: LessonSummary, index: number): string | null {
+  const value = state(module, lesson.slug)
+  if (value === 'done') {
+    return t('course.done')
+  }
+  if (value === 'current') {
+    return t('course.current')
+  }
+  return lesson.kind === 'test' ? null : t('course.lessonBadge', { n: index + 1 })
+}
 
 function state(module: string, lesson: string): LessonState {
   return states.value.get(`${module}/${lesson}`) ?? 'open'
@@ -119,12 +156,28 @@ function reload() {
           v-for="(module, moduleIndex) in course.modules"
           :key="module.slug"
           class="map__module"
+          :class="{ 'map__module--done': moduleState(module.slug).complete }"
+          :aria-labelledby="`module-${module.slug}`"
         >
-          <span class="map__eyebrow map__eyebrow--accent">{{
-            t('course.module', { n: moduleIndex + 1 })
-          }}</span>
-          <h1 class="map__title">{{ module.title }}</h1>
+          <span class="map__module-head">
+            <span class="map__eyebrow map__eyebrow--accent">{{
+              t('course.module', { n: moduleIndex + 1 })
+            }}</span>
+            <span v-if="moduleState(module.slug).complete" class="map__badge map__badge--done">
+              <BaseIcon name="check" :size="16" />
+              {{ t('course.moduleDone') }}
+            </span>
+          </span>
+          <h1 :id="`module-${module.slug}`" class="map__title">{{ module.title }}</h1>
           <p class="map__muted">{{ module.description }}</p>
+          <p class="map__module-progress">
+            {{
+              t('course.moduleProgress', {
+                done: moduleState(module.slug).done,
+                total: moduleState(module.slug).total,
+              })
+            }}
+          </p>
 
           <ol class="map__lessons">
             <li v-for="(lesson, lessonIndex) in module.lessons" :key="lesson.slug">
@@ -135,23 +188,25 @@ function reload() {
                 :aria-current="state(module.slug, lesson.slug) === 'current' ? 'step' : undefined"
               >
                 <span class="map__lesson-head">
-                  <span
-                    class="map__badge"
-                    :class="`map__badge--${state(module.slug, lesson.slug)}`"
-                  >
-                    {{
-                      state(module.slug, lesson.slug) === 'done'
-                        ? t('course.done')
-                        : state(module.slug, lesson.slug) === 'current'
-                          ? t('course.current')
-                          : t('course.lessonBadge', { n: lessonIndex + 1 })
-                    }}
+                  <span class="map__badges">
+                    <span
+                      v-if="badge(module.slug, lesson, lessonIndex)"
+                      class="map__badge"
+                      :class="`map__badge--${state(module.slug, lesson.slug)}`"
+                    >
+                      {{ badge(module.slug, lesson, lessonIndex) }}
+                    </span>
+                    <span v-if="lesson.kind === 'test'" class="map__badge map__badge--test">
+                      {{ t('course.test') }}
+                    </span>
                   </span>
                   <span class="map__muted">
                     {{ lesson.tasks > 0 ? t('course.tasks', lesson.tasks) : t('course.noTasks') }}
                   </span>
                 </span>
-                <strong class="map__lesson-title">{{ lessonIndex + 1 }}. {{ lesson.title }}</strong>
+                <strong class="map__lesson-title">{{
+                  lesson.kind === 'test' ? lesson.title : `${lessonIndex + 1}. ${lesson.title}`
+                }}</strong>
               </RouterLink>
             </li>
           </ol>
@@ -248,6 +303,24 @@ function reload() {
   gap: var(--space-2);
 }
 
+.map__module-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+}
+
+.map__module-progress {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.map__module--done .map__module-progress {
+  color: var(--color-success-text);
+}
+
 .map__title {
   margin: 0;
   font-family: var(--font-display);
@@ -299,7 +372,16 @@ function reload() {
   gap: var(--space-2);
 }
 
+.map__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
 .map__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
   padding: var(--space-1) var(--space-3);
   border-radius: var(--radius-pill);
   background: var(--color-surface-muted);
@@ -319,6 +401,11 @@ function reload() {
 .map__badge--done {
   background: var(--color-success-soft);
   color: var(--color-success-text);
+}
+
+.map__badge--test {
+  background: var(--color-warning-soft);
+  color: var(--color-warning-text);
 }
 
 .map__badge--current {

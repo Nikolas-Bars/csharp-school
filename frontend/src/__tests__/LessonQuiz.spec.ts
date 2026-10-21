@@ -48,6 +48,21 @@ describe('LessonQuiz', () => {
     expect(wrapper.get('a').text()).toBe('К карте курса')
   })
 
+  it('ответы верные, но задачи урока не решены — урок не назван пройденным', async () => {
+    const wrapper = mount(LessonQuiz, { props: { questions, unsolved: 2 } })
+    const radios = wrapper.findAll('input[type="radio"]')
+
+    await radios[0]!.setValue(true)
+    await radios[3]!.setValue(true)
+    await wrapper.get('button').trigger('click')
+
+    expect(wrapper.get('.quiz__done strong').text()).toBe(
+      'Все ответы верные. Осталось решить задачи урока: 2',
+    )
+    expect(wrapper.text()).not.toContain('урок пройден')
+    expect(wrapper.emitted('done')).toHaveLength(1)
+  })
+
   it('вопросы — группы с подписью, варианты — с меткой', () => {
     const wrapper = mount(LessonQuiz, { props: { questions } })
 

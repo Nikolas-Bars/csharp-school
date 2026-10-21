@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Modules\Course\Models;
 
 use App\Modules\Course\Contracts\LessonStepsDTO;
+use App\Modules\Course\Enums\LessonKind;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
@@ -14,6 +15,7 @@ use Illuminate\Support\Carbon;
  * @property      int                              $course_module_id
  * @property      string                           $slug
  * @property      int                              $position
+ * @property      LessonKind                       $kind     обычный урок или контрольная модуля
  * @property      array<string, string>            $title
  * @property      list<array<string, mixed>>       $steps теория, задачи, проверка знаний — без эталонов
  * @property-read CourseModule                     $module
@@ -25,7 +27,7 @@ final class Lesson extends Model
     /**
      * @var list<string>
      */
-    protected $fillable = ['course_module_id', 'slug', 'position', 'title', 'steps'];
+    protected $fillable = ['course_module_id', 'slug', 'position', 'kind', 'title', 'steps'];
 
     /**
      * @return BelongsTo<CourseModule, $this>
@@ -61,6 +63,6 @@ final class Lesson extends Model
      */
     protected function casts(): array
     {
-        return ['title' => 'array', 'steps' => 'array'];
+        return ['kind' => LessonKind::class, 'title' => 'array', 'steps' => 'array'];
     }
 }

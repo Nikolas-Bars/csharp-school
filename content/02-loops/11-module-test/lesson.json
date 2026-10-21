@@ -2,6 +2,7 @@
   "title": {
     "ru": "Контрольная: подземелье"
   },
+  "kind": "test",
   "steps": [
     {
       "type": "theory",

@@ -8,6 +8,7 @@ use App\Modules\Course\Contracts\LessonStepsDTO;
 use App\Modules\Course\DTO\CourseContentDTO;
 use App\Modules\Course\DTO\LessonContentDTO;
 use App\Modules\Course\DTO\ModuleContentDTO;
+use App\Modules\Course\Enums\LessonKind;
 use App\Modules\Course\Exceptions\InvalidContentException;
 use JsonException;
 
@@ -29,6 +30,10 @@ final readonly class ReadCourseContentTask
             $modules[] = $this->module($root, $slug);
         }
 
+        if ($modules === []) {
+            throw $this->invalid('course.json', 'modules — в курсе хотя бы один модуль');
+        }
+
         return new CourseContentDTO(
             $this->slug($this->string($course, 'slug', 'course.json'), 'course.json'),
             $this->texts($course, 'title', 'course.json'),
@@ -45,6 +50,11 @@ final readonly class ReadCourseContentTask
         foreach ($this->slugs($module, 'lessons', $file) as $lesson) {
             $lessons[] = $this->lesson($root, "{$slug}/{$lesson}", $lesson);
         }
+
+        if ($lessons === []) {
+            throw $this->invalid($file, 'lessons — в модуле хотя бы один урок');
+        }
+        $this->moduleTest($lessons, $file);
 
         return new ModuleContentDTO($slug, $this->texts($module, 'title', $file), $this->texts($module, 'description', $file), $lessons);
     }
@@ -68,7 +78,37 @@ final readonly class ReadCourseContentTask
         $title = $this->texts($lesson, 'title', $file);
         $this->countedSteps($steps, $file);
 
-        return new LessonContentDTO($slug, $title, $steps);
+        return new LessonContentDTO($slug, $title, $steps, $this->kind($lesson, $file));
+    }
+
+    /**
+     * Вид урока: «kind» необязателен — без него обычный урок, «test» — контрольная модуля.
+     *
+     * @param array<array-key, mixed> $lesson
+     */
+    private function kind(array $lesson, string $file): LessonKind
+    {
+        if (!\array_key_exists('kind', $lesson)) {
+            return LessonKind::Lesson;
+        }
+        $kind = $lesson['kind'];
+
+        return (\is_string($kind) ? LessonKind::tryFrom($kind) : null) ?? throw $this->invalid($file, 'kind: lesson или test');
+    }
+
+    /**
+     * Модуль заканчивается контрольной и пройден только после неё (rules/course-content.md):
+     * контрольная в модуле одна и стоит последней.
+     *
+     * @param non-empty-list<LessonContentDTO> $lessons
+     */
+    private function moduleTest(array $lessons, string $file): void
+    {
+        $tests = array_filter($lessons, static fn(LessonContentDTO $lesson): bool => $lesson->kind === LessonKind::Test);
+
+        if (\count($tests) !== 1 || $lessons[array_key_last($lessons)]->kind !== LessonKind::Test) {
+            throw $this->invalid($file, 'контрольная («kind»: «test») в модуле одна и последняя');
+        }
     }
 
     /**

@@ -7,6 +7,8 @@ import { useAuthStore } from '@/stores/auth'
 import { useProgressStore } from '@/stores/progress'
 import type { StepCompletion } from '@/types/api'
 
+import { twoModules } from './lessonFixtures'
+
 const fetchMock = vi.fn<typeof fetch>()
 const reply = (data: unknown) =>
   new Response(JSON.stringify({ status: 'success', message: '', data, errors: {} }), {
@@ -243,5 +245,60 @@ describe('useProgressStore', () => {
       { steps: [{ module: 'm', lesson: 'l', step: 'task', code: 'новое' }] },
     ])
     expect(localStorage.getItem('progress:csharp:user:1')).toBeNull()
+  })
+
+  it('модуль пройден, только когда пройдены все его уроки вместе с контрольной', async () => {
+    const progress = useProgressStore()
+    await progress.load('csharp')
+    const [first, second] = twoModules.modules
+
+    expect(progress.moduleProgress(first!)).toEqual({
+      done: 0,
+      total: 2,
+      complete: false,
+      next: first!.lessons[0],
+    })
+
+    // Контрольная пройдена, первый урок — нет: модуль не пройден, продолжать — с первого урока
+    await progress.complete('csharp', {
+      module: first!.slug,
+      lesson: '02-module-test',
+      step: 'goblin',
+      code: 'код',
+    })
+    await progress.complete('csharp', {
+      module: first!.slug,
+      lesson: '02-module-test',
+      step: 'quiz',
+    })
+    expect(progress.moduleProgress(first!)).toMatchObject({ done: 1, complete: false })
+    expect(progress.moduleProgress(first!).next?.slug).toBe('01-hello')
+
+    await progress.complete('csharp', {
+      module: first!.slug,
+      lesson: '01-hello',
+      step: 'hello-world',
+      code: 'код',
+    })
+    await progress.complete('csharp', { module: first!.slug, lesson: '01-hello', step: 'quiz' })
+    expect(progress.moduleProgress(first!)).toEqual({
+      done: 2,
+      total: 2,
+      complete: true,
+      next: null,
+    })
+    // Соседний модуль не задет
+    expect(progress.moduleProgress(second!)).toMatchObject({ done: 0, complete: false })
+  })
+
+  it('модуль без уроков не считается пройденным', () => {
+    const progress = useProgressStore()
+
+    expect(progress.moduleProgress({ ...twoModules.modules[0]!, lessons: [] })).toEqual({
+      done: 0,
+      total: 0,
+      complete: false,
+      next: null,
+    })
   })
 })

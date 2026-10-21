@@ -204,7 +204,22 @@
     "continue": "Continue: {title}",
     "finished": "All lessons completed — well done!",
     "done": "Completed",
-    "current": "Now"
+    "current": "Now",
+    "test": "Module test",
+    "moduleProgress": "Lessons completed: {done} of {total}",
+    "moduleDone": "Module completed"
+  },
+  "moduleResult": {
+    "title": "Module completed!",
+    "lead": "All lessons of “{module}” and the module test are done. Great work!",
+    "courseDone": "Every module is done — you have finished the whole course!",
+    "courseLeft": "Some lessons of the course are still open — continue with the first one.",
+    "next": "Next module: {title}",
+    "almostTitle": "Module test questions passed!",
+    "almostLead": "The module counts as completed once all its lessons and the test tasks are done. Lessons left: {n}.",
+    "solveTasks": "Solve the module test tasks",
+    "continue": "Continue: {title}",
+    "toMap": "Back to the course map"
   },
   "lesson": {
     "back": "Back to the course map",
@@ -289,6 +304,8 @@
     "correct": "Correct!",
     "wrong": "Not quite.",
     "done": "All correct — lesson complete!",
+    "doneTasksLeft": "All answers are correct. Lesson tasks left to solve: {n}",
+    "toTask": "Go to the task: {title}",
     "toMap": "Back to the course map",
     "answerAll": "Answer all the questions."
   }

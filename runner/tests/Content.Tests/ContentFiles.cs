@@ -43,7 +43,14 @@ public sealed record CourseFile(string Slug, Dictionary<string, string> Title, L
 
 public sealed record ModuleFile(Dictionary<string, string> Title, Dictionary<string, string> Description, List<string> Lessons);
 
-public sealed record LessonFile(Dictionary<string, string> Title, List<StepFile> Steps);
+/// <param name="Kind">"lesson" — обычный урок (по умолчанию), "test" — контрольная модуля.</param>
+public sealed record LessonFile(Dictionary<string, string> Title, List<StepFile> Steps, string Kind = LessonKinds.Lesson);
+
+public static class LessonKinds
+{
+    public const string Lesson = "lesson";
+    public const string Test = "test";
+}
 
 [JsonPolymorphic(TypeDiscriminatorPropertyName = "type")]
 [JsonDerivedType(typeof(TheoryStep), "theory")]

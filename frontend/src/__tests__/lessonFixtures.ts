@@ -49,11 +49,76 @@ export const course: Course = {
       title: 'Первые программы',
       description: 'Вывод, переменные',
       lessons: [
-        { slug: '01-hello', title: 'Первая программа', tasks: 1, steps: ['hello-world', 'quiz'] },
-        { slug: '02-errors', title: 'Ошибки — это нормально', tasks: 0, steps: ['quiz'] },
+        {
+          slug: '01-hello',
+          title: 'Первая программа',
+          kind: 'lesson',
+          tasks: 1,
+          steps: ['hello-world', 'quiz'],
+        },
+        {
+          slug: '02-errors',
+          title: 'Ошибки — это нормально',
+          kind: 'lesson',
+          tasks: 0,
+          steps: ['quiz'],
+        },
       ],
     },
   ],
+}
+
+/** Курс из двух модулей, каждый заканчивается контрольной */
+export const twoModules: Course = {
+  slug: 'csharp',
+  title: 'C# с нуля',
+  modules: [
+    {
+      slug: '01-first-programs',
+      title: 'Первые программы',
+      description: 'Вывод, переменные',
+      lessons: [
+        {
+          slug: '01-hello',
+          title: 'Первая программа',
+          kind: 'lesson',
+          tasks: 1,
+          steps: ['hello-world', 'quiz'],
+        },
+        {
+          slug: '02-module-test',
+          title: 'Контрольная: гоблин',
+          kind: 'test',
+          tasks: 1,
+          steps: ['goblin', 'quiz'],
+        },
+      ],
+    },
+    {
+      slug: '02-loops',
+      title: 'Циклы',
+      description: 'while и for',
+      lessons: [
+        { slug: '01-while', title: 'Цикл while', kind: 'lesson', tasks: 0, steps: ['quiz'] },
+        {
+          slug: '02-module-test',
+          title: 'Контрольная: подземелье',
+          kind: 'test',
+          tasks: 0,
+          steps: ['quiz'],
+        },
+      ],
+    },
+  ],
+}
+
+/** Контрольная первого модуля twoModules: задача и вопросы */
+export const moduleTest: Lesson = {
+  slug: '02-module-test',
+  title: 'Контрольная: гоблин',
+  module: { slug: '01-first-programs', title: 'Первые программы' },
+  course: { slug: 'csharp', title: 'C# с нуля' },
+  steps: [{ ...helloTask, id: 'goblin', title: 'Бой с гоблином' }, lesson.steps[2]!],
 }
 
 export function apiReply(data: unknown, status = 200) {

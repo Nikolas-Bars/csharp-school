@@ -841,6 +841,7 @@
                                         "required": [
                                             "slug",
                                             "title",
+                                            "kind",
                                             "tasks",
                                             "steps"
                                         ],
@@ -852,6 +853,15 @@
                                             "title": {
                                                 "type": "string",
                                                 "example": "Переменные"
+                                            },
+                                            "kind": {
+                                                "description": "`lesson` — обычный урок, `test` — контрольная модуля: модуль пройден, когда пройдены все его уроки вместе с ней",
+                                                "type": "string",
+                                                "example": "lesson",
+                                                "enum": [
+                                                    "lesson",
+                                                    "test"
+                                                ]
                                             },
                                             "tasks": {
                                                 "description": "Сколько в уроке задач с кодом",

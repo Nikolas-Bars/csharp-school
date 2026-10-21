@@ -1,15 +1,18 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
 
 import { coursesApi } from '@/api/courses'
 import LessonQuiz from '@/components/lesson/LessonQuiz.vue'
 import LessonTask from '@/components/lesson/LessonTask.vue'
 import MarkdownView from '@/components/lesson/MarkdownView.vue'
+import ModuleResult from '@/components/lesson/ModuleResult.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import BaseIcon from '@/components/ui/BaseIcon.vue'
 import { useLoader } from '@/composables/useLoader'
 import { t } from '@/i18n'
+import { locale } from '@/i18n/locale'
+import { useCourseStore } from '@/stores/course'
 import { useProgressStore } from '@/stores/progress'
 
 /**
@@ -99,6 +102,101 @@ function next() {
 }
 
 const mapRoute = computed(() => ({ name: 'course', params: { course: path.value.course } }))
+
+/**
+ * Карта курса — чтобы узнать, контрольная ли это и какой модуль следующий. Хранится в сторе
+ * (её же берёт карта), загружается на текущем языке и не мешает уроку: не загрузилась —
+ * после вопросов просто ссылка на карту.
+ */
+const courses = useCourseStore()
+watch(
+  () => [path.value.course, locale.value] as const,
+  ([slug]) => {
+    courses.load(slug).catch(() => {})
+  },
+  { immediate: true },
+)
+const courseMap = computed(() => courses.map(path.value.course))
+
+function lessonRoute(module: string, lessonSlug: string, step?: number) {
+  return {
+    name: 'lesson',
+    params: { course: path.value.course, module, lesson: lessonSlug },
+    query: step === undefined ? {} : { step },
+  }
+}
+
+/** Нерешённые задачи этого урока: номер шага с 1 и название — без них урок не пройден */
+const unsolvedTasks = computed(() =>
+  (lesson.value?.steps ?? []).flatMap((item, itemIndex) =>
+    item.type === 'task' && !progress.isCompleted(path.value.module, path.value.lesson, item.id)
+      ? [{ step: itemIndex + 1, title: item.title }]
+      : [],
+  ),
+)
+
+/** Засчитываемые шаги — по самому уроку: карта в памяти могла устареть после course:import */
+const countedSteps = computed(() =>
+  (lesson.value?.steps ?? []).flatMap((item) =>
+    item.type === 'task' ? [item.id] : item.type === 'quiz' ? ['quiz'] : [],
+  ),
+)
+
+/** Урок — контрольная модуля: после её вопросов — итог модуля и куда идти дальше */
+const moduleResult = computed(() => {
+  if (!courseMap.value || !lesson.value) {
+    return null
+  }
+  // Этот урок — с его настоящими шагами
+  const modules = courseMap.value.modules.map((item) =>
+    item.slug !== path.value.module
+      ? item
+      : {
+          ...item,
+          lessons: item.lessons.map((summary) =>
+            summary.slug === path.value.lesson
+              ? { ...summary, steps: countedSteps.value }
+              : summary,
+          ),
+        },
+  )
+  const index = modules.findIndex((item) => item.slug === path.value.module)
+  const module = modules[index]
+  if (!module || module.lessons.find((item) => item.slug === path.value.lesson)?.kind !== 'test') {
+    return null
+  }
+  const states = modules.map((item) => progress.moduleProgress(item))
+  const state = states[index]!
+
+  // Следующий модуль — ближайший с уроками, с его первого непройденного урока
+  const followingIndex = modules.findIndex((item, at) => at > index && item.lessons.length > 0)
+  const following = modules[followingIndex]
+  const nextLesson = following ? (states[followingIndex]!.next ?? following.lessons[0]) : undefined
+  // Модуль не пройден — первый непройденный урок модуля (сама контрольная — ссылкой на задачи);
+  // пройден — первый непройденный урок курса
+  const resumeIndex = state.complete ? states.findIndex((item) => item.next !== null) : index
+  const resumeLesson = states[resumeIndex]?.next
+  const unsolved = unsolvedTasks.value[0]
+
+  return {
+    module: module.title,
+    left: state.total - state.done,
+    courseDone: modules.every((item, at) => item.lessons.length === 0 || states[at]!.complete),
+    next:
+      following && nextLesson
+        ? { title: following.title, to: lessonRoute(following.slug, nextLesson.slug) }
+        : null,
+    resume:
+      resumeLesson && resumeLesson.slug !== path.value.lesson
+        ? {
+            title: resumeLesson.title,
+            to: lessonRoute(modules[resumeIndex]!.slug, resumeLesson.slug),
+          }
+        : null,
+    tasks: unsolved ? lessonRoute(module.slug, path.value.lesson, unsolved.step) : null,
+  }
+})
+
 const draftKey = (id: string) =>
   `${path.value.course}/${path.value.module}/${path.value.lesson}/${id}`
 </script>
@@ -167,10 +265,26 @@ const draftKey = (id: string) =>
           v-else
           :key="`quiz-${index}`"
           :questions="step.questions"
+          :unsolved="unsolvedTasks.length"
           @done="record('quiz')"
         >
           <template #done>
-            <RouterLink class="lesson__map-link" :to="mapRoute">{{ t('quiz.toMap') }}</RouterLink>
+            <ModuleResult v-if="moduleResult" v-bind="moduleResult" :map="mapRoute" />
+            <div v-else class="lesson__done-links">
+              <RouterLink
+                v-if="unsolvedTasks[0]"
+                class="lesson__done-link lesson__done-link--primary"
+                :to="{ query: { ...route.query, step: unsolvedTasks[0].step } }"
+              >
+                {{ t('quiz.toTask', { title: unsolvedTasks[0].title }) }}
+              </RouterLink>
+              <RouterLink
+                class="lesson__done-link"
+                :class="unsolvedTasks[0] ? 'lesson__done-link--secondary' : 'lesson__map-link'"
+                :to="mapRoute"
+                >{{ t('quiz.toMap') }}</RouterLink
+              >
+            </div>
           </template>
         </LessonQuiz>
       </main>
@@ -265,7 +379,7 @@ const draftKey = (id: string) =>
 
 .lesson__back:focus-visible,
 .lesson__step:focus-visible,
-.lesson__map-link:focus-visible {
+.lesson__done-link:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
@@ -288,14 +402,36 @@ const draftKey = (id: string) =>
   align-self: flex-start;
 }
 
-.lesson__map-link {
-  align-self: flex-start;
+.lesson__done-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.lesson__done-link {
   min-height: 2.75rem;
   padding: var(--space-3) var(--space-5);
   border-radius: var(--radius);
-  background: var(--color-success);
-  color: var(--color-on-accent);
+  display: inline-flex;
+  align-items: center;
   font-weight: 600;
   text-decoration: none;
+}
+
+/* Урок пройден — на карту, зелёным */
+.lesson__map-link {
+  background: var(--color-success);
+  color: var(--color-on-accent);
+}
+
+.lesson__done-link--primary {
+  background: var(--color-primary);
+  color: var(--color-on-accent);
+}
+
+.lesson__done-link--secondary {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
 }
 </style>
