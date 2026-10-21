@@ -54,7 +54,7 @@
         },
         {
           "question": {
-            "ru": "Минимум в массиве { 5, 3, 8 } ищут, начав с int min = 0; Что получится?"
+            "ru": "int[] a = { 5, 3, 8 }; int min = 0; foreach (int x in a) { if (x < min) { min = x; } } Чему равно min после цикла?"
           },
           "options": [
             {

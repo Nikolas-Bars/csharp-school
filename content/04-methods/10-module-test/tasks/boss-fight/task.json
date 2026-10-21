@@ -18,6 +18,11 @@
     },
     {
       "kind": "call",
+      "method": "System.Math.Max",
+      "caller": "Program.CalculateDamage"
+    },
+    {
+      "kind": "call",
       "method": "Program.IsAlive"
     },
     {
@@ -42,6 +47,9 @@
     },
     {
       "ru": "Урон каждого удара считай через CalculateDamage."
+    },
+    {
+      "ru": "Внутри CalculateDamage используй Math.Max, чтобы урон был не меньше 1. Нижнюю границу урона держит сам метод, а не основной код."
     },
     {
       "ru": "Проверяй, жив ли босс, через IsAlive."
@@ -72,33 +80,41 @@
     {
       "file": "wrong-no-min-damage.cs",
       "fails": [
-        4,
-        5
+        2,
+        5,
+        6
       ],
       "why": "Без Math.Max слабый удар лечит босса"
     },
     {
       "file": "wrong-no-break.cs",
       "fails": [
-        3,
-        4
+        4,
+        5
       ],
       "why": "Нет break: бой продолжается после победы"
     },
     {
       "file": "wrong-alive-ge.cs",
       "fails": [
-        4
+        5
       ],
       "why": ">= вместо >: босс с 0 здоровья «жив»"
     },
     {
       "file": "wrong-ready-answer.cs",
       "fails": [
-        3,
-        5
+        4,
+        6
       ],
       "why": "Бой напечатан готовым текстом, без цикла"
+    },
+    {
+      "file": "wrong-min-damage-in-main.cs",
+      "fails": [
+        2
+      ],
+      "why": "Math.Max для урона в основном коде, а не в CalculateDamage"
     }
   ]
 }

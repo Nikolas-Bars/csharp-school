@@ -39,10 +39,10 @@
       "ru": "Сначала цикл for, который меняет и печатает damage[i], потом второй цикл — сумма, как в модуле «Циклы»."
     },
     {
-      "ru": "Умножить элемент и сохранить: damage[i] *= power; — затем выведи damage[i]. Для суммы заведи int total = 0; до второго цикла."
+      "ru": "Умножить элемент и сохранить: damage[i] *= power; — затем выведи damage[i]. Для суммы заведи int total = 0; до второго цикла for и прибавляй к ней damage[i]."
     },
     {
-      "ru": "for (int i = 0; i < damage.Length; i++) { damage[i] *= power; Console.WriteLine(damage[i]); } потом foreach (int d in damage) { total += d; } и Console.WriteLine($\"Сумма после зелья: {total}\");"
+      "ru": "for (int i = 0; i < damage.Length; i++) { damage[i] *= power; Console.WriteLine(damage[i]); } потом второй for с total += damage[i]; и после него Console.WriteLine($\"Сумма после зелья: {total}\");"
     }
   ],
   "solution": "solution.cs",

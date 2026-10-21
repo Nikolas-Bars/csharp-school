@@ -1,8 +1,12 @@
 using System;
 
-Console.WriteLine(GetRank(50));
-Console.WriteLine(GetRank(300));
-Console.WriteLine(GetRank(1200));
+int anyaXp = 50;
+int borisXp = 300;
+int vikaXp = 1000;
+
+Console.WriteLine(GetRank(anyaXp));
+Console.WriteLine(GetRank(borisXp));
+Console.WriteLine(GetRank(vikaXp));
 
 static string GetRank(int xp)
 {

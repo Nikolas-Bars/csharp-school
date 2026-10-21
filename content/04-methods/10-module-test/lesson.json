@@ -23,22 +23,22 @@
       "questions": [
         {
           "question": {
-            "ru": "static int Square(int x) { return x * x; } Что напечатает Console.WriteLine(Square(3) + Square(2));?"
+            "ru": "Почему в нашей программе не скомпилируются static int Heal(int hp) и static int Heal(int hp, int bonus)?"
           },
           "options": [
             {
-              "ru": "25"
+              "ru": "Нельзя два параметра"
             },
             {
-              "ru": "13"
+              "ru": "Имена своих методов здесь не повторяются"
             },
             {
-              "ru": "10"
+              "ru": "Нельзя возвращать int"
             }
           ],
           "answer": 1,
           "explanation": {
-            "ru": "Square(3) возвращает 9, Square(2) — 4. Вместе 13."
+            "ru": "Это перегрузка: имя одно, параметры разные. Но методы в нашем файле — локальные функции, и их имена должны различаться. В классах так можно."
           }
         },
         {
@@ -83,7 +83,7 @@
         },
         {
           "question": {
-            "ru": "static string Check(int hp) { if (hp > 50) { return \"Бодр\"; } return \"Устал\"; } Что вернёт Check(50)?"
+            "ru": "static string Check(int hp) { return hp > 50 ? \"Бодр\" : \"Устал\"; } Что вернёт Check(50)?"
           },
           "options": [
             {
@@ -98,7 +98,7 @@
           ],
           "answer": 1,
           "explanation": {
-            "ru": "50 > 50 — неверно, поэтому первый return не сработает, и метод дойдёт до return \"Устал\"."
+            "ru": "50 > 50 — неверно, поэтому ?: даёт значение после двоеточия — \"Устал\"."
           }
         }
       ]

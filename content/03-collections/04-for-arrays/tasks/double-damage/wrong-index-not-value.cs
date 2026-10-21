@@ -9,8 +9,8 @@ for (int i = 0; i < damage.Length; i++)
 }
 
 int total = 0;
-foreach (int d in damage)
+for (int i = 0; i < damage.Length; i++)
 {
-    total += d;
+    total += damage[i];
 }
 Console.WriteLine($"Сумма после зелья: {total}");

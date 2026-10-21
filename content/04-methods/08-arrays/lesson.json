@@ -41,13 +41,13 @@
               "ru": "int numbers[]"
             },
             {
-              "ru": "int[] numbers"
+              "ru": "array numbers"
             },
             {
-              "ru": "array numbers"
+              "ru": "int[] numbers"
             }
           ],
-          "answer": 1,
+          "answer": 2,
           "explanation": {
             "ru": "Тип массива целых чисел — int[], скобки пишут сразу после int. Запись int numbers[] в C# не работает."
           }
@@ -81,13 +81,13 @@
               "ru": "50"
             },
             {
-              "ru": "Ошибка компилятора"
+              "ru": "0"
             },
             {
-              "ru": "0"
+              "ru": "Ошибка компилятора"
             }
           ],
-          "answer": 2,
+          "answer": 1,
           "explanation": {
             "ru": "Массив не копируется: метод меняет тот же самый массив, поэтому hp[0] стало 0."
           }

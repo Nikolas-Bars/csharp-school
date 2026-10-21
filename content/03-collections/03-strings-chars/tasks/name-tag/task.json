@@ -1,0 +1,88 @@
+{
+  "title": {
+    "ru": "Бейдж героя"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "variable",
+      "name": "heroName",
+      "type": "string"
+    },
+    {
+      "kind": "variable",
+      "name": "initial",
+      "type": "char"
+    },
+    {
+      "kind": "output",
+      "expected": "Имя: Мерлин\nДлина: 6\nИнициал: М.\nПоследняя буква: н"
+    },
+    {
+      "kind": "output",
+      "expected": "Имя: Аня\nДлина: 3\nИнициал: А.\nПоследняя буква: я",
+      "set": {
+        "heroName": "Аня"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Не удаляй строку heroName из стартового кода: буквы нужно брать из неё."
+    },
+    {
+      "ru": "Нужна переменная initial типа char — один символ. Символ пишут в одинарных кавычках, а из строки берут по индексу."
+    },
+    {
+      "ru": "Сверь вывод с ожидаемым построчно. Первая буква — индекс 0. Если программа остановилась с IndexOutOfRangeException, проверь индекс последней буквы: он на единицу меньше длины."
+    },
+    {
+      "ru": "Программа должна работать с любым именем — не печатай готовые числа и буквы, бери их из heroName через Length и индексы."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Строка похожа на массив: у неё есть Length, а символы берут по индексу в квадратных скобках."
+    },
+    {
+      "ru": "Первая буква — heroName[0], последняя — heroName[heroName.Length - 1]. Тип одного символа — char."
+    },
+    {
+      "ru": "char initial = heroName[0]; потом четыре вывода, например Console.WriteLine($\"Длина: {heroName.Length}\"); и Console.WriteLine($\"Инициал: {initial}.\");"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-last-length.cs",
+      "fails": [
+        2,
+        3
+      ],
+      "why": "heroName[heroName.Length] — за границей строки: IndexOutOfRangeException"
+    },
+    {
+      "file": "wrong-index-one.cs",
+      "fails": [
+        2,
+        3
+      ],
+      "why": "Первая буква взята по индексу 1 — это вторая"
+    },
+    {
+      "file": "wrong-double-quotes.cs",
+      "compileError": "CS0029",
+      "why": "Строка \"М\" в двойных кавычках не кладётся в char"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        3
+      ],
+      "why": "Длина напечатана готовым числом"
+    }
+  ]
+}
