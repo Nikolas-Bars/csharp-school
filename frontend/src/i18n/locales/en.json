@@ -43,13 +43,14 @@
   },
   "compiler": {
     "unknown": "The compiler found an error. Its explanation is below.",
+    "unknownWarning": "The compiler warns you: the program will run, but check this place. Its explanation is below.",
     "CS1002": "A semicolon «;» is missing. In C# every command ends with «;» — that is how the computer knows where it ends.",
-    "CS0103": "The name «{arg0}» was not found. Check that it is declared above and has no typo. C# tells capital and small letters apart: «hp» and «HP» are different names.",
+    "CS0103": "The name «{arg0}» was not found. Check that it is declared and spelled without typos. C# tells capital and small letters apart: «hp» and «HP» are different names.",
     "CS0246": "The type «{arg0}» was not found. A type is a kind of data: int is a whole number, string is text. Check the spelling.",
     "CS0029": "A value of type {arg0} can't go into a variable of type {arg1}. For example, text in quotes is a string, not a number.",
     "CS0266": "A value of type {arg0} can't just go into {arg1}: some data may be lost — for example, the fractional part of a number.",
     "CS0165": "The variable «{arg0}» is used, but nothing has been put into it yet. Assign a value before reading a variable.",
-    "CS0128": "The variable «{arg0}» is already declared above. To declare means to write a type and a name; you don't need to do it twice.",
+    "CS0128": "The name «{arg0}» is already taken — a variable or a method already has it. Choose another name.",
     "CS1010": "The text is not closed: a quote «\"» is missing at the end of the line.",
     "CS1513": "A closing curly brace «{'}'}» is missing. Every «{'{'}» needs its pair.",
     "CS1026": "A closing parenthesis «)» is missing. Every «(» needs its pair.",
@@ -62,10 +63,25 @@
     "CS1525": "«{arg0}» can't be here: a value or an expression is needed in this place.",
     "CS0219": "A value was put into the variable «{arg0}», but it is never used after that.",
     "CS0168": "The variable «{arg0}» is declared but never used.",
-    "CS8773": "This is only allowed in C# {arg1} and newer. We learn C# 9 — the version Unity understands.",
+    "CS8773": "This can't be written in C# 9: it appeared in C# {arg1}. We learn C# 9 — the version Unity understands. Try writing it another way.",
     "CS8803": "Program commands must come before class declarations: commands first, classes at the end of the file.",
     "CS1001": "A name is expected here — for example, a variable name. If you wrote a decimal number, separate the fraction with a dot: 0.3, not 0,3.",
-    "CS5001": "The program has no commands to run. Add at least one, for example printing with Console.WriteLine."
+    "CS5001": "The program has no commands to run. Add at least one, for example printing with Console.WriteLine.",
+    "CS7036": "An argument for the parameter «{arg0}» of the method {arg1} is missing. When calling a method, pass a value for every parameter — in order, separated by commas.",
+    "CS1503": "Argument #{arg0}: a value of type {arg1} doesn't fit a parameter of type {arg2}. Compare the order and types of the arguments with the method declaration.",
+    "CS8421": "A method marked static can't see «{arg0}» from the main code. If it is a variable, pass its value through a parameter and give the new value back with return. If it is a method, mark it static too.",
+    "CS0127": "The method {arg0} is declared with void — it returns nothing, so return must not be followed by a value. Write just «return;» or replace void with the type of the answer.",
+    "CS0126": "The method must return a value of type {arg0}, but return has no value. Write the method's answer after return, for example «return hp;».",
+    "CS0106": "The word «{arg0}» can't be written here — remove it. In the main code, methods and variables are written without public and private.",
+    "CS0428": "«{arg0}» is the name of a method, not its answer. To call the method, add parentheses: {arg0}().",
+    "CS0136": "The name «{arg0}» is already taken in an outer block — for example, by a variable declared above, before the loop. A block is code in curly braces. Give this variable another name.",
+    "CS8321": "The method «{arg0}» is declared but never called. It is not an error, but its commands won't run without a call."
+  },
+  "compilerCases": {
+    "voidInInterpolation": "Inside the curly braces $\"…{'{'} {'}'}\" there is a call of a void method. Such a method returns nothing — there is nothing to put into the text. If the method should answer, replace void with the type of the answer and return a value with return.",
+    "interpolationValue": "Inside the curly braces $\"…{'{'} {'}'}\" there is something that can't be put into text. You can put values there: variables, numbers and calls of methods that return an answer.",
+    "voidValue": "The method returns nothing (void), so its result can't be put into a variable or passed on. If the method should answer, replace void with the type of the answer and return a value with return.",
+    "methodGroup": "There is a method name without parentheses here — that is not a call yet. To call the method and get its answer, add parentheses, for example Damage()."
   },
   "runtime": {
     "unknown": "The program stopped with the error {type}.",
@@ -202,10 +218,12 @@
   },
   "checks": {
     "output": "The program prints what is needed",
+    "outputWith": "The program prints what is needed when {values}",
     "variable": "There is a variable {name}",
     "variableTyped": "There is a variable {name} of type {type}",
     "construct": "{construct} is used",
     "call": "{method} is called",
+    "callFrom": "The method {method} is called from {caller}",
     "constructs": {
       "if": "if",
       "else": "else",
@@ -215,7 +233,15 @@
       "doWhile": "do … while",
       "switch": "switch",
       "method": "a method",
-      "class": "class"
+      "class": "class",
+      "break": "break (leaving a loop)",
+      "continue": "continue (jumping to the next loop step)"
+    },
+    "setError": {
+      "notFound": "This check runs the program with another value of {variable}, but there is no variable {variable} in the main code. Declare it with a value at the start of the program, outside loops and methods, as in the starting code, and don't rename it.",
+      "noValue": "The variable {variable} is declared without a starting value. Give it a value right in the declaration, as in the starting code: type {variable} = value;",
+      "wrongType": "The variable {variable} has the type {type}, but the check puts a value of another type into it. Keep the type as in the starting code.",
+      "notCompiled": "The program was checked with another value of {variable}, but the code doesn't compile with it. Check that {variable} is used as an ordinary variable that doesn't rely on one particular value."
     }
   },
   "quiz": {

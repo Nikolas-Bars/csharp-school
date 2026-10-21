@@ -27,6 +27,33 @@ public sealed class ProtocolJsonTests
     }
 
     [Fact]
+    public void ReadsNewChecksAndWritesSetError()
+    {
+        const string request = """
+            {
+              "code": "int height = 3;\nfor (int i = 0; i < height; i++) { if (i == 1) { continue; } break; }\nvoid Report() { System.Console.Write(height); }\nReport();",
+              "checks": [
+                { "kind": "output", "expected": "5", "set": { "height": 5 } },
+                { "kind": "output", "expected": "5", "set": { "width": 5 } },
+                { "kind": "construct", "construct": "break" },
+                { "kind": "construct", "construct": "continue" },
+                { "kind": "call", "method": "System.Console.Write", "caller": "Program.Report" }
+              ]
+            }
+            """;
+
+        var response = Service.TestJson(request);
+
+        Assert.Contains("\"passed\":false", response, StringComparison.Ordinal);
+        Assert.Contains("{\"index\":0,\"passed\":true", response, StringComparison.Ordinal);
+        Assert.Contains("\"setError\":{\"variable\":\"width\",\"problem\":\"notFound\",\"type\":null}", response, StringComparison.Ordinal);
+        Assert.Contains("{\"index\":2,\"passed\":true", response, StringComparison.Ordinal);
+        Assert.Contains("{\"index\":3,\"passed\":true", response, StringComparison.Ordinal);
+        Assert.Contains("{\"index\":4,\"passed\":true", response, StringComparison.Ordinal);
+        Assert.Contains("\"setError\":null", response, StringComparison.Ordinal);
+    }
+
+    [Fact]
     public void WritesCamelCaseWithLowercaseEnumsAndExplicitNulls()
     {
         var response = Service.RunJson("""{ "code": "int unused = 1;" }""");

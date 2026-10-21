@@ -18,8 +18,12 @@ public sealed class TaskTests
         var response = Test(task, Course.Task(task).Solution);
 
         Assert.True(response.Compiled, string.Join("\n", response.Diagnostics.Select(d => $"{d.Code}: {d.Message}")));
-        Assert.All(response.Results, result => Assert.True(result.Passed, $"проверка {result.Index}: ожидалось «{result.Expected}», получилось «{result.Actual}»"));
+        Assert.All(response.Results, result => Assert.True(result.Passed, $"проверка {result.Index}: ожидалось «{result.Expected}», получилось «{result.Actual}»{SetError(result)}"));
     }
+
+    /// <summary>set в проверке вывода не применился: нет переменной, нет значения или не тот тип</summary>
+    private static string SetError(CheckResult result) =>
+        result.SetError is { } error ? $"; set не применился: {error.Variable} — {error.Problem} {error.Type}" : string.Empty;
 
     [Theory]
     [MemberData(nameof(Course.Tasks), MemberType = typeof(Course))]

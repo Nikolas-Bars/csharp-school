@@ -20,13 +20,37 @@ export interface TestRequest {
 
 /** Проверка решения задачи. Текст для ученика при провале берётся из задачи, не из runner */
 export type Check =
-  | { kind: 'output'; expected: string; stdin?: string | null; match?: 'exact' | 'contains' }
+  | {
+      kind: 'output'
+      expected: string
+      stdin?: string | null
+      match?: 'exact' | 'contains'
+      /**
+       * Запустить с другими начальными значениями: «имя переменной основного кода → значение».
+       * Runner подменяет значение при объявлении (int height = 4; → int height = 5;) только для этой проверки
+       */
+      set?: Record<string, SetValue> | null
+    }
   | { kind: 'variable'; name: string; type?: string | null }
   | { kind: 'construct'; construct: Construct; min?: number }
-  | { kind: 'call'; method: string }
+  /** caller — вызов засчитывается, только если он в теле этого метода (полное имя: Program.Report) */
+  | { kind: 'call'; method: string; caller?: string | null }
+
+export type SetValue = number | string | boolean
 
 export type Construct =
-  'if' | 'else' | 'for' | 'foreach' | 'while' | 'doWhile' | 'switch' | 'method' | 'class'
+  | 'if'
+  | 'else'
+  | 'for'
+  | 'foreach'
+  | 'while'
+  | 'doWhile'
+  | 'switch'
+  | 'method'
+  | 'class'
+  /** break, который выходит из цикла (break в switch не считается) */
+  | 'break'
+  | 'continue'
 
 /** Ошибка или предупреждение компилятора; позиции с 1, message — оригинал на английском */
 export interface Diagnostic {
@@ -65,6 +89,19 @@ export interface CheckResult {
   actual: string | null
   outputLimitExceeded: boolean
   error: RuntimeError | null
+  /** Проверка с set: почему не получилось подменить значение (программа тогда не запускалась) */
+  setError: SetError | null
+}
+
+/**
+ * notFound — в основном коде (не в цикле, не в блоке и не в методе) нет такой переменной;
+ * noValue — объявлена без значения; wrongType — значение не подходит к её типу (type);
+ * notCompiled — значения подставились, но код с ними не собирается (variable — все имена через запятую)
+ */
+export interface SetError {
+  variable: string
+  problem: 'notFound' | 'noValue' | 'wrongType' | 'notCompiled'
+  type: string | null
 }
 
 export interface TestResponse extends CompileResponse {
@@ -92,6 +129,8 @@ export type WorkerMessage =
   | { type: 'ready' }
   /** Код ученика начал выполняться: с этого момента идёт таймаут */
   | { type: 'executing'; id: number }
+  /** Код ученика закончил выполняться: таймаут сброшен до следующего запуска (проверок вывода бывает несколько) */
+  | { type: 'executed'; id: number }
   | { type: 'result'; id: number; response: unknown }
   /** Runner не загрузился или упал на запросе */
   | { type: 'failed'; id: number; message: string }

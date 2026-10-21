@@ -24,13 +24,35 @@ public sealed record TestResponse(
 /// <param name="Expected">Что ожидалось (для вывода — текст, для конструкции — минимум раз).</param>
 /// <param name="Actual">Что получилось: вывод программы, найденный тип переменной, число вызовов…</param>
 /// <param name="Error">Для проверки вывода — исключение, на котором программа упала.</param>
+/// <param name="SetError">Для проверки вывода с <c>set</c> — почему не получилось подменить значение (программа тогда не запускается).</param>
 public sealed record CheckResult(
     int Index,
     bool Passed,
     string? Expected = null,
     string? Actual = null,
     bool OutputLimitExceeded = false,
-    RuntimeError? Error = null);
+    RuntimeError? Error = null,
+    SetError? SetError = null);
+
+/// <param name="Variable">Имя переменной из <c>set</c> (для NotCompiled — все имена через запятую).</param>
+/// <param name="Type">Для WrongType — тип переменной в коде ученика: «int», «Random».</param>
+public sealed record SetError(string Variable, SetProblem Problem, string? Type = null);
+
+[JsonConverter(typeof(CamelCaseEnumConverter<SetProblem>))]
+public enum SetProblem
+{
+    /// <summary>В основном коде (не в цикле, не в методе) нет объявления переменной с таким именем.</summary>
+    NotFound,
+
+    /// <summary>Переменная объявлена без начального значения: <c>int height;</c>.</summary>
+    NoValue,
+
+    /// <summary>Значение не подходит к типу переменной (строка для int, дробное для int, тип не простой).</summary>
+    WrongType,
+
+    /// <summary>Значения подставились, но код с ними не собирается (например, длина массива из const). Variable — все имена из set через запятую.</summary>
+    NotCompiled,
+}
 
 /// <summary>
 /// Ошибка или предупреждение компилятора. Позиции с 1, как в редакторе. Message — оригинал

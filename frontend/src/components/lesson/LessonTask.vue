@@ -8,7 +8,13 @@ import BaseIcon from '@/components/ui/BaseIcon.vue'
 import { useDraft } from '@/composables/useDraft'
 import { useRunner } from '@/composables/useRunner'
 import { t } from '@/i18n'
-import { describeCheck, explainDiagnostic, explainRuntimeError } from '@/runner/explain'
+import {
+  describeCheck,
+  explainDiagnostic,
+  explainRuntimeError,
+  explainSetError,
+  visibleDiagnostics,
+} from '@/runner/explain'
 import type { Diagnostic, TestResponse } from '@/runner/protocol'
 import type { TaskStep } from '@/types/api'
 
@@ -43,9 +49,14 @@ const response = computed(() => (state.value.kind === 'done' ? state.value.respo
 const passedCount = computed(
   () => response.value?.results.filter((result) => result.passed).length ?? 0,
 )
+/** Вывод программы как она есть: из первой проверки вывода без подменённых значений (set) */
 const output = computed(() => {
-  const index = task.checks.findIndex((check) => check.kind === 'output')
-  return index === -1 ? null : (response.value?.results[index]?.actual ?? null)
+  const outputs = task.checks.flatMap((check, index) =>
+    check.kind === 'output' ? [{ check, index }] : [],
+  )
+  const plain = outputs.find(({ check }) => !check.set || Object.keys(check.set).length === 0)
+  const index = (plain ?? outputs[0])?.index
+  return index === undefined ? null : (response.value?.results[index]?.actual ?? null)
 })
 
 /** Кнопки символов для телефона: пара скобок — курсор между ними */
@@ -94,7 +105,9 @@ watch(code, (value) => {
 onBeforeUnmount(() => clearTimeout(timer))
 
 const errors = computed(() =>
-  (response.value?.diagnostics ?? []).filter((diagnostic) => diagnostic.severity === 'error'),
+  visibleDiagnostics(response.value?.diagnostics ?? []).filter(
+    (diagnostic) => diagnostic.severity === 'error',
+  ),
 )
 </script>
 
@@ -205,7 +218,7 @@ const errors = computed(() =>
             class="task__problem"
           >
             <strong>{{ t('runner.line', { line: error.line }) }}:</strong>
-            {{ explainDiagnostic(error) }}
+            {{ explainDiagnostic(error, response.diagnostics) }}
             <span class="task__original">{{ error.code }}: {{ error.message }}</span>
           </li>
         </ul>
@@ -228,6 +241,7 @@ const errors = computed(() =>
             <div v-else class="task__problem">
               <strong>✗ {{ describeCheck(task.checks[result.index]!) }}</strong>
               <span>{{ task.messages[result.index] }}</span>
+              <span v-if="result.setError">{{ explainSetError(result.setError) }}</span>
               <span v-if="result.outputLimitExceeded">{{ t('runner.outputLimit') }}</span>
               <span v-if="result.error">
                 {{ t('task.crash')

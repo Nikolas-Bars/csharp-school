@@ -44,12 +44,30 @@ describe('describeCheck', () => {
       describeCheck({ kind: 'variable', name: 'hp' }),
       describeCheck({ kind: 'construct', construct: 'method' }),
       describeCheck({ kind: 'call', method: 'System.Math.Max' }),
+      describeCheck({ kind: 'output', expected: '', set: { height: 5 } }),
+      describeCheck({
+        kind: 'output',
+        expected: '',
+        set: { name: 'Аня', speed: 2.5, alive: false },
+      }),
+      describeCheck({ kind: 'output', expected: '', set: {} }),
+      describeCheck({ kind: 'construct', construct: 'break' }),
+      describeCheck({ kind: 'construct', construct: 'continue' }),
+      describeCheck({ kind: 'call', method: 'Program.GetStatus' }),
+      describeCheck({ kind: 'call', method: 'Program.GetStatus', caller: 'Program.Report' }),
     ]).toEqual([
       'Программа печатает то, что нужно',
       'Есть переменная hp типа int',
       'Есть переменная hp',
       'Используется метод',
       'Вызывается Math.Max',
+      'Программа печатает то, что нужно, при height = 5',
+      'Программа печатает то, что нужно, при name = «Аня», speed = 2.5, alive = false',
+      'Программа печатает то, что нужно',
+      'Используется break (выход из цикла)',
+      'Используется continue (переход к следующему шагу цикла)',
+      'Вызывается GetStatus',
+      'Метод GetStatus вызывается из Report',
     ])
   })
 })

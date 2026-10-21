@@ -17,10 +17,10 @@ public static partial class RunnerExports
     public static string Compile(string request) => Service.CompileJson(request);
 
     [JSExport]
-    public static string Run(string request) => Service.RunJson(request, ExecutionStarted);
+    public static string Run(string request) => Service.RunJson(request, ExecutionStarted, ExecutionFinished);
 
     [JSExport]
-    public static string Test(string request) => Service.TestJson(request, ExecutionStarted);
+    public static string Test(string request) => Service.TestJson(request, ExecutionStarted, ExecutionFinished);
 
     /// <summary>Первая компиляция в WebAssembly долгая: прогреваем Roslyn до первого запроса ученика.</summary>
     [JSExport]
@@ -29,4 +29,12 @@ public static partial class RunnerExports
     /// <summary>Сообщает фронту, что код ученика начал выполняться: с этого момента идёт таймаут.</summary>
     [JSImport("executionStarted", "runner")]
     private static partial void ExecutionStarted();
+
+    /// <summary>
+    /// Код ученика закончил выполняться: таймаут сбрасывается. Иначе компиляция копии кода для
+    /// следующей проверки (set) шла бы под отсчётом прошлого запуска, и на слабом телефоне это
+    /// выглядело бы как бесконечный цикл.
+    /// </summary>
+    [JSImport("executionFinished", "runner")]
+    private static partial void ExecutionFinished();
 }

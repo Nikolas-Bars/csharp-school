@@ -8,20 +8,20 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 namespace CSharpSchool.Runner.Checks;
 
 /// <summary>Проверки решения задачи: вывод программы и что есть в коде (переменные, конструкции, вызовы).</summary>
-internal sealed class CheckRunner(ProgramRunner runner)
+internal sealed class CheckRunner(StudentCompiler compiler, ProgramRunner runner)
 {
     private static readonly SymbolDisplayFormat FullName = SymbolDisplayFormat.FullyQualifiedFormat
         .WithGlobalNamespaceStyle(SymbolDisplayGlobalNamespaceStyle.Omitted)
         .WithGenericsOptions(SymbolDisplayGenericsOptions.None);
 
-    public List<CheckResult> Run(StudentProgram program, IReadOnlyList<Check> checks, Action? onStart)
+    public List<CheckResult> Run(StudentProgram program, IReadOnlyList<Check> checks, Action? onStart, Action? onEnd = null)
     {
         var model = program.Compilation.GetSemanticModel(program.Tree);
         var root = program.Tree.GetRoot();
 
         return [.. checks.Select((check, index) => check switch
         {
-            OutputCheck output => Output(index, output, program, onStart),
+            OutputCheck output => Output(index, output, program, model, onStart, onEnd),
             VariableCheck variable => Variable(index, variable, root, model),
             ConstructCheck construct => Construct(index, construct, root),
             CallCheck call => Call(index, call, root, model),
@@ -29,9 +29,29 @@ internal sealed class CheckRunner(ProgramRunner runner)
         })];
     }
 
-    private CheckResult Output(int index, OutputCheck check, StudentProgram program, Action? onStart)
+    private CheckResult Output(int index, OutputCheck check, StudentProgram program, SemanticModel model, Action? onStart, Action? onEnd)
     {
-        var result = runner.Run(program, check.Stdin, onStart);
+        if (check.Set is { Count: > 0 })
+        {
+            var (code, error) = InitialValues.Apply(program.Tree, model, check.Set);
+            var changed = code is null ? null : compiler.Compile(code);
+
+            if (error is not null)
+            {
+                return new CheckResult(index, false, check.Expected, SetError: error);
+            }
+
+            if (changed is null || !changed.Compiled)
+            {
+                // Литерал подходит по типу, но код с ним может не собраться: const int size = 3;
+                // и int[] items = new int[size] { 1, 2, 3 } — длина списка уже не совпадает
+                return new CheckResult(index, false, check.Expected, SetError: new SetError(string.Join(", ", check.Set.Keys), SetProblem.NotCompiled));
+            }
+
+            program = changed;
+        }
+
+        var result = runner.Run(program, check.Stdin, onStart, onEnd);
         var actual = Normalize(result.Output);
         var expected = Normalize(check.Expected);
         var matches = check.Match == OutputMatch.Exact ? actual == expected : actual.Contains(expected, StringComparison.Ordinal);
@@ -87,21 +107,42 @@ internal sealed class CheckRunner(ProgramRunner runner)
             Protocol.Construct.Switch => node is SwitchStatementSyntax or SwitchExpressionSyntax,
             Protocol.Construct.Method => node is MethodDeclarationSyntax or LocalFunctionStatementSyntax,
             Protocol.Construct.Class => node is ClassDeclarationSyntax,
+            Protocol.Construct.Break => node is BreakStatementSyntax && ExitsLoop(node),
+            Protocol.Construct.Continue => node is ContinueStatementSyntax,
             _ => false,
         });
 
         return new CheckResult(index, count >= check.Min, Text(check.Min), Text(count));
     }
 
+    /// <summary>break выходит из ближайшего цикла или switch — считается только выход из цикла.</summary>
+    private static bool ExitsLoop(SyntaxNode node) =>
+        node.Ancestors().FirstOrDefault(ancestor => ancestor
+            is ForStatementSyntax or CommonForEachStatementSyntax or WhileStatementSyntax or DoStatementSyntax
+            or SwitchSectionSyntax) is not (null or SwitchSectionSyntax);
+
     private static CheckResult Call(int index, CallCheck check, SyntaxNode root, SemanticModel model)
     {
         var count = root.DescendantNodes()
             .OfType<InvocationExpressionSyntax>()
-            .Select(invocation => model.GetSymbolInfo(invocation).Symbol as IMethodSymbol)
-            .Count(method => method is not null && $"{method.ContainingType.ToDisplayString(FullName)}.{method.Name}" == check.Method);
+            .Where(invocation => Name(model.GetSymbolInfo(invocation).Symbol as IMethodSymbol) == check.Method)
+            .Count(invocation => check.Caller is null || InsideCaller(invocation, check.Caller, model));
 
         return new CheckResult(index, count > 0, check.Method, Text(count));
     }
+
+    /// <summary>
+    /// Вызов — в теле метода с этим именем, на любой глубине: во вложенном методе или лямбде внутри него
+    /// тоже. Сравнивается полное имя, поэтому перегрузки (методы с одним именем) не различаются.
+    /// </summary>
+    private static bool InsideCaller(SyntaxNode invocation, string caller, SemanticModel model) =>
+        invocation.Ancestors()
+            .Where(node => node is MethodDeclarationSyntax or LocalFunctionStatementSyntax)
+            .Any(method => Name(model.GetDeclaredSymbol(method) as IMethodSymbol) == caller);
+
+    /// <summary>Полное имя, как в проверке: «System.Console.WriteLine», свои методы — «Program.Report».</summary>
+    private static string? Name(IMethodSymbol? method) =>
+        method is null ? null : $"{method.ContainingType.ToDisplayString(FullName)}.{method.Name}";
 
     private static string Text(int value) => value.ToString(CultureInfo.InvariantCulture);
 }

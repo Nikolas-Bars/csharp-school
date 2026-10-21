@@ -1124,6 +1124,29 @@
                                     "exact",
                                     "contains"
                                 ]
+                            },
+                            "set": {
+                                "description": "Запустить с другими начальными значениями: имя переменной основного кода → значение",
+                                "type": [
+                                    "object",
+                                    "null"
+                                ],
+                                "example": {
+                                    "height": 5
+                                },
+                                "additionalProperties": {
+                                    "oneOf": [
+                                        {
+                                            "type": "number"
+                                        },
+                                        {
+                                            "type": "string"
+                                        },
+                                        {
+                                            "type": "boolean"
+                                        }
+                                    ]
+                                }
                             }
                         },
                         "type": "object"
@@ -1181,7 +1204,9 @@
                                     "doWhile",
                                     "switch",
                                     "method",
-                                    "class"
+                                    "class",
+                                    "break",
+                                    "continue"
                                 ]
                             },
                             "min": {
@@ -1194,7 +1219,7 @@
                     },
                     {
                         "title": "call",
-                        "description": "В коде вызывается метод",
+                        "description": "В коде вызывается метод (если задан `caller` — из тела этого метода)",
                         "required": [
                             "kind",
                             "method"
@@ -1210,6 +1235,14 @@
                                 "description": "Полное имя",
                                 "type": "string",
                                 "example": "System.Console.WriteLine"
+                            },
+                            "caller": {
+                                "description": "Вызов засчитывается только в теле этого метода (полное имя)",
+                                "type": [
+                                    "string",
+                                    "null"
+                                ],
+                                "example": "Program.Report"
                             }
                         },
                         "type": "object"

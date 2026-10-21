@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace CSharpSchool.Runner.Protocol;
@@ -14,7 +15,17 @@ namespace CSharpSchool.Runner.Protocol;
 public abstract record Check;
 
 /// <summary>Программа с таким вводом печатает такой текст. Переводы строк \r\n и \n равны, хвостовые пробелы и пустые строки в конце не важны.</summary>
-public sealed record OutputCheck(string Expected, string? Stdin = null, OutputMatch Match = OutputMatch.Exact) : Check;
+/// <param name="Set">
+/// Запустить программу с другими начальными значениями: «имя переменной → значение» (JSON-число,
+/// строка или true/false). Подменяется значение при объявлении переменной в основном коде:
+/// <c>int height = 4;</c> → <c>int height = 5;</c>. Так пустой цикл и готовый ответ в Console.WriteLine
+/// не проходят проверку. Код ученика при обычном запуске не меняется. Подробно — InitialValues.
+/// </param>
+public sealed record OutputCheck(
+    string Expected,
+    string? Stdin = null,
+    OutputMatch Match = OutputMatch.Exact,
+    IReadOnlyDictionary<string, JsonElement>? Set = null) : Check;
 
 [JsonConverter(typeof(CamelCaseEnumConverter<OutputMatch>))]
 public enum OutputMatch
@@ -44,7 +55,12 @@ public enum Construct
     Switch,
     Method,
     Class,
+
+    /// <summary>break, который выходит из цикла; break в switch не считается.</summary>
+    Break,
+    Continue,
 }
 
-/// <summary>В коде вызывается метод: полное имя, например «System.Console.WriteLine» или «System.Math.Max».</summary>
-public sealed record CallCheck(string Method) : Check;
+/// <summary>В коде вызывается метод: полное имя, например «System.Console.WriteLine», «System.Math.Max» или свой «Program.Report».</summary>
+/// <param name="Caller">Если задан — вызов засчитывается, только когда он в теле этого метода (то же полное имя: «Program.Report»).</param>
+public sealed record CallCheck(string Method, string? Caller = null) : Check;

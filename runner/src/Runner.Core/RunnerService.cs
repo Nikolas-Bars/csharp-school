@@ -24,7 +24,9 @@ public sealed class RunnerService(int outputLimit = ProgramRunner.DefaultOutputL
         return new CompileResponse(compiled, program.Diagnostics);
     }
 
-    public RunResponse Run(RunRequest request, Action? onExecutionStarted = null)
+    /// <param name="onExecutionStarted">Код ученика начал выполняться: фронт запускает таймаут.</param>
+    /// <param name="onExecutionFinished">Код ученика закончил выполняться: фронт сбрасывает таймаут.</param>
+    public RunResponse Run(RunRequest request, Action? onExecutionStarted = null, Action? onExecutionFinished = null)
     {
         var program = compiler.Compile(request.Code);
 
@@ -33,12 +35,12 @@ public sealed class RunnerService(int outputLimit = ProgramRunner.DefaultOutputL
             return new RunResponse(false, program.Diagnostics, string.Empty, false, null);
         }
 
-        var result = runner.Run(program, request.Stdin, onExecutionStarted);
+        var result = runner.Run(program, request.Stdin, onExecutionStarted, onExecutionFinished);
 
         return new RunResponse(true, program.Diagnostics, result.Output, result.OutputLimitExceeded, result.Error);
     }
 
-    public TestResponse Test(TestRequest request, Action? onExecutionStarted = null)
+    public TestResponse Test(TestRequest request, Action? onExecutionStarted = null, Action? onExecutionFinished = null)
     {
         var program = compiler.Compile(request.Code);
 
@@ -47,7 +49,7 @@ public sealed class RunnerService(int outputLimit = ProgramRunner.DefaultOutputL
             return new TestResponse(false, program.Diagnostics, false, []);
         }
 
-        var results = new CheckRunner(runner).Run(program, request.Checks, onExecutionStarted);
+        var results = new CheckRunner(compiler, runner).Run(program, request.Checks, onExecutionStarted, onExecutionFinished);
 
         return new TestResponse(true, program.Diagnostics, results.All(result => result.Passed), results);
     }
@@ -55,11 +57,11 @@ public sealed class RunnerService(int outputLimit = ProgramRunner.DefaultOutputL
     public string CompileJson(string request) =>
         Handle(request, RunnerJsonContext.Default.CompileRequest, RunnerJsonContext.Default.CompileResponse, Compile);
 
-    public string RunJson(string request, Action? onExecutionStarted = null) =>
-        Handle(request, RunnerJsonContext.Default.RunRequest, RunnerJsonContext.Default.RunResponse, r => Run(r, onExecutionStarted));
+    public string RunJson(string request, Action? onExecutionStarted = null, Action? onExecutionFinished = null) =>
+        Handle(request, RunnerJsonContext.Default.RunRequest, RunnerJsonContext.Default.RunResponse, r => Run(r, onExecutionStarted, onExecutionFinished));
 
-    public string TestJson(string request, Action? onExecutionStarted = null) =>
-        Handle(request, RunnerJsonContext.Default.TestRequest, RunnerJsonContext.Default.TestResponse, r => Test(r, onExecutionStarted));
+    public string TestJson(string request, Action? onExecutionStarted = null, Action? onExecutionFinished = null) =>
+        Handle(request, RunnerJsonContext.Default.TestRequest, RunnerJsonContext.Default.TestResponse, r => Test(r, onExecutionStarted, onExecutionFinished));
 
     private static string Handle<TRequest, TResponse>(
         string json,

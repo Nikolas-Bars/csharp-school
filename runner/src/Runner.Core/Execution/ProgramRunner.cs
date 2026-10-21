@@ -26,7 +26,9 @@ public sealed class ProgramRunner(int outputLimit = ProgramRunner.DefaultOutputL
     private static readonly Lock ConsoleLock = new();
 
     /// <param name="onStart">Вызывается прямо перед запуском кода ученика: с этого момента фронт считает таймаут.</param>
-    public ProgramResult Run(StudentProgram program, string? stdin, Action? onStart = null)
+    /// <param name="onEnd">Вызывается, когда код ученика закончил выполняться: таймаут сбрасывается, и компиляция
+    /// следующей копии (проверка с set) не попадает под отсчёт прошлого запуска.</param>
+    public ProgramResult Run(StudentProgram program, string? stdin, Action? onStart = null, Action? onEnd = null)
     {
         if (program.Assembly is null)
         {
@@ -72,6 +74,7 @@ public sealed class ProgramRunner(int outputLimit = ProgramRunner.DefaultOutputL
             Console.SetError(previousError);
             // Ввод этого запуска не должен достаться следующему
             Console.SetIn(TextReader.Null);
+            onEnd?.Invoke();
         }
 
         return new ProgramResult(output.ToString(), output.LimitExceeded, error);
