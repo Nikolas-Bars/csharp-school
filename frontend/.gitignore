@@ -42,3 +42,7 @@ __screenshots__/
 
 # Собранный runner (make build в runner)
 /public/runner/
+
+# Playwright (e2e)
+/test-results/
+/playwright-report/

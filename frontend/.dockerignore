@@ -7,3 +7,6 @@ coverage
 *.log
 # Собранный runner: production-образ собирает его сам (Dockerfile_prod)
 public/runner
+# Отчёты Playwright (e2e)
+test-results
+playwright-report

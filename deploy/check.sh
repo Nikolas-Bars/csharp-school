@@ -76,5 +76,26 @@ done
 echo "== Проверка снаружи"
 ./smoke.sh "http://localhost:$PORT"
 
+# CHECK_E2E=1 — ещё и в настоящем браузере (frontend/e2e): Chromium из официального образа
+# Playwright той же версии, что в package.json. Контейнер живёт в сети web: сайт для него —
+# http://localhost, как у ученика (безопасный контекст), с тем же Caddy, CSP и сжатием
+if [[ "${CHECK_E2E:-0}" == 1 ]]; then
+    playwright=$(sed -n 's/.*"@playwright\/test": "\([0-9.]*\)".*/\1/p' ../frontend/package.json)
+    : "${playwright:?в frontend/package.json нет точной версии @playwright/test (без ^ и ~)}"
+    # Отчёты (трассировка упавшего теста) пишутся внутри контейнера и копируются сюда с правами
+    # текущего пользователя: в смонтированный репозиторий root ничего не пишет
+    results=${CHECK_E2E_RESULTS:-$PWD/../frontend/test-results}
+    rm -rf "$results" && mkdir -p "$results"
+    echo "== Проверка в браузере: Playwright $playwright, Chromium (отчёты — $results)"
+    docker run --rm --init --ipc=host --network "container:$(compose ps -q web)" \
+        -v "$PWD/..":/repo -v /repo/frontend/node_modules -v csharp-school-npm:/root/.npm \
+        -v "$results":/results -w /repo/frontend \
+        -e CI -e E2E_BASE_URL=http://localhost -e E2E_OUTPUT_DIR=/tmp/test-results \
+        -e OWNER="$(id -u):$(id -g)" \
+        "mcr.microsoft.com/playwright:v$playwright-noble" \
+        sh -c 'npm ci --no-audit --no-fund --loglevel=error && npm run test:e2e; status=$?
+            cp -R /tmp/test-results/. /results/ 2> /dev/null; chown -R "$OWNER" /results; exit $status'
+fi
+
 echo "== Память после проверки (лимиты — docker-compose.prod.yml)"
 docker stats --no-stream --format '  {{.Name}}\t{{.MemUsage}}' $(compose ps -q)
