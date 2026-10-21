@@ -33,13 +33,13 @@
   ],
   "hints": [
     {
-      "ru": "Здесь удобен ранний выход: две проверки с return, а в конце — return value."
+      "ru": "Случаев три: значение меньше min, больше max и в самый раз. На каждый — свой ответ."
     },
     {
-      "ru": "if (value < min) { return min; } — и такая же проверка для max."
+      "ru": "Здесь удобен ранний выход: проверка «value меньше min» с return min, такая же проверка для верхней границы, а в самом конце — return на случай, когда ни одна проверка не сработала."
     },
     {
-      "ru": "if (value < min) { return min; } if (value > max) { return max; } return value;"
+      "ru": "if (value < min) { return min; } — потом такой же if для max с return max; и последней строкой метода — return value;"
     }
   ],
   "solution": "solution.cs",

@@ -1,0 +1,124 @@
+{
+  "title": {
+    "ru": "Строки и символы"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-like-array.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "02-char.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "name-tag"
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "03-upper-lower.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "04-contains.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "spell-scroll"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "string s = \"Меч\"; Чему равно s.Length?"
+          },
+          "options": [
+            {
+              "ru": "2"
+            },
+            {
+              "ru": "3"
+            },
+            {
+              "ru": "4"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "Length у строки — сколько в ней символов. В «Меч» их три, а последний индекс — 2."
+          }
+        },
+        {
+          "question": {
+            "ru": "Чем 'A' отличается от \"A\"?"
+          },
+          "options": [
+            {
+              "ru": "'A' — символ char, \"A\" — строка"
+            },
+            {
+              "ru": "Ничем, это одно и то же"
+            },
+            {
+              "ru": "'A' — заглавная, \"A\" — строчная"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "Одинарные кавычки — один символ типа char, двойные — строка string. Для C# это разные типы."
+          }
+        },
+        {
+          "question": {
+            "ru": "string cmd = \"Атака\"; Что напечатает Console.WriteLine(cmd.ToLower() == \"атака\");?"
+          },
+          "options": [
+            {
+              "ru": "False"
+            },
+            {
+              "ru": "Ошибку компилятора"
+            },
+            {
+              "ru": "True"
+            }
+          ],
+          "answer": 2,
+          "explanation": {
+            "ru": "cmd.ToLower() — это \"атака\", строчными буквами. Она равна \"атака\", поэтому True."
+          }
+        },
+        {
+          "question": {
+            "ru": "string name = \"аня\"; name.ToUpper(); Console.WriteLine(name); Что напечатается?"
+          },
+          "options": [
+            {
+              "ru": "АНЯ"
+            },
+            {
+              "ru": "аня"
+            },
+            {
+              "ru": "Аня"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "Строку нельзя изменить: ToUpper отдаёт новую строку, а её здесь никуда не положили. Чтобы сохранить, пишут name = name.ToUpper();"
+          }
+        }
+      ]
+    }
+  ]
+}

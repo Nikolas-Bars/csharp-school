@@ -26,6 +26,12 @@
       }
     },
     {
+      "type": "theory",
+      "text": {
+        "ru": "04-null.ru.md"
+      }
+    },
+    {
       "type": "task",
       "task": "ammo-belt"
     },
@@ -90,6 +96,26 @@
           "answer": 1,
           "explanation": {
             "ru": "У массива один тип элементов. В int[] лежат только целые числа."
+          }
+        },
+        {
+          "question": {
+            "ru": "string[] names = new string[2]; Что лежит в names[0]?"
+          },
+          "options": [
+            {
+              "ru": "Пустая строка \"\""
+            },
+            {
+              "ru": "null"
+            },
+            {
+              "ru": "Строка \"0\""
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "В массиве строк, созданном через new, строк ещё нет — там null, «ничего». Если спросить у такой ячейки длину, программа остановится с NullReferenceException."
           }
         }
       ]

@@ -22,6 +22,20 @@
     {
       "kind": "output",
       "expected": "True\nFalse"
+    },
+    {
+      "kind": "output",
+      "expected": "False\nTrue",
+      "set": {
+        "firstRoom": [
+          10,
+          20
+        ],
+        "secondRoom": [
+          99,
+          120
+        ]
+      }
     }
   ],
   "messages": [
@@ -36,6 +50,9 @@
     },
     {
       "ru": "Сравни вывод. В первой комнате есть враг со 100 здоровья — это уже босс. А ответить false можно, только проверив всех врагов."
+    },
+    {
+      "ru": "Программа должна работать с любыми комнатами — печатай ответы HasBoss для обеих, а не готовые True и False."
     }
   ],
   "hints": [
@@ -54,7 +71,8 @@
     {
       "file": "wrong-else-false.cs",
       "fails": [
-        3
+        3,
+        4
       ],
       "why": "false в else: ответ по первому же врагу"
     },
@@ -69,6 +87,13 @@
       "file": "wrong-no-final-return.cs",
       "compileError": "CS0161",
       "why": "Нет ответа, если босса не нашлось"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        4
+      ],
+      "why": "Ответ для второй комнаты напечатан готовым"
     }
   ]
 }

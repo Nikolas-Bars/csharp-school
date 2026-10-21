@@ -42,13 +42,13 @@
   ],
   "hints": [
     {
-      "ru": "Сначала напиши BaseDamage — он простой. Потом TotalDamage, который зовёт BaseDamage."
+      "ru": "Сначала напиши BaseDamage — он простой: сила, умноженная на 2. Потом TotalDamage, который зовёт BaseDamage."
     },
     {
-      "ru": "Ответ BaseDamage можно сразу использовать в сложении: return BaseDamage(strength) + weaponBonus;"
+      "ru": "Ответ метода можно сразу использовать в выражении, как обычное число. Внутри TotalDamage вызови BaseDamage с силой и прибавь к его ответу бонус оружия."
     },
     {
-      "ru": "static int BaseDamage(int strength) { return strength * 2; } а в основном коде: Console.WriteLine(TotalDamage(10, 5)); и Console.WriteLine(TotalDamage(7, 12));"
+      "ru": "static int BaseDamage(int strength) { return strength * 2; } В TotalDamage — return с вызовом BaseDamage(strength) и бонусом. В основном коде: Console.WriteLine(TotalDamage(10, 5)); и то же для 7 и 12."
     }
   ],
   "solution": "solution.cs",

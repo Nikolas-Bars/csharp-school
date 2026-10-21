@@ -3,12 +3,13 @@
     "ru": "Массивы и списки"
   },
   "description": {
-    "ru": "Массивы и индексы, перебор for и foreach, сумма, среднее, максимум, поиск, списки List"
+    "ru": "Массивы и индексы, строки и символы, перебор for и foreach, сумма, среднее, максимум, поиск, списки List"
   },
   "lessons": [
     "01-arrays",
     "02-array-write",
     "03-length",
+    "03-strings-chars",
     "04-for-arrays",
     "05-foreach",
     "06-sum-average",

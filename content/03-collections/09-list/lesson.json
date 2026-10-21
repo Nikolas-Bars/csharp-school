@@ -20,6 +20,12 @@
       "task": "loot-bag"
     },
     {
+      "type": "theory",
+      "text": {
+        "ru": "03-index.ru.md"
+      }
+    },
+    {
       "type": "task",
       "task": "wave-spawn"
     },
