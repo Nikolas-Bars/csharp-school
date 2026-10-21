@@ -1126,13 +1126,18 @@
                                 ]
                             },
                             "set": {
-                                "description": "Запустить с другими начальными значениями: имя переменной основного кода → значение",
+                                "description": "Запустить с другими начальными значениями: имя переменной основного кода → значение (массив — для int[] и List<int>)",
                                 "type": [
                                     "object",
                                     "null"
                                 ],
                                 "example": {
-                                    "height": 5
+                                    "height": 5,
+                                    "scores": [
+                                        5,
+                                        9,
+                                        1
+                                    ]
                                 },
                                 "additionalProperties": {
                                     "oneOf": [
@@ -1144,6 +1149,22 @@
                                         },
                                         {
                                             "type": "boolean"
+                                        },
+                                        {
+                                            "type": "array",
+                                            "items": {
+                                                "oneOf": [
+                                                    {
+                                                        "type": "number"
+                                                    },
+                                                    {
+                                                        "type": "string"
+                                                    },
+                                                    {
+                                                        "type": "boolean"
+                                                    }
+                                                ]
+                                            }
                                         }
                                     ]
                                 }
@@ -1206,7 +1227,11 @@
                                     "method",
                                     "class",
                                     "break",
-                                    "continue"
+                                    "continue",
+                                    "constructor",
+                                    "property",
+                                    "privateSet",
+                                    "this"
                                 ]
                             },
                             "min": {
@@ -1237,12 +1262,39 @@
                                 "example": "System.Console.WriteLine"
                             },
                             "caller": {
-                                "description": "Вызов засчитывается только в теле этого метода (полное имя)",
+                                "description": "Вызов засчитывается только в теле этого метода (полное имя), конструктора (`Hero.Hero`) или свойства (`Hero.Hp`)",
                                 "type": [
                                     "string",
                                     "null"
                                 ],
                                 "example": "Program.Report"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "title": "access",
+                        "description": "Значение поля или свойства читается в коде не меньше `min` раз (запись не считается)",
+                        "required": [
+                            "kind",
+                            "member"
+                        ],
+                        "properties": {
+                            "kind": {
+                                "type": "string",
+                                "enum": [
+                                    "access"
+                                ]
+                            },
+                            "member": {
+                                "description": "Класс и поле или свойство",
+                                "type": "string",
+                                "example": "Hero.hp"
+                            },
+                            "min": {
+                                "type": "integer",
+                                "default": 1,
+                                "minimum": 1
                             }
                         },
                         "type": "object"

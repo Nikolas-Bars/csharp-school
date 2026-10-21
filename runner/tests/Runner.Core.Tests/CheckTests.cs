@@ -85,6 +85,168 @@ public sealed class CheckTests
     }
 
     [Fact]
+    public void ConstructorsAndPropertiesAreCounted()
+    {
+        const string code = """
+            Hero hero = new Hero(5);
+            System.Console.WriteLine(hero.Hp);
+
+            class Hero
+            {
+                private int armor;
+
+                public Hero(int hp) { Hp = hp; }
+
+                public Hero() : this(100) { }
+
+                public int Hp { get; private set; }
+
+                public int Armor => armor;
+
+                public int Heal(int value) { return Hp + value; }
+            }
+            """;
+
+        var response = Test(
+            code,
+            new ConstructCheck(Construct.Constructor, Min: 2),
+            new ConstructCheck(Construct.Property, Min: 2),
+            new ConstructCheck(Construct.Constructor, Min: 3));
+
+        Assert.Equal([true, true, false], response.Results.Select(result => result.Passed));
+        Assert.Equal("2", response.Results[2].Actual);
+    }
+
+    [Fact]
+    public void PrivateSetAndThisAreCounted()
+    {
+        const string code = """
+            Hero hero = new Hero(5);
+            System.Console.WriteLine(hero.Hp + hero.Mana);
+
+            class Hero
+            {
+                private int hp;
+
+                public Hero(int hp) { this.hp = hp; Mana = this.hp; }
+
+                public int Hp { get { return hp; } private set { hp = value; } }
+
+                public int Mana { get; set; }
+
+                public int Armor { get; private set; }
+            }
+            """;
+
+        var response = Test(
+            code,
+            new ConstructCheck(Construct.PrivateSet, Min: 2),
+            new ConstructCheck(Construct.This, Min: 2),
+            new ConstructCheck(Construct.This, Min: 3));
+
+        Assert.Equal([true, true, false], response.Results.Select(result => result.Passed));
+        Assert.Equal("2", response.Results[2].Actual);
+    }
+
+    [Fact]
+    public void PublicSetIsNotPrivateSet()
+    {
+        var response = Test(
+            "System.Console.WriteLine(new Hero().Hp);\nclass Hero { public int Hp { get; set; } }",
+            new ConstructCheck(Construct.PrivateSet),
+            new ConstructCheck(Construct.This));
+
+        Assert.Equal([false, false], response.Results.Select(result => result.Passed));
+    }
+
+    [Fact]
+    public void CallerCanBeConstructorOrProperty()
+    {
+        const string code = """
+            Hero hero = new Hero();
+            System.Console.WriteLine(hero.Hp);
+
+            class Hero
+            {
+                public Hero() { Log(); }
+
+                public int Hp { get { Count(); return 1; } }
+
+                public int Mana => Count();
+
+                private void Log() { }
+
+                private int Count() { return 0; }
+            }
+            """;
+
+        var response = Test(
+            code,
+            new CallCheck("Hero.Log", Caller: "Hero.Hero"),
+            new CallCheck("Hero.Count", Caller: "Hero.Hp"),
+            new CallCheck("Hero.Count", Caller: "Hero.Mana"),
+            new CallCheck("Hero.Log", Caller: "Hero.Hp"));
+
+        Assert.Equal([true, true, true, false], response.Results.Select(result => result.Passed));
+    }
+
+    [Fact]
+    public void AccessCountsOnlyReadsOfFieldOrProperty()
+    {
+        const string code = """
+            int hp = 50;
+            Hero hero = new Hero { hp = hp };
+            hero.hp = 10;
+            hero.hp += 5;
+            hero.hp++;
+            hero.Mana = 3;
+            System.Console.WriteLine(hp);
+            System.Console.WriteLine(hero.Mana);
+
+            class Hero
+            {
+                public int hp;
+
+                public int Mana { get; set; }
+
+                public int Total() { return this.hp + hp; }
+            }
+            """;
+
+        var response = Test(
+            code,
+            new AccessCheck("Hero.hp"),
+            new AccessCheck("Hero.hp", Min: 3),
+            new AccessCheck("Hero.Mana"),
+            new AccessCheck("Hero.Armor"));
+
+        Assert.Equal([true, false, true, false], response.Results.Select(result => result.Passed));
+        // Только this.hp и hp в Total: запись в hero.hp (=, +=, ++) и hp из основного кода не считаются
+        Assert.Equal(("3", "2"), (response.Results[1].Expected, response.Results[1].Actual));
+    }
+
+    [Fact]
+    public void AccessCatchesPrintingOriginalVariableInsteadOfField()
+    {
+        const string wrong = "int hp = 50;\nHero hero = new Hero();\nhero.hp = hp;\nSystem.Console.WriteLine(hp);\nclass Hero { public int hp; }";
+        const string right = "int hp = 50;\nHero hero = new Hero();\nhero.hp = hp;\nSystem.Console.WriteLine(hero.hp);\nclass Hero { public int hp; }";
+
+        Assert.False(Test(wrong, new AccessCheck("Hero.hp")).Passed);
+        Assert.True(Test(right, new AccessCheck("Hero.hp")).Passed);
+    }
+
+    [Fact]
+    public void FieldsAndMethodsAreNotConstructorsOrProperties()
+    {
+        var response = Test(
+            "System.Console.WriteLine(new Hero().Hp);\nclass Hero { public int Hp = 1; public void Hero2() { } }",
+            new ConstructCheck(Construct.Constructor),
+            new ConstructCheck(Construct.Property));
+
+        Assert.Equal([false, false], response.Results.Select(result => result.Passed));
+    }
+
+    [Fact]
     public void BreakCountsOnlyWhenItLeavesLoopAndContinueAlways()
     {
         const string code = """

@@ -75,6 +75,141 @@ public sealed class InitialValuesTests
         Assert.True(result.Passed, result.Actual);
     }
 
+    [Theory]
+    [InlineData("int[] items = { 1, 2 };", """{ "items": [5, 9, 1] }""", "5,9,1")]
+    [InlineData("int[] items = new int[] { 1, 2 };", """{ "items": [5, -9] }""", "5,-9")]
+    // Длина в скобках не мешает: подставляется new int[] { … } целиком
+    [InlineData("int[] items = new int[2] { 1, 2 };", """{ "items": [5, 9, 1] }""", "5,9,1")]
+    [InlineData("int[] items = new int[2];", """{ "items": [7] }""", "7")]
+    [InlineData("var items = new[] { 1, 2 };", """{ "items": [3] }""", "3")]
+    [InlineData("int[] items = { 1, 2 };", """{ "items": [] }""", "")]
+    [InlineData("long[] items = { 1 };", """{ "items": [5000000000] }""", "5000000000")]
+    [InlineData("double[] items = { 1.5 };", """{ "items": [2.25, 3] }""", "2.25,3")]
+    [InlineData("float[] items = { 1.5f };", """{ "items": [0.5] }""", "0.5")]
+    [InlineData("decimal[] items = { 1.5m };", """{ "items": [9.99] }""", "9.99")]
+    [InlineData("string[] items = { \"Аня\" };", """{ "items": ["Боб", "\"Меч\""] }""", "Боб,\"Меч\"")]
+    [InlineData("char[] items = { 'a' };", """{ "items": ["W", "S"] }""", "W,S")]
+    [InlineData("bool[] items = { true };", """{ "items": [false, true] }""", "False,True")]
+    [InlineData("List<int> items = new List<int> { 1, 2 };", """{ "items": [5, 9, 1] }""", "5,9,1")]
+    [InlineData("List<string> items = new List<string>();", """{ "items": ["Аня"] }""", "Аня")]
+    [InlineData("var items = new List<int>();", """{ "items": [] }""", "")]
+    // Без using System.Collections.Generic: подставляется полное имя типа
+    [InlineData("System.Collections.Generic.List<int> items = new System.Collections.Generic.List<int>();", """{ "items": [4] }""", "4")]
+    public void ReplacesArrayAndList(string declaration, string set, string printed)
+    {
+        var result = Check($"using System.Collections.Generic;\n{declaration}\nSystem.Console.Write(string.Join(\",\", items));", printed, set);
+
+        Assert.True(result.Passed, result.Actual);
+        Assert.Null(result.SetError);
+    }
+
+    [Theory]
+    [InlineData("double[] items = { 1.5 };")]
+    [InlineData("var items = new List<double> { 1.5 };")]
+    public void WholeNumberInArrayForDoubleStaysDouble(string declaration)
+    {
+        var result = Check($"using System.Collections.Generic;\n{declaration}\nSystem.Console.Write(items[0] / 2);", "1.5", """{ "items": [3] }""");
+
+        Assert.True(result.Passed, result.Actual);
+    }
+
+    [Fact]
+    public void SumOverArrayIsCheckedWithAnotherArray()
+    {
+        const string loop = "int[] scores = { 3, 4 };\nint sum = 0;\nforeach (int score in scores)\n{\n    sum += score;\n}\nSystem.Console.Write(sum);";
+        const string printed = "int[] scores = { 3, 4 };\nforeach (int score in scores) { }\nSystem.Console.Write(7);";
+
+        Assert.True(Check(loop, "15", """{ "scores": [5, 9, 1] }""").Passed);
+        Assert.False(Check(printed, "15", """{ "scores": [5, 9, 1] }""").Passed);
+    }
+
+    [Fact]
+    public void LineOfExceptionStaysTheSameAfterMultilineArray()
+    {
+        const string code = "int[] scores =\n{\n    1,\n    2,\n};\nint[] empty = new int[0];\nSystem.Console.Write(empty[scores.Length]);";
+
+        var result = Check(code, "0", """{ "scores": [5, 9, 1] }""");
+
+        Assert.Equal(("IndexOutOfRangeException", 7), (result.Error?.Type, result.Error?.Line));
+    }
+
+    [Theory]
+    [InlineData("int[] items = { 1 };", """{ "items": 5 }""", "int[]")]
+    [InlineData("int[] items = { 1 };", """{ "items": [1.5] }""", "int[]")]
+    [InlineData("int[] items = { 1 };", """{ "items": [1, "2"] }""", "int[]")]
+    [InlineData("int[] items = { 1 };", """{ "items": [null] }""", "int[]")]
+    [InlineData("char[] items = { 'a' };", """{ "items": ["ab"] }""", "char[]")]
+    [InlineData("int[,] items = new int[1, 1];", """{ "items": [1] }""", "int[,]")]
+    [InlineData("int[][] items = new int[1][];", """{ "items": [[1]] }""", "int[][]")]
+    [InlineData("List<int> items = new List<int>();", """{ "items": "1" }""", "List<int>")]
+    [InlineData("List<List<int>> items = new List<List<int>>();", """{ "items": [[1]] }""", "List<List<int>>")]
+    [InlineData("Dictionary<string, int> items = new Dictionary<string, int>();", """{ "items": [1] }""", "Dictionary<string, int>")]
+    [InlineData("int items = 1;", """{ "items": [1] }""", "int")]
+    public void WrongArrayValueIsReported(string declaration, string set, string type)
+    {
+        var result = Check($"using System.Collections.Generic;\n{declaration}\nSystem.Console.Write(items);", "1", set);
+
+        Assert.False(result.Passed);
+        Assert.Equal(new SetError("items", SetProblem.WrongType, type), result.SetError);
+    }
+
+    [Theory]
+    // Пустой [] не проверяет ни одного элемента: тип элемента проверяется отдельно
+    [InlineData("int[][] items = new int[1][];", "int[][]")]
+    [InlineData("Hero[] items = new Hero[1];", "Hero[]")]
+    [InlineData("List<List<int>> items = new List<List<int>>();", "List<List<int>>")]
+    [InlineData("List<Hero> items = new List<Hero>();", "List<Hero>")]
+    public void EmptyArrayForNotSimpleElementsIsWrongType(string declaration, string type)
+    {
+        var result = Check($"using System.Collections.Generic;\n{declaration}\nSystem.Console.Write(items);\nclass Hero {{ }}", "1", """{ "items": [] }""");
+
+        Assert.Equal(new SetError("items", SetProblem.WrongType, type), result.SetError);
+    }
+
+    [Fact]
+    public void LineOfExceptionStaysTheSameWithWindowsLineEndings()
+    {
+        const string code = "int[] scores =\r\n{\r\n    1,\r\n    2,\r\n};\r\nint[] empty = new int[0];\r\nSystem.Console.Write(empty[scores.Length]);";
+
+        var result = Check(code, "0", """{ "scores": [5, 9, 1] }""");
+
+        Assert.Equal(("IndexOutOfRangeException", 7), (result.Error?.Type, result.Error?.Line));
+    }
+
+    [Theory]
+    [InlineData("string[] items = { \"a\" };", """{ "items": ["a\"b", "c\\d", "{0}", "e'f", "x\ty", "/* */"] }""", "a\"b|c\\d|{0}|e'f|x\ty|/* */")]
+    [InlineData("char[] items = { 'a' };", """{ "items": ["'", "\\", "\"", "й", "\t"] }""", "'|\\|\"|й|\t")]
+    public void SpecialCharactersInArrayAreEscaped(string declaration, string set, string printed)
+    {
+        var result = Check($"{declaration}\nSystem.Console.Write(string.Join(\"|\", items));", printed, set);
+
+        Assert.True(result.Passed, result.Actual);
+    }
+
+    [Fact]
+    public void ArrayInLoopOrWithoutValueIsReported()
+    {
+        Assert.Equal(
+            new SetError("items", SetProblem.NotFound),
+            Check("for (int i = 0; i < 1; i++) { int[] items = { 1 }; System.Console.Write(items[0]); }", "5", """{ "items": [5] }""").SetError);
+        Assert.Equal(
+            new SetError("items", SetProblem.NoValue),
+            Check("int[] items;\nitems = new int[] { 1 };\nSystem.Console.Write(items[0]);", "5", """{ "items": [5] }""").SetError);
+    }
+
+    [Theory]
+    // Ничего не печатает — и ничего не ждали: пройдено
+    [InlineData("int count = 0;", """{ "count": 0 }""", true)]
+    [InlineData("int count = 3;", """{ "count": 0 }""", true)]
+    [InlineData("int count = 0;", """{ "count": 2 }""", false)]
+    public void EmptyExpectedOutputMeansProgramPrintsNothing(string declaration, string set, bool passed)
+    {
+        var code = $"{declaration}\nfor (int i = 0; i < count; i++)\n{{\n    System.Console.WriteLine(i);\n}}";
+
+        Assert.Equal(passed, Check(code, string.Empty, set).Passed);
+        Assert.True(Service.Test(new TestRequest("int count = 0;", [new OutputCheck(string.Empty)])).Passed);
+    }
+
     [Fact]
     public void CodeThatDoesNotCompileWithNewValueIsReported()
     {

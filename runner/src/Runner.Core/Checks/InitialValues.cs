@@ -13,13 +13,30 @@ namespace CSharpSchool.Runner.Checks;
 /// <list type="bullet">
 /// <item>Переменная — из основного кода (top-level statements): не внутри цикла, блока или метода,
 /// объявлена ровно один раз и сразу со значением. Так ученик не подменит её случайно в другом месте.</item>
-/// <item>Значение — только литерал простого типа: int, long ← целое; double, float, decimal ← любое число;
+/// <item>Значение — литерал простого типа: int, long ← целое; double, float, decimal ← любое число;
 /// string ← строка; char ← строка из одного символа; bool ← true/false. Для зерна Random задача
 /// заводит отдельную переменную: <c>int seed = 42; Random random = new Random(seed);</c>.</item>
+/// <item>Или JSON-массив для массива (<c>int[]</c>) и списка (<c>List&lt;int&gt;</c>) простых значений:
+/// <c>[5, 9, 1]</c> → <c>new int[] { 5, 9, 1 }</c> — так же для <c>{ … }</c>, <c>new[] { … }</c> и
+/// <c>new int[3] { … }</c> (длина берётся из нового списка). Каждый элемент — по правилам выше.</item>
 /// </list>
+/// Число строк кода не меняется: исключение показывается на той же строке, что у ученика.
 /// </summary>
 internal static class InitialValues
 {
+    /// <summary>Типы, значения которых подставляются литералом (см. Literal).</summary>
+    private static readonly HashSet<SpecialType> Simple =
+    [
+        SpecialType.System_Int32,
+        SpecialType.System_Int64,
+        SpecialType.System_Double,
+        SpecialType.System_Single,
+        SpecialType.System_Decimal,
+        SpecialType.System_String,
+        SpecialType.System_Char,
+        SpecialType.System_Boolean,
+    ];
+
     /// <returns>Код с подменёнными значениями или причина, почему подменить нельзя.</returns>
     public static (string? Code, SetError? Error) Apply(SyntaxTree tree, SemanticModel model, IReadOnlyDictionary<string, JsonElement> values)
     {
@@ -49,20 +66,72 @@ internal static class InitialValues
             }
 
             var type = (model.GetDeclaredSymbol(declarator) as ILocalSymbol)?.Type;
-            var literal = type is null ? null : Literal(type.SpecialType, value);
+            var replacement = type is null ? null : Value(type, value, model);
 
-            if (literal is null)
+            if (replacement is null)
             {
                 return (null, new SetError(name, SetProblem.WrongType, type?.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat)));
             }
 
             var old = declarator.Initializer.Value;
-            replacements[old] = literal.WithTriviaFrom(old);
+            replacements[old] = SameLines(replacement, old);
         }
 
         var changed = root.ReplaceNodes(replacements.Keys, (original, _) => replacements[original]);
 
         return (changed.ToFullString(), null);
+    }
+
+    /// <summary>Новое значение переменной этого типа или null, если значение к типу не подходит.</summary>
+    private static ExpressionSyntax? Value(ITypeSymbol type, JsonElement value, SemanticModel model)
+    {
+        var element = type switch
+        {
+            IArrayTypeSymbol { Rank: 1 } array => array.ElementType,
+            INamedTypeSymbol { TypeArguments: [var argument] } named
+                when SymbolEqualityComparer.Default.Equals(named.OriginalDefinition, model.Compilation.GetTypeByMetadataName("System.Collections.Generic.List`1")) => argument,
+            _ => null,
+        };
+
+        if (element is null)
+        {
+            return Literal(type.SpecialType, value);
+        }
+
+        // Тип элемента проверяется до перебора: пустой [] иначе подошёл бы и к Hero[], и к int[][]
+        if (value.ValueKind != JsonValueKind.Array || !Simple.Contains(element.SpecialType))
+        {
+            return null;
+        }
+
+        var items = value.EnumerateArray().Select(item => Literal(element.SpecialType, item)).ToList();
+
+        if (items.Contains(null))
+        {
+            return null;
+        }
+
+        // Полное имя типа (global::System.Collections.Generic.List<int>) собирается и без using.
+        // Текст элементов — от Roslyn (кавычки и спецсимволы экранированы), поэтому разбор надёжен.
+        // Массив — всегда new int[] { … }: подходит и вместо { … }, и вместо new int[3] { … }
+        var typeName = type.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+        var elements = string.Join(", ", items.Select(item => item!.ToFullString()));
+
+        return SyntaxFactory.ParseExpression($"new {typeName} {{ {elements} }}");
+    }
+
+    /// <summary>
+    /// Новое значение — на тех же строках, что старое: многострочный { … } превращается в одну
+    /// строку и пустые строки после неё, чтобы номер строки исключения ниже не сдвинулся.
+    /// </summary>
+    private static ExpressionSyntax SameLines(ExpressionSyntax replacement, ExpressionSyntax old)
+    {
+        var lines = old.GetLocation().GetLineSpan();
+        var removed = lines.EndLinePosition.Line - lines.StartLinePosition.Line;
+
+        return replacement
+            .WithLeadingTrivia(old.GetLeadingTrivia())
+            .WithTrailingTrivia(Enumerable.Repeat(SyntaxFactory.EndOfLine("\n"), removed).Concat(old.GetTrailingTrivia()));
     }
 
     /// <summary>Литерал нужного типа или null, если значение к типу не подходит.</summary>

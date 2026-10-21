@@ -12,13 +12,15 @@ namespace CSharpSchool.Runner.Protocol;
 [JsonDerivedType(typeof(VariableCheck), "variable")]
 [JsonDerivedType(typeof(ConstructCheck), "construct")]
 [JsonDerivedType(typeof(CallCheck), "call")]
+[JsonDerivedType(typeof(AccessCheck), "access")]
 public abstract record Check;
 
 /// <summary>Программа с таким вводом печатает такой текст. Переводы строк \r\n и \n равны, хвостовые пробелы и пустые строки в конце не важны.</summary>
 /// <param name="Set">
 /// Запустить программу с другими начальными значениями: «имя переменной → значение» (JSON-число,
-/// строка или true/false). Подменяется значение при объявлении переменной в основном коде:
-/// <c>int height = 4;</c> → <c>int height = 5;</c>. Так пустой цикл и готовый ответ в Console.WriteLine
+/// строка, true/false или массив из них — для <c>int[]</c> и <c>List&lt;int&gt;</c>). Подменяется значение
+/// при объявлении переменной в основном коде: <c>int height = 4;</c> → <c>int height = 5;</c>,
+/// <c>int[] scores = { 1, 2 };</c> → <c>new int[] { 5, 9, 1 }</c>. Так пустой цикл и готовый ответ в Console.WriteLine
 /// не проходят проверку. Код ученика при обычном запуске не меняется. Подробно — InitialValues.
 /// </param>
 public sealed record OutputCheck(
@@ -56,11 +58,33 @@ public enum Construct
     Method,
     Class,
 
+    /// <summary>Объявление конструктора класса: <c>public Hero(int hp) { … }</c>.</summary>
+    Constructor,
+
+    /// <summary>Объявление свойства: <c>public int Hp { get; private set; }</c>.</summary>
+    Property,
+
+    /// <summary>Метод доступа set с private: <c>{ get; private set; }</c>.</summary>
+    PrivateSet,
+
+    /// <summary>Слово this: <c>this.hp = hp;</c>.</summary>
+    This,
+
     /// <summary>break, который выходит из цикла; break в switch не считается.</summary>
     Break,
     Continue,
 }
 
 /// <summary>В коде вызывается метод: полное имя, например «System.Console.WriteLine», «System.Math.Max» или свой «Program.Report».</summary>
-/// <param name="Caller">Если задан — вызов засчитывается, только когда он в теле этого метода (то же полное имя: «Program.Report»).</param>
+/// <param name="Caller">
+/// Если задан — вызов засчитывается, только когда он в теле этого метода (то же полное имя: «Program.Report»,
+/// метод класса — «Hero.Heal»), конструктора («Hero.Hero» — имя класса дважды) или свойства («Hero.Hp» — в get или set).
+/// </param>
 public sealed record CallCheck(string Method, string? Caller = null) : Check;
+
+/// <summary>
+/// Значение поля или свойства читается в коде не меньше <paramref name="Min"/> раз: «Hero.hp» — поле hp класса Hero.
+/// Запись (<c>hero.hp = 5</c>, <c>+=</c>, <c>++</c>) не считается. Так видно, что печатается поле объекта,
+/// а не исходная переменная: <c>Console.WriteLine(hero.hp)</c>, а не <c>Console.WriteLine(hp)</c>.
+/// </summary>
+public sealed record AccessCheck(string Member, int Min = 1) : Check;

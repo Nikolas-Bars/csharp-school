@@ -37,6 +37,36 @@ describe('useLoader', () => {
 })
 
 describe('describeCheck', () => {
+  it('классы: конструкции и чтение поля объекта', () => {
+    expect([
+      describeCheck({ kind: 'construct', construct: 'constructor' }),
+      describeCheck({ kind: 'construct', construct: 'property' }),
+      describeCheck({ kind: 'construct', construct: 'privateSet' }),
+      describeCheck({ kind: 'construct', construct: 'this', min: 2 }),
+      describeCheck({ kind: 'access', member: 'Hero.hp', min: 1 }),
+      describeCheck({ kind: 'call', method: 'Hero.Heal', caller: 'Hero.Hero' }),
+    ]).toEqual([
+      'Используется конструктор',
+      'Используется свойство',
+      'Используется private set (менять можно только внутри класса)',
+      'Используется this (поле своего объекта)',
+      'Используется значение hp объекта Hero',
+      'Метод Hero.Heal вызывается из Hero.Hero',
+    ])
+  })
+
+  it('массив и список в set — как в C#: { 5, 9, 1 }', () => {
+    expect(
+      describeCheck({
+        kind: 'output',
+        expected: '',
+        set: { scores: [5, 9, 1], names: ['Аня', 'Боб'], empty: [] },
+      }),
+    ).toBe(
+      'Программа печатает то, что нужно, при scores = { 5, 9, 1 }, names = { «Аня», «Боб» }, empty = { }',
+    )
+  })
+
   it('подписи проверок простыми словами', () => {
     expect([
       describeCheck({ kind: 'output', expected: '' }),

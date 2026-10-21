@@ -96,13 +96,18 @@ use OpenApi\Attributes as OA;
                 new OA\Property(property: 'match', description: 'exact — вывод целиком, contains — текст где-то в выводе', type: 'string', default: 'exact', enum: ['exact', 'contains']),
                 new OA\Property(
                     property: 'set',
-                    description: 'Запустить с другими начальными значениями: имя переменной основного кода → значение',
+                    description: 'Запустить с другими начальными значениями: имя переменной основного кода → значение (массив — для int[] и List<int>)',
                     type: ['object', 'null'],
-                    example: ['height' => 5],
+                    example: ['height' => 5, 'scores' => [5, 9, 1]],
                     additionalProperties: new OA\AdditionalProperties(oneOf: [
                         new OA\Schema(type: 'number'),
                         new OA\Schema(type: 'string'),
                         new OA\Schema(type: 'boolean'),
+                        new OA\Schema(type: 'array', items: new OA\Items(oneOf: [
+                            new OA\Schema(type: 'number'),
+                            new OA\Schema(type: 'string'),
+                            new OA\Schema(type: 'boolean'),
+                        ])),
                     ]),
                 ),
             ],
@@ -125,7 +130,7 @@ use OpenApi\Attributes as OA;
             required: ['kind', 'construct'],
             properties: [
                 new OA\Property(property: 'kind', type: 'string', enum: ['construct']),
-                new OA\Property(property: 'construct', type: 'string', enum: ['if', 'else', 'for', 'foreach', 'while', 'doWhile', 'switch', 'method', 'class', 'break', 'continue']),
+                new OA\Property(property: 'construct', type: 'string', enum: ['if', 'else', 'for', 'foreach', 'while', 'doWhile', 'switch', 'method', 'class', 'break', 'continue', 'constructor', 'property', 'privateSet', 'this']),
                 new OA\Property(property: 'min', type: 'integer', default: 1, minimum: 1),
             ],
             type: 'object',
@@ -137,7 +142,18 @@ use OpenApi\Attributes as OA;
             properties: [
                 new OA\Property(property: 'kind', type: 'string', enum: ['call']),
                 new OA\Property(property: 'method', description: 'Полное имя', type: 'string', example: 'System.Console.WriteLine'),
-                new OA\Property(property: 'caller', description: 'Вызов засчитывается только в теле этого метода (полное имя)', type: ['string', 'null'], example: 'Program.Report'),
+                new OA\Property(property: 'caller', description: 'Вызов засчитывается только в теле этого метода (полное имя), конструктора (`Hero.Hero`) или свойства (`Hero.Hp`)', type: ['string', 'null'], example: 'Program.Report'),
+            ],
+            type: 'object',
+        ),
+        new OA\Schema(
+            title: 'access',
+            description: 'Значение поля или свойства читается в коде не меньше `min` раз (запись не считается)',
+            required: ['kind', 'member'],
+            properties: [
+                new OA\Property(property: 'kind', type: 'string', enum: ['access']),
+                new OA\Property(property: 'member', description: 'Класс и поле или свойство', type: 'string', example: 'Hero.hp'),
+                new OA\Property(property: 'min', type: 'integer', default: 1, minimum: 1),
             ],
             type: 'object',
         ),
