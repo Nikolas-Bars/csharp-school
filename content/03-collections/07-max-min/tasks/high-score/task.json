@@ -1,0 +1,63 @@
+{
+  "title": {
+    "ru": "Рекорд"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "variable",
+      "name": "best",
+      "type": "int"
+    },
+    {
+      "kind": "construct",
+      "construct": "foreach"
+    },
+    {
+      "kind": "output",
+      "expected": "Рекорд: 1570"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужна переменная best типа int — в ней хранится лучший результат на данный момент."
+    },
+    {
+      "ru": "Перебери массив scores циклом foreach."
+    },
+    {
+      "ru": "Сверь вывод с ожидаемым. Если вышел последний или первый элемент, проверь сравнение: best меняется, только когда очередной результат больше."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Начни с первого элемента: int best = scores[0]; и сравнивай с ним все остальные."
+    },
+    {
+      "ru": "В цикле: если очередной результат больше best, запомни его в best."
+    },
+    {
+      "ru": "foreach (int s in scores) { if (s > best) { best = s; } } — а после цикла выведи best."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-sign.cs",
+      "fails": [
+        2
+      ],
+      "why": "< вместо >: найден минимум"
+    },
+    {
+      "file": "wrong-no-compare.cs",
+      "fails": [
+        2
+      ],
+      "why": "Без сравнения в best остаётся последний элемент"
+    }
+  ]
+}

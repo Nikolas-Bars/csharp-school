@@ -1,0 +1,90 @@
+{
+  "title": {
+    "ru": "Волна растёт"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "for"
+    },
+    {
+      "kind": "call",
+      "method": "System.Collections.Generic.List.Add"
+    },
+    {
+      "kind": "output",
+      "expected": "Врагов: 5\nОбщее здоровье: 210"
+    },
+    {
+      "kind": "output",
+      "expected": "Врагов: 7\nОбщее здоровье: 310",
+      "set": {
+        "reinforcements": 5
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Используй цикл for, чтобы добавить врагов."
+    },
+    {
+      "ru": "Новый элемент в список кладут методом Add. Запись по индексу wave[i] = … только меняет элемент, который уже есть, и список от неё не растёт."
+    },
+    {
+      "ru": "Сверь вывод с ожидаемым. Цикл должен выполниться ровно reinforcements раз — проверь начало и условие. Сумму считай после того, как все враги добавлены."
+    },
+    {
+      "ru": "Программа должна работать при любом значении reinforcements — не печатай готовый ответ, добавляй врагов и считай сумму циклом."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Сначала цикл, который добавляет врагов, потом — сумма, как в модуле «Циклы»."
+    },
+    {
+      "ru": "for (int i = 0; i < reinforcements; i++) { wave.Add(50); } — потом int total = 0; и foreach по wave."
+    },
+    {
+      "ru": "После цикла добавления: foreach (int hp in wave) { total += hp; } и два вывода: wave.Count и total."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-one-extra.cs",
+      "fails": [
+        2,
+        3
+      ],
+      "why": "<= от нуля — на одного врага больше"
+    },
+    {
+      "file": "wrong-index-instead-of-add.cs",
+      "fails": [
+        1,
+        2,
+        3
+      ],
+      "why": "Запись по индексу не добавляет: wave[2] — ArgumentOutOfRangeException"
+    },
+    {
+      "file": "wrong-sum-before.cs",
+      "fails": [
+        2,
+        3
+      ],
+      "why": "Сумма посчитана до подкрепления"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        3
+      ],
+      "why": "Готовый ответ вместо Count и суммы"
+    }
+  ]
+}

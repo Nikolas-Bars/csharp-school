@@ -1,0 +1,21 @@
+{
+  "title": {
+    "ru": "Массивы и списки"
+  },
+  "description": {
+    "ru": "Массивы и индексы, перебор for и foreach, сумма, среднее, максимум, поиск, списки List"
+  },
+  "lessons": [
+    "01-arrays",
+    "02-array-write",
+    "03-length",
+    "04-for-arrays",
+    "05-foreach",
+    "06-sum-average",
+    "07-max-min",
+    "08-search-count",
+    "09-list",
+    "10-list-remove",
+    "11-module-test"
+  ]
+}

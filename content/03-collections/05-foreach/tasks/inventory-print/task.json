@@ -1,0 +1,62 @@
+{
+  "title": {
+    "ru": "Содержимое рюкзака"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "foreach"
+    },
+    {
+      "kind": "output",
+      "expected": "- факел\n- верёвка\n- хлеб\n- карта\nВсего: 4"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Используй цикл foreach: в этой задаче индексы не нужны."
+    },
+    {
+      "ru": "Сверь вывод с ожидаемым. Если видишь System.String[], печатается весь массив, а не очередной предмет. «Всего» должно появиться один раз — после цикла."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "foreach сам берёт элементы по очереди и кладёт их в переменную цикла."
+    },
+    {
+      "ru": "foreach (string item in backpack) { … } — внутри печатай item, а количество (backpack.Length) — после закрывающей скобки цикла."
+    },
+    {
+      "ru": "Внутри цикла: Console.WriteLine($\"- {item}\"); после цикла: Console.WriteLine($\"Всего: {backpack.Length}\");"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-for.cs",
+      "fails": [
+        0
+      ],
+      "why": "for вместо foreach"
+    },
+    {
+      "file": "wrong-whole-array.cs",
+      "fails": [
+        1
+      ],
+      "why": "Печатается массив целиком (System.String[]) вместо item"
+    },
+    {
+      "file": "wrong-total-inside.cs",
+      "fails": [
+        1
+      ],
+      "why": "«Всего» внутри цикла — печатается четыре раза"
+    }
+  ]
+}

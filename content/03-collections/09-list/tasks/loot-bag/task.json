@@ -1,0 +1,81 @@
+{
+  "title": {
+    "ru": "Подбираем лут"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "variable",
+      "name": "bag",
+      "type": "List<string>"
+    },
+    {
+      "kind": "call",
+      "method": "System.Collections.Generic.List.Add"
+    },
+    {
+      "kind": "construct",
+      "construct": "foreach"
+    },
+    {
+      "kind": "output",
+      "expected": "Предметов: 3\nмонета\nкольцо\nсвиток"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужен список bag типа List<string> — массив здесь не подойдёт: его длина не меняется."
+    },
+    {
+      "ru": "Предметы кладут в список методом Add."
+    },
+    {
+      "ru": "Выведи предметы циклом foreach по списку bag."
+    },
+    {
+      "ru": "Сверь вывод с ожидаемым: все ли три предмета попали в список и в том ли порядке?"
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Пустой список создают через new, а предметы добавляют по одному."
+    },
+    {
+      "ru": "List<string> bag = new List<string>(); потом bag.Add(\"монета\"); — и так для каждого предмета. Количество — bag.Count."
+    },
+    {
+      "ru": "Console.WriteLine($\"Предметов: {bag.Count}\"); а потом foreach (string item in bag) { Console.WriteLine(item); }"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-length.cs",
+      "compileError": "CS1061",
+      "why": "Length у списка нет — у него Count"
+    },
+    {
+      "file": "wrong-missing-add.cs",
+      "fails": [
+        3
+      ],
+      "why": "Забыт Add для кольца"
+    },
+    {
+      "file": "wrong-no-using.cs",
+      "compileError": "CS0246",
+      "why": "Без using System.Collections.Generic; List неизвестен"
+    },
+    {
+      "file": "wrong-array.cs",
+      "fails": [
+        0,
+        1
+      ],
+      "why": "Массив вместо списка"
+    }
+  ]
+}

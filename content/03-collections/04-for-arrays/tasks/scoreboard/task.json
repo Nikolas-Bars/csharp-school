@@ -1,0 +1,62 @@
+{
+  "title": {
+    "ru": "Таблица рекордов"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "for"
+    },
+    {
+      "kind": "output",
+      "expected": "1. Аня: 300\n2. Борис: 250\n3. Вика: 180\n4. Глеб: 90"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Используй цикл for: таблица должна выводиться перебором, а не отдельной командой на каждую строку."
+    },
+    {
+      "ru": "Сверь вывод с ожидаемым. Все ли игроки на месте? Проверь, с какого индекса начинается цикл и где он заканчивается. Номер места — это индекс плюс один."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Один цикл for проходит по индексам, и на каждом шаге печатает одну строку таблицы."
+    },
+    {
+      "ru": "for (int i = 0; i < names.Length; i++) — внутри берёшь names[i] и scores[i], а номер места — i + 1."
+    },
+    {
+      "ru": "Внутри цикла: Console.WriteLine($\"{i + 1}. {names[i]}: {scores[i]}\");"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-from-one.cs",
+      "fails": [
+        1
+      ],
+      "why": "Цикл с 1: пропущена Аня"
+    },
+    {
+      "file": "wrong-less-or-equal.cs",
+      "fails": [
+        1
+      ],
+      "why": "<= Length: на i = 4 IndexOutOfRangeException"
+    },
+    {
+      "file": "wrong-no-loop.cs",
+      "fails": [
+        0
+      ],
+      "why": "Вывод без цикла"
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "title": {
+    "ru": "Найди предмет"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "variable",
+      "name": "found",
+      "type": "bool"
+    },
+    {
+      "kind": "construct",
+      "construct": "foreach"
+    },
+    {
+      "kind": "construct",
+      "construct": "if",
+      "min": 2
+    },
+    {
+      "kind": "construct",
+      "construct": "else"
+    },
+    {
+      "kind": "output",
+      "expected": "Найден предмет: амулет"
+    },
+    {
+      "kind": "output",
+      "expected": "Нет предмета: меч",
+      "set": {
+        "target": "меч"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужен флаг found типа bool: он запоминает, встретился ли предмет."
+    },
+    {
+      "ru": "Перебери сундук chest циклом foreach."
+    },
+    {
+      "ru": "Внутри цикла нужен if, который поднимает флаг, а после цикла — if (found) … else …"
+    },
+    {
+      "ru": "После цикла нужен else — ответ на случай, когда предмета нет."
+    },
+    {
+      "ru": "Сверь вывод с ожидаемым: ответ должен быть один. Печатай после цикла, а флаг внутри цикла только поднимай — не опускай обратно."
+    },
+    {
+      "ru": "Программа должна работать при любом значении target — не печатай готовый ответ, сравнивай предметы с target, а не с готовым словом."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "До цикла флаг опущен: bool found = false; В цикле поднимай его, когда предмет равен target."
+    },
+    {
+      "ru": "Внутри foreach: if (item == target) { found = true; } — и больше ничего. Ответ — после цикла, через if (found) … else …"
+    },
+    {
+      "ru": "После цикла: if (found) { Console.WriteLine($\"Найден предмет: {target}\"); } else { Console.WriteLine($\"Нет предмета: {target}\"); }"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-print-in-loop.cs",
+      "fails": [
+        0,
+        2,
+        4,
+        5
+      ],
+      "why": "Ответ на каждый предмет вместо одного после цикла"
+    },
+    {
+      "file": "wrong-reset.cs",
+      "fails": [
+        4
+      ],
+      "why": "Флаг опускается на следующем предмете"
+    },
+    {
+      "file": "wrong-fixed-word.cs",
+      "fails": [
+        5
+      ],
+      "why": "Сравнение с готовым словом вместо target"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        5
+      ],
+      "why": "Готовый текст ответа вместо target"
+    }
+  ]
+}

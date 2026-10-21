@@ -1,0 +1,98 @@
+{
+  "title": {
+    "ru": "Перебор циклом for"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-for.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "02-mistakes.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "03-number.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "scoreboard"
+    },
+    {
+      "type": "task",
+      "task": "double-damage"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "Какое условие в for переберёт все элементы массива a?"
+          },
+          "options": [
+            {
+              "ru": "i <= a.Length"
+            },
+            {
+              "ru": "i < a.Length - 1"
+            },
+            {
+              "ru": "i < a.Length"
+            }
+          ],
+          "answer": 2,
+          "explanation": {
+            "ru": "Индексы идут от 0 до a.Length - 1, поэтому цикл продолжается, пока i строго меньше длины."
+          }
+        },
+        {
+          "question": {
+            "ru": "for (int i = 1; i < a.Length; i++) — что здесь не так?"
+          },
+          "options": [
+            {
+              "ru": "Цикл выйдет за границу"
+            },
+            {
+              "ru": "Пропущен первый элемент a[0]"
+            },
+            {
+              "ru": "Ничего, это обычный перебор"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "Перебор начинают с индекса 0. С единицы цикл пропустит первый элемент — без всякой ошибки."
+          }
+        },
+        {
+          "question": {
+            "ru": "int[] a = { 5, 6, 7 }; for (int i = 0; i < a.Length; i++) { Console.WriteLine(i); } Что напечатается?"
+          },
+          "options": [
+            {
+              "ru": "0, 1 и 2"
+            },
+            {
+              "ru": "5, 6 и 7"
+            },
+            {
+              "ru": "1, 2 и 3"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "Печатается i — индекс, а не элемент. Чтобы вывести элементы, нужно a[i]."
+          }
+        }
+      ]
+    }
+  ]
+}

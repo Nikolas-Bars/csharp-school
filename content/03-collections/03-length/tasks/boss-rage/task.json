@@ -1,0 +1,80 @@
+{
+  "title": {
+    "ru": "Ярость босса"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "variable",
+      "name": "wave",
+      "type": "int[]"
+    },
+    {
+      "kind": "output",
+      "expected": "Врагов в волне: 4\nЗдоровье босса: 300"
+    },
+    {
+      "kind": "output",
+      "expected": "Врагов в волне: 4\nЗдоровье босса: 450",
+      "set": {
+        "rage": 3
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Не удаляй массив wave: менять нужно его последний элемент."
+    },
+    {
+      "ru": "Сверь вывод с ожидаемым. Здоровье босса нужно умножить на rage, а индекс последнего элемента — на единицу меньше длины."
+    },
+    {
+      "ru": "Программа должна работать при любом значении rage — не печатай готовый ответ, умножай последний элемент массива на rage."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Последний элемент — wave[wave.Length - 1]. С ним можно делать всё то же, что с переменной."
+    },
+    {
+      "ru": "Умножить и сохранить результат — короткая запись *=."
+    },
+    {
+      "ru": "wave[wave.Length - 1] *= rage; потом выведи wave.Length и wave[wave.Length - 1]."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-length-index.cs",
+      "fails": [
+        1,
+        2
+      ],
+      "why": "wave[wave.Length] — за границей: IndexOutOfRangeException"
+    },
+    {
+      "file": "wrong-plus.cs",
+      "fails": [
+        1,
+        2
+      ],
+      "why": "+= вместо *="
+    },
+    {
+      "file": "wrong-no-assign.cs",
+      "compileError": "CS0201",
+      "why": "Умножение без записи результата — не команда"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        2
+      ],
+      "why": "Здоровье босса напечатано готовым"
+    }
+  ]
+}

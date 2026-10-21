@@ -1,0 +1,99 @@
+{
+  "title": {
+    "ru": "Критические удары"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "variable",
+      "name": "crits",
+      "type": "int"
+    },
+    {
+      "kind": "construct",
+      "construct": "for"
+    },
+    {
+      "kind": "construct",
+      "construct": "if"
+    },
+    {
+      "kind": "output",
+      "expected": "Критов: 4 из 7"
+    },
+    {
+      "kind": "output",
+      "expected": "Критов: 2 из 7",
+      "set": {
+        "critDamage": 35
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужен счётчик crits типа int."
+    },
+    {
+      "ru": "Перебери массив hits циклом for."
+    },
+    {
+      "ru": "Внутри цикла нужен if: считать надо не все удары, а только критические."
+    },
+    {
+      "ru": "Сверь вывод с ожидаемым. «critDamage и больше» — удар ровно в critDamage тоже крит. Счётчик растёт на 1 за каждый крит, урон к нему не прибавляют. Если программа упала — проверь условие цикла."
+    },
+    {
+      "ru": "Программа должна работать при любом значении critDamage — не печатай готовый ответ, считай циклом."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Счётчик начинается с нуля и увеличивается на 1, когда удар критический."
+    },
+    {
+      "ru": "int crits = 0; for (int i = 0; i < hits.Length; i++) { if (…) { crits++; } } — «critDamage и больше» записывается как >= critDamage."
+    },
+    {
+      "ru": "Внутри цикла: if (hits[i] >= critDamage) { crits++; } после цикла: Console.WriteLine($\"Критов: {crits} из {hits.Length}\");"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-greater.cs",
+      "fails": [
+        3,
+        4
+      ],
+      "why": "> вместо >=: удар ровно в critDamage не засчитан"
+    },
+    {
+      "file": "wrong-sum.cs",
+      "fails": [
+        3,
+        4
+      ],
+      "why": "Сложен урон вместо подсчёта"
+    },
+    {
+      "file": "wrong-less-or-equal.cs",
+      "fails": [
+        3,
+        4
+      ],
+      "why": "<= Length: IndexOutOfRangeException"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        1,
+        2,
+        4
+      ],
+      "why": "Готовое число без цикла"
+    }
+  ]
+}

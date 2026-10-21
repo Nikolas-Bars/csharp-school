@@ -1,0 +1,54 @@
+{
+  "title": {
+    "ru": "Сколько лута"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "variable",
+      "name": "loot",
+      "type": "string[]"
+    },
+    {
+      "kind": "output",
+      "expected": "Предметов: 5\nПервый: монета\nПоследний: свиток"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Не удаляй массив loot из стартового кода: данные нужно брать из него."
+    },
+    {
+      "ru": "Сверь вывод с ожидаемым. Если программа упала с IndexOutOfRangeException, проверь индекс последнего предмета: он на единицу меньше длины."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Количество элементов — loot.Length. Последний элемент стоит не на месте Length, а на шаг раньше."
+    },
+    {
+      "ru": "Первый предмет — loot[0], последний — loot[loot.Length - 1]."
+    },
+    {
+      "ru": "Console.WriteLine($\"Предметов: {loot.Length}\"); затем «Первый:» с loot[0] и «Последний:» с loot[loot.Length - 1]."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-last-length.cs",
+      "fails": [
+        1
+      ],
+      "why": "loot[loot.Length] — за границей массива"
+    },
+    {
+      "file": "wrong-lowercase.cs",
+      "compileError": "CS1061",
+      "why": "length со строчной буквы — такого нет"
+    }
+  ]
+}
