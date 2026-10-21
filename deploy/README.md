@@ -44,6 +44,16 @@ Production-стек — Docker Compose на одном сервере. Всё п
   мессенджер. Их собирает и проверяет GitHub Actions (workflow `deploy`) после мёржа в `main` и
   кладёт в GHCR: `ghcr.io/nikolas-bars/csharp-school-api` и `-web`, теги — коммит и `latest`.
 - **Автодеплоя нет**: обновление — вручную (ниже).
+- **HTTP/3 для csharp.call-yansburg.com выключен** — в блоке Caddy мессенджера `header Alt-Svc clear`
+  (`clear`, а не просто убрать заголовок: браузеры, уже запомнившие HTTP/3, сразу его забывают). По UDP
+  до этого сервера большие файлы идут в разы медленнее: runner (6.6 МБ) по HTTP/3 не загружался и за
+  3 минуты, по HTTP/2 — 4–20 с (замеры 2026-10-20). Мессенджер и Inkroom HTTP/3 используют как раньше.
+- **Буферы UDP на сервере** подняты до 7.5 МБ (`/etc/sysctl.d/90-quic-buffers.conf`:
+  `net.core.rmem_max`, `net.core.wmem_max`) — иначе HTTP/3 у Caddy мессенджера упирался в 208 КБ
+  (предупреждение quic-go в его журнале). При переезде на новый сервер — повторить.
+- **Деплой мессенджера** (`/opt/starter/starter-backend/deploy/deploy.sh`) пересоздаёт его контейнеры
+  только при изменении их образа; правка его `Caddyfile` применяется `caddy reload` без остановки
+  (его `deploy/README.md`). Поэтому поменять блок C# School в Caddyfile мессенджера — обычный PR туда.
 
 ### Первый запуск
 
@@ -57,6 +67,8 @@ Production-стек — Docker Compose на одном сервере. Всё п
    # Сертификат получает этот Caddy, запросы уходят в Caddy C# School по сети edge. Не запущен — 502,
    # мессенджер это не задевает
    csharp.{$DOMAIN} {
+   	# Без HTTP/3: по UDP до этого сервера большие файлы идут в разы медленнее (ниже)
+   	header Alt-Svc clear
    	reverse_proxy csharp-school-web:80
    }
    ```
