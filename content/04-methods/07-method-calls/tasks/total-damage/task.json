@@ -1,0 +1,83 @@
+{
+  "title": {
+    "ru": "Урон с оружием"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "method",
+      "min": 2
+    },
+    {
+      "kind": "call",
+      "method": "Program.BaseDamage",
+      "caller": "Program.TotalDamage"
+    },
+    {
+      "kind": "call",
+      "method": "Program.TotalDamage"
+    },
+    {
+      "kind": "output",
+      "expected": "25\n26"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужны два метода: BaseDamage и TotalDamage."
+    },
+    {
+      "ru": "Вызови BaseDamage внутри TotalDamage, а не в основном коде: TotalDamage должен сам получать базовый урон от BaseDamage, а не считать его заново."
+    },
+    {
+      "ru": "TotalDamage нигде не вызывается — основной код печатает его ответы."
+    },
+    {
+      "ru": "Сравни вывод: для силы 10 и бонуса 5 полный урон — 25. Проверь, что в BaseDamage передаётся сила, а не бонус."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Сначала напиши BaseDamage — он простой. Потом TotalDamage, который зовёт BaseDamage."
+    },
+    {
+      "ru": "Ответ BaseDamage можно сразу использовать в сложении: return BaseDamage(strength) + weaponBonus;"
+    },
+    {
+      "ru": "static int BaseDamage(int strength) { return strength * 2; } а в основном коде: Console.WriteLine(TotalDamage(10, 5)); и Console.WriteLine(TotalDamage(7, 12));"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-no-base-call.cs",
+      "fails": [
+        1
+      ],
+      "why": "Базовый урон посчитан заново, BaseDamage не вызван"
+    },
+    {
+      "file": "wrong-base-in-main.cs",
+      "fails": [
+        1
+      ],
+      "why": "BaseDamage вызван из основного кода, а не из TotalDamage"
+    },
+    {
+      "file": "wrong-swapped.cs",
+      "fails": [
+        3
+      ],
+      "why": "В BaseDamage передан бонус вместо силы"
+    },
+    {
+      "file": "wrong-no-return.cs",
+      "compileError": "CS0161",
+      "why": "TotalDamage ничего не возвращает"
+    }
+  ]
+}

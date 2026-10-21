@@ -1,0 +1,92 @@
+{
+  "title": {
+    "ru": "Несколько параметров"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-several.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "cast-spell"
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "02-order.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "show-hero"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "static void Hit(string target, int damage). Какой вызов правильный?"
+          },
+          "options": [
+            {
+              "ru": "Hit(25, \"Орк\");"
+            },
+            {
+              "ru": "Hit(\"Орк\" 25);"
+            },
+            {
+              "ru": "Hit(\"Орк\", 25);"
+            }
+          ],
+          "answer": 2,
+          "explanation": {
+            "ru": "Аргументы идут в порядке параметров — сначала строка, потом число — и разделяются запятой."
+          }
+        },
+        {
+          "question": {
+            "ru": "static void ShowStats(int hp, int mana). Что попадёт в mana при вызове ShowStats(30, 70)?"
+          },
+          "options": [
+            {
+              "ru": "30"
+            },
+            {
+              "ru": "70"
+            },
+            {
+              "ru": "Ошибка компилятора"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "Второй аргумент попадает во второй параметр. Оба int, поэтому компилятор не возражает."
+          }
+        },
+        {
+          "question": {
+            "ru": "Чем разделяют параметры в объявлении метода?"
+          },
+          "options": [
+            {
+              "ru": "Запятой"
+            },
+            {
+              "ru": "Точкой с запятой"
+            },
+            {
+              "ru": "Пробелом"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "Параметры, как и аргументы при вызове, перечисляют через запятую: (string target, int damage)."
+          }
+        }
+      ]
+    }
+  ]
+}

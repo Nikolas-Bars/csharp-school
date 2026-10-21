@@ -1,0 +1,67 @@
+{
+  "title": {
+    "ru": "Значение в границах"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "method"
+    },
+    {
+      "kind": "call",
+      "method": "Program.Clamp"
+    },
+    {
+      "kind": "output",
+      "expected": "100\n0\n60"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Метод Clamp нужен — не удаляй его."
+    },
+    {
+      "ru": "Результаты должны приходить из Clamp."
+    },
+    {
+      "ru": "Сравни построчно: 120 должно стать 100, а -15 — нулём. Проверь, что метод возвращает min для слишком маленьких значений и max — для слишком больших."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Здесь удобен ранний выход: две проверки с return, а в конце — return value."
+    },
+    {
+      "ru": "if (value < min) { return min; } — и такая же проверка для max."
+    },
+    {
+      "ru": "if (value < min) { return min; } if (value > max) { return max; } return value;"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-swapped.cs",
+      "fails": [
+        2
+      ],
+      "why": "Границы перепутаны"
+    },
+    {
+      "file": "wrong-only-min.cs",
+      "fails": [
+        2
+      ],
+      "why": "Нет проверки верхней границы"
+    },
+    {
+      "file": "wrong-no-last-return.cs",
+      "compileError": "CS0161",
+      "why": "Нет ответа для значения внутри границ"
+    }
+  ]
+}

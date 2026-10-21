@@ -1,0 +1,98 @@
+{
+  "title": {
+    "ru": "Параметры"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-parameter.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "02-what-to-pass.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "take-hit"
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "03-naming.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "wave-announcer"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "static void Heal(int amount) — что здесь amount?"
+          },
+          "options": [
+            {
+              "ru": "Аргумент вызова"
+            },
+            {
+              "ru": "Параметр метода"
+            },
+            {
+              "ru": "Имя метода"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "amount объявлен в скобках метода — это параметр. Аргумент — значение, которое передают при вызове: в Heal(20) это 20."
+          }
+        },
+        {
+          "question": {
+            "ru": "Как по договорённости назвать метод «показать инвентарь»?"
+          },
+          "options": [
+            {
+              "ru": "showInventory"
+            },
+            {
+              "ru": "show_inventory"
+            },
+            {
+              "ru": "ShowInventory"
+            }
+          ],
+          "answer": 2,
+          "explanation": {
+            "ru": "Имена методов пишут в PascalCase: каждое слово с заглавной буквы. showInventory — стиль для переменных."
+          }
+        },
+        {
+          "question": {
+            "ru": "Метод: static void Heal(int amount). Какой вызов скомпилируется?"
+          },
+          "options": [
+            {
+              "ru": "Heal(\"15\");"
+            },
+            {
+              "ru": "Heal(10 + 5);"
+            },
+            {
+              "ru": "Heal();"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "10 + 5 — выражение, оно даёт число 15 типа int. Строку в int передать нельзя, а без аргумента параметру amount нечего получить."
+          }
+        }
+      ]
+    }
+  ]
+}

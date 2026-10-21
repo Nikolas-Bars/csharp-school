@@ -1,0 +1,95 @@
+{
+  "title": {
+    "ru": "Два лечения"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "method",
+      "min": 2
+    },
+    {
+      "kind": "call",
+      "method": "Program.HealPoints"
+    },
+    {
+      "kind": "call",
+      "method": "Program.HealPercent"
+    },
+    {
+      "kind": "output",
+      "expected": "Здоровье: 50\nЗдоровье: 100\nЗдоровье: 120"
+    },
+    {
+      "kind": "output",
+      "expected": "Здоровье: 30\nЗдоровье: 55\nЗдоровье: 65",
+      "set": {
+        "hp": 0,
+        "maxHp": 100
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужны два метода с разными именами: HealPoints и HealPercent."
+    },
+    {
+      "ru": "HealPoints нигде не вызывается — лечение зельем на 30 очков делай через него."
+    },
+    {
+      "ru": "HealPercent нигде не вызывается — лечение заклинанием на проценты делай через него."
+    },
+    {
+      "ru": "Сравни вывод построчно. Процент считается от максимального здоровья: 25% от 200 — это 50. Если заклинание ничего не лечит, проверь порядок: сначала умножение, потом деление."
+    },
+    {
+      "ru": "При других hp и maxHp лечение тоже должно считаться. Передавай в методы переменные и печатай hp, а не готовые числа."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Два способа лечения — два метода с разными именами. Одно имя Heal на оба в нашей программе не подойдёт: будет ошибка CS0128."
+    },
+    {
+      "ru": "HealPoints возвращает hp + points. HealPercent возвращает hp + maxHp * percent / 100 — умножение идёт до деления, поэтому целые числа не обнулятся."
+    },
+    {
+      "ru": "static int HealPercent(int hp, int maxHp, int percent) { return hp + maxHp * percent / 100; } В основном коде: hp = HealPoints(hp, 30); Console.WriteLine($\"Здоровье: {hp}\"); потом hp = HealPercent(hp, maxHp, 25); и hp = HealPercent(hp, maxHp, 10); — с выводом после каждого."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-same-name.cs",
+      "compileError": "CS0128",
+      "why": "Два метода Heal: локальные функции нельзя перегрузить"
+    },
+    {
+      "file": "wrong-divide-first.cs",
+      "fails": [
+        3,
+        4
+      ],
+      "why": "Сначала деление целых: percent / 100 даёт 0"
+    },
+    {
+      "file": "wrong-percent-of-hp.cs",
+      "fails": [
+        3,
+        4
+      ],
+      "why": "Процент от текущего здоровья, а не от максимума"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        4
+      ],
+      "why": "Первая строка напечатана готовым числом"
+    }
+  ]
+}

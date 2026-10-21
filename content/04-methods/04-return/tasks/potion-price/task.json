@@ -1,0 +1,84 @@
+{
+  "title": {
+    "ru": "Цена зелий"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "method"
+    },
+    {
+      "kind": "call",
+      "method": "Program.TotalPrice"
+    },
+    {
+      "kind": "output",
+      "expected": "Лечение: 7.5\nМана: 4.5\nВсего: 12"
+    },
+    {
+      "kind": "output",
+      "expected": "Лечение: 12.5\nМана: 9\nВсего: 21.5",
+      "set": {
+        "healCount": 5,
+        "manaPrice": 1.5
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Объяви метод TotalPrice — он считает и возвращает стоимость."
+    },
+    {
+      "ru": "Стоимость нужно получать из метода TotalPrice, а не считать в основном коде."
+    },
+    {
+      "ru": "Сравни вывод построчно. Стоимость — это цена одного зелья, умноженная на количество, а «Всего» — сумма двух стоимостей."
+    },
+    {
+      "ru": "При других ценах и количествах ответ тоже должен считаться. Передавай в TotalPrice переменные и печатай его ответы, а не готовые числа."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Метод возвращает дробное число, значит перед его именем пишут double, а не void."
+    },
+    {
+      "ru": "static double TotalPrice(double price, int count) — внутри return с произведением. Ответы метода положи в переменные типа double."
+    },
+    {
+      "ru": "return price * count; а в основном коде: double healing = TotalPrice(healPrice, healCount); и так же для маны, потом три строки вывода с интерполяцией."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-int-return.cs",
+      "compileError": "CS0266",
+      "why": "Тип возврата int: дробная часть потерялась бы"
+    },
+    {
+      "file": "wrong-plus.cs",
+      "fails": [
+        2,
+        3
+      ],
+      "why": "Сложение вместо умножения"
+    },
+    {
+      "file": "wrong-void.cs",
+      "compileError": "CS0029",
+      "why": "void-метод печатает, но ничего не возвращает"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        3
+      ],
+      "why": "Сумма напечатана готовым числом"
+    }
+  ]
+}

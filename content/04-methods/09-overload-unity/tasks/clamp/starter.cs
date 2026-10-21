@@ -1,0 +1,11 @@
+using System;
+
+Console.WriteLine(Clamp(120, 0, 100));
+Console.WriteLine(Clamp(-15, 0, 100));
+Console.WriteLine(Clamp(60, 0, 100));
+
+static int Clamp(int value, int min, int max)
+{
+    // Верни значение в границах от min до max
+    return value;
+}

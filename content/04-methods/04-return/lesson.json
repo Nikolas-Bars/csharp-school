@@ -1,0 +1,98 @@
+{
+  "title": {
+    "ru": "Метод отвечает: return"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-return.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "02-use-result.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "level-damage"
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "03-return-types.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "potion-price"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "static int Twice(int x) { return x * 2; } Что напечатает Console.WriteLine(Twice(4) + 1);?"
+          },
+          "options": [
+            {
+              "ru": "9"
+            },
+            {
+              "ru": "8"
+            },
+            {
+              "ru": "Twice(4) + 1"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "Twice(4) возвращает 8, и вызов становится числом 8. Дальше 8 + 1 = 9."
+          }
+        },
+        {
+          "question": {
+            "ru": "Что делает return?"
+          },
+          "options": [
+            {
+              "ru": "Печатает ответ на экран"
+            },
+            {
+              "ru": "Отдаёт ответ и выходит"
+            },
+            {
+              "ru": "Запускает метод заново"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "return отдаёт ответ туда, откуда метод вызвали, и сразу заканчивает метод. Печатать ответ или нет — решает тот, кто вызвал."
+          }
+        },
+        {
+          "question": {
+            "ru": "Метод только печатает текст и ничем не отвечает. Какой у него тип возврата?"
+          },
+          "options": [
+            {
+              "ru": "void"
+            },
+            {
+              "ru": "int"
+            },
+            {
+              "ru": "string"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "void значит «ничего не возвращает». int и string пишут, когда метод отвечает числом или текстом."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "title": {
+    "ru": "Метод и массив"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-array-param.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "best-hit"
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "02-return-in-loop.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "has-boss"
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "03-not-a-copy.ru.md"
+      }
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "Как объявить параметр — массив целых чисел?"
+          },
+          "options": [
+            {
+              "ru": "int numbers[]"
+            },
+            {
+              "ru": "int[] numbers"
+            },
+            {
+              "ru": "array numbers"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "Тип массива целых чисел — int[], скобки пишут сразу после int. Запись int numbers[] в C# не работает."
+          }
+        },
+        {
+          "question": {
+            "ru": "Метод ищет вещь в массиве. Где поставить return false?"
+          },
+          "options": [
+            {
+              "ru": "После цикла"
+            },
+            {
+              "ru": "Внутри цикла, в else"
+            },
+            {
+              "ru": "Перед циклом"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "Сказать «не нашли» можно только после проверки всех элементов, то есть после цикла."
+          }
+        },
+        {
+          "question": {
+            "ru": "static void Clear(int[] a) { a[0] = 0; } int[] hp = { 50, 80 }; Clear(hp); Чему теперь равно hp[0]?"
+          },
+          "options": [
+            {
+              "ru": "50"
+            },
+            {
+              "ru": "Ошибка компилятора"
+            },
+            {
+              "ru": "0"
+            }
+          ],
+          "answer": 2,
+          "explanation": {
+            "ru": "Массив не копируется: метод меняет тот же самый массив, поэтому hp[0] стало 0."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "title": {
+    "ru": "Отчёт об отряде"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "method",
+      "min": 3
+    },
+    {
+      "kind": "call",
+      "method": "Program.IsAlive",
+      "caller": "Program.CountAlive"
+    },
+    {
+      "kind": "call",
+      "method": "Program.CountAlive",
+      "caller": "Program.Report"
+    },
+    {
+      "kind": "call",
+      "method": "Program.Report"
+    },
+    {
+      "kind": "output",
+      "expected": "Живых: 3 из 5\nНужен лекарь\nЖивых: 0 из 2\nОтряд разбит\nЖивых: 2 из 2\nВсе в строю"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужны три метода: IsAlive, CountAlive и Report."
+    },
+    {
+      "ru": "Вызови IsAlive внутри CountAlive: каждого бойца CountAlive проверяет через IsAlive, а не сравнением вручную."
+    },
+    {
+      "ru": "Вызови CountAlive внутри Report, а не в основном коде: Report сам узнаёт число живых."
+    },
+    {
+      "ru": "Отчёты печатает Report — вызови его для каждого отряда."
+    },
+    {
+      "ru": "Сравни вывод построчно. Боец с 0 здоровья не жив, а всего бойцов столько, сколько элементов в массиве."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Пиши по порядку: сначала IsAlive, потом CountAlive, который его зовёт, потом Report, который зовёт CountAlive."
+    },
+    {
+      "ru": "CountAlive: счётчик, цикл по массиву и if (IsAlive(hp)) — прибавить 1. return — после цикла. Всего бойцов — party.Length."
+    },
+    {
+      "ru": "Report: int alive = CountAlive(party); вывод «Живых: …»; потом if (alive == party.Length) … else if (alive == 0) … else … А в основном коде — Report(first); и так же для двух других отрядов."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-alive-ge.cs",
+      "fails": [
+        4
+      ],
+      "why": ">= вместо >: бойцы с 0 здоровья считаются живыми"
+    },
+    {
+      "file": "wrong-return-in-loop.cs",
+      "compileError": "CS0161",
+      "why": "return внутри цикла: метод может закончиться без ответа"
+    },
+    {
+      "file": "wrong-no-isalive.cs",
+      "fails": [
+        1
+      ],
+      "why": "CountAlive проверяет сам, IsAlive не вызван"
+    },
+    {
+      "file": "wrong-count-in-main.cs",
+      "fails": [
+        2
+      ],
+      "why": "CountAlive вызван из основного кода, а не из Report"
+    }
+  ]
+}

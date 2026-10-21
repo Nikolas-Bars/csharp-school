@@ -1,0 +1,20 @@
+{
+  "title": {
+    "ru": "Методы"
+  },
+  "description": {
+    "ru": "Свои команды: параметры, return, область видимости"
+  },
+  "lessons": [
+    "01-first-method",
+    "02-parameters",
+    "03-many-parameters",
+    "04-return",
+    "05-questions",
+    "06-scope",
+    "07-method-calls",
+    "08-arrays",
+    "09-overload-unity",
+    "10-module-test"
+  ]
+}

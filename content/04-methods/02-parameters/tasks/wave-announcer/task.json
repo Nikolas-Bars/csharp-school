@@ -1,0 +1,104 @@
+{
+  "title": {
+    "ru": "Волны врагов"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "method"
+    },
+    {
+      "kind": "call",
+      "method": "Program.AnnounceWave"
+    },
+    {
+      "kind": "call",
+      "method": "System.Console.WriteLine",
+      "caller": "Program.AnnounceWave"
+    },
+    {
+      "kind": "construct",
+      "construct": "for"
+    },
+    {
+      "kind": "output",
+      "expected": "Волна 1: враги идут!\nВолна 2: враги идут!\nВолна 3: враги идут!\nВолна 4: враги идут!"
+    },
+    {
+      "kind": "output",
+      "expected": "Волна 1: враги идут!\nВолна 2: враги идут!",
+      "set": {
+        "waves": 2
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Объяви метод AnnounceWave с параметром wave."
+    },
+    {
+      "ru": "Метод AnnounceWave нигде не вызывается. Вызывать его нужно внутри цикла."
+    },
+    {
+      "ru": "Строку о волне должен печатать сам метод AnnounceWave — вывод нужен внутри его тела."
+    },
+    {
+      "ru": "Используй цикл for: он сам переберёт номера волн."
+    },
+    {
+      "ru": "Номера волн должны идти от 1 до 4. Проверь, с какого числа начинается цикл, где он останавливается и что передаётся в метод."
+    },
+    {
+      "ru": "При другом значении waves волн должно быть столько же, сколько в waves. Проверь, до чего идёт цикл: до переменной или до готового числа."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Цикл перебирает номера волн, а метод печатает одну волну. Передай номер из цикла в метод."
+    },
+    {
+      "ru": "for (int i = 1; i <= waves; i++) — переменная i по очереди будет 1, 2, 3 и так до waves. Её и передай аргументом."
+    },
+    {
+      "ru": "Внутри цикла: AnnounceWave(i); а метод: static void AnnounceWave(int wave) { Console.WriteLine($\"Волна {wave}: враги идут!\"); }"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-from-zero.cs",
+      "fails": [
+        4,
+        5
+      ],
+      "why": "Цикл с нуля: волны 0–3"
+    },
+    {
+      "file": "wrong-constant.cs",
+      "fails": [
+        4,
+        5
+      ],
+      "why": "В метод передаётся 1, а не номер из цикла"
+    },
+    {
+      "file": "wrong-no-loop.cs",
+      "fails": [
+        3,
+        5
+      ],
+      "why": "Четыре вызова вручную, без цикла"
+    },
+    {
+      "file": "wrong-fixed-count.cs",
+      "fails": [
+        5
+      ],
+      "why": "Цикл до 4, а не до waves: другое число волн не работает"
+    }
+  ]
+}

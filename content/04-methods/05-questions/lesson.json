@@ -1,0 +1,98 @@
+{
+  "title": {
+    "ru": "Методы-вопросы и ранний выход"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-bool.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "can-enter"
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "02-early-return.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "03-all-paths.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "rank"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "static bool IsAlive(int hp) { return hp > 0; } Что вернёт IsAlive(0)?"
+          },
+          "options": [
+            {
+              "ru": "true"
+            },
+            {
+              "ru": "0"
+            },
+            {
+              "ru": "false"
+            }
+          ],
+          "answer": 2,
+          "explanation": {
+            "ru": "0 > 0 — неверно, поэтому метод вернёт false."
+          }
+        },
+        {
+          "question": {
+            "ru": "Что происходит с командами метода, которые стоят ниже сработавшего return?"
+          },
+          "options": [
+            {
+              "ru": "Не выполняются"
+            },
+            {
+              "ru": "Выполняются после ответа"
+            },
+            {
+              "ru": "Выполняются, если это вывод"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "return сразу заканчивает метод. Команды ниже него в этот раз не выполнятся."
+          }
+        },
+        {
+          "question": {
+            "ru": "Почему не компилируется метод static int Check(int x) { if (x > 0) { return 1; } }?"
+          },
+          "options": [
+            {
+              "ru": "Нет ответа, если x не больше 0"
+            },
+            {
+              "ru": "Нельзя писать return внутри if"
+            },
+            {
+              "ru": "В методе int не бывает if"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "Если x не больше 0, метод дойдёт до конца без return. Метод с типом int обязан ответить в любом случае."
+          }
+        }
+      ]
+    }
+  ]
+}

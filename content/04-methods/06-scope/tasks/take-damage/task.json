@@ -1,0 +1,93 @@
+{
+  "title": {
+    "ru": "Удар не ниже нуля"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "method"
+    },
+    {
+      "kind": "call",
+      "method": "Program.TakeDamage"
+    },
+    {
+      "kind": "call",
+      "method": "System.Math.Max"
+    },
+    {
+      "kind": "output",
+      "expected": "30\n0"
+    },
+    {
+      "kind": "output",
+      "expected": "80\n35",
+      "set": {
+        "hp": 100
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Объяви метод TakeDamage с двумя параметрами: здоровье и урон."
+    },
+    {
+      "ru": "TakeDamage нигде не вызывается. Бить героя нужно через него."
+    },
+    {
+      "ru": "Внутри TakeDamage используй Math.Max, чтобы здоровье не ушло ниже нуля."
+    },
+    {
+      "ru": "После ударов должно напечататься 30 и 0. Если здоровье не меняется, значит, новое значение не попадает обратно в hp основного кода."
+    },
+    {
+      "ru": "При другом начальном hp здоровье после ударов тоже должно измениться. Печатай hp, а не готовые числа."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Метод получает здоровье и урон, а возвращает новое здоровье. Основной код кладёт ответ обратно в hp."
+    },
+    {
+      "ru": "static int TakeDamage(int hp, int damage) — внутри return Math.Max(hp - damage, 0); Менять параметр hp бесполезно: это копия."
+    },
+    {
+      "ru": "В основном коде: hp = TakeDamage(hp, 20); Console.WriteLine(hp); и то же самое с 45."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-copy.cs",
+      "fails": [
+        3,
+        4
+      ],
+      "why": "Метод меняет копию, здоровье снаружи прежнее"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        4
+      ],
+      "why": "Здоровье напечатано готовыми числами"
+    },
+    {
+      "file": "wrong-outer.cs",
+      "compileError": "CS8421",
+      "why": "static-метод обращается к hp основного кода"
+    },
+    {
+      "file": "wrong-no-max.cs",
+      "fails": [
+        2,
+        3
+      ],
+      "why": "Без Math.Max здоровье уходит в минус"
+    }
+  ]
+}

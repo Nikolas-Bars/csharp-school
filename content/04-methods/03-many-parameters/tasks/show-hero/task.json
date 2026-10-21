@@ -1,0 +1,80 @@
+{
+  "title": {
+    "ru": "Карточка героя"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "method"
+    },
+    {
+      "kind": "call",
+      "method": "Program.ShowHero"
+    },
+    {
+      "kind": "call",
+      "method": "System.Console.WriteLine",
+      "caller": "Program.ShowHero"
+    },
+    {
+      "kind": "output",
+      "expected": "Аня: здоровье 100, мана 40\nБорис: здоровье 80, мана 65"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Объяви метод ShowHero с тремя параметрами: имя, здоровье, мана."
+    },
+    {
+      "ru": "Метод ShowHero нигде не вызывается — проверь имя и регистр букв."
+    },
+    {
+      "ru": "Карточку должен печатать сам метод ShowHero — вывод нужен внутри его тела, а не в основном коде."
+    },
+    {
+      "ru": "Сравни вывод построчно. Если здоровье и мана поменялись местами, проверь порядок аргументов: он должен совпадать с порядком параметров."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Параметры идут через запятую в таком порядке: имя, здоровье, мана. В том же порядке передаются и аргументы."
+    },
+    {
+      "ru": "static void ShowHero(string name, int hp, int mana) — в теле одна строка вывода с интерполяцией."
+    },
+    {
+      "ru": "Console.WriteLine($\"{name}: здоровье {hp}, мана {mana}\"); и вызовы ShowHero(\"Аня\", 100, 40); и ShowHero(\"Борис\", 80, 65);"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-swapped.cs",
+      "fails": [
+        3
+      ],
+      "why": "Здоровье и мана перепутаны: оба int, компилятор молчит"
+    },
+    {
+      "file": "wrong-print-in-main.cs",
+      "fails": [
+        2
+      ],
+      "why": "Метод пустой, карточки печатает основной код"
+    },
+    {
+      "file": "wrong-name-last.cs",
+      "compileError": "CS1503",
+      "why": "Имя передано последним: число в параметр-строку"
+    },
+    {
+      "file": "wrong-missing-arg.cs",
+      "compileError": "CS7036",
+      "why": "Не передана мана"
+    }
+  ]
+}

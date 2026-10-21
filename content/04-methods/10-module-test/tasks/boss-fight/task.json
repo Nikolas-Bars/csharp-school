@@ -1,0 +1,104 @@
+{
+  "title": {
+    "ru": "Бой с боссом"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "method",
+      "min": 2
+    },
+    {
+      "kind": "call",
+      "method": "Program.CalculateDamage"
+    },
+    {
+      "kind": "call",
+      "method": "Program.IsAlive"
+    },
+    {
+      "kind": "construct",
+      "construct": "break"
+    },
+    {
+      "kind": "output",
+      "expected": "Удар 30: урон 20, у босса 50 HP\nУдар 8: урон 1, у босса 49 HP\nУдар 45: урон 35, у босса 14 HP\nУдар 25: урон 15, у босса 0 HP\nБосс повержен!"
+    },
+    {
+      "kind": "output",
+      "expected": "Удар 30: урон 20, у босса 180 HP\nУдар 8: урон 1, у босса 179 HP\nУдар 45: урон 35, у босса 144 HP\nУдар 25: урон 15, у босса 129 HP\nУдар 40: урон 30, у босса 99 HP",
+      "set": {
+        "bossHp": 200
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужны два метода: CalculateDamage и IsAlive."
+    },
+    {
+      "ru": "Урон каждого удара считай через CalculateDamage."
+    },
+    {
+      "ru": "Проверяй, жив ли босс, через IsAlive."
+    },
+    {
+      "ru": "Когда босс повержен, цикл нужно остановить — для этого есть break."
+    },
+    {
+      "ru": "Сравни вывод построчно. Слабый удар 8 при броне 10 всё равно наносит 1 урона, здоровье босса не уходит ниже нуля, а после «Босс повержен!» ударов больше нет."
+    },
+    {
+      "ru": "При другом bossHp бой идёт по-другому: если босс выдержал все удары, «Босс повержен!» не печатается. Строки должны считаться в цикле, а не быть готовым текстом."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Сначала методы: в CalculateDamage пригодится Math.Max, чтобы урон был не меньше 1, а IsAlive — это сравнение с нулём."
+    },
+    {
+      "ru": "Цикл foreach по attacks. Внутри: урон из CalculateDamage, потом bossHp = Math.Max(bossHp - damage, 0); и вывод через интерполяцию."
+    },
+    {
+      "ru": "После вывода: if (!IsAlive(bossHp)) { Console.WriteLine(\"Босс повержен!\"); break; } А CalculateDamage возвращает Math.Max(attack - armor, 1)."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-no-min-damage.cs",
+      "fails": [
+        4,
+        5
+      ],
+      "why": "Без Math.Max слабый удар лечит босса"
+    },
+    {
+      "file": "wrong-no-break.cs",
+      "fails": [
+        3,
+        4
+      ],
+      "why": "Нет break: бой продолжается после победы"
+    },
+    {
+      "file": "wrong-alive-ge.cs",
+      "fails": [
+        4
+      ],
+      "why": ">= вместо >: босс с 0 здоровья «жив»"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        3,
+        5
+      ],
+      "why": "Бой напечатан готовым текстом, без цикла"
+    }
+  ]
+}
