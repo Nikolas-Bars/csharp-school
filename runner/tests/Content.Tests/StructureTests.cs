@@ -87,6 +87,20 @@ public sealed partial class StructureTests
     }
 
     [Fact]
+    public void EveryModuleEndsWithItsOnlyTest()
+    {
+        // Модуль считается пройденным только после контрольной (rules/course-content.md): она одна и последняя
+        foreach (var (path, module) in Course.Modules)
+        {
+            Assert.NotEmpty(module.Lessons);
+            var kinds = module.Lessons.Select(slug => ContentFiles.Read<LessonFile>(path, slug, "lesson.json").Kind).ToList();
+            Assert.All(kinds, kind => Assert.Contains(kind, new[] { LessonKinds.Lesson, LessonKinds.Test }));
+            Assert.True(kinds[^1] == LessonKinds.Test, $"{path}: последний урок модуля — контрольная: \"kind\": \"test\" в lesson.json");
+            Assert.True(kinds.Count(kind => kind == LessonKinds.Test) == 1, $"{path}: контрольная в модуле одна — последний урок");
+        }
+    }
+
+    [Fact]
     public void QuizzesHaveTwoToFourQuestionsWithValidAnswers()
     {
         foreach (var (path, lesson) in Course.Lessons)

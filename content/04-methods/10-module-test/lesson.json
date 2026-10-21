@@ -2,6 +2,7 @@
   "title": {
     "ru": "Контрольная: босс и отряд"
   },
+  "kind": "test",
   "steps": [
     {
       "type": "theory",

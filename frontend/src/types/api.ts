@@ -39,9 +39,13 @@ export interface CourseModule {
   lessons: LessonSummary[]
 }
 
+/** Вид урока: обычный или контрольная модуля — она последняя, после неё модуль пройден */
+export type LessonKind = 'lesson' | 'test'
+
 export interface LessonSummary {
   slug: string
   title: string
+  kind: LessonKind
   /** Сколько в уроке задач с кодом */
   tasks: number
   /** Засчитываемые шаги: id задач и «quiz». Урок пройден, когда пройдены все */

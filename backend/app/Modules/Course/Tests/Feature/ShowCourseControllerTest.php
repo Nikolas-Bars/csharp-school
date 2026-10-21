@@ -23,8 +23,8 @@ final class ShowCourseControllerTest extends CourseTestCase
                     'title'       => 'Основы',
                     'description' => 'Самое начало',
                     'lessons'     => [
-                        ['slug' => '01-first', 'title' => 'Первый урок', 'tasks' => 1, 'steps' => ['say-hi', 'quiz']],
-                        ['slug' => '02-second', 'title' => 'Второй урок', 'tasks' => 0, 'steps' => ['quiz']],
+                        ['slug' => '01-first', 'title' => 'Первый урок', 'kind' => 'lesson', 'tasks' => 1, 'steps' => ['say-hi', 'quiz']],
+                        ['slug' => '02-second', 'title' => 'Второй урок', 'kind' => 'test', 'tasks' => 0, 'steps' => ['quiz']],
                     ],
                 ]],
             ],

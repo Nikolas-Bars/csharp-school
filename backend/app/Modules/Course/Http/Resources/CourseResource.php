@@ -31,10 +31,17 @@ use OpenApi\Attributes as OA;
                 new OA\Property(property: 'title', type: 'string', example: 'Первые программы'),
                 new OA\Property(property: 'description', type: 'string'),
                 new OA\Property(property: 'lessons', type: 'array', items: new OA\Items(
-                    required: ['slug', 'title', 'tasks', 'steps'],
+                    required: ['slug', 'title', 'kind', 'tasks', 'steps'],
                     properties: [
                         new OA\Property(property: 'slug', type: 'string', example: '02-variables'),
                         new OA\Property(property: 'title', type: 'string', example: 'Переменные'),
+                        new OA\Property(
+                            property: 'kind',
+                            description: '`lesson` — обычный урок, `test` — контрольная модуля: модуль пройден, когда пройдены все его уроки вместе с ней',
+                            type: 'string',
+                            enum: ['lesson', 'test'],
+                            example: 'lesson',
+                        ),
                         new OA\Property(property: 'tasks', description: 'Сколько в уроке задач с кодом', type: 'integer', example: 2),
                         new OA\Property(
                             property: 'steps',
@@ -68,6 +75,7 @@ final class CourseResource extends JsonResource
                 'lessons'     => $module->lessons->map(static fn(Lesson $lesson): array => [
                     'slug'  => $lesson->slug,
                     'title' => Localized::pick($lesson->title),
+                    'kind'  => $lesson->kind->value,
                     'tasks' => \count(array_filter($lesson->steps, static fn(array $step): bool => $step['type'] === 'task')),
                     // Засчитываемые шаги (id задач и quiz) — чтобы и гость видел, пройден ли урок
                     'steps' => $lesson->countedSteps(),

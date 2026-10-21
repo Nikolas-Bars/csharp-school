@@ -4,10 +4,20 @@ import { ref, watch } from 'vue'
 import { ApiError } from '@/api/http'
 import { progressApi } from '@/api/progress'
 import { useAuthStore } from '@/stores/auth'
-import type { CourseProgress, StepCompletion } from '@/types/api'
+import type { CourseModule, CourseProgress, LessonSummary, StepCompletion } from '@/types/api'
 
 /** Шаги в браузере: «модуль/урок» → шаг → код (для проверки знаний — null) */
 type LocalSteps = Record<string, Record<string, string | null>>
+
+/** Прогресс модуля: сколько уроков пройдено и с какого продолжать */
+export interface ModuleProgress {
+  done: number
+  total: number
+  /** Пройдены все уроки модуля — вместе с контрольной: только тогда модуль пройден */
+  complete: boolean
+  /** Первый непройденный урок модуля */
+  next: LessonSummary | null
+}
 
 /** Те же ограничения, что у CompleteStepsRequest бэкенда: иначе сервер отвергнет всю пачку */
 const SLUG = /^[a-z0-9][a-z0-9-]{0,63}$/
@@ -217,6 +227,23 @@ export const useProgressStore = defineStore('progress', () => {
     return steps.length > 0 && steps.every((step) => isCompleted(module, lesson, step))
   }
 
+  /**
+   * Модуль пройден, когда пройдены все его уроки. Контрольная — последний урок модуля
+   * (content/README.md), поэтому без неё модуль не пройти (rules/course-content.md).
+   */
+  function moduleProgress(module: CourseModule): ModuleProgress {
+    const left = module.lessons.filter(
+      (lesson) => !isLessonDone(module.slug, lesson.slug, lesson.steps),
+    )
+    const total = module.lessons.length
+    return {
+      done: total - left.length,
+      total,
+      complete: total > 0 && left.length === 0,
+      next: left[0] ?? null,
+    }
+  }
+
   async function complete(slug: string, step: StepCompletion) {
     merge({ [lessonPath(step.module, step.lesson)]: { [step.step]: null } })
 
@@ -271,5 +298,14 @@ export const useProgressStore = defineStore('progress', () => {
     },
   )
 
-  return { course, completed, load, isCompleted, isLessonDone, complete, solutions }
+  return {
+    course,
+    completed,
+    load,
+    isCompleted,
+    isLessonDone,
+    moduleProgress,
+    complete,
+    solutions,
+  }
 })

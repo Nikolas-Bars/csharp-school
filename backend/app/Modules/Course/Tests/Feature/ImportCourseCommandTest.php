@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Modules\Course\Tests\Feature;
 
 use App\Modules\Course\Contracts\LessonDirectory;
+use App\Modules\Course\Enums\LessonKind;
 use App\Modules\Course\Models\Course;
 use App\Modules\Course\Models\Lesson;
 use App\Modules\Course\Tests\CourseTestCase;
@@ -42,14 +43,14 @@ final class ImportCourseCommandTest extends CourseTestCase
     {
         $this->copy = $this->copyFixture();
         $this->artisan('course:import', ['path' => $this->copy])->assertSuccessful();
-        $first = Lesson::query()->where('slug', '01-first')->sole()->id;
+        $test = Lesson::query()->where('slug', '02-second')->sole()->id;
 
-        // Урок убрали из модуля и переименовали курс
-        File::put("{$this->copy}/01-basics/module.json", '{"title":{"ru":"Основы"},"description":{"ru":"Самое начало"},"lessons":["01-first"]}');
+        // Урок убрали из модуля (осталась контрольная) и переименовали курс
+        File::put("{$this->copy}/01-basics/module.json", '{"title":{"ru":"Основы"},"description":{"ru":"Самое начало"},"lessons":["02-second"]}');
         File::put("{$this->copy}/course.json", '{"slug":"test-course","title":{"ru":"Новое название"},"modules":["01-basics"]}');
         $this->artisan('course:import', ['path' => $this->copy])->assertSuccessful();
 
-        self::assertSame([$first], Lesson::query()->pluck('id')->all());
+        self::assertSame([$test], Lesson::query()->pluck('id')->all());
         self::assertSame(['ru' => 'Новое название'], Course::query()->sole()->title);
     }
 
@@ -101,6 +102,98 @@ final class ImportCourseCommandTest extends CourseTestCase
         $this->artisan('course:import', ['path' => $this->copy])->assertSuccessful();
 
         self::assertSame(['quiz'], $directory->lessonsOf('test-course')[0]->steps);
+    }
+
+    public function testLessonKindComesFromContent(): void
+    {
+        $this->copy = $this->copyFixture();
+        $this->artisan('course:import', ['path' => $this->copy])->assertSuccessful();
+
+        // Без «kind» — обычный урок, «test» — контрольная модуля
+        self::assertSame(
+            ['01-first' => LessonKind::Lesson, '02-second' => LessonKind::Test],
+            Lesson::query()->orderBy('position')->get()->mapWithKeys(static fn(Lesson $lesson): array => [$lesson->slug => $lesson->kind])->all(),
+        );
+
+        // Контрольной стал другой урок — повторный импорт обновляет вид
+        File::put("{$this->copy}/01-basics/module.json", '{"title":{"ru":"Основы"},"description":{"ru":"Самое начало"},"lessons":["02-second","01-first"]}');
+        File::put("{$this->copy}/01-basics/02-second/lesson.json", '{"title":{"ru":"x"},"steps":[{"type":"quiz","questions":[]}]}');
+        File::put("{$this->copy}/01-basics/01-first/lesson.json", '{"title":{"ru":"x"},"kind":"test","steps":[{"type":"quiz","questions":[]}]}');
+        $this->artisan('course:import', ['path' => $this->copy])->assertSuccessful();
+
+        self::assertSame(
+            ['02-second' => LessonKind::Lesson, '01-first' => LessonKind::Test],
+            Lesson::query()->orderBy('position')->get()->mapWithKeys(static fn(Lesson $lesson): array => [$lesson->slug => $lesson->kind])->all(),
+        );
+    }
+
+    /**
+     * @return iterable<string, array{string, string, string}>
+     */
+    public static function modulesWithoutSingleLastTest(): iterable
+    {
+        $lesson = '{"title":{"ru":"x"},"steps":[{"type":"quiz","questions":[]}]}';
+        $test = '{"title":{"ru":"x"},"kind":"test","steps":[{"type":"quiz","questions":[]}]}';
+
+        yield 'без контрольной' => ['["01-first","02-second"]', $lesson, $lesson];
+        yield 'две контрольные' => ['["01-first","02-second"]', $test, $test];
+        yield 'контрольная не последняя' => ['["02-second","01-first"]', $lesson, $test];
+    }
+
+    #[DataProvider('modulesWithoutSingleLastTest')]
+    public function testModuleEndsWithItsOnlyTest(string $order, string $first, string $second): void
+    {
+        $this->copy = $this->copyFixture();
+        File::put("{$this->copy}/01-basics/module.json", '{"title":{"ru":"Основы"},"description":{"ru":"x"},"lessons":' . $order . '}');
+        File::put("{$this->copy}/01-basics/01-first/lesson.json", $first);
+        File::put("{$this->copy}/01-basics/02-second/lesson.json", $second);
+
+        $this->artisan('course:import', ['path' => $this->copy])
+            ->expectsOutputToContain('01-basics/module.json: контрольная')
+            ->assertFailed();
+
+        self::assertSame(0, Course::query()->count());
+    }
+
+    public function testEmptyModuleOrCourseIsRejected(): void
+    {
+        $this->copy = $this->copyFixture();
+        File::put("{$this->copy}/01-basics/module.json", '{"title":{"ru":"Основы"},"description":{"ru":"x"},"lessons":[]}');
+
+        $this->artisan('course:import', ['path' => $this->copy])
+            ->expectsOutputToContain('01-basics/module.json: lessons')
+            ->assertFailed();
+
+        File::put("{$this->copy}/course.json", '{"slug":"test-course","title":{"ru":"x"},"modules":[]}');
+
+        $this->artisan('course:import', ['path' => $this->copy])
+            ->expectsOutputToContain('course.json: modules')
+            ->assertFailed();
+
+        self::assertSame(0, Course::query()->count());
+    }
+
+    /**
+     * @return iterable<string, array{string}>
+     */
+    public static function unknownKinds(): iterable
+    {
+        yield 'неизвестный вид' => ['"exam"'];
+        yield 'не строка' => ['true'];
+        yield 'null' => ['null'];
+    }
+
+    #[DataProvider('unknownKinds')]
+    public function testUnknownLessonKindIsRejected(string $kind): void
+    {
+        $this->copy = $this->copyFixture();
+        File::put("{$this->copy}/01-basics/02-second/lesson.json", '{"title":{"ru":"x"},"kind":' . $kind . ',"steps":[{"type":"quiz","questions":[]}]}');
+
+        $this->artisan('course:import', ['path' => $this->copy])
+            ->expectsOutputToContain('01-basics/02-second/lesson.json: kind')
+            ->assertFailed();
+
+        self::assertSame(0, Course::query()->count());
     }
 
     public function testPathsOutsideContentAreRejected(): void

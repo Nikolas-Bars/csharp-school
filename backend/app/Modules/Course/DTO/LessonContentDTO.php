@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Modules\Course\DTO;
 
+use App\Modules\Course\Enums\LessonKind;
 use Spatie\LaravelData\Data;
 
 final class LessonContentDTO extends Data
@@ -16,5 +17,6 @@ final class LessonContentDTO extends Data
         public string $slug,
         public array $title,
         public array $steps,
+        public LessonKind $kind = LessonKind::Lesson,
     ) {}
 }

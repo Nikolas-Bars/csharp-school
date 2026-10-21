@@ -39,6 +39,7 @@ final readonly class SaveCourseTask
                     'course_module_id' => $moduleIds[$module->slug],
                     'slug'             => $lesson->slug,
                     'position'         => $position + 1,
+                    'kind'             => $lesson->kind,
                     'title'            => $lesson->title,
                     'steps'            => $lesson->steps,
                 ];

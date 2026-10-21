@@ -2,6 +2,7 @@
   "title": {
     "ru": "Контрольная: рейд и добыча"
   },
+  "kind": "test",
   "steps": [
     {
       "type": "theory",
