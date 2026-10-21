@@ -130,6 +130,12 @@ compose down` (данные остаются в томах).
   `OPTIONS`, CSP проще (`connect-src 'self'`). Cookie не используются — вход по Bearer-токену.
 - **Курс внутри образа API.** `content/` копируется в образ (`/var/www/content`) без эталонных и
   неверных решений — они нужны только тестам runner. Версия курса = версия образа.
+- **PHP-расширения из PECL (redis, у dev-образа ещё pcov) — не через `pecl install`.**
+  pecl.php.net бывает недоступен (504) и ронял сборку в CI. `backend/.docker/php/ext-source.sh`
+  скачивает архив закреплённой версии: сначала с PECL, при сбое — исходники того же тега с GitHub,
+  до 3 кругов с паузой; принимается только архив с совпавшей SHA-256. Собирает
+  `docker-php-ext-install`. Пакеты Alpine (`php83-pecl-redis`) не подходят: они для PHP из Alpine
+  (`/usr/lib/php83`), тянут второй PHP, igbinary и msgpack, а версия меняется вместе с репозиторием.
 - **Runner собирается в образе веба** из исходников (`dotnet publish`, как `make build` в runner):
   на сервере не нужны .NET и заранее собранные файлы.
 

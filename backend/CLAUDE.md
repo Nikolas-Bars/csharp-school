@@ -28,6 +28,9 @@ Laravel 12, PHP 8.3, RoadRunner, MariaDB 11.4, Redis 7, Laravel Sanctum (Bearer-
 `make check` (php-cs-fixer + PHPStan level 10 + PHPUnit), `make test`, `make lint` (исправить
 стиль), `make shell`, `make artisan cmd='route:list'`, `make composer cmd='require vendor/package'`
 (после изменения зависимостей — `make rebuild`: `vendor` живёт в образе).
+Расширения redis и pcov — закреплённые версии с SHA-256 и запасным источником в
+`.docker/php/ext-source.sh` (общий для `Dockerfile_local` и `Dockerfile_prod`); новая версия —
+там же, порядок — в комментарии скрипта.
 
 API: http://localhost:8290/api. Тесты идут на SQLite в памяти (`phpunit.xml`).
 

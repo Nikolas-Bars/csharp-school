@@ -17,13 +17,15 @@ FROM composer:2 AS composer
 # Общая основа сборки и запуска: PHP + расширения, которых требуют composer.lock и RoadRunner
 FROM php:8.3-cli-alpine AS base
 
-RUN apk add --no-cache icu-libs \
+# redis — не через pecl install: версия закреплена, архив с проверкой SHA-256 и запасным
+# источником, если pecl.php.net недоступен (php/ext-source.sh). Скрипт в образ не попадает
+RUN --mount=type=bind,source=.docker/php/ext-source.sh,target=/tmp/ext-source.sh \
+    apk add --no-cache icu-libs \
     && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS icu-dev linux-headers \
-    && pecl install redis \
-    && docker-php-ext-enable redis \
-    && docker-php-ext-install -j"$(nproc)" bcmath intl pcntl pdo_mysql sockets \
-    && pecl clear-cache \
-    && rm -rf /tmp/pear ~/.pearrc \
+    && docker-php-source extract \
+    && sh /tmp/ext-source.sh redis \
+    && docker-php-ext-install -j"$(nproc)" bcmath intl pcntl pdo_mysql redis sockets \
+    && docker-php-source delete \
     && apk del .build-deps
 
 RUN cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
