@@ -1,0 +1,79 @@
+{
+  "title": {
+    "ru": "Лекарь"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "method"
+    },
+    {
+      "kind": "call",
+      "method": "Program.Heal"
+    },
+    {
+      "kind": "output",
+      "expected": "Рыцарь: 65 HP\nМаг: 80 HP"
+    },
+    {
+      "kind": "output",
+      "expected": "Рыцарь: 50 HP\nМаг: 50 HP",
+      "set": {
+        "potion": 10
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Объяви метод Heal со static — после команд основного кода, но выше класса Hero."
+    },
+    {
+      "ru": "Лечи героев через Heal: вызови его для рыцаря и для мага."
+    },
+    {
+      "ru": "Здоровье не выросло? Метод должен получать самого героя (параметр типа Hero) и менять его поле hp. Если передать в метод число knight.hp, метод изменит только копию."
+    },
+    {
+      "ru": "При другом potion здоровье тоже должно измениться. Передавай в Heal potion и potion * 2, а не готовые числа."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Число в параметр попадает копией, а объект — ссылкой. Поэтому передай в метод героя целиком."
+    },
+    {
+      "ru": "static void Heal(Hero target, int amount) — внутри увеличь target.hp на amount."
+    },
+    {
+      "ru": "Heal(knight, potion); Heal(mage, potion * 2); а внутри метода: target.hp += amount;"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-int-copy.cs",
+      "fails": [
+        2,
+        3
+      ],
+      "why": "В метод передано число knight.hp: метод меняет копию"
+    },
+    {
+      "file": "wrong-no-heal.cs",
+      "fails": [
+        0,
+        1
+      ],
+      "why": "Лечение прямо в основном коде, без метода Heal"
+    },
+    {
+      "file": "wrong-method-after-class.cs",
+      "compileError": "CS8803",
+      "why": "Метод Heal объявлен ниже класса"
+    }
+  ]
+}

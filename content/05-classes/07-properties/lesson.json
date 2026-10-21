@@ -1,0 +1,98 @@
+{
+  "title": {
+    "ru": "Свойства"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-property.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "02-private-set.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "quest"
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "03-unity.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "xp-bar"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "public int Hp { get; private set; } Что с Hp можно сделать в основном коде?"
+          },
+          "options": [
+            {
+              "ru": "Прочитать и изменить"
+            },
+            {
+              "ru": "Только изменить"
+            },
+            {
+              "ru": "Только прочитать"
+            }
+          ],
+          "answer": 2,
+          "explanation": {
+            "ru": "get открыт всем, а set — private: менять Hp могут только методы самого класса."
+          }
+        },
+        {
+          "question": {
+            "ru": "Как по договорённости назвать свойство «уровень»?"
+          },
+          "options": [
+            {
+              "ru": "level"
+            },
+            {
+              "ru": "Level"
+            },
+            {
+              "ru": "LEVEL"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "Свои свойства, как и методы, пишут с заглавной буквы. С маленькой мы называем поля (как в Unity) и переменные. У готовых свойств Unity имена с маленькой — так сложилось исторически."
+          }
+        },
+        {
+          "question": {
+            "ru": "Что Unity показывает в окне Inspector?"
+          },
+          "options": [
+            {
+              "ru": "public-поля скрипта"
+            },
+            {
+              "ru": "Только свойства скрипта"
+            },
+            {
+              "ru": "Все методы скрипта"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "Inspector показывает public-поля и private-поля с пометкой [SerializeField]. Обычные свойства и методы там не видны."
+          }
+        }
+      ]
+    }
+  ]
+}

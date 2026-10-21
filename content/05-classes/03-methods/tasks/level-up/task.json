@@ -1,0 +1,85 @@
+{
+  "title": {
+    "ru": "Новый уровень"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "class"
+    },
+    {
+      "kind": "call",
+      "method": "Hero.LevelUp"
+    },
+    {
+      "kind": "call",
+      "method": "Hero.ShowInfo"
+    },
+    {
+      "kind": "output",
+      "expected": "Мира, уровень 4: 80 HP"
+    },
+    {
+      "kind": "output",
+      "expected": "Мира, уровень 6: 100 HP",
+      "set": {
+        "wins": 5
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Объяви класс Hero ниже основного кода."
+    },
+    {
+      "ru": "Повышай уровень через метод LevelUp: объяви его в классе Hero и вызови у героя — hero.LevelUp()."
+    },
+    {
+      "ru": "Показывай героя через метод ShowInfo класса Hero, а не через Console.WriteLine в основном коде."
+    },
+    {
+      "ru": "Сравни вывод: после трёх побед уровень 4 и 80 HP. Проверь, что LevelUp меняет поля героя, а не свои параметры или переменные."
+    },
+    {
+      "ru": "При другом числе побед уровень и здоровье тоже должны измениться. Вызывай LevelUp в цикле wins раз."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Методы объекта пишут внутри класса без static. Поля в них доступны просто по имени: level, hp."
+    },
+    {
+      "ru": "LevelUp: level++; и hp += 10; ShowInfo: Console.WriteLine с интерполяцией полей. В основном коде — цикл for на wins повторений."
+    },
+    {
+      "ru": "for (int i = 0; i < wins; i++) { hero.LevelUp(); } hero.ShowInfo(); а в ShowInfo — Console.WriteLine($\"{name}, уровень {level}: {hp} HP\");"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-static.cs",
+      "compileError": "CS0176",
+      "why": "static у метода объекта по привычке: вызов через объект — CS0176, поля внутри — CS0120"
+    },
+    {
+      "file": "wrong-param-copy.cs",
+      "fails": [
+        3,
+        4
+      ],
+      "why": "Уровень передан параметром: метод меняет копию, поле level прежнее"
+    },
+    {
+      "file": "wrong-print-in-main.cs",
+      "fails": [
+        2
+      ],
+      "why": "Герой напечатан в основном коде, ShowInfo не вызван"
+    }
+  ]
+}

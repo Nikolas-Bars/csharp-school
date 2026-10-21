@@ -1,0 +1,84 @@
+{
+  "title": {
+    "ru": "Бой до победы"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "class"
+    },
+    {
+      "kind": "call",
+      "method": "Enemy.IsAlive"
+    },
+    {
+      "kind": "call",
+      "method": "Enemy.TakeDamage"
+    },
+    {
+      "kind": "output",
+      "expected": "Ударов до победы: 5"
+    },
+    {
+      "kind": "output",
+      "expected": "Ударов до победы: 2",
+      "set": {
+        "attack": 25
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Объяви класс Enemy ниже основного кода."
+    },
+    {
+      "ru": "Спрашивай огра, жив ли он, через его метод IsAlive — например, в условии цикла."
+    },
+    {
+      "ru": "Бей огра через его метод TakeDamage."
+    },
+    {
+      "ru": "Ударов должно быть 5: 50 → 38 → 26 → 14 → 2 → меньше нуля. Проверь условие цикла и счётчик."
+    },
+    {
+      "ru": "При другой силе удара число ударов меняется. Если при атаке 25 вышло 3 удара, проверь IsAlive: огр с 0 здоровья уже не жив."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Бой — это цикл while: условие «огр жив», внутри — удар и +1 к счётчику."
+    },
+    {
+      "ru": "IsAlive возвращает hp > 0. Перед циклом заведи счётчик int hits = 0;"
+    },
+    {
+      "ru": "while (ogre.IsAlive()) { ogre.TakeDamage(attack); hits++; } — после цикла вывод через интерполяцию."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-alive-ge.cs",
+      "fails": [
+        4
+      ],
+      "why": ">= вместо >: огр с 0 здоровья считается живым"
+    },
+    {
+      "file": "wrong-static.cs",
+      "compileError": "CS0120",
+      "why": "IsAlive со static не видит поле hp"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        4
+      ],
+      "why": "Число ударов напечатано готовым"
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "title": {
+    "ru": "Захват цели"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "call",
+      "method": "Program.FindEnemy"
+    },
+    {
+      "kind": "variable",
+      "name": "target",
+      "type": "Enemy"
+    },
+    {
+      "kind": "access",
+      "member": "Enemy.hp"
+    },
+    {
+      "kind": "output",
+      "expected": "Цель: Орк, 60 HP"
+    },
+    {
+      "kind": "output",
+      "expected": "Цель не найдена: Дракон",
+      "set": {
+        "targetName": "Дракон"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Ищи цель через метод FindEnemy: объяви его со static выше класса Enemy и вызови в основном коде."
+    },
+    {
+      "ru": "Положи ответ FindEnemy в переменную target типа Enemy."
+    },
+    {
+      "ru": "Здоровье цели печатай из её поля: target.hp."
+    },
+    {
+      "ru": "Орк есть в списке, поэтому должна напечататься «Цель: Орк, 60 HP». Проверь, что FindEnemy смотрит всех врагов, а return null стоит после цикла."
+    },
+    {
+      "ru": "Если врага с таким именем нет, FindEnemy возвращает null — и читать у него поля нельзя. Сравни target с null и напечатай «Цель не найдена: …»."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Поиск — цикл по списку: нашли врага с нужным именем — сразу возвращаем его. Прошли весь список — возвращаем null."
+    },
+    {
+      "ru": "static Enemy FindEnemy(List<Enemy> enemies, string name) — внутри foreach, if (enemy.name == name) { return enemy; } а после цикла return null;"
+    },
+    {
+      "ru": "Enemy target = FindEnemy(enemies, targetName); if (target != null) { … } else { Console.WriteLine($\"Цель не найдена: {targetName}\"); }"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-no-null-check.cs",
+      "fails": [
+        4
+      ],
+      "why": "Нет проверки на null: если цели нет, программа падает"
+    },
+    {
+      "file": "wrong-null-in-loop.cs",
+      "fails": [
+        3
+      ],
+      "why": "return null внутри цикла, в else: проверяется только первый враг"
+    },
+    {
+      "file": "wrong-compare-object.cs",
+      "compileError": "CS0019",
+      "why": "С именем сравнивается весь враг, а не его поле name"
+    },
+    {
+      "file": "wrong-print-name.cs",
+      "fails": [
+        2
+      ],
+      "why": "Найденная цель не используется: напечатаны имя из переменной и готовое число"
+    }
+  ]
+}

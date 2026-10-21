@@ -1,0 +1,93 @@
+{
+  "title": {
+    "ru": "Гоблин под ударами"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "class"
+    },
+    {
+      "kind": "call",
+      "method": "Enemy.TakeDamage"
+    },
+    {
+      "kind": "call",
+      "method": "Enemy.ShowInfo"
+    },
+    {
+      "kind": "call",
+      "method": "System.Math.Max",
+      "caller": "Enemy.TakeDamage"
+    },
+    {
+      "kind": "output",
+      "expected": "Гоблин: 45 HP\nГоблин: 15 HP\nГоблин: 0 HP"
+    },
+    {
+      "kind": "output",
+      "expected": "Гоблин: 85 HP\nГоблин: 55 HP\nГоблин: 30 HP",
+      "set": {
+        "goblinHp": 100
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Объяви класс Enemy ниже основного кода."
+    },
+    {
+      "ru": "Бей гоблина через его метод TakeDamage: goblin.TakeDamage(…)."
+    },
+    {
+      "ru": "Показывай гоблина через метод ShowInfo класса Enemy."
+    },
+    {
+      "ru": "Math.Max должен стоять внутри метода TakeDamage: тогда враг сам следит, чтобы здоровье не ушло ниже нуля."
+    },
+    {
+      "ru": "Сравни вывод построчно: после каждого удара — строка с гоблином, а здоровье не уходит ниже 0."
+    },
+    {
+      "ru": "При другом начальном здоровье все строки должны измениться. Здоровье гоблина бери из goblinHp и меняй через TakeDamage."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Внутри TakeDamage поле hp доступно по имени. Новое здоровье — большее из hp - damage и 0."
+    },
+    {
+      "ru": "TakeDamage: hp = Math.Max(hp - damage, 0); В основном коде: goblin.hp = goblinHp; и цикл foreach по hits."
+    },
+    {
+      "ru": "foreach (int hit in hits) { goblin.TakeDamage(hit); goblin.ShowInfo(); }"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-class-call.cs",
+      "compileError": "CS0120",
+      "why": "Метод вызван через имя класса Enemy, а не через объект"
+    },
+    {
+      "file": "wrong-no-max.cs",
+      "fails": [
+        3,
+        4
+      ],
+      "why": "Без Math.Max здоровье уходит в минус"
+    },
+    {
+      "file": "wrong-max-in-main.cs",
+      "fails": [
+        3
+      ],
+      "why": "Здоровье ограничено в основном коде, а не в TakeDamage"
+    }
+  ]
+}

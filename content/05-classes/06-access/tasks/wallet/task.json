@@ -1,0 +1,84 @@
+{
+  "title": {
+    "ru": "Кошелёк"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "class"
+    },
+    {
+      "kind": "call",
+      "method": "Wallet.Spend"
+    },
+    {
+      "kind": "call",
+      "method": "Wallet.GetGold"
+    },
+    {
+      "kind": "output",
+      "expected": "Куплено: зелье\nНе хватает на меч\nЗолото: 20"
+    },
+    {
+      "kind": "output",
+      "expected": "Куплено: зелье\nКуплено: меч\nЗолото: 30",
+      "set": {
+        "startGold": 100
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Объяви класс Wallet ниже основного кода."
+    },
+    {
+      "ru": "Каждую покупку проверяй через метод Spend: его ответ true или false говорит, получилось ли купить."
+    },
+    {
+      "ru": "Остаток узнавай у кошелька через GetGold: само поле gold закрыто."
+    },
+    {
+      "ru": "Сравни вывод. На меч не хватает: после зелья осталось 20 золота, а меч стоит 40. Spend не должен уводить золото в минус."
+    },
+    {
+      "ru": "При другом начальном золоте покупки и остаток тоже должны измениться. Передай startGold в конструктор и печатай ответ GetGold."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Поле gold — private, поэтому в основном коде его не прочитать. Всё — через методы кошелька."
+    },
+    {
+      "ru": "Spend: if (gold >= price) { gold -= price; return true; } а после if — return false; Вызов Spend можно поставить прямо в условие if."
+    },
+    {
+      "ru": "if (wallet.Spend(30)) { Console.WriteLine(\"Куплено: зелье\"); } else { … } — и так же для меча за 40. В конце: Console.WriteLine($\"Золото: {wallet.GetGold()}\");"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-read-private.cs",
+      "compileError": "CS0122",
+      "why": "Основной код читает private-поле gold"
+    },
+    {
+      "file": "wrong-no-check.cs",
+      "fails": [
+        3
+      ],
+      "why": "Spend не проверяет, хватает ли золота: остаток уходит в минус"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        4
+      ],
+      "why": "Остаток напечатан готовым числом"
+    }
+  ]
+}

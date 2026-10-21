@@ -1,0 +1,92 @@
+{
+  "title": {
+    "ru": "Объекты в списке"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-list.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "area-attack"
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "02-field-list.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "backpack"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "Как создать пустой список врагов?"
+          },
+          "options": [
+            {
+              "ru": "List<Enemy> list = new Enemy();"
+            },
+            {
+              "ru": "List<Enemy> list = new List<Enemy>();"
+            },
+            {
+              "ru": "Enemy list = new List<Enemy>();"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "Тип переменной — List<Enemy>, и создают тоже List<Enemy>. new Enemy() создал бы одного врага, а не список."
+          }
+        },
+        {
+          "question": {
+            "ru": "Что делает enemies.Add(new Enemy(\"Орк\", 60));?"
+          },
+          "options": [
+            {
+              "ru": "Создаёт орка и кладёт в список"
+            },
+            {
+              "ru": "Ищет орка в списке врагов"
+            },
+            {
+              "ru": "Меняет первого врага на орка"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "new Enemy(…) создаёт нового врага, а Add кладёт его в конец списка."
+          }
+        },
+        {
+          "question": {
+            "ru": "foreach (Enemy e in enemies) { e.hp = 0; } Что станет с врагами в списке?"
+          },
+          "options": [
+            {
+              "ru": "Ничего: e — это копия"
+            },
+            {
+              "ru": "Будет ошибка компилятора"
+            },
+            {
+              "ru": "У всех hp станет 0"
+            }
+          ],
+          "answer": 2,
+          "explanation": {
+            "ru": "В списке ссылки, и e по очереди указывает на настоящих врагов. Менять их поля в foreach можно — нельзя только добавлять и удалять элементы."
+          }
+        }
+      ]
+    }
+  ]
+}

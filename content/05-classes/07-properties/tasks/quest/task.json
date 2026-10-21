@@ -1,0 +1,100 @@
+{
+  "title": {
+    "ru": "Квест"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "class"
+    },
+    {
+      "kind": "construct",
+      "construct": "privateSet",
+      "min": 3
+    },
+    {
+      "kind": "call",
+      "method": "Quest.AddProgress"
+    },
+    {
+      "kind": "call",
+      "method": "Quest.IsDone"
+    },
+    {
+      "kind": "output",
+      "expected": "Волки: 3/5\nВолки: 5/5\nКвест выполнен!"
+    },
+    {
+      "kind": "output",
+      "expected": "Волки: 0/5\nВолки: 4/5",
+      "set": {
+        "wolves": 0
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Объяви класс Quest ниже основного кода."
+    },
+    {
+      "ru": "У всех трёх свойств менять значение должен только сам класс: нужен private set."
+    },
+    {
+      "ru": "Прогресс добавляй через метод AddProgress — само свойство Progress снаружи менять нельзя."
+    },
+    {
+      "ru": "Узнавай, выполнен ли квест, через метод IsDone."
+    },
+    {
+      "ru": "Сравни вывод. Прогресс не может быть больше цели: 3 + 4 — это всё равно 5/5. Если цель равна 0, проверь, что конструктор записал goal в Goal."
+    },
+    {
+      "ru": "При другом начальном прогрессе вывод меняется, а «Квест выполнен!» печатается, только если прогресс дошёл до цели."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Свойство с private set: public int Progress { get; private set; } Внутри класса его меняют как обычное поле."
+    },
+    {
+      "ru": "AddProgress: Progress = Math.Min(Progress + amount, Goal); IsDone: return Progress == Goal; Прогресс в начале и так 0 — значение по умолчанию."
+    },
+    {
+      "ru": "quest.AddProgress(wolves); Console.WriteLine($\"{quest.Title}: {quest.Progress}/{quest.Goal}\"); потом AddProgress(4), снова вывод и if (quest.IsDone()) { … }"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-set-outside.cs",
+      "compileError": "CS0272",
+      "why": "Основной код меняет свойство с private set"
+    },
+    {
+      "file": "wrong-no-min.cs",
+      "fails": [
+        4
+      ],
+      "why": "Без Math.Min прогресс перескакивает цель, и квест не засчитывается"
+    },
+    {
+      "file": "wrong-no-goal.cs",
+      "fails": [
+        4,
+        5
+      ],
+      "why": "Конструктор не записал цель: Goal остался 0"
+    },
+    {
+      "file": "wrong-public-set.cs",
+      "fails": [
+        1
+      ],
+      "why": "Свойства без private set: их можно менять снаружи"
+    }
+  ]
+}

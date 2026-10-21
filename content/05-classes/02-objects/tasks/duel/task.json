@@ -1,0 +1,106 @@
+{
+  "title": {
+    "ru": "Дуэль"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "class"
+    },
+    {
+      "kind": "variable",
+      "name": "knight",
+      "type": "Hero"
+    },
+    {
+      "kind": "variable",
+      "name": "orc",
+      "type": "Hero"
+    },
+    {
+      "kind": "access",
+      "member": "Hero.attack",
+      "min": 2
+    },
+    {
+      "kind": "output",
+      "expected": "Рыцарь: 80 HP\nОрк: 75 HP"
+    },
+    {
+      "kind": "output",
+      "expected": "Рыцарь: 80 HP\nОрк: 50 HP",
+      "set": {
+        "knightAttack": 40
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Объяви класс Hero с полями name, hp и attack — ниже основного кода."
+    },
+    {
+      "ru": "Нужна переменная knight типа Hero — рыцарь, созданный через new."
+    },
+    {
+      "ru": "Нужна переменная orc типа Hero — второй объект, со своим new."
+    },
+    {
+      "ru": "Урон бери из полей атаки: у рыцаря — knight.attack, у орка — orc.attack."
+    },
+    {
+      "ru": "Сравни здоровье: рыцарь получает урон, равный атаке орка, а орк — равный атаке рыцаря. Проверь, кто кого бьёт."
+    },
+    {
+      "ru": "При другой атаке рыцаря здоровье орка тоже должно измениться. Отнимай поле knight.attack, а не готовое число."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Два героя — два new. У каждого свои поля: knight.hp и orc.hp — разные значения."
+    },
+    {
+      "ru": "После создания обоих героев: здоровье орка уменьшается на knight.attack, здоровье рыцаря — на orc.attack."
+    },
+    {
+      "ru": "orc.hp -= knight.attack; knight.hp -= orc.attack; потом Console.WriteLine($\"{knight.name}: {knight.hp} HP\"); и так же для орка."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-self-hit.cs",
+      "fails": [
+        4,
+        5
+      ],
+      "why": "Каждый герой бьёт сам себя"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        3,
+        5
+      ],
+      "why": "Урон орку отнят готовым числом"
+    },
+    {
+      "file": "wrong-one-object.cs",
+      "fails": [
+        4,
+        5
+      ],
+      "why": "orc = knight: второго объекта нет, обе переменные ведут к одному герою"
+    },
+    {
+      "file": "wrong-no-attack-field.cs",
+      "fails": [
+        3
+      ],
+      "why": "Удары посчитаны из исходных чисел, поля attack не читаются"
+    }
+  ]
+}

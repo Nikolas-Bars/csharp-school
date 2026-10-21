@@ -1,0 +1,93 @@
+{
+  "title": {
+    "ru": "Мана мага"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "class"
+    },
+    {
+      "kind": "call",
+      "method": "Mage.HasMana",
+      "caller": "Mage.Cast"
+    },
+    {
+      "kind": "call",
+      "method": "Mage.Cast"
+    },
+    {
+      "kind": "call",
+      "method": "Mage.ShowMana"
+    },
+    {
+      "kind": "output",
+      "expected": "Мерлин колдует: Огненный шар\nМерлин: мало маны\nМана: 15"
+    },
+    {
+      "kind": "output",
+      "expected": "Мерлин колдует: Огненный шар\nМерлин колдует: Ледяная стрела\nМана: 25",
+      "set": {
+        "startMana": 70
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Объяви класс Mage ниже основного кода."
+    },
+    {
+      "ru": "Cast должен спрашивать HasMana, хватает ли маны, — вызови HasMana внутри Cast, а не сравнивай ману прямо там."
+    },
+    {
+      "ru": "Колдуй через метод Cast: mage.Cast(…) для каждого заклинания."
+    },
+    {
+      "ru": "Ману показывай через метод ShowMana: само поле mana закрыто."
+    },
+    {
+      "ru": "Сравни вывод. После огненного шара остаётся 15 маны — на ледяную стрелу за 20 не хватает. Проверь, что Cast тратит ману."
+    },
+    {
+      "ru": "При другой начальной мане результат тоже меняется. Передай startMana в конструктор."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "HasMana — private: снаружи его не вызвать, а Cast — может, они в одном классе."
+    },
+    {
+      "ru": "HasMana: return mana >= cost; Cast: if (HasMana(cost)) { mana -= cost; … } else { … }"
+    },
+    {
+      "ru": "В Cast: Console.WriteLine($\"{name} колдует: {spell}\"); и Console.WriteLine($\"{name}: мало маны\"); В основном коде: new Mage(\"Мерлин\", startMana), два Cast и ShowMana."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-call-private.cs",
+      "compileError": "CS0122",
+      "why": "Основной код вызывает private-метод HasMana"
+    },
+    {
+      "file": "wrong-no-hasmana.cs",
+      "fails": [
+        1
+      ],
+      "why": "Cast сравнивает ману сам, HasMana не вызван"
+    },
+    {
+      "file": "wrong-no-spend.cs",
+      "fails": [
+        4,
+        5
+      ],
+      "why": "Cast не тратит ману"
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "title": {
+    "ru": "Враги через конструктор"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "class"
+    },
+    {
+      "kind": "construct",
+      "construct": "constructor"
+    },
+    {
+      "kind": "variable",
+      "name": "dragon",
+      "type": "Enemy"
+    },
+    {
+      "kind": "call",
+      "method": "Enemy.ShowInfo"
+    },
+    {
+      "kind": "output",
+      "expected": "Гоблин: 40 HP, урон 5\nДракон: 300 HP, урон 50"
+    },
+    {
+      "kind": "output",
+      "expected": "Гоблин: 40 HP, урон 5\nДракон: 500 HP, урон 50",
+      "set": {
+        "bossHp": 500
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Объяви класс Enemy ниже основного кода."
+    },
+    {
+      "ru": "Нужен конструктор: метод с именем класса и без типа ответа, который сразу заполняет поля."
+    },
+    {
+      "ru": "Нужна переменная dragon типа Enemy."
+    },
+    {
+      "ru": "Показывай врагов через метод ShowInfo класса Enemy."
+    },
+    {
+      "ru": "Сравни вывод построчно. Если где-то 0, конструктор не записал значение в поле. Если числа на чужих местах — проверь порядок аргументов в new Enemy(…)."
+    },
+    {
+      "ru": "При другом bossHp здоровье дракона тоже должно измениться — передай bossHp в конструктор."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Конструктор называется так же, как класс, и у него нет типа ответа. Внутри он кладёт параметры в поля."
+    },
+    {
+      "ru": "public Enemy(string enemyName, int enemyHp, int enemyDamage) { … } — три присваивания полям. Создание: new Enemy(\"Гоблин\", 40, 5)."
+    },
+    {
+      "ru": "Enemy dragon = new Enemy(\"Дракон\", bossHp, 50); потом goblin.ShowInfo(); и dragon.ShowInfo();"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-void-constructor.cs",
+      "compileError": "CS0542",
+      "why": "У конструктора написан void — это уже метод с именем класса"
+    },
+    {
+      "file": "wrong-forgot-field.cs",
+      "fails": [
+        4,
+        5
+      ],
+      "why": "Конструктор не записал урон в поле: у всех урон 0"
+    },
+    {
+      "file": "wrong-order.cs",
+      "fails": [
+        4,
+        5
+      ],
+      "why": "Аргументы перепутаны: здоровье и урон поменялись местами"
+    },
+    {
+      "file": "wrong-no-args.cs",
+      "compileError": "CS7036",
+      "why": "new Enemy() без аргументов, а конструктор их требует"
+    },
+    {
+      "file": "wrong-no-constructor.cs",
+      "fails": [
+        1
+      ],
+      "why": "Без конструктора: поля заполнены по одному в основном коде"
+    }
+  ]
+}

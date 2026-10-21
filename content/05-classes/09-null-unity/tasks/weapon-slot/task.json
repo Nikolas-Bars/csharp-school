@@ -1,0 +1,89 @@
+{
+  "title": {
+    "ru": "Слот оружия"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "class",
+      "min": 2
+    },
+    {
+      "kind": "call",
+      "method": "Hero.GetDamage"
+    },
+    {
+      "kind": "call",
+      "method": "Hero.Equip"
+    },
+    {
+      "kind": "output",
+      "expected": "Артур бьёт на 1\nАртур бьёт на 15"
+    },
+    {
+      "kind": "output",
+      "expected": "Артур бьёт на 1\nАртур бьёт на 40",
+      "set": {
+        "swordDamage": 40
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужны два класса: Weapon и Hero."
+    },
+    {
+      "ru": "Урон узнавай у героя через метод GetDamage."
+    },
+    {
+      "ru": "Давай оружие через метод Equip."
+    },
+    {
+      "ru": "Сравни вывод. Программа остановилась на null? Пока оружия нет, GetDamage не может читать weapon.damage — сначала проверь weapon на null. Если урон всё время 1, проверь, что Equip записывает оружие в поле героя."
+    },
+    {
+      "ru": "При другом уроне меча вторая строка должна измениться. Создай меч с уроном swordDamage."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Поле weapon сначала null — значение по умолчанию. GetDamage должен это проверить."
+    },
+    {
+      "ru": "Equip: параметр и поле называются одинаково, поэтому поле — this.weapon. Без this компилятор выдаст предупреждение — подсказку о подозрительном месте, — а поле останется null. GetDamage: if (weapon == null) { return 1; } а потом — урон оружия."
+    },
+    {
+      "ru": "return weapon.damage; после if. В основном коде: hero.Equip(new Weapon(\"Меч\", swordDamage)); и вывод с hero.GetDamage()."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-no-null-check.cs",
+      "fails": [
+        3,
+        4
+      ],
+      "why": "Нет проверки на null: без оружия программа падает"
+    },
+    {
+      "file": "wrong-equip-no-this.cs",
+      "fails": [
+        3,
+        4
+      ],
+      "why": "Equip без this: оружие кладётся в параметр, поле остаётся null"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        4
+      ],
+      "why": "Урон с мечом напечатан готовым числом"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "title": {
+    "ru": "Много объектов"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-own-fields.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "duel"
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "02-defaults.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "03-reference.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "healer"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "Hero a = new Hero(); Hero b = new Hero(); a.hp = 50; Чему равно b.hp?"
+          },
+          "options": [
+            {
+              "ru": "Ошибка компилятора"
+            },
+            {
+              "ru": "50"
+            },
+            {
+              "ru": "0"
+            }
+          ],
+          "answer": 2,
+          "explanation": {
+            "ru": "a и b — два разных объекта, у каждого своё поле hp. b.hp никто не менял, поэтому там значение по умолчанию — 0."
+          }
+        },
+        {
+          "question": {
+            "ru": "Hero a = new Hero(); Hero b = a; b.hp = 30; Чему равно a.hp?"
+          },
+          "options": [
+            {
+              "ru": "30"
+            },
+            {
+              "ru": "0"
+            },
+            {
+              "ru": "Ошибка компилятора"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "b = a копирует ссылку, а не героя: обе переменные ведут к одному объекту. Поменяли через b — видно и через a."
+          }
+        },
+        {
+          "question": {
+            "ru": "Какое значение по умолчанию у поля типа bool?"
+          },
+          "options": [
+            {
+              "ru": "true"
+            },
+            {
+              "ru": "false"
+            },
+            {
+              "ru": "null"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "Пустые поля заполняются значениями по умолчанию: числа — 0, bool — false, строки — null."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "title": {
+    "ru": "Первый герой"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "class"
+    },
+    {
+      "kind": "variable",
+      "name": "hero",
+      "type": "Hero"
+    },
+    {
+      "kind": "access",
+      "member": "Hero.name"
+    },
+    {
+      "kind": "access",
+      "member": "Hero.hp"
+    },
+    {
+      "kind": "output",
+      "expected": "Мира: 80 HP"
+    },
+    {
+      "kind": "output",
+      "expected": "Торин: 120 HP",
+      "set": {
+        "heroName": "Торин",
+        "startHp": 120
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Объяви класс Hero: слово class, имя и фигурные скобки с полями. Класс пиши ниже основного кода."
+    },
+    {
+      "ru": "В основном коде нужна переменная hero типа Hero — объект, созданный через new."
+    },
+    {
+      "ru": "Имя печатай из поля героя: hero.name, а не из исходной переменной."
+    },
+    {
+      "ru": "Здоровье печатай из поля героя: hero.hp, а не из исходной переменной."
+    },
+    {
+      "ru": "Сравни вывод с примером: имя, двоеточие, пробел, здоровье и « HP»."
+    },
+    {
+      "ru": "При других имени и здоровье вывод тоже должен измениться. Запиши heroName и startHp в поля героя и печатай поля, а не готовый текст."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Сначала чертёж: class Hero ниже основного кода, внутри два поля с public. Потом в основном коде — объект через new."
+    },
+    {
+      "ru": "Поля: public string name; и public int hp; В основном коде: Hero hero = new Hero(); — дальше значения записываются в поля через точку."
+    },
+    {
+      "ru": "hero.name = heroName; hero.hp = startHp; Console.WriteLine($\"{hero.name}: {hero.hp} HP\");"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-class-first.cs",
+      "compileError": "CS8803",
+      "why": "Класс объявлен выше команд основного кода"
+    },
+    {
+      "file": "wrong-no-public.cs",
+      "compileError": "CS0122",
+      "why": "Поля без public не видны из основного кода"
+    },
+    {
+      "file": "wrong-no-new.cs",
+      "compileError": "CS0165",
+      "why": "Забыт new: в переменной hero нет объекта"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        2,
+        3,
+        5
+      ],
+      "why": "Вывод напечатан готовым текстом"
+    },
+    {
+      "file": "wrong-print-variables.cs",
+      "fails": [
+        2,
+        3
+      ],
+      "why": "Поля заполнены, но напечатаны исходные переменные"
+    }
+  ]
+}

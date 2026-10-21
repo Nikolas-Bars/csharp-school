@@ -1,0 +1,93 @@
+{
+  "title": {
+    "ru": "Кузнец точит меч"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "class"
+    },
+    {
+      "kind": "variable",
+      "name": "sword",
+      "type": "Weapon"
+    },
+    {
+      "kind": "access",
+      "member": "Weapon.damage"
+    },
+    {
+      "kind": "output",
+      "expected": "Меч: урон 12\nМеч: урон 17"
+    },
+    {
+      "kind": "output",
+      "expected": "Меч: урон 12\nМеч: урон 22",
+      "set": {
+        "bonus": 10
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Объяви класс Weapon с полями name и damage — ниже основного кода."
+    },
+    {
+      "ru": "В основном коде нужна переменная sword типа Weapon, созданная через new."
+    },
+    {
+      "ru": "Урон печатай из поля меча: sword.damage."
+    },
+    {
+      "ru": "Должно напечататься «Меч: урон 12», а после заточки — «Меч: урон 17». Если урон не вырос, проверь, что bonus прибавляется к полю sword.damage, а не к отдельной переменной."
+    },
+    {
+      "ru": "При другом bonus вторая строка тоже должна измениться. Прибавляй bonus к полю, а не печатай готовое число."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Поле объекта меняется так же, как обычная переменная, — через точку: sword.damage."
+    },
+    {
+      "ru": "Weapon sword = new Weapon(); потом имя и урон через точку и вывод. Заточка — это += к полю damage."
+    },
+    {
+      "ru": "sword.damage += bonus; и снова Console.WriteLine($\"{sword.name}: урон {sword.damage}\");"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-copy.cs",
+      "fails": [
+        3,
+        4
+      ],
+      "why": "Урон скопирован в переменную, наточена копия, а поле прежнее"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        4
+      ],
+      "why": "Урон после заточки напечатан готовым числом"
+    },
+    {
+      "file": "wrong-case.cs",
+      "compileError": "CS0246",
+      "why": "Класс назван weapon с маленькой буквы, а тип написан Weapon"
+    },
+    {
+      "file": "wrong-print-numbers.cs",
+      "fails": [
+        2
+      ],
+      "why": "Урон напечатан без поля: числом и bonus"
+    }
+  ]
+}
