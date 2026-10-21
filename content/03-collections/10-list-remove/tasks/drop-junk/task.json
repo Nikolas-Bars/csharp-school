@@ -1,0 +1,102 @@
+{
+  "title": {
+    "ru": "Выбросить хлам"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "while"
+    },
+    {
+      "kind": "call",
+      "method": "System.Collections.Generic.List.Contains"
+    },
+    {
+      "kind": "call",
+      "method": "System.Collections.Generic.List.Remove"
+    },
+    {
+      "kind": "output",
+      "expected": "меч\nзелье\nОсталось предметов: 2"
+    },
+    {
+      "kind": "output",
+      "expected": "кость\nкость\nзелье\nкость\nОсталось предметов: 4",
+      "set": {
+        "junk": "меч"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Используй цикл while: одно удаление убирает только один предмет, а хлама может быть много."
+    },
+    {
+      "ru": "Проверяй в условии цикла, есть ли в рюкзаке junk, — методом Contains."
+    },
+    {
+      "ru": "Убирай хлам по значению — методом Remove. RemoveAt убирает по индексу и может выбросить не тот предмет."
+    },
+    {
+      "ru": "Сверь вывод с ожидаемым: в рюкзаке должны остаться меч и зелье, а костей — ни одной."
+    },
+    {
+      "ru": "Программа должна работать при любом значении junk — не печатай готовый ответ, убирай junk в цикле, а не готовые предметы."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Цикл while повторяется, пока условие верно. Условие здесь: «в рюкзаке ещё есть хлам»."
+    },
+    {
+      "ru": "while (bag.Contains(junk)) { … } — внутри убери один предмет junk через Remove."
+    },
+    {
+      "ru": "while (bag.Contains(junk)) { bag.Remove(junk); } потом foreach по bag и вывод bag.Count."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-once.cs",
+      "fails": [
+        0,
+        3
+      ],
+      "why": "if вместо while: убран один предмет из трёх"
+    },
+    {
+      "file": "wrong-remove-at.cs",
+      "fails": [
+        2,
+        3,
+        4
+      ],
+      "why": "RemoveAt(0) убирает первый предмет, а не хлам"
+    },
+    {
+      "file": "wrong-foreach-remove.cs",
+      "fails": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "why": "Удаление внутри foreach по тому же списку — InvalidOperationException"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        0,
+        1,
+        2,
+        4
+      ],
+      "why": "Готовый ответ без удаления"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "title": {
+    "ru": "Журнал заданий"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "call",
+      "method": "System.Collections.Generic.List.Remove"
+    },
+    {
+      "kind": "call",
+      "method": "System.Collections.Generic.List.RemoveAt"
+    },
+    {
+      "kind": "construct",
+      "construct": "for"
+    },
+    {
+      "kind": "output",
+      "expected": "1. Принести воду\n2. Спасти деревню\nЗаданий: 2"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Выполненное задание убери по значению — методом Remove."
+    },
+    {
+      "ru": "Проваленное первое задание убери по индексу — методом RemoveAt."
+    },
+    {
+      "ru": "Выведи журнал циклом for по индексам списка."
+    },
+    {
+      "ru": "Сверь вывод с ожидаемым. Первое задание — индекс 0. Remove ищет строку буква в букву: если текст хоть чуть другой, задание тихо останется. Цикл — строго меньше Count."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Делай шаги по порядку: после каждого удаления элементы сдвигаются."
+    },
+    {
+      "ru": "Remove — по точному тексту задания, Add — новое задание, RemoveAt — индекс первого (с нуля). Журнал выводи циклом for до quests.Count, номер — i + 1."
+    },
+    {
+      "ru": "quests.Remove(\"Победить волка\"); quests.Add(\"Спасти деревню\"); quests.RemoveAt(0); потом for (int i = 0; i < quests.Count; i++) { Console.WriteLine($\"{i + 1}. {quests[i]}\"); } и после цикла — Console.WriteLine($\"Заданий: {quests.Count}\");"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-remove-at-one.cs",
+      "fails": [
+        3
+      ],
+      "why": "RemoveAt(1): первое задание считали с единицы"
+    },
+    {
+      "file": "wrong-lowercase.cs",
+      "fails": [
+        3
+      ],
+      "why": "Remove со строчной буквы ничего не нашёл и тихо не удалил"
+    },
+    {
+      "file": "wrong-less-or-equal.cs",
+      "fails": [
+        3
+      ],
+      "why": "<= Count: ArgumentOutOfRangeException"
+    }
+  ]
+}

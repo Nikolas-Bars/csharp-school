@@ -1,0 +1,110 @@
+{
+  "title": {
+    "ru": "Разбор добычи"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "call",
+      "method": "System.Collections.Generic.List.Add"
+    },
+    {
+      "kind": "call",
+      "method": "System.Collections.Generic.List.Contains"
+    },
+    {
+      "kind": "construct",
+      "construct": "foreach"
+    },
+    {
+      "kind": "construct",
+      "construct": "if",
+      "min": 2
+    },
+    {
+      "kind": "construct",
+      "construct": "for"
+    },
+    {
+      "kind": "output",
+      "expected": "Выпито зелье\n1. монета\n2. меч\n3. монета\nВ рюкзаке: 3"
+    },
+    {
+      "kind": "output",
+      "expected": "Выпито зелье\n1. кость\n2. меч\n3. кость\nВ рюкзаке: 3",
+      "set": {
+        "junk": "монета"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Предметы перекладывай в рюкзак методом Add."
+    },
+    {
+      "ru": "Проверь, есть ли в рюкзаке зелье, методом Contains."
+    },
+    {
+      "ru": "Перебери drops циклом foreach."
+    },
+    {
+      "ru": "Нужны два условия: if внутри цикла, чтобы пропускать хлам, и if с Contains — для зелья."
+    },
+    {
+      "ru": "Выведи рюкзак циклом for с номерами."
+    },
+    {
+      "ru": "Сверь вывод с ожидаемым. Хлам в рюкзак попасть не должен: проверь условие — добавлять нужно то, что НЕ junk. Зелье должно исчезнуть до вывода рюкзака."
+    },
+    {
+      "ru": "Программа должна работать при любом значении junk — не печатай готовый ответ, сравнивай предметы с junk и выводи рюкзак циклом."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Шаг 1 — foreach по drops с if внутри. Шаг 2 — if с Contains. Шаг 3 — for до bag.Count."
+    },
+    {
+      "ru": "Внутри foreach: if (item != junk) { bag.Add(item); } Шаг 2: if (bag.Contains(\"зелье\")) { bag.Remove(\"зелье\"); … }"
+    },
+    {
+      "ru": "for (int i = 0; i < bag.Count; i++) { Console.WriteLine($\"{i + 1}. {bag[i]}\"); } и после цикла — Console.WriteLine($\"В рюкзаке: {bag.Count}\");"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-only-junk.cs",
+      "fails": [
+        5,
+        6
+      ],
+      "why": "== вместо !=: в рюкзак попал только хлам"
+    },
+    {
+      "file": "wrong-no-filter.cs",
+      "fails": [
+        3,
+        5,
+        6
+      ],
+      "why": "Без условия хлам тоже в рюкзаке"
+    },
+    {
+      "file": "wrong-length.cs",
+      "compileError": "CS1061",
+      "why": "Length у списка нет — у него Count"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        4,
+        6
+      ],
+      "why": "Рюкзак напечатан готовым списком вместо for"
+    }
+  ]
+}

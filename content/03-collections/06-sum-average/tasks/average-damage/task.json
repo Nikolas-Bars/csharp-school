@@ -1,0 +1,64 @@
+{
+  "title": {
+    "ru": "Средний урон"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "variable",
+      "name": "average",
+      "type": "double"
+    },
+    {
+      "kind": "construct",
+      "construct": "foreach"
+    },
+    {
+      "kind": "output",
+      "expected": "Сумма: 94\nСредний урон: 23.5"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужна переменная average типа double — среднее бывает дробным."
+    },
+    {
+      "ru": "Сумму считай циклом foreach по массиву hits."
+    },
+    {
+      "ru": "Сверь вывод с ожидаемым. Если среднее получилось 23, деление было целым: когда и сумма, и Length целые, дробная часть пропадает ещё до записи в average."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Сначала сумма, как в прошлой задаче, потом среднее: сумма, делённая на количество ударов."
+    },
+    {
+      "ru": "Чтобы деление было дробным, заведи сумму как double: double total = 0; Количество ударов — hits.Length."
+    },
+    {
+      "ru": "double total = 0; foreach (int h in hits) { total += h; } double average = total / hits.Length; — и два вывода."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-int-division.cs",
+      "fails": [
+        2
+      ],
+      "why": "Целая сумма: деление целое, получается 23"
+    },
+    {
+      "file": "wrong-int-average.cs",
+      "fails": [
+        0,
+        2
+      ],
+      "why": "Среднее в int — дробная часть потеряна"
+    }
+  ]
+}

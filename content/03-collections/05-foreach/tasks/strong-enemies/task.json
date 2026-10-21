@@ -1,0 +1,92 @@
+{
+  "title": {
+    "ru": "Сильные враги"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "foreach"
+    },
+    {
+      "kind": "construct",
+      "construct": "if"
+    },
+    {
+      "kind": "output",
+      "expected": "Сильный враг: 85\nСильный враг: 120\nСильный враг: 55"
+    },
+    {
+      "kind": "output",
+      "expected": "Сильный враг: 85\nСильный враг: 50\nСильный враг: 120\nСильный враг: 55",
+      "set": {
+        "minHp": 40
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Используй цикл foreach, чтобы перебрать всех врагов волны."
+    },
+    {
+      "ru": "Внутри цикла нужен if: печатать надо не всех, а только сильных."
+    },
+    {
+      "ru": "Сверь вывод с ожидаемым. «Больше minHp» — враг ровно с minHp не подходит. И печатай переменную цикла: она уже и есть здоровье врага, по индексу его брать не нужно."
+    },
+    {
+      "ru": "Программа должна работать при любом значении minHp — не печатай готовый ответ, сравнивай здоровье с minHp в цикле."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Перебери wave через foreach и для каждого врага проверь условие."
+    },
+    {
+      "ru": "foreach (int hp in wave) { if (…) { … } } — условие «больше minHp» записывается как hp > minHp."
+    },
+    {
+      "ru": "foreach (int hp in wave) { if (hp > minHp) { Console.WriteLine($\"Сильный враг: {hp}\"); } }"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-greater-or-equal.cs",
+      "fails": [
+        2,
+        3
+      ],
+      "why": ">= вместо >: попал враг ровно с minHp"
+    },
+    {
+      "file": "wrong-no-if.cs",
+      "fails": [
+        1,
+        2,
+        3
+      ],
+      "why": "Без условия печатаются все"
+    },
+    {
+      "file": "wrong-value-as-index.cs",
+      "fails": [
+        2,
+        3
+      ],
+      "why": "Элемент как индекс: wave[85] — IndexOutOfRangeException"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        0,
+        1,
+        3
+      ],
+      "why": "Готовый ответ без цикла"
+    }
+  ]
+}

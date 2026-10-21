@@ -1,0 +1,92 @@
+{
+  "title": {
+    "ru": "Длина массива"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-length.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "02-out-of-range.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "loot-count"
+    },
+    {
+      "type": "task",
+      "task": "boss-rage"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "int[] a = { 4, 8, 15, 16 }; Чему равно a.Length?"
+          },
+          "options": [
+            {
+              "ru": "4"
+            },
+            {
+              "ru": "3"
+            },
+            {
+              "ru": "16"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "Length — количество элементов. Их четыре, хотя последний индекс — 3."
+          }
+        },
+        {
+          "question": {
+            "ru": "Как взять последний элемент массива items?"
+          },
+          "options": [
+            {
+              "ru": "items[items.Length]"
+            },
+            {
+              "ru": "items[items.Length + 1]"
+            },
+            {
+              "ru": "items[items.Length - 1]"
+            }
+          ],
+          "answer": 2,
+          "explanation": {
+            "ru": "Индексы идут от 0 до Length - 1, поэтому последний — items[items.Length - 1]."
+          }
+        },
+        {
+          "question": {
+            "ru": "Когда появится ошибка IndexOutOfRangeException?"
+          },
+          "options": [
+            {
+              "ru": "Во время компиляции"
+            },
+            {
+              "ru": "Во время работы программы"
+            },
+            {
+              "ru": "Никогда, C# сам исправит"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "Компилятор не проверяет индексы. Исключение возникает при запуске, когда программа дошла до неверного индекса."
+          }
+        }
+      ]
+    }
+  ]
+}

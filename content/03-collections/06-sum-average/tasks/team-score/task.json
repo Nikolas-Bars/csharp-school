@@ -1,0 +1,68 @@
+{
+  "title": {
+    "ru": "Очки команды"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "variable",
+      "name": "total",
+      "type": "int"
+    },
+    {
+      "kind": "construct",
+      "construct": "foreach"
+    },
+    {
+      "kind": "output",
+      "expected": "Очки команды: 660"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужна переменная total типа int — в ней копится сумма."
+    },
+    {
+      "ru": "Сумму считай циклом foreach по массиву points, а не складывай числа вручную."
+    },
+    {
+      "ru": "Сверь вывод с ожидаемым. Если получилось последнее число массива, в цикле значение заменяется, а не прибавляется. Если строк много, вывод попал внутрь цикла."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Сумма — копилка: переменная заводится до цикла, в цикле к ней прибавляется элемент, а печатается она после цикла."
+    },
+    {
+      "ru": "До цикла — int total = 0; внутри foreach к total прибавляется очередной элемент через +=."
+    },
+    {
+      "ru": "int total = 0; foreach (int p in points) { total += p; } а после цикла — Console.WriteLine($\"Очки команды: {total}\");"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-no-zero.cs",
+      "compileError": "CS0165",
+      "why": "total без начального значения"
+    },
+    {
+      "file": "wrong-replace.cs",
+      "fails": [
+        2
+      ],
+      "why": "= вместо +=: в total остаётся последний элемент"
+    },
+    {
+      "file": "wrong-no-loop.cs",
+      "fails": [
+        1
+      ],
+      "why": "Сумма без цикла"
+    }
+  ]
+}
