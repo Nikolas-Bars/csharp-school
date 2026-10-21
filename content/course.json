@@ -1,5 +1,5 @@
 {
   "slug": "csharp",
   "title": { "ru": "C# с нуля до первой игры" },
-  "modules": ["01-first-programs", "02-loops", "03-collections"]
+  "modules": ["01-first-programs", "02-loops", "03-collections", "04-methods"]
 }

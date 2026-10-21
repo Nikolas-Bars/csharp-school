@@ -1,0 +1,74 @@
+{
+  "title": {
+    "ru": "Есть ли босс"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "method"
+    },
+    {
+      "kind": "call",
+      "method": "Program.HasBoss"
+    },
+    {
+      "kind": "construct",
+      "construct": "if"
+    },
+    {
+      "kind": "output",
+      "expected": "True\nFalse"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Объяви метод HasBoss с параметром-массивом типа int[]."
+    },
+    {
+      "ru": "Ответы должны приходить из HasBoss — вызови его для каждой комнаты."
+    },
+    {
+      "ru": "Внутри цикла нужна проверка if: этот враг — босс?"
+    },
+    {
+      "ru": "Сравни вывод. В первой комнате есть враг со 100 здоровья — это уже босс. А ответить false можно, только проверив всех врагов."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Перебери врагов циклом. Как только найдёшь босса, сразу отвечай true."
+    },
+    {
+      "ru": "Внутри foreach: if (hp >= 100) { return true; } А false — после цикла, когда проверены все."
+    },
+    {
+      "ru": "foreach (int hp in enemyHp) { if (hp >= 100) { return true; } } return false; и в основном коде Console.WriteLine(HasBoss(firstRoom));"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-else-false.cs",
+      "fails": [
+        3
+      ],
+      "why": "false в else: ответ по первому же врагу"
+    },
+    {
+      "file": "wrong-greater.cs",
+      "fails": [
+        3
+      ],
+      "why": "> вместо >=: враг со 100 здоровья не босс"
+    },
+    {
+      "file": "wrong-no-final-return.cs",
+      "compileError": "CS0161",
+      "why": "Нет ответа, если босса не нашлось"
+    }
+  ]
+}

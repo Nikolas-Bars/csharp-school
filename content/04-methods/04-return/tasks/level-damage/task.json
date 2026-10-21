@@ -1,0 +1,84 @@
+{
+  "title": {
+    "ru": "Урон по уровню"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "method"
+    },
+    {
+      "kind": "call",
+      "method": "Program.CalculateDamage"
+    },
+    {
+      "kind": "output",
+      "expected": "Урон: 16\nУрон: 40"
+    },
+    {
+      "kind": "output",
+      "expected": "Урон: 19\nУрон: 40",
+      "set": {
+        "heroAttack": 7,
+        "heroLevel": 4
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужен метод CalculateDamage — он уже есть в стартовом коде, не удаляй его."
+    },
+    {
+      "ru": "Основной код должен получать урон от CalculateDamage, а не печатать готовые числа."
+    },
+    {
+      "ru": "Для атаки 10 и уровня 2 урон — 16, для 25 и 5 — 40. Проверь формулу и что метод возвращает именно её результат."
+    },
+    {
+      "ru": "При других heroAttack и heroLevel урон тоже должен считаться. Печатай ответ метода, а не готовое число."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Метод должен посчитать урон и отдать его через return."
+    },
+    {
+      "ru": "Умножение выполняется раньше сложения, так что скобки здесь не нужны. Замени return 0; на return с формулой."
+    },
+    {
+      "ru": "Тело метода: return attack + level * 3;"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-no-return.cs",
+      "compileError": "CS0161",
+      "why": "Забыт return: метод int ничего не вернул"
+    },
+    {
+      "file": "wrong-void.cs",
+      "compileError": "CS0029",
+      "why": "void вместо int: ответ не положить в damage"
+    },
+    {
+      "file": "wrong-brackets.cs",
+      "fails": [
+        2,
+        3
+      ],
+      "why": "Лишние скобки: на 3 умножается всё"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        3
+      ],
+      "why": "Урон героя напечатан готовым числом"
+    }
+  ]
+}

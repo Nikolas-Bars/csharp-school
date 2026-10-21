@@ -1,0 +1,83 @@
+{
+  "title": {
+    "ru": "Отчёт о бойцах"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "method",
+      "min": 2
+    },
+    {
+      "kind": "call",
+      "method": "Program.GetStatus",
+      "caller": "Program.Report"
+    },
+    {
+      "kind": "call",
+      "method": "Program.Report"
+    },
+    {
+      "kind": "output",
+      "expected": "Аня: 40 HP, в бою\nГоблин: 0 HP, вне боя\nОрк: 15 HP, в бою"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужны два метода: GetStatus и Report."
+    },
+    {
+      "ru": "Вызови GetStatus внутри Report, а не в основном коде: Report сам узнаёт состояние бойца."
+    },
+    {
+      "ru": "Отчёты печатает Report — вызови его для каждого бойца."
+    },
+    {
+      "ru": "Сравни построчно. Боец с 0 здоровья уже вне боя: в бою только те, у кого здоровье больше нуля."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "GetStatus отвечает строкой, поэтому его тип — string. Report только печатает — он void."
+    },
+    {
+      "ru": "В Report удобно вызвать GetStatus прямо в фигурных скобках интерполяции: {GetStatus(hp)}."
+    },
+    {
+      "ru": "GetStatus: if (hp > 0) { return \"в бою\"; } return \"вне боя\"; Report: Console.WriteLine($\"{name}: {hp} HP, {GetStatus(hp)}\"); и три вызова Report."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-greater-equal.cs",
+      "fails": [
+        3
+      ],
+      "why": ">= вместо >: боец с 0 здоровья «в бою»"
+    },
+    {
+      "file": "wrong-no-status-call.cs",
+      "fails": [
+        1
+      ],
+      "why": "Report проверяет сам, GetStatus не вызван"
+    },
+    {
+      "file": "wrong-status-in-main.cs",
+      "fails": [
+        1
+      ],
+      "why": "GetStatus вызван из основного кода, а не из Report"
+    },
+    {
+      "file": "wrong-no-else-return.cs",
+      "compileError": "CS0161",
+      "why": "Нет ответа для бойца вне боя"
+    }
+  ]
+}

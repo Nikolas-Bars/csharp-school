@@ -1,0 +1,106 @@
+{
+  "title": {
+    "ru": "Контрольная: босс и отряд"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-intro.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "boss-fight"
+    },
+    {
+      "type": "task",
+      "task": "party-status"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "static int Square(int x) { return x * x; } Что напечатает Console.WriteLine(Square(3) + Square(2));?"
+          },
+          "options": [
+            {
+              "ru": "25"
+            },
+            {
+              "ru": "13"
+            },
+            {
+              "ru": "10"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "Square(3) возвращает 9, Square(2) — 4. Вместе 13."
+          }
+        },
+        {
+          "question": {
+            "ru": "Как объявить метод, который получает имя и ничего не возвращает?"
+          },
+          "options": [
+            {
+              "ru": "static string Greet(void name)"
+            },
+            {
+              "ru": "static Greet(string name)"
+            },
+            {
+              "ru": "static void Greet(string name)"
+            }
+          ],
+          "answer": 2,
+          "explanation": {
+            "ru": "Перед именем — тип возврата: void, раз метод ничего не возвращает. В скобках — параметр: тип string и имя name."
+          }
+        },
+        {
+          "question": {
+            "ru": "static void Hit() { int damage = 10; } Что будет, если в основном коде написать Console.WriteLine(damage);?"
+          },
+          "options": [
+            {
+              "ru": "Ошибка: имя damage не найдено"
+            },
+            {
+              "ru": "Напечатается число 10"
+            },
+            {
+              "ru": "Напечатается число 0"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "damage живёт только внутри Hit — это его область видимости. Снаружи такого имени нет, компилятор выдаст ошибку CS0103."
+          }
+        },
+        {
+          "question": {
+            "ru": "static string Check(int hp) { if (hp > 50) { return \"Бодр\"; } return \"Устал\"; } Что вернёт Check(50)?"
+          },
+          "options": [
+            {
+              "ru": "Бодр"
+            },
+            {
+              "ru": "Устал"
+            },
+            {
+              "ru": "Ничего, будет ошибка"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "50 > 50 — неверно, поэтому первый return не сработает, и метод дойдёт до return \"Устал\"."
+          }
+        }
+      ]
+    }
+  ]
+}

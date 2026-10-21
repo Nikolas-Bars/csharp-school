@@ -1,0 +1,67 @@
+{
+  "title": {
+    "ru": "Лучший удар"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "method"
+    },
+    {
+      "kind": "call",
+      "method": "Program.FindMax"
+    },
+    {
+      "kind": "output",
+      "expected": "Аня: 31\nБорис: 18"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Объяви метод FindMax с параметром-массивом типа int[]."
+    },
+    {
+      "ru": "Лучший удар нужно находить через FindMax — вызови его для каждого массива."
+    },
+    {
+      "ru": "Сравни вывод: у Ани лучший удар 31, у Бориса — 18. Проверь, что метод просматривает все элементы и запоминает наибольший."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Заведи в методе переменную для лучшего удара и пройди циклом по всем ударам."
+    },
+    {
+      "ru": "Начни с int max = hits[0]; В цикле: если удар больше max, положи его в max. return — после цикла."
+    },
+    {
+      "ru": "foreach (int hit in hits) { if (hit > max) { max = hit; } } return max; а в основном коде: Console.WriteLine($\"Аня: {FindMax(anyaHits)}\");"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-return-in-loop.cs",
+      "compileError": "CS0161",
+      "why": "return внутри цикла: для пустого массива ответа нет"
+    },
+    {
+      "file": "wrong-min.cs",
+      "fails": [
+        2
+      ],
+      "why": "< вместо >: ищется самый слабый удар"
+    },
+    {
+      "file": "wrong-first.cs",
+      "fails": [
+        2
+      ],
+      "why": "Возвращается первый удар без поиска"
+    }
+  ]
+}

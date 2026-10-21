@@ -1,0 +1,60 @@
+{
+  "title": {
+    "ru": "Пропуск в подземелье"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "method"
+    },
+    {
+      "kind": "call",
+      "method": "Program.CanEnter"
+    },
+    {
+      "kind": "output",
+      "expected": "True\nFalse\nFalse"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Метод CanEnter нужен — не удаляй его из кода."
+    },
+    {
+      "ru": "Ответы должны приходить из CanEnter — не печатай True и False вручную."
+    },
+    {
+      "ru": "Войти можно, только если верны оба условия сразу: уровень не ниже 10 и ключ есть. Сравни ответы построчно — для кого-то из героев ответ неверный."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Нужно соединить два условия так, чтобы ответ был true, только когда верны оба."
+    },
+    {
+      "ru": "«И» записывается как &&. Уровень не ниже 10 — это level >= 10, а hasKey уже готовый bool."
+    },
+    {
+      "ru": "return level >= 10 && hasKey;"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-or.cs",
+      "fails": [
+        2
+      ],
+      "why": "|| вместо &&: хватает одного условия"
+    },
+    {
+      "file": "wrong-no-final-return.cs",
+      "compileError": "CS0161",
+      "why": "Нет ответа на случай, когда войти нельзя"
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "title": {
+    "ru": "Две способности"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "method",
+      "min": 2
+    },
+    {
+      "kind": "call",
+      "method": "Program.Attack"
+    },
+    {
+      "kind": "call",
+      "method": "Program.Defend"
+    },
+    {
+      "kind": "call",
+      "method": "System.Console.WriteLine",
+      "caller": "Program.Attack"
+    },
+    {
+      "kind": "call",
+      "method": "System.Console.WriteLine",
+      "caller": "Program.Defend"
+    },
+    {
+      "kind": "output",
+      "expected": "Герой бьёт мечом!\nГерой поднимает щит!\nГерой бьёт мечом!"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужны два своих метода: Attack и Defend. Объяви их после основного кода."
+    },
+    {
+      "ru": "Метод Attack нигде не вызывается. Проверь имя: Attack — с заглавной A."
+    },
+    {
+      "ru": "Метод Defend нигде не вызывается. Проверь имя: Defend — с заглавной D."
+    },
+    {
+      "ru": "Строку об атаке должен печатать сам метод Attack — вывод нужен внутри его тела, а не в основном коде."
+    },
+    {
+      "ru": "Строку о защите должен печатать сам метод Defend — вывод нужен внутри его тела, а не в основном коде."
+    },
+    {
+      "ru": "Сравни вывод с ожидаемым построчно: сначала атака, потом защита, потом снова атака. Порядок строк задаёт порядок вызовов."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Каждый метод объявляется отдельно: static void, имя, пустые скобки и тело в фигурных скобках."
+    },
+    {
+      "ru": "В теле Attack — вывод «Герой бьёт мечом!», в теле Defend — «Герой поднимает щит!». В основном коде нужно три вызова."
+    },
+    {
+      "ru": "Основной код: Attack(); Defend(); Attack(); а ниже — static void Attack() { Console.WriteLine(\"Герой бьёт мечом!\"); } и такой же метод Defend."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-order.cs",
+      "fails": [
+        5
+      ],
+      "why": "Вызовы не в том порядке"
+    },
+    {
+      "file": "wrong-print-in-main.cs",
+      "fails": [
+        3,
+        4
+      ],
+      "why": "Методы пустые, всё печатает основной код"
+    },
+    {
+      "file": "wrong-no-defend-call.cs",
+      "fails": [
+        2,
+        5
+      ],
+      "why": "Defend объявлен, но не вызван"
+    },
+    {
+      "file": "wrong-lowercase.cs",
+      "compileError": "CS0103",
+      "why": "attack со строчной буквы — другое имя"
+    }
+  ]
+}

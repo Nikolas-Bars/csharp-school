@@ -1,0 +1,82 @@
+{
+  "title": {
+    "ru": "Удар по герою"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "method"
+    },
+    {
+      "kind": "call",
+      "method": "Program.TakeHit"
+    },
+    {
+      "kind": "call",
+      "method": "System.Console.WriteLine",
+      "caller": "Program.TakeHit"
+    },
+    {
+      "kind": "output",
+      "expected": "Герой получает 12 урона\nГерой получает 30 урона"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Объяви свой метод TakeHit с параметром в круглых скобках."
+    },
+    {
+      "ru": "Метод TakeHit нигде не вызывается. Проверь имя: TakeHit — с заглавными T и H."
+    },
+    {
+      "ru": "Строку об уроне должен печатать сам метод TakeHit — вывод нужен внутри его тела, а не в основном коде."
+    },
+    {
+      "ru": "Сравни вывод с ожидаемым: числа должны браться из параметра damage. Если на экране видно {damage}, перед кавычками не хватает знака $."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Параметр пишут в круглых скобках объявления: тип и имя — как при объявлении переменной."
+    },
+    {
+      "ru": "Объявление: static void TakeHit(int damage) { … }. Внутри — Console.WriteLine с интерполяцией, чтобы подставить damage в текст."
+    },
+    {
+      "ru": "Тело метода: Console.WriteLine($\"Герой получает {damage} урона\"); а в основном коде — TakeHit(12); и TakeHit(30);"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-no-dollar.cs",
+      "fails": [
+        3
+      ],
+      "why": "Без $ фигурные скобки печатаются как есть"
+    },
+    {
+      "file": "wrong-fixed.cs",
+      "fails": [
+        3
+      ],
+      "why": "Параметр не используется: всегда 12"
+    },
+    {
+      "file": "wrong-print-in-main.cs",
+      "fails": [
+        2
+      ],
+      "why": "Метод пустой, строки печатает основной код"
+    },
+    {
+      "file": "wrong-no-argument.cs",
+      "compileError": "CS7036",
+      "why": "Вызов без аргумента: параметру нечего получить"
+    }
+  ]
+}

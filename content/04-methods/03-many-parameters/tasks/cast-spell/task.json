@@ -1,0 +1,75 @@
+{
+  "title": {
+    "ru": "Заклинания"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "method"
+    },
+    {
+      "kind": "call",
+      "method": "Program.CastSpell"
+    },
+    {
+      "kind": "call",
+      "method": "System.Console.WriteLine",
+      "caller": "Program.CastSpell"
+    },
+    {
+      "kind": "output",
+      "expected": "Огненный шар: -20 маны\nЛедяная стрела: -15 маны"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Объяви метод CastSpell с двумя параметрами: сначала строка spell, потом число mana."
+    },
+    {
+      "ru": "Метод CastSpell нигде не вызывается — проверь имя и регистр букв."
+    },
+    {
+      "ru": "Строку о заклинании должен печатать сам метод CastSpell — вывод нужен внутри его тела, а не в основном коде."
+    },
+    {
+      "ru": "Сравни вывод построчно: сначала название заклинания, потом двоеточие и стоимость с минусом. Проверь и что куда подставлено в тексте."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Параметры перечисляют через запятую, у каждого свой тип."
+    },
+    {
+      "ru": "Объявление: static void CastSpell(string spell, int mana). При вызове первым идёт название в кавычках, вторым — число."
+    },
+    {
+      "ru": "Тело: Console.WriteLine($\"{spell}: -{mana} маны\"); вызовы: CastSpell(\"Огненный шар\", 20); и так же для «Ледяная стрела» за 15."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-swapped-call.cs",
+      "compileError": "CS1503",
+      "why": "Аргументы разных типов перепутаны местами"
+    },
+    {
+      "file": "wrong-swapped-text.cs",
+      "fails": [
+        3
+      ],
+      "why": "В тексте параметры подставлены не на свои места"
+    },
+    {
+      "file": "wrong-print-in-main.cs",
+      "fails": [
+        2
+      ],
+      "why": "Метод пустой, строки печатает основной код"
+    }
+  ]
+}
