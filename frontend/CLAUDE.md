@@ -79,4 +79,13 @@ oxlint + ESLint, Prettier (без точек с запятой, одинарны
 `make help` — список. `make start` (http://localhost:5390), `make check` (lint + type-check +
 test), `make install p=пакет`, `make build`.
 
+Проверка в настоящем браузере — `e2e/` (Playwright, только Chromium; `npm run test:e2e`,
+`E2E_BASE_URL` — адрес сайта): урок, компилятор в Web Worker, ошибки по-русски, таймаут, CSP.
+Гоняется против production-стека: `CHECK_E2E=1 make prod-check` из корня (`../deploy/README.md`),
+в CI — workflow `deploy` (отчёт упавшего теста — артефакт `e2e-results`). Тексты для поиска — из
+локалей, задача и эталон — из `../content`. Vitest папку `e2e/` не берёт.
+
+`vite` не ниже 8.3.3: в 8.3.0–8.3.2 уязвимость launch-editor (GHSA-698v-4r3x-3vcv и др.), на ней
+падал `npm audit --omit=dev --audit-level=high`.
+
 В Docker на macOS Vite иногда не видит изменение файла; если код устарел — `make restart`.

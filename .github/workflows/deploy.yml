@@ -1,26 +1,23 @@
 name: deploy
 
 # Production-образы собираются и проверяются целиком (deploy/check.sh): стек поднимается на
-# раннере, deploy/smoke.sh проверяет API, SPA, runner, сжатие и заголовки. На Pull Request образы
-# никуда не публикуются; после мёржа в main проверенные образы уходят в GHCR
+# раннере, deploy/smoke.sh проверяет API, SPA, runner, сжатие и заголовки, а Playwright в Chromium
+# (CHECK_E2E=1, frontend/e2e) решает задачу урока: компилятор в Web Worker, ошибки по-русски,
+# таймаут бесконечного цикла, без нарушений CSP. На Pull Request образы никуда не публикуются;
+# после мёржа в main в GHCR уходят только образы, прошедшие эти проверки
 # (ghcr.io/<владелец>/csharp-school-{api,web}: коммит и latest) — их забирает deploy/deploy.sh на
 # сервере (собирать там нельзя: сборке runner нужно 2+ ГБ памяти). Сам деплой — вручную.
 on:
   pull_request:
     paths:
       - 'deploy/**'
-      - 'backend/.docker/**'
-      - 'backend/.dockerignore'
-      - 'backend/composer.lock'
-      - 'backend/bootstrap/**'
-      - 'backend/config/**'
-      - 'frontend/.docker/**'
-      - 'frontend/.dockerignore'
-      - 'frontend/package-lock.json'
-      - 'frontend/index.html'
-      - 'frontend/vite.config.ts'
-      - 'runner/Directory.Packages.props'
+      - 'backend/**'
+      - 'frontend/**'
+      - 'runner/src/**'
+      - 'runner/build/**'
+      - 'runner/*.props'
       - 'runner/global.json'
+      - 'content/**'
       - '.github/workflows/deploy.yml'
   push:
     branches: [main]
@@ -29,6 +26,7 @@ on:
       - 'backend/**'
       - 'frontend/**'
       - 'runner/src/**'
+      - 'runner/build/**'
       - 'runner/*.props'
       - 'runner/global.json'
       - 'content/**'
@@ -48,11 +46,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Сборка образов, запуск стека и проверка
+      - name: Сборка образов, запуск стека, smoke и проверка в браузере
         run: deploy/check.sh
         env:
+          CHECK_E2E: '1'
+          CHECK_E2E_RESULTS: ${{ runner.temp }}/e2e-results
           # В main проверенные образы остаются для публикации
           KEEP_IMAGES: ${{ github.event_name == 'push' && '1' || '0' }}
+
+      - name: Отчёт Playwright (трассировка упавшего теста)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-results
+          path: ${{ runner.temp }}/e2e-results
+          if-no-files-found: ignore
+          retention-days: 7
 
       - name: Публикация в GHCR
         if: github.event_name == 'push'

@@ -284,3 +284,10 @@ make prod-check
 `csharp-school-prod-check` на http://localhost:15390 (без HTTPS), выполняет миграции и
 `course:import`, запускает `deploy/smoke.sh`, а затем удаляет контейнеры, тома и образы. Стек
 разработки (`make up`) не затрагивается. То же выполняет CI (`.github/workflows/deploy.yml`).
+
+`CHECK_E2E=1 make prod-check` — ещё и проверка в настоящем браузере (`frontend/e2e`, Playwright,
+Chromium): после smoke в сеть контейнера `web` запускается официальный образ Playwright той же
+версии, что в `frontend/package.json`, и решает задачу урока — компилятор в Web Worker, ошибки
+по-русски, таймаут бесконечного цикла, без нарушений CSP. Отчёт упавшего теста (трассировка) —
+в `frontend/test-results` (`CHECK_E2E_RESULTS` — другая папка). CI (`deploy.yml`) гоняет e2e
+всегда: на Pull Request и перед публикацией в GHCR — туда попадают только проверенные образы.
