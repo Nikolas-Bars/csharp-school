@@ -1,0 +1,62 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Какое предложение верное?" },
+    "options": [
+      { "text": "Call me when you will be ready.", "why": { "ru": "После when о будущем will не ставят: when you are ready." } },
+      { "text": "Call me when you ready.", "why": { "ru": "Пропущен are: ready — не глагол, а «готовый», с ним нужен be." } },
+      { "text": "Call me when you are ready." },
+      { "text": "Call me when will you be ready.", "why": { "ru": "Это порядок вопроса «Когда?»: When will you…? А здесь when — «в тот момент, когда», и после него Present Simple." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "После when — Present Simple: when you are ready. Коротко — when you're ready." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Это расписание. Вставь глагол leave («отходить») в Present Simple." },
+    "text": "Hurry! The last bus ___ (leave) in five minutes.",
+    "accept": ["leaves"],
+    "mistakes": [
+      { "answer": "leave", "why": { "ru": "bus — это it, а с it к глаголу нужно -s: leaves." } },
+      { "answer": "is leave", "why": { "ru": "is с обычным глаголом leave здесь не работает. В Present Simple просто leaves." } },
+      { "answer": "will leave", "why": { "ru": "Так тоже можно сказать, но задание — Present Simple: время автобуса назначено расписанием." } },
+      { "answer": "is leaving", "why": { "ru": "Так тоже можно сказать, но задание — Present Simple: время автобуса назначено расписанием." } }
+    ],
+    "hint": { "ru": "Расписание — Present Simple. bus — это it." },
+    "explanation": { "ru": "Время автобуса — расписание: The last bus leaves in five minutes." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "I'll text you as soon as the game end.",
+    "wrong": 8,
+    "accept": ["ends", "finishes", "is over"],
+    "mistakes": [
+      { "answer": "will end", "why": { "ru": "После as soon as о будущем will не ставят. Нужен Present Simple: ends." } },
+      { "answer": "ended", "why": { "ru": "ended — прошедшее время. А матч ещё идёт: после as soon as — Present Simple." } },
+      { "answer": "end", "why": { "ru": "Это то же слово. game — это it. Чего не хватает глаголу?" } },
+      { "answer": "is ending", "why": { "ru": "После as soon as о будущем — Present Simple: ends." } }
+    ],
+    "hint": { "ru": "После as soon as о будущем — Present Simple. game — это he, she или it?" },
+    "explanation": { "ru": "После as soon as — Present Simple, а с it к глаголу нужно -s: as soon as the game ends." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Я позвоню тебе, как только приеду." },
+    "accept": [
+      "I will {call|phone} you as soon as I {arrive|get there|get here|get home}",
+      "I will give you a call as soon as I {arrive|get there|get here|get home}",
+      "As soon as I {arrive|get there|get here|get home} I will {call|phone} you",
+      "As soon as I {arrive|get there|get here|get home} I will give you a call"
+    ],
+    "mistakes": [
+      { "answer": "I will call you as soon as I will arrive", "why": { "ru": "После as soon as о будущем will не ставят: as soon as I arrive." } },
+      { "answer": "As soon as I will arrive I will call you", "why": { "ru": "После as soon as о будущем will не ставят: as soon as I arrive." } },
+      { "answer": "I call you as soon as I arrive", "why": { "ru": "Без will в главной части выходит «звоню» — обычно. Будущее — в главной части: I'll call you." } },
+      { "answer": "I will call you as soon as I arrived", "why": { "ru": "arrived — прошедшее время. После as soon as о будущем — Present Simple: arrive." } }
+    ],
+    "hint": { "ru": "«Как только» — as soon as. В какой части нужен will, а в какой — Present Simple?" },
+    "explanation": { "ru": "В главной части — will (I'll call you), после as soon as — Present Simple (I arrive)." }
+  }
+]

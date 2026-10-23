@@ -5,7 +5,8 @@ import type { Exercise } from '@/types/api'
  * контента (src/__tests__/englishContent.spec.ts): правильные ответы курса проходят, частые ошибки
  * падают со своим объяснением.
  *
- * Не важны: регистр, лишние пробелы, знаки препинания (кроме апострофа), вид апострофа (’ = ').
+ * Не важны: регистр, лишние пробелы, знаки препинания (кроме апострофа), вид апострофа (’ = '),
+ * запись времени (6 p.m. = 6pm = 6:00 PM, 8:00 = 8), okay = OK.
  * Краткие и полные формы равны: don't = do not (и dont без апострофа), I'm = I am, can't = cannot =
  * can not, won't = will not. 's = is (и притяжательное Tom's), а has — только перед got, been,
  * better или причастием (has gone, has worked); 'd = would, а had — там же: «She's a dog» не
@@ -38,15 +39,21 @@ const PUNCTUATION = /[^\p{L}\p{N}'\s-]|(?<!\p{L})-|-(?!\p{L})/gu
 
 /** Приводит к виду для сравнения: строчные, без препинания, один пробел между словами */
 export function clean(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(APOSTROPHES, "'")
-    .replace(PUNCTUATION, ' ')
-    .replace(/\bcan not\b/g, 'cannot')
-    .replace(/\s+/g, ' ')
-    .trim()
-    .replace(/^'(.*)'$/, '$1') // ответ в кавычках: 'Do'
-    .trim()
+  return (
+    text
+      .toLowerCase()
+      .replace(APOSTROPHES, "'")
+      // Время пишут по-разному: 6 p.m. = 6pm = 6 PM = 6:00 pm, 8:00 = 8
+      .replace(/(\d)\s*([ap])\.?\s*m\b\.?/g, '$1 $2m')
+      .replace(/(\d):00\b/g, '$1')
+      .replace(/\bokay\b/g, 'ok')
+      .replace(PUNCTUATION, ' ')
+      .replace(/\bcan not\b/g, 'cannot')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .replace(/^'(.*)'$/, '$1') // ответ в кавычках: 'Do'
+      .trim()
+  )
 }
 
 /** Глаголы с краткой формой на n't (don't, isn't…); can't, won't, shan't — особые */

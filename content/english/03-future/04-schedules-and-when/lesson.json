@@ -1,0 +1,13 @@
+{
+  "title": { "ru": "Расписание и будущее после when и if" },
+  "steps": [
+    { "type": "theory", "text": { "ru": "01-schedules.ru.md" } },
+    { "type": "practice", "id": "schedules", "file": "practice/schedules.json" },
+    { "type": "theory", "text": { "ru": "02-when-if.ru.md" } },
+    { "type": "theory", "text": { "ru": "03-negative.ru.md" } },
+    { "type": "theory", "text": { "ru": "04-careful.ru.md" } },
+    { "type": "practice", "id": "when-if", "file": "practice/when-if.json" },
+    { "type": "theory", "text": { "ru": "05-mistakes.ru.md" } },
+    { "type": "quiz", "file": "quiz.json" }
+  ]
+}

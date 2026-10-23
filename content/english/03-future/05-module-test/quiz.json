@@ -1,0 +1,72 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Какое предложение верное?" },
+    "options": [
+      { "text": "I'll tell you when I will know.", "why": { "ru": "После when о будущем will не ставят: when I know." } },
+      { "text": "I tell you when I know.", "why": { "ru": "Без will в главной части выходит «я (всегда) говорю». Будущее — в главной части: I'll tell you." } },
+      { "text": "I'll tell you when I know." },
+      { "text": "I'm going to tell you when I will know.", "why": { "ru": "После when о будущем will не ставят: when I know." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "В главной части — will (I'll tell you), после when — Present Simple (I know)." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Спроси друга о планах на вечер в Present Continuous." },
+    "text": "What ___ (you / do) tonight?",
+    "accept": ["are you doing"],
+    "mistakes": [
+      { "answer": "do you do", "why": { "ru": "What do you do? — «чем ты занимаешься вообще». О планах на вечер спрашивают в Present Continuous." } },
+      { "answer": "you are doing", "why": { "ru": "В вопросе are встаёт перед you." } },
+      { "answer": "are you do", "why": { "ru": "После are глагол нужен с -ing: doing." } },
+      { "answer": "do you doing", "why": { "ru": "do — для Present Simple. В Present Continuous вопрос строится с are." } },
+      { "answer": "are you going to do", "why": { "ru": "Так тоже можно спросить, но задание — Present Continuous: are you doing." } },
+      { "answer": "will you do", "why": { "ru": "Так тоже можно спросить, но задание — Present Continuous: are you doing. Да и о планах на вечер так спрашивают чаще." } }
+    ],
+    "hint": { "ru": "Present Continuous: что выходит вперёд, перед you? И какая форма у глагола?" },
+    "explanation": { "ru": "О планах спрашивают в Present Continuous: What are you doing tonight?" }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «Если завтра будет солнечно, мы пойдём на пляж». Одна плитка лишняя." },
+    "tiles": ["we'll go", "sunny", "If", "it's", "tomorrow", "to the beach", "it'll be"],
+    "accept": [
+      "If it's sunny tomorrow we'll go to the beach",
+      "If it's sunny we'll go to the beach tomorrow",
+      "We'll go to the beach if it's sunny tomorrow",
+      "We'll go to the beach tomorrow if it's sunny",
+      "Tomorrow we'll go to the beach if it's sunny",
+      "Tomorrow if it's sunny we'll go to the beach",
+      "If tomorrow it's sunny we'll go to the beach",
+      "We'll go to the beach if tomorrow it's sunny"
+    ],
+    "mistakes": [
+      { "answer": "If it'll be sunny tomorrow we'll go to the beach", "why": { "ru": "it'll — это it will. После if о будущем will не ставят: if it's sunny." } },
+      { "answer": "We'll go to the beach if it'll be sunny tomorrow", "why": { "ru": "it'll — это it will. После if о будущем will не ставят: if it's sunny." } },
+      { "answer": "We'll go to the beach tomorrow if it'll be sunny", "why": { "ru": "it'll — это it will. После if о будущем will не ставят: if it's sunny." } }
+    ],
+    "hint": { "ru": "В какой части нужен will, а в какой — Present Simple?" },
+    "explanation": { "ru": "После if — Present Simple (it's sunny), will — в главной части (we'll go)." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Билеты уже куплены. Переведи на английский." },
+    "text": { "ru": "В июле мы едем в Нью-Йорк." },
+    "accept": [
+      "We are {going|traveling|travelling|flying|driving|heading} to New York {in|this} July",
+      "{In|This} July we are {going|traveling|travelling|flying|driving|heading} to New York",
+      "We are going to {go|travel|fly|drive} to New York {in|this} July",
+      "{In|This} July we are going to {go|travel|fly|drive} to New York"
+    ],
+    "mistakes": [
+      { "answer": "We will go to New York in July", "why": { "ru": "will так звучит, будто решение принято прямо сейчас. Билеты куплены — договорённость, Present Continuous: We're going." } },
+      { "answer": "In July we will go to New York", "why": { "ru": "will так звучит, будто решение принято прямо сейчас. Билеты куплены — договорённость, Present Continuous: We're going." } },
+      { "answer": "We go to New York in July", "why": { "ru": "We go — Present Simple, про то, что бывает обычно. Договорённость — Present Continuous: We're going." } },
+      { "answer": "We going to New York in July", "why": { "ru": "Пропущен are: глагол с -ing один не работает." } },
+      { "answer": "We are go to New York in July", "why": { "ru": "После are глагол нужен с -ing: going." } }
+    ],
+    "hint": { "ru": "Билеты куплены — договорённость. «Ехать» — go. В июле — in July." },
+    "explanation": { "ru": "Договорённость — Present Continuous: We're going to New York in July. Засчитаем и going to go." }
+  }
+]

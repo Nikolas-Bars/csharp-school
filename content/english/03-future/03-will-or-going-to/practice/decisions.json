@@ -1,0 +1,72 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Мама говорит: «We're out of milk» — «Молоко закончилось». Ты прямо сейчас решаешь сходить в магазин. Что скажешь?" },
+    "options": [
+      { "text": "I'm going to go to the store.", "why": { "ru": "going to — для того, что решено раньше. А ты решаешь прямо сейчас, в эту секунду, — will." } },
+      { "text": "I'll go to the store." },
+      { "text": "I go to the store.", "why": { "ru": "I go — Present Simple, про то, что бывает обычно. Решение на будущее — will." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Решение рождается прямо в разговоре — will: I'll go to the store." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Друг: «This bag is so heavy!» Ты предлагаешь помощь. Вставь глагол carry («нести»)." },
+    "text": "Give it to me. I ___ (carry) it for you.",
+    "accept": ["will carry"],
+    "mistakes": [
+      { "answer": "am going to carry", "why": { "ru": "going to — план, решённый раньше. А предложение помощи рождается прямо сейчас — will." } },
+      { "answer": "carry", "why": { "ru": "Без will выходит «я ношу» — вообще, обычно. Предложение помощи — will: I'll carry." } },
+      { "answer": "am carrying", "why": { "ru": "Так звучит «я несу» прямо сейчас. А это предложение — will." } },
+      { "answer": "will carrying", "why": { "ru": "После will — начальная форма, без -ing: carry." } },
+      { "answer": "will to carry", "why": { "ru": "После will глагол идёт сразу, без to." } }
+    ],
+    "hint": { "ru": "Предложение помощи — решение прямо в разговоре. Какой способ для него?" },
+    "explanation": { "ru": "Предлагаешь помощь — will: I'll carry it for you." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол paint («красить»)." },
+    "text": "— Why did you buy all that paint? — I ___ (paint) my room.",
+    "accept": ["am going to paint", "am painting"],
+    "mistakes": [
+      { "answer": "will paint", "why": { "ru": "will — решение, принятое прямо сейчас. А краска уже куплена — значит, решено раньше: going to." } },
+      { "answer": "paint", "why": { "ru": "I paint — про то, что бывает обычно. А это план: going to paint." } },
+      { "answer": "am going to painting", "why": { "ru": "После to — начальная форма, без -ing: paint." } },
+      { "answer": "going to paint", "why": { "ru": "Пропущен am: без него going to не работает." } }
+    ],
+    "hint": { "ru": "Краска уже куплена. Когда принято решение — сейчас или раньше?" },
+    "explanation": { "ru": "Краска куплена заранее — решено раньше: I'm going to paint my room. Засчитаем и I'm painting — так говорят о деле, которое уже идёт или назначено." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Пообещай другу: «Я буду звонить тебе каждый день». Два слова лишние." },
+    "tiles": ["every day", "call", "you", "I'll", "calling", "I'm"],
+    "accept": ["I'll call you every day", "Every day I'll call you"],
+    "mistakes": [
+      { "answer": "I'm calling you every day", "why": { "ru": "Так звучит «я звоню тебе каждый день» — сейчас, в эти дни. Обещание — will: I'll call." } },
+      { "answer": "I'll calling you every day", "why": { "ru": "После will — начальная форма, без -ing: call." } }
+    ],
+    "hint": { "ru": "Обещание — какой способ? И какая форма глагола после него?" },
+    "explanation": { "ru": "Обещание — will: I'll call you every day." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Друг не может решить задачу. Ты предлагаешь помощь. Переведи на английский." },
+    "text": { "ru": "Я помогу тебе с домашним заданием." },
+    "accept": [
+      "I will help you with {your |the |}homework",
+      "I will help you do {your |the |}homework",
+      "Let me help you with {your |the |}homework"
+    ],
+    "mistakes": [
+      { "answer": "I am going to help you with your homework", "why": { "ru": "going to — для того, что решено раньше. Предложение помощи рождается прямо в разговоре — will." } },
+      { "answer": "I help you with your homework", "why": { "ru": "Без will выходит «я помогаю» — вообще, обычно. Предложение на будущее — will." } },
+      { "answer": "I am helping you with your homework", "why": { "ru": "Так звучит «я помогаю» прямо сейчас. Предложение — will: I'll help." } },
+      { "answer": "I will help you with your homeworks", "why": { "ru": "homework — слово без множественного числа: «домашнее задание» вообще, сколько бы его ни было. -s к нему не добавляют." } }
+    ],
+    "hint": { "ru": "Предложение помощи — решение прямо сейчас. «Домашнее задание» — homework." },
+    "explanation": { "ru": "Предлагаешь помощь — will: I'll help you with your homework." }
+  }
+]

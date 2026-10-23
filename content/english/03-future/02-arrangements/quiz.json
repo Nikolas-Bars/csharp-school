@@ -1,0 +1,58 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Друг спрашивает, что у тебя в субботу. Билеты на баскетбольный матч уже куплены. Что ответишь?" },
+    "options": [
+      { "text": "I go to a basketball game.", "why": { "ru": "I go — Present Simple, про то, что бывает обычно. Билеты куплены — это договорённость." } },
+      { "text": "I'll go to a basketball game.", "why": { "ru": "will — решение, принятое прямо сейчас. А билеты уже куплены — договорённость, Present Continuous." } },
+      { "text": "I'm going to a basketball game." },
+      { "text": "I going to a basketball game.", "why": { "ru": "Пропущен am: глагол с -ing один не работает." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "Билеты куплены — договорённость: I'm going to a basketball game. Это Present Continuous от go." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Поездка в Бостон уже назначена. Вставь глагол visit." },
+    "text": "I can't come on Sunday. We ___ (visit) my aunt in Boston.",
+    "accept": ["are visiting", "are going to visit"],
+    "mistakes": [
+      { "answer": "visit", "why": { "ru": "We visit — про то, что бывает обычно. Поездка назначена — нужен Present Continuous: are visiting." } },
+      { "answer": "visiting", "why": { "ru": "Глагол с -ing один не работает: перед ним нужен are." } },
+      { "answer": "is visiting", "why": { "ru": "is — для he, she, it. С we нужен are." } },
+      { "answer": "are visit", "why": { "ru": "После are глагол нужен с -ing: visiting." } },
+      { "answer": "will visit", "why": { "ru": "will — решение, принятое прямо сейчас. А поездка уже назначена — договорённость, Present Continuous." } }
+    ],
+    "hint": { "ru": "Поездка назначена — какое время для договорённостей? С we — are." },
+    "explanation": { "ru": "Договорённость — Present Continuous: We're visiting my aunt. Засчитаем и are going to visit — это тоже план, решённый раньше." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "Это Present Continuous о договорённости. Найди ошибку и исправь." },
+    "text": "Sam isn't come to the party tomorrow.",
+    "wrong": 2,
+    "accept": ["coming"],
+    "mistakes": [
+      { "answer": "comes", "why": { "ru": "comes — Present Simple. После isn't нужен глагол с -ing: coming." } },
+      { "answer": "comming", "why": { "ru": "В come на конце немая e — её убирают, а m не удваивают: coming." } },
+      { "answer": "come", "why": { "ru": "Это то же слово. Какая форма глагола нужна в Present Continuous?" } },
+      { "answer": "came", "why": { "ru": "came — прошедшее время. В Present Continuous нужен глагол с -ing." } }
+    ],
+    "hint": { "ru": "Какая форма глагола идёт после am / is / are в Present Continuous?" },
+    "explanation": { "ru": "isn't + глагол с -ing: Sam isn't coming to the party tomorrow." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Спроси друга о планах. Переведи на английский." },
+    "text": { "ru": "Что ты делаешь сегодня вечером?" },
+    "accept": ["What are you {doing|going to do|up to} {tonight|this evening}"],
+    "mistakes": [
+      { "answer": "What do you do tonight", "why": { "ru": "What do you do? — «чем ты занимаешься вообще». Вопрос о планах на вечер — Present Continuous: What are you doing?" } },
+      { "answer": "What you are doing tonight", "why": { "ru": "В вопросе are встаёт перед you." } },
+      { "answer": "What are you do tonight", "why": { "ru": "После are глагол нужен с -ing: doing." } },
+      { "answer": "What will you do tonight", "why": { "ru": "Так спросить можно, но звучит непривычно — будто у друга ещё нет планов. О планах на вечер обычно спрашивают в Present Continuous, как и по-русски «что ты делаешь»: What are you doing tonight?" } }
+    ],
+    "hint": { "ru": "Вопрос о планах — Present Continuous. Что выходит вперёд, перед you?" },
+    "explanation": { "ru": "О планах спрашивают так: What are you doing tonight? Засчитаем и What are you going to do." }
+  }
+]

@@ -1,0 +1,65 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Это пока мечта: когда-нибудь побывать в Японии. Ни даты, ни билетов. Как сказать?" },
+    "options": [
+      { "text": "I'm visiting Japan one day.", "why": { "ru": "Present Continuous о будущем — только для того, о чём уже договорились: есть дата, билеты. one day — «когда-нибудь», ничего не организовано. Нужен going to." } },
+      { "text": "I'm going to visit Japan one day." },
+      { "text": "I visit Japan one day.", "why": { "ru": "I visit — Present Simple, про то, что бывает обычно. А это план на будущее." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Ничего не назначено — это намерение: I'm going to visit Japan one day." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Это прогноз по признакам. Что подходит — going to или Present Continuous? Вставь глагол fall («упасть»)." },
+    "text": "Look at that kid on the skateboard! He's going too fast. He ___ (fall).",
+    "accept": ["is going to fall"],
+    "mistakes": [
+      { "answer": "is falling", "why": { "ru": "He's falling — «падает» прямо сейчас. Present Continuous о будущем — только для договорённостей, а упасть заранее не договариваются. Прогноз по признакам — going to." } },
+      { "answer": "falls", "why": { "ru": "falls — про то, что бывает обычно. А здесь прогноз по признакам — going to." } },
+      { "answer": "is going to falling", "why": { "ru": "После to — начальная форма, без -ing: fall." } },
+      { "answer": "are going to fall", "why": { "ru": "kid — один ребёнок, это he. С he нужен is." } },
+      { "answer": "will fall", "why": { "ru": "will — тоже будущее, но в задании выбор между going to и Present Continuous. Признак виден прямо сейчас — значит, going to." } }
+    ],
+    "hint": { "ru": "Можно ли договориться заранее, что упадёшь? Значит, какой способ остаётся?" },
+    "explanation": { "ru": "Едет слишком быстро — признак. Прогноз по признакам — going to: He's going to fall." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Билеты уже куплены. Переведи на английский." },
+    "text": { "ru": "В субботу я иду на концерт с друзьями." },
+    "accept": [
+      "I am going to {a|the} concert with {my |some |}friends {on|this} Saturday",
+      "I am going to {a|the} concert {on|this} Saturday with {my |some |}friends",
+      "{On|This} Saturday I am going to {a|the} concert with {my |some |}friends",
+      "My friends and I are going to {a|the} concert {on|this} Saturday",
+      "{On|This} Saturday my friends and I are going to {a|the} concert",
+      "I am going to go to {a|the} concert with {my |some |}friends {on|this} Saturday",
+      "{On|This} Saturday I am going to go to {a|the} concert with {my |some |}friends",
+      "My friends and I are going to go to {a|the} concert {on|this} Saturday",
+      "{On|This} Saturday my friends and I are going to go to {a|the} concert"
+    ],
+    "mistakes": [
+      { "answer": "I go to a concert with my friends on Saturday", "why": { "ru": "I go — про то, что бывает обычно. Билеты куплены — это договорённость, нужен Present Continuous: I'm going." } },
+      { "answer": "On Saturday I go to a concert with my friends", "why": { "ru": "I go — про то, что бывает обычно. Билеты куплены — это договорённость, нужен Present Continuous: I'm going." } },
+      { "answer": "I will go to a concert with my friends on Saturday", "why": { "ru": "I will go — «пойду»: так звучит решение, принятое прямо сейчас. А билеты уже куплены — договорённость, Present Continuous: I'm going." } },
+      { "answer": "I going to a concert with my friends on Saturday", "why": { "ru": "Пропущен am: глагол с -ing один не работает." } }
+    ],
+    "hint": { "ru": "Билеты куплены — это договорённость. «Идти» — go. Нужна ли здесь формула с -ing?" },
+    "explanation": { "ru": "Договорённость — Present Continuous от go: I'm going to a concert. После to — место, а не глагол." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери фразу «Когда-нибудь я собираюсь написать книгу». Одно слово лишнее." },
+    "tiles": ["write", "one day", "a book", "going to", "I'm", "writing"],
+    "accept": ["I'm going to write a book one day", "One day I'm going to write a book"],
+    "mistakes": [
+      { "answer": "I'm writing a book one day", "why": { "ru": "Present Continuous о будущем — только про то, о чём договорились. one day — «когда-нибудь»: это мечта, нужен going to." } },
+      { "answer": "One day I'm writing a book", "why": { "ru": "Present Continuous о будущем — только про то, о чём договорились. one day — «когда-нибудь»: это мечта, нужен going to." } },
+      { "answer": "I'm going to writing a book one day", "why": { "ru": "После to — начальная форма, без -ing: write." } }
+    ],
+    "hint": { "ru": "«Когда-нибудь» — ничего не назначено. Какой способ для намерения?" },
+    "explanation": { "ru": "Это намерение, ничего не организовано: I'm going to write a book one day." }
+  }
+]
