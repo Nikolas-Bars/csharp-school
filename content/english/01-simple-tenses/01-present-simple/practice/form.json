@@ -1,0 +1,67 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Она работает в больнице»?" },
+    "options": [
+      { "text": "She work in a hospital.", "why": { "ru": "She — «она», а с he, she, it к глаголу нужно -s: works." } },
+      { "text": "She is work in a hospital.", "why": { "ru": "is здесь лишнее: в Present Simple перед обычным глаголом (work, play — любым, кроме be) не нужно am / is / are." } },
+      { "text": "She works in a hospital." },
+      { "text": "She working in a hospital.", "why": { "ru": "working — форма для «прямо сейчас», и без is она не живёт. А тут работа вообще, её профессия." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "She → works: с he, she, it к глаголу добавляется -s." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол watch («смотреть») в нужной форме." },
+    "text": "My brother ___ (watch) TV every evening.",
+    "accept": ["watches"],
+    "mistakes": [
+      { "answer": "watchs", "why": { "ru": "После ch пишется -es, а не -s: watch → watches." } },
+      { "answer": "watch", "why": { "ru": "brother — это «он», значит к глаголу нужно -s." } },
+      { "answer": "is watching", "why": { "ru": "every evening — «каждый вечер», это привычка. Нужен Present Simple." } }
+    ],
+    "hint": { "ru": "brother — это he. С he к глаголу добавляется -s, а после ch — -es." },
+    "explanation": { "ru": "brother = he, а после ch пишется -es: watches." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери вопрос «Где ты живёшь?» Одно слово лишнее." },
+    "tiles": ["live", "you", "Where", "does", "do"],
+    "accept": ["Where do you live"],
+    "mistakes": [
+      { "answer": "Where does you live", "why": { "ru": "does — только для he, she, it. С you нужен do." } },
+      { "answer": "Where you live", "why": { "ru": "В вопросе нужен вспомогательный глагол: Where do you live?" } },
+      { "answer": "Where you do live", "why": { "ru": "do встаёт перед you: «Where do you…», а не «Where you do…»." } }
+    ],
+    "hint": { "ru": "Порядок в вопросе: вопросительное слово → do или does → кто → глагол." },
+    "explanation": { "ru": "Where + do + you + live: вспомогательный глагол стоит перед тем, кто делает." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Он не любит кофе." },
+    "accept": ["He doesn't {like|love} coffee", "He dislikes coffee"],
+    "mistakes": [
+      { "answer": "He don't like coffee", "why": { "ru": "С he нужен does: doesn't, а не don't." } },
+      { "answer": "He doesn't likes coffee", "why": { "ru": "После doesn't глагол без -s: оно уже «ушло» в does." } },
+      { "answer": "He not like coffee", "why": { "ru": "Отрицание строится с вспомогательным глаголом: doesn't like." } },
+      { "answer": "He no like coffee", "why": { "ru": "no в отрицании с глаголом не работает. Нужен вспомогательный глагол: doesn't like." } }
+    ],
+    "hint": { "ru": "Отрицание с he: doesn't + глагол без -s." },
+    "explanation": { "ru": "He → doesn't, а глагол после него — в начальной форме, как в словаре, без -s: like. Можно и полностью: does not." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "My sister go to school by bus.",
+    "wrong": 2,
+    "accept": ["goes"],
+    "mistakes": [
+      { "answer": "gos", "why": { "ru": "После o пишется -es: go → goes." } },
+      { "answer": "go", "why": { "ru": "Это то же слово. sister — «она», значит к глаголу нужно -es." } }
+    ],
+    "hint": { "ru": "sister — это she. Что меняется в глаголе с he, she, it?" },
+    "explanation": { "ru": "sister = she, а после o пишется -es: goes." }
+  }
+]

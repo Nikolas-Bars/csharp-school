@@ -931,7 +931,7 @@
                                                 "example": 2
                                             },
                                             "steps": {
-                                                "description": "Засчитываемые шаги: id задач и `quiz`. Урок пройден, когда пройдены все — так и гость видит, пройден ли урок",
+                                                "description": "Засчитываемые шаги: id задач и практик и `quiz`. Урок пройден, когда пройдены все — так и гость видит, пройден ли урок",
                                                 "type": "array",
                                                 "items": {
                                                     "type": "string"
@@ -1021,7 +1021,7 @@
                 ],
                 "properties": {
                     "slug": {
-                        "description": "Урок на языке запроса: экраны теории (Markdown), задачи (условие, стартовый код, проверки\nдля runner, сообщения и подсказки), проверка знаний. Фронт: Lesson в src/types/api.ts.\nПроверки задач (Check) — формат runner: runner/src/Runner.Core/Protocol/Checks.cs.",
+                        "description": "Урок на языке запроса: экраны теории (Markdown), задачи C# (условие, стартовый код, проверки\nдля runner, сообщения и подсказки), практика английского, проверка знаний (вопросы C# или упражнения\nанглийского). Фронт: Lesson в src/types/api.ts.\nПроверки задач (Check) — формат runner: runner/src/Runner.Core/Protocol/Checks.cs.",
                         "type": "string",
                         "example": "02-variables"
                     },
@@ -1075,13 +1075,216 @@
                                     "$ref": "#/components/schemas/TaskStep"
                                 },
                                 {
+                                    "$ref": "#/components/schemas/PracticeStep"
+                                },
+                                {
                                     "$ref": "#/components/schemas/QuizStep"
+                                },
+                                {
+                                    "$ref": "#/components/schemas/ExerciseQuizStep"
                                 }
                             ]
                         }
                     }
                 },
                 "type": "object"
+            },
+            "PracticeStep": {
+                "description": "Практика английского: упражнения по одному, проверка — в браузере",
+                "required": [
+                    "type",
+                    "id",
+                    "exercises"
+                ],
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "practice"
+                        ]
+                    },
+                    "id": {
+                        "description": "Id практики — шаг для прогресса",
+                        "type": "string",
+                        "example": "form"
+                    },
+                    "exercises": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Exercise"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "ExerciseQuizStep": {
+                "description": "Проверка знаний в конце урока английского — те же упражнения, что в практике",
+                "required": [
+                    "type",
+                    "exercises"
+                ],
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "quiz"
+                        ]
+                    },
+                    "exercises": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Exercise"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Exercise": {
+                "description": "Упражнение английского. Ответ проверяет браузер (frontend/src/utils/answers.ts): регистр, пробелы, точка в конце и краткие формы (don't = do not) не важны, если не `exact`",
+                "oneOf": [
+                    {
+                        "title": "choice",
+                        "description": "Выбрать вариант",
+                        "required": [
+                            "kind",
+                            "prompt",
+                            "explanation",
+                            "options",
+                            "answer"
+                        ],
+                        "properties": {
+                            "kind": {
+                                "type": "string",
+                                "enum": [
+                                    "choice"
+                                ]
+                            },
+                            "prompt": {
+                                "description": "Задание",
+                                "type": "string",
+                                "example": "Как сказать «Я сейчас читаю»?"
+                            },
+                            "explanation": {
+                                "description": "Почему верный ответ верный",
+                                "type": "string"
+                            },
+                            "options": {
+                                "type": "array",
+                                "items": {
+                                    "required": [
+                                        "text",
+                                        "why"
+                                    ],
+                                    "properties": {
+                                        "text": {
+                                            "type": "string",
+                                            "example": "I am reading now."
+                                        },
+                                        "why": {
+                                            "description": "Почему этот неверный вариант не подходит",
+                                            "type": [
+                                                "string",
+                                                "null"
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "answer": {
+                                "description": "Номер верного варианта, с 0",
+                                "type": "integer",
+                                "example": 1
+                            }
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "title": "written",
+                        "description": "Ответ словами: gap — вставить в пропуск ___, order — собрать фразу из плиток, translate — перевести, fix — найти слово с ошибкой (номер `wrong` среди слов `text`) и написать, как правильно",
+                        "required": [
+                            "kind",
+                            "prompt",
+                            "explanation",
+                            "accept",
+                            "mistakes",
+                            "hint",
+                            "exact"
+                        ],
+                        "properties": {
+                            "kind": {
+                                "type": "string",
+                                "enum": [
+                                    "gap",
+                                    "order",
+                                    "translate",
+                                    "fix"
+                                ]
+                            },
+                            "prompt": {
+                                "type": "string"
+                            },
+                            "explanation": {
+                                "type": "string"
+                            },
+                            "text": {
+                                "description": "gap, fix — английская фраза; translate — фраза на языке ученика",
+                                "type": "string",
+                                "example": "She ___ (cook) dinner at the moment."
+                            },
+                            "tiles": {
+                                "description": "order — плитки по порядку показа, бывают лишние",
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "wrong": {
+                                "description": "fix — номер слова с ошибкой, с 0",
+                                "type": "integer"
+                            },
+                            "accept": {
+                                "description": "Правильные ответы; {a|b} — любой из вариантов",
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "example": [
+                                    "is cooking"
+                                ]
+                            },
+                            "mistakes": {
+                                "description": "Частые ошибки и объяснение каждой",
+                                "type": "array",
+                                "items": {
+                                    "required": [
+                                        "answer",
+                                        "why"
+                                    ],
+                                    "properties": {
+                                        "answer": {
+                                            "type": "string",
+                                            "example": "cooks"
+                                        },
+                                        "why": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "hint": {
+                                "description": "Для неверного ответа не из mistakes — без готового ответа",
+                                "type": "string"
+                            },
+                            "exact": {
+                                "description": "Краткие и полные формы различаются (задание на краткую форму)",
+                                "type": "boolean"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
             },
             "TheoryStep": {
                 "description": "Экран теории — одна идея",
@@ -1455,7 +1658,7 @@
                                     "example": "02-variables"
                                 },
                                 "step": {
-                                    "description": "Id задачи или `quiz`",
+                                    "description": "Id задачи, практики или `quiz`",
                                     "type": "string",
                                     "pattern": "^[a-z0-9][a-z0-9-]{0,63}$",
                                     "example": "hero-health"

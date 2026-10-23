@@ -1,13 +1,18 @@
 <script setup lang="ts">
-/** Кнопка по макету: primary — главное действие, dark — акцент в шапке, ghost — второстепенное */
+/**
+ * Кнопка по макету: primary — главное действие, success — «Дальше» после верного ответа, dark —
+ * акцент в шапке, ghost — второстепенное. disabled — пока нечего отправлять, loading — уже отправляем
+ */
 const {
   type = 'button',
   variant = 'primary',
   loading = false,
+  disabled = false,
 } = defineProps<{
   type?: 'button' | 'submit'
-  variant?: 'primary' | 'dark' | 'ghost'
+  variant?: 'primary' | 'success' | 'dark' | 'ghost'
   loading?: boolean
+  disabled?: boolean
 }>()
 </script>
 
@@ -15,7 +20,7 @@ const {
   <button
     :class="['button', `button--${variant}`]"
     :type="type"
-    :disabled="loading"
+    :disabled="loading || disabled"
     :aria-busy="loading"
   >
     <slot />
@@ -42,6 +47,10 @@ const {
   cursor: progress;
 }
 
+.button:disabled:not([aria-busy='true']) {
+  cursor: not-allowed;
+}
+
 .button:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
@@ -54,6 +63,15 @@ const {
 
 .button--primary:hover:not(:disabled) {
   background: var(--color-primary-hover);
+}
+
+.button--success {
+  background: var(--color-success);
+  color: var(--color-on-accent);
+}
+
+.button--success:hover:not(:disabled) {
+  background: var(--color-success-hover);
 }
 
 .button--dark {

@@ -32,7 +32,12 @@
     "freeTitle": "Free forever",
     "freeText": "No ads and no paid lessons.",
     "preview": {
-      "csharp": "int hp = 100;\nhp = hp - 25;\nConsole.WriteLine($\"Health: {hp}\");"
+      "csharp": "int hp = 100;\nhp = hp - 25;\nConsole.WriteLine($\"Health: {hp}\");",
+      "english": {
+        "label": "Present Continuous",
+        "phrase": "Look! It is raining.",
+        "translation": "Look! It is raining right now."
+      }
     }
   },
   "theme": {
@@ -211,12 +216,11 @@
     "lessonBadge": "Lesson {n}",
     "tasks": "{n} task | {n} tasks",
     "noTasks": "No tasks",
+    "practices": "{n} practice | {n} practices",
     "startLabel": "Where to start",
     "start": "Start: {title}",
     "startLead": "Lessons go in order: each one builds on the previous.",
     "goalLabel": "Course goal",
-    "goalTitle": "Your own game prototype in Unity",
-    "goalText": "Everything you learn here is the same C# used for Unity scripts.",
     "loading": "Loading the course…",
     "retry": "Try again",
     "progressLabel": "Your progress",
@@ -227,7 +231,17 @@
     "current": "Now",
     "test": "Module test",
     "moduleProgress": "Lessons completed: {done} of {total}",
-    "moduleDone": "Module completed"
+    "moduleDone": "Module completed",
+    "goal": {
+      "csharp": {
+        "title": "Your own game prototype in Unity",
+        "text": "Everything you learn here is the same C# used for Unity scripts."
+      },
+      "english": {
+        "title": "Talk about any time",
+        "text": "Which tense to use, how to ask, answer and disagree in it — in plain words and straight into practice."
+      }
+    }
   },
   "moduleResult": {
     "title": "Module completed!",
@@ -235,9 +249,9 @@
     "courseDone": "Every module is done — you have finished the whole course!",
     "courseLeft": "Some lessons of the course are still open — continue with the first one.",
     "next": "Next module: {title}",
-    "almostTitle": "Module test questions passed!",
-    "almostLead": "The module counts as completed once all its lessons and the test tasks are done. Lessons left: {n}.",
-    "solveTasks": "Solve the module test tasks",
+    "almostTitle": "Module test check passed!",
+    "almostLead": "The module counts as completed once all its lessons and the whole module test are done. Lessons left: {n}.",
+    "solveTasks": "Finish the module test",
     "continue": "Continue: {title}",
     "toMap": "Back to the course map"
   },
@@ -247,12 +261,15 @@
     "stepKind": {
       "theory": "theory",
       "task": "task",
-      "quiz": "quiz"
+      "quiz": "quiz",
+      "practice": "practice"
     },
     "goToDoneStep": "Step {n}: {kind}, completed",
     "goToStep": "Step {n}: {kind}",
     "next": "Next",
-    "loading": "Loading the lesson…"
+    "loading": "Loading the lesson…",
+    "mistakeWrong": "Wrong:",
+    "mistakeRight": "Right:"
   },
   "task": {
     "label": "Task",
@@ -327,6 +344,57 @@
     "doneTasksLeft": "All answers are correct. Lesson tasks left to solve: {n}",
     "toTask": "Go to the task: {title}",
     "toMap": "Back to the course map",
-    "answerAll": "Answer all the questions."
+    "answerAll": "Answer all the questions.",
+    "toPractice": "Go to the practice",
+    "doneStepsLeft": "All answers are right. Practice left in this lesson: {n}"
+  },
+  "speech": {
+    "listen": "Listen: {text}"
+  },
+  "exercise": {
+    "kind": {
+      "choice": "Choose an option",
+      "gap": "Fill the gap",
+      "order": "Build the phrase",
+      "translate": "Translate",
+      "fix": "Find the mistake"
+    },
+    "counter": "Exercise {current} of {total}",
+    "done": "Done",
+    "check": "Check",
+    "next": "Next",
+    "attempt": "Attempt {n}",
+    "right": "Right!",
+    "wrong": "Not yet",
+    "retry": "Fix it and check again.",
+    "wrongOption": "This option does not fit. Look at it once more.",
+    "wrongWord": "This word is fine. Find the one that does not fit.",
+    "shown": "The right answer:",
+    "shownTask": {
+      "choice": "Choose it to go on.",
+      "gap": "Type it to go on.",
+      "order": "Build it to go on.",
+      "translate": "Type it to go on.",
+      "fix": "Choose this word and type the fix to go on."
+    },
+    "options": "Options",
+    "gapLabel": "Gap in the phrase: {text}",
+    "orderLine": "Your phrase",
+    "orderPool": "Words",
+    "orderEmpty": "Tap the words in order. Tap a word in the phrase to send it back.",
+    "orderAdd": "Add: {word}",
+    "orderRemove": "Remove: {word}",
+    "translateLabel": "Translation into English",
+    "translateForms": "Short forms count too: isn't = is not, he's = he is.",
+    "fixLead": "Tap the word with the mistake, then type the right one.",
+    "fixWords": "Words of the sentence",
+    "fixLabel": "What goes instead of “{word}”?"
+  },
+  "practice": {
+    "title": "Practice",
+    "done": "Practice complete",
+    "doneText": "All exercises are right.",
+    "next": "Next step",
+    "again": "Do it again"
   }
 }

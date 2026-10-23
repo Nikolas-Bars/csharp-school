@@ -17,7 +17,7 @@ use Illuminate\Support\Carbon;
  * @property      int                              $position
  * @property      LessonKind                       $kind     обычный урок или контрольная модуля
  * @property      array<string, string>            $title
- * @property      list<array<string, mixed>>       $steps теория, задачи, проверка знаний — без эталонов
+ * @property      list<array<string, mixed>>       $steps теория, задачи, практика, проверка знаний — без эталонов
  * @property-read CourseModule                     $module
  * @property-read Carbon|null                      $created_at
  * @property-read Carbon|null                      $updated_at
@@ -38,7 +38,7 @@ final class Lesson extends Model
     }
 
     /**
-     * Шаги, которые засчитываются в прогресс, по порядку: id задач и «quiz». Одно место и для
+     * Шаги, которые засчитываются в прогресс, по порядку: id задач и практик и «quiz». Одно место и для
      * карты курса (гость), и для Progress (вошедший) — «пройден» у них не разойдётся.
      *
      * @return list<string>
@@ -48,7 +48,7 @@ final class Lesson extends Model
         $keys = [];
 
         foreach ($this->steps as $step) {
-            if ($step['type'] === 'task' && \is_string($step['id'] ?? null)) {
+            if (($step['type'] === 'task' || $step['type'] === 'practice') && \is_string($step['id'] ?? null)) {
                 $keys[] = $step['id'];
             } elseif ($step['type'] === 'quiz') {
                 $keys[] = LessonStepsDTO::QUIZ;

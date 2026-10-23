@@ -1,0 +1,30 @@
+[
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери вопрос." },
+    "tiles": ["doing", "you", "What", "are"],
+    "accept": ["What are you doing"],
+    "mistakes": [],
+    "hint": { "ru": "are перед you." },
+    "explanation": { "ru": "What + are + you + doing." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи." },
+    "text": { "ru": "Я работаю.", "en": "I am working (translate)." },
+    "accept": ["I am working"],
+    "mistakes": [],
+    "hint": { "ru": "Сейчас." },
+    "explanation": { "ru": "am working." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "Найди ошибку." },
+    "text": "She are waiting.",
+    "wrong": 1,
+    "accept": ["is"],
+    "mistakes": [],
+    "hint": { "ru": "she → is." },
+    "explanation": { "ru": "С she — is." }
+  }
+]

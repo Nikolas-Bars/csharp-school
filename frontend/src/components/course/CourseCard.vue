@@ -3,16 +3,27 @@ import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 
 import BaseCodeBlock from '@/components/ui/BaseCodeBlock.vue'
+import BaseSpeakButton from '@/components/ui/BaseSpeakButton.vue'
 import { t, type MessageKey } from '@/i18n'
 import type { CourseSummary } from '@/types/api'
 
 /** Курс на главной по макету: название, пример из курса, описание, размер, первый урок и программа */
 const { course } = defineProps<{ course: CourseSummary }>()
 
-/** Пример на карточке — по курсу; у курса без примера карточка просто короче */
-const PREVIEWS: Partial<Record<string, MessageKey>> = { csharp: 'home.preview.csharp' }
+/** Пример на карточке — по курсу: код C# или фраза английского со звуком; без примера карточка короче */
+const CODE: Partial<Record<string, MessageKey>> = { csharp: 'home.preview.csharp' }
+const PHRASES: Partial<
+  Record<string, { label: MessageKey; phrase: MessageKey; translation: MessageKey }>
+> = {
+  english: {
+    label: 'home.preview.english.label',
+    phrase: 'home.preview.english.phrase',
+    translation: 'home.preview.english.translation',
+  },
+}
 
-const preview = computed(() => PREVIEWS[course.slug] ?? null)
+const code = computed(() => CODE[course.slug] ?? null)
+const phrase = computed(() => PHRASES[course.slug] ?? null)
 const size = computed(
   () => `${t('home.modules', course.modules)} · ${t('home.lessons', course.lessons)}`,
 )
@@ -24,7 +35,15 @@ const size = computed(
       <h2 :id="`course-${course.slug}`" class="card__title">{{ course.title }}</h2>
       <span class="card__size">{{ size }}</span>
     </div>
-    <BaseCodeBlock v-if="preview" :code="t(preview)" />
+    <BaseCodeBlock v-if="code" :code="t(code)" />
+    <div v-else-if="phrase" class="card__phrase">
+      <span class="card__phrase-text">
+        <span class="card__phrase-label">{{ t(phrase.label) }}</span>
+        <strong lang="en">{{ t(phrase.phrase) }}</strong>
+        <span class="card__phrase-translation">{{ t(phrase.translation) }}</span>
+      </span>
+      <BaseSpeakButton :text="t(phrase.phrase)" />
+    </div>
     <p class="card__text">{{ course.description }}</p>
     <div class="card__actions">
       <RouterLink
@@ -45,6 +64,37 @@ const size = computed(
 </template>
 
 <style scoped>
+.card__phrase {
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-lg);
+  background: var(--color-background);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.card__phrase-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: var(--font-size-lg);
+}
+
+.card__phrase-label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.card__phrase-translation {
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+}
+
 .card {
   display: flex;
   flex-direction: column;

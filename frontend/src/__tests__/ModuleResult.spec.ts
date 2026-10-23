@@ -84,7 +84,7 @@ describe('ModuleResult', () => {
     })
 
     expect(wrapper.classes()).not.toContain('result--done')
-    expect(wrapper.get('h2').text()).toBe('Вопросы контрольной пройдены!')
+    expect(wrapper.get('h2').text()).toBe('Проверка знаний контрольной пройдена!')
     expect(wrapper.text()).toContain('Осталось уроков: 2.')
     // Следующий модуль не предлагается, пока этот не пройден
     expect(links(wrapper)).toEqual([
@@ -94,7 +94,7 @@ describe('ModuleResult', () => {
         'result__link--primary',
       ],
       [
-        'Решить задачи контрольной',
+        'Доделать контрольную',
         '/courses/csharp/01-first-programs/12-module-test?step=2',
         'result__link--secondary',
       ],
@@ -111,7 +111,7 @@ describe('ModuleResult', () => {
     })
 
     expect(links(wrapper)[0]).toEqual([
-      'Решить задачи контрольной',
+      'Доделать контрольную',
       '/courses/csharp/01-first-programs/12-module-test?step=2',
       'result__link--primary',
     ])

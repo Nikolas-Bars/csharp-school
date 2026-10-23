@@ -1,0 +1,50 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Я обычно встаю в 7»?" },
+    "options": [
+      { "text": "I get usually up at 7.", "why": { "ru": "get up — одно действие, «вставать». Слово частоты не встаёт внутрь него, а стоит перед ним." } },
+      { "text": "I usually get up at 7." },
+      { "text": "I usually gets up at 7.", "why": { "ru": "С I глагол без -s: -s нужно только с he, she, it." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Слово частоты стоит перед обычным глаголом: I usually get up." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери фразу «Он всегда опаздывает»." },
+    "tiles": ["late", "always", "is", "He"],
+    "accept": ["He is always late"],
+    "mistakes": [
+      { "answer": "He always is late", "why": { "ru": "С am / is / are слово частоты стоит после них: is always." } }
+    ],
+    "hint": { "ru": "Слово частоты и is — что из них идёт первым?" },
+    "explanation": { "ru": "После is — слово частоты: He is always late." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Я никогда не пью кофе." },
+    "accept": ["I never drink coffee", "I don't ever drink coffee"],
+    "mistakes": [
+      { "answer": "I don't never drink coffee", "why": { "ru": "never уже значит «не», второе отрицание не нужно." } },
+      { "answer": "I never drinks coffee", "why": { "ru": "С I глагол без -s." } },
+      { "answer": "I drink never coffee", "why": { "ru": "never стоит перед глаголом: I never drink." } }
+    ],
+    "hint": { "ru": "«Никогда не» по-английски — одно слово never, и оно стоит перед глаголом." },
+    "explanation": { "ru": "never уже содержит «не»: I never drink coffee. Можно и так: I don't ever drink coffee — ever значит «когда-либо»." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "My dad never drink tea.",
+    "wrong": 3,
+    "accept": ["drinks"],
+    "mistakes": [
+      { "answer": "drink", "why": { "ru": "Это то же слово. dad — «он», значит к глаголу нужно -s." } },
+      { "answer": "doesn't drink", "why": { "ru": "never уже значит «не»: с ним doesn't не нужен." } }
+    ],
+    "hint": { "ru": "dad — это he. Какая форма глагола нужна с he? never на неё не влияет." },
+    "explanation": { "ru": "dad = he → drinks. never стоит перед глаголом и его форму не меняет." }
+  }
+]

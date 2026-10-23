@@ -45,7 +45,7 @@ use OpenApi\Attributes as OA;
                         new OA\Property(property: 'tasks', description: 'Сколько в уроке задач с кодом', type: 'integer', example: 2),
                         new OA\Property(
                             property: 'steps',
-                            description: 'Засчитываемые шаги: id задач и `quiz`. Урок пройден, когда пройдены все — так и гость видит, пройден ли урок',
+                            description: 'Засчитываемые шаги: id задач и практик и `quiz`. Урок пройден, когда пройдены все — так и гость видит, пройден ли урок',
                             type: 'array',
                             items: new OA\Items(type: 'string'),
                             example: ['hero-health', 'take-damage', 'quiz'],

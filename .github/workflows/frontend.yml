@@ -1,12 +1,15 @@
 name: frontend
 
-# Только при изменениях в frontend/ (или в самом этом файле)
+# При изменениях в frontend/ и в курсе английского: его тесты контента — в Vitest фронта
+# (src/__tests__/englishContent.spec.ts), на той же проверке ответов, что у ученика
 on:
   pull_request:
-    paths: ['frontend/**', '.github/workflows/frontend.yml']
+    paths:
+      ['frontend/**', 'content/english/**', 'content/courses.json', '.github/workflows/frontend.yml']
   push:
     branches: [main]
-    paths: ['frontend/**', '.github/workflows/frontend.yml']
+    paths:
+      ['frontend/**', 'content/english/**', 'content/courses.json', '.github/workflows/frontend.yml']
 
 concurrency:
   group: frontend-${{ github.ref }}

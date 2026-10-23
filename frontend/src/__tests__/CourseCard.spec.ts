@@ -26,6 +26,14 @@ describe('CourseCard', () => {
     expect((await mountCard(englishSummary)).find('pre').exists()).toBe(false)
   })
 
+  it('у английского — фраза с переводом вместо кода', async () => {
+    const wrapper = await mountCard(englishSummary)
+
+    expect(wrapper.get('.card__phrase [lang="en"]').text()).toBe('Look! It is raining.')
+    expect(wrapper.get('.card__phrase').text()).toContain('Смотри! Идёт дождь — прямо сейчас.')
+    expect((await mountCard(csharpSummary)).find('.card__phrase').exists()).toBe(false)
+  })
+
   it('без первого урока — только программа курса', async () => {
     const wrapper = await mountCard({ ...csharpSummary, start: null })
 

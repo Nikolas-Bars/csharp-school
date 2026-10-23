@@ -40,3 +40,39 @@ export function courseTask(module: string, lesson: string, task: string): Course
     code: (file) => read(`${taskDir}/${file}`),
   }
 }
+
+/** Курс английского из ../content/english — практика урока: адрес шага и её упражнения */
+const ENGLISH = new URL('../../content/english/', import.meta.url)
+
+interface ChoiceExercise {
+  kind: 'choice'
+  prompt: { ru: string }
+  options: { text: string }[]
+  answer: number
+}
+
+export interface EnglishPractice {
+  /** Адрес шага с практикой: /courses/english/01-simple-tenses/01-present-simple?step=3 */
+  url: string
+  lessonTitle: string
+  exercises: ({ kind: string } | ChoiceExercise)[]
+}
+
+export function englishPractice(module: string, lesson: string, id: string): EnglishPractice {
+  const lessonDir = new URL(`${module}/${lesson}/`, ENGLISH)
+  const json = <T>(file: string) => JSON.parse(readFileSync(new URL(file, lessonDir), 'utf8')) as T
+  const { title, steps } = json<{
+    title: { ru: string }
+    steps: { type: string; id?: string; file?: string }[]
+  }>('lesson.json')
+  const index = steps.findIndex((item) => item.type === 'practice' && item.id === id)
+  if (index === -1) {
+    throw new Error(`В english/${module}/${lesson}/lesson.json нет практики ${id}`)
+  }
+
+  return {
+    url: `/courses/english/${module}/${lesson}?step=${index + 1}`,
+    lessonTitle: title.ru,
+    exercises: json(steps[index]!.file!),
+  }
+}

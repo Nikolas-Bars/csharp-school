@@ -1,0 +1,64 @@
+[
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол study («учить») в нужной форме." },
+    "text": "Kate ___ (study) French at school every day.",
+    "accept": ["studies"],
+    "mistakes": [
+      { "answer": "studys", "why": { "ru": "Согласная + y — это -ies: study → studies." } },
+      { "answer": "study", "why": { "ru": "Kate — «она», значит к глаголу нужно -s." } },
+      { "answer": "is studying", "why": { "ru": "every day — «каждый день», это привычка. Нужен Present Simple." } }
+    ],
+    "hint": { "ru": "Kate — это she. А глагол оканчивается на согласную + y." },
+    "explanation": { "ru": "Перед y согласная d, поэтому -ies: studies." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Тебя спросили: «Do you like pizza?» Как коротко ответить «Да»?" },
+    "options": [
+      { "text": "Yes, I like.", "why": { "ru": "В кратком ответе повторяют вспомогательный глагол, а не основной." } },
+      { "text": "Yes, I do." },
+      { "text": "Yes, I am.", "why": { "ru": "Вопрос был с do — и ответ с do. am — для вопросов с am / is / are." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Краткий ответ повторяет вспомогательный глагол вопроса: Do you…? — Yes, I do." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери вопрос «Что она делает по выходным?»" },
+    "tiles": ["on weekends", "do", "What", "she", "does"],
+    "accept": ["What does she do on weekends"],
+    "mistakes": [
+      { "answer": "What she does do on weekends", "why": { "ru": "does встаёт перед she: «What does she…»." } },
+      { "answer": "What do she does on weekends", "why": { "ru": "С she — does, и стоит он перед she. Глагол после does — без -s: do." } }
+    ],
+    "hint": { "ru": "Порядок: вопросительное слово → does → кто → глагол." },
+    "explanation": { "ru": "What + does + she + do: does — вспомогательный глагол, do — основной, «делать»." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Он часто играет в футбол." },
+    "accept": ["He often plays {soccer|football}", "He plays {soccer|football} often"],
+    "mistakes": [
+      { "answer": "He plays often soccer", "why": { "ru": "often стоит перед глаголом: He often plays." } },
+      { "answer": "He plays often football", "why": { "ru": "often стоит перед глаголом: He often plays." } },
+      { "answer": "He often play soccer", "why": { "ru": "He — значит, к глаголу нужно -s: plays." } },
+      { "answer": "He often play football", "why": { "ru": "He — значит, к глаголу нужно -s: plays." } }
+    ],
+    "hint": { "ru": "often — перед глаголом, а с he к глаголу добавляется -s." },
+    "explanation": { "ru": "He often plays soccer. В Америке наш футбол — soccer, а football — американский футбол. Засчитываются оба слова." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "They doesn't live here.",
+    "wrong": 1,
+    "accept": ["don't"],
+    "mistakes": [
+      { "answer": "not", "why": { "ru": "Без вспомогательного глагола отрицание не строится: don't." } }
+    ],
+    "hint": { "ru": "They — нужен do или does?" },
+    "explanation": { "ru": "They → don't. does и doesn't — только для he, she, it." }
+  }
+]

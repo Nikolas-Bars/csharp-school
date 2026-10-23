@@ -1,0 +1,55 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как спросить «Твоя сестра говорит по-английски?»" },
+    "options": [
+      { "text": "Do your sister speak English?", "why": { "ru": "sister — «она», значит does, а не do." } },
+      { "text": "Is your sister speak English?", "why": { "ru": "Вопрос с обычным глаголом speak строится с do или does, а не с is." } },
+      { "text": "Does your sister speak English?" },
+      { "text": "Does your sister speaks English?", "why": { "ru": "После does глагол без -s." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "sister = she → Does, а глагол после does — без -s: speak." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Поставь глагол в отрицание." },
+    "text": "Tom ___ (not / like) cold weather.",
+    "accept": ["doesn't like"],
+    "mistakes": [
+      { "answer": "don't like", "why": { "ru": "Tom — «он», значит doesn't." } },
+      { "answer": "doesn't likes", "why": { "ru": "После doesn't глагол без -s." } },
+      { "answer": "not likes", "why": { "ru": "Отрицание строится с вспомогательным глаголом: doesn't like." } }
+    ],
+    "hint": { "ru": "Tom — это he. Отрицание: doesn't + глагол без -s." },
+    "explanation": { "ru": "Tom = he → doesn't like. Можно и полностью: does not like." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В вопросе одна ошибка. Найди её и исправь." },
+    "text": "Do he play the guitar?",
+    "wrong": 0,
+    "accept": ["Does"],
+    "mistakes": [
+      { "answer": "Is", "why": { "ru": "Вопрос с обычным глаголом play строится с do или does, а не с is." } },
+      { "answer": "Do", "why": { "ru": "Это то же слово. he — какой вспомогательный глагол нужен с ним?" } }
+    ],
+    "hint": { "ru": "he — значит, вспомогательный глагол тоже с -s." },
+    "explanation": { "ru": "С he — does: Does he play the guitar?" }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Мы обычно ужинаем в восемь." },
+    "accept": [
+      "We usually {have|eat} {dinner|supper} at {eight|8|8 00}{| o'clock| pm| p m}",
+      "Usually we {have|eat} {dinner|supper} at {eight|8|8 00}{| o'clock| pm| p m}"
+    ],
+    "mistakes": [
+      { "answer": "We have usually dinner at eight", "why": { "ru": "usually стоит перед глаголом: We usually have dinner." } },
+      { "answer": "We usually has dinner at eight", "why": { "ru": "С we глагол без -s: have." } }
+    ],
+    "hint": { "ru": "«Ужинать» — have dinner. Куда встаёт usually?" },
+    "explanation": { "ru": "usually — перед глаголом: We usually have dinner at eight." }
+  }
+]
