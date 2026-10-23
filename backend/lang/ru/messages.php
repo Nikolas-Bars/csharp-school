@@ -14,6 +14,7 @@ return [
         'password_reset'  => 'Пароль изменён. Теперь войди с новым паролем.',
     ],
     'course' => [
+        'courses'  => 'Курсы.',
         'course'   => 'Курс.',
         'lesson'   => 'Урок.',
         'imported' => 'Курс :course загружен: модулей — :modules, уроков — :lessons.',

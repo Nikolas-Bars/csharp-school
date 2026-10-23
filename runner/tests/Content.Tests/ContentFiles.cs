@@ -5,8 +5,9 @@ using CSharpSchool.Runner.Protocol;
 namespace CSharpSchool.Content.Tests;
 
 /// <summary>
-/// Файлы курса так, как их описывает content/README.md. Лишнее поле или нет обязательного —
-/// ошибка чтения: опечатка в ключе не должна молча пропасть.
+/// Файлы курса C# (content/csharp) так, как их описывает content/README.md. Лишнее поле или нет
+/// обязательного — ошибка чтения: опечатка в ключе не должна молча пропасть. Другие курсы
+/// (английский) runner не проверяет: в них нет кода.
 /// </summary>
 public static class ContentFiles
 {
@@ -17,7 +18,7 @@ public static class ContentFiles
         RespectNullableAnnotations = true,
     };
 
-    /// <summary>Папка content: ищется вверх от тестов (в Docker и в CI репозиторий целиком)</summary>
+    /// <summary>Папка курса content/csharp: ищется вверх от тестов (в Docker и в CI репозиторий целиком)</summary>
     public static string Root { get; } = FindRoot();
 
     public static T Read<T>(params string[] path) =>
@@ -28,18 +29,18 @@ public static class ContentFiles
     {
         for (var directory = new DirectoryInfo(AppContext.BaseDirectory); directory is not null; directory = directory.Parent)
         {
-            var content = Path.Combine(directory.FullName, "content");
+            var content = Path.Combine(directory.FullName, "content", "csharp");
             if (File.Exists(Path.Combine(content, "course.json")))
             {
                 return content;
             }
         }
 
-        throw new DirectoryNotFoundException("Не найдена папка content с course.json выше " + AppContext.BaseDirectory);
+        throw new DirectoryNotFoundException("Не найдена папка content/csharp с course.json выше " + AppContext.BaseDirectory);
     }
 }
 
-public sealed record CourseFile(string Slug, Dictionary<string, string> Title, List<string> Modules);
+public sealed record CourseFile(string Slug, Dictionary<string, string> Title, Dictionary<string, string> Description, List<string> Modules);
 
 public sealed record ModuleFile(Dictionary<string, string> Title, Dictionary<string, string> Description, List<string> Lessons);
 

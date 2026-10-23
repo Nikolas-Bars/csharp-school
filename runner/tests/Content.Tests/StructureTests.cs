@@ -20,7 +20,7 @@ public sealed partial class StructureTests
     [Fact]
     public void EveryTextIsInRussianAndReferencedFilesExist()
     {
-        var texts = new List<(string Where, Dictionary<string, string> Text)> { ("course.json", Course.File.Title) };
+        var texts = new List<(string Where, Dictionary<string, string> Text)> { ("course.json", Course.File.Title), ("course.json", Course.File.Description) };
 
         foreach (var (path, module) in Course.Modules)
         {

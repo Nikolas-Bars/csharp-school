@@ -1,8 +1,8 @@
 {
   "brand": {
-    "mark": "C#",
+    "mark": "S",
     "name": "School",
-    "home": "C# School — home"
+    "home": "School — home"
   },
   "nav": {
     "label": "Main menu",
@@ -10,14 +10,30 @@
     "register": "Create account",
     "logout": "Log out",
     "account": "Logged in as {nickname}",
-    "course": "Course"
+    "courses": "Courses"
   },
   "home": {
     "badge": "Free · no videos",
-    "title": "Really learn C#. Then make your own game.",
-    "lead": "A short bit of theory, then a task right away. Code runs right in the browser, and tests honestly tell you what works.",
-    "start": "First lesson — 5 minutes",
-    "program": "See the program"
+    "title": "What are we learning today?",
+    "lead": "A little theory, then practice right away. One account for every course, and your progress is saved even without signing up.",
+    "coursesLabel": "Courses",
+    "modules": "{n} module | {n} modules",
+    "lessons": "{n} lesson | {n} lessons",
+    "start": "Start with the first lesson",
+    "program": "Syllabus",
+    "loading": "Loading courses…",
+    "retry": "Try again",
+    "empty": "No courses yet. Check back later.",
+    "featuresLabel": "What every course has",
+    "accountTitle": "One account for every course",
+    "accountText": "Sign in once — progress in all courses is kept together.",
+    "guestTitle": "No sign-up needed",
+    "guestText": "Progress lives in your browser and moves to your account when you sign in.",
+    "freeTitle": "Free forever",
+    "freeText": "No ads and no paid lessons.",
+    "preview": {
+      "csharp": "int hp = 100;\nhp = hp - 25;\nConsole.WriteLine($\"Health: {hp}\");"
+    }
   },
   "theme": {
     "system": "same as system",

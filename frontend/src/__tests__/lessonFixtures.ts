@@ -1,4 +1,4 @@
-import type { Course, Lesson, TaskStep } from '@/types/api'
+import type { Course, CourseSummary, Lesson, TaskStep } from '@/types/api'
 
 /** Курс и урок для тестов — в форме ответа API */
 export const helloTask: TaskStep = {
@@ -119,6 +119,25 @@ export const moduleTest: Lesson = {
   module: { slug: '01-first-programs', title: 'Первые программы' },
   course: { slug: 'csharp', title: 'C# с нуля' },
   steps: [{ ...helloTask, id: 'goblin', title: 'Бой с гоблином' }, lesson.steps[2]!],
+}
+
+/** Курсы на главной — как CourseSummaryResource */
+export const csharpSummary: CourseSummary = {
+  slug: 'csharp',
+  title: 'C# с нуля до первой игры',
+  description: 'Настоящий компилятор прямо в браузере.',
+  modules: 5,
+  lessons: 57,
+  start: { module: '01-first-programs', lesson: '01-hello' },
+}
+
+export const englishSummary: CourseSummary = {
+  slug: 'english',
+  title: 'Английский: все времена',
+  description: 'Времена простыми словами.',
+  modules: 1,
+  lessons: 1,
+  start: { module: '01-simple-tenses', lesson: '01-present-simple' },
 }
 
 export function apiReply(data: unknown, status = 200) {

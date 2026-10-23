@@ -1,0 +1,6 @@
+{
+  "slug": "other-course",
+  "title": { "ru": "Второй курс" },
+  "description": { "ru": "Ещё один курс" },
+  "modules": ["01-only"]
+}

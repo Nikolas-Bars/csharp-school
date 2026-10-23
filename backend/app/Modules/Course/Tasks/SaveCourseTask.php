@@ -23,7 +23,7 @@ final readonly class SaveCourseTask
 
     public function run(CourseContentDTO $content): void
     {
-        $course = $this->courses->save($content->slug, $content->title);
+        $course = $this->courses->save($content->slug, $content->title, $content->description, $content->position);
 
         $moduleIds = $this->modules->replace($course->id, array_map(static fn($module, int $position): array => [
             'slug'        => $module->slug,

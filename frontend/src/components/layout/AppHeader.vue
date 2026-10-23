@@ -5,7 +5,6 @@ import ThemeToggle from '@/components/layout/ThemeToggle.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import { t } from '@/i18n'
 import { useAuthStore } from '@/stores/auth'
-import { MAIN_COURSE } from '@/utils/course'
 
 const auth = useAuthStore()
 const router = useRouter()
@@ -23,9 +22,7 @@ async function logout() {
       <span class="header__name" aria-hidden="true">{{ t('brand.name') }}</span>
     </RouterLink>
     <nav class="header__nav" :aria-label="t('nav.label')">
-      <RouterLink class="header__link" :to="{ name: 'course', params: { course: MAIN_COURSE } }">
-        {{ t('nav.course') }}
-      </RouterLink>
+      <RouterLink class="header__link" :to="{ name: 'home' }">{{ t('nav.courses') }}</RouterLink>
       <template v-if="auth.isLoggedIn">
         <span class="header__account">{{
           t('nav.account', { nickname: auth.user?.nickname ?? '' })

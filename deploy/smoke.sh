@@ -27,6 +27,10 @@ echo "Проверка $BASE"
 h=$(headers /up)
 expect "GET /up" "$(status_of "$h")" 200
 
+body=$(curl -sS --max-time 30 -H 'Accept: application/json' "$BASE/api/courses")
+expect "GET /api/courses (главная)" "$(printf '%s' "$body" | head -c 60)" '"status":"success"'
+expect "  курс C# в списке" "$body" '"slug":"csharp"'
+
 body=$(curl -sS --max-time 30 -H 'Accept: application/json' "$BASE/api/courses/csharp")
 expect "GET /api/courses/csharp" "$(printf '%s' "$body" | head -c 60)" '"status":"success"'
 

@@ -59,8 +59,10 @@ final class ApiResponder
      * на последней странице next_cursor = null. Курсор вместо номера страницы: список не
      * съезжает, когда в него добавляют записи, и база не перебирает пропущенные строки.
      *
-     * @param CursorPaginator<array-key, mixed> $page
-     * @param class-string<JsonResource>        $resource
+     * @template TValue
+     *
+     * @param CursorPaginator<array-key, TValue> $page
+     * @param class-string<JsonResource>         $resource
      */
     public static function page(CursorPaginator $page, string $resource, string $message): JsonResponse
     {

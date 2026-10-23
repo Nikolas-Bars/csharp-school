@@ -1,28 +1,33 @@
 # Учебный контент
 
-Курс — файлами в git: урок меняется через PR, CI проверяет его тестами
-(`runner/tests/Content.Tests`), бэкенд загружает в базу командой
-`make artisan cmd='course:import'`. Правила текста — `../rules/course-content.md`.
+Курсы — файлами в git: урок меняется через PR, CI проверяет его тестами
+(курс C# — `runner/tests/Content.Tests`), бэкенд загружает в базу командой
+`make artisan cmd='course:import'` (все курсы сразу). Правила текста — `../rules/course-content.md`.
 
 ## Структура
 
 ```
 content/
-├── course.json                     # курс: slug, название, модули по порядку
-└── 01-first-programs/              # модуль
-    ├── module.json                 # название, описание, уроки по порядку
-    └── 01-hello/                   # урок
-        ├── lesson.json             # название и шаги урока по порядку
-        ├── 01-program.ru.md        # экран теории
-        └── tasks/hello-world/      # задача
-            ├── task.json
-            ├── statement.ru.md     # условие
-            ├── starter.cs          # с чего начинает ученик
-            ├── solution.cs         # эталон: проходит все проверки
-            └── wrong-*.cs          # типичные ошибки: падают так, как указано в task.json
+├── courses.json                    # { "courses": ["csharp"] } — папки курсов, порядок на главной
+└── csharp/                         # курс: папка = slug
+    ├── course.json                 # slug, название, описание (главная), модули по порядку
+    └── 01-first-programs/          # модуль
+        ├── module.json             # название, описание, уроки по порядку
+        └── 01-hello/               # урок
+            ├── lesson.json         # название и шаги урока по порядку
+            ├── 01-program.ru.md    # экран теории
+            └── tasks/hello-world/  # задача
+                ├── task.json
+                ├── statement.ru.md # условие
+                ├── starter.cs      # с чего начинает ученик
+                ├── solution.cs     # эталон: проходит все проверки
+                └── wrong-*.cs      # типичные ошибки: падают так, как указано в task.json
 ```
 
 Имена папок — `NN-slug`: номер задаёт порядок только для глаз, порядок в курсе — списки в JSON.
+Папка курса называется его slug (`csharp`) — он же в адресе: `/courses/csharp`. Новый курс —
+папка с `course.json` и строка в `courses.json`. Курс, убранный из `courses.json`, импорт не удаляет:
+на его уроки ссылается прогресс учеников.
 Тексты — по языкам: `{ "ru": "…" }`, файлы — `имя.ru.md`. Русский обязателен.
 
 ## lesson.json

@@ -1,5 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <!-- Тесты учебного контента (../../../content): эталоны, неверные решения, код из теории — через тот же runner -->
+  <!-- Тесты курса C# (../../../content/csharp): эталоны, неверные решения, код из теории — через тот же runner -->
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <RootNamespace>CSharpSchool.Content.Tests</RootNamespace>

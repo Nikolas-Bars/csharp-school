@@ -25,6 +25,24 @@ export interface AuthSession {
   token: string
 }
 
+/** Страница списка — ApiResponder::page: следующая страница — ?cursor=next_cursor */
+export interface Page<T> {
+  items: T[]
+  next_cursor: string | null
+}
+
+/** Курс на главной — CourseSummaryResource модуля Course */
+export interface CourseSummary {
+  slug: string
+  title: string
+  description: string
+  /** Сколько модулей и уроков (вместе с контрольными) */
+  modules: number
+  lessons: number
+  /** Первый урок курса — с него начинают */
+  start: { module: string; lesson: string } | null
+}
+
 /** Карта курса — CourseResource модуля Course */
 export interface Course {
   slug: string

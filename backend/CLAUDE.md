@@ -12,8 +12,9 @@ Laravel 12, PHP 8.3, RoadRunner, MariaDB 11.4, Redis 7, Laravel Sanctum (Bearer-
   - `Auth` — регистрация, вход, выход, текущий пользователь (`api/auth/*`), токены Sanctum;
     сброс пароля по почте (при разработке `MAIL_MAILER=log`: письмо со ссылкой — в `make logs`;
     ссылка ведёт на фронт — `FRONTEND_URL`);
-  - `Course` — курс из `../content` (смонтирован в контейнер только для чтения):
-    `make artisan cmd='course:import'` после правки уроков; `api/courses/*`;
+  - `Course` — курсы из `../content` (смонтирован в контейнер только для чтения):
+    `make artisan cmd='course:import'` после правки уроков загружает все курсы `courses.json`;
+    `api/courses` (список для главной), `api/courses/*`;
   - `Progress` — пройденные шаги и код решений (`api/progress/*`, только вошедшим).
 - `app/` вне модулей — общее ядро: `ApiResponder`, `Translator`, `ApiException`, `BaseRepository`,
   `ModuleServiceProvider`, middleware `SetLocale` и `ForceJsonResponse`.
@@ -42,7 +43,7 @@ API: http://localhost:8290/api. Тесты идут на SQLite в памяти 
 В production страницы документации нет.
 
 Если git пересоздал папку `../content` (rebase, переключение веток, где её нет), контейнер
-видит её пустой («course.json: файла нет») — пересоздать: `docker compose up -d --force-recreate php`.
+видит её пустой («courses.json: файла нет») — пересоздать: `docker compose up -d --force-recreate php`.
 
 ## Правила
 

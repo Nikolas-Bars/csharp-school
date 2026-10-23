@@ -56,9 +56,12 @@ app/Modules/Course/
   не понять, есть ли аккаунт. Лимиты — по адресу и по почте. После сброса все токены входа ученика
   удаляются. Исключение из «ссылка на чужое — ID» (согласовано): строка сброса привязана к почте, как
   в формате Laravel — с ним работают брокер паролей и `auth:clear-resets`.
-- `Course` — курс → модули курса → уроки (шаги урока — JSON). Источник — файлы `../content`
-  (формат — `content/README.md`), в базу их загружает `course:import` (и сидер). API только для
-  чтения и открыт гостям: `courses/{course}` (карта), `courses/{course}/modules/{module}/lessons/{lesson}`.
+- `Course` — курсы → модули курса → уроки (шаги урока — JSON). Источник — файлы `../content`
+  (формат — `content/README.md`): `courses.json` — папки курсов по порядку, в каждой свой
+  `course.json`. В базу их загружает `course:import` (и сидер) — все курсы одной транзакцией;
+  курс, убранный из `courses.json`, не удаляется (на его уроки ссылается прогресс). API только для
+  чтения и открыт гостям: `courses` (список для главной: описание, размер, первый урок),
+  `courses/{course}` (карта), `courses/{course}/modules/{module}/lessons/{lesson}`.
   Эталоны и неверные решения в базу и API не попадают. Отдаёт контракт `LessonDirectory`
   (уроки курса и их засчитываемые шаги — id задач и `quiz`, `Lesson::countedSteps()`); список
   лежит в кэше, `course:import` его сбрасывает. Импорт требует в каждом уроке ровно одну проверку
@@ -100,7 +103,9 @@ Request (валидация) → Controller → DTO → Action::run() → Task::
 
 - Формат всегда один: `{ status, message, data, errors }` через `App\Services\ApiResponder`.
   `message` — всегда переведённый текст. Списки — `ApiResponder::page()`: курсорная пагинация,
-  `{ items, next_cursor }`, без `offset`.
+  `{ items, next_cursor }`, без `offset`. Курсор из запроса Laravel сам не читает (отключено в
+  `AppServiceProvider`: на подделанном он падал с 500) — репозиторий получает строку и разбирает её
+  `BaseRepository::cursor($cursor, ['position', 'id'])`: не те колонки или кривой — первая страница.
 - Бизнес-ошибка — класс в `{Module}/Exceptions`:
 
   ```php

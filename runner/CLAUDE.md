@@ -27,7 +27,7 @@
 - `src/Runner.Browser` — оболочка WebAssembly: `RunnerExports` ([JSExport]) для
   `src/runner/runner.worker.ts` фронта. Таймаут бесконечного цикла — на фронте: worker убивается.
 - `tests/Runner.Core.Tests` — xUnit v3 на обычном .NET.
-- `tests/Content.Tests` — тесты учебного контента (`../content`): эталоны проходят, неверные
+- `tests/Content.Tests` — тесты курса C# (`../content/csharp`): эталоны проходят, неверные
   решения падают как указано, стартовый код не решает задачу, код из теории компилируется,
   формат файлов строгий. Make монтирует весь репозиторий, чтобы `content/` был виден.
 

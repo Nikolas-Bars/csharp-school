@@ -1,0 +1,6 @@
+{
+  "slug": "test-course",
+  "title": { "ru": "Тестовый курс", "en": "Test course" },
+  "description": { "ru": "Курс для тестов", "en": "Course for tests" },
+  "modules": ["01-basics"]
+}

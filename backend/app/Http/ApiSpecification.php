@@ -47,6 +47,14 @@ use stdClass;
     required: false,
     schema: new OA\Schema(type: 'string', example: 'ru'),
 )]
+#[OA\Parameter(
+    parameter: 'Cursor',
+    name: 'cursor',
+    description: 'Курсор страницы списка: `next_cursor` из прошлого ответа. Без него — первая страница',
+    in: 'query',
+    required: false,
+    schema: new OA\Schema(type: 'string'),
+)]
 #[OA\Parameter(parameter: 'Course', name: 'course', description: 'Slug курса', in: 'path', required: true, schema: new OA\Schema(type: 'string', example: 'csharp'))]
 #[OA\Parameter(parameter: 'Module', name: 'module', description: 'Slug модуля курса', in: 'path', required: true, schema: new OA\Schema(type: 'string', example: '01-first-programs'))]
 #[OA\Parameter(parameter: 'Lesson', name: 'lesson', description: 'Slug урока', in: 'path', required: true, schema: new OA\Schema(type: 'string', example: '02-variables'))]

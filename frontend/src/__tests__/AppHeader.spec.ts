@@ -17,7 +17,7 @@ describe('AppHeader', () => {
     const link = (await mountHeader()).get('a')
 
     expect(link.attributes('href')).toBe('/')
-    expect(link.attributes('aria-label')).toBe('C# School — на главную')
+    expect(link.attributes('aria-label')).toBe('School — на главную')
   })
 
   it('кнопка темы говорит, что включено и что будет по нажатию', async () => {
@@ -35,7 +35,7 @@ describe('AppHeader', () => {
     tokenStorage.clear()
     const guest = await mountHeader()
     expect(guest.findAll('nav a').map((link) => link.text())).toEqual([
-      'Курс',
+      'Курсы',
       'Войти',
       'Создать аккаунт',
     ])
@@ -45,7 +45,7 @@ describe('AppHeader', () => {
     useAuthStore().user = { id: 1, nickname: 'anya', email: 'anya@example.com', locale: 'ru' }
     const user = await mountHeader(pinia)
     expect(user.text()).toContain('Аккаунт: anya')
-    expect(user.findAll('nav a').map((link) => link.text())).toEqual(['Курс'])
+    expect(user.findAll('nav a').map((link) => link.text())).toEqual(['Курсы'])
     expect(user.findAll('button').map((button) => button.text())).toContain('Выйти')
   })
 })

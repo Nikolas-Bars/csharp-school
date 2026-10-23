@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, defineAsyncComponent, onBeforeUnmount, ref, useTemplateRef, watch } from 'vue'
 
-import CodeBlock from '@/components/lesson/CodeBlock.vue'
+import BaseCodeBlock from '@/components/ui/BaseCodeBlock.vue'
 import MarkdownView from '@/components/lesson/MarkdownView.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import BaseIcon from '@/components/ui/BaseIcon.vue'
@@ -254,7 +254,7 @@ const errors = computed(() =>
         </ul>
         <template v-if="output !== null">
           <span class="task__muted">{{ t('task.output') }}</span>
-          <CodeBlock :code="output || t('task.noOutput')" language="text" />
+          <BaseCodeBlock :code="output || t('task.noOutput')" language="text" />
         </template>
         <BaseButton v-if="response.passed" class="task__next" @click="emit('next')">
           {{ t('task.next') }}

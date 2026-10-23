@@ -1,6 +1,6 @@
 # .NET на Mac не нужен: всё идёт в контейнере SDK. Пакеты NuGet кэшируются в томе Docker
 SDK_IMAGE      = mcr.microsoft.com/dotnet/sdk:10.0
-# Монтируется весь репозиторий: тестам контента нужна папка ../content
+# Монтируется весь репозиторий: тестам контента нужна папка ../content/csharp
 DOTNET         = docker run --rm -v "$(CURDIR)/..":/repo -v csharp-school-nuget:/root/.nuget/packages -w /repo/runner $(SDK_IMAGE) dotnet
 DOTNET_TTY     = docker run --rm -it -v "$(CURDIR)/..":/repo -v csharp-school-nuget:/root/.nuget/packages -w /repo/runner $(SDK_IMAGE)
 PUBLISH_DIR    = artifacts/browser
@@ -22,7 +22,7 @@ build: ## Собрать runner в WebAssembly и положить во фрон
 	cp -R $(PUBLISH_DIR)/wwwroot/_framework $(FRONTEND_DIR)/_framework
 	@echo "Runner: $$(du -sh $(FRONTEND_DIR) | cut -f1) в $(FRONTEND_DIR)"
 
-test: ## Тесты ядра и учебного контента (../content) на обычном .NET
+test: ## Тесты ядра и курса C# (../content/csharp) на обычном .NET
 	$(DOTNET) test --nologo
 
 format: ## Исправить стиль кода (dotnet format)
