@@ -1,0 +1,65 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как правильно написать make с -ing?" },
+    "options": [
+      { "text": "makeing", "why": { "ru": "e на конце make не читается — перед -ing её убирают." } },
+      { "text": "making" },
+      { "text": "makking", "why": { "ru": "Удваивают, только если глагол кончается на согласную + гласную + согласную, как run → running. make кончается на немую e — её просто убирают." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Немая e уходит: make → making." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол swim («плавать») в нужной форме." },
+    "text": "Look! The kids ___ (swim) in the lake.",
+    "accept": ["are swimming"],
+    "mistakes": [
+      { "answer": "are swiming", "why": { "ru": "swim — короткий глагол: согласная + гласная + согласная (w-i-m). Последнюю m удваивают." } },
+      { "answer": "is swimming", "why": { "ru": "kids — «дети», их несколько, это they. С they нужен are." } },
+      { "answer": "swim", "why": { "ru": "Look! — дети плавают прямо сейчас. Нужен Present Continuous: are + -ing." } }
+    ],
+    "hint": { "ru": "kids — это they. А в swim посмотри на последние три буквы." },
+    "explanation": { "ru": "kids = they → are; swim короткий, m удваивается: are swimming." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол lie («лежать») в нужной форме." },
+    "text": "The dog ___ (lie) on the sofa right now.",
+    "accept": ["is lying"],
+    "mistakes": [
+      { "answer": "is lieing", "why": { "ru": "ie на конце перед -ing меняется на y: lie → lying." } },
+      { "answer": "is liing", "why": { "ru": "ie на конце перед -ing меняется на y: lie → lying." } },
+      { "answer": "lies", "why": { "ru": "right now — прямо сейчас. Нужен Present Continuous: is + -ing." } }
+    ],
+    "hint": { "ru": "dog — это it. А что происходит с ie на конце глагола?" },
+    "explanation": { "ru": "dog = it → is, а ie меняется на y: is lying." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "She is writeing a message.",
+    "wrong": 2,
+    "accept": ["writing"],
+    "mistakes": [
+      { "answer": "writting", "why": { "ru": "Удваивать t не нужно: в write на конце немая e, её просто убирают." } },
+      { "answer": "write", "why": { "ru": "После is глагол нужен с -ing." } }
+    ],
+    "hint": { "ru": "Посмотри на глагол: что бывает с e на конце перед -ing?" },
+    "explanation": { "ru": "Немая e уходит: write → writing." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Мы сейчас бежим в школу." },
+    "accept": ["We are {running|hurrying|rushing} to school{| now| right now}"],
+    "mistakes": [
+      { "answer": "We are runing to school", "why": { "ru": "run — короткий глагол: согласная + гласная + согласная. Последнюю n удваивают: running." } },
+      { "answer": "We run to school", "why": { "ru": "We run — про то, что бывает обычно. А бежите вы прямо сейчас." } },
+      { "answer": "We are run to school", "why": { "ru": "После are глагол нужен с -ing." } }
+    ],
+    "hint": { "ru": "«Бежать» — run. We → are, к глаголу -ing. Подумай, нужно ли удвоить букву." },
+    "explanation": { "ru": "We → are, а в run последняя n удваивается: We are running to school." }
+  }
+]

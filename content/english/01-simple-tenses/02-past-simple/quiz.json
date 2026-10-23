@@ -1,0 +1,58 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Выбери вопрос без ошибки." },
+    "options": [
+      { "text": "Did you went to school yesterday?", "why": { "ru": "Прошлое уже показал did. Глагол после него — в начальной форме: go." } },
+      { "text": "Do you went to school yesterday?", "why": { "ru": "do — для настоящего. Вопрос про прошлое строится с did, а глагол после него — go." } },
+      { "text": "Did you go to school yesterday?" },
+      { "text": "Went you to school yesterday?", "why": { "ru": "Глагол go нельзя просто поставить вперёд — так делают только с be. Нужен вспомогательный глагол did." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "Did + you + go: did показывает прошлое, глагол после него — в начальной форме." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол write («писать») в прошедшем времени." },
+    "text": "I ___ (write) a letter to my grandma a week ago.",
+    "accept": ["wrote"],
+    "mistakes": [
+      { "answer": "writed", "why": { "ru": "write — неправильный глагол: -ed к нему не добавляют. Его прошедшая форма — wrote." } },
+      { "answer": "written", "why": { "ru": "written — другая форма глагола, она живёт только вместе с have: have written. Без have про прошлое говорят wrote." } },
+      { "answer": "write", "why": { "ru": "a week ago — неделю назад, это прошлое. Нужна прошедшая форма." } }
+    ],
+    "hint": { "ru": "a week ago — прошлое. write — неправильный глагол, вспомни таблицу." },
+    "explanation": { "ru": "write → wrote: неправильный глагол, его форму запоминают." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Вчера мы не ели пиццу." },
+    "accept": [
+      "We didn't {eat|have} {the |any |}pizza yesterday",
+      "Yesterday we didn't {eat|have} {the |any |}pizza"
+    ],
+    "mistakes": [
+      { "answer": "We didn't ate pizza yesterday", "why": { "ru": "Прошлое уже показал didn't. Глагол после него — в начальной форме: eat." } },
+      { "answer": "Yesterday we didn't ate pizza", "why": { "ru": "Прошлое уже показал didn't. Глагол после него — в начальной форме: eat." } },
+      { "answer": "We not ate pizza yesterday", "why": { "ru": "Отрицание строится со вспомогательным глаголом: didn't eat." } },
+      { "answer": "We don't eat pizza yesterday", "why": { "ru": "don't — для настоящего. yesterday — прошлое, нужно didn't." } }
+    ],
+    "hint": { "ru": "Отрицание в прошлом: didn't + глагол в начальной форме." },
+    "explanation": { "ru": "didn't — для всех, глагол после него — в начальной форме: We didn't eat pizza yesterday." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "He goed to the park yesterday.",
+    "wrong": 1,
+    "accept": ["went"],
+    "mistakes": [
+      { "answer": "goes", "why": { "ru": "goes — настоящее время. yesterday — прошлое." } },
+      { "answer": "gone", "why": { "ru": "gone — другая форма глагола, она живёт только вместе с have: has gone. Без have про прошлое говорят went." } },
+      { "answer": "go", "why": { "ru": "yesterday — прошлое, нужна прошедшая форма." } }
+    ],
+    "hint": { "ru": "go — неправильный глагол. Его прошедшая форма совсем не похожа на go." },
+    "explanation": { "ru": "go → went: неправильный глагол, -ed к нему не добавляют." }
+  }
+]

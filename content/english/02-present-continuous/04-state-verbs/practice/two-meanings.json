@@ -1,0 +1,64 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Тебя зовут на вечеринку, а ты ещё решаешь. Как сказать «Я об этом думаю»?" },
+    "options": [
+      { "text": "I think about it.", "why": { "ru": "Так говорят про «обычно, регулярно думаю». А ты обдумываешь прямо сейчас." } },
+      { "text": "I'm thinking about it." },
+      { "text": "I'm think about it.", "why": { "ru": "После am (I'm) глагол нужен с -ing: thinking." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "think about — «обдумывать», это процесс, действие. Поэтому -ing можно: I'm thinking about it." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол think в нужной форме." },
+    "text": "I ___ (think) this game is awesome.",
+    "accept": ["think"],
+    "mistakes": [
+      { "answer": "am thinking", "why": { "ru": "Здесь think — «считаю, по-моему». Это мнение, состояние: -ing не ставят." } },
+      { "answer": "thinks", "why": { "ru": "С I глагол без -s." } }
+    ],
+    "hint": { "ru": "Здесь think — обдумывать или «по-моему»?" },
+    "explanation": { "ru": "I think — «по-моему»: мнение — состояние, Present Simple." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол have в нужной форме." },
+    "text": "Can I call you back? We ___ (have) lunch.",
+    "accept": ["are having"],
+    "mistakes": [
+      { "answer": "have", "why": { "ru": "have lunch — «обедать», это действие, и оно идёт прямо сейчас. Нужен Present Continuous." } },
+      { "answer": "is having", "why": { "ru": "С we нужен are." } },
+      { "answer": "are haveing", "why": { "ru": "e на конце have не читается — перед -ing её убирают: having." } }
+    ],
+    "hint": { "ru": "have lunch — это «обедать». Обед идёт прямо сейчас?" },
+    "explanation": { "ru": "have lunch — действие, идёт сейчас: we → are having." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "Look! The kids have fun in the pool.",
+    "wrong": 3,
+    "accept": ["are having"],
+    "mistakes": [
+      { "answer": "having", "why": { "ru": "Глагол с -ing один не работает: перед ним нужен are." } },
+      { "answer": "has", "why": { "ru": "Здесь kids — they, с ними has не бывает. И have fun — действие, идёт прямо сейчас (Look!): нужен are having." } }
+    ],
+    "hint": { "ru": "have fun — «веселиться». Это действие или состояние? И что значит Look!?" },
+    "explanation": { "ru": "have fun — действие, Look! — прямо сейчас: The kids are having fun." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "У меня есть собака." },
+    "accept": ["I {have|have got} a dog"],
+    "mistakes": [
+      { "answer": "I am having a dog", "why": { "ru": "Здесь have — «у меня есть», владение. Это состояние, -ing не нужен." } },
+      { "answer": "I has a dog", "why": { "ru": "has — только для he, she, it. С I — have." } },
+      { "answer": "I have dog", "why": { "ru": "Собака одна, и перед ней нужно a: a dog." } }
+    ],
+    "hint": { "ru": "«У меня есть» — I have. Это действие или состояние?" },
+    "explanation": { "ru": "have — «иметь», состояние: I have a dog. Можно и I've got a dog." }
+  }
+]

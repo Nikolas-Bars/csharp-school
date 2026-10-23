@@ -100,6 +100,10 @@ describe('matches', () => {
     expect(matches('She doesnt work', 'She does not work')).toBe(true)
     expect(matches("'Do'", 'Do')).toBe(true)
     expect(matches('I cant swim', "I can't swim")).toBe(false)
+    // Несуществующие краткие формы — не засчитываются за полные
+    expect(matches("I willn't go", 'I will not go')).toBe(false)
+    expect(matches("I amn't ready", 'I am not ready')).toBe(false)
+    expect(matches("She mightn't come", 'She might not come')).toBe(true)
   })
 
   it('опечатка или другая форма глагола — не совпадает', () => {

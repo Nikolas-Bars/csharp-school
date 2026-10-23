@@ -1,0 +1,61 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Выбери предложение без ошибки." },
+    "options": [
+      { "text": "I will to call you later.", "why": { "ru": "После will глагол идёт сразу, без to." } },
+      { "text": "I will calling you later.", "why": { "ru": "После will — начальная форма, без -ing." } },
+      { "text": "I will calls you later.", "why": { "ru": "После will глагол без -s." } },
+      { "text": "I'll call you later." }
+    ],
+    "answer": 3,
+    "explanation": { "ru": "I'll = I will, а после will — начальная форма: call." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Ответь коротко «Нет»." },
+    "text": "— Will you be at school tomorrow? — No, I ___.",
+    "accept": ["won't", "won't be"],
+    "mistakes": [
+      { "answer": "don't", "why": { "ru": "Вопрос был с will — и ответ с will. don't — для вопросов с do." } },
+      { "answer": "will", "why": { "ru": "No, I will — получается «нет, буду». Для «нет» нужно отрицание: won't." } },
+      { "answer": "not", "why": { "ru": "Одного not мало: краткий ответ повторяет вспомогательный глагол вопроса." } }
+    ],
+    "hint": { "ru": "Краткий ответ повторяет вспомогательный глагол из вопроса." },
+    "explanation": { "ru": "Will you…? — No, I won't. Можно и полностью: No, I will not." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В вопросе одна ошибка. Найди её и исправь." },
+    "text": "Will you comes to my party on Saturday?",
+    "wrong": 2,
+    "accept": ["come"],
+    "mistakes": [
+      { "answer": "coming", "why": { "ru": "После will — начальная форма, без -ing." } },
+      { "answer": "came", "why": { "ru": "came — прошедшее время. После will — начальная форма." } },
+      { "answer": "comes", "why": { "ru": "Это то же слово. После will глагол без -s." } }
+    ],
+    "hint": { "ru": "Какая форма глагола идёт после will?" },
+    "explanation": { "ru": "После will — начальная форма: Will you come to my party?" }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Завтра будет холодно." },
+    "accept": [
+      "It will be cold tomorrow",
+      "Tomorrow it will be cold",
+      "Tomorrow will be cold",
+      "It is going to be cold tomorrow",
+      "Tomorrow it is going to be cold",
+      "Tomorrow is going to be cold"
+    ],
+    "mistakes": [
+      { "answer": "It will cold tomorrow", "why": { "ru": "Не хватает be — «быть». cold — не глагол, а описание: «холодный». Нужно will be cold." } },
+      { "answer": "Will be cold tomorrow", "why": { "ru": "В английском предложении нужно слово «кто или что». Для погоды это it: It will be cold." } },
+      { "answer": "It will is cold tomorrow", "why": { "ru": "После will — начальная форма. У is она be: will be." } }
+    ],
+    "hint": { "ru": "Погода по-английски начинается с it. А «будет» — это will + быть." },
+    "explanation": { "ru": "It will be cold tomorrow: it — для погоды, will be — «будет»." }
+  }
+]

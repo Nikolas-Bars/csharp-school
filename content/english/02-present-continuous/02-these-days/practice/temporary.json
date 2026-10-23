@@ -1,0 +1,55 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Какая фраза про временное — то, что идёт в эти дни и скоро закончится?" },
+    "options": [
+      { "text": "I live in Chicago.", "why": { "ru": "Это про постоянное: Чикаго — твой дом. Поэтому Present Simple." } },
+      { "text": "I'm staying with my grandma this week." },
+      { "text": "I stay with my grandma every summer.", "why": { "ru": "every summer — «каждое лето», это повторяется из года в год. Привычка — Present Simple." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "this week — только на этой неделе, временно. Поэтому Present Continuous: I'm staying." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол study («учиться, готовиться») в нужной форме." },
+    "text": "My sister ___ (study) for her exams this week.",
+    "accept": ["is studying"],
+    "mistakes": [
+      { "answer": "studies", "why": { "ru": "this week — это временно, идёт в эти дни. Нужен Present Continuous." } },
+      { "answer": "is studing", "why": { "ru": "y на конце перед -ing не пропадает: study → studying." } },
+      { "answer": "are studying", "why": { "ru": "sister — один человек, это she. С she нужен is." } }
+    ],
+    "hint": { "ru": "this week — временно. sister — это she." },
+    "explanation": { "ru": "Готовится только на этой неделе — временно. she → is: is studying." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "В этом месяце я живу у тёти." },
+    "accept": [
+      "I am {living|staying} {with my aunt|at my aunt's|at my aunt's place|at my aunt's house} this month",
+      "This month I am {living|staying} {with my aunt|at my aunt's|at my aunt's place|at my aunt's house}"
+    ],
+    "mistakes": [
+      { "answer": "I live with my aunt this month", "why": { "ru": "this month — только в этом месяце, это временно. Нужен Present Continuous: I'm living." } },
+      { "answer": "This month I live with my aunt", "why": { "ru": "this month — только в этом месяце, это временно. Нужен Present Continuous: I'm living." } },
+      { "answer": "I am live with my aunt this month", "why": { "ru": "После am глагол нужен с -ing: living." } },
+      { "answer": "I am living at my aunt this month", "why": { "ru": "«У тёти» — with my aunt (с тётей) или at my aunt's (у тёти дома). at my aunt без 's не говорят." } }
+    ],
+    "hint": { "ru": "Это временно. «Жить у кого-то» — live with someone." },
+    "explanation": { "ru": "this month — временно, поэтому Present Continuous: I'm living with my aunt this month." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "My dad is work from home this week.",
+    "wrong": 3,
+    "accept": ["working"],
+    "mistakes": [
+      { "answer": "works", "why": { "ru": "После is глагол нужен с -ing. works — форма Present Simple, она без is." } }
+    ],
+    "hint": { "ru": "Какая форма глагола стоит после am / is / are?" },
+    "explanation": { "ru": "is + глагол с -ing: My dad is working from home this week." }
+  }
+]

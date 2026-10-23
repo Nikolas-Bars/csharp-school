@@ -1,0 +1,77 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Я сейчас читаю»?" },
+    "options": [
+      { "text": "I read now.", "why": { "ru": "Это Present Simple — про то, что бывает обычно. А читаешь ты прямо сейчас." } },
+      { "text": "I am reading now." },
+      { "text": "I reading now.", "why": { "ru": "Пропущен am: без вспомогательного глагола время не строится." } },
+      { "text": "I am read now.", "why": { "ru": "После am глагол нужен с -ing: reading." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "I → am, а к глаголу добавляется -ing: I am reading now." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол ring («звонить») в нужной форме." },
+    "text": "Listen! Your phone ___ (ring).",
+    "accept": ["is ringing"],
+    "mistakes": [
+      { "answer": "rings", "why": { "ru": "Listen! — телефон звонит прямо сейчас. Нужен Present Continuous, а rings — про «обычно»." } },
+      { "answer": "ringing", "why": { "ru": "Глагол с -ing один не работает: перед ним нужен is." } },
+      { "answer": "are ringing", "why": { "ru": "phone — один предмет, это it. С it нужен is." } }
+    ],
+    "hint": { "ru": "phone — это it. Формула: am / is / are + глагол с -ing." },
+    "explanation": { "ru": "phone = it → is, к глаголу -ing: is ringing. Можно и коротко: 's ringing." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол play в нужной форме." },
+    "text": "We ___ (play) soccer at the moment.",
+    "accept": ["are playing"],
+    "mistakes": [
+      { "answer": "is playing", "why": { "ru": "is — для he, she, it. С we нужен are." } },
+      { "answer": "am playing", "why": { "ru": "am — только с I. С we нужен are." } },
+      { "answer": "play", "why": { "ru": "at the moment — «в данный момент». Нужен Present Continuous: am / is / are + -ing." } }
+    ],
+    "hint": { "ru": "at the moment — значит, прямо сейчас. Какой из am / is / are подходит к we?" },
+    "explanation": { "ru": "we → are, к глаголу -ing: are playing." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери фразу «Они сейчас смотрят фильм». Одно слово лишнее." },
+    "tiles": ["a movie", "watching", "are", "They", "now", "is"],
+    "accept": [
+      "They are watching a movie now",
+      "Now they are watching a movie",
+      "They are now watching a movie"
+    ],
+    "mistakes": [
+      { "answer": "They is watching a movie now", "why": { "ru": "they — «они», с ними нужен are." } },
+      { "answer": "They are watching now a movie", "why": { "ru": "now не встаёт между глаголом и тем, что смотрят. Его ставят в конец или в начало фразы." } },
+      { "answer": "They watching a movie now", "why": { "ru": "Пропущен are: без него время не строится." } }
+    ],
+    "hint": { "ru": "С they — какой из am / is / are? now не ставят между глаголом и тем, что смотрят." },
+    "explanation": { "ru": "They + are + watching + a movie + now. С they — are." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Мама сейчас готовит ужин." },
+    "accept": [
+      "{Mom|My mom|Mum|My mum|Mother|My mother} is {cooking|making|preparing} {dinner|supper}{| now| right now| at the moment}",
+      "{Now|Right now|At the moment} {mom|my mom|mum|my mum|mother|my mother} is {cooking|making|preparing} {dinner|supper}",
+      "{Mom|My mom|Mum|My mum|Mother|My mother} is now {cooking|making|preparing} {dinner|supper}"
+    ],
+    "mistakes": [
+      { "answer": "Mom cooks dinner now", "why": { "ru": "cooks — Present Simple, про то, что бывает обычно. А мама готовит прямо сейчас." } },
+      { "answer": "My mom cooks dinner now", "why": { "ru": "cooks — Present Simple, про то, что бывает обычно. А мама готовит прямо сейчас." } },
+      { "answer": "Mom cooking dinner now", "why": { "ru": "Пропущен is: глагол с -ing один не работает." } },
+      { "answer": "My mom cooking dinner now", "why": { "ru": "Пропущен is: глагол с -ing один не работает." } },
+      { "answer": "Mom is cook dinner now", "why": { "ru": "После is глагол нужен с -ing: cooking." } },
+      { "answer": "Mom are cooking dinner now", "why": { "ru": "Мама — один человек, это she. С ней нужен is." } }
+    ],
+    "hint": { "ru": "Мама — это she. «Готовить ужин» — cook dinner. Формула: am / is / are + -ing." },
+    "explanation": { "ru": "Mom = she → is, к глаголу -ing: Mom is cooking dinner now." }
+  }
+]

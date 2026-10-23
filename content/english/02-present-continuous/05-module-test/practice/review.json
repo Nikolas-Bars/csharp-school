@@ -1,0 +1,112 @@
+[
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол knock («стучать») в нужной форме." },
+    "text": "Listen! Somebody ___ (knock) at the door.",
+    "accept": ["is knocking"],
+    "mistakes": [
+      { "answer": "knocks", "why": { "ru": "Listen! — стучат прямо сейчас. Нужен Present Continuous." } },
+      { "answer": "are knocking", "why": { "ru": "somebody — «кто-то», один человек, как he или she. С ним нужен is." } },
+      { "answer": "knocking", "why": { "ru": "Глагол с -ing один не работает: перед ним нужен is." } }
+    ],
+    "hint": { "ru": "Listen! — значит, прямо сейчас. somebody в английском — как he или she." },
+    "explanation": { "ru": "Стучат сейчас — Present Continuous, somebody как he → is knocking." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол sit («сидеть») в нужной форме." },
+    "text": "Look! The cat ___ (sit) on my laptop.",
+    "accept": ["is sitting"],
+    "mistakes": [
+      { "answer": "is siting", "why": { "ru": "sit — короткий глагол: согласная + гласная + согласная (s-i-t). Последнюю t удваивают: sitting." } },
+      { "answer": "sits", "why": { "ru": "Look! — кот сидит прямо сейчас. Нужен Present Continuous." } }
+    ],
+    "hint": { "ru": "cat — это it. Посмотри на последние три буквы sit." },
+    "explanation": { "ru": "cat = it → is; sit короткий, t удваивается: is sitting." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "— Is your brother playing video games? Как коротко ответить «Нет»?" },
+    "options": [
+      { "text": "No, he isn't." },
+      { "text": "No, he doesn't.", "why": { "ru": "Вопрос был с is — и ответ с is. does — для вопросов с does." } },
+      { "text": "No, he not.", "why": { "ru": "not само не работает — нужен is: isn't." } }
+    ],
+    "answer": 0,
+    "explanation": { "ru": "Краткий ответ повторяет is из вопроса: Is he…? — No, he isn't." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери фразу «Я сейчас не смотрю телевизор». Одно слово лишнее." },
+    "tiles": ["TV", "not", "I", "watching", "am", "don't", "now"],
+    "accept": ["I am not watching TV now"],
+    "mistakes": [
+      { "answer": "I don't watching TV now", "why": { "ru": "don't — для Present Simple. В Present Continuous «не» строится с am: I'm not watching." } },
+      { "answer": "I not watching TV now", "why": { "ru": "Пропущен am: not само не работает." } },
+      { "answer": "I am not watching now TV", "why": { "ru": "now не встаёт между глаголом и тем, что смотришь. Здесь его ставят в конец фразы." } }
+    ],
+    "hint": { "ru": "Отрицание в Present Continuous — am / is / are + not. don't здесь не нужен." },
+    "explanation": { "ru": "I + am + not + watching + TV + now: отрицание — с am not." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Друг звонит и спрашивает, где ты. Переведи на английский." },
+    "text": { "ru": "Я жду автобус." },
+    "accept": ["I am waiting for {the|a|my} bus{| now| right now}"],
+    "mistakes": [
+      { "answer": "I am waiting the bus", "why": { "ru": "wait всегда идёт с for: wait for the bus — ждать автобус." } },
+      { "answer": "I wait for the bus", "why": { "ru": "I wait — про то, что бывает обычно. А ждёшь ты прямо сейчас." } },
+      { "answer": "I am wait for the bus", "why": { "ru": "После am глагол нужен с -ing: waiting." } }
+    ],
+    "hint": { "ru": "«Ждать что-то» — wait for. Ждёшь прямо сейчас." },
+    "explanation": { "ru": "Ждёшь сейчас — Present Continuous, а после wait нужно for: I'm waiting for the bus." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол stay («гостить, жить временно») в нужной форме." },
+    "text": "My parents are on vacation, so this week I ___ (stay) with my grandma.",
+    "accept": ["am staying"],
+    "mistakes": [
+      { "answer": "stay", "why": { "ru": "this week — только на этой неделе, это временно. Нужен Present Continuous." } },
+      { "answer": "staying", "why": { "ru": "Глагол с -ing один не работает: перед ним нужен am." } }
+    ],
+    "hint": { "ru": "this week — постоянно или временно?" },
+    "explanation": { "ru": "Только на этой неделе — временно: I am (I'm) staying." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В вопросе одна ошибка. Найди её и исправь." },
+    "text": "Do you knowing the answer?",
+    "wrong": 2,
+    "accept": ["know"],
+    "mistakes": [
+      { "answer": "knows", "why": { "ru": "После do глагол в начальной форме, без -s." } }
+    ],
+    "hint": { "ru": "know — глагол состояния. Какая форма глагола идёт после do?" },
+    "explanation": { "ru": "know — глагол состояния, вопрос — с do, а после do глагол в начальной форме: Do you know the answer?" }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Мы отлично проводим время!" },
+    "accept": ["We are having {a great|a good|a wonderful|an awesome|a fantastic} time{| now| right now}"],
+    "mistakes": [
+      { "answer": "We have a great time", "why": { "ru": "have a great time — «отлично проводить время», это действие, и оно идёт сейчас. Нужен Present Continuous." } },
+      { "answer": "We are haveing a great time", "why": { "ru": "e на конце have не читается — перед -ing её убирают: having." } }
+    ],
+    "hint": { "ru": "have здесь не «иметь», а часть действия. Оно идёт прямо сейчас?" },
+    "explanation": { "ru": "have a great time — действие, идёт сейчас: We're having a great time." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол live в нужной форме. cousin — двоюродная сестра." },
+    "text": "My cousin ___ (live) in Texas, but this summer she is staying with us.",
+    "accept": ["lives"],
+    "mistakes": [
+      { "answer": "is living", "why": { "ru": "Техас — её дом, она живёт там постоянно. Это Present Simple. Временное — то, что она у вас этим летом." } },
+      { "answer": "live", "why": { "ru": "cousin — здесь she, а с she к глаголу нужно -s." } }
+    ],
+    "hint": { "ru": "Жить в Техасе — постоянно или временно? cousin здесь — she." },
+    "explanation": { "ru": "Постоянное — Present Simple: she → lives. this summer — временное, поэтому is staying." }
+  }
+]

@@ -31,18 +31,19 @@
       { "answer": "I never drinks coffee", "why": { "ru": "С I глагол без -s." } },
       { "answer": "I drink never coffee", "why": { "ru": "never стоит перед глаголом: I never drink." } }
     ],
-    "hint": { "ru": "«Никогда не» по-английски — одно слово never, и оно стоит перед глаголом." },
+    "hint": { "ru": "«Никогда не» по-английски — одно слово. Какое? И куда оно встаёт?" },
     "explanation": { "ru": "never уже содержит «не»: I never drink coffee. Можно и так: I don't ever drink coffee — ever значит «когда-либо»." }
   },
   {
     "kind": "fix",
-    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "prompt": { "ru": "Предложение в Present Simple, в нём одна ошибка — в глаголе. Найди её и исправь." },
     "text": "My dad never drink tea.",
     "wrong": 3,
     "accept": ["drinks"],
     "mistakes": [
       { "answer": "drink", "why": { "ru": "Это то же слово. dad — «он», значит к глаголу нужно -s." } },
-      { "answer": "doesn't drink", "why": { "ru": "never уже значит «не»: с ним doesn't не нужен." } }
+      { "answer": "doesn't drink", "why": { "ru": "never уже значит «не»: с ним doesn't не нужен." } },
+      { "answer": "drank", "why": { "ru": "drank — прошедшее время. А здесь Present Simple: dad = he → drinks." } }
     ],
     "hint": { "ru": "dad — это he. Какая форма глагола нужна с he? never на неё не влияет." },
     "explanation": { "ru": "dad = he → drinks. never стоит перед глаголом и его форму не меняет." }

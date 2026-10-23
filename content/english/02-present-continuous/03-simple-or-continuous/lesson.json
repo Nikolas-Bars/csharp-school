@@ -1,0 +1,12 @@
+{
+  "title": { "ru": "Present Simple или Present Continuous" },
+  "steps": [
+    { "type": "theory", "text": { "ru": "01-choice.ru.md" } },
+    { "type": "theory", "text": { "ru": "02-markers.ru.md" } },
+    { "type": "practice", "id": "markers", "file": "practice/markers.json" },
+    { "type": "theory", "text": { "ru": "03-pairs.ru.md" } },
+    { "type": "practice", "id": "pairs", "file": "practice/pairs.json" },
+    { "type": "theory", "text": { "ru": "04-mistakes.ru.md" } },
+    { "type": "quiz", "file": "quiz.json" }
+  ]
+}

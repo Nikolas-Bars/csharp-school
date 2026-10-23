@@ -1,0 +1,53 @@
+[
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь нужное слово в начало вопроса." },
+    "text": "___ your parents working from home this week?",
+    "accept": ["Are"],
+    "mistakes": [
+      { "answer": "Do", "why": { "ru": "do — для Present Simple. Здесь working — Present Continuous, вопрос строится с am / is / are." } },
+      { "answer": "Is", "why": { "ru": "parents — «родители», их двое, это they. С they нужен are." } }
+    ],
+    "hint": { "ru": "После пропуска — working. parents — это they." },
+    "explanation": { "ru": "parents = they → Are: Are your parents working from home this week?" }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери вопрос «Куда ты идёшь?» Одно слово лишнее." },
+    "tiles": ["going", "you", "Where", "are", "do"],
+    "accept": ["Where are you going"],
+    "mistakes": [
+      { "answer": "Where you are going", "why": { "ru": "В вопросе are встаёт перед you." } },
+      { "answer": "Where do you going", "why": { "ru": "do — для Present Simple. В Present Continuous вопрос строится с are." } }
+    ],
+    "hint": { "ru": "Идёшь прямо сейчас — значит, Present Continuous, и do здесь не нужен. Где в вопросе стоит are?" },
+    "explanation": { "ru": "Where + are + you + going: are встаёт перед you." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "Это ответ на вопрос «Is Kate working this week?» Найди ошибку и исправь." },
+    "text": "No, she doesn't.",
+    "wrong": 2,
+    "accept": ["isn't", "is not"],
+    "mistakes": [
+      { "answer": "not", "why": { "ru": "not само не работает — перед ним нужен is: isn't." } },
+      { "answer": "is", "why": { "ru": "Без not получается «да», а ответ начинается с No." } },
+      { "answer": "don't", "why": { "ru": "Вопрос был с is — и ответ с is. do и does — для вопросов с do." } }
+    ],
+    "hint": { "ru": "Краткий ответ повторяет вспомогательный глагол из вопроса." },
+    "explanation": { "ru": "Вопрос с Is — и ответ с is: No, she isn't." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Я не играю, я делаю уроки." },
+    "accept": ["I am not playing{| but} I am {doing my homework|doing homework|studying}"],
+    "mistakes": [
+      { "answer": "I don't play I do my homework", "why": { "ru": "Это Present Simple — «вообще не играю». А тут о том, что идёт прямо сейчас: I'm not playing." } },
+      { "answer": "I not playing I am doing my homework", "why": { "ru": "not само не работает — перед ним нужен am: I'm not playing." } },
+      { "answer": "I am not play I am doing my homework", "why": { "ru": "После am not глагол нужен с -ing: playing." } }
+    ],
+    "hint": { "ru": "Отрицание: I'm not + глагол с -ing. «Делать уроки» — do homework." },
+    "explanation": { "ru": "I'm not playing, I'm doing my homework: и отрицание, и утверждение — с am и -ing." }
+  }
+]

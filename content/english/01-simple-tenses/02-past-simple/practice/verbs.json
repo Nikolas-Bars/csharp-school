@@ -1,0 +1,71 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Она купила новый телефон»?" },
+    "options": [
+      { "text": "She buyed a new phone.", "why": { "ru": "buy — неправильный глагол: -ed к нему не добавляют. Его прошедшая форма — bought." } },
+      { "text": "She buys a new phone.", "why": { "ru": "buys — Present Simple, про то, что бывает обычно. А покупка уже случилась — нужно прошедшее." } },
+      { "text": "She bought a new phone." },
+      { "text": "She brought a new phone.", "why": { "ru": "brought — прошедшее от bring, «принести». От buy — bought: слова похожи, не путай." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "buy — неправильный глагол, его прошедшая форма — bought. Её запоминают." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол stop («останавливаться») в прошедшем времени." },
+    "text": "Last night we ___ (stop) at a gas station on the way home.",
+    "accept": ["stopped"],
+    "mistakes": [
+      { "answer": "stoped", "why": { "ru": "stop — короткий глагол на одну гласную и одну согласную (o + p). Такая согласная удваивается: stopped." } },
+      { "answer": "stop", "why": { "ru": "Last night — «вчера вечером», это прошлое. К глаголу нужно -ed." } },
+      { "answer": "stops", "why": { "ru": "stops — Present Simple, да ещё с -s, как для he. А тут we и прошлое: last night." } }
+    ],
+    "hint": { "ru": "Last night — прошлое. stop — правильный глагол, но посмотри на его последние буквы." },
+    "explanation": { "ru": "Last night — прошлое, значит -ed. stop кончается на гласную + согласную, поэтому p удваивается: stopped." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери фразу «Мы переехали сюда два года назад»." },
+    "tiles": ["two years", "here", "moved", "ago", "We"],
+    "accept": ["We moved here two years ago", "Two years ago we moved here"],
+    "mistakes": [
+      { "answer": "We moved here ago two years", "why": { "ru": "ago стоит после срока: two years ago — «два года назад»." } },
+      { "answer": "We moved ago two years here", "why": { "ru": "ago стоит после срока, а время обычно идёт в конце: We moved here two years ago." } }
+    ],
+    "hint": { "ru": "Сначала кто и что сделал, потом куда, а в конце — когда. Куда встаёт ago?" },
+    "explanation": { "ru": "ago идёт после срока: two years ago. Время ставят в конец фразы или в самое начало." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Вчера мы видели Тома в парке." },
+    "accept": [
+      "We saw Tom {in|at} the park yesterday",
+      "Yesterday we saw Tom {in|at} the park",
+      "We saw Tom yesterday {in|at} the park"
+    ],
+    "mistakes": [
+      { "answer": "We seed Tom in the park yesterday", "why": { "ru": "see — неправильный глагол, -ed к нему не добавляют. Его прошедшая форма — saw." } },
+      { "answer": "We see Tom in the park yesterday", "why": { "ru": "see — настоящее время. yesterday — прошлое, нужно saw." } },
+      { "answer": "We seen Tom in the park yesterday", "why": { "ru": "seen — другая форма глагола, она живёт только вместе с have: have seen. Без have про прошлое говорят saw." } },
+      { "answer": "Yesterday we seen Tom in the park", "why": { "ru": "seen — другая форма глагола, она живёт только вместе с have: have seen. Без have про прошлое говорят saw." } }
+    ],
+    "hint": { "ru": "see — неправильный глагол. Найди его прошедшую форму в таблице." },
+    "explanation": { "ru": "see → saw: прошедшую форму неправильного глагола запоминают. yesterday можно поставить в начало или в конец." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "I studyed for the math test last night.",
+    "wrong": 1,
+    "accept": ["studied"],
+    "mistakes": [
+      { "answer": "study", "why": { "ru": "last night — прошлое, к глаголу нужно окончание прошедшего времени." } },
+      { "answer": "studies", "why": { "ru": "studies — Present Simple для he, she, it. А тут I и прошлое: last night." } },
+      { "answer": "studed", "why": { "ru": "y не пропадает, а меняется на i: study → studied." } }
+    ],
+    "hint": { "ru": "Глагол кончается на согласную + y. Что тогда происходит с y?" },
+    "explanation": { "ru": "Перед y согласная d, поэтому y меняется на i и добавляется -ed: studied." }
+  }
+]

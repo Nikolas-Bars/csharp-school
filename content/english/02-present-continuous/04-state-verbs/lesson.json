@@ -1,0 +1,12 @@
+{
+  "title": { "ru": "Глаголы состояния: почему не «I am knowing»" },
+  "steps": [
+    { "type": "theory", "text": { "ru": "01-state.ru.md" } },
+    { "type": "theory", "text": { "ru": "02-list.ru.md" } },
+    { "type": "practice", "id": "state", "file": "practice/state.json" },
+    { "type": "theory", "text": { "ru": "03-two-meanings.ru.md" } },
+    { "type": "practice", "id": "two-meanings", "file": "practice/two-meanings.json" },
+    { "type": "theory", "text": { "ru": "04-mistakes.ru.md" } },
+    { "type": "quiz", "file": "quiz.json" }
+  ]
+}

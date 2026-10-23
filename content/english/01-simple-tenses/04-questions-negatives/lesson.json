@@ -1,0 +1,11 @@
+{
+  "title": { "ru": "Вопросы и отрицания во всех трёх временах" },
+  "steps": [
+    { "type": "theory", "text": { "ru": "01-helpers.ru.md" } },
+    { "type": "practice", "id": "helpers", "file": "practice/helpers.json" },
+    { "type": "theory", "text": { "ru": "02-question-words.ru.md" } },
+    { "type": "theory", "text": { "ru": "03-short-answers.ru.md" } },
+    { "type": "practice", "id": "questions", "file": "practice/questions.json" },
+    { "type": "quiz", "file": "quiz.json" }
+  ]
+}

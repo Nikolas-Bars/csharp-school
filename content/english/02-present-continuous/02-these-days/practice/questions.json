@@ -1,0 +1,65 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как спросить друга «Что ты делаешь?»" },
+    "options": [
+      { "text": "What do you doing?", "why": { "ru": "do — для Present Simple. Present Continuous строится с am / is / are." } },
+      { "text": "What are you doing?" },
+      { "text": "What you are doing?", "why": { "ru": "В вопросе are встаёт перед you." } },
+      { "text": "What are you do?", "why": { "ru": "После are глагол нужен с -ing: doing." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "What + are + you + doing: are встаёт перед you." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери вопрос «Она сейчас делает уроки?» Одно слово лишнее." },
+    "tiles": ["her homework", "doing", "she", "Is", "now", "Does"],
+    "accept": ["Is she doing her homework now"],
+    "mistakes": [
+      { "answer": "Does she doing her homework now", "why": { "ru": "does — для Present Simple. В Present Continuous вопрос строится с is." } },
+      { "answer": "She is doing her homework now", "why": { "ru": "Это утверждение: «Она делает уроки». В вопросе is встаёт перед she." } }
+    ],
+    "hint": { "ru": "В вопросе am / is / are встаёт перед тем, кто делает." },
+    "explanation": { "ru": "Is + she + doing + her homework + now: is встаёт перед she." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Поставь глагол в отрицание." },
+    "text": "Tom ___ (not / play) video games right now. He's doing his homework.",
+    "accept": ["isn't playing"],
+    "mistakes": [
+      { "answer": "doesn't play", "why": { "ru": "doesn't play — «не играет вообще», это Present Simple. А тут right now — прямо сейчас." } },
+      { "answer": "not playing", "why": { "ru": "not само не работает — перед ним нужен is: isn't playing." } },
+      { "answer": "aren't playing", "why": { "ru": "Tom — один человек, это he. С he — isn't." } },
+      { "answer": "isn't play", "why": { "ru": "После isn't глагол нужен с -ing: playing." } }
+    ],
+    "hint": { "ru": "Tom — это he. Отрицание: is + not + глагол с -ing." },
+    "explanation": { "ru": "Tom = he → isn't (is not), к глаголу -ing: isn't playing." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "— Are your friends waiting for you? Как коротко ответить «Да»?" },
+    "options": [
+      { "text": "Yes, they are." },
+      { "text": "Yes, they're.", "why": { "ru": "В кратком ответе «да» краткую форму не используют: they're в конце фразы не ставят." } },
+      { "text": "Yes, they do.", "why": { "ru": "Вопрос был с are — и ответ с are. do — для вопросов с do." } }
+    ],
+    "answer": 0,
+    "explanation": { "ru": "Краткий ответ повторяет am / is / are из вопроса: Are…? — Yes, they are." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Ты меня слушаешь?" },
+    "accept": ["Are you listening{ to me|}"],
+    "mistakes": [
+      { "answer": "Do you listen to me", "why": { "ru": "Это Present Simple — «слушаешь ли ты меня вообще, обычно». А речь о том, что идёт прямо сейчас." } },
+      { "answer": "Are you listening me", "why": { "ru": "listen всегда идёт с to: listen to me — слушать меня." } },
+      { "answer": "You are listening to me", "why": { "ru": "Так спрашивают, только когда удивляются. В обычном вопросе are встаёт перед you." } },
+      { "answer": "You listening to me", "why": { "ru": "Пропущен are. В вопросе он встаёт перед you." } }
+    ],
+    "hint": { "ru": "«Слушать кого-то» — listen to. В вопросе are встаёт перед you." },
+    "explanation": { "ru": "Are + you + listening + to me: are встаёт перед you, а после listen нужно to." }
+  }
+]

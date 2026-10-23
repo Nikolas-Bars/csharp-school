@@ -3,8 +3,9 @@
   "steps": [
     { "type": "theory", "text": { "ru": "01-when.ru.md" } },
     { "type": "theory", "text": { "ru": "02-form.ru.md" } },
+    { "type": "theory", "text": { "ru": "03-spelling.ru.md" } },
     { "type": "practice", "id": "form", "file": "practice/form.json" },
-    { "type": "theory", "text": { "ru": "03-frequency.ru.md" } },
+    { "type": "theory", "text": { "ru": "04-frequency.ru.md" } },
     { "type": "practice", "id": "frequency", "file": "practice/frequency.json" },
     { "type": "quiz", "file": "quiz.json" }
   ]

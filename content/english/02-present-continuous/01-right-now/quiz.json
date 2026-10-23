@@ -1,0 +1,53 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Друг пишет: «What are you doing?» Ты играешь в игру. Как ответить?" },
+    "options": [
+      { "text": "I play a game.", "why": { "ru": "Это Present Simple — про то, что бывает обычно. А играешь ты прямо сейчас." } },
+      { "text": "I'm playing a game." },
+      { "text": "I'm play a game.", "why": { "ru": "После am (I'm) глагол нужен с -ing: playing." } },
+      { "text": "I playing a game.", "why": { "ru": "Пропущен am: без вспомогательного глагола время не строится." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Игра идёт прямо сейчас: I'm (I am) + playing." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол sleep («спать») в нужной форме." },
+    "text": "Be quiet! Dad ___ (sleep).",
+    "accept": ["is sleeping"],
+    "mistakes": [
+      { "answer": "sleeps", "why": { "ru": "Be quiet! — «Тише!»: папа спит прямо сейчас. Нужен Present Continuous." } },
+      { "answer": "sleeping", "why": { "ru": "Глагол с -ing один не работает: перед ним нужен is." } },
+      { "answer": "are sleeping", "why": { "ru": "Dad — один человек, это he. С he нужен is." } }
+    ],
+    "hint": { "ru": "Dad — это he. Формула: am / is / are + глагол с -ing." },
+    "explanation": { "ru": "Dad = he → is, к глаголу -ing: is sleeping." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "Listen! Someone is play the piano.",
+    "wrong": 3,
+    "accept": ["playing"],
+    "mistakes": [
+      { "answer": "plays", "why": { "ru": "После is глагол нужен с -ing. plays — форма Present Simple, она без is." } },
+      { "answer": "playng", "why": { "ru": "К play окончание добавляется целиком: -ing." } }
+    ],
+    "hint": { "ru": "Какая форма глагола стоит после am / is / are?" },
+    "explanation": { "ru": "is + глагол с -ing: Someone is playing the piano." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Смотри! Идёт снег." },
+    "accept": ["Look {it is snowing|snow is falling|the snow is falling}{| outside}"],
+    "mistakes": [
+      { "answer": "Look it snows", "why": { "ru": "Look! — снег идёт прямо сейчас. Нужен Present Continuous: it is snowing." } },
+      { "answer": "Look snow is going", "why": { "ru": "Так по-английски не говорят: снег не going. «Идёт снег» — один глагол snow: it is snowing (it здесь ничего не значит, но без него нельзя)." } },
+      { "answer": "Look it is snow", "why": { "ru": "snow здесь глагол «идти (о снеге)». После is ему нужно -ing." } }
+    ],
+    "hint": { "ru": "«Идёт снег» — один глагол snow, а перед ним — it, как в It is raining." },
+    "explanation": { "ru": "Как с дождём: It is raining — It is snowing. Look! показывает, что это прямо сейчас." }
+  }
+]

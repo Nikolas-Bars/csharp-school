@@ -1,0 +1,68 @@
+[
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери вопрос «Что она сказала?» Одно слово лишнее." },
+    "tiles": ["say", "she", "What", "did", "said"],
+    "accept": ["What did she say"],
+    "mistakes": [
+      { "answer": "What she said", "why": { "ru": "Без помощника вопроса нет: What did she say?" } },
+      { "answer": "What did she said", "why": { "ru": "Прошлое уже показал did. Глагол после него — в начальной форме: say." } },
+      { "answer": "What she did say", "why": { "ru": "did встаёт перед she: «What did she…»." } }
+    ],
+    "hint": { "ru": "Вопросительное слово → помощник → кто → глагол." },
+    "explanation": { "ru": "What + did + she + say: вопрос про прошлое, глагол после did — в начальной форме." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь помощника. Подсказка — в ответе." },
+    "text": "— ___ you be home before dinner? — Yes, I will.",
+    "accept": ["Will"],
+    "mistakes": [
+      { "answer": "Do", "why": { "ru": "Ответ — «Yes, I will», значит и вопрос с will. К тому же с be вопрос строят без do." } },
+      { "answer": "Are", "why": { "ru": "После are не может идти ещё одно be. Ответ «Yes, I will» подсказывает: вопрос с will." } },
+      { "answer": "Did", "why": { "ru": "Ответ «Yes, I will» — про будущее. did — для прошлого." } }
+    ],
+    "hint": { "ru": "Краткий ответ повторяет помощника из вопроса." },
+    "explanation": { "ru": "Ответ «Yes, I will» повторяет помощника вопроса — значит, вопрос с will: Will you be home before dinner?" }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Тебя спросили: «Did your sister call you?» Как коротко ответить «Нет»?" },
+    "options": [
+      { "text": "No, she doesn't.", "why": { "ru": "Вопрос про прошлое, с did — и ответ с did. doesn't — для настоящего." } },
+      { "text": "No, she wasn't.", "why": { "ru": "wasn't — для вопросов с was. Вопрос был с did." } },
+      { "text": "No, I didn't.", "why": { "ru": "Спрашивают про сестру, а не про тебя: she, а не I." } },
+      { "text": "No, she didn't." }
+    ],
+    "answer": 3,
+    "explanation": { "ru": "Did your sister…? — No, she didn't: тот же помощник did, sister — это she." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Где вы были вчера?" },
+    "accept": ["Where were you{| guys} yesterday"],
+    "mistakes": [
+      { "answer": "Where did you be yesterday", "why": { "ru": "С be did не нужен: were сам встаёт перед you." } },
+      { "answer": "Where you were yesterday", "why": { "ru": "В вопросе were встаёт перед you: Where were you?" } },
+      { "answer": "Where was you yesterday", "why": { "ru": "С you — were, а не was." } },
+      { "answer": "Where are you yesterday", "why": { "ru": "are — настоящее время. yesterday — прошлое." } }
+    ],
+    "hint": { "ru": "«Были» — прошедшая форма be. С be помощник не нужен: он сам встаёт вперёд." },
+    "explanation": { "ru": "Where + were + you: were — прошедшая форма be для you, она сама встаёт перед you." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В вопросе одна ошибка. Найди её и исправь." },
+    "text": "What does this word means?",
+    "wrong": 4,
+    "accept": ["mean"],
+    "mistakes": [
+      { "answer": "meaning", "why": { "ru": "После does — начальная форма, без -ing." } },
+      { "answer": "meant", "why": { "ru": "meant — прошедшее время. После does — начальная форма." } },
+      { "answer": "means", "why": { "ru": "Это то же слово. -s уже есть в does, второй раз его не пишут." } }
+    ],
+    "hint": { "ru": "Что уже несёт does? Нужно ли это ещё раз в глаголе?" },
+    "explanation": { "ru": "-s уже в does, поэтому глагол — в начальной форме: What does this word mean?" }
+  }
+]

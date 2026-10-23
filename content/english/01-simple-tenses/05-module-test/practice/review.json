@@ -1,64 +1,121 @@
 [
   {
-    "kind": "gap",
-    "prompt": { "ru": "Вставь глагол study («учить») в нужной форме." },
-    "text": "Kate ___ (study) French at school every day.",
-    "accept": ["studies"],
-    "mistakes": [
-      { "answer": "studys", "why": { "ru": "Согласная + y — это -ies: study → studies." } },
-      { "answer": "study", "why": { "ru": "Kate — «она», значит к глаголу нужно -s." } },
-      { "answer": "is studying", "why": { "ru": "every day — «каждый день», это привычка. Нужен Present Simple." } }
+    "kind": "choice",
+    "prompt": { "ru": "Выбери предложение без ошибки." },
+    "options": [
+      { "text": "She visits her grandma last Sunday.", "why": { "ru": "last Sunday — «в прошлое воскресенье», это прошлое. visits — настоящее время." } },
+      { "text": "She will visit her grandma last Sunday.", "why": { "ru": "will — про будущее, а last Sunday — уже прошло." } },
+      { "text": "She visited her grandma last Sunday." },
+      { "text": "She visit her grandma last Sunday.", "why": { "ru": "last Sunday — прошлое, к глаголу нужно -ed: visited." } }
     ],
-    "hint": { "ru": "Kate — это she. А глагол оканчивается на согласную + y." },
-    "explanation": { "ru": "Перед y согласная d, поэтому -ies: studies." }
+    "answer": 2,
+    "explanation": { "ru": "last Sunday — маркер прошлого. visit — правильный глагол: visited." }
   },
   {
-    "kind": "choice",
-    "prompt": { "ru": "Тебя спросили: «Do you like pizza?» Как коротко ответить «Да»?" },
-    "options": [
-      { "text": "Yes, I like.", "why": { "ru": "В кратком ответе повторяют вспомогательный глагол, а не основной." } },
-      { "text": "Yes, I do." },
-      { "text": "Yes, I am.", "why": { "ru": "Вопрос был с do — и ответ с do. am — для вопросов с am / is / are." } }
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол go в нужной форме." },
+    "text": "We ___ (go) to the beach two days ago.",
+    "accept": ["went"],
+    "mistakes": [
+      { "answer": "goed", "why": { "ru": "go — неправильный глагол: -ed к нему не добавляют. Его прошедшая форма — went." } },
+      { "answer": "go", "why": { "ru": "two days ago — «два дня назад», это прошлое. Нужна прошедшая форма." } },
+      { "answer": "gone", "why": { "ru": "gone — другая форма глагола, она живёт только вместе с have: have gone. Без have про прошлое говорят went." } },
+      { "answer": "will go", "why": { "ru": "will — про будущее, а two days ago — прошлое." } }
     ],
-    "answer": 1,
-    "explanation": { "ru": "Краткий ответ повторяет вспомогательный глагол вопроса: Do you…? — Yes, I do." }
+    "hint": { "ru": "ago — маркер прошлого. go — неправильный глагол." },
+    "explanation": { "ru": "two days ago — прошлое, go → went." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол plan («планировать») в прошедшем времени." },
+    "text": "We ___ (plan) our trip to Florida last month.",
+    "accept": ["planned"],
+    "mistakes": [
+      { "answer": "planed", "why": { "ru": "plan — короткий глагол на одну гласную и одну согласную (a + n). Такая согласная удваивается: planned." } },
+      { "answer": "plan", "why": { "ru": "last month — «в прошлом месяце», это прошлое. К глаголу нужно -ed." } },
+      { "answer": "will plan", "why": { "ru": "will — про будущее, а last month — уже прошло." } }
+    ],
+    "hint": { "ru": "last month — прошлое. plan — правильный глагол, но посмотри на его последние буквы." },
+    "explanation": { "ru": "last month — прошлое, значит -ed. plan кончается на гласную + согласную, поэтому n удваивается: planned." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол study («учить») в Present Simple." },
+    "text": "She ___ (study) English every day.",
+    "accept": ["studies"],
+    "mistakes": [
+      { "answer": "studys", "why": { "ru": "Перед y согласная d, поэтому y меняется на i и добавляется -es: studies." } },
+      { "answer": "study", "why": { "ru": "She — «она», а с he, she, it к глаголу нужно -s." } },
+      { "answer": "studied", "why": { "ru": "studied — прошедшее время. every day — привычка, нужен Present Simple: studies." } }
+    ],
+    "hint": { "ru": "Что меняется в глаголе с she? И посмотри на его последнюю букву." },
+    "explanation": { "ru": "She → к глаголу -s, а согласная + y превращается в -ies: studies." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери фразу «Мы обычно играем в футбол по субботам»." },
+    "tiles": ["play", "usually", "We", "soccer", "on Saturdays"],
+    "accept": ["We usually play soccer on Saturdays", "Usually we play soccer on Saturdays", "On Saturdays we usually play soccer"],
+    "mistakes": [
+      { "answer": "We play usually soccer on Saturdays", "why": { "ru": "Слово частоты стоит перед обычным глаголом: usually play." } },
+      { "answer": "We play soccer usually on Saturdays", "why": { "ru": "Слово частоты стоит перед обычным глаголом: We usually play." } }
+    ],
+    "hint": { "ru": "Куда встаёт слово частоты: до или после обычного глагола?" },
+    "explanation": { "ru": "usually — перед обычным глаголом: We usually play soccer on Saturdays." }
   },
   {
     "kind": "order",
     "prompt": { "ru": "Собери вопрос «Что она делает по выходным?»" },
     "tiles": ["on weekends", "do", "What", "she", "does"],
-    "accept": ["What does she do on weekends"],
+    "accept": ["What does she do on weekends", "On weekends what does she do"],
     "mistakes": [
       { "answer": "What she does do on weekends", "why": { "ru": "does встаёт перед she: «What does she…»." } },
       { "answer": "What do she does on weekends", "why": { "ru": "С she — does, и стоит он перед she. Глагол после does — без -s: do." } }
     ],
     "hint": { "ru": "Порядок: вопросительное слово → does → кто → глагол." },
-    "explanation": { "ru": "What + does + she + do: does — вспомогательный глагол, do — основной, «делать»." }
+    "explanation": { "ru": "What + does + she + do: does — помощник, do — основной глагол, «делать»." }
   },
   {
     "kind": "translate",
     "prompt": { "ru": "Переведи на английский." },
-    "text": { "ru": "Он часто играет в футбол." },
-    "accept": ["He often plays {soccer|football}", "He plays {soccer|football} often"],
+    "text": { "ru": "Я думаю, он выиграет." },
+    "accept": ["I think {that |}he {will|is going to} win"],
     "mistakes": [
-      { "answer": "He plays often soccer", "why": { "ru": "often стоит перед глаголом: He often plays." } },
-      { "answer": "He plays often football", "why": { "ru": "often стоит перед глаголом: He often plays." } },
-      { "answer": "He often play soccer", "why": { "ru": "He — значит, к глаголу нужно -s: plays." } },
-      { "answer": "He often play football", "why": { "ru": "He — значит, к глаголу нужно -s: plays." } }
+      { "answer": "I think he will wins", "why": { "ru": "После will — начальная форма, без -s: win." } },
+      { "answer": "I think he will to win", "why": { "ru": "После will глагол идёт сразу, без to." } },
+      { "answer": "I think he wins", "why": { "ru": "Без will это «он побеждает» — сейчас или обычно. Прогноз на будущее — will win." } },
+      { "answer": "I think he win", "why": { "ru": "Не хватает will: прогноз на будущее — will win." } }
     ],
-    "hint": { "ru": "often — перед глаголом, а с he к глаголу добавляется -s." },
-    "explanation": { "ru": "He often plays soccer. В Америке наш футбол — soccer, а football — американский футбол. Засчитываются оба слова." }
+    "hint": { "ru": "Прогноз — will + глагол в начальной форме." },
+    "explanation": { "ru": "Мнение о будущем — will: I think he will win. Коротко — he'll win." }
   },
   {
     "kind": "fix",
-    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
-    "text": "They doesn't live here.",
+    "prompt": { "ru": "Предложение в Present Simple. Ошибка в глаголе — найди её и исправь." },
+    "text": "They doesn't live here now.",
     "wrong": 1,
     "accept": ["don't"],
     "mistakes": [
-      { "answer": "not", "why": { "ru": "Без вспомогательного глагола отрицание не строится: don't." } }
+      { "answer": "not", "why": { "ru": "Без помощника отрицание с обычным глаголом не строится: don't live." } },
+      { "answer": "didn't", "why": { "ru": "now — «сейчас», а didn't — для прошлого." } },
+      { "answer": "aren't", "why": { "ru": "live — обычный глагол, не be. aren't — от be, с live он не работает." } },
+      { "answer": "doesn't", "why": { "ru": "Это то же слово. They — нужен do или does?" } },
+      { "answer": "can't", "why": { "ru": "Так тоже можно сказать, но выйдет «не могут жить» — это уже не Present Simple. Нужен помощник для they: don't." } }
     ],
     "hint": { "ru": "They — нужен do или does?" },
     "explanation": { "ru": "They → don't. does и doesn't — только для he, she, it." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Ответь коротко «Да»." },
+    "text": "— Did you like the movie? — Yes, I ___.",
+    "accept": ["did"],
+    "mistakes": [
+      { "answer": "do", "why": { "ru": "Вопрос про прошлое, с did — и ответ с did." } },
+      { "answer": "liked", "why": { "ru": "Основной глагол в краткий ответ не попадает: повторяют помощника из вопроса." } },
+      { "answer": "was", "why": { "ru": "was — для вопросов с was / were. Вопрос был с did." } }
+    ],
+    "hint": { "ru": "Краткий ответ повторяет помощника из вопроса." },
+    "explanation": { "ru": "Did you…? — Yes, I did." }
   }
 ]

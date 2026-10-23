@@ -1,0 +1,54 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Смотри, автобус идёт!»?" },
+    "options": [
+      { "text": "Look! The bus comes!", "why": { "ru": "comes — Present Simple, про то, что бывает обычно. А автобус подходит прямо сейчас." } },
+      { "text": "Look! The bus is coming!" },
+      { "text": "Look! The bus coming!", "why": { "ru": "Пропущен is: глагол с -ing один не работает." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Look! — прямо сейчас: The bus is coming." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Поставь глагол в отрицание." },
+    "text": "Kate ___ (not / eat) meat. She's a vegetarian.",
+    "accept": ["doesn't eat"],
+    "mistakes": [
+      { "answer": "isn't eating", "why": { "ru": "Kate — вегетарианка, она не ест мясо всегда, а не только сейчас. Это Present Simple." } },
+      { "answer": "don't eat", "why": { "ru": "Kate — это she. С she нужен doesn't." } },
+      { "answer": "doesn't eats", "why": { "ru": "После doesn't глагол без -s." } }
+    ],
+    "hint": { "ru": "Вегетарианка не ест мясо — это бывает всегда или только сейчас?" },
+    "explanation": { "ru": "Это всегда так — Present Simple: Kate doesn't eat meat." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери вопрос «Что ты обычно делаешь по выходным?» Одно слово лишнее." },
+    "tiles": ["do", "on weekends", "What", "usually", "you", "are", "do"],
+    "accept": ["What do you usually do on weekends", "What do you do on weekends usually"],
+    "mistakes": [
+      { "answer": "What are you usually do on weekends", "why": { "ru": "usually — привычка, это Present Simple. Вопрос строится с do." } },
+      { "answer": "What you usually do on weekends", "why": { "ru": "В вопросе нужен вспомогательный глагол do перед you." } }
+    ],
+    "hint": { "ru": "usually — привычка, значит, Present Simple, и вопросу нужен do. А «делать» — тоже do." },
+    "explanation": { "ru": "What + do + you + usually + do: первое do — вспомогательный глагол, второе — «делать»." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Мама работает в больнице, но на этой неделе она работает дома." },
+    "accept": [
+      "{My mom|Mom|My mum|Mum|My mother} works {at|in} {a|the} hospital but this week she is working {from home|at home}",
+      "{My mom|Mom|My mum|Mum|My mother} works {at|in} {a|the} hospital but she is working {from home|at home} this week"
+    ],
+    "mistakes": [
+      { "answer": "My mom works at a hospital but this week she works from home", "why": { "ru": "this week — только на этой неделе, это временно. Нужен Present Continuous: she's working." } },
+      { "answer": "My mom is working at a hospital but this week she is working from home", "why": { "ru": "Больница — постоянная работа мамы. Это Present Simple: works." } },
+      { "answer": "My mom work at a hospital but this week she is working from home", "why": { "ru": "Мама — это she, а с she к глаголу нужно -s: works." } }
+    ],
+    "hint": { "ru": "Первая часть — постоянное, вторая — временное. «Работать из дома» — work from home." },
+    "explanation": { "ru": "Постоянное — Present Simple (works), на этой неделе — Present Continuous (she's working)." }
+  }
+]

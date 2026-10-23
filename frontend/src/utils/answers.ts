@@ -49,6 +49,11 @@ export function clean(text: string): string {
     .trim()
 }
 
+/** Глаголы с краткой формой на n't (don't, isn't…); can't, won't, shan't — особые */
+const NEGATABLE = new Set(
+  'do does did is are was were have has had could would should must need might'.split(' '),
+)
+
 /** Частые неправильные причастия (3-я форма): перед ними 's = has, 'd = had */
 const PARTICIPLES = new Set(
   'been gone done seen had made said told bought brought taught thought found left lost met read run sent spent won written given taken eaten known begun broken chosen driven fallen flown forgotten got gotten heard held kept paid put sat slept stood understood'.split(
@@ -73,10 +78,8 @@ function readings(word: string, next: string | undefined): string[] {
     return [word, special[word]]
   }
   // n't без апострофа, как часто пишут с телефона: dont, doesnt, isnt (cant и wont — другие слова)
-  const bare = /^(do|does|did|is|are|was|were|have|has|had|could|would|should|must|need)nt$/.exec(
-    word,
-  )
-  if (bare) {
+  const bare = /^(.+)nt$/.exec(word)
+  if (bare && NEGATABLE.has(bare[1] ?? '')) {
     return [word, `${bare[1]} not`]
   }
   // Окончание бывает и отдельным словом: «'s crying» в пропуске после «The baby»
@@ -85,6 +88,10 @@ function readings(word: string, next: string | undefined): string[] {
     return [word]
   }
   const [, stem = '', ending] = match
+  // n't бывает только у настоящих кратких форм: willn't или amn't — не слова, а ошибка
+  if (ending === "n't" && !NEGATABLE.has(stem)) {
+    return [word]
+  }
   const full: Record<string, string[]> = {
     "n't": ['not'],
     "'m": ['am'],
