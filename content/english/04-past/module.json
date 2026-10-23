@@ -1,0 +1,13 @@
+{
+  "title": { "ru": "Прошлое: процесс и привычки" },
+  "description": {
+    "ru": "Past Continuous — что шло в какой-то момент в прошлом; when и while в рассказе; как выбрать между Past Simple и Past Continuous; used to — что было раньше, а теперь нет."
+  },
+  "lessons": [
+    "01-past-continuous",
+    "02-when-while",
+    "03-simple-or-continuous",
+    "04-used-to",
+    "05-module-test"
+  ]
+}

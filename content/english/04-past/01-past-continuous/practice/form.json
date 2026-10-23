@@ -1,0 +1,76 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Вчера в 7 вечера мы играли в футбол» — игра шла в тот момент?" },
+    "options": [
+      { "text": "At 7 pm yesterday we was playing soccer.", "why": { "ru": "we — «мы», с ними нужен were. was — для I, he, she, it." } },
+      { "text": "At 7 pm yesterday we were play soccer.", "why": { "ru": "После was / were глагол всегда с -ing: playing." } },
+      { "text": "At 7 pm yesterday we playing soccer.", "why": { "ru": "Пропущен were: глагол с -ing один не работает." } },
+      { "text": "At 7 pm yesterday we were playing soccer." }
+    ],
+    "answer": 3,
+    "explanation": { "ru": "Процесс в момент прошлого — Past Continuous. we → were, к глаголу -ing: we were playing." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "В 9 вечера фильм уже шёл. Вставь глагол watch в Past Continuous." },
+    "text": "At 9 o'clock last night my sister ___ (watch) a movie.",
+    "accept": ["was watching"],
+    "mistakes": [
+      { "answer": "were watching", "why": { "ru": "sister — один человек, это she. С she нужен was." } },
+      { "answer": "watched", "why": { "ru": "Так тоже можно сказать — выйдет «посмотрела фильм в 9», как событие. Но задание — Past Continuous: фильм уже шёл в тот момент." } },
+      { "answer": "is watching", "why": { "ru": "is — настоящее время. last night — вчера вечером, это прошлое: was." } },
+      { "answer": "was watch", "why": { "ru": "После was глагол нужен с -ing: watching." } },
+      { "answer": "watching", "why": { "ru": "Пропущен was: глагол с -ing один не работает." } }
+    ],
+    "hint": { "ru": "sister — это she. Формула: was / were + глагол с -ing." },
+    "explanation": { "ru": "sister = she → was, к глаголу -ing: was watching." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «Весь вечер шёл дождь». Одна плитка лишняя." },
+    "tiles": ["all evening", "raining", "It", "were", "was"],
+    "accept": ["It was raining all evening", "All evening it was raining"],
+    "mistakes": [
+      { "answer": "It were raining all evening", "why": { "ru": "Погода — это it, один предмет. С it нужен was." } },
+      { "answer": "All evening it were raining", "why": { "ru": "Погода — это it, один предмет. С it нужен was." } }
+    ],
+    "hint": { "ru": "Погода по-английски начинается с it. Какая форма be с it?" },
+    "explanation": { "ru": "It + was + raining: it → was, к глаголу -ing. all evening — в конце или в начале." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "Это Past Continuous. Одна ошибка в глаголе — найди её и исправь." },
+    "text": "My friends was waiting for me outside the school.",
+    "wrong": 2,
+    "accept": ["were"],
+    "mistakes": [
+      { "answer": "are", "why": { "ru": "Так тоже можно — выйдет Present Continuous, «ждут сейчас». Но задание — Past Continuous: were." } },
+      { "answer": "is", "why": { "ru": "is — настоящее время, и только для одного. friends — несколько: were." } },
+      { "answer": "was", "why": { "ru": "Это то же слово. friends — несколько человек. Какая форма нужна с they?" } }
+    ],
+    "hint": { "ru": "friends — несколько человек, это they. Какая форма be в прошлом с they?" },
+    "explanation": { "ru": "friends = they → were: My friends were waiting for me outside the school." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Ужин уже готовился в тот момент. Переведи в Past Continuous." },
+    "text": { "ru": "Вчера в 6 вечера папа готовил ужин." },
+    "accept": [
+      "{At 6 pm|At 6|At 6 o'clock|At 6 in the evening|At 6 o'clock in the evening} yesterday {Dad|my dad|my father} was {cooking|making|preparing} dinner",
+      "Yesterday at {6 pm|6|6 o'clock|6 in the evening|6 o'clock in the evening} {Dad|my dad|my father} was {cooking|making|preparing} dinner",
+      "{Dad|My dad|My father} was {cooking|making|preparing} dinner {at 6 pm|at 6|at 6 o'clock|at 6 in the evening|at 6 o'clock in the evening} yesterday",
+      "{Dad|My dad|My father} was {cooking|making|preparing} dinner yesterday {at 6 pm|at 6|at 6 o'clock|at 6 in the evening|at 6 o'clock in the evening}"
+    ],
+    "mistakes": [
+      { "answer": "At 6 pm yesterday Dad cooked dinner", "why": { "ru": "Так тоже можно сказать — выйдет «приготовил ужин в 6», как событие. Но задание — Past Continuous: готовка шла в тот момент." } },
+      { "answer": "Dad cooked dinner at 6 pm yesterday", "why": { "ru": "Так тоже можно сказать — выйдет «приготовил ужин в 6», как событие. Но задание — Past Continuous: готовка шла в тот момент." } },
+      { "answer": "At 6 pm yesterday Dad were cooking dinner", "why": { "ru": "Dad — один человек, это he. С he нужен was." } },
+      { "answer": "At 6 pm yesterday Dad was cook dinner", "why": { "ru": "После was глагол нужен с -ing: cooking." } },
+      { "answer": "At 6 pm yesterday Dad cooking dinner", "why": { "ru": "Пропущен was: глагол с -ing один не работает." } },
+      { "answer": "At 6 pm yesterday Dad is cooking dinner", "why": { "ru": "is — настоящее время. yesterday — прошлое: was." } }
+    ],
+    "hint": { "ru": "Папа — это he. «Готовить ужин» — cook dinner. Формула: was / were + -ing." },
+    "explanation": { "ru": "Процесс в момент прошлого — Past Continuous: At 6 pm yesterday Dad was cooking dinner." }
+  }
+]

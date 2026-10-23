@@ -1,0 +1,79 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Мама готовила, а папа в это же время накрывал на стол. Какое предложение верное?" },
+    "options": [
+      { "text": "While Mom cooking, Dad setting the table.", "why": { "ru": "Пропущен was: глагол с -ing один не работает." } },
+      { "text": "While Mom was cooking, Dad were setting the table.", "why": { "ru": "Dad — один человек, это he. С he нужен was." } },
+      { "text": "While Mom was cooking, Dad was setting the table." },
+      { "text": "While Mom was cook, Dad was set the table.", "why": { "ru": "После was глагол всегда с -ing: cooking, setting." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "Два процесса шли одновременно — оба в Past Continuous: was cooking, was setting." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Это фон рассказа. Вставь глагол shine («светить») в Past Continuous." },
+    "text": "The sun ___ (shine) and the birds were singing.",
+    "accept": ["was shining"],
+    "mistakes": [
+      { "answer": "were shining", "why": { "ru": "sun — один предмет, это it. С it нужен was." } },
+      { "answer": "was shineing", "why": { "ru": "В shine на конце немая e — её убирают: shining." } },
+      { "answer": "is shining", "why": { "ru": "is — настоящее время. Рассказ про прошлое: were singing." } },
+      { "answer": "shone", "why": { "ru": "Так тоже можно сказать, но задание — Past Continuous: фон рисуют процессом." } },
+      { "answer": "shined", "why": { "ru": "Так тоже можно сказать (shone или shined), но задание — Past Continuous: фон рисуют процессом, was + -ing." } }
+    ],
+    "hint": { "ru": "sun — это it. Формула: was / were + -ing. Что происходит с e на конце?" },
+    "explanation": { "ru": "Фон — Past Continuous: sun = it → was, shine без e + -ing: was shining." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «Пока папа смотрел телевизор, мы делали уроки». Одна плитка лишняя." },
+    "tiles": ["our homework", "was watching", "While", "we", "Dad", "TV", "were doing", "was doing"],
+    "accept": [
+      "While Dad was watching TV we were doing our homework",
+      "We were doing our homework while Dad was watching TV",
+      "While we were doing our homework Dad was watching TV",
+      "Dad was watching TV while we were doing our homework"
+    ],
+    "mistakes": [
+      { "answer": "While Dad was watching TV we was doing our homework", "why": { "ru": "we — «мы», с ними нужен were." } },
+      { "answer": "We was doing our homework while Dad was watching TV", "why": { "ru": "we — «мы», с ними нужен were." } }
+    ],
+    "hint": { "ru": "Оба действия — процессы. С we — was или were?" },
+    "explanation": { "ru": "Два процесса одновременно — оба в Past Continuous: Dad was watching, we were doing." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "Ошибка в глаголе. Найди её и исправь." },
+    "text": "It was a beautiful morning. The birds was singing.",
+    "wrong": 7,
+    "accept": ["were"],
+    "mistakes": [
+      { "answer": "are", "why": { "ru": "are — настоящее время. Рассказ про прошлое: It was a beautiful morning." } },
+      { "answer": "was", "why": { "ru": "Это то же слово. birds — несколько, это they." } }
+    ],
+    "hint": { "ru": "birds — несколько, это they. Какая форма be в прошлом с they?" },
+    "explanation": { "ru": "birds = they → were: The birds were singing." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Оба действия шли одновременно. Переведи в Past Continuous." },
+    "text": { "ru": "Пока Том играл в видеоигры, его сестра читала." },
+    "accept": [
+      "While Tom was playing {video games|a video game|computer games|games} his sister was reading",
+      "His sister was reading while Tom was playing {video games|a video game|computer games|games}",
+      "Tom was playing {video games|a video game|computer games|games} while his sister was reading",
+      "While his sister was reading Tom was playing {video games|a video game|computer games|games}"
+    ],
+    "mistakes": [
+      { "answer": "While Tom played video games his sister read", "why": { "ru": "Так тоже можно сказать, но задание — Past Continuous: оба процесса шли одновременно." } },
+      { "answer": "While Tom was playing video games his sister read", "why": { "ru": "Так тоже можно сказать, но задание — Past Continuous: чтение тоже шло всё это время — was reading." } },
+      { "answer": "While Tom was playing video games his sister were reading", "why": { "ru": "sister — один человек, это she. С she нужен was." } },
+      { "answer": "While Tom was playing video games his sister reading", "why": { "ru": "Пропущен was: глагол с -ing один не работает." } },
+      { "answer": "While Tom playing video games his sister was reading", "why": { "ru": "Пропущен was: глагол с -ing один не работает." } }
+    ],
+    "hint": { "ru": "«Пока» — while. Оба действия — процессы: was / were + -ing." },
+    "explanation": { "ru": "Два процесса одновременно — оба в Past Continuous: Tom was playing, his sister was reading." }
+  }
+]

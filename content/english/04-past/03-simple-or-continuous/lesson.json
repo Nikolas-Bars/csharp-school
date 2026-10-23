@@ -1,0 +1,13 @@
+{
+  "title": { "ru": "Past Simple или Past Continuous" },
+  "steps": [
+    { "type": "theory", "text": { "ru": "01-choice.ru.md" } },
+    { "type": "theory", "text": { "ru": "02-sequence.ru.md" } },
+    { "type": "practice", "id": "choose", "file": "practice/choose.json" },
+    { "type": "theory", "text": { "ru": "03-state-verbs.ru.md" } },
+    { "type": "theory", "text": { "ru": "04-both.ru.md" } },
+    { "type": "practice", "id": "states", "file": "practice/states.json" },
+    { "type": "theory", "text": { "ru": "05-mistakes.ru.md" } },
+    { "type": "quiz", "file": "quiz.json" }
+  ]
+}

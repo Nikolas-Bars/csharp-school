@@ -1,0 +1,73 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «В тот момент Макс знал ответ»?" },
+    "options": [
+      { "text": "At that moment Max was knowing the answer.", "why": { "ru": "know — глагол состояния: знание просто есть, это не процесс. Даже «в тот момент» — knew." } },
+      { "text": "At that moment Max knowed the answer.", "why": { "ru": "know — неправильный глагол: -ed к нему не добавляют. Его прошедшая форма — knew." } },
+      { "text": "At that moment Max knows the answer.", "why": { "ru": "knows — настоящее время. «В тот момент» — прошлое." } },
+      { "text": "At that moment Max knew the answer." }
+    ],
+    "answer": 3,
+    "explanation": { "ru": "know — глагол состояния, с ним только Past Simple. know — неправильный: knew." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Поставь глагол в отрицание." },
+    "text": "We ___ (not / understand) the question, so we asked the teacher.",
+    "accept": ["didn't understand"],
+    "mistakes": [
+      { "answer": "weren't understanding", "why": { "ru": "understand — глагол состояния, -ing с ним не ставят. Отрицание — как в Past Simple: didn't understand." } },
+      { "answer": "don't understand", "why": { "ru": "don't — настоящее время. А спросили учителя уже в прошлом (asked): didn't." } },
+      { "answer": "didn't understood", "why": { "ru": "Прошлое уже показал didn't. Глагол после него — в начальной форме: understand." } },
+      { "answer": "not understood", "why": { "ru": "Отрицание строится с помощником: didn't understand." } }
+    ],
+    "hint": { "ru": "understand — глагол состояния. Отрицание в Past Simple: didn't + начальная форма." },
+    "explanation": { "ru": "Глагол состояния — Past Simple: didn't understand. Можно и полностью: did not understand." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол play в прошедшем времени." },
+    "text": "Lily ___ (play) video games all evening, so she didn't finish her essay.",
+    "accept": ["played", "was playing"],
+    "mistakes": [
+      { "answer": "were playing", "why": { "ru": "Lily — один человек, это she. С she нужен was." } },
+      { "answer": "plays", "why": { "ru": "plays — настоящее время. А сочинение она не дописала (didn't finish) — это прошлое." } },
+      { "answer": "playing", "why": { "ru": "Глагол с -ing один не работает: нужен was." } },
+      { "answer": "was play", "why": { "ru": "После was глагол нужен с -ing: playing." } }
+    ],
+    "hint": { "ru": "all evening — «весь вечер». Lily — это she." },
+    "explanation": { "ru": "С all evening подходят оба: played — просто факт, was playing — подчёркивает, что игра шла долго. Засчитываем оба." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "At that moment I didn't knew what to do.",
+    "wrong": 5,
+    "accept": ["know"],
+    "mistakes": [
+      { "answer": "knowing", "why": { "ru": "know — глагол состояния, -ing с ним не ставят. А после didn't — начальная форма." } },
+      { "answer": "knows", "why": { "ru": "После didn't — начальная форма, без -s." } },
+      { "answer": "knew", "why": { "ru": "Это то же слово. Прошлое уже показал didn't — второй раз его не показывают." } }
+    ],
+    "hint": { "ru": "Что уже показывает прошлое? Какая форма глагола идёт после него?" },
+    "explanation": { "ru": "После didn't — начальная форма: At that moment I didn't know what to do." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Эмма хотела новый велосипед, но у неё не было денег." },
+    "accept": [
+      "Emma wanted a new {bike|bicycle} but {she |}didn't have {any |the |}money",
+      "Emma wanted a new {bike|bicycle} but {she |}had no money"
+    ],
+    "mistakes": [
+      { "answer": "Emma was wanting a new bike but she didn't have money", "why": { "ru": "want — глагол состояния, -ing с ним не ставят: wanted." } },
+      { "answer": "Emma wanted a new bike but she wasn't having money", "why": { "ru": "have здесь значит «иметь, есть» — это состояние. Отрицание — как в Past Simple: didn't have." } },
+      { "answer": "Emma wanted a new bike but she didn't had money", "why": { "ru": "Прошлое уже показал didn't. Глагол после него — в начальной форме: have." } },
+      { "answer": "Emma wants a new bike but she doesn't have money", "why": { "ru": "Это настоящее время. «Хотела», «не было» — прошлое." } }
+    ],
+    "hint": { "ru": "want и have («иметь») — глаголы состояния. «У неё не было» — отрицание в Past Simple, с did." },
+    "explanation": { "ru": "Глаголы состояния — Past Simple: Emma wanted a new bike, but she didn't have any money." }
+  }
+]

@@ -1,0 +1,61 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Эмма смотрела сериал, а её брат в это же время готовил ужин. Как это сказать?" },
+    "options": [
+      { "text": "While Emma watching a show, her brother making dinner.", "why": { "ru": "Пропущен was: глагол с -ing один не работает." } },
+      { "text": "While Emma was watching a show, her brother were making dinner.", "why": { "ru": "brother — один человек, это he. С he нужен was." } },
+      { "text": "While Emma was watch a show, her brother was make dinner.", "why": { "ru": "После was глагол всегда с -ing: watching, making." } },
+      { "text": "While Emma was watching a show, her brother was making dinner." }
+    ],
+    "answer": 3,
+    "explanation": { "ru": "Два процесса одновременно — оба в Past Continuous: was watching, was making." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол go out («погаснуть») в нужной форме." },
+    "text": "The lights ___ (go out) while we were playing a board game.",
+    "accept": ["went out"],
+    "mistakes": [
+      { "answer": "were going out", "why": { "ru": "Свет погас вдруг — это короткое событие посреди игры, Past Simple: went out." } },
+      { "answer": "was going out", "why": { "ru": "Свет погас вдруг — это короткое событие посреди игры, Past Simple: went out." } },
+      { "answer": "goed out", "why": { "ru": "go — неправильный глагол: -ed к нему не добавляют. Его прошедшая форма — went." } },
+      { "answer": "go out", "why": { "ru": "Это уже случилось — нужна прошедшая форма: went out." } }
+    ],
+    "hint": { "ru": "Игра шла — процесс. А свет погас — процесс или событие? go — неправильный глагол." },
+    "explanation": { "ru": "Событие посреди процесса — Past Simple: The lights went out while we were playing a board game." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "Вопрос в Past Continuous. Ошибка в глаголе — найди её и исправь." },
+    "text": "What was you doing when I called?",
+    "wrong": 1,
+    "accept": ["were"],
+    "mistakes": [
+      { "answer": "did", "why": { "ru": "did — для Past Simple. В Past Continuous вопрос строится с was / were, а с you — were." } },
+      { "answer": "are", "why": { "ru": "are — настоящее время. Звонок был в прошлом (called): were." } },
+      { "answer": "was", "why": { "ru": "Это то же слово. Какая форма нужна с you?" } }
+    ],
+    "hint": { "ru": "С you — was или were?" },
+    "explanation": { "ru": "С you — всегда were: What were you doing when I called?" }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский с used to." },
+    "text": { "ru": "Раньше мой брат не любил читать." },
+    "accept": [
+      "My brother didn't use to {like|love} {reading|to read}",
+      "My brother never used to {like|love} {reading|to read}",
+      "My brother used not to {like|love} {reading|to read}"
+    ],
+    "mistakes": [
+      { "answer": "My brother didn't used to like reading", "why": { "ru": "После did — use, без -d: прошлое уже показал did." } },
+      { "answer": "My brother didn't like reading", "why": { "ru": "Так тоже можно сказать, но задание — с used to." } },
+      { "answer": "My brother doesn't use to like reading", "why": { "ru": "doesn't — настоящее время. used to бывает только о прошлом: didn't use to." } },
+      { "answer": "My brother not used to like reading", "why": { "ru": "Отрицание строится с помощником did: didn't use to." } },
+      { "answer": "My brother didn't use to liked reading", "why": { "ru": "После to — начальная форма: like." } }
+    ],
+    "hint": { "ru": "Отрицание с used to — через did. После did — use или used?" },
+    "explanation": { "ru": "Отрицание — did, после него use без -d: My brother didn't use to like reading." }
+  }
+]

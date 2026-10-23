@@ -1,0 +1,56 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Какое предложение верное?" },
+    "options": [
+      { "text": "At 10 pm yesterday I were reading.", "why": { "ru": "were — для you, we, they. С I нужен was." } },
+      { "text": "At 10 pm yesterday I am reading.", "why": { "ru": "am — настоящее время. yesterday — прошлое: was." } },
+      { "text": "At 10 pm yesterday I was reading." },
+      { "text": "At 10 pm yesterday I was read.", "why": { "ru": "После was глагол нужен с -ing: reading." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "Процесс в момент прошлого — Past Continuous: I → was, к глаголу -ing." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Спроси в Past Continuous." },
+    "text": "What ___ (you / do) at this time yesterday?",
+    "accept": ["were you doing"],
+    "mistakes": [
+      { "answer": "was you doing", "why": { "ru": "С you — всегда were, даже когда речь об одном человеке." } },
+      { "answer": "you were doing", "why": { "ru": "В вопросе were встаёт перед you: What were you doing?" } },
+      { "answer": "did you doing", "why": { "ru": "did — для Past Simple. В Past Continuous вопрос строится с were." } },
+      { "answer": "were you do", "why": { "ru": "После were глагол нужен с -ing: doing." } },
+      { "answer": "are you doing", "why": { "ru": "are — настоящее время. yesterday — прошлое: were." } },
+      { "answer": "did you do", "why": { "ru": "Так тоже можно спросить — это Past Simple, вопрос о событии. Но задание — Past Continuous: were you doing." } }
+    ],
+    "hint": { "ru": "С you — was или were? И что в вопросе выходит вперёд?" },
+    "explanation": { "ru": "you → were, в вопросе were выходит вперёд: What were you doing at this time yesterday?" }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «В тот момент дети играли на улице». Одна плитка лишняя." },
+    "tiles": ["outside", "were", "The kids", "at that moment", "playing", "was"],
+    "accept": ["The kids were playing outside at that moment", "At that moment the kids were playing outside"],
+    "mistakes": [
+      { "answer": "The kids was playing outside at that moment", "why": { "ru": "kids — несколько, это they. С they нужен were." } },
+      { "answer": "At that moment the kids was playing outside", "why": { "ru": "kids — несколько, это they. С they нужен were." } }
+    ],
+    "hint": { "ru": "kids — это they. Какая форма be в прошлом с they?" },
+    "explanation": { "ru": "The kids = they → were, к глаголу -ing: The kids were playing outside." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "Вопрос в Past Continuous. Ошибка в глаголе — найди её и исправь." },
+    "text": "Was they playing basketball at 5 pm?",
+    "wrong": 0,
+    "accept": ["Were"],
+    "mistakes": [
+      { "answer": "Did", "why": { "ru": "В Past Continuous did не нужен: was / were сами выходят вперёд. Осталось выбрать форму для they." } },
+      { "answer": "Are", "why": { "ru": "are — настоящее время. Вопрос про прошлое." } },
+      { "answer": "Was", "why": { "ru": "Это то же слово. Какая форма нужна с they?" } }
+    ],
+    "hint": { "ru": "was — с I, he, she, it. were — с you, we, they." },
+    "explanation": { "ru": "they → were: Were they playing basketball at 5 pm?" }
+  }
+]

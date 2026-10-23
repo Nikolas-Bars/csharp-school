@@ -1,0 +1,14 @@
+{
+  "title": { "ru": "used to: так было раньше" },
+  "steps": [
+    { "type": "theory", "text": { "ru": "01-when.ru.md" } },
+    { "type": "theory", "text": { "ru": "02-form.ru.md" } },
+    { "type": "theory", "text": { "ru": "03-there-used-to-be.ru.md" } },
+    { "type": "practice", "id": "form", "file": "practice/form.json" },
+    { "type": "theory", "text": { "ru": "04-questions.ru.md" } },
+    { "type": "theory", "text": { "ru": "05-or-past-simple.ru.md" } },
+    { "type": "practice", "id": "compare", "file": "practice/compare.json" },
+    { "type": "theory", "text": { "ru": "06-mistakes.ru.md" } },
+    { "type": "quiz", "file": "quiz.json" }
+  ]
+}

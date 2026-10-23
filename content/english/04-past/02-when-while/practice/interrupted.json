@@ -1,0 +1,80 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Мы играли в футбол, когда начался дождь»?" },
+    "options": [
+      { "text": "We played soccer when it was starting to rain.", "why": { "ru": "Наоборот: игра уже шла — это процесс, Past Continuous. А дождь начался вдруг — событие, Past Simple." } },
+      { "text": "We were playing soccer when it started to rain." },
+      { "text": "We were playing soccer when it was raining.", "why": { "ru": "it was raining — «шёл дождь», тоже процесс. А нужно «начался» — это событие: it started to rain." } },
+      { "text": "We was playing soccer when it started to rain.", "why": { "ru": "we — «мы», с ними нужен were." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Игра шла — процесс: were playing. Дождь начался посреди игры — событие: started." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Макс был в душе, и тут позвонили в дверь. Вставь глагол take («принимать») в нужной форме." },
+    "text": "Max ___ (take) a shower when the doorbell rang.",
+    "accept": ["was taking"],
+    "mistakes": [
+      { "answer": "took", "why": { "ru": "took — событие: тогда выйдет, что сначала позвонили, а потом Макс пошёл в душ. А он уже был в душе — процесс: was taking." } },
+      { "answer": "were taking", "why": { "ru": "Max — один человек, это he. С he нужен was." } },
+      { "answer": "was take", "why": { "ru": "После was глагол нужен с -ing: taking." } },
+      { "answer": "is taking", "why": { "ru": "is — настоящее время. Звонок уже был (rang) — это прошлое: was." } },
+      { "answer": "taking", "why": { "ru": "Пропущен was: глагол с -ing один не работает." } }
+    ],
+    "hint": { "ru": "Что уже шло, а что случилось вдруг? Формула процесса: was / were + -ing." },
+    "explanation": { "ru": "Душ уже шёл — процесс, Past Continuous: was taking. Звонок в дверь случился посреди него — событие: rang." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «Пока мы ждали автобус, пошёл снег». Одна плитка лишняя." },
+    "tiles": ["started", "the bus", "While", "we", "was", "it", "for", "waiting", "were", "to snow"],
+    "accept": [
+      "While we were waiting for the bus it started to snow",
+      "It started to snow while we were waiting for the bus"
+    ],
+    "mistakes": [
+      { "answer": "While we was waiting for the bus it started to snow", "why": { "ru": "we — «мы», с ними нужен were." } },
+      { "answer": "It started to snow while we was waiting for the bus", "why": { "ru": "we — «мы», с ними нужен were." } }
+    ],
+    "hint": { "ru": "После while — процесс: was / were + -ing. «Ждать автобус» — wait for the bus." },
+    "explanation": { "ru": "Ждали — процесс: we were waiting. Снег пошёл — событие: it started to snow." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "Dad was sleeping when Mom call.",
+    "wrong": 5,
+    "accept": ["called"],
+    "mistakes": [
+      { "answer": "calls", "why": { "ru": "calls — настоящее время. А рассказ про прошлое: was sleeping." } },
+      { "answer": "calling", "why": { "ru": "Глагол с -ing один не работает. Да и звонок — короткое событие, Past Simple." } },
+      { "answer": "call", "why": { "ru": "Это то же слово. Звонок уже случился — нужно прошедшее время." } }
+    ],
+    "hint": { "ru": "Сон шёл — это процесс. А звонок — процесс или событие?" },
+    "explanation": { "ru": "Звонок случился посреди сна — событие, Past Simple: when Mom called." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Эмма читала, когда зазвонил телефон." },
+    "accept": [
+      "Emma was reading when {the|her} phone rang",
+      "When {the|her} phone rang Emma was reading",
+      "{The|Her} phone rang when Emma was reading",
+      "When Emma was reading {the|her} phone rang",
+      "While Emma was reading {the|her} phone rang",
+      "{The|Her} phone rang while Emma was reading"
+    ],
+    "mistakes": [
+      { "answer": "Emma read when the phone rang", "why": { "ru": "Чтение уже шло — процесс, Past Continuous: was reading." } },
+      { "answer": "Emma was reading when the phone was ringing", "why": { "ru": "«Зазвонил» — короткое событие посреди чтения, Past Simple: rang." } },
+      { "answer": "Emma was reading when the phone ringed", "why": { "ru": "ring — неправильный глагол: -ed к нему не добавляют. Его прошедшая форма — rang." } },
+      { "answer": "Emma were reading when the phone rang", "why": { "ru": "Emma — один человек, это she. С she нужен was." } },
+      { "answer": "Emma reading when the phone rang", "why": { "ru": "Пропущен was: глагол с -ing один не работает." } }
+    ],
+    "hint": { "ru": "Что уже шло, а что случилось вдруг? «Звонить» — ring, это неправильный глагол." },
+    "explanation": { "ru": "Процесс — was reading, событие — rang: Emma was reading when the phone rang." }
+  }
+]

@@ -1,0 +1,75 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Раньше папа играл на гитаре» — а теперь не играет?" },
+    "options": [
+      { "text": "Dad use to play the guitar.", "why": { "ru": "В утверждении — used, с -d на конце: used to." } },
+      { "text": "Dad used to playing the guitar.", "why": { "ru": "После to — начальная форма глагола: play." } },
+      { "text": "Dad used to play the guitar." },
+      { "text": "Dad uses to play the guitar.", "why": { "ru": "Формы uses to нет: used to бывает только в прошлом." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "Раньше было, а теперь нет — used to + начальная форма: Dad used to play the guitar." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол live с used to." },
+    "text": "We ___ (live) in a small apartment, but now we have a house.",
+    "accept": ["used to live"],
+    "mistakes": [
+      { "answer": "use to live", "why": { "ru": "В утверждении — used, с -d на конце." } },
+      { "answer": "used to living", "why": { "ru": "После to — начальная форма глагола: live." } },
+      { "answer": "used to lived", "why": { "ru": "Прошлое уже показал used. После to — начальная форма: live." } },
+      { "answer": "used live", "why": { "ru": "Пропущено to: used to + глагол." } },
+      { "answer": "lived", "why": { "ru": "Так тоже можно сказать, но задание — с used to." } },
+      { "answer": "were living", "why": { "ru": "were living — процесс в какой-то момент. А задание — с used to: так было долго, а теперь нет." } }
+    ],
+    "hint": { "ru": "Формула: used to + глагол в начальной форме." },
+    "explanation": { "ru": "Раньше жили, а теперь нет — used to live." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери с used to: «Раньше здесь был кинотеатр». Одна плитка лишняя." },
+    "tiles": ["a movie theater", "be", "There", "here", "used to", "was"],
+    "accept": ["There used to be a movie theater here"],
+    "mistakes": [
+      { "answer": "There used to was a movie theater here", "why": { "ru": "После to — начальная форма. У was она be: used to be." } },
+      { "answer": "There was a movie theater here", "why": { "ru": "Так тоже можно сказать, но задание — с used to. И лишняя плитка только одна." } }
+    ],
+    "hint": { "ru": "«Раньше здесь был» — There used to… А какая форма после to?" },
+    "explanation": { "ru": "There used to be — «раньше здесь был»: There used to be a movie theater here." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "My sister used to has long hair.",
+    "wrong": 4,
+    "accept": ["have"],
+    "mistakes": [
+      { "answer": "had", "why": { "ru": "Прошлое уже показал used. После to — начальная форма: have." } },
+      { "answer": "having", "why": { "ru": "После to — начальная форма, без -ing: have." } },
+      { "answer": "has", "why": { "ru": "Это то же слово. После to -s не ставят." } }
+    ],
+    "hint": { "ru": "Какая форма глагола идёт после to?" },
+    "explanation": { "ru": "После used to — начальная форма: My sister used to have long hair." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский с used to." },
+    "text": { "ru": "Раньше мы каждое лето ездили на озеро." },
+    "accept": [
+      "We used to {go|drive} to {the|a} lake {every|each} summer",
+      "{Every|Each} summer we used to {go|drive} to {the|a} lake"
+    ],
+    "mistakes": [
+      { "answer": "We went to the lake every summer", "why": { "ru": "Так тоже можно сказать, но задание — с used to." } },
+      { "answer": "Every summer we went to the lake", "why": { "ru": "Так тоже можно сказать, но задание — с used to." } },
+      { "answer": "We use to go to the lake every summer", "why": { "ru": "В утверждении — used, с -d на конце." } },
+      { "answer": "We used to went to the lake every summer", "why": { "ru": "Прошлое уже показал used. После to — начальная форма: go." } },
+      { "answer": "We used to going to the lake every summer", "why": { "ru": "После to — начальная форма, без -ing: go." } },
+      { "answer": "We used go to the lake every summer", "why": { "ru": "Пропущено to: used to + глагол." } }
+    ],
+    "hint": { "ru": "used to + глагол в начальной форме. «Каждое лето» — every summer." },
+    "explanation": { "ru": "Привычка, которой теперь нет, — used to: We used to go to the lake every summer." }
+  }
+]

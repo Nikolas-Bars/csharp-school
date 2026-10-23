@@ -1,0 +1,12 @@
+{
+  "title": { "ru": "Past Continuous: что происходило в тот момент" },
+  "steps": [
+    { "type": "theory", "text": { "ru": "01-when.ru.md" } },
+    { "type": "theory", "text": { "ru": "02-form.ru.md" } },
+    { "type": "practice", "id": "form", "file": "practice/form.json" },
+    { "type": "theory", "text": { "ru": "03-questions.ru.md" } },
+    { "type": "practice", "id": "questions", "file": "practice/questions.json" },
+    { "type": "theory", "text": { "ru": "04-mistakes.ru.md" } },
+    { "type": "quiz", "file": "quiz.json" }
+  ]
+}

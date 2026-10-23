@@ -1,0 +1,63 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Свет погас посреди фильма. Как это сказать?" },
+    "options": [
+      { "text": "We watched a movie when the lights were going out.", "why": { "ru": "Наоборот: фильм уже шёл — процесс, Past Continuous. А свет погас вдруг — событие, Past Simple." } },
+      { "text": "We were watching a movie while the lights went out.", "why": { "ru": "После while — процесс. А свет погас вдруг — это событие, с ним нужен when." } },
+      { "text": "We was watching a movie when the lights went out.", "why": { "ru": "we — «мы», с ними нужен were." } },
+      { "text": "We were watching a movie when the lights went out." }
+    ],
+    "answer": 3,
+    "explanation": { "ru": "Фильм — процесс: were watching. Свет погас посреди него — событие: went out." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол call («звонить») в нужной форме." },
+    "text": "We were having lunch when Grandma ___ (call).",
+    "accept": ["called"],
+    "mistakes": [
+      { "answer": "was calling", "why": { "ru": "Звонок — короткое событие посреди обеда. Это Past Simple: called." } },
+      { "answer": "calls", "why": { "ru": "calls — настоящее время. А рассказ про прошлое: were having lunch." } },
+      { "answer": "call", "why": { "ru": "Звонок уже случился — нужно прошедшее время, -ed." } },
+      { "answer": "is calling", "why": { "ru": "is — настоящее время. А рассказ про прошлое: were having lunch." } }
+    ],
+    "hint": { "ru": "Обед уже шёл. А звонок — процесс или событие?" },
+    "explanation": { "ru": "Звонок случился посреди обеда — событие, Past Simple: when Grandma called." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «Когда папа пришёл домой, мы ужинали» — ужин уже шёл. Одна плитка лишняя." },
+    "tiles": ["were having", "came home", "When", "dinner", "we", "Dad", "had"],
+    "accept": [
+      "When Dad came home we were having dinner",
+      "We were having dinner when Dad came home",
+      "When we were having dinner Dad came home",
+      "Dad came home when we were having dinner"
+    ],
+    "mistakes": [
+      { "answer": "When Dad came home we had dinner", "why": { "ru": "Так выйдет «папа пришёл, и потом мы поужинали» — одно за другим. А ужин уже шёл — процесс: were having." } },
+      { "answer": "We had dinner when Dad came home", "why": { "ru": "Так выйдет «папа пришёл, и потом мы поужинали» — одно за другим. А ужин уже шёл — процесс: were having." } }
+    ],
+    "hint": { "ru": "Что уже шло, а что случилось? Процесс — was / were + -ing." },
+    "explanation": { "ru": "Ужин шёл — процесс: we were having dinner. Папа пришёл — событие: Dad came home." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Это фон рассказа. Переведи в Past Continuous." },
+    "text": { "ru": "Светило солнце, и пели птицы." },
+    "accept": [
+      "The sun was shining and {the |}birds were singing",
+      "{The |}birds were singing and the sun was shining"
+    ],
+    "mistakes": [
+      { "answer": "The sun shone and the birds sang", "why": { "ru": "Так тоже можно сказать, но задание — Past Continuous: фон рисуют процессом." } },
+      { "answer": "The sun was shining and the birds was singing", "why": { "ru": "birds — несколько, это they. С they нужен were." } },
+      { "answer": "The sun were shining and the birds were singing", "why": { "ru": "sun — один предмет, это it. С it нужен was." } },
+      { "answer": "The sun is shining and the birds are singing", "why": { "ru": "Это настоящее время — «светит, поют». А рассказ про прошлое: was / were." } },
+      { "answer": "The sun was shineing and the birds were singing", "why": { "ru": "В shine на конце немая e — её убирают: shining." } }
+    ],
+    "hint": { "ru": "«Светить» — shine, «петь» — sing. sun — это it, birds — they." },
+    "explanation": { "ru": "Фон — Past Continuous: The sun was shining and the birds were singing." }
+  }
+]

@@ -1,0 +1,75 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Тебя спрашивают: «Did you use to have a pet?» Как коротко ответить «Да»?" },
+    "options": [
+      { "text": "Yes, I was.", "why": { "ru": "was — для вопросов с was / were. Вопрос был с did — и ответ с did." } },
+      { "text": "Yes, I did." },
+      { "text": "Yes, I do.", "why": { "ru": "do — настоящее время. Вопрос про прошлое, с did." } },
+      { "text": "Yes, I used.", "why": { "ru": "used без to так не говорят. Краткий ответ повторяет помощника из вопроса: did." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Вопрос с did — и краткий ответ с did: Yes, I did." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Поставь в отрицание с used to." },
+    "text": "I ___ (not / like) broccoli, but now I love it.",
+    "accept": ["didn't use to like", "used not to like", "never used to like"],
+    "mistakes": [
+      { "answer": "didn't used to like", "why": { "ru": "После did — use, без -d: прошлое уже показал did." } },
+      { "answer": "didn't use to liked", "why": { "ru": "После to — начальная форма: like." } },
+      { "answer": "don't use to like", "why": { "ru": "don't — настоящее время. used to бывает только о прошлом: didn't use to." } },
+      { "answer": "not used to like", "why": { "ru": "Отрицание строится с помощником did: didn't use to like." } },
+      { "answer": "didn't like", "why": { "ru": "Так тоже можно сказать, но задание — с used to: didn't use to like." } }
+    ],
+    "hint": { "ru": "Отрицание — с did. Какая форма — use или used — идёт после did?" },
+    "explanation": { "ru": "Отрицание с did, а после did — use без -d: I didn't use to like broccoli." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол go в нужной форме." },
+    "text": "We ___ (go) to the zoo last Saturday.",
+    "accept": ["went"],
+    "mistakes": [
+      { "answer": "used to go", "why": { "ru": "last Saturday — один раз. used to — про то, что повторялось или длилось: нужен Past Simple." } },
+      { "answer": "were going", "why": { "ru": "were going — процесс в какой-то момент. А здесь просто событие: went." } },
+      { "answer": "goed", "why": { "ru": "go — неправильный глагол: -ed к нему не добавляют. Его прошедшая форма — went." } },
+      { "answer": "go", "why": { "ru": "last Saturday — прошлое. Нужна прошедшая форма." } }
+    ],
+    "hint": { "ru": "last Saturday — один раз или много раз?" },
+    "explanation": { "ru": "Один раз, в точный момент — Past Simple: We went to the zoo last Saturday." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери вопрос «Где вы раньше жили?» Одна плитка лишняя." },
+    "tiles": ["live", "use to", "did", "you", "Where", "used to"],
+    "accept": ["Where did you use to live"],
+    "mistakes": [
+      { "answer": "Where did you used to live", "why": { "ru": "После did — use, без -d: прошлое уже показал did." } },
+      { "answer": "Where you used to live", "why": { "ru": "В вопросе нужен помощник did: Where did you use to live?" } },
+      { "answer": "Where did you live", "why": { "ru": "Так тоже можно спросить, но пропадёт «раньше». И лишняя плитка только одна." } }
+    ],
+    "hint": { "ru": "Есть did — use или used? Что в вопросе стоит перед you?" },
+    "explanation": { "ru": "Where + did + you + use to + live: после did — use без -d." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский с used to." },
+    "text": { "ru": "Раньше Мия не любила собак." },
+    "accept": [
+      "Mia didn't use to {like|love} dogs",
+      "Mia never used to {like|love} dogs",
+      "Mia used not to {like|love} dogs"
+    ],
+    "mistakes": [
+      { "answer": "Mia didn't used to like dogs", "why": { "ru": "После did — use, без -d: прошлое уже показал did." } },
+      { "answer": "Mia didn't like dogs", "why": { "ru": "Так тоже можно сказать, но задание — с used to." } },
+      { "answer": "Mia doesn't use to like dogs", "why": { "ru": "doesn't — настоящее время. used to бывает только о прошлом: didn't use to." } },
+      { "answer": "Mia didn't use to liked dogs", "why": { "ru": "После to — начальная форма: like." } },
+      { "answer": "Mia not used to like dogs", "why": { "ru": "Отрицание строится с помощником did: didn't use to." } }
+    ],
+    "hint": { "ru": "Отрицание с used to — через did. После did — use или used?" },
+    "explanation": { "ru": "Отрицание — did, после него use без -d: Mia didn't use to like dogs." }
+  }
+]
