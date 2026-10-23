@@ -365,6 +365,68 @@
                 "security": []
             }
         },
+        "/api/courses": {
+            "get": {
+                "tags": [
+                    "Course"
+                ],
+                "summary": "Курсы платформы",
+                "description": "Курсы по порядку, тексты — на языке запроса. Открыто всем, вход не нужен.",
+                "operationId": "listCourses",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Cursor"
+                    },
+                    {
+                        "$ref": "#/components/parameters/AcceptLanguage"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Страница курсов",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/ApiSuccess"
+                                        },
+                                        {
+                                            "properties": {
+                                                "data": {
+                                                    "required": [
+                                                        "items",
+                                                        "next_cursor"
+                                                    ],
+                                                    "properties": {
+                                                        "items": {
+                                                            "type": "array",
+                                                            "items": {
+                                                                "$ref": "#/components/schemas/CourseSummary"
+                                                            }
+                                                        },
+                                                        "next_cursor": {
+                                                            "description": "Курсор следующей страницы; на последней — null",
+                                                            "type": [
+                                                                "string",
+                                                                "null"
+                                                            ]
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": []
+            }
+        },
         "/api/courses/{course}": {
             "get": {
                 "tags": [
@@ -887,6 +949,63 @@
                             },
                             "type": "object"
                         }
+                    }
+                },
+                "type": "object"
+            },
+            "CourseSummary": {
+                "description": "Курс в списке: без модулей и уроков",
+                "required": [
+                    "slug",
+                    "title",
+                    "description",
+                    "modules",
+                    "lessons",
+                    "start"
+                ],
+                "properties": {
+                    "slug": {
+                        "description": "Курс на главной: название, описание, размер и первый урок. Фронт: CourseSummary в src/types/api.ts.",
+                        "type": "string",
+                        "example": "csharp"
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "C# с нуля до первой игры"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "modules": {
+                        "description": "Сколько модулей",
+                        "type": "integer",
+                        "example": 5
+                    },
+                    "lessons": {
+                        "description": "Сколько уроков вместе с контрольными",
+                        "type": "integer",
+                        "example": 57
+                    },
+                    "start": {
+                        "description": "Первый урок курса — с него начинают. В курсе всегда есть хотя бы один урок (course:import)",
+                        "required": [
+                            "module",
+                            "lesson"
+                        ],
+                        "properties": {
+                            "module": {
+                                "type": "string",
+                                "example": "01-first-programs"
+                            },
+                            "lesson": {
+                                "type": "string",
+                                "example": "01-hello"
+                            }
+                        },
+                        "type": [
+                            "object",
+                            "null"
+                        ]
                     }
                 },
                 "type": "object"
@@ -1610,6 +1729,15 @@
                 "schema": {
                     "type": "string",
                     "example": "ru"
+                }
+            },
+            "Cursor": {
+                "name": "cursor",
+                "in": "query",
+                "description": "Курсор страницы списка: `next_cursor` из прошлого ответа. Без него — первая страница",
+                "required": false,
+                "schema": {
+                    "type": "string"
                 }
             },
             "Course": {

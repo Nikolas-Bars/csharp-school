@@ -6,7 +6,7 @@ declare(strict_types=1);
 // vendor/laravel/framework/config/*.php и читает из .env
 return [
     // Название — в письмах ученику; без .env (тесты, CI) — тоже наше, а не «Laravel»
-    'name' => env('APP_NAME', 'C# School'),
+    'name' => env('APP_NAME', 'School'),
 
     // Язык по умолчанию — русский: для консольных команд, очередей и любых запусков без .env
     // (у HTTP-запросов язык выбирает SetLocale по Accept-Language)

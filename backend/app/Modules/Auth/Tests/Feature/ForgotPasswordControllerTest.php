@@ -72,7 +72,7 @@ final class ForgotPasswordControllerTest extends TestCase
 
         [$ru, $en] = $this->sentMails();
 
-        self::assertSame('Новый пароль для C# School', $ru->getSubject());
+        self::assertSame('Новый пароль для School', $ru->getSubject());
         self::assertSame('anya@example.com', $ru->getTo()[0]->getAddress());
         $text = (string) $ru->getTextBody();
         self::assertStringContainsString('Придумать новый пароль', $text);
@@ -82,7 +82,7 @@ final class ForgotPasswordControllerTest extends TestCase
         self::assertStringContainsString('скопируй ссылку ниже', (string) $ru->getHtmlBody());
         self::assertStringNotContainsString('trouble clicking', (string) $ru->getHtmlBody());
 
-        self::assertSame('New password for C# School', $en->getSubject());
+        self::assertSame('New password for School', $en->getSubject());
         self::assertStringContainsString('Set a new password', (string) $en->getTextBody());
     }
 

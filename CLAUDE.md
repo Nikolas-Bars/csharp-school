@@ -11,8 +11,9 @@ CLAUDE.md, Makefile и Docker:
 - `frontend` — веб: Vue 3, Vite, TypeScript, Pinia, vue-i18n.
 - `runner` — компилятор и запуск C# в браузере: Roslyn + .NET 10 в WebAssembly,
   внутри Web Worker. Сборка кладётся во фронт (`public/runner`).
-- `content` — учебный курс файлами: теория (Markdown), задачи, проверки, эталоны и неверные
-  решения (`content/README.md`). Тесты — в runner (`tests/Content.Tests`), в базу — `course:import`.
+- `content` — учебные курсы файлами (`content/<курс>/`, список — `content/courses.json`): теория
+  (Markdown), задачи, проверки, эталоны и неверные решения (`content/README.md`). Тесты курса C# —
+  в runner (`tests/Content.Tests`), в базу — `course:import`.
 - `deploy` — production: `docker-compose.prod.yml` (Caddy с HTTPS → API → MariaDB, Redis),
   образы `*/.docker/Dockerfile_prod`, команды `make prod-*` из корня (`deploy/README.md`).
   Сейчас — на сервере мессенджера (`ssh starter`, https://csharp.call-yansburg.com) за его Caddy

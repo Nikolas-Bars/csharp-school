@@ -12,7 +12,9 @@ use Illuminate\Support\Carbon;
 /**
  * @property      int                          $id
  * @property      string                       $slug
- * @property      array<string, string>        $title  по языкам
+ * @property      int                          $position    порядок на главной (courses.json)
+ * @property      array<string, string>        $title       по языкам
+ * @property      array<string, string>|null   $description по языкам; null — курс ещё не импортировали заново
  * @property-read Collection<int, CourseModule> $modules
  * @property-read Carbon|null                  $created_at
  * @property-read Carbon|null                  $updated_at
@@ -22,7 +24,7 @@ final class Course extends Model
     /**
      * @var list<string>
      */
-    protected $fillable = ['slug', 'title'];
+    protected $fillable = ['slug', 'position', 'title', 'description'];
 
     /**
      * @return HasMany<CourseModule, $this>
@@ -37,6 +39,6 @@ final class Course extends Model
      */
     protected function casts(): array
     {
-        return ['title' => 'array'];
+        return ['title' => 'array', 'description' => 'array'];
     }
 }

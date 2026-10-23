@@ -9,6 +9,7 @@ use App\Modules\Course\Enums\LessonKind;
 use App\Modules\Course\Models\Course;
 use App\Modules\Course\Models\Lesson;
 use App\Modules\Course\Tests\CourseTestCase;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\File;
 use PHPUnit\Framework\Attributes\DataProvider;
 
@@ -29,6 +30,7 @@ final class ImportCourseCommandTest extends CourseTestCase
     {
         $this->artisan('course:import', ['path' => self::FIXTURE])
             ->expectsOutput('Курс test-course загружен: модулей — 1, уроков — 2.')
+            ->expectsOutput('Курс other-course загружен: модулей — 1, уроков — 1.')
             ->assertSuccessful();
 
         $lesson = Lesson::query()->where('slug', '01-first')->sole();
@@ -46,21 +48,21 @@ final class ImportCourseCommandTest extends CourseTestCase
         $test = Lesson::query()->where('slug', '02-second')->sole()->id;
 
         // Урок убрали из модуля (осталась контрольная) и переименовали курс
-        File::put("{$this->copy}/01-basics/module.json", '{"title":{"ru":"Основы"},"description":{"ru":"Самое начало"},"lessons":["02-second"]}');
-        File::put("{$this->copy}/course.json", '{"slug":"test-course","title":{"ru":"Новое название"},"modules":["01-basics"]}');
+        File::put("{$this->copy}/test-course/01-basics/module.json", '{"title":{"ru":"Основы"},"description":{"ru":"Самое начало"},"lessons":["02-second"]}');
+        File::put("{$this->copy}/test-course/course.json", '{"slug":"test-course","title":{"ru":"Новое название"},"description":{"ru":"x"},"modules":["01-basics"]}');
         $this->artisan('course:import', ['path' => $this->copy])->assertSuccessful();
 
-        self::assertSame([$test], Lesson::query()->pluck('id')->all());
-        self::assertSame(['ru' => 'Новое название'], Course::query()->sole()->title);
+        self::assertSame([$test], Lesson::query()->whereHas('module.course', static fn(Builder $query) => $query->where('slug', 'test-course'))->pluck('id')->all());
+        self::assertSame(['ru' => 'Новое название'], Course::query()->where('slug', 'test-course')->sole()->title);
     }
 
     public function testBrokenContentIsReportedAndNothingIsSaved(): void
     {
         $this->copy = $this->copyFixture();
-        File::put("{$this->copy}/01-basics/02-second/lesson.json", '{"title": {"en": "No Russian"}, "steps": []}');
+        File::put("{$this->copy}/test-course/01-basics/02-second/lesson.json", '{"title": {"en": "No Russian"}, "steps": []}');
 
         $this->artisan('course:import', ['path' => $this->copy])
-            ->expectsOutputToContain('Ошибка в контенте курса — 01-basics/02-second/lesson.json: title')
+            ->expectsOutputToContain('Ошибка в контенте курса — test-course/01-basics/02-second/lesson.json: title')
             ->assertFailed();
 
         self::assertSame(0, Course::query()->count());
@@ -81,11 +83,11 @@ final class ImportCourseCommandTest extends CourseTestCase
     public function testLessonMustBeCountableForProgress(string $lesson): void
     {
         $this->copy = $this->copyFixture();
-        File::copyDirectory("{$this->copy}/01-basics/01-first/tasks/say-hi", "{$this->copy}/01-basics/01-first/tasks/quiz");
-        File::put("{$this->copy}/01-basics/01-first/lesson.json", $lesson);
+        File::copyDirectory("{$this->copy}/test-course/01-basics/01-first/tasks/say-hi", "{$this->copy}/test-course/01-basics/01-first/tasks/quiz");
+        File::put("{$this->copy}/test-course/01-basics/01-first/lesson.json", $lesson);
 
         $this->artisan('course:import', ['path' => $this->copy])
-            ->expectsOutputToContain('01-basics/01-first/lesson.json')
+            ->expectsOutputToContain('test-course/01-basics/01-first/lesson.json')
             ->assertFailed();
     }
 
@@ -98,7 +100,7 @@ final class ImportCourseCommandTest extends CourseTestCase
         self::assertSame(['say-hi', 'quiz'], $directory->lessonsOf('test-course')[0]->steps);
 
         // Задачу убрали из урока: Progress видит это сразу, а не после сброса кэша вручную
-        File::put("{$this->copy}/01-basics/01-first/lesson.json", '{"title":{"ru":"x"},"steps":[{"type":"quiz","questions":[]}]}');
+        File::put("{$this->copy}/test-course/01-basics/01-first/lesson.json", '{"title":{"ru":"x"},"steps":[{"type":"quiz","questions":[]}]}');
         $this->artisan('course:import', ['path' => $this->copy])->assertSuccessful();
 
         self::assertSame(['quiz'], $directory->lessonsOf('test-course')[0]->steps);
@@ -112,18 +114,18 @@ final class ImportCourseCommandTest extends CourseTestCase
         // Без «kind» — обычный урок, «test» — контрольная модуля
         self::assertSame(
             ['01-first' => LessonKind::Lesson, '02-second' => LessonKind::Test],
-            Lesson::query()->orderBy('position')->get()->mapWithKeys(static fn(Lesson $lesson): array => [$lesson->slug => $lesson->kind])->all(),
+            Lesson::query()->where('slug', '!=', '01-check')->orderBy('position')->get()->mapWithKeys(static fn(Lesson $lesson): array => [$lesson->slug => $lesson->kind])->all(),
         );
 
         // Контрольной стал другой урок — повторный импорт обновляет вид
-        File::put("{$this->copy}/01-basics/module.json", '{"title":{"ru":"Основы"},"description":{"ru":"Самое начало"},"lessons":["02-second","01-first"]}');
-        File::put("{$this->copy}/01-basics/02-second/lesson.json", '{"title":{"ru":"x"},"steps":[{"type":"quiz","questions":[]}]}');
-        File::put("{$this->copy}/01-basics/01-first/lesson.json", '{"title":{"ru":"x"},"kind":"test","steps":[{"type":"quiz","questions":[]}]}');
+        File::put("{$this->copy}/test-course/01-basics/module.json", '{"title":{"ru":"Основы"},"description":{"ru":"Самое начало"},"lessons":["02-second","01-first"]}');
+        File::put("{$this->copy}/test-course/01-basics/02-second/lesson.json", '{"title":{"ru":"x"},"steps":[{"type":"quiz","questions":[]}]}');
+        File::put("{$this->copy}/test-course/01-basics/01-first/lesson.json", '{"title":{"ru":"x"},"kind":"test","steps":[{"type":"quiz","questions":[]}]}');
         $this->artisan('course:import', ['path' => $this->copy])->assertSuccessful();
 
         self::assertSame(
             ['02-second' => LessonKind::Lesson, '01-first' => LessonKind::Test],
-            Lesson::query()->orderBy('position')->get()->mapWithKeys(static fn(Lesson $lesson): array => [$lesson->slug => $lesson->kind])->all(),
+            Lesson::query()->where('slug', '!=', '01-check')->orderBy('position')->get()->mapWithKeys(static fn(Lesson $lesson): array => [$lesson->slug => $lesson->kind])->all(),
         );
     }
 
@@ -144,12 +146,12 @@ final class ImportCourseCommandTest extends CourseTestCase
     public function testModuleEndsWithItsOnlyTest(string $order, string $first, string $second): void
     {
         $this->copy = $this->copyFixture();
-        File::put("{$this->copy}/01-basics/module.json", '{"title":{"ru":"Основы"},"description":{"ru":"x"},"lessons":' . $order . '}');
-        File::put("{$this->copy}/01-basics/01-first/lesson.json", $first);
-        File::put("{$this->copy}/01-basics/02-second/lesson.json", $second);
+        File::put("{$this->copy}/test-course/01-basics/module.json", '{"title":{"ru":"Основы"},"description":{"ru":"x"},"lessons":' . $order . '}');
+        File::put("{$this->copy}/test-course/01-basics/01-first/lesson.json", $first);
+        File::put("{$this->copy}/test-course/01-basics/02-second/lesson.json", $second);
 
         $this->artisan('course:import', ['path' => $this->copy])
-            ->expectsOutputToContain('01-basics/module.json: контрольная')
+            ->expectsOutputToContain('test-course/01-basics/module.json: контрольная')
             ->assertFailed();
 
         self::assertSame(0, Course::query()->count());
@@ -158,16 +160,16 @@ final class ImportCourseCommandTest extends CourseTestCase
     public function testEmptyModuleOrCourseIsRejected(): void
     {
         $this->copy = $this->copyFixture();
-        File::put("{$this->copy}/01-basics/module.json", '{"title":{"ru":"Основы"},"description":{"ru":"x"},"lessons":[]}');
+        File::put("{$this->copy}/test-course/01-basics/module.json", '{"title":{"ru":"Основы"},"description":{"ru":"x"},"lessons":[]}');
 
         $this->artisan('course:import', ['path' => $this->copy])
-            ->expectsOutputToContain('01-basics/module.json: lessons')
+            ->expectsOutputToContain('test-course/01-basics/module.json: lessons')
             ->assertFailed();
 
-        File::put("{$this->copy}/course.json", '{"slug":"test-course","title":{"ru":"x"},"modules":[]}');
+        File::put("{$this->copy}/test-course/course.json", '{"slug":"test-course","title":{"ru":"x"},"description":{"ru":"x"},"modules":[]}');
 
         $this->artisan('course:import', ['path' => $this->copy])
-            ->expectsOutputToContain('course.json: modules')
+            ->expectsOutputToContain('test-course/course.json: modules')
             ->assertFailed();
 
         self::assertSame(0, Course::query()->count());
@@ -187,10 +189,10 @@ final class ImportCourseCommandTest extends CourseTestCase
     public function testUnknownLessonKindIsRejected(string $kind): void
     {
         $this->copy = $this->copyFixture();
-        File::put("{$this->copy}/01-basics/02-second/lesson.json", '{"title":{"ru":"x"},"kind":' . $kind . ',"steps":[{"type":"quiz","questions":[]}]}');
+        File::put("{$this->copy}/test-course/01-basics/02-second/lesson.json", '{"title":{"ru":"x"},"kind":' . $kind . ',"steps":[{"type":"quiz","questions":[]}]}');
 
         $this->artisan('course:import', ['path' => $this->copy])
-            ->expectsOutputToContain('01-basics/02-second/lesson.json: kind')
+            ->expectsOutputToContain('test-course/01-basics/02-second/lesson.json: kind')
             ->assertFailed();
 
         self::assertSame(0, Course::query()->count());
@@ -199,11 +201,82 @@ final class ImportCourseCommandTest extends CourseTestCase
     public function testPathsOutsideContentAreRejected(): void
     {
         $this->copy = $this->copyFixture();
-        File::put("{$this->copy}/01-basics/module.json", '{"title":{"ru":"x"},"description":{"ru":"x"},"lessons":["../../etc"]}');
+        File::put("{$this->copy}/test-course/01-basics/module.json", '{"title":{"ru":"x"},"description":{"ru":"x"},"lessons":["../../etc"]}');
 
         $this->artisan('course:import', ['path' => $this->copy])
             ->expectsOutputToContain('имена папок')
             ->assertFailed();
+    }
+
+    public function testCoursesComeInCatalogOrder(): void
+    {
+        $this->copy = $this->copyFixture();
+        $this->artisan('course:import', ['path' => $this->copy])->assertSuccessful();
+        $first = Course::query()->where('slug', 'test-course')->sole();
+
+        self::assertSame(['ru' => 'Курс для тестов', 'en' => 'Course for tests'], $first->description);
+        self::assertSame(['test-course' => 1, 'other-course' => 2], Course::query()->orderBy('position')->pluck('position', 'slug')->all());
+
+        // Порядок в courses.json поменяли — меняется порядок, а не id: на уроки ссылается прогресс
+        File::put("{$this->copy}/courses.json", '{"courses":["other-course","test-course"]}');
+        $this->artisan('course:import', ['path' => $this->copy])->assertSuccessful();
+
+        self::assertSame(['other-course' => 1, 'test-course' => 2], Course::query()->orderBy('position')->pluck('position', 'slug')->all());
+        self::assertSame($first->id, Course::query()->where('slug', 'test-course')->sole()->id);
+    }
+
+    public function testCourseLeftOutOfCatalogIsKept(): void
+    {
+        $this->copy = $this->copyFixture();
+        $this->artisan('course:import', ['path' => $this->copy])->assertSuccessful();
+
+        File::put("{$this->copy}/courses.json", '{"courses":["test-course"]}');
+        $this->artisan('course:import', ['path' => $this->copy])->assertSuccessful();
+
+        // Удалять курс с уроками опасно: прогресс учеников ссылается на них по id. С главной он уходит
+        self::assertSame(0, Course::query()->where('slug', 'other-course')->sole()->position);
+    }
+
+    /**
+     * @return iterable<string, array{string, string}>
+     */
+    public static function brokenCatalogs(): iterable
+    {
+        yield 'пустой' => ['{"courses":[]}', 'courses.json: courses'];
+        yield 'повтор' => ['{"courses":["test-course","test-course"]}', 'courses.json: courses'];
+        yield 'путь наружу' => ['{"courses":["../etc"]}', 'имена папок'];
+        yield 'нет папки' => ['{"courses":["missing"]}', 'missing/course.json: файла нет'];
+    }
+
+    #[DataProvider('brokenCatalogs')]
+    public function testBrokenCatalogIsRejected(string $catalog, string $error): void
+    {
+        $this->copy = $this->copyFixture();
+        File::put("{$this->copy}/courses.json", $catalog);
+
+        $this->artisan('course:import', ['path' => $this->copy])
+            ->expectsOutputToContain($error)
+            ->assertFailed();
+
+        self::assertSame(0, Course::query()->count());
+    }
+
+    public function testCourseSlugMatchesItsFolderAndDescriptionIsRequired(): void
+    {
+        $this->copy = $this->copyFixture();
+        File::put("{$this->copy}/other-course/course.json", '{"slug":"another","title":{"ru":"x"},"description":{"ru":"x"},"modules":["01-only"]}');
+
+        $this->artisan('course:import', ['path' => $this->copy])
+            ->expectsOutputToContain('other-course/course.json: slug')
+            ->assertFailed();
+
+        File::put("{$this->copy}/other-course/course.json", '{"slug":"other-course","title":{"ru":"x"},"modules":["01-only"]}');
+
+        $this->artisan('course:import', ['path' => $this->copy])
+            ->expectsOutputToContain('other-course/course.json: description')
+            ->assertFailed();
+
+        self::assertSame(0, Course::query()->count());
     }
 
     public function testRealCourseImports(): void

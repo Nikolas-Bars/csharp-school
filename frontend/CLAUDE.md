@@ -20,16 +20,20 @@ oxlint + ESLint, Prettier (без точек с запятой, одинарны
     у гостя в `localStorage`, у вошедшего — на сервере, а не дошедшие шаги ждут в `localStorage`;
     гостевой прогресс при входе переносится в аккаунт; повторная загрузка того же курса не шлёт
     запросов заново; `moduleProgress` — модуль пройден, когда пройдены все его уроки вместе с
-    контрольной; `course` — карта курса по курсу и языку: её берут и карта, и урок; заход на карту и возраст
+    контрольной; `course` — список курсов для главной (по языку, все страницы курсора) и карта курса
+    по курсу и языку: её берут и карта, и урок; заход на карту и возраст
     больше `COURSE_MAP_TTL` обновляют её в фоне — после `course:import` вкладка не живёт со старой).
   - `src/composables/` — переиспользуемая реактивная логика (`useXxx`).
   - `src/components/ui/Base*.vue` — базовые компоненты без бизнес-логики (`BaseIcon`,
-    `BaseButton`, `BaseField` — поле с подписью, подсказкой и ошибкой, связанными для диктора).
+    `BaseButton`, `BaseField` — поле с подписью, подсказкой и ошибкой, связанными для диктора,
+    `BaseCodeBlock` — код C# с раскраской, как в редакторе, или вывод программы).
   - `src/components/layout/` — оболочка приложения (`AppHeader`, `ThemeToggle`).
   - `src/components/{feature}/` — компоненты фичи. `lesson/`: `LessonTask` (условие, подсказки,
     редактор, проверки через runner; на телефоне — вкладки), `LessonQuiz`, `ModuleResult` (итог
     модуля после вопросов контрольной — `kind: 'test'` у урока на карте), `MarkdownView` (текст
-    урока без v-html), `CodeBlock`, `CodeEditor` (CodeMirror 6, грузится лениво, ~105 КБ gzip).
+    урока без v-html), `CodeEditor` (CodeMirror 6, грузится лениво, ~105 КБ gzip). `course/`:
+    `CourseCard` — курс на главной (`HomeView` — выбор курса из `GET api/courses`); пример на
+    карточке (код C#, фраза английского) — по slug курса в `CourseCard`, текст — в локалях.
   - `src/views/*View.vue` — страницы маршрутов, лениво загружаются в роутере.
   - `src/runner/` — мост к runner (компилятор C# в Web Worker), без компонентов Vue:
     `protocol.ts` (зеркало протокола runner), `runner.worker.ts` (загружает .NET из
@@ -86,7 +90,7 @@ test), `make install p=пакет`, `make build`.
 `E2E_BASE_URL` — адрес сайта): урок, компилятор в Web Worker, ошибки по-русски, таймаут, CSP.
 Гоняется против production-стека: `CHECK_E2E=1 make prod-check` из корня (`../deploy/README.md`),
 в CI — workflow `deploy` (отчёт упавшего теста — артефакт `e2e-results`). Тексты для поиска — из
-локалей, задача и эталон — из `../content`. Vitest папку `e2e/` не берёт.
+локалей, задача и эталон — из `../content/csharp`. Vitest папку `e2e/` не берёт.
 
 `vite` не ниже 8.3.3: в 8.3.0–8.3.2 уязвимость launch-editor (GHSA-698v-4r3x-3vcv и др.), на ней
 падал `npm audit --omit=dev --audit-level=high`.

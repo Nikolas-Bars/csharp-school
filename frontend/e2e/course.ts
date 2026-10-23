@@ -1,10 +1,10 @@
 import { readFileSync } from 'node:fs'
 
 /**
- * Учебный курс из ../content — тот же, что загружен в базу стека (course:import). Тесты берут
+ * Курс C# из ../content/csharp — тот же, что загружен в базу стека (course:import). Тесты берут
  * отсюда адрес урока и эталонное решение, а не копируют их: правка урока не ломает e2e.
  */
-const CONTENT = new URL('../../content/', import.meta.url)
+const CONTENT = new URL('../../content/csharp/', import.meta.url)
 
 const read = (path: string) => readFileSync(new URL(path, CONTENT), 'utf8')
 const readJson = <T>(path: string) => JSON.parse(read(path)) as T

@@ -12,6 +12,7 @@ return [
         'password_reset'  => 'Password changed. Now log in with your new password.',
     ],
     'course' => [
+        'courses'  => 'Courses.',
         'course'   => 'Course.',
         'lesson'   => 'Lesson.',
         'imported' => 'Course :course imported: :modules modules, :lessons lessons.',

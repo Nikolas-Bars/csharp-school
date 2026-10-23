@@ -13,42 +13,64 @@ use App\Modules\Course\Exceptions\InvalidContentException;
 use JsonException;
 
 /**
- * Читает курс из content/ (формат — content/README.md) и собирает уроки так, как их отдаёт API:
- * Markdown уже прочитан, эталонные и неверные решения не берутся вовсе.
+ * Читает content/ (формат — content/README.md): список курсов в courses.json и каждый курс из своей
+ * папки — так, как его отдаёт API: Markdown уже прочитан, эталонные и неверные решения не берутся вовсе.
+ * Пути в ошибках — от content/: «csharp/01-first-programs/module.json».
  *
  * Полную проверку формата делают тесты контента (runner/tests/Content.Tests) в CI. Здесь —
  * только то, без чего импорт невозможен, с понятной ошибкой: какой файл и что не так.
  */
 final readonly class ReadCourseContentTask
 {
-    public function run(string $root): CourseContentDTO
+    /**
+     * @return non-empty-list<CourseContentDTO> курсы в порядке courses.json
+     */
+    public function run(string $root): array
     {
-        $course = $this->json($root, 'course.json');
+        $catalog = $this->json($root, 'courses.json');
+        $slugs = $this->slugs($catalog, 'courses', 'courses.json');
+
+        if ($slugs === [] || \count($slugs) !== \count(array_unique($slugs))) {
+            throw $this->invalid('courses.json', 'courses — папки курсов, хотя бы одна и без повторов');
+        }
+
+        return array_map(fn(string $slug, int $index): CourseContentDTO => $this->course($root, $slug, $index + 1), $slugs, array_keys($slugs));
+    }
+
+    private function course(string $root, string $directory, int $position): CourseContentDTO
+    {
+        $file = "{$directory}/course.json";
+        $course = $this->json($root, $file);
         $modules = [];
 
-        foreach ($this->slugs($course, 'modules', 'course.json') as $slug) {
-            $modules[] = $this->module($root, $slug);
+        foreach ($this->slugs($course, 'modules', $file) as $slug) {
+            $modules[] = $this->module($root, "{$directory}/{$slug}", $slug);
         }
 
         if ($modules === []) {
-            throw $this->invalid('course.json', 'modules — в курсе хотя бы один модуль');
+            throw $this->invalid($file, 'modules — в курсе хотя бы один модуль');
+        }
+        if ($this->string($course, 'slug', $file) !== $directory) {
+            throw $this->invalid($file, "slug — как имя папки курса: {$directory}");
         }
 
         return new CourseContentDTO(
-            $this->slug($this->string($course, 'slug', 'course.json'), 'course.json'),
-            $this->texts($course, 'title', 'course.json'),
+            $directory,
+            $this->texts($course, 'title', $file),
+            $this->texts($course, 'description', $file),
+            $position,
             $modules,
         );
     }
 
-    private function module(string $root, string $slug): ModuleContentDTO
+    private function module(string $root, string $directory, string $slug): ModuleContentDTO
     {
-        $file = "{$slug}/module.json";
+        $file = "{$directory}/module.json";
         $module = $this->json($root, $file);
         $lessons = [];
 
         foreach ($this->slugs($module, 'lessons', $file) as $lesson) {
-            $lessons[] = $this->lesson($root, "{$slug}/{$lesson}", $lesson);
+            $lessons[] = $this->lesson($root, "{$directory}/{$lesson}", $lesson);
         }
 
         if ($lessons === []) {
@@ -231,7 +253,7 @@ final readonly class ReadCourseContentTask
     }
 
     /**
-     * Папки модулей и уроков: только «01-first-programs», без путей наружу.
+     * Папки курсов, модулей и уроков: только «01-first-programs», без путей наружу.
      *
      * @return list<string>
      */
@@ -242,7 +264,7 @@ final readonly class ReadCourseContentTask
         return array_map(fn(mixed $slug): string => $this->slug($slug, $where), $slugs);
     }
 
-    /** Имя папки: «01-first-programs», «hello-world» — без путей наружу */
+    /** Имя папки: «csharp», «01-first-programs», «hello-world» — без путей наружу */
     private function slug(mixed $slug, string $where): string
     {
         return \is_string($slug) && preg_match('/^[a-z0-9][a-z0-9-]{0,63}$/', $slug) === 1

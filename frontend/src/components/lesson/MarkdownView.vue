@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import CodeBlock from '@/components/lesson/CodeBlock.vue'
+import BaseCodeBlock from '@/components/ui/BaseCodeBlock.vue'
 import { parseMarkdown } from '@/utils/markdown'
 
 /** Текст урока: элементы строятся из разобранной структуры, без v-html */
@@ -43,7 +43,7 @@ const blocks = computed(() => parseMarkdown(source))
           </template>
         </li>
       </component>
-      <CodeBlock v-else :code="block.code" :language="block.language || 'text'" />
+      <BaseCodeBlock v-else :code="block.code" :language="block.language || 'text'" />
     </template>
   </div>
 </template>

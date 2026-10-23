@@ -32,6 +32,7 @@
     <php>
         <ini name="memory_limit" value="512M"/>
         <env name="APP_ENV" value="testing" force="true"/>
+        <env name="APP_NAME" value="School" force="true"/>
         <env name="APP_DEBUG" value="false" force="true"/>
         <!-- Тексты в тестах — русские, независимо от локального .env -->
         <env name="APP_LOCALE" value="ru" force="true"/>
