@@ -1,0 +1,57 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Фильм уже шёл, когда пришла Эмма. Как это сказать?" },
+    "options": [
+      { "text": "We watched a movie when Emma arrived.", "why": { "ru": "Так выйдет «Эмма пришла, и мы посмотрели фильм» — одно за другим. А фильм уже шёл: were watching." } },
+      { "text": "We were watching a movie when Emma arrived." },
+      { "text": "We were watching a movie when Emma was arriving.", "why": { "ru": "Приход Эммы — короткое событие посреди фильма. Это Past Simple: arrived." } },
+      { "text": "We was watching a movie when Emma arrived.", "why": { "ru": "we — «мы», с ними нужен were." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Фильм шёл — процесс: were watching. Эмма пришла — событие: arrived." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол know в прошедшем времени." },
+    "text": "Max ___ (know) the answer, but he didn't say anything.",
+    "accept": ["knew"],
+    "mistakes": [
+      { "answer": "was knowing", "why": { "ru": "know — глагол состояния: знание просто есть, это не процесс. -ing с ним не ставят." } },
+      { "answer": "knowed", "why": { "ru": "know — неправильный глагол: -ed к нему не добавляют. Его прошедшая форма — knew." } },
+      { "answer": "knows", "why": { "ru": "knows — настоящее время. А промолчал он в прошлом (didn't say)." } },
+      { "answer": "known", "why": { "ru": "known — другая форма глагола, она идёт после have: have known. Про прошлое без have говорят knew." } }
+    ],
+    "hint": { "ru": "know — глагол состояния и к тому же неправильный." },
+    "explanation": { "ru": "Глагол состояния — Past Simple. know → knew." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «Эмма открыла дверь и увидела своих друзей». Одна плитка лишняя." },
+    "tiles": ["saw", "her friends", "opened", "and", "Emma", "the door", "was seeing"],
+    "accept": ["Emma opened the door and saw her friends"],
+    "mistakes": [
+      { "answer": "Emma opened the door and was seeing her friends", "why": { "ru": "Действия идут одно за другим: открыла, потом увидела. Это Past Simple: saw." } }
+    ],
+    "hint": { "ru": "Сначала одно, потом другое — какое время?" },
+    "explanation": { "ru": "Одно за другим — Past Simple: Emma opened the door and saw her friends." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Когда мы пришли, Том спал." },
+    "accept": [
+      "When we {arrived|came|got there|got home|came in|came home|came back|got back} Tom was {sleeping|asleep}",
+      "Tom was {sleeping|asleep} when we {arrived|came|got there|got home|came in|came home|came back|got back}"
+    ],
+    "mistakes": [
+      { "answer": "When we arrived Tom slept", "why": { "ru": "Сон уже шёл, когда мы пришли, — это процесс: was sleeping." } },
+      { "answer": "When we came Tom slept", "why": { "ru": "Сон уже шёл, когда мы пришли, — это процесс: was sleeping." } },
+      { "answer": "When we were arriving Tom was sleeping", "why": { "ru": "«Пришли» — короткое событие, Past Simple: arrived." } },
+      { "answer": "When we arrived Tom were sleeping", "why": { "ru": "Tom — один человек, это he. С he нужен was." } },
+      { "answer": "When we arrived Tom sleeping", "why": { "ru": "Пропущен was: глагол с -ing один не работает." } }
+    ],
+    "hint": { "ru": "Что уже шло, а что случилось? «Прийти» — arrive или come." },
+    "explanation": { "ru": "Сон — процесс: Tom was sleeping. Мы пришли — событие: we arrived." }
+  }
+]

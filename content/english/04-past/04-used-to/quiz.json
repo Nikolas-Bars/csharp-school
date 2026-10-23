@@ -1,0 +1,59 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Какой вопрос верный?" },
+    "options": [
+      { "text": "Did you used to play soccer?", "why": { "ru": "После did — use, без -d: прошлое уже показал did." } },
+      { "text": "Do you use to play soccer?", "why": { "ru": "do — настоящее время. used to бывает только о прошлом: Did you use to…?" } },
+      { "text": "Used you to play soccer?", "why": { "ru": "Так раньше говорили в британском, сейчас — нет. Вопрос строится с did: Did you use to…?" } },
+      { "text": "Did you use to play soccer?" }
+    ],
+    "answer": 3,
+    "explanation": { "ru": "Вопрос — с did, после did — use без -d: Did you use to play soccer?" }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол be с used to." },
+    "text": "There ___ (be) a big tree in our yard, but it died last year.",
+    "accept": ["used to be"],
+    "mistakes": [
+      { "answer": "used to was", "why": { "ru": "После to — начальная форма. У was она be: used to be." } },
+      { "answer": "use to be", "why": { "ru": "В утверждении — used, с -d на конце." } },
+      { "answer": "used to being", "why": { "ru": "После to — начальная форма, без -ing: be." } },
+      { "answer": "was", "why": { "ru": "Так тоже можно сказать, но задание — с used to." } }
+    ],
+    "hint": { "ru": "used to + глагол в начальной форме. Какая начальная форма у was?" },
+    "explanation": { "ru": "Раньше было, а теперь нет — There used to be a big tree." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В вопросе одна ошибка. Найди её и исправь." },
+    "text": "Did you used to have a dog?",
+    "wrong": 2,
+    "accept": ["use"],
+    "mistakes": [
+      { "answer": "uses", "why": { "ru": "Формы uses to нет. После did — use." } },
+      { "answer": "used", "why": { "ru": "Это то же слово. Прошлое уже показал did — второй раз его не показывают." } }
+    ],
+    "hint": { "ru": "Что уже показывает прошлое в этом вопросе?" },
+    "explanation": { "ru": "После did — use без -d: Did you use to have a dog?" }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "В прошлом году мы ездили в Мексику." },
+    "accept": [
+      "We {went to|traveled to|travelled to|flew to|drove to|visited|went on a trip to|took a trip to} Mexico last year",
+      "Last year we {went to|traveled to|travelled to|flew to|drove to|visited|went on a trip to|took a trip to} Mexico"
+    ],
+    "mistakes": [
+      { "answer": "We used to go to Mexico last year", "why": { "ru": "В прошлом году — один раз. used to — про то, что повторялось или длилось: нужен Past Simple." } },
+      { "answer": "Last year we used to go to Mexico", "why": { "ru": "В прошлом году — один раз. used to — про то, что повторялось или длилось: нужен Past Simple." } },
+      { "answer": "We goed to Mexico last year", "why": { "ru": "go — неправильный глагол: -ed к нему не добавляют. Его прошедшая форма — went." } },
+      { "answer": "We were going to Mexico last year", "why": { "ru": "were going — процесс в какой-то момент. Поездка здесь — просто событие: went." } },
+      { "answer": "We go to Mexico last year", "why": { "ru": "last year — прошлое. Нужна прошедшая форма: went." } }
+    ],
+    "hint": { "ru": "Один раз или много раз? «В прошлом году» — last year." },
+    "explanation": { "ru": "Одна поездка, точное время — Past Simple: We went to Mexico last year." }
+  }
+]

@@ -1,0 +1,175 @@
+[
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Мама выглянула в окно — дети уже играли во дворе. Вставь глагол play в нужной форме." },
+    "text": "When Mom looked out the window, the kids ___ (play) in the yard.",
+    "accept": ["were playing"],
+    "mistakes": [
+      { "answer": "played", "why": { "ru": "Так выйдет: мама выглянула, и потом дети начали играть. А игра уже шла — процесс: were playing." } },
+      { "answer": "was playing", "why": { "ru": "kids — несколько, это they. С they нужен were." } },
+      { "answer": "were play", "why": { "ru": "После were глагол нужен с -ing: playing." } },
+      { "answer": "are playing", "why": { "ru": "are — настоящее время. Мама выглянула (looked) в прошлом: were." } },
+      { "answer": "playing", "why": { "ru": "Пропущен were: глагол с -ing один не работает." } }
+    ],
+    "hint": { "ru": "Что уже шло, а что случилось? kids — это they." },
+    "explanation": { "ru": "Игра шла — процесс, Past Continuous: the kids were playing. Мама выглянула — событие: looked." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Ответь коротко «Да»." },
+    "text": "— Were you watching TV at 9 pm? — Yes, I ___.",
+    "accept": ["was{| watching TV}"],
+    "mistakes": [
+      { "answer": "were", "why": { "ru": "Вопрос с you, а отвечаешь про себя — это I. С I нужен was." } },
+      { "answer": "did", "why": { "ru": "did — для вопросов с did. Вопрос был с were — и ответ с was / were." } },
+      { "answer": "am", "why": { "ru": "am — настоящее время. Вопрос про прошлое, с were." } },
+      { "answer": "was watch TV", "why": { "ru": "Краткий ответ — просто I was. А если с глаголом, то с -ing: watching." } }
+    ],
+    "hint": { "ru": "Вопрос с you, а отвечаешь про себя. Краткий ответ — без глагола с -ing." },
+    "explanation": { "ru": "Were you…? — Yes, I was. Отвечаешь про себя — I, а с I нужен was." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Это фон рассказа. Собери: «Шёл снег, и дети лепили снеговика». Одна плитка лишняя." },
+    "tiles": ["were building", "It", "and", "a snowman", "was snowing", "the kids", "was building"],
+    "accept": [
+      "It was snowing and the kids were building a snowman",
+      "The kids were building a snowman and it was snowing"
+    ],
+    "mistakes": [
+      { "answer": "It was snowing and the kids was building a snowman", "why": { "ru": "kids — несколько, это they. С they нужен were." } },
+      { "answer": "The kids was building a snowman and it was snowing", "why": { "ru": "kids — несколько, это they. С they нужен were." } }
+    ],
+    "hint": { "ru": "Фон — Past Continuous. Погода — it, kids — they." },
+    "explanation": { "ru": "Фон — два процесса: it was snowing, the kids were building a snowman." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "My grandpa use to work on a farm.",
+    "wrong": 2,
+    "accept": ["used"],
+    "mistakes": [
+      { "answer": "uses", "why": { "ru": "Формы uses to нет: used to бывает только о прошлом." } },
+      { "answer": "use", "why": { "ru": "Это то же слово. В утверждении — с -d на конце." } },
+      { "answer": "using", "why": { "ru": "Глагол с -ing один не работает. Раньше было, а теперь нет — used to." } }
+    ],
+    "hint": { "ru": "Это утверждение, did в нём нет. Какая форма — use или used?" },
+    "explanation": { "ru": "В утверждении — used: My grandpa used to work on a farm." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Мы гуляли в парке, когда начался дождь." },
+    "accept": [
+      "We were {walking|taking a walk} in the park when it {started|began} {to rain|raining}",
+      "When it {started|began} {to rain|raining} we were {walking|taking a walk} in the park",
+      "While we were {walking|taking a walk} in the park it {started|began} {to rain|raining}",
+      "It {started|began} {to rain|raining} while we were {walking|taking a walk} in the park",
+      "It {started|began} {to rain|raining} when we were {walking|taking a walk} in the park",
+      "When we were {walking|taking a walk} in the park it {started|began} {to rain|raining}"
+    ],
+    "mistakes": [
+      { "answer": "We walked in the park when it started to rain", "why": { "ru": "Прогулка уже шла — процесс, Past Continuous: were walking." } },
+      { "answer": "We were walking in the park when it was starting to rain", "why": { "ru": "Дождь начался вдруг — это событие, Past Simple: started." } },
+      { "answer": "We was walking in the park when it started to rain", "why": { "ru": "we — «мы», с ними нужен were." } },
+      { "answer": "We were walking in the park when it started rain", "why": { "ru": "После started нужно to rain или raining: «начал идти»." } }
+    ],
+    "hint": { "ru": "Что уже шло, а что случилось вдруг? «Гулять» — walk, «начаться» — start." },
+    "explanation": { "ru": "Прогулка — процесс: we were walking. Дождь начался — событие: it started to rain." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Поставь глагол в отрицание в Past Continuous." },
+    "text": "At midnight Max ___ (not / sleep) — he was reading a comic book.",
+    "accept": ["wasn't sleeping"],
+    "mistakes": [
+      { "answer": "didn't sleep", "why": { "ru": "Так тоже можно сказать — это Past Simple, просто факт. Но задание — Past Continuous: wasn't sleeping." } },
+      { "answer": "weren't sleeping", "why": { "ru": "Max — один человек, это he. С he нужен was: wasn't." } },
+      { "answer": "wasn't sleep", "why": { "ru": "После wasn't глагол нужен с -ing: sleeping." } },
+      { "answer": "didn't sleeping", "why": { "ru": "did — для Past Simple. В Past Continuous not встаёт после was / were." } }
+    ],
+    "hint": { "ru": "Max — это he. Куда встаёт not в Past Continuous?" },
+    "explanation": { "ru": "he → was, not сразу после него: wasn't sleeping. Можно и полностью: was not sleeping." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Поставь глагол в отрицание." },
+    "text": "Grandma ___ (not / understand) the joke, so we explained it.",
+    "accept": ["didn't understand"],
+    "mistakes": [
+      { "answer": "wasn't understanding", "why": { "ru": "understand — глагол состояния, -ing с ним не ставят. Отрицание — как в Past Simple: didn't understand." } },
+      { "answer": "doesn't understand", "why": { "ru": "doesn't — настоящее время. А объяснили мы в прошлом (explained): didn't." } },
+      { "answer": "didn't understood", "why": { "ru": "Прошлое уже показал didn't. Глагол после него — в начальной форме: understand." } },
+      { "answer": "not understood", "why": { "ru": "Отрицание строится с помощником: didn't understand." } }
+    ],
+    "hint": { "ru": "understand — глагол состояния. Отрицание в Past Simple: didn't + начальная форма." },
+    "explanation": { "ru": "Глагол состояния — Past Simple: Grandma didn't understand the joke." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Какое предложение верное?" },
+    "options": [
+      { "text": "We used to go to Florida last summer.", "why": { "ru": "last summer — один раз. used to — про то, что повторялось или длилось: нужен Past Simple." } },
+      { "text": "We went to Florida last summer." },
+      { "text": "We use to go to Florida last summer.", "why": { "ru": "last summer — один раз, нужен Past Simple. Да и в утверждении было бы used, а не use." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Одна поездка, точное время — Past Simple: We went to Florida last summer." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Ответь коротко «Да»." },
+    "text": "— Did your dad use to play basketball? — Yes, he ___.",
+    "accept": ["did", "used to"],
+    "mistakes": [
+      { "answer": "was", "why": { "ru": "was — для вопросов с was / were. Вопрос был с did — и ответ с did." } },
+      { "answer": "used", "why": { "ru": "used без to так не говорят. Краткий ответ повторяет помощника из вопроса: did." } },
+      { "answer": "does", "why": { "ru": "does — настоящее время. Вопрос про прошлое, с did." } },
+      { "answer": "use to", "why": { "ru": "Без did — used, с -d. Но проще повторить помощника из вопроса: did." } }
+    ],
+    "hint": { "ru": "Краткий ответ повторяет помощника из вопроса." },
+    "explanation": { "ru": "Вопрос с did — и ответ с did: Yes, he did. Засчитаем и Yes, he used to." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол clean («убирать») в прошедшем времени." },
+    "text": "We ___ (clean) the house all day, so we were really tired in the evening.",
+    "accept": ["cleaned", "were cleaning"],
+    "mistakes": [
+      { "answer": "was cleaning", "why": { "ru": "we — «мы», с ними нужен were." } },
+      { "answer": "clean", "why": { "ru": "Вечером мы устали (were tired) — это прошлое. Нужна прошедшая форма." } },
+      { "answer": "are cleaning", "why": { "ru": "are — настоящее время. Рассказ про прошлое: were tired." } },
+      { "answer": "cleaning", "why": { "ru": "Глагол с -ing один не работает: нужен were." } },
+      { "answer": "were clean", "why": { "ru": "После were здесь нужен глагол с -ing: cleaning." } }
+    ],
+    "hint": { "ru": "all day — «весь день». we — «мы»." },
+    "explanation": { "ru": "С all day подходят оба: cleaned — просто факт, were cleaning — подчёркивает, что уборка шла долго. Засчитываем оба." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский с used to." },
+    "text": { "ru": "Раньше здесь был бассейн." },
+    "accept": ["There used to be a {swimming pool|pool} here"],
+    "mistakes": [
+      { "answer": "There was a pool here", "why": { "ru": "Так тоже можно сказать, но задание — с used to." } },
+      { "answer": "There was a swimming pool here", "why": { "ru": "Так тоже можно сказать, но задание — с used to." } },
+      { "answer": "There used to was a pool here", "why": { "ru": "После to — начальная форма. У was она be: used to be." } },
+      { "answer": "There use to be a pool here", "why": { "ru": "В утверждении — used, с -d на конце." } },
+      { "answer": "There used to be a pool", "why": { "ru": "Пропущено «здесь» — here: There used to be a pool here." } }
+    ],
+    "hint": { "ru": "used to + начальная форма. Какая начальная форма у was? «Бассейн» — pool." },
+    "explanation": { "ru": "There used to be — «раньше здесь был»: There used to be a pool here." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Действия идут одно за другим. Собери: «Сэм встал, позавтракал и пошёл в школу». Одна плитка лишняя." },
+    "tiles": ["had breakfast", "Sam", "went", "got up", "and", "to school", "was going"],
+    "accept": ["Sam got up had breakfast and went to school"],
+    "mistakes": [
+      { "answer": "Sam got up had breakfast and was going to school", "why": { "ru": "Действия идут по очереди: одно закончилось — началось следующее. Цепочка событий — Past Simple: went." } }
+    ],
+    "hint": { "ru": "Одно за другим — какое время?" },
+    "explanation": { "ru": "Цепочка событий — Past Simple: Sam got up, had breakfast and went to school." }
+  }
+]

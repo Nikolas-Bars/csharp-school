@@ -1,0 +1,77 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Тебя спрашивают: «Were you sleeping at 10 pm?» Как коротко ответить «Нет»?" },
+    "options": [
+      { "text": "No, I didn't.", "why": { "ru": "didn't — для вопросов с did. Вопрос был с were — и ответ с was / were." } },
+      { "text": "No, I wasn't." },
+      { "text": "No, I weren't.", "why": { "ru": "were — для you, we, they. С I нужен was: wasn't." } },
+      { "text": "No, I don't.", "why": { "ru": "don't — для настоящего времени и вопросов с do. Вопрос был с were." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Краткий ответ повторяет помощника из вопроса. Вопрос с were, а с I — was: No, I wasn't." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Поставь глагол в отрицание в Past Continuous." },
+    "text": "We ___ (not / listen) to the teacher at that moment.",
+    "accept": ["weren't listening"],
+    "mistakes": [
+      { "answer": "wasn't listening", "why": { "ru": "we — «мы», с ними нужен were: weren't." } },
+      { "answer": "weren't listen", "why": { "ru": "После weren't глагол нужен с -ing: listening." } },
+      { "answer": "didn't listening", "why": { "ru": "did — для Past Simple. В Past Continuous not встаёт после was / were: weren't listening." } },
+      { "answer": "not listening", "why": { "ru": "Пропущен were: not само не работает." } },
+      { "answer": "didn't listen", "why": { "ru": "Так тоже можно сказать — это Past Simple, «не послушали». Но задание — Past Continuous: weren't listening." } }
+    ],
+    "hint": { "ru": "we — какая форма: was или were? Куда встаёт not?" },
+    "explanation": { "ru": "we → were, not сразу после него: weren't listening. Можно и полностью: were not listening." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери вопрос «Что вы делали вчера в 8 вечера?» Одна плитка лишняя." },
+    "tiles": ["doing", "at 8 pm yesterday", "you", "What", "did", "were"],
+    "accept": ["What were you doing at 8 pm yesterday", "At 8 pm yesterday what were you doing"],
+    "mistakes": [
+      { "answer": "What did you doing at 8 pm yesterday", "why": { "ru": "did — для Past Simple. В Past Continuous вопрос строится с were." } },
+      { "answer": "What you were doing at 8 pm yesterday", "why": { "ru": "В вопросе were встаёт перед you: What were you…" } }
+    ],
+    "hint": { "ru": "Вопросительное слово — первым. Что выходит вперёд, перед you?" },
+    "explanation": { "ru": "What + were + you + doing: в вопросе were выходит вперёд, перед you." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "В тот момент Макс не смотрел телевизор." },
+    "accept": [
+      "At that moment Max wasn't watching {TV|television}",
+      "Max wasn't watching {TV|television} at that moment",
+      "At that moment Max wasn't watching the {TV|television}",
+      "Max wasn't watching the {TV|television} at that moment"
+    ],
+    "mistakes": [
+      { "answer": "At that moment Max didn't watch TV", "why": { "ru": "didn't — Past Simple, это про событие. А речь о том, что шло в тот момент: wasn't watching." } },
+      { "answer": "Max didn't watch TV at that moment", "why": { "ru": "didn't — Past Simple, это про событие. А речь о том, что шло в тот момент: wasn't watching." } },
+      { "answer": "At that moment Max weren't watching TV", "why": { "ru": "Max — один человек, это he. С he нужен was: wasn't." } },
+      { "answer": "At that moment Max wasn't watch TV", "why": { "ru": "После wasn't глагол нужен с -ing: watching." } },
+      { "answer": "At that moment Max isn't watching TV", "why": { "ru": "isn't — настоящее время. «В тот момент» — прошлое: wasn't." } },
+      { "answer": "At that moment Max not watching TV", "why": { "ru": "Пропущен was: not само не работает — wasn't watching." } }
+    ],
+    "hint": { "ru": "«В тот момент» — at that moment. Макс — это he. Куда встаёт not?" },
+    "explanation": { "ru": "Процесс в тот момент — Past Continuous, he → was, not после него: Max wasn't watching TV." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Ответь коротко «Нет»." },
+    "text": "— Were your parents sleeping at midnight? — No, ___.",
+    "accept": ["they weren't{| sleeping}"],
+    "mistakes": [
+      { "answer": "they didn't", "why": { "ru": "didn't — для вопросов с did. Вопрос был с were — и ответ с were." } },
+      { "answer": "they wasn't", "why": { "ru": "they — «они», с ними нужен were: weren't." } },
+      { "answer": "they don't", "why": { "ru": "don't — для настоящего времени. Вопрос был с were." } },
+      { "answer": "they not", "why": { "ru": "not само не работает — нужен were: they weren't." } },
+      { "answer": "they aren't", "why": { "ru": "aren't — настоящее время. Вопрос про прошлое, с were." } }
+    ],
+    "hint": { "ru": "parents — это they. Краткий ответ повторяет помощника из вопроса." },
+    "explanation": { "ru": "Were your parents…? — No, they weren't. Можно и полностью: they were not." }
+  }
+]

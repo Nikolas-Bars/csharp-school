@@ -1,0 +1,77 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Эмма сделала уроки, потом позвонила подруге, потом легла спать. Как это сказать?" },
+    "options": [
+      { "text": "Emma was doing her homework, was calling a friend and was going to bed.", "why": { "ru": "Это три действия по очереди: одно закончилось — началось следующее. Цепочка событий — Past Simple." } },
+      { "text": "Emma did her homework, called a friend and went to bed." },
+      { "text": "Emma did her homework, called a friend and goed to bed.", "why": { "ru": "go — неправильный глагол: -ed к нему не добавляют. Его прошедшая форма — went." } },
+      { "text": "Emma does her homework, calls a friend and goes to bed.", "why": { "ru": "Это Present Simple — так бывает обычно. А речь про один вечер в прошлом." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Действия идут одно за другим — все в Past Simple: did, called, went." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Сначала фильм закончился, потом пошли домой. Вставь глагол go в нужной форме." },
+    "text": "When the movie ended, we ___ (go) home.",
+    "accept": ["went"],
+    "mistakes": [
+      { "answer": "were going", "why": { "ru": "Так выйдет, что мы уже шли домой, когда фильм закончился. А пошли после фильма — одно за другим, Past Simple." } },
+      { "answer": "was going", "why": { "ru": "С we — were, а не was. Да и здесь одно за другим — Past Simple." } },
+      { "answer": "goed", "why": { "ru": "go — неправильный глагол: -ed к нему не добавляют. Его прошедшая форма — went." } },
+      { "answer": "go", "why": { "ru": "Фильм уже закончился (ended) — это прошлое. Нужна прошедшая форма." } }
+    ],
+    "hint": { "ru": "Одно за другим — какое время? go — неправильный глагол." },
+    "explanation": { "ru": "Сначала одно, потом другое — оба в Past Simple: the movie ended, we went home." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Спроси, что шло в момент звонка. Поставь глагол в нужную форму." },
+    "text": "I called you at 9, but you didn't answer. What ___ (you / do)?",
+    "accept": ["were you doing"],
+    "mistakes": [
+      { "answer": "did you do", "why": { "ru": "What did you do? — вопрос о событии, о том, что случилось. А спрашивают, что шло в момент звонка: were you doing." } },
+      { "answer": "was you doing", "why": { "ru": "С you — всегда were, даже когда речь об одном человеке." } },
+      { "answer": "you were doing", "why": { "ru": "В вопросе were встаёт перед you: What were you doing?" } },
+      { "answer": "are you doing", "why": { "ru": "are — настоящее время. Звонок был в прошлом: were." } },
+      { "answer": "did you doing", "why": { "ru": "did — для Past Simple. В Past Continuous вопрос строится с were." } }
+    ],
+    "hint": { "ru": "Что-то шло в тот момент — это процесс. Что выходит вперёд в вопросе?" },
+    "explanation": { "ru": "Процесс в момент звонка — Past Continuous: What were you doing?" }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «Когда учитель вошёл, дети разговаривали» — разговор уже шёл. Одна плитка лишняя." },
+    "tiles": ["were talking", "the kids", "When", "came in", "the teacher", "talked"],
+    "accept": [
+      "When the teacher came in the kids were talking",
+      "The kids were talking when the teacher came in",
+      "When the kids were talking the teacher came in",
+      "The teacher came in when the kids were talking"
+    ],
+    "mistakes": [
+      { "answer": "When the teacher came in the kids talked", "why": { "ru": "Так выйдет «учитель вошёл, и тогда дети заговорили». А разговор уже шёл — процесс: were talking." } },
+      { "answer": "The kids talked when the teacher came in", "why": { "ru": "Так выйдет «учитель вошёл, и тогда дети заговорили». А разговор уже шёл — процесс: were talking." } }
+    ],
+    "hint": { "ru": "Что уже шло, а что случилось? Процесс — was / were + -ing." },
+    "explanation": { "ru": "Разговор шёл — процесс: the kids were talking. Учитель вошёл — событие: came in." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Действия идут одно за другим. Переведи на английский." },
+    "text": { "ru": "Макс встал, оделся и пошёл в школу." },
+    "accept": [
+      "Max {got up|got out of bed} {and |}{got dressed|dressed|put on his clothes} and {then |}{went to|walked to|headed to|left for} school"
+    ],
+    "mistakes": [
+      { "answer": "Max was getting up, was getting dressed and was going to school", "why": { "ru": "Действия идут по очереди: одно закончилось — началось следующее. Цепочка событий — Past Simple." } },
+      { "answer": "Max got up, got dressed and goed to school", "why": { "ru": "go — неправильный глагол: -ed к нему не добавляют. Его прошедшая форма — went." } },
+      { "answer": "Max got up, got dressed and go to school", "why": { "ru": "Все три действия — в прошлом. go → went." } },
+      { "answer": "Max get up, get dressed and go to school", "why": { "ru": "Это настоящее время. Нужно прошедшее: got up, got dressed, went." } },
+      { "answer": "Max getted up, got dressed and went to school", "why": { "ru": "get — неправильный глагол, его прошедшая форма — got: got up." } }
+    ],
+    "hint": { "ru": "«Встать» — get up, «одеться» — get dressed. Оба неправильные, как и go." },
+    "explanation": { "ru": "Одно за другим — Past Simple: Max got up, got dressed and went to school." }
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "title": { "ru": "when и while: процесс и событие" },
+  "steps": [
+    { "type": "theory", "text": { "ru": "01-interrupted.ru.md" } },
+    { "type": "theory", "text": { "ru": "02-when-while.ru.md" } },
+    { "type": "practice", "id": "interrupted", "file": "practice/interrupted.json" },
+    { "type": "theory", "text": { "ru": "03-same-time.ru.md" } },
+    { "type": "theory", "text": { "ru": "04-background.ru.md" } },
+    { "type": "practice", "id": "same-time", "file": "practice/same-time.json" },
+    { "type": "theory", "text": { "ru": "05-mistakes.ru.md" } },
+    { "type": "quiz", "file": "quiz.json" }
+  ]
+}
