@@ -17,11 +17,15 @@ use JsonException;
  * папки — так, как его отдаёт API: Markdown уже прочитан, эталонные и неверные решения не берутся вовсе.
  * Пути в ошибках — от content/: «csharp/01-first-programs/module.json».
  *
- * Полную проверку формата делают тесты контента (runner/tests/Content.Tests) в CI. Здесь —
+ * Полную проверку формата делают тесты контента в CI (курс C# — runner/tests/Content.Tests, английский —
+ * frontend/src/__tests__/englishContent.spec.ts). Здесь —
  * только то, без чего импорт невозможен, с понятной ошибкой: какой файл и что не так.
  */
 final readonly class ReadCourseContentTask
 {
+    /** Виды упражнений английского: выбор, пропуск, порядок слов, перевод, найди ошибку */
+    public const array EXERCISE_KINDS = ['choice' => true, 'gap' => true, 'order' => true, 'translate' => true, 'fix' => true];
+
     /**
      * @return non-empty-list<CourseContentDTO> курсы в порядке courses.json
      */
@@ -90,10 +94,18 @@ final readonly class ReadCourseContentTask
         foreach ($this->list($lesson, 'steps', $file) as $index => $step) {
             $where = "{$file}: steps[{$index}]";
             $steps[] = match ($this->string($step, 'type', $where)) {
-                'theory' => ['type' => 'theory', 'text' => $this->markdown($root, $directory, $this->texts($step, 'text', $where), $where)],
-                'task'   => $this->task($root, "{$directory}/tasks/" . $this->slug($this->string($step, 'task', $where), $where)),
-                'quiz'   => ['type' => 'quiz', 'questions' => $this->list($step, 'questions', $where)],
-                default  => throw $this->invalid($where, 'type: theory, task или quiz'),
+                'theory'   => ['type' => 'theory', 'text' => $this->markdown($root, $directory, $this->texts($step, 'text', $where), $where)],
+                'task'     => $this->task($root, "{$directory}/tasks/" . $this->slug($this->string($step, 'task', $where), $where)),
+                'practice' => [
+                    'type'      => 'practice',
+                    'id'        => $this->slug($this->string($step, 'id', $where), $where),
+                    'exercises' => $this->exercises($root, $directory, $step, $where),
+                ],
+                // Вопросы с выбором варианта — прямо в lesson.json (курс C#), упражнения — файлом (английский)
+                'quiz' => \is_array($step) && \array_key_exists('file', $step)
+                    ? ['type' => 'quiz', 'exercises' => $this->exercises($root, $directory, $step, $where)]
+                    : ['type' => 'quiz', 'questions' => $this->list($step, 'questions', $where)],
+                default => throw $this->invalid($where, 'type: theory, task, practice или quiz'),
             };
         }
 
@@ -134,23 +146,53 @@ final readonly class ReadCourseContentTask
     }
 
     /**
-     * Прогресс считает урок пройденным, когда пройдены все задачи и проверка знаний: у каждой
-     * задачи свой id, «quiz» — только у проверки, и она в уроке одна (без неё урок не пройти).
+     * Прогресс считает урок пройденным, когда пройдены все задачи, практики и проверка знаний: у
+     * каждой задачи и практики свой id, «quiz» — только у проверки, и она в уроке одна (без неё урок
+     * не пройти).
      *
      * @param list<array<string, mixed>> $steps
      */
     private function countedSteps(array $steps, string $file): void
     {
-        /** @var list<string> $tasks id задачи — имя её папки, всегда строка */
-        $tasks = array_column(array_filter($steps, static fn(array $step): bool => $step['type'] === 'task'), 'id');
+        /** @var list<string> $ids id задачи — имя её папки, id практики — slug, всегда строка */
+        $ids = array_column(array_filter($steps, static fn(array $step): bool => $step['type'] === 'task' || $step['type'] === 'practice'), 'id');
         $quizzes = \count(array_filter($steps, static fn(array $step): bool => $step['type'] === 'quiz'));
 
         if ($quizzes !== 1) {
             throw $this->invalid($file, 'в уроке ровно одна проверка знаний (quiz)');
         }
-        if (\in_array(LessonStepsDTO::QUIZ, $tasks, true) || \count($tasks) !== \count(array_unique($tasks))) {
-            throw $this->invalid($file, 'папки задач урока — разные и не «quiz»');
+        if (\in_array(LessonStepsDTO::QUIZ, $ids, true) || \count($ids) !== \count(array_unique($ids))) {
+            throw $this->invalid($file, 'id задач и практик урока — разные и не «quiz»');
         }
+    }
+
+    /**
+     * Упражнения английского (практика или проверка знаний) — из файла рядом с уроком: список, у
+     * каждого известный «kind». Остальные поля упражнения проверяют тесты контента фронта — той же
+     * функцией, что проверяет ответ ученика (frontend/src/utils/answers.ts).
+     *
+     * @return list<array<array-key, mixed>>
+     */
+    private function exercises(string $root, string $directory, mixed $step, string $where): array
+    {
+        $name = $this->string($step, 'file', $where);
+        if (preg_match('#^[a-z0-9][a-z0-9-]*(/[a-z0-9][a-z0-9-]*)?\.json$#', $name) !== 1) {
+            throw $this->invalid($where, "file — JSON рядом с уроком или в его подпапке: practice/form.json, не {$name}");
+        }
+        $file = "{$directory}/{$name}";
+        $exercises = $this->json($root, $file);
+
+        if ($exercises === [] || !array_is_list($exercises)) {
+            throw $this->invalid($file, 'список упражнений, хотя бы одно');
+        }
+
+        return array_map(function (mixed $exercise, int $index) use ($file): array {
+            $kind = \is_array($exercise) ? ($exercise['kind'] ?? null) : null;
+
+            return \is_array($exercise) && \is_string($kind) && isset(self::EXERCISE_KINDS[$kind])
+                ? $exercise
+                : throw $this->invalid("{$file}: [{$index}]", 'kind: ' . implode(', ', array_keys(self::EXERCISE_KINDS)));
+        }, $exercises, array_keys($exercises));
     }
 
     /**

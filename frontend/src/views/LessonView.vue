@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, defineAsyncComponent, ref, watch } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
 
 import { coursesApi } from '@/api/courses'
+import ExerciseSet from '@/components/exercise/ExerciseSet.vue'
+import LessonDone, { type LessonModuleResult } from '@/components/lesson/LessonDone.vue'
 import LessonQuiz from '@/components/lesson/LessonQuiz.vue'
-import LessonTask from '@/components/lesson/LessonTask.vue'
 import MarkdownView from '@/components/lesson/MarkdownView.vue'
-import ModuleResult from '@/components/lesson/ModuleResult.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import BaseIcon from '@/components/ui/BaseIcon.vue'
 import { useLoader } from '@/composables/useLoader'
@@ -14,10 +14,14 @@ import { t } from '@/i18n'
 import { locale } from '@/i18n/locale'
 import { useCourseStore } from '@/stores/course'
 import { useProgressStore } from '@/stores/progress'
+import type { LessonStep } from '@/types/api'
+
+// Задача с кодом тянет редактор и мост к компилятору C# — урок английского их не грузит
+const LessonTask = defineAsyncComponent(() => import('@/components/lesson/LessonTask.vue'))
 
 /**
- * Урок: шаги по порядку — теория, задачи, проверка знаний. Текущий шаг — в адресе (?step=3),
- * поэтому перезагрузка и «назад» в браузере работают как ожидается.
+ * Урок: шаги по порядку — теория, задачи (C#), практика (английский), проверка знаний. Текущий
+ * шаг — в адресе (?step=3), поэтому перезагрузка и «назад» в браузере работают как ожидается.
  */
 const route = useRoute()
 const router = useRouter()
@@ -56,7 +60,20 @@ const step = computed(() => lesson.value?.steps[index.value] ?? null)
 /** Шаги, пройденные в этот раз (и теория, которую прочитали) — для полосок */
 const visited = ref(new Set<number>())
 
-/** Шаг пройден: задача или проверка знаний — по прогрессу, теория — если её прочитали */
+/** Засчитываемый шаг в прогрессе: id задачи или практики, «quiz»; теория не засчитывается */
+function stepKey(item: LessonStep): string | null {
+  return item.type === 'task' || item.type === 'practice'
+    ? item.id
+    : item.type === 'quiz'
+      ? 'quiz'
+      : null
+}
+
+function isCompleted(key: string): boolean {
+  return progress.isCompleted(path.value.module, path.value.lesson, key)
+}
+
+/** Шаг пройден: задача, практика или проверка знаний — по прогрессу, теория — если её прочитали */
 function isDone(itemIndex: number): boolean {
   const item = lesson.value?.steps[itemIndex]
   if (!item) {
@@ -65,8 +82,8 @@ function isDone(itemIndex: number): boolean {
   if (visited.value.has(itemIndex)) {
     return true
   }
-  const key = item.type === 'task' ? item.id : item.type === 'quiz' ? 'quiz' : null
-  return key !== null && progress.isCompleted(path.value.module, path.value.lesson, key)
+  const key = stepKey(item)
+  return key !== null && isCompleted(key)
 }
 
 /** Задача решена или проверка знаний пройдена — в прогресс (у гостя — в браузер) */
@@ -126,24 +143,36 @@ function lessonRoute(module: string, lessonSlug: string, step?: number) {
   }
 }
 
-/** Нерешённые задачи этого урока: номер шага с 1 и название — без них урок не пройден */
-const unsolvedTasks = computed(() =>
-  (lesson.value?.steps ?? []).flatMap((item, itemIndex) =>
-    item.type === 'task' && !progress.isCompleted(path.value.module, path.value.lesson, item.id)
-      ? [{ step: itemIndex + 1, title: item.title }]
-      : [],
-  ),
+/**
+ * Непройденные задачи и практики этого урока: номер шага с 1 и подпись ссылки — без них урок не
+ * пройден, даже если проверка знаний сдана
+ */
+const unsolvedSteps = computed(() =>
+  (lesson.value?.steps ?? []).flatMap((item, itemIndex) => {
+    if (item.type === 'task' && !isCompleted(item.id)) {
+      return [{ step: itemIndex + 1, label: t('quiz.toTask', { title: item.title }) }]
+    }
+    if (item.type === 'practice' && !isCompleted(item.id)) {
+      return [{ step: itemIndex + 1, label: t('quiz.toPractice') }]
+    }
+    return []
+  }),
 )
+const firstUnsolved = computed(() => {
+  const first = unsolvedSteps.value[0]
+  return first ? { label: first.label, to: { query: { ...route.query, step: first.step } } } : null
+})
 
 /** Засчитываемые шаги — по самому уроку: карта в памяти могла устареть после course:import */
 const countedSteps = computed(() =>
-  (lesson.value?.steps ?? []).flatMap((item) =>
-    item.type === 'task' ? [item.id] : item.type === 'quiz' ? ['quiz'] : [],
-  ),
+  (lesson.value?.steps ?? []).flatMap((item) => {
+    const key = stepKey(item)
+    return key === null ? [] : [key]
+  }),
 )
 
 /** Урок — контрольная модуля: после её вопросов — итог модуля и куда идти дальше */
-const moduleResult = computed(() => {
+const moduleResult = computed((): LessonModuleResult | null => {
   if (!courseMap.value || !lesson.value) {
     return null
   }
@@ -176,7 +205,7 @@ const moduleResult = computed(() => {
   // пройден — первый непройденный урок курса
   const resumeIndex = state.complete ? states.findIndex((item) => item.next !== null) : index
   const resumeLesson = states[resumeIndex]?.next
-  const unsolved = unsolvedTasks.value[0]
+  const unsolved = unsolvedSteps.value[0]
 
   return {
     module: module.title,
@@ -261,30 +290,62 @@ const draftKey = (id: string) =>
           @next="next"
         />
 
+        <ExerciseSet
+          v-else-if="step.type === 'practice'"
+          :key="step.id"
+          :exercises="step.exercises"
+          :completed="isCompleted(step.id)"
+          @done="record(step.id)"
+        >
+          <template #done="{ restart }">
+            <div class="lesson__practice-done">
+              <h2 class="lesson__practice-title">{{ t('practice.done') }}</h2>
+              <p class="lesson__practice-text">{{ t('practice.doneText') }}</p>
+              <div class="lesson__practice-actions">
+                <BaseButton v-if="index < total - 1" variant="success" @click="next">
+                  {{ t('practice.next') }}
+                </BaseButton>
+                <BaseButton variant="ghost" @click="restart">{{ t('practice.again') }}</BaseButton>
+              </div>
+            </div>
+          </template>
+        </ExerciseSet>
+
+        <ExerciseSet
+          v-else-if="'exercises' in step"
+          :key="`quiz-${index}`"
+          :exercises="step.exercises"
+          :completed="isCompleted('quiz')"
+          @done="record('quiz')"
+        >
+          <template #header>
+            <h2 class="lesson__quiz-title">{{ t('quiz.title') }}</h2>
+            <p class="lesson__quiz-lead">{{ t('quiz.lead') }}</p>
+          </template>
+          <template #done="{ restart }">
+            <p class="lesson__quiz-done" role="status">
+              <strong>{{
+                unsolvedSteps.length > 0
+                  ? t('quiz.doneStepsLeft', { n: unsolvedSteps.length })
+                  : t('quiz.done')
+              }}</strong>
+            </p>
+            <LessonDone :result="moduleResult" :unsolved="firstUnsolved" :map="mapRoute" />
+            <BaseButton class="lesson__again" variant="ghost" @click="restart">
+              {{ t('practice.again') }}
+            </BaseButton>
+          </template>
+        </ExerciseSet>
+
         <LessonQuiz
           v-else
           :key="`quiz-${index}`"
           :questions="step.questions"
-          :unsolved="unsolvedTasks.length"
+          :unsolved="unsolvedSteps.length"
           @done="record('quiz')"
         >
           <template #done>
-            <ModuleResult v-if="moduleResult" v-bind="moduleResult" :map="mapRoute" />
-            <div v-else class="lesson__done-links">
-              <RouterLink
-                v-if="unsolvedTasks[0]"
-                class="lesson__done-link lesson__done-link--primary"
-                :to="{ query: { ...route.query, step: unsolvedTasks[0].step } }"
-              >
-                {{ t('quiz.toTask', { title: unsolvedTasks[0].title }) }}
-              </RouterLink>
-              <RouterLink
-                class="lesson__done-link"
-                :class="unsolvedTasks[0] ? 'lesson__done-link--secondary' : 'lesson__map-link'"
-                :to="mapRoute"
-                >{{ t('quiz.toMap') }}</RouterLink
-              >
-            </div>
+            <LessonDone :result="moduleResult" :unsolved="firstUnsolved" :map="mapRoute" />
           </template>
         </LessonQuiz>
       </main>
@@ -378,8 +439,7 @@ const draftKey = (id: string) =>
 }
 
 .lesson__back:focus-visible,
-.lesson__step:focus-visible,
-.lesson__done-link:focus-visible {
+.lesson__step:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
@@ -402,36 +462,49 @@ const draftKey = (id: string) =>
   align-self: flex-start;
 }
 
-.lesson__done-links {
+.lesson__practice-done {
+  max-width: 44rem;
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.lesson__practice-title,
+.lesson__quiz-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--font-size-xxl);
+}
+
+.lesson__practice-title {
+  color: var(--color-success-text);
+}
+
+.lesson__practice-text,
+.lesson__quiz-lead {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+.lesson__practice-actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
 }
 
-.lesson__done-link {
-  min-height: 2.75rem;
-  padding: var(--space-3) var(--space-5);
+.lesson__again {
+  align-self: flex-start;
+}
+
+.lesson__quiz-done {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
   border-radius: var(--radius);
-  display: inline-flex;
-  align-items: center;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-/* Урок пройден — на карту, зелёным */
-.lesson__map-link {
-  background: var(--color-success);
-  color: var(--color-on-accent);
-}
-
-.lesson__done-link--primary {
-  background: var(--color-primary);
-  color: var(--color-on-accent);
-}
-
-.lesson__done-link--secondary {
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
-  color: var(--color-text);
+  background: var(--color-success-soft);
+  color: var(--color-success-text);
 }
 </style>

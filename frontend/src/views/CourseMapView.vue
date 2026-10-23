@@ -5,18 +5,35 @@ import { RouterLink, useRoute } from 'vue-router'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import BaseIcon from '@/components/ui/BaseIcon.vue'
 import { useLoader } from '@/composables/useLoader'
-import { t } from '@/i18n'
+import { t, type MessageKey } from '@/i18n'
 import { locale } from '@/i18n/locale'
 import { useCourseStore } from '@/stores/course'
 import { useProgressStore, type ModuleProgress } from '@/stores/progress'
 import type { LessonSummary } from '@/types/api'
 
 /**
- * Карта курса по макету: модули и уроки по порядку, слева — с чего начать и цель курса.
+ * Карта курса по макету: модули и уроки по порядку, слева — с чего начать и цель курса (своя у
+ * каждого курса).
  * У модуля — сколько уроков пройдено и «Модуль пройден» после всех уроков вместе с контрольной.
  */
 const route = useRoute()
 const courseSlug = computed(() => String(route.params.course))
+
+/** Цель курса — по курсу: у курса без цели блока нет */
+const GOALS: Partial<Record<string, { title: MessageKey; text: MessageKey }>> = {
+  csharp: { title: 'course.goal.csharp.title', text: 'course.goal.csharp.text' },
+  english: { title: 'course.goal.english.title', text: 'course.goal.english.text' },
+}
+const goal = computed(() => GOALS[courseSlug.value] ?? null)
+
+/** Что в уроке: задачи с кодом (C#), практики (английский) или только теория */
+function size(lesson: LessonSummary): string {
+  const practices = lesson.steps.filter((step) => step !== 'quiz').length - lesson.tasks
+  if (lesson.tasks > 0) {
+    return t('course.tasks', lesson.tasks)
+  }
+  return practices > 0 ? t('course.practices', practices) : t('course.noTasks')
+}
 
 const progress = useProgressStore()
 const courses = useCourseStore()
@@ -144,10 +161,10 @@ function reload() {
           </RouterLink>
           <strong v-else class="map__finished">{{ t('course.finished') }}</strong>
         </div>
-        <div class="map__card map__card--dark">
+        <div v-if="goal" class="map__card map__card--dark">
           <span class="map__eyebrow map__eyebrow--light">{{ t('course.goalLabel') }}</span>
-          <strong class="map__goal">{{ t('course.goalTitle') }}</strong>
-          <span>{{ t('course.goalText') }}</span>
+          <strong class="map__goal">{{ t(goal.title) }}</strong>
+          <span>{{ t(goal.text) }}</span>
         </div>
       </aside>
 
@@ -200,9 +217,7 @@ function reload() {
                       {{ t('course.test') }}
                     </span>
                   </span>
-                  <span class="map__muted">
-                    {{ lesson.tasks > 0 ? t('course.tasks', lesson.tasks) : t('course.noTasks') }}
-                  </span>
+                  <span class="map__muted">{{ size(lesson) }}</span>
                 </span>
                 <strong class="map__lesson-title">{{
                   lesson.kind === 'test' ? lesson.title : `${lessonIndex + 1}. ${lesson.title}`

@@ -1,4 +1,14 @@
-import type { Course, CourseSummary, Lesson, TaskStep } from '@/types/api'
+import type {
+  ChoiceExercise,
+  Course,
+  CourseSummary,
+  FixExercise,
+  GapExercise,
+  Lesson,
+  OrderExercise,
+  TaskStep,
+  TranslateExercise,
+} from '@/types/api'
 
 /** Курс и урок для тестов — в форме ответа API */
 export const helloTask: TaskStep = {
@@ -138,6 +148,97 @@ export const englishSummary: CourseSummary = {
   modules: 1,
   lessons: 1,
   start: { module: '01-simple-tenses', lesson: '01-present-simple' },
+}
+
+/** Упражнения английского — по одному каждого вида */
+export const choiceExercise: ChoiceExercise = {
+  kind: 'choice',
+  prompt: 'Как сказать «Я сейчас читаю»?',
+  explanation: 'I → am, к глаголу -ing.',
+  options: [
+    { text: 'I read now.', why: 'Это Present Simple — про «обычно».' },
+    { text: 'I am reading now.', why: null },
+    { text: 'I reading now.', why: 'Пропущен am.' },
+  ],
+  answer: 1,
+}
+
+const written = { mistakes: [], hint: 'Подсказка без ответа.', exact: false }
+
+export const gapExercise: GapExercise = {
+  ...written,
+  kind: 'gap',
+  prompt: 'Вставь глагол в нужной форме.',
+  explanation: 'she → is, к глаголу -ing.',
+  text: 'She ___ (cook) dinner now.',
+  accept: ['is cooking'],
+  mistakes: [{ answer: 'cooks', why: 'now — сейчас, нужен Continuous.' }],
+}
+
+export const orderExercise: OrderExercise = {
+  ...written,
+  kind: 'order',
+  prompt: 'Собери вопрос «Что ты делаешь?»',
+  explanation: 'What + are + you + doing.',
+  tiles: ['doing', 'you', 'What', 'do', 'are'],
+  accept: ['What are you doing'],
+  mistakes: [{ answer: 'What do you doing', why: 'do тут лишнее.' }],
+}
+
+export const translateExercise: TranslateExercise = {
+  ...written,
+  kind: 'translate',
+  prompt: 'Переведи на английский.',
+  explanation: 'Сейчас — Present Continuous.',
+  text: 'Я работаю.',
+  accept: ['I am working'],
+}
+
+export const fixExercise: FixExercise = {
+  ...written,
+  kind: 'fix',
+  prompt: 'Найди ошибку.',
+  explanation: 'С she — is.',
+  text: 'Look! She are waiting.',
+  wrong: 2,
+  accept: ['is'],
+}
+
+/** Урок английского: теория, практика, проверка знаний из упражнений */
+export const englishLesson: Lesson = {
+  slug: '01-right-now',
+  title: 'Что происходит сейчас',
+  module: { slug: '01-present', title: 'Настоящее время' },
+  course: { slug: 'english', title: 'Английский' },
+  steps: [
+    {
+      type: 'theory',
+      text: '# Сейчас\n\n```example\nLook! It is raining.\nСмотри! Идёт дождь.\n```',
+    },
+    { type: 'practice', id: 'form', exercises: [choiceExercise, gapExercise] },
+    { type: 'quiz', exercises: [orderExercise] },
+  ],
+}
+
+export const englishCourse: Course = {
+  slug: 'english',
+  title: 'Английский',
+  modules: [
+    {
+      slug: '01-present',
+      title: 'Настоящее время',
+      description: 'Сейчас',
+      lessons: [
+        {
+          slug: '01-right-now',
+          title: 'Что происходит сейчас',
+          kind: 'lesson',
+          tasks: 0,
+          steps: ['form', 'quiz'],
+        },
+      ],
+    },
+  ],
 }
 
 export function apiReply(data: unknown, status = 200) {

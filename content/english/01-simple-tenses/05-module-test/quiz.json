@@ -1,0 +1,49 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Выбери предложение без ошибки." },
+    "options": [
+      { "text": "She don't speak Spanish.", "why": { "ru": "С she — doesn't, а не don't." } },
+      { "text": "She doesn't speak Spanish." },
+      { "text": "She doesn't speaks Spanish.", "why": { "ru": "После doesn't глагол без -s." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "She → doesn't + глагол без -s: doesn't speak." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь вспомогательный глагол." },
+    "text": "___ your parents live in Moscow?",
+    "accept": ["Do"],
+    "mistakes": [
+      { "answer": "Does", "why": { "ru": "parents — «они», значит Do. Does — только для he, she, it." } },
+      { "answer": "Are", "why": { "ru": "Вопрос с обычным глаголом live строится с do или does." } }
+    ],
+    "hint": { "ru": "parents — это they." },
+    "explanation": { "ru": "parents = they → Do your parents live…?" }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери фразу «Я никогда не ем мясо». Одно слово лишнее." },
+    "tiles": ["meat", "never", "I", "eat", "don't"],
+    "accept": ["I never eat meat"],
+    "mistakes": [
+      { "answer": "I don't never eat meat", "why": { "ru": "never уже значит «не», don't здесь лишнее." } },
+      { "answer": "I eat never meat", "why": { "ru": "never стоит перед глаголом: I never eat." } }
+    ],
+    "hint": { "ru": "«Никогда не» — одно слово never." },
+    "explanation": { "ru": "never уже содержит «не» и стоит перед глаголом: I never eat meat." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Сколько стоит этот билет?" },
+    "accept": ["How much does this ticket cost", "How much is this ticket"],
+    "mistakes": [
+      { "answer": "How much this ticket costs", "why": { "ru": "В вопросе нужен вспомогательный глагол: How much does this ticket cost?" } },
+      { "answer": "How much does this ticket costs", "why": { "ru": "После does глагол без -s: cost." } }
+    ],
+    "hint": { "ru": "ticket — это it. Порядок: How much → does → что → глагол." },
+    "explanation": { "ru": "How much does this ticket cost? Можно и короче: How much is this ticket?" }
+  }
+]

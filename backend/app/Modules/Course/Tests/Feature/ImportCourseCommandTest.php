@@ -41,6 +41,22 @@ final class ImportCourseCommandTest extends CourseTestCase
         self::assertSame("using System;\n", $task['starter']);
     }
 
+    public function testRealContentImports(): void
+    {
+        // Настоящий content/ (config course.content_path): все курсы courses.json проходят импорт
+        $this->artisan('course:import')->assertSuccessful();
+
+        self::assertContains('english', Course::query()->pluck('slug')->all());
+        self::assertContains('csharp', Course::query()->pluck('slug')->all());
+        // У каждого урока английского засчитываются практики и проверка знаний
+        $english = Lesson::query()->whereHas('module.course', static fn(Builder $query) => $query->where('slug', 'english'))->get();
+        self::assertNotEmpty($english);
+        foreach ($english as $lesson) {
+            self::assertContains('quiz', $lesson->countedSteps(), $lesson->slug);
+            self::assertGreaterThan(1, \count($lesson->countedSteps()), $lesson->slug);
+        }
+    }
+
     public function testReimportKeepsIdsAndRemovesDeletedLessons(): void
     {
         $this->copy = $this->copyFixture();
@@ -89,6 +105,53 @@ final class ImportCourseCommandTest extends CourseTestCase
         $this->artisan('course:import', ['path' => $this->copy])
             ->expectsOutputToContain('test-course/01-basics/01-first/lesson.json')
             ->assertFailed();
+    }
+
+    /**
+     * @return iterable<string, array{string, string}>
+     */
+    public static function brokenPractices(): iterable
+    {
+        $quiz = '{"type":"quiz","questions":[]}';
+
+        yield 'id практики как у задачи' => ['[{"type":"task","task":"say-hi"},{"type":"practice","id":"say-hi","file":"practice.json"},' . $quiz . ']', 'lesson.json: id задач и практик'];
+        yield 'id практики quiz' => ['[{"type":"practice","id":"quiz","file":"practice.json"},' . $quiz . ']', 'lesson.json: id задач и практик'];
+        yield 'две практики с одним id' => ['[{"type":"practice","id":"form","file":"practice.json"},{"type":"practice","id":"form","file":"practice.json"},' . $quiz . ']', 'lesson.json: id задач и практик'];
+        yield 'файл вне урока' => ['[{"type":"practice","id":"form","file":"../02-second/lesson.json"},' . $quiz . ']', 'file — JSON рядом с уроком'];
+        yield 'не JSON' => ['[{"type":"practice","id":"form","file":"theory.ru.md"},' . $quiz . ']', 'file — JSON рядом с уроком'];
+        yield 'нет файла' => ['[{"type":"practice","id":"form","file":"missing.json"},' . $quiz . ']', '01-first/missing.json: файла нет'];
+        yield 'неизвестный вид упражнения' => ['[{"type":"practice","id":"form","file":"unknown.json"},' . $quiz . ']', '01-first/unknown.json: [1]: kind'];
+        yield 'пустой список' => ['[{"type":"practice","id":"form","file":"empty.json"},' . $quiz . ']', '01-first/empty.json: список упражнений'];
+        yield 'квиз из пустого файла' => ['[{"type":"quiz","file":"empty.json"}]', '01-first/empty.json: список упражнений'];
+    }
+
+    #[DataProvider('brokenPractices')]
+    public function testBrokenPracticeIsRejected(string $steps, string $error): void
+    {
+        $this->copy = $this->copyFixture();
+        $lesson = "{$this->copy}/test-course/01-basics/01-first";
+        File::put("{$lesson}/practice.json", '[{"kind":"choice"}]');
+        File::put("{$lesson}/unknown.json", '[{"kind":"gap"},{"kind":"essay"}]');
+        File::put("{$lesson}/empty.json", '[]');
+        File::put("{$lesson}/lesson.json", '{"title":{"ru":"x"},"steps":' . $steps . '}');
+
+        $this->artisan('course:import', ['path' => $this->copy])
+            ->expectsOutputToContain($error)
+            ->assertFailed();
+
+        self::assertSame(0, Course::query()->count());
+    }
+
+    public function testPracticeAndQuizExercisesComeFromFiles(): void
+    {
+        $this->importFixture();
+
+        $steps = Lesson::query()->where('slug', '01-check')->sole()->steps;
+
+        self::assertSame(['practice', 'form'], [$steps[0]['type'], $steps[0]['id']]);
+        self::assertSame(['choice', 'gap'], array_column(\is_array($steps[0]['exercises']) ? $steps[0]['exercises'] : [], 'kind'));
+        self::assertSame(['order', 'translate', 'fix'], array_column(\is_array($steps[1]['exercises']) ? $steps[1]['exercises'] : [], 'kind'));
+        self::assertSame(['form', 'quiz'], Lesson::query()->where('slug', '01-check')->sole()->countedSteps());
     }
 
     public function testReimportRefreshesLessonSteps(): void

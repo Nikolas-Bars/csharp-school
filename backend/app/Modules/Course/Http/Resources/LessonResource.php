@@ -11,8 +11,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use OpenApi\Attributes as OA;
 
 /**
- * Урок на языке запроса: экраны теории (Markdown), задачи (условие, стартовый код, проверки
- * для runner, сообщения и подсказки), проверка знаний. Фронт: Lesson в src/types/api.ts.
+ * Урок на языке запроса: экраны теории (Markdown), задачи C# (условие, стартовый код, проверки
+ * для runner, сообщения и подсказки), практика английского, проверка знаний (вопросы C# или упражнения
+ * английского). Фронт: Lesson в src/types/api.ts.
  * Проверки задач (Check) — формат runner: runner/src/Runner.Core/Protocol/Checks.cs.
  *
  * @property Lesson $resource
@@ -35,8 +36,82 @@ use OpenApi\Attributes as OA;
         new OA\Property(property: 'steps', description: 'Шаги урока по порядку', type: 'array', items: new OA\Items(oneOf: [
             new OA\Schema(ref: '#/components/schemas/TheoryStep'),
             new OA\Schema(ref: '#/components/schemas/TaskStep'),
+            new OA\Schema(ref: '#/components/schemas/PracticeStep'),
             new OA\Schema(ref: '#/components/schemas/QuizStep'),
+            new OA\Schema(ref: '#/components/schemas/ExerciseQuizStep'),
         ])),
+    ],
+)]
+#[OA\Schema(
+    schema: 'PracticeStep',
+    description: 'Практика английского: упражнения по одному, проверка — в браузере',
+    required: ['type', 'id', 'exercises'],
+    properties: [
+        new OA\Property(property: 'type', type: 'string', enum: ['practice']),
+        new OA\Property(property: 'id', description: 'Id практики — шаг для прогресса', type: 'string', example: 'form'),
+        new OA\Property(property: 'exercises', type: 'array', items: new OA\Items(ref: '#/components/schemas/Exercise')),
+    ],
+)]
+#[OA\Schema(
+    schema: 'ExerciseQuizStep',
+    description: 'Проверка знаний в конце урока английского — те же упражнения, что в практике',
+    required: ['type', 'exercises'],
+    properties: [
+        new OA\Property(property: 'type', type: 'string', enum: ['quiz']),
+        new OA\Property(property: 'exercises', type: 'array', items: new OA\Items(ref: '#/components/schemas/Exercise')),
+    ],
+)]
+#[OA\Schema(
+    schema: 'Exercise',
+    description: 'Упражнение английского. Ответ проверяет браузер (frontend/src/utils/answers.ts): регистр, пробелы, '
+        . 'точка в конце и краткие формы (don\'t = do not) не важны, если не `exact`',
+    oneOf: [
+        new OA\Schema(
+            title: 'choice',
+            description: 'Выбрать вариант',
+            required: ['kind', 'prompt', 'explanation', 'options', 'answer'],
+            properties: [
+                new OA\Property(property: 'kind', type: 'string', enum: ['choice']),
+                new OA\Property(property: 'prompt', description: 'Задание', type: 'string', example: 'Как сказать «Я сейчас читаю»?'),
+                new OA\Property(property: 'explanation', description: 'Почему верный ответ верный', type: 'string'),
+                new OA\Property(property: 'options', type: 'array', items: new OA\Items(
+                    required: ['text', 'why'],
+                    properties: [
+                        new OA\Property(property: 'text', type: 'string', example: 'I am reading now.'),
+                        new OA\Property(property: 'why', description: 'Почему этот неверный вариант не подходит', type: ['string', 'null']),
+                    ],
+                    type: 'object',
+                )),
+                new OA\Property(property: 'answer', description: 'Номер верного варианта, с 0', type: 'integer', example: 1),
+            ],
+            type: 'object',
+        ),
+        new OA\Schema(
+            title: 'written',
+            description: 'Ответ словами: gap — вставить в пропуск ___, order — собрать фразу из плиток, translate — перевести, '
+                . 'fix — найти слово с ошибкой (номер `wrong` среди слов `text`) и написать, как правильно',
+            required: ['kind', 'prompt', 'explanation', 'accept', 'mistakes', 'hint', 'exact'],
+            properties: [
+                new OA\Property(property: 'kind', type: 'string', enum: ['gap', 'order', 'translate', 'fix']),
+                new OA\Property(property: 'prompt', type: 'string'),
+                new OA\Property(property: 'explanation', type: 'string'),
+                new OA\Property(property: 'text', description: 'gap, fix — английская фраза; translate — фраза на языке ученика', type: 'string', example: 'She ___ (cook) dinner at the moment.'),
+                new OA\Property(property: 'tiles', description: 'order — плитки по порядку показа, бывают лишние', type: 'array', items: new OA\Items(type: 'string')),
+                new OA\Property(property: 'wrong', description: 'fix — номер слова с ошибкой, с 0', type: 'integer'),
+                new OA\Property(property: 'accept', description: 'Правильные ответы; {a|b} — любой из вариантов', type: 'array', items: new OA\Items(type: 'string'), example: ['is cooking']),
+                new OA\Property(property: 'mistakes', description: 'Частые ошибки и объяснение каждой', type: 'array', items: new OA\Items(
+                    required: ['answer', 'why'],
+                    properties: [
+                        new OA\Property(property: 'answer', type: 'string', example: 'cooks'),
+                        new OA\Property(property: 'why', type: 'string'),
+                    ],
+                    type: 'object',
+                )),
+                new OA\Property(property: 'hint', description: 'Для неверного ответа не из mistakes — без готового ответа', type: 'string'),
+                new OA\Property(property: 'exact', description: 'Краткие и полные формы различаются (задание на краткую форму)', type: 'boolean'),
+            ],
+            type: 'object',
+        ),
     ],
 )]
 #[OA\Schema(
@@ -196,16 +271,59 @@ final class LessonResource extends JsonResource
                 'messages'  => self::texts($step['messages']),
                 'hints'     => self::texts($step['hints']),
             ],
-            default => [
-                'type'      => 'quiz',
-                'questions' => array_map(static fn(mixed $question): array => [
-                    'question'    => self::text(self::field($question, 'question')),
-                    'options'     => self::texts(self::field($question, 'options')),
-                    'answer'      => self::field($question, 'answer'),
-                    'explanation' => self::text(self::field($question, 'explanation')),
-                ], self::list($step['questions'])),
+            'practice' => [
+                'type'      => 'practice',
+                'id'        => $step['id'],
+                'exercises' => array_map(self::exercise(...), self::list($step['exercises'])),
             ],
+            default => \array_key_exists('exercises', $step)
+                ? ['type' => 'quiz', 'exercises' => array_map(self::exercise(...), self::list($step['exercises']))]
+                : [
+                    'type'      => 'quiz',
+                    'questions' => array_map(static fn(mixed $question): array => [
+                        'question'    => self::text(self::field($question, 'question')),
+                        'options'     => self::texts(self::field($question, 'options')),
+                        'answer'      => self::field($question, 'answer'),
+                        'explanation' => self::text(self::field($question, 'explanation')),
+                    ], self::list($step['questions'])),
+                ],
         };
+    }
+
+    /**
+     * Упражнение английского на языке запроса: тексты для ученика переведены, английские фразы
+     * (варианты, плитки, правильные ответы) — как есть. Формат — content/README.md.
+     *
+     * @return array<string, mixed>
+     */
+    private static function exercise(mixed $exercise): array
+    {
+        $kind = self::field($exercise, 'kind');
+        $common = ['kind' => $kind, 'prompt' => self::text(self::field($exercise, 'prompt')), 'explanation' => self::text(self::field($exercise, 'explanation'))];
+
+        if ($kind === 'choice') {
+            return [...$common, 'options' => array_map(static fn(mixed $option): array => [
+                'text' => self::field($option, 'text'),
+                'why'  => \is_array(self::field($option, 'why')) ? self::text(self::field($option, 'why')) : null,
+            ], self::list(self::field($exercise, 'options'))), 'answer' => self::field($exercise, 'answer')];
+        }
+
+        return [
+            ...$common,
+            ...match ($kind) {
+                'gap'       => ['text' => self::field($exercise, 'text')],
+                'order'     => ['tiles' => self::list(self::field($exercise, 'tiles'))],
+                'translate' => ['text' => self::text(self::field($exercise, 'text'))],
+                default     => ['text' => self::field($exercise, 'text'), 'wrong' => self::field($exercise, 'wrong')],
+            },
+            'accept'   => self::list(self::field($exercise, 'accept')),
+            'mistakes' => array_map(static fn(mixed $mistake): array => [
+                'answer' => self::field($mistake, 'answer'),
+                'why'    => self::text(self::field($mistake, 'why')),
+            ], self::list(self::field($exercise, 'mistakes'))),
+            'hint'  => self::text(self::field($exercise, 'hint')),
+            'exact' => self::field($exercise, 'forms') === 'exact',
+        ];
     }
 
     private static function text(mixed $texts): string

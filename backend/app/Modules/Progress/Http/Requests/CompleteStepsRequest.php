@@ -18,7 +18,7 @@ use OpenApi\Attributes as OA;
             properties: [
                 new OA\Property(property: 'module', type: 'string', pattern: self::SLUG, example: '01-first-programs'),
                 new OA\Property(property: 'lesson', type: 'string', pattern: self::SLUG, example: '02-variables'),
-                new OA\Property(property: 'step', description: 'Id задачи или `quiz`', type: 'string', pattern: self::SLUG, example: 'hero-health'),
+                new OA\Property(property: 'step', description: 'Id задачи, практики или `quiz`', type: 'string', pattern: self::SLUG, example: 'hero-health'),
                 new OA\Property(
                     property: 'code',
                     description: 'Код, который прошёл проверки (для задачи). Нет или `null` — сохранённый код не меняется',

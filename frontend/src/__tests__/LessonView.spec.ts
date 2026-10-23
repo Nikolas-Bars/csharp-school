@@ -8,7 +8,15 @@ import { useAuthStore } from '@/stores/auth'
 import type { Course, Lesson } from '@/types/api'
 import LessonView from '@/views/LessonView.vue'
 
-import { apiReply, course, lesson, moduleTest, twoModules } from './lessonFixtures'
+import {
+  apiReply,
+  course,
+  englishCourse,
+  englishLesson,
+  lesson,
+  moduleTest,
+  twoModules,
+} from './lessonFixtures'
 import { testRouter } from './support/router'
 
 const fetchMock = vi.fn<typeof fetch>()
@@ -77,10 +85,17 @@ async function passQuiz(wrapper: ReturnType<typeof mount>) {
   await flushPromises()
 }
 
+/** Запросы и ленивые компоненты (задача с кодом грузится отдельно) — дождаться всего */
+async function settle() {
+  await flushPromises()
+  await vi.dynamicImportSettled()
+  await flushPromises()
+}
+
 async function mountLesson(path = '/courses/csharp/01-first-programs/01-hello') {
   const router = await testRouter(path)
   const wrapper = mount(LessonView, { global: { plugins: [createPinia(), router] } })
-  await flushPromises()
+  await settle()
   return { wrapper, router }
 }
 
@@ -115,7 +130,7 @@ describe('LessonView', () => {
       .findAll('button')
       .find((button) => button.text() === 'Дальше')!
       .trigger('click')
-    await flushPromises()
+    await settle()
 
     expect(router.currentRoute.value.query.step).toBe('2')
     // Смена шага — тот же урок: повторной загрузки нет
@@ -185,10 +200,8 @@ describe('LessonView', () => {
 
     expect(wrapper.get('.quiz__done strong').text()).toBe('Всё верно — урок пройден!')
     expect(wrapper.findComponent({ name: 'ModuleResult' }).exists()).toBe(false)
-    expect(wrapper.findAll('.lesson__done-links a').map((link) => link.text())).toEqual([
-      'К карте курса',
-    ])
-    expect(wrapper.get('.lesson__map-link').attributes('href')).toBe('/courses/csharp')
+    expect(wrapper.findAll('.done a').map((link) => link.text())).toEqual(['К карте курса'])
+    expect(wrapper.get('.done__link--map').attributes('href')).toBe('/courses/csharp')
   })
 
   it('обычный урок, задача не решена: честный текст и ссылка на первую нерешённую задачу', async () => {
@@ -203,15 +216,13 @@ describe('LessonView', () => {
     )
     expect(wrapper.text()).not.toContain('урок пройден')
     expect(
-      wrapper
-        .findAll('.lesson__done-links a')
-        .map((link) => [link.text(), link.attributes('href')]),
+      wrapper.findAll('.done a').map((link) => [link.text(), link.attributes('href')]),
     ).toEqual([
       ['Перейти к задаче: Привет, мир!', '/courses/csharp/01-first-programs/01-hello?step=2'],
       ['К карте курса', '/courses/csharp'],
     ])
 
-    await wrapper.get('.lesson__done-link--primary').trigger('click')
+    await wrapper.get('.done__link--primary').trigger('click')
     await flushPromises()
     expect(router.currentRoute.value.query.step).toBe('2')
   })
@@ -341,7 +352,7 @@ describe('LessonView', () => {
     await passQuiz(wrapper)
 
     const result = wrapper.getComponent({ name: 'ModuleResult' })
-    expect(result.get('h2').text()).toBe('Вопросы контрольной пройдены!')
+    expect(result.get('h2').text()).toBe('Проверка знаний контрольной пройдена!')
     expect(result.text()).toContain('Осталось уроков: 1.')
     expect(links(result)).toEqual([
       ['Продолжить: Первая программа', '/courses/csharp/01-first-programs/01-hello'],
@@ -364,7 +375,7 @@ describe('LessonView', () => {
     const result = wrapper.getComponent({ name: 'ModuleResult' })
     expect(result.text()).toContain('Осталось уроков: 1.')
     expect(links(result)).toEqual([
-      ['Решить задачи контрольной', '/courses/csharp/01-first-programs/02-module-test?step=1'],
+      ['Доделать контрольную', '/courses/csharp/01-first-programs/02-module-test?step=1'],
       ['К карте курса', '/courses/csharp'],
     ])
     await result.get('a').trigger('click')
@@ -382,7 +393,7 @@ describe('LessonView', () => {
     expect(result.text()).toContain('Осталось уроков: 2.')
     expect(links(result)).toEqual([
       ['Продолжить: Первая программа', '/courses/csharp/01-first-programs/01-hello'],
-      ['Решить задачи контрольной', '/courses/csharp/01-first-programs/02-module-test?step=1'],
+      ['Доделать контрольную', '/courses/csharp/01-first-programs/02-module-test?step=1'],
       ['К карте курса', '/courses/csharp'],
     ])
   })
@@ -414,10 +425,10 @@ describe('LessonView', () => {
 
     await passQuiz(wrapper)
 
-    // Не «Решить задачи контрольной» с шагом 1 по кругу: всё решено — модуль пройден
+    // Не «Доделать контрольную» с шагом 1 по кругу: всё решено — модуль пройден
     const result = wrapper.getComponent({ name: 'ModuleResult' })
     expect(result.get('h2').text()).toBe('Модуль пройден!')
-    expect(result.text()).not.toContain('Решить задачи')
+    expect(result.text()).not.toContain('Доделать контрольную')
   })
 
   it('смена языка — карта курса загружается заново на новом языке', async () => {
@@ -468,7 +479,7 @@ describe('LessonView', () => {
     const { wrapper } = await mountLesson('/courses/csharp/01-first-programs/02-module-test?step=2')
     await passQuiz(wrapper)
     expect(wrapper.getComponent({ name: 'ModuleResult' }).get('h2').text()).toBe(
-      'Вопросы контрольной пройдены!',
+      'Проверка знаний контрольной пройдена!',
     )
 
     await useAuthStore().login({ email: account.email, password: 'Password123' })
@@ -499,9 +510,112 @@ describe('LessonView', () => {
 
     expect(wrapper.find('[role="alert"]').exists()).toBe(false)
     expect(wrapper.findComponent({ name: 'ModuleResult' }).exists()).toBe(false)
-    expect(wrapper.findAll('.lesson__done-links a').map((link) => link.text())).toEqual([
+    expect(wrapper.findAll('.done a').map((link) => link.text())).toEqual([
       'Перейти к задаче: Бой с гоблином',
       'К карте курса',
+    ])
+  })
+})
+
+describe('LessonView: урок английского', () => {
+  const ENGLISH = '/courses/english/01-present/01-right-now'
+
+  beforeEach(() => {
+    vi.stubGlobal('fetch', fetchMock)
+    localStorage.clear()
+    tokenStorage.clear()
+    serve(course, {}, (url) =>
+      url.endsWith('/courses/english')
+        ? apiReply(englishCourse)
+        : url.endsWith('/lessons/01-right-now')
+          ? apiReply(englishLesson)
+          : null,
+    )
+  })
+  afterEach(() => {
+    fetchMock.mockReset()
+    vi.unstubAllGlobals()
+  })
+
+  const savedSteps = () =>
+    Object.keys(
+      JSON.parse(localStorage.getItem('progress:english') ?? '{}')['01-present/01-right-now'] ?? {},
+    )
+
+  async function answer(wrapper: VueWrapper, kind: 'choice' | 'gap') {
+    if (kind === 'choice') {
+      await wrapper.findAll('input[type="radio"]')[1]!.setValue(true)
+    } else {
+      await wrapper.get('.gap input').setValue('is cooking')
+    }
+    await wrapper.get('form').trigger('submit')
+    await wrapper
+      .findAll('button')
+      .find((button) => button.text() === 'Дальше')!
+      .trigger('click')
+    await flushPromises()
+  }
+
+  it('практика: упражнения по одному, после всех — шаг засчитан и «Следующий шаг»', async () => {
+    const { wrapper, router } = await mountLesson(`${ENGLISH}?step=2`)
+
+    expect(wrapper.text()).toContain('Задание 1 из 2')
+    // В уроке английского нет задачи с кодом — редактор и компилятор не нужны
+    expect(wrapper.findComponent({ name: 'LessonTask' }).exists()).toBe(false)
+
+    await answer(wrapper, 'choice')
+    expect(savedSteps()).toEqual([])
+    await answer(wrapper, 'gap')
+
+    expect(wrapper.text()).toContain('Практика пройдена')
+    expect(savedSteps()).toEqual(['form'])
+    expect(wrapper.findAll('.lesson__step')[1]!.classes()).toContain('lesson__step--done')
+
+    await wrapper
+      .findAll('button')
+      .find((button) => button.text() === 'Следующий шаг')!
+      .trigger('click')
+    await flushPromises()
+    expect(router.currentRoute.value.query.step).toBe('3')
+  })
+
+  it('пройденная раньше практика сразу показывает итог', async () => {
+    localStorage.setItem(
+      'progress:english',
+      JSON.stringify({ '01-present/01-right-now': { form: null } }),
+    )
+    const { wrapper } = await mountLesson(`${ENGLISH}?step=2`)
+
+    expect(wrapper.text()).toContain('Практика пройдена')
+    expect(wrapper.find('form').exists()).toBe(false)
+  })
+
+  it('проверка знаний из упражнений: практика не пройдена — ссылка на неё', async () => {
+    const { wrapper } = await mountLesson(`${ENGLISH}?step=3`)
+
+    expect(wrapper.get('h2').text()).toBe('Проверь себя')
+    for (const word of ['What', 'are', 'you', 'doing']) {
+      await wrapper
+        .findAll('.order__pool button')
+        .find((button) => button.text() === word)!
+        .trigger('click')
+    }
+    await wrapper.get('form').trigger('submit')
+    await wrapper
+      .findAll('button')
+      .find((button) => button.text() === 'Дальше')!
+      .trigger('click')
+    await flushPromises()
+
+    expect(savedSteps()).toEqual(['quiz'])
+    expect(wrapper.get('.lesson__quiz-done').text()).toBe(
+      'Все ответы верные. Осталось пройти практику урока: 1',
+    )
+    expect(
+      wrapper.findAll('.done a').map((link) => [link.text(), link.attributes('href')]),
+    ).toEqual([
+      ['Перейти к практике', `${ENGLISH}?step=2`],
+      ['К карте курса', '/courses/english'],
     ])
   })
 })

@@ -12,4 +12,6 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
+      # Курсы — для тестов контента английского (src/__tests__/englishContent.spec.ts) и e2e
+      - ../content:/content:ro
     restart: unless-stopped

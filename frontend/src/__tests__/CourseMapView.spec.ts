@@ -5,7 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { DEFAULT_LOCALE, setLocale } from '@/i18n/locale'
 import CourseMapView from '@/views/CourseMapView.vue'
 
-import { apiReply, course, twoModules } from './lessonFixtures'
+import { apiReply, course, englishCourse, twoModules } from './lessonFixtures'
 import { testRouter } from './support/router'
 
 const fetchMock = vi.fn<typeof fetch>()
@@ -75,6 +75,30 @@ describe('CourseMapView', () => {
       ['Урок 2Без задач2. Ошибки — это нормально', '/courses/csharp/01-first-programs/02-errors'],
     ])
     expect(wrapper.find('.map__cta').text()).toBe('Начать: Первая программа')
+  })
+
+  it('цель курса — своя у каждого курса; у урока английского — число практик', async () => {
+    fetchMock.mockResolvedValue(apiReply(course))
+    const csharp = mount(CourseMapView, {
+      global: { plugins: [createPinia(), await testRouter('/courses/csharp')] },
+    })
+    await flushPromises()
+    expect(csharp.get('.map__goal').text()).toBe('Свой прототип игры в Unity')
+
+    fetchMock.mockResolvedValue(apiReply(englishCourse))
+    const english = mount(CourseMapView, {
+      global: { plugins: [createPinia(), await testRouter('/courses/english')] },
+    })
+    await flushPromises()
+    expect(english.get('.map__goal').text()).toBe('Говорить о любом времени')
+    expect(english.get('.map__lesson').text()).toContain('1 практика')
+
+    fetchMock.mockResolvedValue(apiReply({ ...englishCourse, slug: 'other' }))
+    const other = mount(CourseMapView, {
+      global: { plugins: [createPinia(), await testRouter('/courses/other')] },
+    })
+    await flushPromises()
+    expect(other.find('.map__goal').exists()).toBe(false)
   })
 
   it('ошибка загрузки — текст сервера и повтор', async () => {

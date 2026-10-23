@@ -1,0 +1,9 @@
+{
+  "title": { "ru": "Контрольная: простые времена" },
+  "kind": "test",
+  "steps": [
+    { "type": "theory", "text": { "ru": "01-intro.ru.md" } },
+    { "type": "practice", "id": "review", "file": "practice/review.json" },
+    { "type": "quiz", "file": "quiz.json" }
+  ]
+}

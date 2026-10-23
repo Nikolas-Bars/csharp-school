@@ -76,3 +76,111 @@ describe('parseMarkdown', () => {
     ])
   })
 })
+
+describe('parseMarkdown: блоки английского урока', () => {
+  it('таблица: заголовки, разделитель, строки с **жирным**', () => {
+    expect(
+      parseMarkdown(
+        ['| Кто | Утверждение |', '|---|:---:|', '| I | I **am** working |', '', 'После.'].join(
+          '\n',
+        ),
+      ),
+    ).toEqual([
+      {
+        kind: 'table',
+        head: [[{ kind: 'text', text: 'Кто' }], [{ kind: 'text', text: 'Утверждение' }]],
+        rows: [
+          [
+            [{ kind: 'text', text: 'I' }],
+            [
+              { kind: 'text', text: 'I ' },
+              { kind: 'strong', text: 'am' },
+              { kind: 'text', text: ' working' },
+            ],
+          ],
+        ],
+      },
+      { kind: 'paragraph', content: [{ kind: 'text', text: 'После.' }] },
+    ])
+  })
+
+  it('строка с | без разделителя — обычный текст', () => {
+    expect(parseMarkdown('| не таблица |')).toEqual([
+      { kind: 'paragraph', content: [{ kind: 'text', text: '| не таблица |' }] },
+    ])
+  })
+
+  it('примеры: фраза и перевод, через пустую строку', () => {
+    expect(
+      parseMarkdown(
+        [
+          '```example',
+          'Look! It is raining.',
+          'Смотри! Идёт дождь.',
+          '',
+          "I can't talk right now.",
+          'Не могу сейчас говорить:',
+          'я за рулём.',
+          '```',
+        ].join('\n'),
+      ),
+    ).toEqual([
+      {
+        kind: 'examples',
+        items: [
+          { en: 'Look! It is raining.', translation: 'Смотри! Идёт дождь.' },
+          { en: "I can't talk right now.", translation: 'Не могу сейчас говорить: я за рулём.' },
+        ],
+      },
+    ])
+  })
+
+  it('частые ошибки: неверно, верно, почему', () => {
+    expect(
+      parseMarkdown(
+        [
+          '```mistake',
+          'I working now.',
+          'I am working now.',
+          'Без am время не строится.',
+          '```',
+        ].join('\n'),
+      ),
+    ).toEqual([
+      {
+        kind: 'mistakes',
+        items: [
+          { wrong: 'I working now.', right: 'I am working now.', why: 'Без am время не строится.' },
+        ],
+      },
+    ])
+  })
+
+  it('заметка «> » — абзацем, абзац обрывается перед ней', () => {
+    expect(parseMarkdown('Текст.\n> **Сравни:** I work\n> и I am working.')).toEqual([
+      { kind: 'paragraph', content: [{ kind: 'text', text: 'Текст.' }] },
+      {
+        kind: 'note',
+        content: [
+          { kind: 'strong', text: 'Сравни:' },
+          { kind: 'text', text: ' I work и I am working.' },
+        ],
+      },
+    ])
+  })
+})
+
+describe('parseInline: слово-маркер', () => {
+  it('==слово== выделяется, `a == b` в коде — код', () => {
+    expect(parseInline('Маркеры: ==now== и ==at the moment==, сравни `a == b`.')).toEqual([
+      { kind: 'text', text: 'Маркеры: ' },
+      { kind: 'mark', text: 'now' },
+      { kind: 'text', text: ' и ' },
+      { kind: 'mark', text: 'at the moment' },
+      { kind: 'text', text: ', сравни ' },
+      { kind: 'code', text: 'a == b' },
+      { kind: 'text', text: '.' },
+    ])
+    expect(parseInline('a == b и c == d')).toEqual([{ kind: 'text', text: 'a == b и c == d' }])
+  })
+})

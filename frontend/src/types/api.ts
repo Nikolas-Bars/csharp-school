@@ -66,7 +66,7 @@ export interface LessonSummary {
   kind: LessonKind
   /** Сколько в уроке задач с кодом */
   tasks: number
-  /** Засчитываемые шаги: id задач и «quiz». Урок пройден, когда пройдены все */
+  /** Засчитываемые шаги: id задач и практик и «quiz». Урок пройден, когда пройдены все */
   steps: string[]
 }
 
@@ -79,7 +79,7 @@ export interface Lesson {
   steps: LessonStep[]
 }
 
-export type LessonStep = TheoryStep | TaskStep | QuizStep
+export type LessonStep = TheoryStep | TaskStep | PracticeStep | QuizStep | ExerciseQuizStep
 
 /** Экран теории: Markdown */
 export interface TheoryStep {
@@ -113,6 +113,79 @@ export interface QuizQuestion {
   answer: number
   explanation: string
 }
+
+/** Практика английского: упражнения по одному, проверка — в браузере (utils/answers.ts) */
+export interface PracticeStep {
+  type: 'practice'
+  id: string
+  exercises: Exercise[]
+}
+
+/** Проверка знаний в конце урока английского — те же упражнения, что в практике */
+export interface ExerciseQuizStep {
+  type: 'quiz'
+  exercises: Exercise[]
+}
+
+export type Exercise = ChoiceExercise | WrittenExercise
+
+interface ExerciseBase {
+  /** Задание: что сделать */
+  prompt: string
+  /** Почему верный ответ верный: после верного ответа и рядом с показанным ответом */
+  explanation: string
+}
+
+/** Выбрать вариант; у неверного варианта — объяснение, почему он не подходит */
+export interface ChoiceExercise extends ExerciseBase {
+  kind: 'choice'
+  options: { text: string; why: string | null }[]
+  answer: number
+}
+
+/** Частая ошибка и её объяснение */
+export interface Mistake {
+  answer: string
+  why: string
+}
+
+/** Ответ словами: правильные ответы, частые ошибки и подсказка для остальных неверных */
+interface WrittenBase extends ExerciseBase {
+  /** Правильные ответы; {a|b} — любой из вариантов */
+  accept: string[]
+  mistakes: Mistake[]
+  /** Неверный ответ не из mistakes — без готового ответа */
+  hint: string
+  /** Краткие и полные формы различаются (задание на краткую форму) */
+  exact: boolean
+}
+
+/** Вставить слово в пропуск ___ английской фразы */
+export interface GapExercise extends WrittenBase {
+  kind: 'gap'
+  text: string
+}
+
+/** Собрать фразу из плиток (бывают лишние) */
+export interface OrderExercise extends WrittenBase {
+  kind: 'order'
+  tiles: string[]
+}
+
+/** Перевести фразу с языка ученика на английский */
+export interface TranslateExercise extends WrittenBase {
+  kind: 'translate'
+  text: string
+}
+
+/** Найти слово с ошибкой (номер `wrong` среди слов `text` через пробел) и написать, как правильно */
+export interface FixExercise extends WrittenBase {
+  kind: 'fix'
+  text: string
+  wrong: number
+}
+
+export type WrittenExercise = GapExercise | OrderExercise | TranslateExercise | FixExercise
 
 /** Прогресс по курсу — CourseProgressResource модуля Progress (без кода решений) */
 export interface CourseProgress {

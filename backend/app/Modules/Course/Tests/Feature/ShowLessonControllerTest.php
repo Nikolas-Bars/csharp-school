@@ -42,6 +42,50 @@ final class ShowLessonControllerTest extends CourseTestCase
         self::assertStringNotContainsString('solution', (string) $response->getContent());
     }
 
+    public function testReturnsPracticeAndExerciseQuiz(): void
+    {
+        $this->importFixture();
+
+        $response = $this->getJson('/api/courses/other-course/modules/01-only/lessons/01-check')->assertOk();
+
+        $response->assertJsonPath('data.steps.0.type', 'practice')
+            ->assertJsonPath('data.steps.0.id', 'form')
+            ->assertJsonPath('data.steps.0.exercises.0', [
+                'kind'        => 'choice',
+                'prompt'      => 'Как сказать «Я сейчас читаю»?',
+                'explanation' => 'I → am, к глаголу -ing.',
+                'options'     => [['text' => 'I read now.', 'why' => 'Это Present Simple.'], ['text' => 'I am reading now.', 'why' => null]],
+                'answer'      => 1,
+            ])
+            ->assertJsonPath('data.steps.0.exercises.1', [
+                'kind'        => 'gap',
+                'prompt'      => 'Вставь глагол.',
+                'explanation' => 'she → is.',
+                'text'        => 'She ___ (cook) dinner now.',
+                'accept'      => ['is cooking'],
+                'mistakes'    => [['answer' => 'cooks', 'why' => 'now — нужен Continuous.']],
+                'hint'        => 'am / is / are + -ing.',
+                'exact'       => true,
+            ])
+            ->assertJsonPath('data.steps.1.type', 'quiz')
+            ->assertJsonPath('data.steps.1.exercises.0.tiles', ['doing', 'you', 'What', 'are'])
+            ->assertJsonPath('data.steps.1.exercises.0.exact', false)
+            ->assertJsonPath('data.steps.1.exercises.1.text', 'Я работаю.')
+            ->assertJsonPath('data.steps.1.exercises.2.text', 'She are waiting.')
+            ->assertJsonPath('data.steps.1.exercises.2.wrong', 1);
+        self::assertArrayNotHasKey('questions', (array) $response->json('data.steps.1'));
+    }
+
+    public function testExercisesInEnglishWithRussianFallback(): void
+    {
+        $this->importFixture();
+
+        $this->getJson('/api/courses/other-course/modules/01-only/lessons/01-check', ['Accept-Language' => 'en'])
+            ->assertJsonPath('data.steps.0.exercises.0.prompt', 'How do you say “I am reading now”?')
+            ->assertJsonPath('data.steps.0.exercises.0.explanation', 'I → am, к глаголу -ing.')
+            ->assertJsonPath('data.steps.1.exercises.1.text', 'I am working (translate).');
+    }
+
     public function testTheoryInEnglish(): void
     {
         $this->importFixture();

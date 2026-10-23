@@ -1,0 +1,22 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Я сейчас читаю»?", "en": "How do you say “I am reading now”?" },
+    "options": [
+      { "text": "I read now.", "why": { "ru": "Это Present Simple." } },
+      { "text": "I am reading now." }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "I → am, к глаголу -ing." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол." },
+    "text": "She ___ (cook) dinner now.",
+    "accept": ["is cooking"],
+    "mistakes": [{ "answer": "cooks", "why": { "ru": "now — нужен Continuous." } }],
+    "hint": { "ru": "am / is / are + -ing." },
+    "explanation": { "ru": "she → is." },
+    "forms": "exact"
+  }
+]
