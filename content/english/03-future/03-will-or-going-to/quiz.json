@@ -1,0 +1,57 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Билеты в кино на семь вечера уже куплены. Как сказать о планах?" },
+    "options": [
+      { "text": "We'll see a movie at seven tonight.", "why": { "ru": "will — решение, принятое прямо сейчас. А билеты уже куплены — это договорённость." } },
+      { "text": "We see a movie at seven tonight.", "why": { "ru": "We see — Present Simple, про то, что бывает обычно. Договорённость — Present Continuous." } },
+      { "text": "We're seeing a movie at seven tonight." },
+      { "text": "We're see a movie at seven tonight.", "why": { "ru": "После are глагол нужен с -ing: seeing." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "Время назначено, билеты куплены — договорённость: We're seeing a movie at seven tonight." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Друг: «I can't open this jar» — «Не могу открыть банку». Ты предлагаешь помощь. Вставь глагол try («попробовать»)." },
+    "text": "Give it to me. I ___ (try).",
+    "accept": ["will try"],
+    "mistakes": [
+      { "answer": "am going to try", "why": { "ru": "going to — для того, что решено раньше. Предложение помощи рождается прямо сейчас — will." } },
+      { "answer": "try", "why": { "ru": "I try — «я пробую обычно». Предложение на будущее — will." } },
+      { "answer": "am trying", "why": { "ru": "Так звучит «я пробую» прямо сейчас. Предложение — will." } },
+      { "answer": "will to try", "why": { "ru": "После will глагол идёт сразу, без to." } }
+    ],
+    "hint": { "ru": "Предложение помощи — решение прямо в разговоре. Какой способ для него?" },
+    "explanation": { "ru": "Предлагаешь помощь — will: I'll try." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Друг идёт, уткнувшись в телефон, а телефон выскальзывает из рук. Собери: «Ты сейчас уронишь телефон!» Одно слово лишнее." },
+    "tiles": ["drop", "your phone", "going", "You're", "to", "dropped"],
+    "accept": ["You're going to drop your phone"],
+    "mistakes": [
+      { "answer": "You're going to dropped your phone", "why": { "ru": "После to — начальная форма: drop. dropped — прошедшее время." } },
+      { "answer": "You're going drop your phone", "why": { "ru": "Пропущено to: going to + глагол." } }
+    ],
+    "hint": { "ru": "Признак виден прямо сейчас. Какой способ для прогноза по признакам?" },
+    "explanation": { "ru": "Телефон выскальзывает — признак. Прогноз по признакам — going to: You're going to drop your phone!" }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "В кафе тебе говорят, что бургеров сегодня нет. Ты решаешь прямо сейчас. Переведи на английский." },
+    "text": { "ru": "Тогда я возьму пиццу." },
+    "accept": [
+      "{Then|OK then|OK|So|In that case} I will {have|take|get|order} {the |a |}pizza",
+      "I will {have|take|get|order} {the |a |}pizza then"
+    ],
+    "mistakes": [
+      { "answer": "Then I am going to have the pizza", "why": { "ru": "going to — для того, что решено раньше. А ты решаешь прямо сейчас — will." } },
+      { "answer": "Then I take the pizza", "why": { "ru": "I take — Present Simple, про то, что бывает обычно. Решение прямо сейчас — will." } },
+      { "answer": "Then I am taking the pizza", "why": { "ru": "Present Continuous о будущем — для того, о чём договорились заранее. Решение прямо сейчас — will." } },
+      { "answer": "Then I will to have the pizza", "why": { "ru": "После will глагол идёт сразу, без to." } }
+    ],
+    "hint": { "ru": "Решение рождается прямо в разговоре. «Взять» в кафе — have или get." },
+    "explanation": { "ru": "Решение прямо сейчас — will: Then I'll have the pizza." }
+  }
+]

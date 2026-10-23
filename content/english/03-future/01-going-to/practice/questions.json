@@ -1,0 +1,76 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Друг несёт гору тарелок и спотыкается. Что ты крикнешь?" },
+    "options": [
+      { "text": "Watch out! You drop them!", "why": { "ru": "You drop — Present Simple, про то, что бывает обычно. А здесь прогноз: по признакам видно, что сейчас будет." } },
+      { "text": "Watch out! You going to drop them!", "why": { "ru": "Пропущен are: без него going to не работает." } },
+      { "text": "Watch out! You're going to drop them!" },
+      { "text": "Watch out! You're going to dropping them!", "why": { "ru": "После to — начальная форма, без -ing: drop." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "Друг спотыкается — это признак, видно, что сейчас будет. Прогноз по признакам — going to: You're going to drop them!" }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "По небу видно, что будет. Вставь глагол snow («идти — о снеге») с going to." },
+    "text": "Look at that gray sky! It ___ (snow).",
+    "accept": ["is going to snow"],
+    "mistakes": [
+      { "answer": "snows", "why": { "ru": "snows — про то, что бывает обычно: зимой здесь идёт снег. А тут прогноз по признакам — going to." } },
+      { "answer": "is snowing", "why": { "ru": "It's snowing — снег уже идёт. А по небу видно, что он только пойдёт: is going to snow." } },
+      { "answer": "are going to snow", "why": { "ru": "it — один предмет. С it нужен is." } },
+      { "answer": "is going to snowing", "why": { "ru": "После to — начальная форма, без -ing: snow." } },
+      { "answer": "will snow", "why": { "ru": "will — прогноз-мнение, когда признаков нет. А здесь признак виден прямо сейчас — серое небо, поэтому going to." } }
+    ],
+    "hint": { "ru": "Прогноз по признакам. Формула: am / is / are + going to + глагол. Погода — это it." },
+    "explanation": { "ru": "Серое небо — признак. Прогноз по признакам — going to: It's going to snow." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери вопрос «Что ты собираешься делать в эти выходные?» Одно слово лишнее." },
+    "tiles": ["do", "this weekend", "you", "What", "going to", "are", "is"],
+    "accept": ["What are you going to do this weekend"],
+    "mistakes": [
+      { "answer": "What you are going to do this weekend", "why": { "ru": "В вопросе are встаёт перед you: What are you…" } },
+      { "answer": "What is you going to do this weekend", "why": { "ru": "С you нужен are, а не is." } }
+    ],
+    "hint": { "ru": "Вопросительное слово — первым. А что в вопросе выходит вперёд, перед you?" },
+    "explanation": { "ru": "What + are + you + going to + do: в вопросе are встаёт перед you." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Я не собираюсь ему звонить." },
+    "accept": [
+      "I am not going to {call|phone} him",
+      "I am not going to give him a call",
+      "I {am not planning|do not plan} to {call|phone} him"
+    ],
+    "mistakes": [
+      { "answer": "I don't going to call him", "why": { "ru": "don't — для Present Simple. С going to отрицание строится с am: I'm not going to." } },
+      { "answer": "I am going not to call him", "why": { "ru": "not ставится сразу после am: I'm not going to." } },
+      { "answer": "I not going to call him", "why": { "ru": "Пропущен am: not само не работает." } },
+      { "answer": "I am not gonna call him", "why": { "ru": "gonna — так говорят в речи. Пишут полностью: going to." } },
+      { "answer": "I won't call him", "why": { "ru": "Так тоже можно сказать, но выйдет «не позвоню» — отказ или обещание. «Не собираюсь» — про намерение: I'm not going to." } },
+      { "answer": "I am not going to calling him", "why": { "ru": "После to — начальная форма, без -ing: call." } }
+    ],
+    "hint": { "ru": "«Не собираюсь» — going to с not. Куда встаёт not?" },
+    "explanation": { "ru": "not идёт после am, остальное не меняется: I'm not going to call him." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Ответь коротко «Нет»." },
+    "text": "— Are you going to play tonight? — No, ___.",
+    "accept": ["I am not{| going to| going to play}"],
+    "mistakes": [
+      { "answer": "I don't", "why": { "ru": "Вопрос был с are — и ответ с am / is / are. don't — для вопросов с do." } },
+      { "answer": "I won't", "why": { "ru": "Вопрос был с are — и краткий ответ с am: I'm not." } },
+      { "answer": "I amn't", "why": { "ru": "Формы amn't нет. С I говорят I'm not." } },
+      { "answer": "I not", "why": { "ru": "not само не работает — нужен am: I'm not." } },
+      { "answer": "I aren't", "why": { "ru": "aren't — для you, we, they. С I — I'm not." } }
+    ],
+    "hint": { "ru": "Краткий ответ повторяет помощника из вопроса. Какой он с I?" },
+    "explanation": { "ru": "Are you going to…? — No, I'm not. Можно и полностью: I am not." }
+  }
+]

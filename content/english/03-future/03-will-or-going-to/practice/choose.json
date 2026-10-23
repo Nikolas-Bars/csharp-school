@@ -1,0 +1,73 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "В каком предложении прогноз по признакам?" },
+    "options": [
+      { "text": "I think it will snow tomorrow.", "why": { "ru": "Это прогноз-мнение: I think — «я думаю». Признаков, которые видны прямо сейчас, здесь нет." } },
+      { "text": "Look at that sky! It's going to snow." },
+      { "text": "I'm sure you'll love it.", "why": { "ru": "Это мнение: I'm sure — «я уверен или уверена». Признаков здесь нет." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Look at that sky! — признак виден прямо сейчас. Поэтому going to: It's going to snow." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Это мнение о будущем. Вставь глагол like." },
+    "text": "I think you ___ (like) this game. It's really fun.",
+    "accept": ["will like", "are going to like"],
+    "mistakes": [
+      { "answer": "like", "why": { "ru": "you like — «тебе нравится» сейчас. А в игру ты ещё не играешь: это мнение о будущем — will like." } },
+      { "answer": "will likes", "why": { "ru": "После will — начальная форма, без -s." } },
+      { "answer": "will to like", "why": { "ru": "После will глагол идёт сразу, без to." } },
+      { "answer": "are liking", "why": { "ru": "like — глагол состояния, -ing с ним не ставят. И Present Continuous о будущем — только для договорённостей." } }
+    ],
+    "hint": { "ru": "I think — «я думаю». Какой способ чаще всего идёт с мнением?" },
+    "explanation": { "ru": "Мнение с I think — чаще всего will: I think you'll like this game. Засчитаем и are going to like." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Счёт 5:0, до конца матча минута. Переведи на английский." },
+    "text": { "ru": "Мы выиграем!" },
+    "accept": ["We are going to win{| the game| this game| the match| this match}"],
+    "mistakes": [
+      { "answer": "We will win", "why": { "ru": "will тоже понятно, но так звучит мнение. Когда признак виден прямо сейчас — счёт 5:0, — естественнее going to." } },
+      { "answer": "We win", "why": { "ru": "We win — про то, что бывает обычно: «мы (всегда) выигрываем». Прогноз — going to." } },
+      { "answer": "We are winning", "why": { "ru": "We're winning — «мы выигрываем» прямо сейчас. А «выиграем» — про конец матча: going to win." } },
+      { "answer": "We are gonna win", "why": { "ru": "gonna — так говорят в речи. Пишут полностью: going to." } },
+      { "answer": "We going to win", "why": { "ru": "Пропущен are: без него going to не работает." } }
+    ],
+    "hint": { "ru": "Счёт на табло — это признак. Какой способ для прогноза по признакам?" },
+    "explanation": { "ru": "Признак виден прямо сейчас — going to: We're going to win!" }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Встреча назначена. Собери: «В пятницу мы с Максом встречаемся в кафе». Одно слово лишнее." },
+    "tiles": ["on Friday", "meeting", "are", "Max and I", "at the cafe", "meet"],
+    "accept": [
+      "Max and I are meeting at the cafe on Friday",
+      "Max and I are meeting on Friday at the cafe",
+      "On Friday Max and I are meeting at the cafe"
+    ],
+    "mistakes": [
+      { "answer": "Max and I meet at the cafe on Friday", "why": { "ru": "Max and I meet — так говорят о привычке или расписании. Встреча назначена — это договорённость, Present Continuous: are meeting." } },
+      { "answer": "Max and I are meet at the cafe on Friday", "why": { "ru": "После are глагол нужен с -ing: meeting." } }
+    ],
+    "hint": { "ru": "Встреча назначена — какое время для договорённостей? «Мы с Максом» по-английски — Max and I." },
+    "explanation": { "ru": "Договорённость — Present Continuous: Max and I are meeting at the cafe on Friday." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "Ты прямо сейчас предлагаешь сделать бутерброд. Ошибка в глаголе — найди её и исправь." },
+    "text": "You look hungry. I make you a sandwich.",
+    "wrong": 4,
+    "accept": ["will make"],
+    "mistakes": [
+      { "answer": "am going to make", "why": { "ru": "going to — для того, что решено раньше. Предложение рождается прямо сейчас — will." } },
+      { "answer": "am making", "why": { "ru": "Так звучит «я делаю» прямо сейчас или «договорились». Предложение — will." } },
+      { "answer": "made", "why": { "ru": "made — прошедшее время. А бутерброда ещё нет: это предложение на будущее." } },
+      { "answer": "make", "why": { "ru": "Это то же слово. I make — «я делаю обычно». А это предложение на будущее." } }
+    ],
+    "hint": { "ru": "Предложение помощи — решение прямо сейчас. Какой способ сказать о будущем подходит для него?" },
+    "explanation": { "ru": "Предложение, рождённое в разговоре, — will: I'll make you a sandwich." }
+  }
+]

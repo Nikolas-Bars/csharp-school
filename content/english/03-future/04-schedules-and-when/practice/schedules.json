@@ -1,0 +1,64 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "По расписанию поезд отходит в 6:15. Как сказать?" },
+    "options": [
+      { "text": "The train leave at 6:15.", "why": { "ru": "train — это it, а с it к глаголу нужно -s: leaves." } },
+      { "text": "The train leaves at 6:15." },
+      { "text": "The train is leave at 6:15.", "why": { "ru": "is с обычным глаголом leave здесь не работает. Расписание — Present Simple: leaves." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Расписание — Present Simple, train = it → leaves." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Время сеанса — это расписание кинотеатра. Вставь глагол start в Present Simple." },
+    "text": "Hurry up! The movie ___ (start) in ten minutes.",
+    "accept": ["starts"],
+    "mistakes": [
+      { "answer": "start", "why": { "ru": "movie — это it, а с it к глаголу нужно -s." } },
+      { "answer": "is start", "why": { "ru": "is с обычным глаголом start здесь не работает. В Present Simple просто starts." } },
+      { "answer": "will start", "why": { "ru": "Так тоже можно сказать, но задание — Present Simple: время сеанса назначено расписанием." } },
+      { "answer": "is starting", "why": { "ru": "Так тоже можно сказать, но задание — Present Simple: время сеанса назначено расписанием." } }
+    ],
+    "hint": { "ru": "Расписание — Present Simple. movie — это it." },
+    "explanation": { "ru": "Время сеанса — расписание, Present Simple: The movie starts in ten minutes." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери вопрос «Во сколько начинается матч?» Одно слово лишнее." },
+    "tiles": ["does", "the game", "What time", "start", "starts"],
+    "accept": ["What time does the game start"],
+    "mistakes": [
+      { "answer": "What time does the game starts", "why": { "ru": "-s уже есть в does. Глагол после него — в начальной форме: start." } },
+      { "answer": "What time the game starts", "why": { "ru": "Без помощника вопроса нет: What time does the game start?" } },
+      { "answer": "What time the game does start", "why": { "ru": "does встаёт перед the game: What time does the game…" } }
+    ],
+    "hint": { "ru": "Без помощника вопроса в Present Simple нет. Какой он для the game? И какая тогда форма у start?" },
+    "explanation": { "ru": "What time + does + the game + start: game — это it, поэтому does, а глагол — без -s." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Это время из расписания. Переведи на английский в Present Simple." },
+    "text": { "ru": "Наш самолёт вылетает завтра в 7 утра." },
+    "accept": [
+      "Our {plane|flight} {leaves|takes off|departs} at {7|seven}{ am| in the morning| o'clock in the morning} tomorrow",
+      "Our {plane|flight} {leaves|takes off|departs} tomorrow at {7|seven}{ am| in the morning| o'clock in the morning}",
+      "Tomorrow our {plane|flight} {leaves|takes off|departs} at {7|seven}{ am| in the morning| o'clock in the morning}",
+      "Our {plane|flight} {leaves|takes off|departs} at {7|seven}{| o'clock} tomorrow morning",
+      "Our {plane|flight} {leaves|takes off|departs} tomorrow morning at {7|seven}{| o'clock}",
+      "Tomorrow morning our {plane|flight} {leaves|takes off|departs} at {7|seven}{| o'clock}"
+    ],
+    "mistakes": [
+      { "answer": "Our plane leave at 7 am tomorrow", "why": { "ru": "plane — это it, а с it к глаголу нужно -s: leaves." } },
+      { "answer": "Our flight leave at 7 am tomorrow", "why": { "ru": "flight — это it, а с it к глаголу нужно -s: leaves." } },
+      { "answer": "Our plane will leave at 7 am tomorrow", "why": { "ru": "Так тоже можно сказать, но задание — Present Simple: время вылета назначено расписанием." } },
+      { "answer": "Our flight will leave at 7 am tomorrow", "why": { "ru": "Так тоже можно сказать, но задание — Present Simple: время вылета назначено расписанием." } },
+      { "answer": "Our plane is leaving at 7 am tomorrow", "why": { "ru": "Так тоже можно сказать, но задание — Present Simple: время вылета назначено расписанием." } },
+      { "answer": "Our flight is leaving at 7 am tomorrow", "why": { "ru": "Так тоже можно сказать, но задание — Present Simple: время вылета назначено расписанием." } },
+      { "answer": "Our plane flies at 7 am tomorrow", "why": { "ru": "fly — «лететь», а «вылетать» по расписанию — leave или take off." } }
+    ],
+    "hint": { "ru": "Расписание — Present Simple. «Вылетать» — leave. Самолёт — это it." },
+    "explanation": { "ru": "Расписание — Present Simple: Our plane leaves at 7 a.m. tomorrow." }
+  }
+]

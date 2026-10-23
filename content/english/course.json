@@ -4,5 +4,5 @@
   "description": {
     "ru": "Когда какое время нужно, как построить вопрос и отрицание, где ошибаются русскоговорящие. Упражнения объясняют каждую ошибку, примеры можно послушать."
   },
-  "modules": ["01-simple-tenses", "02-present-continuous"]
+  "modules": ["01-simple-tenses", "02-present-continuous", "03-future"]
 }

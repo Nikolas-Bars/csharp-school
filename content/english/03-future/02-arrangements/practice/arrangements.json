@@ -1,0 +1,80 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Какое предложение — о договорённости на будущее?" },
+    "options": [
+      { "text": "I'm reading a book.", "why": { "ru": "Здесь нет слова о будущем. Это «я читаю книгу» — прямо сейчас или в эти дни." } },
+      { "text": "I meet Sam at the mall every Friday.", "why": { "ru": "every Friday — «каждую пятницу», это привычка. Present Simple." } },
+      { "text": "I'm meeting Sam at the mall at five tomorrow." },
+      { "text": "I met Sam at the mall yesterday.", "why": { "ru": "met и yesterday — это прошлое: «вчера встретился»." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "Present Continuous + tomorrow и точное время: о встрече уже договорились." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Визит к зубному врачу назначен. Вставь глагол see в Present Continuous." },
+    "text": "I ___ (see) the dentist at four tomorrow.",
+    "accept": ["am seeing"],
+    "mistakes": [
+      { "answer": "see", "why": { "ru": "I see — про то, что бывает обычно. Визит назначен — это договорённость, Present Continuous." } },
+      { "answer": "seeing", "why": { "ru": "Глагол с -ing один не работает: перед ним нужен am." } },
+      { "answer": "am see", "why": { "ru": "После am глагол нужен с -ing: seeing." } },
+      { "answer": "is seeing", "why": { "ru": "is — для he, she, it. С I нужен am." } },
+      { "answer": "will see", "why": { "ru": "will — решение, принятое прямо сейчас. А визит назначен заранее — Present Continuous." } },
+      { "answer": "am going to see", "why": { "ru": "Так тоже можно сказать, но задание — Present Continuous: визит уже назначен." } }
+    ],
+    "hint": { "ru": "Формула Present Continuous: am / is / are + глагол с -ing." },
+    "explanation": { "ru": "Время у врача назначено — договорённость: I'm seeing the dentist at four tomorrow." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Друг хочет узнать твои планы. Собери вопрос «Что ты делаешь в субботу?» Одно слово лишнее." },
+    "tiles": ["doing", "on Saturday", "are", "What", "you", "do"],
+    "accept": ["What are you doing on Saturday"],
+    "mistakes": [
+      { "answer": "What do you doing on Saturday", "why": { "ru": "do — для Present Simple. В Present Continuous вопрос строится с are." } },
+      { "answer": "What you are doing on Saturday", "why": { "ru": "В вопросе are встаёт перед you." } }
+    ],
+    "hint": { "ru": "Вопрос о планах — Present Continuous. Что выходит вперёд, перед you?" },
+    "explanation": { "ru": "What + are + you + doing: вопрос о планах на субботу — Present Continuous." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "С Томом уже договорились. Переведи на английский." },
+    "text": { "ru": "Завтра в шесть я встречаюсь с Томом." },
+    "accept": [
+      "I am {meeting|seeing|meeting with} Tom at {six|6}{| pm| o'clock} tomorrow",
+      "I am {meeting|seeing|meeting with} Tom tomorrow at {six|6}{| pm| o'clock}",
+      "Tomorrow I am {meeting|seeing|meeting with} Tom at {six|6}{| pm| o'clock}",
+      "Tomorrow at {six|6}{| pm| o'clock} I am {meeting|seeing|meeting with} Tom",
+      "I am going to {meet|see|meet with} Tom at {six|6}{| pm| o'clock} tomorrow",
+      "I am going to {meet|see|meet with} Tom tomorrow at {six|6}{| pm| o'clock}",
+      "Tomorrow I am going to {meet|see|meet with} Tom at {six|6}{| pm| o'clock}",
+      "Tomorrow at {six|6}{| pm| o'clock} I am going to {meet|see|meet with} Tom"
+    ],
+    "mistakes": [
+      { "answer": "I meet Tom at six tomorrow", "why": { "ru": "I meet — про то, что бывает обычно. О встрече договорились — нужен Present Continuous: I'm meeting." } },
+      { "answer": "Tomorrow at six I meet Tom", "why": { "ru": "I meet — про то, что бывает обычно. О встрече договорились — нужен Present Continuous: I'm meeting." } },
+      { "answer": "I will meet Tom at six tomorrow", "why": { "ru": "I will meet — «встречусь»: так звучит решение, принятое прямо сейчас. А встреча уже назначена — для договорённости нужен Present Continuous: I'm meeting." } },
+      { "answer": "I am meet Tom at six tomorrow", "why": { "ru": "После am глагол нужен с -ing: meeting." } },
+      { "answer": "I meeting Tom at six tomorrow", "why": { "ru": "Пропущен am: глагол с -ing один не работает." } }
+    ],
+    "hint": { "ru": "Встреча назначена — какое время для договорённостей? «Встречаться» — meet." },
+    "explanation": { "ru": "Договорённость — Present Continuous: I'm meeting Tom at six tomorrow. Засчитаем и I'm going to meet." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "Это вопрос о планах на пятницу в Present Continuous. Найди ошибку и исправь." },
+    "text": "Are you do anything on Friday night?",
+    "wrong": 2,
+    "accept": ["doing"],
+    "mistakes": [
+      { "answer": "does", "why": { "ru": "После are глагол нужен с -ing. does — помощник Present Simple." } },
+      { "answer": "did", "why": { "ru": "did — прошлое. А вопрос о планах на будущее, и после are нужен глагол с -ing." } },
+      { "answer": "do", "why": { "ru": "Это то же слово. Какая форма глагола идёт после are?" } }
+    ],
+    "hint": { "ru": "Формула Present Continuous: am / is / are + глагол с -ing." },
+    "explanation": { "ru": "После are — глагол с -ing: Are you doing anything on Friday night? — «У тебя есть планы на вечер пятницы?»" }
+  }
+]

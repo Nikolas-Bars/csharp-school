@@ -33,6 +33,15 @@ describe('clean', () => {
     expect(clean('twenty-one - two')).toBe('twenty-one two')
   })
 
+  it('время и okay пишут по-разному — это одно и то же', () => {
+    expect(clean('at 6 p.m.')).toBe('at 6 pm')
+    expect(clean('at 6:00 PM')).toBe('at 6 pm')
+    expect(clean('at 6pm')).toBe('at 6 pm')
+    expect(clean('at 8:00')).toBe('at 8')
+    expect(clean('Okay, I am 2 among them')).toBe('ok i am 2 among them')
+    expect(clean('I have 2 apples')).toBe('i have 2 apples')
+  })
+
   it('can not = cannot', () => {
     expect(clean('I can not swim')).toBe('i cannot swim')
   })

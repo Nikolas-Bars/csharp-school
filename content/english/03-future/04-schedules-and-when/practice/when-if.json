@@ -1,0 +1,72 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Когда приду домой, я тебе позвоню»?" },
+    "options": [
+      { "text": "When I will get home, I will call you.", "why": { "ru": "После when о будущем will не ставят: When I get home." } },
+      { "text": "When I get home, I'll call you." },
+      { "text": "When I get home, I call you.", "why": { "ru": "Без will в главной части выходит «я (всегда) звоню» — про привычку. Будущее — в главной части: I'll call you." } },
+      { "text": "When I'll get home, I'll call you.", "why": { "ru": "I'll — это I will. После when о будущем will не ставят: When I get home." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "В части с when — Present Simple (I get), в главной — will (I'll call)." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол rain («идти — о дожде»)." },
+    "text": "If it ___ (rain) tomorrow, we'll stay home.",
+    "accept": ["rains", "is raining", "is going to rain"],
+    "mistakes": [
+      { "answer": "will rain", "why": { "ru": "После if о будущем will не ставят. Нужен Present Simple: rains." } },
+      { "answer": "rain", "why": { "ru": "it — значит, к глаголу нужно -s: rains." } },
+      { "answer": "rained", "why": { "ru": "rained — прошедшее время. А речь о завтра: после if — Present Simple." } }
+    ],
+    "hint": { "ru": "После if о будущем — какое время? И не забудь про it." },
+    "explanation": { "ru": "После if — Present Simple: If it rains tomorrow. will — только в главной части: we'll stay home. Засчитаем и is raining или is going to rain, но чаще всего говорят просто rains." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "When I'll get home, I'll call you.",
+    "wrong": 1,
+    "accept": ["I"],
+    "mistakes": [
+      { "answer": "I will", "why": { "ru": "I'll — это и есть I will. После when о будущем will не ставят." } },
+      { "answer": "I'm", "why": { "ru": "I'm get — так не говорят: am с обычным глаголом get здесь не нужен." } }
+    ],
+    "hint": { "ru": "Посмотри на часть с when. Какое время там нужно, если речь о будущем?" },
+    "explanation": { "ru": "После when — Present Simple, без will: When I get home, I'll call you." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «Я сделаю уроки, перед тем как пойду гулять». Одно слово лишнее." },
+    "tiles": ["before", "my homework", "I'll do", "go out", "I", "will"],
+    "accept": ["I'll do my homework before I go out", "Before I go out I'll do my homework"],
+    "mistakes": [
+      { "answer": "I'll do my homework before I will go out", "why": { "ru": "После before о будущем will не ставят: before I go out." } },
+      { "answer": "Before I will go out I'll do my homework", "why": { "ru": "После before о будущем will не ставят: before I go out." } }
+    ],
+    "hint": { "ru": "before работает, как when: какое время после него?" },
+    "explanation": { "ru": "После before — Present Simple (I go out), will — только в главной части (I'll do)." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Если ты не поторопишься, ты опоздаешь." },
+    "accept": [
+      "If you don't hurry{| up} you {will|are going to} be late",
+      "You {will|are going to} be late if you don't hurry{| up}",
+      "Unless you hurry{| up} you {will|are going to} be late",
+      "You {will|are going to} be late unless you hurry{| up}"
+    ],
+    "mistakes": [
+      { "answer": "If you won't hurry you will be late", "why": { "ru": "После if о будущем will не ставят — и в отрицании тоже: If you don't hurry." } },
+      { "answer": "If you won't hurry up you will be late", "why": { "ru": "После if о будущем will не ставят — и в отрицании тоже: If you don't hurry." } },
+      { "answer": "If you don't hurry you are late", "why": { "ru": "you are late — «ты опаздываешь» сейчас. Будущее — в главной части: you'll be late." } },
+      { "answer": "If you don't hurry you will late", "why": { "ru": "Не хватает be: late — не глагол, а «поздний». Нужно will be late." } },
+      { "answer": "If you doesn't hurry you will be late", "why": { "ru": "doesn't — только для he, she, it. С you — don't." } }
+    ],
+    "hint": { "ru": "После if о будущем — какое время? «Опоздать» — be late." },
+    "explanation": { "ru": "После if — Present Simple: If you don't hurry. В главной части — will: you'll be late." }
+  }
+]

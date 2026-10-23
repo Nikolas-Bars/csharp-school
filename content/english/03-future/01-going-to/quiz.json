@@ -1,0 +1,62 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Друг спрашивает: «Why are you buying paint?» Покрасить комнату решено ещё на прошлой неделе. Что ответишь?" },
+    "options": [
+      { "text": "I'll paint my room.", "why": { "ru": "will — решение, принятое прямо сейчас. А покрасить комнату решено заранее — это going to." } },
+      { "text": "I'm going to paint my room." },
+      { "text": "I'm going to painting my room.", "why": { "ru": "После to — начальная форма, без -ing: paint." } },
+      { "text": "I going to paint my room.", "why": { "ru": "Пропущен am: без него going to не работает." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Решено раньше, ещё до разговора, — это намерение: I'm going to paint my room." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Мама уже решила: сегодня она не готовит. Поставь глагол в отрицание с going to." },
+    "text": "Mom ___ (not / cook) tonight. She's too tired.",
+    "accept": ["isn't going to cook"],
+    "mistakes": [
+      { "answer": "doesn't going to cook", "why": { "ru": "doesn't — для Present Simple. С going to отрицание строится с is: isn't going to." } },
+      { "answer": "not going to cook", "why": { "ru": "not само не работает — нужен is: isn't going to." } },
+      { "answer": "aren't going to cook", "why": { "ru": "Мама — один человек, это she. С she нужен is: isn't." } },
+      { "answer": "isn't going to cooking", "why": { "ru": "После to — начальная форма, без -ing: cook." } },
+      { "answer": "is going not to cook", "why": { "ru": "not ставится сразу после is: isn't going to." } },
+      { "answer": "won't cook", "why": { "ru": "Так тоже можно сказать, но задание — с going to: мама решила заранее." } },
+      { "answer": "isn't cooking", "why": { "ru": "Так тоже говорят о планах, но задание — с going to: isn't going to cook." } }
+    ],
+    "hint": { "ru": "Мама — это she. Куда в going to встаёт not?" },
+    "explanation": { "ru": "she → is, not сразу после него: Mom isn't going to cook tonight." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери вопрос «Ты собираешься прийти на мою вечеринку?» Одно слово лишнее." },
+    "tiles": ["come", "going to", "you", "to my party", "Are", "Do"],
+    "accept": ["Are you going to come to my party"],
+    "mistakes": [
+      { "answer": "Do you going to come to my party", "why": { "ru": "С going to вопрос строится с are, а не с do." } },
+      { "answer": "You are going to come to my party", "why": { "ru": "Это утверждение: «ты придёшь». В вопросе are встаёт перед you." } }
+    ],
+    "hint": { "ru": "Вопрос с going to — как в Present Continuous. Что встаёт первым?" },
+    "explanation": { "ru": "Are + you + going to + come: are выходит вперёд, перед you." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Посмотри на эти тучи! Сейчас пойдёт дождь." },
+    "accept": [
+      "Look at {those|these|the} {clouds|dark clouds} it is going to rain{| soon}",
+      "Look at {those|these|the} {clouds|dark clouds} it is about to rain"
+    ],
+    "mistakes": [
+      { "answer": "Look at those clouds it will rain", "why": { "ru": "Так тоже иногда говорят, но когда признак виден прямо сейчас — тучи, — естественнее going to." } },
+      { "answer": "Look at those clouds it is raining", "why": { "ru": "It's raining — дождь уже идёт. А он только пойдёт: it's going to rain." } },
+      { "answer": "Look at those clouds it rains", "why": { "ru": "it rains — про то, что дожди бывают вообще. Прогноз по признакам — going to." } },
+      { "answer": "Look at those clouds it is gonna rain", "why": { "ru": "gonna — так говорят в речи. Пишут полностью: going to." } },
+      { "answer": "Look at those clouds it is going to raining", "why": { "ru": "После to — начальная форма, без -ing: rain." } },
+      { "answer": "Look at those clouds going to rain", "why": { "ru": "Погода по-английски начинается с it, а перед going to нужен is: it's going to rain." } }
+    ],
+    "hint": { "ru": "Тучи — признак. Погода начинается с it. «Посмотри на» — look at." },
+    "explanation": { "ru": "Прогноз по признакам — going to: Look at those clouds! It's going to rain." }
+  }
+]

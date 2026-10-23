@@ -1,0 +1,78 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Я собираюсь купить новый телефон»?" },
+    "options": [
+      { "text": "I going to buy a new phone.", "why": { "ru": "Пропущен am: без am / is / are going to не работает." } },
+      { "text": "I'm going to buy a new phone." },
+      { "text": "I'm going to buying a new phone.", "why": { "ru": "После to — начальная форма глагола, без -ing: buy." } },
+      { "text": "I'm going buy a new phone.", "why": { "ru": "Пропущено to: going to + глагол." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "I → am, дальше going to и глагол в начальной форме: I'm going to buy." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Брат решил это ещё на прошлой неделе. Вставь глагол paint («красить») с going to." },
+    "text": "My brother ___ (paint) his room on the weekend.",
+    "accept": ["is going to paint"],
+    "mistakes": [
+      { "answer": "are going to paint", "why": { "ru": "brother — один человек, это he. С he нужен is." } },
+      { "answer": "going to paint", "why": { "ru": "Пропущен is: без am / is / are going to не работает." } },
+      { "answer": "is going to painting", "why": { "ru": "После to — начальная форма глагола, без -ing: paint." } },
+      { "answer": "is going to paints", "why": { "ru": "После to — начальная форма глагола, без -s: paint." } },
+      { "answer": "is going paint", "why": { "ru": "Пропущено to: going to + глагол." } },
+      { "answer": "will paint", "why": { "ru": "will — решение, которое принимают прямо сейчас. А брат решил заранее — это going to." } },
+      { "answer": "is painting", "why": { "ru": "Так тоже говорят о планах — это разберём в следующем уроке. Но здесь задание — с going to." } }
+    ],
+    "hint": { "ru": "brother — это he. Формула: am / is / are + going to + глагол." },
+    "explanation": { "ru": "Решено заранее — going to. brother = he → is: is going to paint. Коротко — 's going to paint." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери фразу «Мы собираемся устроить вечеринку в субботу». Одно слово лишнее." },
+    "tiles": ["have", "on Saturday", "going", "We", "a party", "to", "are", "is"],
+    "accept": ["We are going to have a party on Saturday", "On Saturday we are going to have a party"],
+    "mistakes": [
+      { "answer": "We is going to have a party on Saturday", "why": { "ru": "we — «мы», с ними нужен are." } },
+      { "answer": "We are going have a party on Saturday", "why": { "ru": "Пропущено to: going to + глагол." } },
+      { "answer": "We going to have a party on Saturday", "why": { "ru": "Пропущен are: без него going to не работает." } },
+      { "answer": "Are we going to have a party on Saturday", "why": { "ru": "Это вопрос: «Мы собираемся…?» А нужно утверждение — в нём are стоит после we." } }
+    ],
+    "hint": { "ru": "С we — какой из am / is / are? А после going нужно ещё одно короткое слово." },
+    "explanation": { "ru": "We + are + going to + have: are — для we, после to — глагол в начальной форме." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "She is going to buys a new bike.",
+    "wrong": 4,
+    "accept": ["buy"],
+    "mistakes": [
+      { "answer": "buying", "why": { "ru": "После to — начальная форма, без -ing." } },
+      { "answer": "bought", "why": { "ru": "bought — прошедшее время. После to — начальная форма." } },
+      { "answer": "buys", "why": { "ru": "Это то же слово. -s уже не нужно: время и «она» показывает is." } }
+    ],
+    "hint": { "ru": "Какая форма глагола идёт после going to?" },
+    "explanation": { "ru": "После going to — глагол в начальной форме, как в словаре: She is going to buy a new bike." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "План уже есть. Переведи на английский." },
+    "text": { "ru": "Я собираюсь учить японский." },
+    "accept": [
+      "I am going to {learn|study} Japanese",
+      "I {plan|am planning} to {learn|study} Japanese"
+    ],
+    "mistakes": [
+      { "answer": "I going to learn Japanese", "why": { "ru": "Пропущен am: без него going to не работает." } },
+      { "answer": "I am going to learning Japanese", "why": { "ru": "После to — начальная форма, без -ing: learn." } },
+      { "answer": "I am going learn Japanese", "why": { "ru": "Пропущено to: going to + глагол." } },
+      { "answer": "I am gonna learn Japanese", "why": { "ru": "gonna — так говорят в речи. Пишут полностью: going to." } },
+      { "answer": "I will learn Japanese", "why": { "ru": "will — «выучу»: решение, принятое прямо сейчас, или обещание. «Собираюсь» — план, решённый раньше: going to." } },
+      { "answer": "I am learning Japanese", "why": { "ru": "Это «я учу японский» — уже сейчас, в эти дни. «Собираюсь» — про будущее: going to learn." } }
+    ],
+    "hint": { "ru": "«Собираюсь» — какой способ сказать о будущем? С I — какой из am / is / are?" },
+    "explanation": { "ru": "«Собираюсь» — going to: I'm going to learn Japanese." }
+  }
+]

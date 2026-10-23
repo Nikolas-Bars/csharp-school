@@ -1,0 +1,139 @@
+[
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Подруга уже решила, кем станет. Вставь глагол be с going to." },
+    "text": "My best friend ___ (be) a doctor when she grows up.",
+    "accept": ["is going to be"],
+    "mistakes": [
+      { "answer": "are going to be", "why": { "ru": "friend — один человек, здесь she. С she нужен is." } },
+      { "answer": "going to be", "why": { "ru": "Пропущен is: без него going to не работает." } },
+      { "answer": "is going be", "why": { "ru": "Пропущено to: going to + глагол." } },
+      { "answer": "is going to is", "why": { "ru": "После to — начальная форма. У is она be: going to be." } },
+      { "answer": "will be", "why": { "ru": "will так звучит как мнение или прогноз. А подруга уже решила — это намерение, и задание — с going to." } }
+    ],
+    "hint": { "ru": "friend здесь — she. Формула: am / is / are + going to + глагол." },
+    "explanation": { "ru": "Решено заранее — намерение: She's going to be a doctor. А после when — Present Simple: when she grows up." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "У друга заряд телефона — 1%. Что скажешь?" },
+    "options": [
+      { "text": "Your phone dies.", "why": { "ru": "dies — Present Simple, про то, что бывает обычно. А здесь прогноз по признакам — going to." } },
+      { "text": "Your phone going to die.", "why": { "ru": "Пропущен is: без него going to не работает." } },
+      { "text": "Your phone is going to dying.", "why": { "ru": "После to — начальная форма, без -ing: die." } },
+      { "text": "Your phone is going to die." }
+    ],
+    "answer": 3,
+    "explanation": { "ru": "1% заряда — признак. Прогноз по признакам — going to: Your phone is going to die." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Договорились заранее. Собери: «Завтра мы обедаем у бабушки». Одно слово лишнее." },
+    "tiles": ["at Grandma's", "having", "lunch", "We're", "tomorrow", "have"],
+    "accept": ["We're having lunch at Grandma's tomorrow", "Tomorrow we're having lunch at Grandma's"],
+    "mistakes": [
+      { "answer": "We're have lunch at Grandma's tomorrow", "why": { "ru": "После are (we're) глагол нужен с -ing: having." } },
+      { "answer": "Tomorrow we're have lunch at Grandma's", "why": { "ru": "После are (we're) глагол нужен с -ing: having." } }
+    ],
+    "hint": { "ru": "Договорённость — Present Continuous. Какая форма глагола после we're?" },
+    "explanation": { "ru": "Договорённость — Present Continuous: We're having lunch at Grandma's tomorrow. have lunch — «обедать», это действие, с ним -ing можно." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Друг уронил стопку книг. Ты предлагаешь помощь. Переведи на английский." },
+    "text": { "ru": "Я помогу!" },
+    "accept": ["I will help{| you}", "Let me help{| you}"],
+    "mistakes": [
+      { "answer": "I am going to help you", "why": { "ru": "going to — для того, что решено раньше. Предложение помощи рождается прямо сейчас — will." } },
+      { "answer": "I am going to help", "why": { "ru": "going to — для того, что решено раньше. Предложение помощи рождается прямо сейчас — will." } },
+      { "answer": "I help you", "why": { "ru": "I help — «я помогаю» вообще, обычно. Предложение на будущее — will." } },
+      { "answer": "I am helping you", "why": { "ru": "Так звучит «я помогаю» прямо сейчас. Предложение — will: I'll help." } },
+      { "answer": "I will to help you", "why": { "ru": "После will глагол идёт сразу, без to." } }
+    ],
+    "hint": { "ru": "Предложение помощи — решение прямо в разговоре. Какой способ для него?" },
+    "explanation": { "ru": "Предлагаешь помощь — will: I'll help!" }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Признаков нет — это просто мнение. Вставь глагол love («очень понравиться»)." },
+    "text": "I think you ___ (love) this book. It's really funny.",
+    "accept": ["will love", "are going to love"],
+    "mistakes": [
+      { "answer": "love", "why": { "ru": "you love — «тебе нравится» сейчас. А книгу ты ещё не читаешь: мнение о будущем — will love." } },
+      { "answer": "are loving", "why": { "ru": "love — глагол состояния, -ing с ним обычно не ставят. Мнение о будущем — will love." } },
+      { "answer": "will loves", "why": { "ru": "После will — начальная форма, без -s." } }
+    ],
+    "hint": { "ru": "I think — «я думаю». Какой способ чаще всего идёт с мнением?" },
+    "explanation": { "ru": "Мнение с I think — чаще всего will: I think you'll love this book. Засчитаем и are going to love." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол end («закончиться»)." },
+    "text": "I'll call you when the game ___ (end).",
+    "accept": ["ends"],
+    "mistakes": [
+      { "answer": "will end", "why": { "ru": "После when о будущем will не ставят. Нужен Present Simple: ends." } },
+      { "answer": "end", "why": { "ru": "game — это it, а с it к глаголу нужно -s: ends." } },
+      { "answer": "ended", "why": { "ru": "ended — прошедшее время. А матч ещё не закончился: после when — Present Simple." } },
+      { "answer": "is going to end", "why": { "ru": "После when о будущем — Present Simple, без will и без going to: ends." } }
+    ],
+    "hint": { "ru": "После when о будущем — какое время? И game — это he, she или it?" },
+    "explanation": { "ru": "После when — Present Simple: when the game ends. will — только в главной части: I'll call you." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В вопросе одна ошибка. Найди её и исправь." },
+    "text": "What time does the concert starts?",
+    "wrong": 5,
+    "accept": ["start"],
+    "mistakes": [
+      { "answer": "starting", "why": { "ru": "После does — начальная форма, без -ing." } },
+      { "answer": "started", "why": { "ru": "started — прошедшее время. После does — начальная форма." } },
+      { "answer": "starts", "why": { "ru": "Это то же слово. -s уже есть в does, второй раз его не пишут." } }
+    ],
+    "hint": { "ru": "Что уже несёт does? Нужно ли это ещё раз в глаголе?" },
+    "explanation": { "ru": "Время концерта — расписание, Present Simple. -s уже в does, поэтому глагол — в начальной форме: What time does the concert start?" }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Я не собираюсь сдаваться." },
+    "accept": ["I am not going to {give up|quit}"],
+    "mistakes": [
+      { "answer": "I don't going to give up", "why": { "ru": "don't — для Present Simple. С going to отрицание строится с am: I'm not going to." } },
+      { "answer": "I not going to give up", "why": { "ru": "Пропущен am: not само не работает." } },
+      { "answer": "I am not going to giving up", "why": { "ru": "После to — начальная форма, без -ing: give up." } },
+      { "answer": "I am going not to give up", "why": { "ru": "not ставится сразу после am: I'm not going to." } },
+      { "answer": "I am not gonna give up", "why": { "ru": "gonna — так говорят в речи. Пишут полностью: going to." } },
+      { "answer": "I won't give up", "why": { "ru": "Так тоже можно сказать, но выйдет «не сдамся» — обещание. «Не собираюсь» — про намерение: I'm not going to." } },
+      { "answer": "I am not giving up", "why": { "ru": "Так тоже говорят — «я не сдаюсь». Но «не собираюсь» — это going to: I'm not going to give up." } }
+    ],
+    "hint": { "ru": "«Не собираюсь» — going to с not. «Сдаваться» — give up." },
+    "explanation": { "ru": "«Не собираюсь» — I'm not going to: I'm not going to give up." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Поставь глагол в отрицание." },
+    "text": "If you ___ (not / like) the movie, we can leave.",
+    "accept": ["don't like"],
+    "mistakes": [
+      { "answer": "won't like", "why": { "ru": "После if о будущем will не ставят — и в отрицании тоже. Нужен Present Simple: don't like." } },
+      { "answer": "doesn't like", "why": { "ru": "doesn't — только для he, she, it. С you — don't." } },
+      { "answer": "not like", "why": { "ru": "Без помощника отрицание с обычным глаголом не строится: don't like." } },
+      { "answer": "aren't like", "why": { "ru": "like — обычный глагол, не be. Отрицание с ним — don't." } }
+    ],
+    "hint": { "ru": "После if о будущем — Present Simple. Какой помощник для отрицания с you?" },
+    "explanation": { "ru": "После if — Present Simple: If you don't like the movie." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Друг зовёт: «Do you want to hang out on Saturday?» («Погуляем в субботу?») Но на субботу уже назначена встреча с двоюродным братом. Что ответишь?" },
+    "options": [
+      { "text": "Sorry, I meet my cousin on Saturday.", "why": { "ru": "I meet — Present Simple, так говорят о привычке или расписании. Встреча назначена — Present Continuous." } },
+      { "text": "Sorry, I'll meet my cousin on Saturday.", "why": { "ru": "will так звучит, будто ты решаешь прямо сейчас. А встреча уже назначена — Present Continuous." } },
+      { "text": "Sorry, I'm meeting my cousin on Saturday." }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "Встреча назначена — договорённость: I'm meeting my cousin on Saturday." }
+  }
+]
