@@ -1,0 +1,13 @@
+{
+  "title": { "ru": "Временное, отрицания и вопросы" },
+  "steps": [
+    { "type": "theory", "text": { "ru": "01-temporary.ru.md" } },
+    { "type": "practice", "id": "temporary", "file": "practice/temporary.json" },
+    { "type": "theory", "text": { "ru": "02-negative.ru.md" } },
+    { "type": "theory", "text": { "ru": "03-questions.ru.md" } },
+    { "type": "theory", "text": { "ru": "04-short-answers.ru.md" } },
+    { "type": "practice", "id": "questions", "file": "practice/questions.json" },
+    { "type": "theory", "text": { "ru": "05-mistakes.ru.md" } },
+    { "type": "quiz", "file": "quiz.json" }
+  ]
+}

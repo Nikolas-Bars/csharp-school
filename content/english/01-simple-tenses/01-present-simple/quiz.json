@@ -13,26 +13,31 @@
   },
   {
     "kind": "gap",
-    "prompt": { "ru": "Поставь глагол в отрицание." },
+    "prompt": { "ru": "Поставь глагол в отрицание в Present Simple." },
     "text": "Tom ___ (not / like) cold weather.",
     "accept": ["doesn't like"],
     "mistakes": [
       { "answer": "don't like", "why": { "ru": "Tom — «он», значит doesn't." } },
       { "answer": "doesn't likes", "why": { "ru": "После doesn't глагол без -s." } },
-      { "answer": "not likes", "why": { "ru": "Отрицание строится с вспомогательным глаголом: doesn't like." } }
+      { "answer": "not likes", "why": { "ru": "Отрицание строится со вспомогательным глаголом: doesn't like." } },
+      { "answer": "didn't like", "why": { "ru": "Это другое время. Нужен Present Simple: Tom = he → doesn't like." } },
+      { "answer": "won't like", "why": { "ru": "Это другое время. Нужен Present Simple: Tom = he → doesn't like." } }
     ],
     "hint": { "ru": "Tom — это he. Отрицание: doesn't + глагол без -s." },
     "explanation": { "ru": "Tom = he → doesn't like. Можно и полностью: does not like." }
   },
   {
     "kind": "fix",
-    "prompt": { "ru": "В вопросе одна ошибка. Найди её и исправь." },
+    "prompt": { "ru": "Вопрос в Present Simple, в нём одна ошибка — в глаголе. Найди её и исправь." },
     "text": "Do he play the guitar?",
     "wrong": 0,
     "accept": ["Does"],
     "mistakes": [
       { "answer": "Is", "why": { "ru": "Вопрос с обычным глаголом play строится с do или does, а не с is." } },
-      { "answer": "Do", "why": { "ru": "Это то же слово. he — какой вспомогательный глагол нужен с ним?" } }
+      { "answer": "Do", "why": { "ru": "Это то же слово. he — какой вспомогательный глагол нужен с ним?" } },
+      { "answer": "Did", "why": { "ru": "Так тоже можно спросить, но это уже другой вопрос. Здесь нужен Present Simple: с he — does." } },
+      { "answer": "Will", "why": { "ru": "Так тоже можно спросить, но это уже другой вопрос. Здесь нужен Present Simple: с he — does." } },
+      { "answer": "Can", "why": { "ru": "Так тоже можно спросить, но это уже другой вопрос. Здесь нужен Present Simple: с he — does." } }
     ],
     "hint": { "ru": "he — значит, вспомогательный глагол тоже с -s." },
     "explanation": { "ru": "С he — does: Does he play the guitar?" }
@@ -42,8 +47,8 @@
     "prompt": { "ru": "Переведи на английский." },
     "text": { "ru": "Мы обычно ужинаем в восемь." },
     "accept": [
-      "We usually {have|eat} {dinner|supper} at {eight|8|8 00}{| o'clock| pm| p m}",
-      "Usually we {have|eat} {dinner|supper} at {eight|8|8 00}{| o'clock| pm| p m}"
+      "We usually {have|eat} {dinner|supper} at {eight|8|8 00|8pm|8p m}{| o'clock| pm| p m| in the evening}",
+      "Usually we {have|eat} {dinner|supper} at {eight|8|8 00|8pm|8p m}{| o'clock| pm| p m| in the evening}"
     ],
     "mistakes": [
       { "answer": "We have usually dinner at eight", "why": { "ru": "usually стоит перед глаголом: We usually have dinner." } },

@@ -1,0 +1,75 @@
+[
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери вопрос «Куда вы ходили в субботу?» Одно слово лишнее." },
+    "tiles": ["go", "did", "on Saturday", "you", "went", "Where"],
+    "accept": ["Where did you go on Saturday", "On Saturday where did you go"],
+    "mistakes": [
+      { "answer": "Where did you went on Saturday", "why": { "ru": "Прошлое уже показал did. Глагол после него — в начальной форме: go." } },
+      { "answer": "Where you went on Saturday", "why": { "ru": "В вопросе нужен вспомогательный глагол did: Where did you go?" } },
+      { "answer": "Where you did go on Saturday", "why": { "ru": "did встаёт перед you: «Where did you…», а не «Where you did…»." } }
+    ],
+    "hint": { "ru": "Порядок в вопросе: вопросительное слово → did → кто → глагол в начальной форме." },
+    "explanation": { "ru": "Where + did + you + go: did показывает прошлое, а глагол после него — в начальной форме." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Поставь глагол в отрицание." },
+    "text": "I ___ (not / see) Max at school yesterday.",
+    "accept": ["didn't see"],
+    "mistakes": [
+      { "answer": "didn't saw", "why": { "ru": "Прошлое уже показал didn't. Глагол после него — в начальной форме: see." } },
+      { "answer": "don't see", "why": { "ru": "don't — для настоящего времени. yesterday — прошлое, нужно didn't." } },
+      { "answer": "not saw", "why": { "ru": "Отрицание строится со вспомогательным глаголом: didn't see." } },
+      { "answer": "wasn't see", "why": { "ru": "wasn't — от be. С обычным глаголом see отрицание в прошлом — didn't." } }
+    ],
+    "hint": { "ru": "Отрицание в прошлом: didn't + глагол в начальной форме." },
+    "explanation": { "ru": "didn't уже показывает прошлое, поэтому see — в начальной форме. Можно и полностью: did not see." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Тебя спросили: «Did you finish your homework?» Как коротко ответить «Да»?" },
+    "options": [
+      { "text": "Yes, I finished.", "why": { "ru": "В кратком ответе повторяют вспомогательный глагол из вопроса, а не основной." } },
+      { "text": "Yes, I do.", "why": { "ru": "Вопрос про прошлое, с did — и ответ с did. do — для настоящего." } },
+      { "text": "Yes, I did." },
+      { "text": "Yes, I was.", "why": { "ru": "was — для вопросов с was / were. Вопрос был с did — и ответ с did." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "Краткий ответ повторяет вспомогательный глагол вопроса: Did you…? — Yes, I did." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Она не пришла на вечеринку." },
+    "accept": [
+      "She didn't {come|go} to the party",
+      "She didn't {show up|turn up} {to|at} the party",
+      "She never {came|went} to the party",
+      "She never {showed up|turned up} {to|at} the party",
+      "She didn't make it to the party"
+    ],
+    "mistakes": [
+      { "answer": "She didn't came to the party", "why": { "ru": "Прошлое уже показал didn't. Глагол после него — в начальной форме: come." } },
+      { "answer": "She not came to the party", "why": { "ru": "Отрицание строится со вспомогательным глаголом: didn't come." } },
+      { "answer": "She doesn't come to the party", "why": { "ru": "doesn't — для настоящего, про «обычно». А вечеринка уже была — нужно didn't." } },
+      { "answer": "She wasn't come to the party", "why": { "ru": "wasn't — от be. С обычным глаголом come отрицание в прошлом — didn't." } }
+    ],
+    "hint": { "ru": "Отрицание в прошлом: didn't + глагол в начальной форме." },
+    "explanation": { "ru": "She didn't come to the party: didn't — для всех, глагол после него — в начальной форме." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "Вопрос в Past Simple. Ошибка в глаголе — найди её и исправь." },
+    "text": "Was you at home last night?",
+    "wrong": 0,
+    "accept": ["Were"],
+    "mistakes": [
+      { "answer": "Did", "why": { "ru": "С be did не нужен: was и were сами встают вперёд. Осталось выбрать форму для you." } },
+      { "answer": "Are", "why": { "ru": "are — настоящее время. last night — прошлое." } },
+      { "answer": "Was", "why": { "ru": "Это то же слово. Какая форма be в прошлом нужна с you?" } }
+    ],
+    "hint": { "ru": "У be в прошлом две формы: was — с I, he, she, it, were — с you, we, they." },
+    "explanation": { "ru": "you → were: Were you at home last night?" }
+  }
+]

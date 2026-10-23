@@ -1,0 +1,71 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Я помогу тебе»?" },
+    "options": [
+      { "text": "I will to help you.", "why": { "ru": "После will глагол идёт сразу, без to." } },
+      { "text": "I will helping you.", "why": { "ru": "После will — начальная форма, как в словаре, без -ing: help." } },
+      { "text": "I will help you." },
+      { "text": "I am help you.", "why": { "ru": "am с обычным глаголом help здесь не работает. Будущее строится с will." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "will + глагол в начальной форме: I will help you. Коротко — I'll help you." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Пообещай: поставь глагол в отрицание." },
+    "text": "Don't worry, I ___ (not / tell) anyone.",
+    "accept": ["won't tell"],
+    "mistakes": [
+      { "answer": "won't to tell", "why": { "ru": "После won't глагол идёт сразу, без to." } },
+      { "answer": "not will tell", "why": { "ru": "not ставится после will, а не перед ним: will not, коротко — won't." } },
+      { "answer": "don't tell", "why": { "ru": "don't tell — «я вообще не рассказываю», про то, что бывает обычно. Обещание на будущее — с will: won't tell." } },
+      { "answer": "won't tells", "why": { "ru": "После won't — начальная форма, без -s." } },
+      { "answer": "didn't tell", "why": { "ru": "didn't tell — «я не рассказал», про прошлое. А обещание — про будущее: won't tell." } }
+    ],
+    "hint": { "ru": "Обещание — это будущее. Какое слово строит будущее и куда в отрицании встаёт not?" },
+    "explanation": { "ru": "Обещание «не сделаю» — won't + начальная форма: won't tell. Можно и полностью: will not tell." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери вопрос «Ты поможешь мне завтра?» Одно слово лишнее." },
+    "tiles": ["help", "tomorrow", "me", "Will", "you", "to"],
+    "accept": ["Will you help me tomorrow", "Tomorrow will you help me"],
+    "mistakes": [
+      { "answer": "Will you to help me tomorrow", "why": { "ru": "После will глагол идёт сразу, без to." } },
+      { "answer": "You will help me tomorrow", "why": { "ru": "Это утверждение: «ты поможешь мне завтра». В вопросе will встаёт перед you." } }
+    ],
+    "hint": { "ru": "В вопросе will стоит первым, потом — кто, потом — глагол." },
+    "explanation": { "ru": "Will + you + help: will встаёт перед тем, кто делает, а глагол после него — без to." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "She will goes to the party tomorrow.",
+    "wrong": 2,
+    "accept": ["go"],
+    "mistakes": [
+      { "answer": "going", "why": { "ru": "После will — начальная форма, без -ing." } },
+      { "answer": "went", "why": { "ru": "went — прошедшее время. После will — начальная форма." } },
+      { "answer": "goes", "why": { "ru": "Это то же слово. После will глагол без -s, даже с she." } }
+    ],
+    "hint": { "ru": "Какая форма глагола идёт после will?" },
+    "explanation": { "ru": "will один для всех, и глагол после него — в начальной форме: She will go." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Мы будем дома в шесть." },
+    "accept": [
+      "We will be {home|at home} at {six|6|6 00|6pm|6p m}{| o'clock| pm| p m| in the evening}",
+      "We are going to be {home|at home} at {six|6|6 00|6pm|6p m}{| o'clock| pm| p m| in the evening}"
+    ],
+    "mistakes": [
+      { "answer": "We will at home at six", "why": { "ru": "Не хватает глагола be — «быть». will только показывает будущее, а «быть» нужно сказать отдельно: will be." } },
+      { "answer": "We will home at six", "why": { "ru": "Не хватает глагола be — «быть»: will be home." } },
+      { "answer": "We will are at home at six", "why": { "ru": "После will — начальная форма. У are она be: will be." } }
+    ],
+    "hint": { "ru": "will только показывает будущее. «Быть дома» нужно сказать отдельным глаголом — каким?" },
+    "explanation": { "ru": "will + be: We will be home at six. Коротко — We'll be home at six." }
+  }
+]

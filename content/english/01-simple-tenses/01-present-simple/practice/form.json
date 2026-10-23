@@ -13,13 +13,14 @@
   },
   {
     "kind": "gap",
-    "prompt": { "ru": "Вставь глагол watch («смотреть») в нужной форме." },
+    "prompt": { "ru": "Вставь глагол watch («смотреть») в Present Simple." },
     "text": "My brother ___ (watch) TV every evening.",
     "accept": ["watches"],
     "mistakes": [
       { "answer": "watchs", "why": { "ru": "После ch пишется -es, а не -s: watch → watches." } },
       { "answer": "watch", "why": { "ru": "brother — это «он», значит к глаголу нужно -s." } },
-      { "answer": "is watching", "why": { "ru": "every evening — «каждый вечер», это привычка. Нужен Present Simple." } }
+      { "answer": "is watching", "why": { "ru": "every evening — «каждый вечер», это привычка. Нужен Present Simple." } },
+      { "answer": "watched", "why": { "ru": "watched — прошедшее время. every evening — привычка сейчас, нужен Present Simple: watches." } }
     ],
     "hint": { "ru": "brother — это he. С he к глаголу добавляется -s, а после ch — -es." },
     "explanation": { "ru": "brother = he, а после ch пишется -es: watches." }
@@ -45,21 +46,23 @@
     "mistakes": [
       { "answer": "He don't like coffee", "why": { "ru": "С he нужен does: doesn't, а не don't." } },
       { "answer": "He doesn't likes coffee", "why": { "ru": "После doesn't глагол без -s: оно уже «ушло» в does." } },
-      { "answer": "He not like coffee", "why": { "ru": "Отрицание строится с вспомогательным глаголом: doesn't like." } },
-      { "answer": "He no like coffee", "why": { "ru": "no в отрицании с глаголом не работает. Нужен вспомогательный глагол: doesn't like." } }
+      { "answer": "He not like coffee", "why": { "ru": "Отрицание строится со вспомогательным глаголом: doesn't like." } },
+      { "answer": "He no like coffee", "why": { "ru": "no в отрицании с глаголом не работает. Нужен вспомогательный глагол: doesn't like." } },
+      { "answer": "He isn't like coffee", "why": { "ru": "Получилось «он не похож на кофе». like — обычный глагол, не be, отрицание с ним — doesn't like." } }
     ],
     "hint": { "ru": "Отрицание с he: doesn't + глагол без -s." },
     "explanation": { "ru": "He → doesn't, а глагол после него — в начальной форме, как в словаре, без -s: like. Можно и полностью: does not." }
   },
   {
     "kind": "fix",
-    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "prompt": { "ru": "Предложение в Present Simple, в нём одна ошибка — в глаголе. Найди её и исправь." },
     "text": "My sister go to school by bus.",
     "wrong": 2,
     "accept": ["goes"],
     "mistakes": [
       { "answer": "gos", "why": { "ru": "После o пишется -es: go → goes." } },
-      { "answer": "go", "why": { "ru": "Это то же слово. sister — «она», значит к глаголу нужно -es." } }
+      { "answer": "go", "why": { "ru": "Это то же слово. sister — «она», значит к глаголу нужно -es." } },
+      { "answer": "went", "why": { "ru": "went — прошедшее время. А здесь Present Simple — то, что бывает обычно: goes." } }
     ],
     "hint": { "ru": "sister — это she. Что меняется в глаголе с he, she, it?" },
     "explanation": { "ru": "sister = she, а после o пишется -es: goes." }

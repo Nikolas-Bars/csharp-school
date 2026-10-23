@@ -1,0 +1,66 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Я тебя понимаю»?" },
+    "options": [
+      { "text": "I am understanding you.", "why": { "ru": "understand — глагол состояния: понимание просто есть, это не процесс. -ing с ним не ставят." } },
+      { "text": "I understand you." },
+      { "text": "I understanding you.", "why": { "ru": "understand — глагол состояния, -ing с ним не нужен. Да и без am так не говорят." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "understand — глагол состояния, поэтому Present Simple: I understand you." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол need («нуждаться») в нужной форме." },
+    "text": "I ___ (need) your help right now.",
+    "accept": ["need"],
+    "mistakes": [
+      { "answer": "am needing", "why": { "ru": "need — глагол состояния. Даже с right now -ing с ним не ставят." } },
+      { "answer": "needs", "why": { "ru": "С I глагол без -s." } }
+    ],
+    "hint": { "ru": "need — действие или состояние? right now здесь не главное." },
+    "explanation": { "ru": "need — глагол состояния, поэтому Present Simple даже с right now: I need." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол belong («принадлежать») в нужной форме." },
+    "text": "This phone ___ (belong) to my brother.",
+    "accept": ["belongs"],
+    "mistakes": [
+      { "answer": "is belonging", "why": { "ru": "belong — глагол состояния: телефон просто принадлежит брату, это не процесс. Нужен Present Simple." } },
+      { "answer": "belong", "why": { "ru": "phone — это it, а с it к глаголу нужно -s." } }
+    ],
+    "hint": { "ru": "belong — глагол состояния. phone — это it." },
+    "explanation": { "ru": "belong — глагол состояния, Present Simple; phone = it → belongs." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери вопрос «Ты знаешь, как её зовут?» Два слова лишние." },
+    "tiles": ["know", "her name", "Are", "you", "Do", "knowing"],
+    "accept": ["Do you know her name"],
+    "mistakes": [
+      { "answer": "Are you knowing her name", "why": { "ru": "know — глагол состояния, -ing с ним не ставят. Вопрос — как в Present Simple, с do." } },
+      { "answer": "Do you knowing her name", "why": { "ru": "После do глагол в начальной форме, без -ing: know." } }
+    ],
+    "hint": { "ru": "know — глагол состояния. Как строится вопрос в Present Simple?" },
+    "explanation": { "ru": "know — глагол состояния, вопрос с do: Do you know her name?" }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Я сейчас хочу пиццу." },
+    "accept": [
+      "I {want|would like} {|to eat |to have }{a |some |}pizza{| now| right now}",
+      "{Now|Right now} I {want|would like} {|to eat |to have }{a |some |}pizza",
+      "I feel like {|eating |having }{some |}pizza{| now| right now}"
+    ],
+    "mistakes": [
+      { "answer": "I am wanting pizza now", "why": { "ru": "want — глагол состояния. Даже «сейчас» с ним — Present Simple: I want." } },
+      { "answer": "I am wanting a pizza now", "why": { "ru": "want — глагол состояния. Даже «сейчас» с ним — Present Simple: I want." } },
+      { "answer": "I wants pizza now", "why": { "ru": "С I глагол без -s." } }
+    ],
+    "hint": { "ru": "want — действие или состояние?" },
+    "explanation": { "ru": "want — глагол состояния, поэтому Present Simple: I want pizza now." }
+  }
+]

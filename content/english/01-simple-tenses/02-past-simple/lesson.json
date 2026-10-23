@@ -1,0 +1,12 @@
+{
+  "title": { "ru": "Past Simple: то, что уже было" },
+  "steps": [
+    { "type": "theory", "text": { "ru": "01-when.ru.md" } },
+    { "type": "theory", "text": { "ru": "02-regular.ru.md" } },
+    { "type": "theory", "text": { "ru": "03-irregular.ru.md" } },
+    { "type": "practice", "id": "verbs", "file": "practice/verbs.json" },
+    { "type": "theory", "text": { "ru": "04-did.ru.md" } },
+    { "type": "practice", "id": "did", "file": "practice/did.json" },
+    { "type": "quiz", "file": "quiz.json" }
+  ]
+}

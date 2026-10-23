@@ -1,0 +1,68 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как спросить «Ты хочешь есть?» (дословно — «Ты голодный?»)" },
+    "options": [
+      { "text": "Do you are hungry?", "why": { "ru": "are — это be, а с be do не нужен: are сам встаёт вперёд." } },
+      { "text": "Do you hungry?", "why": { "ru": "hungry — не глагол, а «голодный». Здесь нужен be, а не do." } },
+      { "text": "Are you hungry?" },
+      { "text": "You are hungry?", "why": { "ru": "Это утверждение с вопросительным знаком. В вопросе are встаёт перед you." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "hungry — «голодный», это be. Вопрос с be: are встаёт перед you." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь помощника." },
+    "text": "Where ___ your best friend live now?",
+    "accept": ["does"],
+    "mistakes": [
+      { "answer": "do", "why": { "ru": "friend — это «он» или «она», значит does. do — для I, you, we, they." } },
+      { "answer": "is", "why": { "ru": "live — обычный глагол (не be), поэтому вопрос с do или does, а не с is." } },
+      { "answer": "did", "why": { "ru": "now — «сейчас», а did — для прошлого." } }
+    ],
+    "hint": { "ru": "live — обычный глагол, значит do или does. А friend — это he или she." },
+    "explanation": { "ru": "Обычный глагол live и he / she → does: Where does your best friend live?" }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "Предложение в Present Simple. Ошибка в глаголе — найди её и исправь." },
+    "text": "He don't play video games these days.",
+    "wrong": 1,
+    "accept": ["doesn't"],
+    "mistakes": [
+      { "answer": "not", "why": { "ru": "Без помощника отрицание с обычным глаголом не строится: doesn't play." } },
+      { "answer": "isn't", "why": { "ru": "play — обычный глагол, не be. isn't — от be, с play он не работает." } },
+      { "answer": "didn't", "why": { "ru": "these days — «в последнее время», это настоящее. didn't — для прошлого." } },
+      { "answer": "don't", "why": { "ru": "Это то же слово. he — какой помощник нужен с ним?" } },
+      { "answer": "can't", "why": { "ru": "Так тоже можно сказать, но выйдет «не может играть» — это уже не Present Simple. Нужен помощник для he: doesn't." } }
+    ],
+    "hint": { "ru": "He — это he, she, it. Какой помощник с ними?" },
+    "explanation": { "ru": "С he — does, поэтому отрицание doesn't: He doesn't play video games." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери вопрос «Вы смотрели матч вчера вечером?» Одно слово лишнее." },
+    "tiles": ["see", "the game", "you", "last night", "Did", "saw"],
+    "accept": ["Did you see the game last night", "Last night did you see the game"],
+    "mistakes": [
+      { "answer": "Did you saw the game last night", "why": { "ru": "Прошлое уже показал did. Глагол после него — в начальной форме: see." } }
+    ],
+    "hint": { "ru": "Did → кто → глагол в начальной форме → что → когда." },
+    "explanation": { "ru": "Did + you + see: did несёт прошлое, а see остаётся в начальной форме." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Мы не были дома." },
+    "accept": ["We weren't {home|at home}"],
+    "mistakes": [
+      { "answer": "We didn't be at home", "why": { "ru": "С be did не нужен: were сам берёт not — weren't." } },
+      { "answer": "We wasn't at home", "why": { "ru": "was — для I, he, she, it. С we — were: weren't." } },
+      { "answer": "We not were at home", "why": { "ru": "not ставится после were, а не перед ним: weren't." } },
+      { "answer": "We didn't were at home", "why": { "ru": "С be did не нужен: were сам берёт not — weren't." } }
+    ],
+    "hint": { "ru": "«Были» — прошедшая форма be. Какая она с we? И куда встаёт not?" },
+    "explanation": { "ru": "we → were, а not идёт после were: We weren't at home. Можно и полностью: were not." }
+  }
+]

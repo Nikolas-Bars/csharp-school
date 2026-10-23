@@ -1,0 +1,57 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Друг говорит: «I'm cold». Ты прямо сейчас решаешь закрыть окно. Что скажешь?" },
+    "options": [
+      { "text": "I close the window.", "why": { "ru": "Это Present Simple — про то, что бывает обычно. Решение, принятое прямо сейчас, — с will." } },
+      { "text": "I'll close the window." },
+      { "text": "I will closing the window.", "why": { "ru": "После will — начальная форма, без -ing." } },
+      { "text": "I closed the window.", "why": { "ru": "closed — прошлое: «я закрыл». А окно ты ещё только собираешься закрыть." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Решение в эту секунду — will: I'll close the window." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Это прогноз. Вставь глагол rain («идти — о дожде»)." },
+    "text": "Take an umbrella. I think it ___ (rain) this afternoon.",
+    "accept": ["will rain", "is going to rain"],
+    "mistakes": [
+      { "answer": "will rains", "why": { "ru": "После will — начальная форма, без -s." } },
+      { "answer": "will to rain", "why": { "ru": "После will глагол идёт сразу, без to." } },
+      { "answer": "rains", "why": { "ru": "rains — про то, что бывает обычно. А это прогноз на будущее, нужен will." } }
+    ],
+    "hint": { "ru": "Прогноз — «думаю, будет». Какое слово строит будущее?" },
+    "explanation": { "ru": "Прогноз с I think — will + начальная форма: it will rain. Засчитаем и is going to rain — этот способ разберём позже." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Это обещание. Переведи на английский." },
+    "text": { "ru": "Я позвоню тебе вечером." },
+    "accept": [
+      "I will {call you|give you a call} {tonight|this evening|in the evening|later tonight}",
+      "{Tonight|This evening|In the evening} I will {call you|give you a call}",
+      "I am going to {call you|give you a call} {tonight|this evening|in the evening}"
+    ],
+    "mistakes": [
+      { "answer": "I will to call you tonight", "why": { "ru": "После will глагол идёт сразу, без to." } },
+      { "answer": "I call you tonight", "why": { "ru": "Без will это «я звоню» — настоящее время. Обещание на будущее — с will." } },
+      { "answer": "I will calling you tonight", "why": { "ru": "После will — начальная форма, без -ing." } }
+    ],
+    "hint": { "ru": "Обещание — это будущее. Какое слово его строит? И как сказать «сегодня вечером»?" },
+    "explanation": { "ru": "Обещание — will: I'll call you tonight." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери фразу «Я думаю, тебе понравится этот фильм». Одно слово лишнее." },
+    "tiles": ["like", "this movie", "I think", "will", "you", "likes"],
+    "accept": ["I think you will like this movie", "You will like this movie I think"],
+    "mistakes": [
+      { "answer": "I think you will likes this movie", "why": { "ru": "После will — начальная форма, без -s." } },
+      { "answer": "I think will you like this movie", "why": { "ru": "Это не вопрос: сначала кто — you, потом will." } },
+      { "answer": "I think you like this movie", "why": { "ru": "Без will это «тебе нравится» — сейчас. А фильм ещё впереди — нужно будущее: will like." } }
+    ],
+    "hint": { "ru": "После I think — обычный порядок: кто → will → глагол." },
+    "explanation": { "ru": "Мнение о будущем — will: I think you will like this movie. Коротко — you'll like." }
+  }
+]

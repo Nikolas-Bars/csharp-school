@@ -1,49 +1,59 @@
 [
   {
     "kind": "choice",
-    "prompt": { "ru": "Выбери предложение без ошибки." },
+    "prompt": { "ru": "Выбери вопрос без ошибки." },
     "options": [
-      { "text": "She don't speak Spanish.", "why": { "ru": "С she — doesn't, а не don't." } },
-      { "text": "She doesn't speak Spanish." },
-      { "text": "She doesn't speaks Spanish.", "why": { "ru": "После doesn't глагол без -s." } }
+      { "text": "Where you went yesterday?", "why": { "ru": "Без помощника вопроса нет. Про прошлое — did: Where did you go?" } },
+      { "text": "Where did you went yesterday?", "why": { "ru": "Прошлое уже показал did. Глагол после него — в начальной форме: go." } },
+      { "text": "Where do you went yesterday?", "why": { "ru": "do — для настоящего. Про прошлое — did, а глагол после него — go." } },
+      { "text": "Where did you go yesterday?" }
     ],
-    "answer": 1,
-    "explanation": { "ru": "She → doesn't + глагол без -s: doesn't speak." }
+    "answer": 3,
+    "explanation": { "ru": "Where + did + you + go: did показывает прошлое, глагол после него — в начальной форме." }
   },
   {
     "kind": "gap",
-    "prompt": { "ru": "Вставь вспомогательный глагол." },
-    "text": "___ your parents live in Moscow?",
-    "accept": ["Do"],
+    "prompt": { "ru": "Вставь be в нужной форме." },
+    "text": "Yesterday ___ (be) my birthday, and I got a new bike.",
+    "accept": ["was"],
     "mistakes": [
-      { "answer": "Does", "why": { "ru": "parents — «они», значит Do. Does — только для he, she, it." } },
-      { "answer": "Are", "why": { "ru": "Вопрос с обычным глаголом live строится с do или does." } }
+      { "answer": "is", "why": { "ru": "is — настоящее время. Yesterday — прошлое." } },
+      { "answer": "were", "why": { "ru": "were — для you, we, they. birthday — это it, значит was." } },
+      { "answer": "did be", "why": { "ru": "С be did не нужен: у be свои формы прошлого — was и were." } },
+      { "answer": "will be", "why": { "ru": "will — про будущее, а Yesterday — уже прошло." } }
     ],
-    "hint": { "ru": "parents — это they." },
-    "explanation": { "ru": "parents = they → Do your parents live…?" }
+    "hint": { "ru": "Yesterday — прошлое. У be в прошлом две формы — какая нужна с it?" },
+    "explanation": { "ru": "Прошлое от be: was — с I, he, she, it. birthday — it, значит was." }
   },
   {
     "kind": "order",
-    "prompt": { "ru": "Собери фразу «Я никогда не ем мясо». Одно слово лишнее." },
-    "tiles": ["meat", "never", "I", "eat", "don't"],
-    "accept": ["I never eat meat"],
+    "prompt": { "ru": "Собери фразу «Я никому не скажу». Одно слово лишнее." },
+    "tiles": ["anyone", "won't", "to", "I", "tell"],
+    "accept": ["I won't tell anyone"],
     "mistakes": [
-      { "answer": "I don't never eat meat", "why": { "ru": "never уже значит «не», don't здесь лишнее." } },
-      { "answer": "I eat never meat", "why": { "ru": "never стоит перед глаголом: I never eat." } }
+      { "answer": "I won't to tell anyone", "why": { "ru": "После won't глагол идёт сразу, без to." } },
+      { "answer": "Won't I tell anyone", "why": { "ru": "Так получился вопрос. В обещании сначала кто — I, потом won't." } }
     ],
-    "hint": { "ru": "«Никогда не» — одно слово never." },
-    "explanation": { "ru": "never уже содержит «не» и стоит перед глаголом: I never eat meat." }
+    "hint": { "ru": "Обещание: кто → won't → глагол." },
+    "explanation": { "ru": "won't = will not, а после него — начальная форма: I won't tell anyone." }
   },
   {
     "kind": "translate",
     "prompt": { "ru": "Переведи на английский." },
-    "text": { "ru": "Сколько стоит этот билет?" },
-    "accept": ["How much does this ticket cost", "How much is this ticket"],
-    "mistakes": [
-      { "answer": "How much this ticket costs", "why": { "ru": "В вопросе нужен вспомогательный глагол: How much does this ticket cost?" } },
-      { "answer": "How much does this ticket costs", "why": { "ru": "После does глагол без -s: cost." } }
+    "text": { "ru": "Моя сестра не пьёт кофе." },
+    "accept": [
+      "My sister doesn't drink coffee",
+      "My sister doesn't ever drink coffee",
+      "My sister never drinks coffee"
     ],
-    "hint": { "ru": "ticket — это it. Порядок: How much → does → что → глагол." },
-    "explanation": { "ru": "How much does this ticket cost? Можно и короче: How much is this ticket?" }
+    "mistakes": [
+      { "answer": "My sister don't drink coffee", "why": { "ru": "sister — это she, значит doesn't, а не don't." } },
+      { "answer": "My sister doesn't drinks coffee", "why": { "ru": "-s уже есть в doesn't. Глагол после него — без -s: drink." } },
+      { "answer": "My sister not drink coffee", "why": { "ru": "Отрицание строится с помощником: doesn't drink." } },
+      { "answer": "My sister isn't drink coffee", "why": { "ru": "drink — обычный глагол, не be. isn't — от be, с drink он не работает." } },
+      { "answer": "My sister isn't drinking coffee", "why": { "ru": "isn't drinking — «прямо сейчас не пьёт». А тут привычка — Present Simple: doesn't drink." } }
+    ],
+    "hint": { "ru": "sister — это she. Отрицание: doesn't + глагол без -s." },
+    "explanation": { "ru": "sister = she → doesn't drink. Можно и так: My sister never drinks coffee." }
   }
 ]

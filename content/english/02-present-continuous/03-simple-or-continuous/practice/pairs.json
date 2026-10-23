@@ -1,0 +1,66 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Друг хочет узнать, что ты делаешь прямо сейчас. Какой вопрос он задаст?" },
+    "options": [
+      { "text": "What do you do?", "why": { "ru": "Это вопрос «чем ты занимаешься вообще»: кем работаешь, где учишься." } },
+      { "text": "What are you doing?" }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "What are you doing? — про то, что идёт прямо сейчас." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол take в нужной форме." },
+    "text": "I usually walk to school, but today I ___ (take) the bus.",
+    "accept": ["am taking"],
+    "mistakes": [
+      { "answer": "take", "why": { "ru": "today — сегодня не как обычно. Это не привычка, нужен Present Continuous." } },
+      { "answer": "taking", "why": { "ru": "Глагол с -ing один не работает: перед ним нужен am." } },
+      { "answer": "am take", "why": { "ru": "После am глагол нужен с -ing: taking." } }
+    ],
+    "hint": { "ru": "usually — обычно, а today — сегодня иначе. С I — am." },
+    "explanation": { "ru": "Сегодня не как обычно — Present Continuous: I am (I'm) taking the bus." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол wear («носить») в нужной форме." },
+    "text": "Emma usually ___ (wear) jeans, but today she is wearing a dress.",
+    "accept": ["wears"],
+    "mistakes": [
+      { "answer": "is wearing", "why": { "ru": "usually — «обычно», это привычка. Нужен Present Simple." } },
+      { "answer": "wear", "why": { "ru": "Emma — это she, а с she к глаголу нужно -s." } }
+    ],
+    "hint": { "ru": "usually — про привычку. Emma — это she." },
+    "explanation": { "ru": "Обычно — Present Simple, Emma = she → wears." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "I don't usually watching TV in the morning.",
+    "wrong": 3,
+    "accept": ["watch"],
+    "mistakes": [
+      { "answer": "watches", "why": { "ru": "С I глагол без -s. И после don't -s не ставят." } }
+    ],
+    "hint": { "ru": "don't — это Present Simple. Какая форма глагола идёт после don't?" },
+    "explanation": { "ru": "usually и don't — Present Simple, а после don't глагол в начальной форме: watch." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Обычно я играю в футбол, но сегодня я помогаю папе." },
+    "accept": [
+      "{I usually play|Usually I play|I normally play|Normally I play} {soccer|football} but today I am helping {my dad|dad|my father}",
+      "{I usually play|Usually I play|I normally play|Normally I play} {soccer|football} but I am helping {my dad|dad|my father} today"
+    ],
+    "mistakes": [
+      { "answer": "I usually play soccer but today I help my dad", "why": { "ru": "today — сегодня не как обычно, это не привычка. Нужен Present Continuous: I'm helping." } },
+      { "answer": "I usually play football but today I help my dad", "why": { "ru": "today — сегодня не как обычно, это не привычка. Нужен Present Continuous: I'm helping." } },
+      { "answer": "I am usually playing soccer but today I am helping my dad", "why": { "ru": "usually — привычка, это Present Simple: I usually play." } },
+      { "answer": "I usually play soccer but today I am help my dad", "why": { "ru": "После am глагол нужен с -ing: helping." } }
+    ],
+    "hint": { "ru": "Первая часть — привычка, вторая — то, что идёт сегодня. Слово «но» — but." },
+    "explanation": { "ru": "Обычно — Present Simple (I usually play), сегодня иначе — Present Continuous (I'm helping)." }
+  }
+]

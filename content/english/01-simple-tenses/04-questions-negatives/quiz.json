@@ -1,0 +1,57 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как спросить «Тебе нравится пицца?»" },
+    "options": [
+      { "text": "Are you like pizza?", "why": { "ru": "like — обычный глагол (не be), поэтому вопрос с do. are здесь лишнее." } },
+      { "text": "Does you like pizza?", "why": { "ru": "does — только для he, she, it. С you — do." } },
+      { "text": "Do you like pizza?" },
+      { "text": "Do you likes pizza?", "why": { "ru": "После do — начальная форма глагола, без -s." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "like — обычный глагол, с you помощник do: Do you like pizza?" }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери вопрос «Где работает твоя сестра?» Одно слово лишнее." },
+    "tiles": ["work", "your sister", "Where", "does", "works"],
+    "accept": ["Where does your sister work"],
+    "mistakes": [
+      { "answer": "Where your sister works", "why": { "ru": "Без помощника вопроса нет: Where does your sister work?" } },
+      { "answer": "Where does your sister works", "why": { "ru": "-s уже есть в does. Глагол после него — в начальной форме: work." } },
+      { "answer": "Where your sister does work", "why": { "ru": "does встаёт перед your sister: «Where does your sister…»." } }
+    ],
+    "hint": { "ru": "Вопросительное слово → помощник → кто → глагол." },
+    "explanation": { "ru": "Where + does + your sister + work: sister — это she, поэтому does, а глагол — без -s." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Ответь коротко «Да»." },
+    "text": "— Will you help me with my homework? — Yes, I ___.",
+    "accept": ["will"],
+    "mistakes": [
+      { "answer": "do", "why": { "ru": "Вопрос был с will — и ответ с will. do — для вопросов с do." } },
+      { "answer": "help", "why": { "ru": "Основной глагол в краткий ответ не попадает: повторяют помощника из вопроса." } },
+      { "answer": "am", "why": { "ru": "am — для вопросов с am / are. Вопрос был с will." } }
+    ],
+    "hint": { "ru": "Краткий ответ повторяет помощника из вопроса." },
+    "explanation": { "ru": "Will you…? — Yes, I will. В ответе «да» will не сокращают." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Вчера он не сделал домашнее задание." },
+    "accept": [
+      "He didn't do {his |the |}homework yesterday",
+      "Yesterday he didn't do {his |the |}homework"
+    ],
+    "mistakes": [
+      { "answer": "He didn't did his homework yesterday", "why": { "ru": "Прошлое уже показал didn't. Глагол после него — в начальной форме: do." } },
+      { "answer": "He didn't make his homework yesterday", "why": { "ru": "Домашнее задание по-английски «делают» глаголом do, а не make: do homework." } },
+      { "answer": "He doesn't do his homework yesterday", "why": { "ru": "doesn't — для настоящего. yesterday — прошлое, нужно didn't." } },
+      { "answer": "He not did his homework yesterday", "why": { "ru": "Отрицание строится с помощником: didn't do." } }
+    ],
+    "hint": { "ru": "Какой помощник строит отрицание в прошлом? И в какой форме глагол после него?" },
+    "explanation": { "ru": "didn't + do: He didn't do his homework yesterday. Первое — помощник, второе — сам глагол «делать»." }
+  }
+]

@@ -1,0 +1,52 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Какое предложение верное?" },
+    "options": [
+      { "text": "She is owning two cats.", "why": { "ru": "own — «владеть», глагол состояния. -ing с ним не ставят: She owns two cats." } },
+      { "text": "They are playing chess at the moment." },
+      { "text": "He is go to school every day.", "why": { "ru": "every day — привычка, Present Simple: He goes to school every day." } },
+      { "text": "We are understand the rule.", "why": { "ru": "understand — глагол состояния, и are перед ним не нужен: We understand the rule." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "at the moment — прямо сейчас, play — действие: They are playing chess." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Задай вопрос с глаголом laugh («смеяться»)." },
+    "text": "Why ___ (you / laugh)? What's so funny?",
+    "accept": ["are you laughing"],
+    "mistakes": [
+      { "answer": "do you laughing", "why": { "ru": "do — для Present Simple. В Present Continuous вопрос строится с are." } },
+      { "answer": "you are laughing", "why": { "ru": "В вопросе are встаёт перед you." } },
+      { "answer": "do you laugh", "why": { "ru": "Это вопрос про «обычно»: почему ты вообще смеёшься. А смеются прямо сейчас — What's so funny?" } }
+    ],
+    "hint": { "ru": "Смеются прямо сейчас. Порядок в вопросе: are → кто → глагол с -ing." },
+    "explanation": { "ru": "Смеются сейчас — Present Continuous, а are встаёт перед you: Why are you laughing?" }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Я не понимаю это правило." },
+    "accept": ["I {don't|can't} understand {this|that|the} rule", "I don't get {this|that|the} rule"],
+    "mistakes": [
+      { "answer": "I am not understanding this rule", "why": { "ru": "understand — глагол состояния, -ing с ним не ставят. Отрицание — как в Present Simple: don't understand." } },
+      { "answer": "I not understand this rule", "why": { "ru": "Отрицание в Present Simple строится с вспомогательным глаголом: don't understand." } },
+      { "answer": "I doesn't understand this rule", "why": { "ru": "doesn't — только для he, she, it. С I — don't." } }
+    ],
+    "hint": { "ru": "understand — действие или состояние? Отрицание с I — don't." },
+    "explanation": { "ru": "understand — глагол состояния, Present Simple: I don't understand this rule." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Аня обычно ездит в школу на автобусе. Собери: «А сегодня она идёт в школу пешком». Одно слово лишнее." },
+    "tiles": ["walking", "today", "she", "is", "to school", "walks"],
+    "accept": ["Today she is walking to school", "She is walking to school today"],
+    "mistakes": [
+      { "answer": "She walks to school today", "why": { "ru": "Сегодня всё не как обычно — это не привычка. Нужен Present Continuous: she is walking." } },
+      { "answer": "Today she walks to school", "why": { "ru": "Сегодня всё не как обычно — это не привычка. Нужен Present Continuous: she is walking." } }
+    ],
+    "hint": { "ru": "Обычно — автобус, а сегодня иначе. Какое время для «сегодня не как обычно»?" },
+    "explanation": { "ru": "today — не как обычно: Present Continuous, she is walking." }
+  }
+]

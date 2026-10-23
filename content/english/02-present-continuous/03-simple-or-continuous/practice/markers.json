@@ -1,0 +1,67 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Какое слово подсказывает Present Continuous?" },
+    "options": [
+      { "text": "every day", "why": { "ru": "every day — «каждый день», это привычка. Маркер Present Simple." } },
+      { "text": "usually", "why": { "ru": "usually — «обычно», это привычка. Маркер Present Simple." } },
+      { "text": "at the moment" },
+      { "text": "on weekends", "why": { "ru": "on weekends — «по выходным», это повторяется регулярно. Маркер Present Simple." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "at the moment — «в данный момент»: действие идёт сейчас, значит, Present Continuous." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол play в нужной форме." },
+    "text": "My brother ___ (play) basketball every Saturday.",
+    "accept": ["plays"],
+    "mistakes": [
+      { "answer": "is playing", "why": { "ru": "every Saturday — «каждую субботу», это привычка. Нужен Present Simple." } },
+      { "answer": "play", "why": { "ru": "brother — это he, а с he к глаголу нужно -s." } }
+    ],
+    "hint": { "ru": "every Saturday — это обычно или сейчас? И brother — это he." },
+    "explanation": { "ru": "Каждую субботу — привычка, Present Simple. brother = he → plays." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол wait («ждать») в нужной форме." },
+    "text": "Hurry up! Everyone ___ (wait) for you.",
+    "accept": ["is waiting"],
+    "mistakes": [
+      { "answer": "are waiting", "why": { "ru": "everyone — по-русски «все», но по-английски с ним глагол — как с he или she: everyone is, everyone knows. Поэтому is." } },
+      { "answer": "waits", "why": { "ru": "Hurry up! — «Быстрее!»: тебя ждут прямо сейчас. Нужен Present Continuous." } },
+      { "answer": "wait", "why": { "ru": "Тебя ждут прямо сейчас — нужен Present Continuous: am / is / are + -ing." } }
+    ],
+    "hint": { "ru": "Ждут прямо сейчас. А everyone в английском — как he или she." },
+    "explanation": { "ru": "Ждут сейчас — Present Continuous. everyone как she → is: is waiting." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери фразу «Папа прямо сейчас моет машину». Одно слово лишнее." },
+    "tiles": ["the car", "is", "washing", "Dad", "washes", "right now"],
+    "accept": ["Dad is washing the car right now", "Right now Dad is washing the car"],
+    "mistakes": [
+      { "answer": "Dad washes the car right now", "why": { "ru": "right now — прямо сейчас. washes — Present Simple, про «обычно»." } },
+      { "answer": "Dad is washing right now the car", "why": { "ru": "right now не встаёт между глаголом и тем, что моют. Его ставят в конец или в начало фразы." } }
+    ],
+    "hint": { "ru": "right now — значит, нужен is + глагол с -ing." },
+    "explanation": { "ru": "Dad + is + washing + the car + right now: моет прямо сейчас — Present Continuous." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Он обычно ходит в школу пешком." },
+    "accept": [
+      "He {usually|normally} {walks to school|goes to school on foot}",
+      "{Usually|Normally} he {walks to school|goes to school on foot}"
+    ],
+    "mistakes": [
+      { "answer": "He is usually walking to school", "why": { "ru": "usually — привычка. Нужен Present Simple: He usually walks." } },
+      { "answer": "He usually walk to school", "why": { "ru": "He — значит, к глаголу нужно -s: walks." } },
+      { "answer": "He walks usually to school", "why": { "ru": "usually стоит перед глаголом: He usually walks." } }
+    ],
+    "hint": { "ru": "usually — это про привычку. «Ходить пешком» — walk." },
+    "explanation": { "ru": "usually — Present Simple, слово частоты перед глаголом, а с he — -s: He usually walks to school." }
+  }
+]

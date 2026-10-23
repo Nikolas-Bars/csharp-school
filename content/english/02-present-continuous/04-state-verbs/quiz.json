@@ -1,0 +1,51 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Я знаю твоего брата»?" },
+    "options": [
+      { "text": "I am knowing your brother.", "why": { "ru": "know — глагол состояния, -ing с ним не ставят." } },
+      { "text": "I know your brother." },
+      { "text": "I knowing your brother.", "why": { "ru": "know — глагол состояния, -ing с ним не нужен. Да и без am так не говорят." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "know — глагол состояния, поэтому Present Simple: I know your brother." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Поставь глагол в отрицание." },
+    "text": "Sorry, I ___ (not / remember) your name.",
+    "accept": ["don't remember", "can't remember"],
+    "mistakes": [
+      { "answer": "am not remembering", "why": { "ru": "remember — глагол состояния, -ing с ним не ставят. Отрицание — как в Present Simple." } },
+      { "answer": "not remember", "why": { "ru": "Отрицание в Present Simple строится с вспомогательным глаголом: don't remember." } },
+      { "answer": "doesn't remember", "why": { "ru": "doesn't — только для he, she, it. С I — don't." } }
+    ],
+    "hint": { "ru": "remember — глагол состояния. Как строится отрицание в Present Simple?" },
+    "explanation": { "ru": "remember — глагол состояния: I don't remember. Можно и I can't remember — «не могу вспомнить»." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери вопрос «О чём ты думаешь?» Одно слово лишнее." },
+    "tiles": ["thinking", "What", "you", "about", "are", "do"],
+    "accept": ["What are you thinking about"],
+    "mistakes": [
+      { "answer": "What do you thinking about", "why": { "ru": "think about — «обдумывать», процесс, поэтому Present Continuous. Вопрос строится с are." } },
+      { "answer": "What you are thinking about", "why": { "ru": "В вопросе are встаёт перед you." } }
+    ],
+    "hint": { "ru": "Обдумывать — это процесс. Слово about («о») в таком вопросе стоит в конце." },
+    "explanation": { "ru": "What + are + you + thinking + about: обдумывать — действие, about — в конце вопроса." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Ты понимаешь, что я имею в виду?" },
+    "accept": ["Do you {understand|know|see|get} what I mean"],
+    "mistakes": [
+      { "answer": "Are you understanding what I mean", "why": { "ru": "understand — глагол состояния, -ing с ним не ставят. Вопрос — с do." } },
+      { "answer": "Do you understand what I am meaning", "why": { "ru": "mean — «иметь в виду», глагол состояния: what I mean." } },
+      { "answer": "You understand what I mean", "why": { "ru": "В вопросе нужен do перед you: Do you understand…?" } }
+    ],
+    "hint": { "ru": "Оба глагола — понимать и иметь в виду — глаголы состояния. «Иметь в виду» — mean." },
+    "explanation": { "ru": "understand и mean — глаголы состояния, Present Simple: Do you understand what I mean?" }
+  }
+]

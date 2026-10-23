@@ -1,0 +1,13 @@
+{
+  "title": { "ru": "Present Continuous: сейчас и в эти дни" },
+  "description": {
+    "ru": "Что происходит прямо сейчас и что идёт временно, как спросить и сказать «не», как выбрать между «обычно» и «сейчас» и с какими глаголами -ing не ставят."
+  },
+  "lessons": [
+    "01-right-now",
+    "02-these-days",
+    "03-simple-or-continuous",
+    "04-state-verbs",
+    "05-module-test"
+  ]
+}
