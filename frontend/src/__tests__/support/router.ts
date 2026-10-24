@@ -12,6 +12,8 @@ export async function testRouter(path = '/') {
       { path: '/forgot-password', name: 'forgot-password', component: page },
       { path: '/reset-password', name: 'reset-password', component: page },
       { path: '/courses/:course', name: 'course', component: page },
+      { path: '/courses/:course/words', name: 'vocabulary', component: page },
+      { path: '/courses/:course/words/review', name: 'review', component: page },
       { path: '/courses/:course/:module/:lesson', name: 'lesson', component: page },
     ],
   })

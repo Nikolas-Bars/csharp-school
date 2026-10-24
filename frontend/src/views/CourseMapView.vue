@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 
 import BaseButton from '@/components/ui/BaseButton.vue'
@@ -9,6 +9,7 @@ import { t, type MessageKey } from '@/i18n'
 import { locale } from '@/i18n/locale'
 import { useCourseStore } from '@/stores/course'
 import { useProgressStore, type ModuleProgress } from '@/stores/progress'
+import { useVocabularyStore } from '@/stores/vocabulary'
 import type { LessonSummary } from '@/types/api'
 
 /**
@@ -63,6 +64,27 @@ const lessons = computed(() =>
   ),
 )
 const doneCount = computed(() => lessons.value.filter((item) => item.done).length)
+
+/** Словарь — у курса с карточками слов: сколько слов ждут повторения */
+const vocabulary = useVocabularyStore()
+const hasWords = computed(() => lessons.value.some((item) => item.lesson.words > 0))
+watch(
+  [hasWords, courseSlug],
+  ([words, slug]) => {
+    if (words) {
+      void vocabulary.load(slug)
+      // По карточкам курса считаются только слова, которые в нём есть
+      vocabulary.loadCards(slug).catch(() => {})
+    }
+  },
+  { immediate: true },
+)
+const learnedCount = computed(() =>
+  vocabulary.course === courseSlug.value ? vocabulary.learnedWords().length : 0,
+)
+const dueCount = computed(() =>
+  vocabulary.course === courseSlug.value ? vocabulary.dueWords().length : 0,
+)
 /** «Сейчас» — первый непройденный урок: с него и продолжать */
 const current = computed(() => lessons.value.find((item) => !item.done) ?? null)
 
@@ -160,6 +182,31 @@ function reload() {
             }}
           </RouterLink>
           <strong v-else class="map__finished">{{ t('course.finished') }}</strong>
+        </div>
+        <div v-if="hasWords" class="map__card">
+          <span class="map__eyebrow">{{ t('words.mapCard.title') }}</span>
+          <template v-if="learnedCount > 0">
+            <strong class="map__count">{{ dueCount }}</strong>
+            <span class="map__muted">{{ t('words.dictionary.waiting', dueCount) }}</span>
+            <RouterLink
+              v-if="dueCount > 0"
+              class="map__cta"
+              :to="{ name: 'review', params: { course: courseSlug } }"
+            >
+              {{ t('words.dictionary.review', dueCount) }}
+            </RouterLink>
+          </template>
+          <p v-else class="map__muted">{{ t('words.mapCard.empty') }}</p>
+          <RouterLink
+            class="map__link"
+            :to="{ name: 'vocabulary', params: { course: courseSlug } }"
+          >
+            {{
+              learnedCount > 0
+                ? t('words.mapCard.open', learnedCount)
+                : t('words.mapCard.openEmpty')
+            }}
+          </RouterLink>
         </div>
         <div v-if="goal" class="map__card map__card--dark">
           <span class="map__eyebrow map__eyebrow--light">{{ t('course.goalLabel') }}</span>
@@ -302,6 +349,14 @@ function reload() {
   font-weight: 600;
   text-align: center;
   text-decoration: none;
+}
+
+.map__link {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-accent-text);
+  font-weight: 600;
 }
 
 .map__main {

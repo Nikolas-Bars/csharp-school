@@ -1,0 +1,192 @@
+[
+  {
+    "id": "past",
+    "word": "past",
+    "ipa": "/pæst/",
+    "pos": "noun",
+    "translation": {
+      "ru": "прошлое"
+    },
+    "examples": [
+      {
+        "en": "In the past, people wrote letters.",
+        "translation": {
+          "ru": "Раньше люди писали письма."
+        },
+        "why": {
+          "ru": "in the past — «в прошлом», «раньше». wrote — Past Simple от write."
+        }
+      },
+      {
+        "en": "Don't think about the past.",
+        "translation": {
+          "ru": "Не думай о прошлом."
+        },
+        "why": {
+          "ru": "the past — «прошлое»: всё, что уже было."
+        }
+      },
+      {
+        "en": "Past Simple tells us about the past.",
+        "translation": {
+          "ru": "Past Simple рассказывает о прошлом."
+        },
+        "why": {
+          "ru": "Past в имени времени — «прошедшее»: все времена Past — про момент в прошлом."
+        }
+      }
+    ],
+    "compare": {
+      "ru": "**Не путай с passed.** passed — форма глагола pass (I passed the test), звучит так же, как past."
+    }
+  },
+  {
+    "id": "present",
+    "word": "present",
+    "ipa": "/ˈprɛzənt/",
+    "pos": "noun",
+    "translation": {
+      "ru": "настоящее (время); подарок"
+    },
+    "examples": [
+      {
+        "en": "Present Continuous is about the present: I am reading now.",
+        "translation": {
+          "ru": "Present Continuous — про настоящее: я сейчас читаю."
+        },
+        "why": {
+          "ru": "Present в имени времени — «настоящее»: все времена Present связаны с «сейчас»."
+        }
+      },
+      {
+        "en": "Forget the past and enjoy the present.",
+        "translation": {
+          "ru": "Забудь прошлое и радуйся настоящему."
+        },
+        "why": {
+          "ru": "the present — «настоящее», то, что сейчас."
+        }
+      },
+      {
+        "en": "Thanks for the birthday present!",
+        "translation": {
+          "ru": "Спасибо за подарок на день рождения!"
+        },
+        "why": {
+          "ru": "Другое значение: a present — «подарок»."
+        }
+      }
+    ],
+    "compare": {
+      "ru": "**Не путай с глаголом present.** Глагол — «вручать, представлять», ударение на второй слог: /prɪˈzɛnt/."
+    }
+  },
+  {
+    "id": "future",
+    "word": "future",
+    "ipa": "/ˈfjutʃɚ/",
+    "pos": "noun",
+    "translation": {
+      "ru": "будущее"
+    },
+    "examples": [
+      {
+        "en": "What do you want to be in the future?",
+        "translation": {
+          "ru": "Кем ты хочешь стать в будущем?"
+        },
+        "why": {
+          "ru": "in the future — «в будущем», с the."
+        }
+      },
+      {
+        "en": "In the future, robots will do our homework.",
+        "translation": {
+          "ru": "В будущем роботы будут делать за нас домашку."
+        },
+        "why": {
+          "ru": "will do — Future Simple: прогноз о будущем."
+        }
+      },
+      {
+        "en": "Future Perfect is about the future: I will have finished.",
+        "translation": {
+          "ru": "Future Perfect — про будущее: я уже закончу."
+        },
+        "why": {
+          "ru": "Future в имени времени — «будущее»: в таких временах всегда есть will."
+        }
+      }
+    ]
+  },
+  {
+    "id": "continuous",
+    "word": "continuous",
+    "ipa": "/kənˈtɪnjuəs/",
+    "pos": "adjective",
+    "translation": {
+      "ru": "длительный, непрерывный"
+    },
+    "examples": [
+      {
+        "en": "Continuous tenses are about a process: I am playing.",
+        "translation": {
+          "ru": "Длительные времена — про процесс: я играю."
+        },
+        "why": {
+          "ru": "Continuous в имени времени — «длительное»: действие идёт, длится. Формула всегда be + -ing."
+        }
+      },
+      {
+        "en": "We heard a continuous noise from the street.",
+        "translation": {
+          "ru": "Мы слышали с улицы непрерывный шум."
+        },
+        "why": {
+          "ru": "continuous — «непрерывный, без перерывов». Стоит перед существительным."
+        }
+      }
+    ],
+    "compare": {
+      "ru": "**Не путай с continue.** continue — глагол «продолжать», а continuous — прилагательное от него: «продолжающийся»."
+    }
+  },
+  {
+    "id": "perfect",
+    "word": "perfect",
+    "ipa": "/ˈpɝfɪkt/",
+    "pos": "adjective",
+    "translation": {
+      "ru": "идеальный, отличный; совершенный (в названиях времён)"
+    },
+    "examples": [
+      {
+        "en": "It was a perfect day at the beach.",
+        "translation": {
+          "ru": "Это был идеальный день на пляже."
+        },
+        "why": {
+          "ru": "perfect — «идеальный, лучше не бывает». was — Past Simple от be."
+        }
+      },
+      {
+        "en": "Your English is perfect!",
+        "translation": {
+          "ru": "У тебя отличный английский!"
+        },
+        "why": {
+          "ru": "После is — прилагательное: «какой английский?» — perfect."
+        }
+      },
+      {
+        "en": "Present Perfect: I have finished — the job is done.",
+        "translation": {
+          "ru": "Present Perfect: я закончил — работа сделана."
+        },
+        "why": {
+          "ru": "Perfect в имени времени — «совершенное», то есть завершённое, доведённое до конца. Поэтому Perfect-времена — про результат: have + третья форма."
+        }
+      }
+    ]
+  }
+]

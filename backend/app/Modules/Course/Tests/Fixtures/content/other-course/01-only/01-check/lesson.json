@@ -3,6 +3,7 @@
   "kind": "test",
   "steps": [
     { "type": "practice", "id": "form", "file": "practice/form.json" },
-    { "type": "quiz", "file": "quiz.json" }
+    { "type": "quiz", "file": "quiz.json" },
+    { "type": "words", "file": "words.json" }
   ]
 }

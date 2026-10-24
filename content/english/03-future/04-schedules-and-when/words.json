@@ -1,0 +1,194 @@
+[
+  {
+    "id": "if",
+    "word": "if",
+    "ipa": "/ɪf/",
+    "pos": "conjunction",
+    "translation": { "ru": "если; ли (не знаю, придёт ли)" },
+    "examples": [
+      {
+        "en": "If you're hungry, I'll make a sandwich.",
+        "translation": { "ru": "Если хочешь есть, я сделаю бутерброд." },
+        "why": { "ru": "После if — Present Simple: you're hungry. will — только в главной части: I'll make." }
+      },
+      {
+        "en": "If we win, we'll get a prize.",
+        "translation": { "ru": "Если мы выиграем, мы получим приз." },
+        "why": { "ru": "Будущее после if показывают Present Simple: if we win, а не if we will win." }
+      },
+      {
+        "en": "I don't know if Tom will come to the party.",
+        "translation": { "ru": "Не знаю, придёт ли Том на вечеринку." },
+        "why": { "ru": "Здесь if — «ли», а не «если». В такой части will нужен." }
+      }
+    ]
+  },
+  {
+    "id": "as-soon-as",
+    "word": "as soon as",
+    "ipa": "/əz ˈsun əz/",
+    "pos": "phrase",
+    "translation": { "ru": "как только" },
+    "examples": [
+      {
+        "en": "I'll text you as soon as I get home.",
+        "translation": { "ru": "Я напишу тебе, как только приду домой." },
+        "why": { "ru": "После as soon as о будущем — Present Simple: I get home. will — в главной части." }
+      },
+      {
+        "en": "As soon as the bell rings, we run outside.",
+        "translation": { "ru": "Как только звенит звонок, мы выбегаем на улицу." },
+        "why": { "ru": "Здесь про то, что бывает каждый день, — поэтому Present Simple в обеих частях." }
+      },
+      {
+        "en": "Call me as soon as you can.",
+        "translation": { "ru": "Позвони мне, как только сможешь." },
+        "why": { "ru": "as soon as you can — «как только сможешь», то есть поскорее. Частая фраза в просьбах." }
+      }
+    ]
+  },
+  {
+    "id": "unless",
+    "word": "unless",
+    "ipa": "/ənˈlɛs/",
+    "pos": "conjunction",
+    "translation": { "ru": "если не…" },
+    "examples": [
+      {
+        "en": "You'll be late unless you hurry.",
+        "translation": { "ru": "Ты опоздаешь, если не поторопишься." },
+        "why": { "ru": "unless you hurry = if you don't hurry. После unless тоже Present Simple, без will." }
+      },
+      {
+        "en": "We'll play outside unless it rains.",
+        "translation": { "ru": "Мы будем играть на улице, если не пойдёт дождь." },
+        "why": { "ru": "unless it rains — «если не пойдёт дождь». С it к глаголу -s: rains." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с if.** unless уже значит «если не», поэтому второе not не нужно: unless you hurry, а не unless you don't hurry." }
+  },
+  {
+    "id": "leave",
+    "word": "leave",
+    "ipa": "/liv/",
+    "pos": "verb",
+    "translation": { "ru": "уходить, уезжать; отходить (о поезде, автобусе); оставлять" },
+    "forms": ["leave", "left", "left"],
+    "examples": [
+      {
+        "en": "The bus leaves at 7:30.",
+        "translation": { "ru": "Автобус отходит в 7:30." },
+        "why": { "ru": "Время автобуса — расписание, поэтому Present Simple. bus — это it, к глаголу -s." }
+      },
+      {
+        "en": "We're leaving at six tomorrow.",
+        "translation": { "ru": "Завтра мы уезжаем в шесть." },
+        "why": { "ru": "Present Continuous: это наш план, о нём уже договорились." }
+      },
+      {
+        "en": "Max left his bag at school.",
+        "translation": { "ru": "Макс оставил рюкзак в школе." },
+        "why": { "ru": "left — Past Simple от leave. Здесь leave — «оставить, забыть где-то»." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с live.** leave /liv/ — уходить, live /lɪv/ — жить. В leave звук «и» долгий." }
+  },
+  {
+    "id": "arrive",
+    "word": "arrive",
+    "ipa": "/əˈraɪv/",
+    "pos": "verb",
+    "translation": { "ru": "приезжать, прибывать, приходить" },
+    "examples": [
+      {
+        "en": "I'll call you as soon as I arrive.",
+        "translation": { "ru": "Я позвоню тебе, как только приеду." },
+        "why": { "ru": "После as soon as о будущем — Present Simple: I arrive." }
+      },
+      {
+        "en": "The train arrives at 9 pm.",
+        "translation": { "ru": "Поезд прибывает в 9 вечера." },
+        "why": { "ru": "Расписание — Present Simple. train — это it, поэтому arrives." }
+      },
+      {
+        "en": "We arrived at the hotel late at night.",
+        "translation": { "ru": "Мы приехали в отель поздно ночью." },
+        "why": { "ru": "arrived — Past Simple, правильный глагол. «Приехать в отель» — arrive at." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с arrive to.** Говорят arrive at (at school, at the airport) или arrive in (в город, страну), а arrive home — без предлога." }
+  },
+  {
+    "id": "go-out",
+    "word": "go out",
+    "ipa": "/ɡoʊ ˈaʊt/",
+    "pos": "phrase",
+    "translation": { "ru": "выйти (из дома), сходить куда-нибудь развлечься; погаснуть (о свете)" },
+    "examples": [
+      {
+        "en": "I'll do my homework before I go out.",
+        "translation": { "ru": "Я сделаю уроки, перед тем как пойду гулять." },
+        "why": { "ru": "После before о будущем — Present Simple: before I go out. go out — «выйти из дома, пойти погулять»." }
+      },
+      {
+        "en": "Do you want to go out for pizza tonight?",
+        "translation": { "ru": "Хочешь сегодня вечером сходить поесть пиццы?" },
+        "why": { "ru": "go out — «сходить куда-нибудь»: в кафе, в кино, к друзьям." }
+      },
+      {
+        "en": "The lights often go out during a storm.",
+        "translation": { "ru": "В грозу часто гаснет свет." },
+        "why": { "ru": "О свете go out — «погаснуть». В прошедшем — went out: The lights went out." }
+      }
+    ]
+  },
+  {
+    "id": "flight",
+    "word": "flight",
+    "ipa": "/flaɪt/",
+    "pos": "noun",
+    "translation": { "ru": "рейс; полёт" },
+    "examples": [
+      {
+        "en": "Our flight leaves at ten tomorrow.",
+        "translation": { "ru": "Наш рейс вылетает завтра в десять." },
+        "why": { "ru": "Время рейса — расписание: Present Simple, leaves." }
+      },
+      {
+        "en": "How was your flight?",
+        "translation": { "ru": "Как прошёл полёт?" },
+        "why": { "ru": "was — Past Simple от be. flight здесь — «полёт», вся дорога на самолёте." }
+      },
+      {
+        "en": "What time does your flight arrive?",
+        "translation": { "ru": "Во сколько прилетает твой рейс?" },
+        "why": { "ru": "Расписание — Present Simple: вопрос с does, после него arrive без -s." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с fly.** fly — глагол «лететь», flight — «рейс» или «полёт»." }
+  },
+  {
+    "id": "hurry",
+    "word": "hurry",
+    "ipa": "/ˈhɝi/",
+    "pos": "verb",
+    "translation": { "ru": "торопиться, спешить" },
+    "examples": [
+      {
+        "en": "Hurry up! The movie starts in five minutes.",
+        "translation": { "ru": "Поторопись! Фильм начинается через пять минут." },
+        "why": { "ru": "Hurry up! — «Поторопись!», «Быстрее!». Время фильма — расписание, поэтому starts." }
+      },
+      {
+        "en": "If we don't hurry, we'll miss the bus.",
+        "translation": { "ru": "Если не поторопимся, опоздаем на автобус." },
+        "why": { "ru": "После if — Present Simple с don't, а не won't. miss the bus — «опоздать на автобус»." }
+      },
+      {
+        "en": "Don't hurry, we have lots of time.",
+        "translation": { "ru": "Не спеши, у нас много времени." },
+        "why": { "ru": "Don't + глагол — «не делай». have — Present Simple: время у нас есть сейчас." }
+      }
+    ]
+  }
+]

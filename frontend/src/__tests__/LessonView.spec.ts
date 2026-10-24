@@ -16,6 +16,8 @@ import {
   lesson,
   moduleTest,
   twoModules,
+  wordsCourse,
+  wordsLesson,
 } from './lessonFixtures'
 import { testRouter } from './support/router'
 
@@ -617,5 +619,44 @@ describe('LessonView: урок английского', () => {
       ['Перейти к практике', `${ENGLISH}?step=2`],
       ['К карте курса', '/courses/english'],
     ])
+  })
+})
+
+describe('LessonView: новые слова', () => {
+  beforeEach(() => {
+    vi.stubGlobal('fetch', fetchMock)
+    localStorage.clear()
+    tokenStorage.clear()
+    serve(course, {}, (url) =>
+      url.endsWith('/courses/english')
+        ? apiReply(wordsCourse)
+        : url.endsWith('/lessons/01-right-now')
+          ? apiReply(wordsLesson)
+          : null,
+    )
+  })
+  afterEach(() => {
+    fetchMock.mockReset()
+    vi.unstubAllGlobals()
+  })
+
+  const vocabulary = () =>
+    Object.keys(JSON.parse(localStorage.getItem('vocabulary:english') ?? '{}') as object)
+
+  it('карточки по одной; долистал — слова в словаре, урок идёт дальше, шаг не засчитан', async () => {
+    const { wrapper, router } = await mountLesson('/courses/english/01-present/01-right-now?step=2')
+
+    expect(wrapper.text()).toContain('Новые слова урока')
+    expect(wrapper.get('h2.word__word').text()).toBe('wear')
+    const next = () => wrapper.findAll('.steps__nav button').slice(-1)[0]!
+
+    await next().trigger('click')
+    expect(vocabulary()).toEqual([])
+    await next().trigger('click')
+    await flushPromises()
+
+    expect(vocabulary()).toEqual(['wear', 'at-the-moment'])
+    expect(router.currentRoute.value.query.step).toBe('3')
+    expect(localStorage.getItem('progress:english')).toBeNull()
   })
 })

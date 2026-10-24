@@ -1,0 +1,146 @@
+[
+  {
+    "id": "while",
+    "word": "while",
+    "ipa": "/waɪl/",
+    "pos": "conjunction",
+    "translation": { "ru": "пока, в то время как" },
+    "examples": [
+      {
+        "en": "While we were playing soccer, it started to rain.",
+        "translation": { "ru": "Пока мы играли в футбол, начался дождь." },
+        "why": { "ru": "После while — процесс: were playing. Посреди него случилось событие — Past Simple: started." }
+      },
+      {
+        "en": "Emma was reading while her brother was sleeping.",
+        "translation": { "ru": "Эмма читала, пока брат спал." },
+        "why": { "ru": "Два процесса шли одновременно — оба в Past Continuous." }
+      },
+      {
+        "en": "Don't use your phone while you're eating.",
+        "translation": { "ru": "Не сиди в телефоне, пока ешь." },
+        "why": { "ru": "while бывает и про сейчас: you're eating — процесс в Present Continuous." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с when.** После while обычно процесс (was / were + -ing), после when — событие (Past Simple)." }
+  },
+  {
+    "id": "suddenly",
+    "word": "suddenly",
+    "ipa": "/ˈsʌdənli/",
+    "pos": "adverb",
+    "translation": { "ru": "вдруг, внезапно" },
+    "examples": [
+      {
+        "en": "We were watching a movie. Suddenly the lights went out.",
+        "translation": { "ru": "Мы смотрели фильм. Вдруг погас свет." },
+        "why": { "ru": "Просмотр уже шёл — Past Continuous: were watching. После suddenly — событие, Past Simple: went out." }
+      },
+      {
+        "en": "Suddenly a dog ran into the classroom.",
+        "translation": { "ru": "Вдруг в класс забежала собака." },
+        "why": { "ru": "ran — Past Simple от run: случилось быстро, один раз." }
+      }
+    ]
+  },
+  {
+    "id": "ring",
+    "word": "ring",
+    "ipa": "/rɪŋ/",
+    "pos": "verb",
+    "translation": { "ru": "звонить, звенеть (о телефоне, звонке)" },
+    "forms": ["ring", "rang", "rung"],
+    "examples": [
+      {
+        "en": "We were having dinner when the phone rang.",
+        "translation": { "ru": "Мы ужинали, когда зазвонил телефон." },
+        "why": { "ru": "rang — Past Simple от ring: звонок — короткое событие посреди ужина." }
+      },
+      {
+        "en": "The school bell rings at 8:30.",
+        "translation": { "ru": "Школьный звонок звенит в 8:30." },
+        "why": { "ru": "Present Simple: так по расписанию, каждый день. bell — это it, к глаголу -s." }
+      },
+      {
+        "en": "Your phone is ringing!",
+        "translation": { "ru": "У тебя звонит телефон!" },
+        "why": { "ru": "is ringing — Present Continuous: звонит прямо сейчас." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с call.** ring — звенит сам телефон или звонок, а call — звонить кому-то: I'll call you." }
+  },
+  {
+    "id": "shine",
+    "word": "shine",
+    "ipa": "/ʃaɪn/",
+    "pos": "verb",
+    "translation": { "ru": "светить, сиять" },
+    "forms": ["shine", "shone", "shone"],
+    "examples": [
+      {
+        "en": "The sun was shining when we left the house.",
+        "translation": { "ru": "Когда мы вышли из дома, светило солнце." },
+        "why": { "ru": "was shining — фон рассказа, Past Continuous. Выход из дома — событие: left." }
+      },
+      {
+        "en": "The sun is shining today!",
+        "translation": { "ru": "Сегодня светит солнце!" },
+        "why": { "ru": "is shining — Present Continuous: прямо сейчас." }
+      },
+      {
+        "en": "The stars shone all night.",
+        "translation": { "ru": "Звёзды светили всю ночь." },
+        "why": { "ru": "shone — Past Simple от shine: неправильный глагол." }
+      }
+    ]
+  },
+  {
+    "id": "sing",
+    "word": "sing",
+    "ipa": "/sɪŋ/",
+    "pos": "verb",
+    "translation": { "ru": "петь" },
+    "forms": ["sing", "sang", "sung"],
+    "examples": [
+      {
+        "en": "We were singing songs around the fire.",
+        "translation": { "ru": "Мы пели песни у костра." },
+        "why": { "ru": "were singing — Past Continuous: пение шло долго, как фон." }
+      },
+      {
+        "en": "My sister sings really well.",
+        "translation": { "ru": "Сестра очень хорошо поёт." },
+        "why": { "ru": "Present Simple: так всегда, это её умение. sister = she, поэтому -s." }
+      },
+      {
+        "en": "We sang Happy Birthday to Grandma.",
+        "translation": { "ru": "Мы спели бабушке «С днём рождения»." },
+        "why": { "ru": "sang — Past Simple от sing: спели, и песня закончилась." }
+      }
+    ]
+  },
+  {
+    "id": "set-the-table",
+    "word": "set the table",
+    "ipa": "/sɛt ðə ˈteɪbəl/",
+    "pos": "phrase",
+    "translation": { "ru": "накрывать на стол" },
+    "examples": [
+      {
+        "en": "Can you set the table, please?",
+        "translation": { "ru": "Накроешь на стол, пожалуйста?" },
+        "why": { "ru": "Can you…? — вежливая просьба. После can — начальная форма: set." }
+      },
+      {
+        "en": "Max was setting the table when Grandma arrived.",
+        "translation": { "ru": "Макс накрывал на стол, когда пришла бабушка." },
+        "why": { "ru": "was setting — процесс: Макс накрывал на стол. Посреди этого пришла бабушка — событие, Past Simple: arrived." }
+      },
+      {
+        "en": "Dad set the table and we had dinner.",
+        "translation": { "ru": "Папа накрыл на стол, и мы поужинали." },
+        "why": { "ru": "set — неправильный глагол: в прошедшем тоже set. Одно за другим — Past Simple." }
+      }
+    ]
+  }
+]

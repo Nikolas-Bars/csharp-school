@@ -1,0 +1,124 @@
+[
+  {
+    "id": "sure",
+    "word": "sure",
+    "ipa": "/ʃʊr/",
+    "pos": "adjective",
+    "translation": { "ru": "уверенный (be sure — быть уверенным); конечно (в ответ)" },
+    "examples": [
+      {
+        "en": "I'm sure you'll pass the test.",
+        "translation": { "ru": "Не сомневаюсь, ты сдашь тест." },
+        "why": { "ru": "I'm sure — «я уверен» или «уверена», а дальше мнение о будущем — will: you'll pass." }
+      },
+      {
+        "en": "Are you sure? — Yes, I'm sure.",
+        "translation": { "ru": "Точно? — Да, точно." },
+        "why": { "ru": "sure стоит после am / is / are. Are you sure? по-русски часто звучит просто: «Точно?»" }
+      },
+      {
+        "en": "Can you help me? — Sure!",
+        "translation": { "ru": "Поможешь? — Конечно!" },
+        "why": { "ru": "Одно Sure! в ответ — «Конечно!», «Без проблем!»." }
+      }
+    ]
+  },
+  {
+    "id": "promise",
+    "word": "promise",
+    "ipa": "/ˈprɑmɪs/",
+    "pos": "verb",
+    "translation": { "ru": "обещать" },
+    "examples": [
+      {
+        "en": "I promise I'll call you tonight.",
+        "translation": { "ru": "Обещаю, что позвоню тебе вечером." },
+        "why": { "ru": "Обещание рождается прямо в разговоре — поэтому will: I'll call." }
+      },
+      {
+        "en": "Dad promised to take us to the zoo.",
+        "translation": { "ru": "Папа пообещал сводить нас в зоопарк." },
+        "why": { "ru": "promised — Past Simple, правильный глагол: к нему -d. promise to + глагол — «обещать что-то сделать»." }
+      },
+      {
+        "en": "Do you promise?",
+        "translation": { "ru": "Обещаешь?" },
+        "why": { "ru": "Вопрос в Present Simple: do выходит вперёд." }
+      }
+    ]
+  },
+  {
+    "id": "carry",
+    "word": "carry",
+    "ipa": "/ˈkɛri/",
+    "pos": "verb",
+    "translation": { "ru": "нести, носить (в руках, на себе)" },
+    "examples": [
+      {
+        "en": "Your bag looks heavy. I'll carry it.",
+        "translation": { "ru": "Сумка у тебя тяжёлая на вид. Давай я понесу." },
+        "why": { "ru": "Помощь предлагают прямо сейчас — это will: I'll carry it." }
+      },
+      {
+        "en": "Dad is carrying a big box.",
+        "translation": { "ru": "Папа несёт большую коробку." },
+        "why": { "ru": "is carrying — Present Continuous: несёт прямо сейчас." }
+      },
+      {
+        "en": "Emma carried all the books to the classroom.",
+        "translation": { "ru": "Эмма отнесла все книги в класс." },
+        "why": { "ru": "carried — Past Simple: у carry y меняется на i — carried." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с wear.** carry — нести в руках или на себе, wear — носить одежду, быть одетым." }
+  },
+  {
+    "id": "heavy",
+    "word": "heavy",
+    "ipa": "/ˈhɛvi/",
+    "pos": "adjective",
+    "translation": { "ru": "тяжёлый; сильный (о дожде, снеге)" },
+    "examples": [
+      {
+        "en": "This box is too heavy for me.",
+        "translation": { "ru": "Эта коробка для меня слишком тяжёлая." },
+        "why": { "ru": "is heavy — Present Simple с be: какая коробка сейчас. too heavy — «слишком тяжёлый»." }
+      },
+      {
+        "en": "Your backpack looks heavy. I'll help you.",
+        "translation": { "ru": "Рюкзак у тебя тяжёлый на вид. Давай помогу." },
+        "why": { "ru": "looks heavy — «выглядит тяжёлым». Помощь предлагают прямо сейчас — will." }
+      },
+      {
+        "en": "There was heavy rain yesterday.",
+        "translation": { "ru": "Вчера был сильный дождь." },
+        "why": { "ru": "heavy rain — «сильный дождь», а не «тяжёлый». heavy стоит перед существительным — словом, которое называет предмет." }
+      }
+    ]
+  },
+  {
+    "id": "pass",
+    "word": "pass",
+    "ipa": "/pæs/",
+    "pos": "verb",
+    "translation": { "ru": "сдать (тест, экзамен); передать" },
+    "examples": [
+      {
+        "en": "Don't worry, you'll pass the exam.",
+        "translation": { "ru": "Не переживай, ты сдашь экзамен." },
+        "why": { "ru": "Мнение о будущем — will. pass the exam — «сдать экзамен», то есть успешно." }
+      },
+      {
+        "en": "Can you pass the salt, please?",
+        "translation": { "ru": "Передай, пожалуйста, соль." },
+        "why": { "ru": "Здесь pass — «передать» рукой. Can you…? — вежливая просьба." }
+      },
+      {
+        "en": "Emma passed all her tests last year.",
+        "translation": { "ru": "В прошлом году Эмма сдала все тесты." },
+        "why": { "ru": "passed — Past Simple, правильный глагол: к нему -ed." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с take.** take a test — «писать тест», а pass — «сдать», то есть написать успешно." }
+  }
+]

@@ -2,6 +2,7 @@
   "title": { "ru": "will, going to или Present Continuous" },
   "steps": [
     { "type": "theory", "text": { "ru": "01-choice.ru.md" } },
+    { "type": "words", "file": "words.json" },
     { "type": "theory", "text": { "ru": "02-decisions.ru.md" } },
     { "type": "practice", "id": "decisions", "file": "practice/decisions.json" },
     { "type": "theory", "text": { "ru": "03-predictions.ru.md" } },

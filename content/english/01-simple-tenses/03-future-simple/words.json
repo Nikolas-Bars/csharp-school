@@ -1,0 +1,195 @@
+[
+  {
+    "id": "will",
+    "word": "will",
+    "ipa": "/wɪl/",
+    "pos": "auxiliary",
+    "translation": { "ru": "буду, будет… — показывает будущее (will + глагол)" },
+    "examples": [
+      {
+        "en": "I will help you with your homework.",
+        "translation": { "ru": "Я помогу тебе с домашкой." },
+        "why": { "ru": "Обещание — will. В речи чаще говорят коротко: I'll help." }
+      },
+      {
+        "en": "Will you come to my party?",
+        "translation": { "ru": "Ты придёшь ко мне на вечеринку?" },
+        "why": { "ru": "Вопрос: will встаёт перед you. come — в начальной форме, без to." }
+      },
+      {
+        "en": "I think our team will win.",
+        "translation": { "ru": "Думаю, наша команда выиграет." },
+        "why": { "ru": "Прогноз — что, по-твоему, будет. После will — начальная форма: win." }
+      }
+    ]
+  },
+  {
+    "id": "tomorrow",
+    "word": "tomorrow",
+    "ipa": "/təˈmɑroʊ/",
+    "pos": "adverb",
+    "translation": { "ru": "завтра" },
+    "examples": [
+      {
+        "en": "I'll call you tomorrow.",
+        "translation": { "ru": "Я позвоню тебе завтра." },
+        "why": { "ru": "Обещание на будущее — will. tomorrow обычно стоит в конце." }
+      },
+      {
+        "en": "It will be sunny tomorrow.",
+        "translation": { "ru": "Завтра будет солнечно." },
+        "why": { "ru": "Прогноз — will. Русское «будет» — это will be." }
+      },
+      {
+        "en": "See you tomorrow!",
+        "translation": { "ru": "До завтра!" },
+        "why": { "ru": "Так прощаются, если увидятся завтра. Дословно: «Увидимся завтра»." }
+      }
+    ]
+  },
+  {
+    "id": "tonight",
+    "word": "tonight",
+    "ipa": "/təˈnaɪt/",
+    "pos": "adverb",
+    "translation": { "ru": "сегодня вечером; этой ночью" },
+    "examples": [
+      {
+        "en": "I'll finish it tonight, I promise.",
+        "translation": { "ru": "Я доделаю это сегодня вечером, обещаю." },
+        "why": { "ru": "tonight — «сегодня вечером»: одно слово вместо this evening. Обещание — will." }
+      },
+      {
+        "en": "It will be cold tonight.",
+        "translation": { "ru": "Ночью будет холодно." },
+        "why": { "ru": "Прогноз — will be. tonight значит и сегодняшний вечер, и ночь." }
+      },
+      {
+        "en": "Will you be online tonight?",
+        "translation": { "ru": "Ты будешь в сети вечером?" },
+        "why": { "ru": "Вопрос: will перед you, потом be." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с today.** today — «сегодня» (весь день), tonight — «сегодня вечером, ночью»." }
+  },
+  {
+    "id": "next",
+    "word": "next",
+    "ipa": "/nɛkst/",
+    "pos": "determiner",
+    "translation": { "ru": "следующий" },
+    "examples": [
+      {
+        "en": "My brother will be ten next month.",
+        "translation": { "ru": "В следующем месяце брату исполнится десять." },
+        "why": { "ru": "next month — «в следующем месяце», без in и без the. Будущее — will be." }
+      },
+      {
+        "en": "The next bus comes in ten minutes.",
+        "translation": { "ru": "Следующий автобус придёт через десять минут." },
+        "why": { "ru": "Здесь next — «следующий» перед существительным bus. Автобус ходит по расписанию — Present Simple." }
+      },
+      {
+        "en": "Who is next?",
+        "translation": { "ru": "Кто следующий?" },
+        "why": { "ru": "next бывает и без существительного: так говорят в очереди или в игре." }
+      }
+    ]
+  },
+  {
+    "id": "soon",
+    "word": "soon",
+    "ipa": "/sun/",
+    "pos": "adverb",
+    "translation": { "ru": "скоро" },
+    "examples": [
+      {
+        "en": "Dinner will be ready soon.",
+        "translation": { "ru": "Ужин скоро будет готов." },
+        "why": { "ru": "Прогноз — will be, «будет». soon обычно стоит в конце." }
+      },
+      {
+        "en": "See you soon!",
+        "translation": { "ru": "До скорого!" },
+        "why": { "ru": "Так прощаются, если скоро увидятся. Дословно: «Увидимся скоро»." }
+      },
+      {
+        "en": "Don't worry, Mom will be home soon.",
+        "translation": { "ru": "Не волнуйся, мама скоро будет дома." },
+        "why": { "ru": "Прогноз: так, по-твоему, будет. will be — «будет»." }
+      }
+    ]
+  },
+  {
+    "id": "later",
+    "word": "later",
+    "ipa": "/ˈleɪtɚ/",
+    "pos": "adverb",
+    "translation": { "ru": "позже, потом" },
+    "examples": [
+      {
+        "en": "I'll do it later.",
+        "translation": { "ru": "Я сделаю это позже." },
+        "why": { "ru": "Обещание на будущее — will. later — «не сейчас, а позже»." }
+      },
+      {
+        "en": "See you later!",
+        "translation": { "ru": "Пока, увидимся!" },
+        "why": { "ru": "Обычное прощание. Дословно — «увидимся позже»." }
+      },
+      {
+        "en": "We had pizza, and later we watched a movie.",
+        "translation": { "ru": "Мы поели пиццу, а потом посмотрели фильм." },
+        "why": { "ru": "later бывает и в прошлом — «потом». Past Simple: have → had, watched." }
+      }
+    ]
+  },
+  {
+    "id": "probably",
+    "word": "probably",
+    "ipa": "/ˈprɑbəbli/",
+    "pos": "adverb",
+    "translation": { "ru": "наверное, вероятно" },
+    "examples": [
+      {
+        "en": "It will probably rain tomorrow.",
+        "translation": { "ru": "Завтра, наверное, будет дождь." },
+        "why": { "ru": "Прогноз — will. probably стоит после will, перед глаголом." }
+      },
+      {
+        "en": "She probably won't come.",
+        "translation": { "ru": "Она, наверное, не придёт." },
+        "why": { "ru": "В отрицании probably стоит перед won't." }
+      },
+      {
+        "en": "He's probably at home.",
+        "translation": { "ru": "Он, наверное, дома." },
+        "why": { "ru": "Глагол здесь — is (форма be), поэтому probably стоит после него. He's — краткая форма от He is." }
+      }
+    ]
+  },
+  {
+    "id": "worry",
+    "word": "worry",
+    "ipa": "/ˈwɝi/",
+    "pos": "verb",
+    "translation": { "ru": "волноваться, беспокоиться" },
+    "examples": [
+      {
+        "en": "Don't worry! Everything will be OK.",
+        "translation": { "ru": "Не волнуйся! Всё будет хорошо." },
+        "why": { "ru": "Don't worry — «не волнуйся». Будущее — will be." }
+      },
+      {
+        "en": "My mom always worries about me.",
+        "translation": { "ru": "Мама всегда за меня волнуется." },
+        "why": { "ru": "Present Simple: так бывает всегда. mom = she, а y после согласной меняется: worries." }
+      },
+      {
+        "en": "We worried about the test, but it was easy.",
+        "translation": { "ru": "Мы волновались из-за контрольной, но она оказалась лёгкой." },
+        "why": { "ru": "Past Simple: worry → worried. worry about — волноваться из-за чего-то." }
+      }
+    ]
+  }
+]

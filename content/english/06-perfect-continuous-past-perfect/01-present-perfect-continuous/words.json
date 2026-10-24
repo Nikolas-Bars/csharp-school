@@ -1,0 +1,277 @@
+[
+  {
+    "id": "lately",
+    "word": "lately",
+    "ipa": "/ˈleɪtli/",
+    "pos": "adverb",
+    "translation": {
+      "ru": "в последнее время"
+    },
+    "examples": [
+      {
+        "en": "I've been feeling tired lately.",
+        "translation": {
+          "ru": "В последнее время я чувствую усталость."
+        },
+        "why": {
+          "ru": "'ve been feeling — Present Perfect Continuous: усталость началась недавно и тянется до сих пор. lately обычно стоит в конце."
+        }
+      },
+      {
+        "en": "Have you been sleeping well lately?",
+        "translation": {
+          "ru": "Ты хорошо спишь в последнее время?"
+        },
+        "why": {
+          "ru": "В вопросе вперёд выходит have. lately — «в последние дни, недели», вплоть до сейчас."
+        }
+      },
+      {
+        "en": "Lately Max has been playing a lot of chess.",
+        "translation": {
+          "ru": "В последнее время Макс много играет в шахматы."
+        },
+        "why": {
+          "ru": "lately можно поставить и в начало. has been playing — процесс идёт уже какое-то время."
+        }
+      }
+    ],
+    "compare": {
+      "ru": "**Не путай с late.** late — «поздно» (I got up late), а lately — «в последнее время»."
+    }
+  },
+  {
+    "id": "recently",
+    "word": "recently",
+    "ipa": "/ˈrisəntli/",
+    "pos": "adverb",
+    "translation": {
+      "ru": "недавно; в последнее время"
+    },
+    "examples": [
+      {
+        "en": "We've been practicing a lot recently.",
+        "translation": {
+          "ru": "В последнее время мы много тренируемся."
+        },
+        "why": {
+          "ru": "'ve been practicing — Present Perfect Continuous: тренировки идут последние недели и до сих пор. Здесь recently = lately."
+        }
+      },
+      {
+        "en": "Max recently got a new bike.",
+        "translation": {
+          "ru": "Макс недавно получил новый велосипед."
+        },
+        "why": {
+          "ru": "got — Past Simple: одно событие в прошлом. Здесь recently — «недавно», оно стоит перед глаголом."
+        }
+      },
+      {
+        "en": "Have you read any good books recently?",
+        "translation": {
+          "ru": "Тебе попадались хорошие книги в последнее время?"
+        },
+        "why": {
+          "ru": "Have … read — Present Perfect: период «последнее время» ещё не закончился."
+        }
+      }
+    ],
+    "compare": {
+      "ru": "**Не путай с lately.** recently бывает и «недавно» с Past Simple (I recently moved), а lately так не скажут."
+    }
+  },
+  {
+    "id": "all-day",
+    "word": "all day",
+    "ipa": "/ˌɑl ˈdeɪ/",
+    "pos": "phrase",
+    "translation": {
+      "ru": "весь день"
+    },
+    "examples": [
+      {
+        "en": "It's been raining all day.",
+        "translation": {
+          "ru": "Весь день идёт дождь."
+        },
+        "why": {
+          "ru": "It's been raining = It has been raining — Present Perfect Continuous: дождь идёт с утра и до сих пор. all day — без the."
+        }
+      },
+      {
+        "en": "I've been playing this game all day.",
+        "translation": {
+          "ru": "Я весь день играю в эту игру."
+        },
+        "why": {
+          "ru": "all day — сколько уже длится процесс: с утра до этой минуты."
+        }
+      },
+      {
+        "en": "Yesterday we stayed at home all day.",
+        "translation": {
+          "ru": "Вчера мы весь день сидели дома."
+        },
+        "why": {
+          "ru": "stayed — Past Simple: день закончился, это просто факт о прошлом."
+        }
+      }
+    ],
+    "compare": {
+      "ru": "**Не путай с every day.** all day — «весь день целиком», every day — «каждый день»."
+    }
+  },
+  {
+    "id": "out-of-breath",
+    "word": "out of breath",
+    "ipa": "/ˌaʊt əv ˈbrɛθ/",
+    "pos": "phrase",
+    "translation": {
+      "ru": "запыхавшийся, задыхающийся (после бега)"
+    },
+    "examples": [
+      {
+        "en": "Sam is out of breath — he's been running.",
+        "translation": {
+          "ru": "Сэм запыхался — он бегал."
+        },
+        "why": {
+          "ru": "is out of breath — состояние сейчас (be + out of breath). he's been running — след процесса: бег только что закончился, а его видно."
+        }
+      },
+      {
+        "en": "Why is Max out of breath?",
+        "translation": {
+          "ru": "Почему Макс так тяжело дышит?"
+        },
+        "why": {
+          "ru": "В вопросе is выходит вперёд. По-русски «запыхался», а по-английски — be out of breath, «быть без дыхания»."
+        }
+      },
+      {
+        "en": "I was out of breath after the race.",
+        "translation": {
+          "ru": "После забега я еле дышал."
+        },
+        "why": {
+          "ru": "was — Past Simple от be: состояние в прошлом, после забега."
+        }
+      }
+    ]
+  },
+  {
+    "id": "cry",
+    "word": "cry",
+    "ipa": "/kraɪ/",
+    "pos": "verb",
+    "translation": {
+      "ru": "плакать"
+    },
+    "examples": [
+      {
+        "en": "Has Emma been crying? Her eyes are red.",
+        "translation": {
+          "ru": "Эмма плакала? У неё красные глаза."
+        },
+        "why": {
+          "ru": "has been crying — Present Perfect Continuous: плакать перестала только что, а след — красные глаза — виден."
+        }
+      },
+      {
+        "en": "The baby cries every night.",
+        "translation": {
+          "ru": "Малыш плачет каждую ночь."
+        },
+        "why": {
+          "ru": "cries — Present Simple, привычка. У cry с he / she / it y меняется на i: cries."
+        }
+      },
+      {
+        "en": "Emma cried at the end of the movie.",
+        "translation": {
+          "ru": "Эмма плакала в конце фильма."
+        },
+        "why": {
+          "ru": "cried — Past Simple. Глагол правильный, y меняется на i: cried."
+        }
+      }
+    ]
+  },
+  {
+    "id": "dirty",
+    "word": "dirty",
+    "ipa": "/ˈdɝti/",
+    "pos": "adjective",
+    "translation": {
+      "ru": "грязный"
+    },
+    "examples": [
+      {
+        "en": "Why are your hands so dirty? — I've been fixing my bike.",
+        "translation": {
+          "ru": "Почему у тебя такие грязные руки? — Я чинил велосипед."
+        },
+        "why": {
+          "ru": "Грязные руки — след. I've been fixing — Present Perfect Continuous: процесс шёл до этой минуты."
+        }
+      },
+      {
+        "en": "My shoes are dirty after the football game.",
+        "translation": {
+          "ru": "После футбола у меня грязная обувь."
+        },
+        "why": {
+          "ru": "are dirty — состояние сейчас: be + прилагательное."
+        }
+      },
+      {
+        "en": "Don't put dirty socks on the bed!",
+        "translation": {
+          "ru": "Не клади грязные носки на кровать!"
+        },
+        "why": {
+          "ru": "dirty стоит перед существительным, как русское «грязные носки»."
+        }
+      }
+    ]
+  },
+  {
+    "id": "wet",
+    "word": "wet",
+    "ipa": "/wɛt/",
+    "pos": "adjective",
+    "translation": {
+      "ru": "мокрый, влажный"
+    },
+    "examples": [
+      {
+        "en": "The ground is wet — it's been raining.",
+        "translation": {
+          "ru": "Земля мокрая — шёл дождь."
+        },
+        "why": {
+          "ru": "Мокрая земля — след. it's been raining — дождь шёл до недавнего времени, Present Perfect Continuous."
+        }
+      },
+      {
+        "en": "My hair is still wet.",
+        "translation": {
+          "ru": "У меня ещё мокрые волосы."
+        },
+        "why": {
+          "ru": "is wet — состояние сейчас. still — «всё ещё»."
+        }
+      },
+      {
+        "en": "We got wet in the rain yesterday.",
+        "translation": {
+          "ru": "Вчера мы промокли под дождём."
+        },
+        "why": {
+          "ru": "got wet — «промокли», «стали мокрыми». got — Past Simple от get."
+        }
+      }
+    ]
+  }
+]

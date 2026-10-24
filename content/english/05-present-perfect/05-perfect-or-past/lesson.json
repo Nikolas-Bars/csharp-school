@@ -2,6 +2,7 @@
   "title": { "ru": "Present Perfect или Past Simple" },
   "steps": [
     { "type": "theory", "text": { "ru": "01-choice.ru.md" } },
+    { "type": "words", "file": "words.json" },
     { "type": "theory", "text": { "ru": "02-finished-time.ru.md" } },
     { "type": "theory", "text": { "ru": "03-when.ru.md" } },
     { "type": "practice", "id": "choose", "file": "practice/choose.json" },

@@ -1,0 +1,197 @@
+[
+  {
+    "id": "going-to",
+    "word": "going to",
+    "ipa": "/ˈɡoʊɪŋ tu/",
+    "pos": "phrase",
+    "translation": { "ru": "собираться (что-то сделать); вот-вот случится — когда видны признаки" },
+    "examples": [
+      {
+        "en": "I'm going to visit my grandma on Sunday.",
+        "translation": { "ru": "В воскресенье я собираюсь навестить бабушку." },
+        "why": { "ru": "am going to + visit — план, решённый заранее. После to глагол в начальной форме, как в словаре." }
+      },
+      {
+        "en": "Look at the sky! It's going to rain.",
+        "translation": { "ru": "Посмотри на небо! Сейчас пойдёт дождь." },
+        "why": { "ru": "Тучи видны прямо сейчас — это признак. Прогноз по признакам — going to." }
+      },
+      {
+        "en": "Are you going to play with us?",
+        "translation": { "ru": "Ты будешь с нами играть?" },
+        "why": { "ru": "В вопросе are выходит вперёд, а going to + play не меняются." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с will.** will — решаешь прямо сейчас, going to — решено раньше." }
+  },
+  {
+    "id": "gonna",
+    "word": "gonna",
+    "ipa": "/ˈɡɑnə/",
+    "pos": "phrase",
+    "translation": { "ru": "собираюсь, собираешься… — так going to звучит в быстрой речи" },
+    "examples": [
+      {
+        "en": "I'm gonna call you later.",
+        "translation": { "ru": "Я тебе потом позвоню." },
+        "why": { "ru": "gonna = going to: так говорят друзья между собой. В письме и в упражнениях пиши полностью — going to." }
+      },
+      {
+        "en": "We're gonna win this game!",
+        "translation": { "ru": "Мы выиграем этот матч!" },
+        "why": { "ru": "Счёт на табло уже виден — это признак, поэтому прогноз с going to. We're gonna = We're going to." }
+      },
+      {
+        "en": "Are you gonna eat that?",
+        "translation": { "ru": "Ты будешь это есть?" },
+        "why": { "ru": "Вопрос строится, как с going to: are выходит вперёд." }
+      }
+    ]
+  },
+  {
+    "id": "plan",
+    "word": "plan",
+    "ipa": "/plæn/",
+    "pos": "verb",
+    "translation": { "ru": "планировать, собираться (что-то сделать)" },
+    "examples": [
+      {
+        "en": "I plan to learn Japanese.",
+        "translation": { "ru": "Я планирую учить японский." },
+        "why": { "ru": "plan to + глагол — «планирую что-то сделать». Present Simple: такой план у меня есть." }
+      },
+      {
+        "en": "What are you planning to do this summer?",
+        "translation": { "ru": "Что ты планируешь делать летом?" },
+        "why": { "ru": "are planning — Present Continuous: о планах думают в эти дни. Перед -ing n удваивается: planning." }
+      },
+      {
+        "en": "We planned a party for Mom's birthday.",
+        "translation": { "ru": "Мы спланировали вечеринку на мамин день рождения." },
+        "why": { "ru": "planned — Past Simple: спланировали в прошлом. В конце n удваивается: plan → planned." }
+      }
+    ]
+  },
+  {
+    "id": "visit",
+    "word": "visit",
+    "ipa": "/ˈvɪzɪt/",
+    "pos": "verb",
+    "translation": { "ru": "навещать (кого-то); побывать, посетить (место)" },
+    "examples": [
+      {
+        "en": "We visit our grandparents every Sunday.",
+        "translation": { "ru": "Каждое воскресенье мы навещаем бабушку с дедушкой." },
+        "why": { "ru": "Present Simple с every Sunday — так бывает регулярно. visit + кого — «навестить, проведать»." }
+      },
+      {
+        "en": "Tom is going to visit London next year.",
+        "translation": { "ru": "В следующем году Том собирается побывать в Лондоне." },
+        "why": { "ru": "visit + место — «побывать, съездить». is going to — план уже есть." }
+      },
+      {
+        "en": "My friends visited me last weekend.",
+        "translation": { "ru": "На прошлых выходных друзья приходили ко мне в гости." },
+        "why": { "ru": "visited — Past Simple: было и закончилось. visit — правильный глагол, прошедшее с -ed." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с visit to.** После visit сразу кто или что, без to: visit my grandma, visit London." }
+  },
+  {
+    "id": "save",
+    "word": "save",
+    "ipa": "/seɪv/",
+    "pos": "verb",
+    "translation": { "ru": "копить, откладывать (деньги); сохранять (игру, файл); спасать" },
+    "examples": [
+      {
+        "en": "I'm saving money for a new bike.",
+        "translation": { "ru": "Я коплю на новый велосипед." },
+        "why": { "ru": "am saving — Present Continuous: копить начали, это идёт в эти дни. save money — «копить деньги»." }
+      },
+      {
+        "en": "Don't forget to save the game!",
+        "translation": { "ru": "Не забудь сохранить игру!" },
+        "why": { "ru": "Здесь save — «сохранить», как кнопка Save в игре." }
+      },
+      {
+        "en": "The firefighter saved the cat.",
+        "translation": { "ru": "Пожарный спас кошку." },
+        "why": { "ru": "saved — Past Simple: это уже случилось. Здесь save — «спасти»." }
+      }
+    ]
+  },
+  {
+    "id": "paint",
+    "word": "paint",
+    "ipa": "/peɪnt/",
+    "pos": "verb",
+    "translation": { "ru": "красить; рисовать красками" },
+    "examples": [
+      {
+        "en": "My brother is going to paint his room blue.",
+        "translation": { "ru": "Брат собирается покрасить свою комнату в синий цвет." },
+        "why": { "ru": "is going to paint — план уже есть. paint — «красить»: стены, забор, комнату." }
+      },
+      {
+        "en": "Mia paints pictures of cats.",
+        "translation": { "ru": "Мия рисует красками картинки с котами." },
+        "why": { "ru": "Present Simple: Мия так делает обычно. Mia = she, поэтому -s: paints." }
+      },
+      {
+        "en": "We painted the fence yesterday.",
+        "translation": { "ru": "Вчера мы покрасили забор." },
+        "why": { "ru": "painted — Past Simple, правильный глагол: к нему -ed." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с draw.** draw — рисовать карандашом или ручкой, paint — красками или красить." }
+  },
+  {
+    "id": "cloud",
+    "word": "cloud",
+    "ipa": "/klaʊd/",
+    "pos": "noun",
+    "translation": { "ru": "облако; туча" },
+    "examples": [
+      {
+        "en": "Look at those clouds! It's going to rain.",
+        "translation": { "ru": "Посмотри на эти тучи! Сейчас пойдёт дождь." },
+        "why": { "ru": "clouds — несколько облаков: -s на конце. Тучи видны сейчас — признак, поэтому going to." }
+      },
+      {
+        "en": "There isn't a cloud in the sky today.",
+        "translation": { "ru": "Сегодня на небе ни облачка." },
+        "why": { "ru": "a cloud — одно облако. There isn't — «нет»: небо чистое." }
+      },
+      {
+        "en": "That cloud looks like a dog!",
+        "translation": { "ru": "Это облако похоже на собаку!" },
+        "why": { "ru": "looks like — «похоже на». Это состояние, поэтому Present Simple, а не -ing." }
+      }
+    ]
+  },
+  {
+    "id": "drop",
+    "word": "drop",
+    "ipa": "/drɑp/",
+    "pos": "verb",
+    "translation": { "ru": "уронить; ронять" },
+    "examples": [
+      {
+        "en": "Watch out! You're going to drop the plates!",
+        "translation": { "ru": "Осторожно! Ты сейчас уронишь тарелки!" },
+        "why": { "ru": "Видно, что тарелки вот-вот упадут, — это признак. Прогноз по признакам — going to." }
+      },
+      {
+        "en": "Max dropped his ice cream on the floor.",
+        "translation": { "ru": "Макс уронил мороженое на пол." },
+        "why": { "ru": "dropped — Past Simple. В конце p удваивается: drop → dropped." }
+      },
+      {
+        "en": "Don't drop the ball!",
+        "translation": { "ru": "Не урони мяч!" },
+        "why": { "ru": "Don't + глагол — просьба «не делай». drop — уронить нечаянно." }
+      }
+    ]
+  }
+]

@@ -18,4 +18,5 @@ Have you seen the new superhero movie? — Yes, we saw it on Saturday. It was aw
 - Have you ever…? / Have you seen…? — Present Perfect: было ли вообще.
 - When? Where? How did it happen? — Past Simple: подробности о том самом случае.
 
-Новый неправильный глагол: fall — fell — fallen (падать).
+Неправильный глагол из этих историй: fall — fell — fallen (падать). А **fall off** — «упасть с чего-то»:
+He fell off his skateboard — упал со скейта.

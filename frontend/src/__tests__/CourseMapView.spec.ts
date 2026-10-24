@@ -5,7 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { DEFAULT_LOCALE, setLocale } from '@/i18n/locale'
 import CourseMapView from '@/views/CourseMapView.vue'
 
-import { apiReply, course, englishCourse, twoModules } from './lessonFixtures'
+import { apiReply, course, englishCourse, twoModules, wordsCourse } from './lessonFixtures'
 import { testRouter } from './support/router'
 
 const fetchMock = vi.fn<typeof fetch>()
@@ -242,5 +242,33 @@ describe('CourseMapView', () => {
     expect(wrapper.findAll('.map__module--done')).toHaveLength(2)
     expect(wrapper.find('.map__cta').exists()).toBe(false)
     expect(wrapper.get('.map__finished').text()).toBe('Все уроки пройдены — ты молодец!')
+  })
+
+  it('у курса с карточками слов — «Мой словарь»: сколько ждут и ссылка на повторение', async () => {
+    fetchMock.mockImplementation(async () => apiReply(wordsCourse))
+    localStorage.setItem(
+      'vocabulary:english',
+      JSON.stringify({ wear: { box: 0, due_at: new Date().toISOString(), reviewed_at: null } }),
+    )
+    const wrapper = mount(CourseMapView, {
+      global: { plugins: [createPinia(), await testRouter('/courses/english')] },
+    })
+    await flushPromises()
+
+    expect(wrapper.text()).toContain('Мой словарь')
+    expect(wrapper.text()).toContain('слово ждёт сегодня')
+    const hrefs = wrapper.findAll('a').map((link) => link.attributes('href'))
+    expect(hrefs).toContain('/courses/english/words/review')
+    expect(hrefs).toContain('/courses/english/words')
+  })
+
+  it('у курса без карточек блока словаря нет', async () => {
+    fetchMock.mockImplementation(async () => apiReply(englishCourse))
+    const wrapper = mount(CourseMapView, {
+      global: { plugins: [createPinia(), await testRouter('/courses/english')] },
+    })
+    await flushPromises()
+
+    expect(wrapper.text()).not.toContain('Мой словарь')
   })
 })

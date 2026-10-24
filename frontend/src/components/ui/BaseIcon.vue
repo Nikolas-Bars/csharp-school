@@ -13,6 +13,7 @@ const PATHS = {
   play: ['M7 4l13 8-13 8z'],
   'chevron-left': ['M15 18l-6-6 6-6'],
   check: ['M20 6L9 17l-5-5'],
+  close: ['M18 6L6 18', 'M6 6l12 12'],
   volume: [
     'M11 5L6 9H2v6h4l5 4V5z',
     'M15.54 8.46a5 5 0 0 1 0 7.07',

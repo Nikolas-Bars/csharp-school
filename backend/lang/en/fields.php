@@ -24,4 +24,8 @@ return [
         'steps' => 'Completed steps',
         'code'  => 'Solution code',
     ],
+    'vocabulary' => [
+        'words'   => 'Words',
+        'reviews' => 'Review',
+    ],
 ];

@@ -76,3 +76,25 @@ export function englishPractice(module: string, lesson: string, id: string): Eng
     exercises: json(steps[index]!.file!),
   }
 }
+
+export interface EnglishWords {
+  /** Адрес шага «Новые слова»: /courses/english/01-simple-tenses/01-present-simple?step=2 */
+  url: string
+  words: { id: string; word: string; translation: { ru: string } }[]
+}
+
+/** Карточки слов урока английского: адрес шага и сами карточки */
+export function englishWords(module: string, lesson: string): EnglishWords {
+  const lessonDir = new URL(`${module}/${lesson}/`, ENGLISH)
+  const json = <T>(file: string) => JSON.parse(readFileSync(new URL(file, lessonDir), 'utf8')) as T
+  const { steps } = json<{ steps: { type: string; file?: string }[] }>('lesson.json')
+  const index = steps.findIndex((item) => item.type === 'words')
+  if (index === -1) {
+    throw new Error(`В english/${module}/${lesson}/lesson.json нет шага words`)
+  }
+
+  return {
+    url: `/courses/english/${module}/${lesson}?step=${index + 1}`,
+    words: json(steps[index]!.file!),
+  }
+}

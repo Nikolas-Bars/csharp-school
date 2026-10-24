@@ -1,0 +1,242 @@
+[
+  {
+    "id": "by",
+    "word": "by",
+    "ipa": "/baɪ/",
+    "pos": "preposition",
+    "translation": {
+      "ru": "к (сроку), не позже; на (автобусе)"
+    },
+    "examples": [
+      {
+        "en": "By Friday I'll have finished the project.",
+        "translation": {
+          "ru": "К пятнице я уже закончу проект."
+        },
+        "why": {
+          "ru": "'ll have finished — Future Perfect: к пятнице результат будет готов. by — «к, не позже»."
+        }
+      },
+      {
+        "en": "We'll be home by 6 pm.",
+        "translation": {
+          "ru": "Мы будем дома к шести вечера."
+        },
+        "why": {
+          "ru": "by 6 pm — «не позже шести»."
+        }
+      },
+      {
+        "en": "I go to school by bus.",
+        "translation": {
+          "ru": "Я езжу в школу на автобусе."
+        },
+        "why": {
+          "ru": "Другое значение: by bus — «на автобусе», by car — «на машине»."
+        }
+      }
+    ],
+    "compare": {
+      "ru": "**Не путай с until.** by — «к, не позже» (сделаю к пятнице), until — «вплоть до» (буду ждать до пятницы)."
+    }
+  },
+  {
+    "id": "by-then",
+    "word": "by then",
+    "ipa": "/baɪ ˈðɛn/",
+    "pos": "phrase",
+    "translation": {
+      "ru": "к тому времени"
+    },
+    "examples": [
+      {
+        "en": "The party starts at eight. By then I'll have finished my homework.",
+        "translation": {
+          "ru": "Вечеринка в восемь. К тому времени я уже сделаю уроки."
+        },
+        "why": {
+          "ru": "by then — «к тому времени», здесь — к восьми. 'll have finished — Future Perfect: результат к моменту в будущем."
+        }
+      },
+      {
+        "en": "Come at ten. I'll have cleaned my room by then.",
+        "translation": {
+          "ru": "Приходи в десять. К тому времени я уже уберу комнату."
+        },
+        "why": {
+          "ru": "by then можно поставить и в конец."
+        }
+      },
+      {
+        "en": "We got there at noon, but by then the shop had closed.",
+        "translation": {
+          "ru": "Мы пришли туда в полдень, но к тому времени магазин уже закрылся."
+        },
+        "why": {
+          "ru": "О прошлом: had closed — Past Perfect, магазин закрылся раньше нашего прихода."
+        }
+      }
+    ]
+  },
+  {
+    "id": "until",
+    "word": "until",
+    "ipa": "/ənˈtɪl/",
+    "pos": "preposition",
+    "translation": {
+      "ru": "до (вплоть до), пока не"
+    },
+    "examples": [
+      {
+        "en": "I'll wait until Friday.",
+        "translation": {
+          "ru": "Я подожду до пятницы."
+        },
+        "why": {
+          "ru": "until — «вплоть до»: ждать буду всё время до пятницы."
+        }
+      },
+      {
+        "en": "I won't finish my project until Friday.",
+        "translation": {
+          "ru": "Я закончу проект только в пятницу."
+        },
+        "why": {
+          "ru": "won't … until — «не раньше чем»: до пятницы не закончу."
+        }
+      },
+      {
+        "en": "We played outside until dark.",
+        "translation": {
+          "ru": "Мы играли на улице до темноты."
+        },
+        "why": {
+          "ru": "played — Past Simple: игра шла всё время, вплоть до темноты."
+        }
+      }
+    ],
+    "compare": {
+      "ru": "**Не путай с by.** until — «всё время до», by — «к, не позже». till — то же, что until."
+    }
+  },
+  {
+    "id": "graduate",
+    "word": "graduate",
+    "ipa": "/ˈɡrædʒuˌeɪt/",
+    "pos": "verb",
+    "translation": {
+      "ru": "окончить (школу, университет)"
+    },
+    "examples": [
+      {
+        "en": "By 2030 my sister will have graduated from college.",
+        "translation": {
+          "ru": "К 2030 году сестра окончит университет."
+        },
+        "why": {
+          "ru": "will have graduated — Future Perfect: к 2030 году учёба уже будет закончена."
+        }
+      },
+      {
+        "en": "My brother graduated from high school last year.",
+        "translation": {
+          "ru": "Мой брат окончил школу в прошлом году."
+        },
+        "why": {
+          "ru": "graduated — Past Simple, есть время (last year). После graduate — from."
+        }
+      },
+      {
+        "en": "When will you graduate?",
+        "translation": {
+          "ru": "Когда ты окончишь учёбу?"
+        },
+        "why": {
+          "ru": "will graduate — Future Simple: просто вопрос о будущем."
+        }
+      }
+    ]
+  },
+  {
+    "id": "return",
+    "word": "return",
+    "ipa": "/rɪˈtɝn/",
+    "pos": "verb",
+    "translation": {
+      "ru": "вернуться; вернуть"
+    },
+    "examples": [
+      {
+        "en": "By the time Mom returns home, we'll have done our homework.",
+        "translation": {
+          "ru": "К тому времени, как мама вернётся домой, мы уже сделаем уроки."
+        },
+        "why": {
+          "ru": "После by the time — Present Simple (returns). Во второй части Future Perfect: 'll have done."
+        }
+      },
+      {
+        "en": "Please return the book to the library by Friday.",
+        "translation": {
+          "ru": "Пожалуйста, верни книгу в библиотеку к пятнице."
+        },
+        "why": {
+          "ru": "return что-то — «вернуть». by Friday — «не позже пятницы»."
+        }
+      },
+      {
+        "en": "Max returned from his trip yesterday.",
+        "translation": {
+          "ru": "Макс вчера вернулся из поездки."
+        },
+        "why": {
+          "ru": "returned — Past Simple, правильный глагол."
+        }
+      }
+    ],
+    "compare": {
+      "ru": "**Не говори return back.** return уже значит «вернуться назад», как come back, поэтому back не нужен."
+    }
+  },
+  {
+    "id": "college",
+    "word": "college",
+    "ipa": "/ˈkɑlɪdʒ/",
+    "pos": "noun",
+    "translation": {
+      "ru": "колледж; в США — университет"
+    },
+    "examples": [
+      {
+        "en": "By 2030 my sister will have graduated from college.",
+        "translation": {
+          "ru": "К 2030 году сестра окончит университет."
+        },
+        "why": {
+          "ru": "graduate from college — «окончить университет». Future Perfect: к 2030 году уже будет сделано."
+        }
+      },
+      {
+        "en": "My brother goes to college in Boston.",
+        "translation": {
+          "ru": "Мой брат учится в университете в Бостоне."
+        },
+        "why": {
+          "ru": "go to college — «учиться в университете», без the."
+        }
+      },
+      {
+        "en": "What do you want to study in college?",
+        "translation": {
+          "ru": "Что ты хочешь изучать в университете?"
+        },
+        "why": {
+          "ru": "in college — «в университете», тоже без the."
+        }
+      }
+    ],
+    "compare": {
+      "ru": "**Не путай с русским «колледжем».** В США college — почти любое высшее образование после школы, обычно «университет»."
+    }
+  }
+]

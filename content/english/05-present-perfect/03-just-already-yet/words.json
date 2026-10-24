@@ -1,0 +1,173 @@
+[
+  {
+    "id": "just",
+    "word": "just",
+    "ipa": "/dʒʌst/",
+    "pos": "adverb",
+    "translation": { "ru": "только что; просто, всего лишь" },
+    "examples": [
+      {
+        "en": "Max has just woken up.",
+        "translation": { "ru": "Макс только что проснулся." },
+        "why": { "ru": "just — «только что»: стоит между has и третьей формой. Present Perfect — свежая новость." }
+      },
+      {
+        "en": "Our pizza has just arrived!",
+        "translation": { "ru": "Нашу пиццу только что привезли!" },
+        "why": { "ru": "has just arrived — Present Perfect: случилось совсем недавно, а важно сейчас — пицца уже здесь." }
+      },
+      {
+        "en": "It's just a game, don't cry.",
+        "translation": { "ru": "Это просто игра, не плачь." },
+        "why": { "ru": "Здесь just — «просто, всего лишь». Это другое значение, время — Present Simple (is)." }
+      }
+    ]
+  },
+  {
+    "id": "already",
+    "word": "already",
+    "ipa": "/ɑlˈrɛdi/",
+    "pos": "adverb",
+    "translation": { "ru": "уже" },
+    "examples": [
+      {
+        "en": "Sam has already finished the game!",
+        "translation": { "ru": "Сэм уже прошёл игру!" },
+        "why": { "ru": "has already finished — Present Perfect: результат сейчас — игра пройдена. already — «уже», раньше, чем ждали; стоит между has и третьей формой." }
+      },
+      {
+        "en": "Have you already eaten? It's only eleven!",
+        "translation": { "ru": "Вы что, уже поели? Ещё только одиннадцать!" },
+        "why": { "ru": "В вопросе already звучит удивлённо: «что, уже?»." }
+      },
+      {
+        "en": "We've seen this video already.",
+        "translation": { "ru": "Мы уже видели это видео." },
+        "why": { "ru": "already можно поставить и в конец — смысл тот же, звучит разговорнее." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с yet.** already — «уже» в утверждении. А в вопросе «уже?» и в отрицании «ещё не» обычно yet: Have you finished yet?" }
+  },
+  {
+    "id": "yet",
+    "word": "yet",
+    "ipa": "/jɛt/",
+    "pos": "adverb",
+    "translation": { "ru": "уже? (в вопросе); ещё не (в отрицании)" },
+    "examples": [
+      {
+        "en": "Have you done your homework yet?",
+        "translation": { "ru": "Вы уже сделали домашку?" },
+        "why": { "ru": "yet в вопросе — «уже?». Стоит в самом конце фразы." }
+      },
+      {
+        "en": "Lily hasn't answered my message yet.",
+        "translation": { "ru": "Лили ещё не ответила на моё сообщение." },
+        "why": { "ru": "hasn't … yet — «ещё не»: спокойно, без нетерпения. Present Perfect — важно сейчас: ответа нет." }
+      },
+      {
+        "en": "Did you eat yet?",
+        "translation": { "ru": "Вы уже поели?" },
+        "why": { "ru": "Так часто говорят в Америке: Past Simple с yet — тоже правильно." }
+      }
+    ],
+    "compare": { "ru": "**Не путай со still.** not … yet — спокойное «ещё не», still haven't — «до сих пор не, а пора бы»." }
+  },
+  {
+    "id": "still",
+    "word": "still",
+    "ipa": "/stɪl/",
+    "pos": "adverb",
+    "translation": { "ru": "всё ещё; до сих пор" },
+    "examples": [
+      {
+        "en": "Max still hasn't cleaned his room!",
+        "translation": { "ru": "Макс до сих пор не убрал свою комнату!" },
+        "why": { "ru": "still стоит перед hasn't: «до сих пор не, а пора бы». Present Perfect — важно сейчас: в комнате бардак." }
+      },
+      {
+        "en": "The baby is still sleeping.",
+        "translation": { "ru": "Малыш всё ещё спит." },
+        "why": { "ru": "is still sleeping — Present Continuous: спит прямо сейчас. still — «всё ещё», стоит после is." }
+      },
+      {
+        "en": "Do you still play that game?",
+        "translation": { "ru": "Ты всё ещё играешь в ту игру?" },
+        "why": { "ru": "Present Simple — привычка. still стоит перед глаголом: «всё ещё играешь»." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с yet.** still — «всё ещё», yet — «уже?» или «ещё не». «Вы уже закончили?» — Have you finished yet, а не still." }
+  },
+  {
+    "id": "ticket",
+    "word": "ticket",
+    "ipa": "/ˈtɪkɪt/",
+    "pos": "noun",
+    "translation": { "ru": "билет" },
+    "examples": [
+      {
+        "en": "Dad has bought three tickets for the concert!",
+        "translation": { "ru": "Папа купил три билета на концерт!" },
+        "why": { "ru": "has bought — Present Perfect: результат сейчас — билеты уже есть. ticket for — «билет на»." }
+      },
+      {
+        "en": "Don't lose your ticket!",
+        "translation": { "ru": "Не потеряй билет!" },
+        "why": { "ru": "Просьба: после don't — начальная форма lose." }
+      },
+      {
+        "en": "How much is a movie ticket?",
+        "translation": { "ru": "Сколько стоит билет в кино?" },
+        "why": { "ru": "Present Simple: спрашивают о цене вообще. movie ticket — «билет в кино»." }
+      }
+    ]
+  },
+  {
+    "id": "package",
+    "word": "package",
+    "ipa": "/ˈpækɪdʒ/",
+    "pos": "noun",
+    "translation": { "ru": "посылка; пачка, упаковка" },
+    "examples": [
+      {
+        "en": "Has my package arrived? — Yes, it's on the table.",
+        "translation": { "ru": "Моя посылка пришла? — Да, она на столе." },
+        "why": { "ru": "Has … arrived — Present Perfect: важно, есть ли посылка сейчас. package — один предмет, поэтому has." }
+      },
+      {
+        "en": "Grandma has sent us a big package!",
+        "translation": { "ru": "Бабушка прислала нам большую посылку!" },
+        "why": { "ru": "has sent — свежая новость, время не названо. sent — третья форма send." }
+      },
+      {
+        "en": "Mom bought a package of cookies yesterday.",
+        "translation": { "ru": "Вчера мама купила пачку печенья." },
+        "why": { "ru": "Здесь package — «пачка, упаковка». bought — Past Simple: время названо (yesterday)." }
+      }
+    ]
+  },
+  {
+    "id": "project",
+    "word": "project",
+    "ipa": "/ˈprɑdʒɛkt/",
+    "pos": "noun",
+    "translation": { "ru": "проект (в школе, на работе)" },
+    "examples": [
+      {
+        "en": "We have finished our history project!",
+        "translation": { "ru": "Мы закончили проект по истории!" },
+        "why": { "ru": "have finished — Present Perfect: результат сейчас — проект готов. history project — «проект по истории»." }
+      },
+      {
+        "en": "Sam still hasn't started his project.",
+        "translation": { "ru": "Сэм до сих пор не начал свой проект." },
+        "why": { "ru": "still hasn't started — Present Perfect: важно сейчас — проект ещё не начат. still hasn't — «до сих пор не, а пора бы»." }
+      },
+      {
+        "en": "Our class is doing a project about space.",
+        "translation": { "ru": "Наш класс делает проект о космосе." },
+        "why": { "ru": "is doing — Present Continuous: работа идёт в эти дни и ещё не закончена. С project обычно говорят do или work on." }
+      }
+    ]
+  }
+]

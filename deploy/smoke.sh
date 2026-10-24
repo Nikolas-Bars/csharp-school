@@ -38,6 +38,10 @@ expect "GET /api/courses/csharp" "$(printf '%s' "$body" | head -c 60)" '"status"
 body=$(curl -sS --max-time 30 -H 'Accept: application/json' "$BASE/api/courses/english")
 expect "GET /api/courses/english" "$(printf '%s' "$body" | head -c 60)" '"status":"success"'
 
+body=$(curl -sS --max-time 30 -H 'Accept: application/json' "$BASE/api/courses/english/words")
+expect "GET /api/courses/english/words" "$(printf '%s' "$body" | head -c 60)" '"status":"success"'
+expect "  карточки слов курса загружены" "$body" '"ipa":'
+
 h=$(headers /api/nope)
 expect "GET /api/nope — 404 от API" "$(status_of "$h")" 404
 expect "  JSON" "$(header_of "$h" content-type)" application/json

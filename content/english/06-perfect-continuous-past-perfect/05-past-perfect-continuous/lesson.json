@@ -2,6 +2,7 @@
   "title": { "ru": "Past Perfect Continuous: учимся узнавать" },
   "steps": [
     { "type": "theory", "text": { "ru": "01-when.ru.md" } },
+    { "type": "words", "file": "words.json" },
     { "type": "theory", "text": { "ru": "02-form.ru.md" } },
     { "type": "practice", "id": "recognize", "file": "practice/recognize.json" },
     { "type": "theory", "text": { "ru": "03-trace.ru.md" } },

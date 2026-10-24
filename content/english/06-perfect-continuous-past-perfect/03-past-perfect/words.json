@@ -1,0 +1,274 @@
+[
+  {
+    "id": "by-the-time",
+    "word": "by the time",
+    "ipa": "/baɪ ðə ˈtaɪm/",
+    "pos": "phrase",
+    "translation": {
+      "ru": "к тому времени, как"
+    },
+    "examples": [
+      {
+        "en": "By the time the movie started, Max had eaten all the popcorn.",
+        "translation": {
+          "ru": "К началу фильма Макс уже съел весь попкорн."
+        },
+        "why": {
+          "ru": "started — момент в прошлом, Past Simple. Попкорн съеден ещё раньше — Past Perfect: had eaten."
+        }
+      },
+      {
+        "en": "By the time Emma woke up, her parents had already left for work.",
+        "translation": {
+          "ru": "К тому времени, как Эмма проснулась, родители уже ушли на работу."
+        },
+        "why": {
+          "ru": "После by the time — момент в прошлом, Past Simple (woke up). То, что случилось раньше него, — had left."
+        }
+      },
+      {
+        "en": "By the time I get home, it'll be dark.",
+        "translation": {
+          "ru": "К тому времени, как я доберусь до дома, уже стемнеет."
+        },
+        "why": {
+          "ru": "О будущем после by the time — Present Simple (get), как после when. will — во второй части: it'll be."
+        }
+      }
+    ]
+  },
+  {
+    "id": "realize",
+    "word": "realize",
+    "ipa": "/ˈriəˌlaɪz/",
+    "pos": "verb",
+    "translation": {
+      "ru": "понять, осознать (вдруг)"
+    },
+    "examples": [
+      {
+        "en": "Emma got to school and realized she had left her lunch at home.",
+        "translation": {
+          "ru": "Эмма пришла в школу и поняла, что оставила обед дома."
+        },
+        "why": {
+          "ru": "realized — Past Simple, рассказ идёт дальше. Обед оставлен ещё раньше — had left."
+        }
+      },
+      {
+        "en": "I suddenly realized I was wrong.",
+        "translation": {
+          "ru": "Я вдруг понял, что ошибаюсь."
+        },
+        "why": {
+          "ru": "realize — именно «вдруг понять», «дошло». suddenly — «вдруг»."
+        }
+      },
+      {
+        "en": "Do you realize what time it is?",
+        "translation": {
+          "ru": "Ты понимаешь, который час?"
+        },
+        "why": {
+          "ru": "Present Simple в вопросе: do you realize — «осознаёшь ли ты»."
+        }
+      }
+    ],
+    "compare": {
+      "ru": "**Не путай с understand.** understand — понимать смысл (I understand English), realize — вдруг понять, заметить."
+    }
+  },
+  {
+    "id": "upset",
+    "word": "upset",
+    "ipa": "/ʌpˈsɛt/",
+    "pos": "adjective",
+    "translation": {
+      "ru": "расстроенный"
+    },
+    "examples": [
+      {
+        "en": "Emma was upset because she had lost her phone.",
+        "translation": {
+          "ru": "Эмма была расстроена, потому что потеряла телефон."
+        },
+        "why": {
+          "ru": "was upset — состояние в прошлом. Телефон потерян ещё раньше — Past Perfect: had lost."
+        }
+      },
+      {
+        "en": "Don't be upset — it's just a game.",
+        "translation": {
+          "ru": "Не расстраивайся — это просто игра."
+        },
+        "why": {
+          "ru": "По-русски глагол «расстраиваться», а по-английски — be upset, «быть расстроенным»."
+        }
+      },
+      {
+        "en": "Why is Max upset?",
+        "translation": {
+          "ru": "Почему Макс расстроен?"
+        },
+        "why": {
+          "ru": "is upset — состояние сейчас. Ударение в upset — на второй слог."
+        }
+      }
+    ]
+  },
+  {
+    "id": "trip",
+    "word": "trip",
+    "ipa": "/trɪp/",
+    "pos": "noun",
+    "translation": {
+      "ru": "поездка, путешествие"
+    },
+    "examples": [
+      {
+        "en": "Lily had never flown on a plane before that trip.",
+        "translation": {
+          "ru": "До той поездки Лили ни разу не летала на самолёте."
+        },
+        "why": {
+          "ru": "had never flown — Past Perfect: опыт до момента в прошлом (до поездки)."
+        }
+      },
+      {
+        "en": "We're going on a school trip tomorrow.",
+        "translation": {
+          "ru": "Завтра мы едем на школьную экскурсию."
+        },
+        "why": {
+          "ru": "go on a trip — «поехать в поездку». 're going — Present Continuous: план уже решён."
+        }
+      },
+      {
+        "en": "How was your trip?",
+        "translation": {
+          "ru": "Как прошла поездка?"
+        },
+        "why": {
+          "ru": "Обычный вопрос после поездки: was — Past Simple от be."
+        }
+      }
+    ],
+    "compare": {
+      "ru": "**Не путай с travel.** travel — глагол «путешествовать» (I love to travel), а одна поездка — a trip."
+    }
+  },
+  {
+    "id": "station",
+    "word": "station",
+    "ipa": "/ˈsteɪʃən/",
+    "pos": "noun",
+    "translation": {
+      "ru": "вокзал, станция"
+    },
+    "examples": [
+      {
+        "en": "When we got to the station, the train had left.",
+        "translation": {
+          "ru": "Когда мы пришли на вокзал, поезд уже ушёл."
+        },
+        "why": {
+          "ru": "got to — момент в прошлом. Поезд ушёл ещё раньше — Past Perfect: had left."
+        }
+      },
+      {
+        "en": "The bus station is near my school.",
+        "translation": {
+          "ru": "Автовокзал рядом с моей школой."
+        },
+        "why": {
+          "ru": "bus station — «автовокзал», train station — «железнодорожный вокзал»."
+        }
+      },
+      {
+        "en": "Let's meet at the station at five.",
+        "translation": {
+          "ru": "Давай встретимся на вокзале в пять."
+        },
+        "why": {
+          "ru": "at the station — «на вокзале»: место встречи."
+        }
+      }
+    ]
+  },
+  {
+    "id": "airport",
+    "word": "airport",
+    "ipa": "/ˈɛrˌpɔrt/",
+    "pos": "noun",
+    "translation": {
+      "ru": "аэропорт"
+    },
+    "examples": [
+      {
+        "en": "By the time Dad got to the airport, the plane had already left.",
+        "translation": {
+          "ru": "Когда папа добрался до аэропорта, самолёт уже улетел."
+        },
+        "why": {
+          "ru": "got to — момент в прошлом. Самолёт улетел раньше — had already left."
+        }
+      },
+      {
+        "en": "We're going to the airport tomorrow morning.",
+        "translation": {
+          "ru": "Завтра утром мы едем в аэропорт."
+        },
+        "why": {
+          "ru": "'re going — Present Continuous о договорённости на будущее."
+        }
+      },
+      {
+        "en": "I've never been to a big airport.",
+        "translation": {
+          "ru": "Я ни разу не был в большом аэропорту."
+        },
+        "why": {
+          "ru": "'ve never been — Present Perfect, опыт в жизни."
+        }
+      }
+    ]
+  },
+  {
+    "id": "stadium",
+    "word": "stadium",
+    "ipa": "/ˈsteɪdiəm/",
+    "pos": "noun",
+    "translation": {
+      "ru": "стадион"
+    },
+    "examples": [
+      {
+        "en": "By the time we got to the stadium, the game had already started.",
+        "translation": {
+          "ru": "К тому времени, как мы добрались до стадиона, игра уже началась."
+        },
+        "why": {
+          "ru": "Сначала началась игра (had started), потом мы пришли (got to)."
+        }
+      },
+      {
+        "en": "The stadium was full.",
+        "translation": {
+          "ru": "Стадион был полный."
+        },
+        "why": {
+          "ru": "was — Past Simple от be: просто как было."
+        }
+      },
+      {
+        "en": "There's a new stadium in our city.",
+        "translation": {
+          "ru": "В нашем городе есть новый стадион."
+        },
+        "why": {
+          "ru": "There's = There is — «есть, имеется»."
+        }
+      }
+    ]
+  }
+]

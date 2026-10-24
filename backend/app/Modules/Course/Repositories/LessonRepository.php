@@ -61,6 +61,22 @@ final class LessonRepository extends BaseRepository
         $this->query()->whereKey($stale)->delete();
     }
 
+    /**
+     * id уроков модулей: ключ — «id модуля|slug урока».
+     *
+     * @param list<int> $moduleIds
+     *
+     * @return array<string, int>
+     */
+    public function idsByModule(array $moduleIds): array
+    {
+        return $this->query()
+            ->whereIn('course_module_id', $moduleIds)
+            ->get(['id', 'course_module_id', 'slug'])
+            ->mapWithKeys(static fn(Lesson $lesson): array => ["{$lesson->course_module_id}|{$lesson->slug}" => $lesson->id])
+            ->all();
+    }
+
     protected function model(): string
     {
         return Lesson::class;

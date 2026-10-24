@@ -2,6 +2,7 @@
   "title": { "ru": "Present Simple или Present Continuous" },
   "steps": [
     { "type": "theory", "text": { "ru": "01-choice.ru.md" } },
+    { "type": "words", "file": "words.json" },
     { "type": "theory", "text": { "ru": "02-markers.ru.md" } },
     { "type": "practice", "id": "markers", "file": "practice/markers.json" },
     { "type": "theory", "text": { "ru": "03-pairs.ru.md" } },

@@ -10,7 +10,9 @@
     "register": "Create account",
     "logout": "Log out",
     "account": "Logged in as {nickname}",
-    "courses": "Courses"
+    "courses": "Courses",
+    "vocabulary": "My vocabulary",
+    "vocabularyShort": "Words"
   },
   "home": {
     "badge": "Free · no videos",
@@ -276,7 +278,8 @@
       "theory": "theory",
       "task": "task",
       "quiz": "quiz",
-      "practice": "practice"
+      "practice": "practice",
+      "words": "new words"
     },
     "goToDoneStep": "Step {n}: {kind}, completed",
     "goToStep": "Step {n}: {kind}",
@@ -417,5 +420,84 @@
     "doneText": "All exercises are right.",
     "next": "Next step",
     "again": "Do it again"
+  },
+  "words": {
+    "lessonLabel": "Module {module} · Lesson {lesson}",
+    "toCourse": "To the lessons",
+    "pos": {
+      "noun": "noun",
+      "verb": "verb",
+      "adjective": "adjective",
+      "adverb": "adverb",
+      "pronoun": "pronoun",
+      "preposition": "preposition",
+      "conjunction": "conjunction",
+      "determiner": "determiner",
+      "auxiliary": "auxiliary verb",
+      "phrase": "phrase"
+    },
+    "card": {
+      "translation": "Translation",
+      "forms": "Forms",
+      "examples": "Examples",
+      "why": "Why:",
+      "irregular": "irregular",
+      "noVoice": "There is no English voice on this device, so there is no audio. The transcription shows the pronunciation. You can add a voice in the system settings: “Language & Region” → “English (US)”."
+    },
+    "step": {
+      "title": "New words",
+      "counter": "Word {current} of {total}",
+      "prev": "← Previous",
+      "next": "Next word →",
+      "done": "All words — continue →"
+    },
+    "dictionary": {
+      "title": "My vocabulary",
+      "lead": "Words from the lessons you have finished go here. Review is spaced: “I remember” brings the word back later (in 3, 7, 14, 30 days), “I forgot” — tomorrow.",
+      "loading": "Loading your vocabulary…",
+      "waiting": "word waiting today | words waiting today",
+      "review": "Review {n} word | Review {n} words",
+      "allDone": "All done for today",
+      "guest": "Your vocabulary is stored in this browser. Log in to have it on any device.",
+      "login": "Log in",
+      "empty": "Your vocabulary is empty for now. Words come from the lessons: go through “New words” in an English lesson.",
+      "searchLabel": "Find a word",
+      "search": "Find a word or translation",
+      "filter": "Which words to show",
+      "all": "All · {n}",
+      "today": "Today · {n}",
+      "module": "Module {n}",
+      "notFound": "Nothing found. Try another word or reset the filter.",
+      "dueToday": "Review today",
+      "dueIn": "In {n} day | In {n} days",
+      "learned": "Learned · in {n} day | Learned · in {n} days",
+      "tomorrow": "Tomorrow",
+      "learnedTomorrow": "Learned · tomorrow"
+    },
+    "review": {
+      "title": "Review",
+      "close": "Close review",
+      "counter": "{current} of {total}",
+      "hint": "Recall the translation, then check yourself.",
+      "reveal": "Show translation",
+      "forgot": "I forgot",
+      "knew": "I remember",
+      "doneTitle": "Review finished",
+      "known": "remembered",
+      "forgotten": "again tomorrow",
+      "forgotPractice": "not recalled",
+      "resultKnown": "remembered",
+      "resultForgotten": "forgot",
+      "toDictionary": "To my vocabulary",
+      "again": "Go again",
+      "practice": "Once more, just for you: the review schedule does not change.",
+      "nothing": "Nothing to review right now. Come back tomorrow or finish a new lesson — its words will go here."
+    },
+    "mapCard": {
+      "title": "My vocabulary",
+      "empty": "Words from the lessons will go here so you can review them.",
+      "open": "Open vocabulary · {n} word | Open vocabulary · {n} words",
+      "openEmpty": "Open vocabulary"
+    }
   }
 }

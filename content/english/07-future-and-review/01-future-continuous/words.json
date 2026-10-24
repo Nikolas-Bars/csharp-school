@@ -1,0 +1,274 @@
+[
+  {
+    "id": "this-time-tomorrow",
+    "word": "this time tomorrow",
+    "ipa": "/ðɪs ˈtaɪm təˈmɑroʊ/",
+    "pos": "phrase",
+    "translation": {
+      "ru": "завтра в это время"
+    },
+    "examples": [
+      {
+        "en": "This time tomorrow I'll be flying to Denver.",
+        "translation": {
+          "ru": "Завтра в это время я буду лететь в Денвер."
+        },
+        "why": {
+          "ru": "'ll be flying — Future Continuous: в этот момент завтра полёт уже будет идти."
+        }
+      },
+      {
+        "en": "This time tomorrow we'll be lying on the beach.",
+        "translation": {
+          "ru": "Завтра в это время мы будем лежать на пляже."
+        },
+        "why": {
+          "ru": "will be + -ing — стоп-кадр из будущего: что будет происходить в этот момент."
+        }
+      },
+      {
+        "en": "This time tomorrow Max will be playing in the final.",
+        "translation": {
+          "ru": "Завтра в это время Макс будет играть в финале."
+        },
+        "why": {
+          "ru": "this time tomorrow можно поставить в начало или в конец предложения."
+        }
+      }
+    ]
+  },
+  {
+    "id": "use",
+    "word": "use",
+    "ipa": "/juz/",
+    "pos": "verb",
+    "translation": {
+      "ru": "пользоваться, использовать"
+    },
+    "examples": [
+      {
+        "en": "Will you be using the laptop tonight?",
+        "translation": {
+          "ru": "Ты будешь сегодня вечером пользоваться ноутбуком?"
+        },
+        "why": {
+          "ru": "will be using — Future Continuous: вежливо узнать чужие планы. Will you use…? звучит как просьба."
+        }
+      },
+      {
+        "en": "I use my phone to listen to music.",
+        "translation": {
+          "ru": "Я слушаю музыку с телефона."
+        },
+        "why": {
+          "ru": "use — Present Simple: обычно, всегда так."
+        }
+      },
+      {
+        "en": "Can I use your pen?",
+        "translation": {
+          "ru": "Можно взять твою ручку?"
+        },
+        "why": {
+          "ru": "Can I use…? — «можно воспользоваться…?» — вежливая просьба."
+        }
+      }
+    ],
+    "compare": {
+      "ru": "**Не путай с used to.** used to — «раньше (делал)», про прошлые привычки: I used to play chess."
+    }
+  },
+  {
+    "id": "laptop",
+    "word": "laptop",
+    "ipa": "/ˈlæpˌtɑp/",
+    "pos": "noun",
+    "translation": {
+      "ru": "ноутбук"
+    },
+    "examples": [
+      {
+        "en": "Will you be using the laptop tonight? I need it for my project.",
+        "translation": {
+          "ru": "Ты будешь вечером пользоваться ноутбуком? Он мне нужен для проекта."
+        },
+        "why": {
+          "ru": "Future Continuous в вопросе — вежливо узнать планы: will you be using."
+        }
+      },
+      {
+        "en": "My laptop is very slow.",
+        "translation": {
+          "ru": "Мой ноутбук очень медленный."
+        },
+        "why": {
+          "ru": "is — Present Simple от be: как обстоят дела."
+        }
+      },
+      {
+        "en": "Max is playing games on his laptop.",
+        "translation": {
+          "ru": "Макс играет в игры на ноутбуке."
+        },
+        "why": {
+          "ru": "is playing — Present Continuous: прямо сейчас. on his laptop — «на своём ноутбуке»."
+        }
+      }
+    ]
+  },
+  {
+    "id": "print",
+    "word": "print",
+    "ipa": "/prɪnt/",
+    "pos": "verb",
+    "translation": {
+      "ru": "печатать, распечатать"
+    },
+    "examples": [
+      {
+        "en": "I need to print my homework.",
+        "translation": {
+          "ru": "Мне нужно распечатать домашку."
+        },
+        "why": {
+          "ru": "need to + глагол — «нужно сделать»."
+        }
+      },
+      {
+        "en": "Will you be using the printer later? I want to print some photos.",
+        "translation": {
+          "ru": "Ты будешь потом пользоваться принтером? Хочу распечатать фотографии."
+        },
+        "why": {
+          "ru": "print — «распечатать». Will you be using…? — Future Continuous: вежливо узнать планы. printer — «принтер»: print + -er."
+        }
+      },
+      {
+        "en": "Dad printed the tickets yesterday.",
+        "translation": {
+          "ru": "Папа вчера распечатал билеты."
+        },
+        "why": {
+          "ru": "printed — Past Simple, глагол правильный: -ed."
+        }
+      }
+    ]
+  },
+  {
+    "id": "ski",
+    "word": "ski",
+    "ipa": "/ski/",
+    "pos": "verb",
+    "translation": {
+      "ru": "кататься на лыжах"
+    },
+    "examples": [
+      {
+        "en": "This time next Saturday we'll be skiing.",
+        "translation": {
+          "ru": "В следующую субботу в это время мы будем кататься на лыжах."
+        },
+        "why": {
+          "ru": "'ll be skiing — Future Continuous: в этот момент катание уже будет идти."
+        }
+      },
+      {
+        "en": "Do you ski?",
+        "translation": {
+          "ru": "Ты катаешься на лыжах?"
+        },
+        "why": {
+          "ru": "Present Simple: умеешь ли, бывает ли так вообще."
+        }
+      },
+      {
+        "en": "We skied in the mountains last winter.",
+        "translation": {
+          "ru": "Прошлой зимой мы катались на лыжах в горах."
+        },
+        "why": {
+          "ru": "skied — Past Simple: к ski просто добавляется -ed."
+        }
+      }
+    ],
+    "compare": {
+      "ru": "**Не путай с ride.** «Кататься на лыжах» — один глагол ski, без ride и без on."
+    }
+  },
+  {
+    "id": "hang-out",
+    "word": "hang out",
+    "ipa": "/ˌhæŋ ˈaʊt/",
+    "pos": "phrase",
+    "translation": {
+      "ru": "тусоваться, проводить время с друзьями"
+    },
+    "examples": [
+      {
+        "en": "Sorry, I can't hang out tonight.",
+        "translation": {
+          "ru": "Извини, сегодня вечером я не могу погулять."
+        },
+        "why": {
+          "ru": "can't + глагол — «не могу». hang out — разговорное «гулять, тусоваться»."
+        }
+      },
+      {
+        "en": "Let's hang out at the park after school.",
+        "translation": {
+          "ru": "Давай после школы потусуемся в парке."
+        },
+        "why": {
+          "ru": "Let's — «давай», предложение сделать что-то вместе."
+        }
+      },
+      {
+        "en": "I like to hang out with my cousin.",
+        "translation": {
+          "ru": "Я люблю проводить время с двоюродным братом."
+        },
+        "why": {
+          "ru": "hang out with — «проводить время с кем-то»."
+        }
+      }
+    ]
+  },
+  {
+    "id": "cousin",
+    "word": "cousin",
+    "ipa": "/ˈkʌzən/",
+    "pos": "noun",
+    "translation": {
+      "ru": "двоюродный брат, двоюродная сестра"
+    },
+    "examples": [
+      {
+        "en": "I'll be seeing my cousin on Saturday.",
+        "translation": {
+          "ru": "В субботу я увижусь с двоюродным братом."
+        },
+        "why": {
+          "ru": "'ll be seeing — Future Continuous: так говорят о том, что и так случится по планам."
+        }
+      },
+      {
+        "en": "My cousin lives in Canada.",
+        "translation": {
+          "ru": "Моя двоюродная сестра живёт в Канаде."
+        },
+        "why": {
+          "ru": "lives — Present Simple, факт. cousin — одно слово и для брата, и для сестры."
+        }
+      },
+      {
+        "en": "We're visiting our cousins this weekend.",
+        "translation": {
+          "ru": "В эти выходные мы едем в гости к двоюродным братьям и сёстрам."
+        },
+        "why": {
+          "ru": "'re visiting — Present Continuous о договорённости на выходные."
+        }
+      }
+    ]
+  }
+]

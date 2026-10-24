@@ -1,0 +1,122 @@
+[
+  {
+    "id": "essay",
+    "word": "essay",
+    "ipa": "/ˈɛseɪ/",
+    "pos": "noun",
+    "translation": {
+      "ru": "сочинение, эссе"
+    },
+    "examples": [
+      {
+        "en": "By 9 pm I'll have been writing this essay for three hours.",
+        "translation": {
+          "ru": "В девять вечера будет три часа, как я пишу это сочинение."
+        },
+        "why": {
+          "ru": "'ll have been writing — Future Perfect Continuous: сколько будет длиться процесс к моменту в будущем."
+        }
+      },
+      {
+        "en": "I have written my essay.",
+        "translation": {
+          "ru": "Я написал сочинение."
+        },
+        "why": {
+          "ru": "have written — Present Perfect: результат, сочинение готово."
+        }
+      },
+      {
+        "en": "Our teacher gave us an essay for homework.",
+        "translation": {
+          "ru": "Учитель задал нам на дом сочинение."
+        },
+        "why": {
+          "ru": "gave — Past Simple от give. an essay — an, потому что essay начинается с гласного звука."
+        }
+      }
+    ]
+  },
+  {
+    "id": "practice",
+    "word": "practice",
+    "ipa": "/ˈpræktɪs/",
+    "pos": "verb",
+    "translation": {
+      "ru": "тренироваться, упражняться, отрабатывать"
+    },
+    "examples": [
+      {
+        "en": "By June, Lily will have been practicing the piano for a year.",
+        "translation": {
+          "ru": "В июне будет год, как Лили занимается на пианино."
+        },
+        "why": {
+          "ru": "will have been practicing — Future Perfect Continuous: срок (for a year) к моменту в будущем (June)."
+        }
+      },
+      {
+        "en": "At six tomorrow Max will be practicing.",
+        "translation": {
+          "ru": "Завтра в шесть Макс будет на тренировке."
+        },
+        "why": {
+          "ru": "will be practicing — Future Continuous: в шесть тренировка уже будет идти."
+        }
+      },
+      {
+        "en": "You need to practice every day.",
+        "translation": {
+          "ru": "Тебе нужно заниматься каждый день."
+        },
+        "why": {
+          "ru": "need to + глагол — «нужно». practice — отрабатывать умение повторением."
+        }
+      }
+    ],
+    "compare": {
+      "ru": "**Не путай с train.** practice — отрабатывать умение (piano, English), train — тренироваться, чаще в спорте; часто подходят оба."
+    }
+  },
+  {
+    "id": "by-the-end-of",
+    "word": "by the end of",
+    "ipa": "/baɪ ði ˈɛnd əv/",
+    "pos": "phrase",
+    "translation": {
+      "ru": "к концу (чего-то)"
+    },
+    "examples": [
+      {
+        "en": "By the end of the month, Emma will have been working at the cafe for a year.",
+        "translation": {
+          "ru": "К концу месяца будет год, как Эмма работает в кафе."
+        },
+        "why": {
+          "ru": "will have been working — Future Perfect Continuous: срок (for a year) к моменту (концу месяца)."
+        }
+      },
+      {
+        "en": "By the end of the summer, Lily will have read twenty books.",
+        "translation": {
+          "ru": "К концу лета Лили прочитает двадцать книг."
+        },
+        "why": {
+          "ru": "will have read — Future Perfect: есть число, результат к концу лета."
+        }
+      },
+      {
+        "en": "By the end of the game, we had scored five goals.",
+        "translation": {
+          "ru": "К концу игры мы забили пять голов."
+        },
+        "why": {
+          "ru": "О прошлом: had scored — Past Perfect, голы забиты до момента в прошлом."
+        }
+      }
+    ],
+    "compare": {
+      "ru": "**Не путай с at the end of.** at the end of — «в конце» (в этот момент), by the end of — «к концу», не позже."
+    }
+  }
+]

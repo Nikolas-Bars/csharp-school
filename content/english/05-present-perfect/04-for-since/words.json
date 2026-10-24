@@ -1,0 +1,166 @@
+[
+  {
+    "id": "for",
+    "word": "for",
+    "ipa": "/fɔr/",
+    "pos": "preposition",
+    "translation": { "ru": "в течение (срок): for two years — два года; для" },
+    "examples": [
+      {
+        "en": "We have had our cat for three years.",
+        "translation": { "ru": "У нас кошка уже три года." },
+        "why": { "ru": "for + срок — сколько длится. Present Perfect: началось в прошлом и длится до сих пор." }
+      },
+      {
+        "en": "Sam has lived in this town for a long time.",
+        "translation": { "ru": "Сэм давно живёт в этом городе." },
+        "why": { "ru": "for a long time — «давно, долго»: это тоже срок. По-русски «живёт», а по-английски — Present Perfect." }
+      },
+      {
+        "en": "This present is for you!",
+        "translation": { "ru": "Этот подарок — для тебя!" },
+        "why": { "ru": "Здесь for — «для»: другое значение. is — Present Simple." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с since.** for — срок (for two weeks — две недели), since — точка начала (since Monday — с понедельника)." }
+  },
+  {
+    "id": "since",
+    "word": "since",
+    "ipa": "/sɪns/",
+    "pos": "preposition",
+    "translation": { "ru": "с (какого-то момента); с тех пор как" },
+    "examples": [
+      {
+        "en": "We have lived in this town since 2019.",
+        "translation": { "ru": "Мы живём в этом городе с 2019 года." },
+        "why": { "ru": "since + точка в прошлом (2019). Живём до сих пор — поэтому Present Perfect, а не Present Simple." }
+      },
+      {
+        "en": "Max has wanted a dog since he was five.",
+        "translation": { "ru": "Макс хочет собаку с пяти лет." },
+        "why": { "ru": "После since — целая фраза в Past Simple (was): это точка в прошлом. А главная часть — Present Perfect." }
+      },
+      {
+        "en": "We haven't seen Emma since Monday.",
+        "translation": { "ru": "Мы не видели Эмму с понедельника." },
+        "why": { "ru": "since Monday — «с понедельника» и до сих пор. Отрицание в Present Perfect — haven't." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с for.** since — с какого момента (since 2020), for — сколько длится (for two years)." }
+  },
+  {
+    "id": "how-long",
+    "word": "how long",
+    "ipa": "/ˌhaʊ ˈlɑŋ/",
+    "pos": "phrase",
+    "translation": { "ru": "как долго, сколько (времени)" },
+    "examples": [
+      {
+        "en": "How long have you had this phone? — For a year.",
+        "translation": { "ru": "Сколько у тебя уже этот телефон? — Год." },
+        "why": { "ru": "How long + Present Perfect — сколько уже длится то, что продолжается до сих пор." }
+      },
+      {
+        "en": "How long has your brother lived in Moscow?",
+        "translation": { "ru": "Сколько твой брат уже живёт в Москве?" },
+        "why": { "ru": "brother — он, поэтому has. Брат живёт там и сейчас — Present Perfect." }
+      },
+      {
+        "en": "How long is the flight? — Two hours.",
+        "translation": { "ru": "Сколько длится полёт? — Два часа." },
+        "why": { "ru": "Здесь How long — просто «какой длины, сколько длится». Вопрос о факте — Present Simple (is)." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с when.** How long have you lived here? — «сколько уже?», ответ с for или since. When did you move here? — «когда?», точный момент и Past Simple." }
+  },
+  {
+    "id": "during",
+    "word": "during",
+    "ipa": "/ˈdʊrɪŋ/",
+    "pos": "preposition",
+    "translation": { "ru": "во время (чего-то), в течение" },
+    "examples": [
+      {
+        "en": "Don't use your phone during the lesson!",
+        "translation": { "ru": "Не сиди в телефоне во время урока!" },
+        "why": { "ru": "during + событие: «во время урока». Просьба — после don't начальная форма." }
+      },
+      {
+        "en": "Max fell asleep during the movie.",
+        "translation": { "ru": "Макс уснул во время фильма." },
+        "why": { "ru": "fell asleep — Past Simple: рассказ о том, что было. during the movie — когда шёл фильм." }
+      },
+      {
+        "en": "It rained during the whole trip.",
+        "translation": { "ru": "Всю поездку шёл дождь." },
+        "why": { "ru": "rained — Past Simple: поездка закончилась. during the whole trip — «на протяжении всей поездки»." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с for.** during — «во время чего?» (during the game), for — «сколько?» (for two hours)." }
+  },
+  {
+    "id": "grade",
+    "word": "grade",
+    "ipa": "/ɡreɪd/",
+    "pos": "noun",
+    "translation": { "ru": "класс (год учёбы в школе); оценка" },
+    "examples": [
+      {
+        "en": "My sister is in fifth grade.",
+        "translation": { "ru": "Моя сестра в пятом классе." },
+        "why": { "ru": "is — Present Simple: факт сейчас. grade — класс как год учёбы; в Америке говорят in fifth grade или in the fifth grade." }
+      },
+      {
+        "en": "We have known each other since third grade.",
+        "translation": { "ru": "Мы знаем друг друга с третьего класса." },
+        "why": { "ru": "since third grade — точка в прошлом, знакомы до сих пор: Present Perfect." }
+      },
+      {
+        "en": "Emma got a good grade on her test.",
+        "translation": { "ru": "Эмма получила хорошую оценку за контрольную." },
+        "why": { "ru": "Здесь grade — «оценка». got — Past Simple: рассказ о том, что было." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с class.** grade — год учёбы (in fifth grade), а class — группа ребят или урок (my class, a math class)." }
+  },
+  {
+    "id": "flat",
+    "word": "flat",
+    "ipa": "/flæt/",
+    "pos": "noun",
+    "translation": { "ru": "квартира (британское слово)" },
+    "examples": [
+      {
+        "en": "Our flat is on the third floor.",
+        "translation": { "ru": "Наша квартира на третьем этаже." },
+        "why": { "ru": "is — Present Simple: просто факт." }
+      },
+      {
+        "en": "My aunt has bought a new flat in London.",
+        "translation": { "ru": "Моя тётя купила новую квартиру в Лондоне." },
+        "why": { "ru": "has bought — Present Perfect: результат сейчас — у тёти теперь новая квартира." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с apartment:** это то же самое, только flat — британское слово, а в Америке говорят apartment. А прилагательное flat — «плоский»: a flat screen." }
+  },
+  {
+    "id": "club",
+    "word": "club",
+    "ipa": "/klʌb/",
+    "pos": "noun",
+    "translation": { "ru": "клуб, кружок, секция" },
+    "examples": [
+      {
+        "en": "Max has been in the soccer club since September.",
+        "translation": { "ru": "Макс в футбольной секции с сентября." },
+        "why": { "ru": "has been … since — начал ходить в сентябре и ходит до сих пор: Present Perfect." }
+      },
+      {
+        "en": "Do you want to join our drama club?",
+        "translation": { "ru": "Хочешь в наш театральный кружок?" },
+        "why": { "ru": "Present Simple — вопрос о желании. join — «вступить, присоединиться»." }
+      }
+    ]
+  }
+]

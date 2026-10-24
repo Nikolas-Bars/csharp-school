@@ -1,0 +1,161 @@
+[
+  {
+    "id": "understand",
+    "word": "understand",
+    "ipa": "/ˌʌndɚˈstænd/",
+    "pos": "verb",
+    "translation": { "ru": "понимать" },
+    "forms": ["understand", "understood", "understood"],
+    "examples": [
+      {
+        "en": "I don't understand this game.",
+        "translation": { "ru": "Я не понимаю эту игру." },
+        "why": { "ru": "understand — глагол состояния: Present Simple, даже если речь о «сейчас». Не «I'm not understanding»." }
+      },
+      {
+        "en": "Do you understand the rules?",
+        "translation": { "ru": "Ты понимаешь правила?" },
+        "why": { "ru": "Вопрос — с do, как обычно в Present Simple." }
+      },
+      {
+        "en": "We finally understood the task.",
+        "translation": { "ru": "Мы наконец поняли задание." },
+        "why": { "ru": "Past Simple: understand — неправильный глагол, его прошедшая форма — understood." }
+      }
+    ]
+  },
+  {
+    "id": "remember",
+    "word": "remember",
+    "ipa": "/rɪˈmɛmbɚ/",
+    "pos": "verb",
+    "translation": { "ru": "помнить; вспомнить" },
+    "examples": [
+      {
+        "en": "I remember this song!",
+        "translation": { "ru": "Я помню эту песню!" },
+        "why": { "ru": "remember — глагол состояния, поэтому Present Simple, а не «I'm remembering»." }
+      },
+      {
+        "en": "My grandpa doesn't remember his phone number.",
+        "translation": { "ru": "Дедушка не помнит свой номер телефона." },
+        "why": { "ru": "Отрицание — с doesn't, как в Present Simple. remember без -s." }
+      },
+      {
+        "en": "Remember to bring your ball!",
+        "translation": { "ru": "Не забудь принести мяч!" },
+        "why": { "ru": "Remember to + глагол — «не забудь сделать». Это просьба — начальная форма." }
+      }
+    ]
+  },
+  {
+    "id": "need",
+    "word": "need",
+    "ipa": "/nid/",
+    "pos": "verb",
+    "translation": { "ru": "нуждаться; мне нужно" },
+    "examples": [
+      {
+        "en": "I need a new phone.",
+        "translation": { "ru": "Мне нужен новый телефон." },
+        "why": { "ru": "need — глагол состояния: Present Simple. По-русски «мне нужен», а по-английски «я нуждаюсь»: I need." }
+      },
+      {
+        "en": "Do you need help?",
+        "translation": { "ru": "Тебе нужна помощь?" },
+        "why": { "ru": "Вопрос — с do, как в Present Simple." }
+      },
+      {
+        "en": "My brother needs a pencil for the test.",
+        "translation": { "ru": "Брату нужен карандаш для контрольной." },
+        "why": { "ru": "brother = he → needs с -s. Даже если нужно прямо сейчас — не «is needing»." }
+      }
+    ]
+  },
+  {
+    "id": "belong",
+    "word": "belong",
+    "ipa": "/bɪˈlɑŋ/",
+    "pos": "verb",
+    "translation": { "ru": "принадлежать (belong to)" },
+    "examples": [
+      {
+        "en": "This ball belongs to our neighbors.",
+        "translation": { "ru": "Этот мяч — наших соседей." },
+        "why": { "ru": "belong to — «принадлежать». Глагол состояния — Present Simple; ball = it → belongs." }
+      },
+      {
+        "en": "Who does this phone belong to?",
+        "translation": { "ru": "Чей это телефон?" },
+        "why": { "ru": "Вопрос с does — глагол belong без -s, а to остаётся в конце." }
+      }
+    ]
+  },
+  {
+    "id": "believe",
+    "word": "believe",
+    "ipa": "/bɪˈliv/",
+    "pos": "verb",
+    "translation": { "ru": "верить" },
+    "examples": [
+      {
+        "en": "I believe you.",
+        "translation": { "ru": "Я тебе верю." },
+        "why": { "ru": "believe — глагол состояния: Present Simple, не «I'm believing»." }
+      },
+      {
+        "en": "Do you believe in ghosts?",
+        "translation": { "ru": "Ты веришь в привидения?" },
+        "why": { "ru": "believe in — «верить, что что-то существует»." }
+      },
+      {
+        "en": "My little brother doesn't believe me.",
+        "translation": { "ru": "Младший брат мне не верит." },
+        "why": { "ru": "Отрицание — с doesn't, believe без -s." }
+      }
+    ]
+  },
+  {
+    "id": "hate",
+    "word": "hate",
+    "ipa": "/heɪt/",
+    "pos": "verb",
+    "translation": { "ru": "ненавидеть; I hate… — терпеть не могу…" },
+    "examples": [
+      {
+        "en": "I hate Mondays!",
+        "translation": { "ru": "Терпеть не могу понедельники!" },
+        "why": { "ru": "hate — глагол состояния: Present Simple. Часто переводится «терпеть не могу»." }
+      },
+      {
+        "en": "My cat hates water.",
+        "translation": { "ru": "Мой кот ненавидит воду." },
+        "why": { "ru": "cat = it → hates." }
+      }
+    ]
+  },
+  {
+    "id": "own",
+    "word": "own",
+    "ipa": "/oʊn/",
+    "pos": "verb",
+    "translation": { "ru": "владеть, иметь (своё)" },
+    "examples": [
+      {
+        "en": "My uncle owns a pizza place.",
+        "translation": { "ru": "У дяди своя пиццерия." },
+        "why": { "ru": "own — «владеть»: это его, он хозяин. Глагол состояния — Present Simple." }
+      },
+      {
+        "en": "Who owns this dog?",
+        "translation": { "ru": "Чья это собака?" },
+        "why": { "ru": "Спрашивают, кто хозяин: who сам стоит на месте того, кто делает, поэтому без do, а owns с -s." }
+      },
+      {
+        "en": "We don't own a car.",
+        "translation": { "ru": "У нас нет своей машины." },
+        "why": { "ru": "Отрицание — с don't, как в Present Simple." }
+      }
+    ]
+  }
+]

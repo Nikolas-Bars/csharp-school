@@ -1,0 +1,238 @@
+[
+  {
+    "id": "finally",
+    "word": "finally",
+    "ipa": "/ˈfaɪnəli/",
+    "pos": "adverb",
+    "translation": {
+      "ru": "наконец"
+    },
+    "examples": [
+      {
+        "en": "We had been waiting for half an hour when Max finally came.",
+        "translation": {
+          "ru": "Мы ждали уже полчаса, когда Макс наконец пришёл."
+        },
+        "why": {
+          "ru": "had been waiting — Past Perfect Continuous: ждали до момента в прошлом. finally стоит перед глаголом: finally came."
+        }
+      },
+      {
+        "en": "I've finally finished my homework!",
+        "translation": {
+          "ru": "Я наконец сделал домашку!"
+        },
+        "why": {
+          "ru": "'ve finished — Present Perfect: результат сейчас. finally — между have и третьей формой."
+        }
+      },
+      {
+        "en": "The bus finally arrived.",
+        "translation": {
+          "ru": "Автобус наконец приехал."
+        },
+        "why": {
+          "ru": "arrived — Past Simple. finally — «наконец-то, после долгого ожидания»."
+        }
+      }
+    ]
+  },
+  {
+    "id": "train",
+    "word": "train",
+    "ipa": "/treɪn/",
+    "pos": "verb",
+    "translation": {
+      "ru": "тренироваться"
+    },
+    "examples": [
+      {
+        "en": "Max had been training for three months before the tournament.",
+        "translation": {
+          "ru": "До турнира Макс тренировался три месяца."
+        },
+        "why": {
+          "ru": "had been training — Past Perfect Continuous: тренировки шли три месяца до момента в прошлом (турнира)."
+        }
+      },
+      {
+        "en": "Our team trains every Tuesday.",
+        "translation": {
+          "ru": "Наша команда тренируется каждый вторник."
+        },
+        "why": {
+          "ru": "trains — Present Simple: привычка, регулярно. С he / she / it — -s."
+        }
+      },
+      {
+        "en": "Lily has been training hard lately.",
+        "translation": {
+          "ru": "В последнее время Лили усердно тренируется."
+        },
+        "why": {
+          "ru": "has been training — Present Perfect Continuous: процесс идёт до сих пор (lately)."
+        }
+      }
+    ],
+    "compare": {
+      "ru": "**Не путай с поездом.** a train — «поезд» (The train had left), а to train — «тренироваться»."
+    }
+  },
+  {
+    "id": "tournament",
+    "word": "tournament",
+    "ipa": "/ˈtɝnəmənt/",
+    "pos": "noun",
+    "translation": {
+      "ru": "турнир"
+    },
+    "examples": [
+      {
+        "en": "Max had been training for three months before the tournament.",
+        "translation": {
+          "ru": "До турнира Макс тренировался три месяца."
+        },
+        "why": {
+          "ru": "before the tournament — момент в прошлом, до него шли тренировки: had been training."
+        }
+      },
+      {
+        "en": "Our school won the chess tournament.",
+        "translation": {
+          "ru": "Наша школа выиграла шахматный турнир."
+        },
+        "why": {
+          "ru": "won — Past Simple от win. chess tournament — «шахматный турнир»."
+        }
+      },
+      {
+        "en": "Are you playing in the tournament on Saturday?",
+        "translation": {
+          "ru": "Ты играешь на турнире в субботу?"
+        },
+        "why": {
+          "ru": "Are you playing — Present Continuous о договорённости на будущее."
+        }
+      }
+    ]
+  },
+  {
+    "id": "half",
+    "word": "half",
+    "ipa": "/hæf/",
+    "pos": "noun",
+    "translation": {
+      "ru": "половина"
+    },
+    "examples": [
+      {
+        "en": "We had been waiting for half an hour when Max finally came.",
+        "translation": {
+          "ru": "Мы ждали уже полчаса, когда Макс наконец пришёл."
+        },
+        "why": {
+          "ru": "half an hour — «полчаса», это срок, поэтому for. half стоит перед an."
+        }
+      },
+      {
+        "en": "Max ate half of the pizza.",
+        "translation": {
+          "ru": "Макс съел половину пиццы."
+        },
+        "why": {
+          "ru": "half of — «половина чего-то». ate — Past Simple от eat."
+        }
+      },
+      {
+        "en": "I've read half the book.",
+        "translation": {
+          "ru": "Я прочитал полкниги."
+        },
+        "why": {
+          "ru": "'ve read — Present Perfect: результат сейчас. Можно half the book и half of the book."
+        }
+      }
+    ]
+  },
+  {
+    "id": "for-ages",
+    "word": "for ages",
+    "ipa": "/fɚ ˈeɪdʒɪz/",
+    "pos": "phrase",
+    "translation": {
+      "ru": "целую вечность, очень долго"
+    },
+    "examples": [
+      {
+        "en": "We had been waiting for ages when the bus finally came.",
+        "translation": {
+          "ru": "Мы ждали уже целую вечность, когда наконец пришёл автобус."
+        },
+        "why": {
+          "ru": "had been waiting — Past Perfect Continuous: ждали долго до момента в прошлом (пришёл автобус). for ages — срок, как for an hour."
+        }
+      },
+      {
+        "en": "I haven't seen you for ages!",
+        "translation": {
+          "ru": "Сто лет тебя не видел!"
+        },
+        "why": {
+          "ru": "haven't seen — Present Perfect с for: долго не виделись и до сих пор. Так говорят при встрече."
+        }
+      },
+      {
+        "en": "Max has been playing this game for ages.",
+        "translation": {
+          "ru": "Макс играет в эту игру целую вечность."
+        },
+        "why": {
+          "ru": "has been playing — процесс тянется долго и идёт до сих пор."
+        }
+      }
+    ]
+  },
+  {
+    "id": "become",
+    "word": "become",
+    "ipa": "/bɪˈkʌm/",
+    "pos": "verb",
+    "translation": {
+      "ru": "стать"
+    },
+    "forms": [
+      "become",
+      "became",
+      "become"
+    ],
+    "examples": [
+      {
+        "en": "We had known each other for years before we became friends.",
+        "translation": {
+          "ru": "Мы знали друг друга много лет, прежде чем стали друзьями."
+        },
+        "why": {
+          "ru": "became — Past Simple, момент в прошлом. know — глагол состояния, поэтому had known, а не had been knowing."
+        }
+      },
+      {
+        "en": "Emma wants to become a doctor.",
+        "translation": {
+          "ru": "Эмма хочет стать врачом."
+        },
+        "why": {
+          "ru": "wants to become — «хочет стать». После want — to."
+        }
+      },
+      {
+        "en": "This game has become really popular.",
+        "translation": {
+          "ru": "Эта игра стала очень популярной."
+        },
+        "why": {
+          "ru": "has become — Present Perfect: результат сейчас, игра популярна."
+        }
+      }
+    ]
+  }
+]

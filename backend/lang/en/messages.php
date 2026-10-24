@@ -15,11 +15,17 @@ return [
         'courses'  => 'Courses.',
         'course'   => 'Course.',
         'lesson'   => 'Lesson.',
+        'words'    => 'Course words.',
         'imported' => 'Course :course imported: :modules modules, :lessons lessons.',
     ],
     'progress' => [
         'course' => 'Course progress.',
         'lesson' => 'Lesson progress.',
         'saved'  => 'Progress saved.',
+    ],
+    'vocabulary' => [
+        'words'    => 'Your vocabulary.',
+        'saved'    => 'Words added to your vocabulary.',
+        'reviewed' => 'Review saved.',
     ],
 ];

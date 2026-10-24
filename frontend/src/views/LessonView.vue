@@ -9,11 +9,13 @@ import LessonQuiz from '@/components/lesson/LessonQuiz.vue'
 import MarkdownView from '@/components/lesson/MarkdownView.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import BaseIcon from '@/components/ui/BaseIcon.vue'
+import WordSteps from '@/components/vocabulary/WordSteps.vue'
 import { useLoader } from '@/composables/useLoader'
 import { t } from '@/i18n'
 import { locale } from '@/i18n/locale'
 import { useCourseStore } from '@/stores/course'
 import { useProgressStore } from '@/stores/progress'
+import { useVocabularyStore } from '@/stores/vocabulary'
 import type { LessonStep } from '@/types/api'
 
 // Задача с кодом тянет редактор и мост к компилятору C# — урок английского их не грузит
@@ -86,8 +88,32 @@ function isDone(itemIndex: number): boolean {
   return key !== null && isCompleted(key)
 }
 
+const vocabulary = useVocabularyStore()
+
+/** Новые слова урока — все его карточки */
+const lessonWords = computed(() =>
+  (lesson.value?.steps ?? []).flatMap((item) =>
+    item.type === 'words' ? item.words.map((word) => word.id) : [],
+  ),
+)
+
+/** Слова урока — в словарь: ученик долистал карточки или прошёл проверку знаний */
+function learnWords() {
+  if (lessonWords.value.length > 0) {
+    void vocabulary.add(path.value.course, lessonWords.value)
+  }
+}
+
+function onWordsDone() {
+  learnWords()
+  next()
+}
+
 /** Задача решена или проверка знаний пройдена — в прогресс (у гостя — в браузер) */
 function record(stepKey: string, code: string | null = null) {
+  if (stepKey === 'quiz') {
+    learnWords()
+  }
   complete()
   void progress.complete(path.value.course, {
     module: path.value.module,
@@ -279,6 +305,13 @@ const draftKey = (id: string) =>
             {{ t('lesson.next') }}
           </BaseButton>
         </article>
+
+        <WordSteps
+          v-else-if="step.type === 'words'"
+          :key="`words-${index}`"
+          :words="step.words"
+          @done="onWordsDone"
+        />
 
         <LessonTask
           v-else-if="step.type === 'task'"

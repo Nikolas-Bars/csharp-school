@@ -1,0 +1,274 @@
+[
+  {
+    "id": "how-many",
+    "word": "how many",
+    "ipa": "/ˌhaʊ ˈmɛni/",
+    "pos": "phrase",
+    "translation": {
+      "ru": "сколько (штук)"
+    },
+    "examples": [
+      {
+        "en": "How many pages have you read?",
+        "translation": {
+          "ru": "Сколько страниц у тебя уже прочитано?"
+        },
+        "why": {
+          "ru": "how many — вопрос о результате, о числе. Поэтому простая форма Present Perfect: have read, без been + -ing."
+        }
+      },
+      {
+        "en": "How many cookies have you eaten?",
+        "translation": {
+          "ru": "Сколько печенья вы уже съели?"
+        },
+        "why": {
+          "ru": "После how many — существительное во множественном числе: cookies."
+        }
+      },
+      {
+        "en": "How many brothers do you have?",
+        "translation": {
+          "ru": "Сколько у тебя братьев?"
+        },
+        "why": {
+          "ru": "Просто факт сейчас — Present Simple: do you have."
+        }
+      }
+    ],
+    "compare": {
+      "ru": "**Не путай с how much и how long.** how many — то, что считают поштучно (pages, books), how much — то, что не считают (water, money), how long — сколько времени."
+    }
+  },
+  {
+    "id": "episode",
+    "word": "episode",
+    "ipa": "/ˈɛpəˌsoʊd/",
+    "pos": "noun",
+    "translation": {
+      "ru": "серия (сериала), эпизод"
+    },
+    "examples": [
+      {
+        "en": "We've watched three episodes today.",
+        "translation": {
+          "ru": "Мы сегодня посмотрели три серии."
+        },
+        "why": {
+          "ru": "'ve watched — простая форма Present Perfect: важен результат, сколько серий готово."
+        }
+      },
+      {
+        "en": "I've been watching this show all evening. I'm on episode six.",
+        "translation": {
+          "ru": "Весь вечер смотрю этот сериал. Я на шестой серии."
+        },
+        "why": {
+          "ru": "'ve been watching — длительная форма: важно, сколько длится процесс (all evening)."
+        }
+      },
+      {
+        "en": "The new episode comes out on Friday.",
+        "translation": {
+          "ru": "Новая серия выходит в пятницу."
+        },
+        "why": {
+          "ru": "comes out — Present Simple для расписания, как в модуле про будущее."
+        }
+      }
+    ]
+  },
+  {
+    "id": "chapter",
+    "word": "chapter",
+    "ipa": "/ˈtʃæptɚ/",
+    "pos": "noun",
+    "translation": {
+      "ru": "глава (книги)"
+    },
+    "examples": [
+      {
+        "en": "Emma has read three chapters today.",
+        "translation": {
+          "ru": "Эмма сегодня прочитала три главы."
+        },
+        "why": {
+          "ru": "has read — результат, есть число (three chapters). Поэтому простая форма, без been + -ing."
+        }
+      },
+      {
+        "en": "I've been reading chapter five all evening.",
+        "translation": {
+          "ru": "Весь вечер читаю пятую главу."
+        },
+        "why": {
+          "ru": "'ve been reading — процесс и срок (all evening). chapter five — «глава пять», без the."
+        }
+      },
+      {
+        "en": "Read chapter two for homework.",
+        "translation": {
+          "ru": "Прочитайте вторую главу — это домашнее задание."
+        },
+        "why": {
+          "ru": "Read — повелительная форма: просьба или задание, без you."
+        }
+      }
+    ]
+  },
+  {
+    "id": "page",
+    "word": "page",
+    "ipa": "/peɪdʒ/",
+    "pos": "noun",
+    "translation": {
+      "ru": "страница"
+    },
+    "examples": [
+      {
+        "en": "This book has three hundred pages.",
+        "translation": {
+          "ru": "В этой книге триста страниц."
+        },
+        "why": {
+          "ru": "has — Present Simple от have: просто факт о книге. Страниц много — pages, с -s."
+        }
+      },
+      {
+        "en": "I've been reading your book. I'm on page 50.",
+        "translation": {
+          "ru": "Читаю твою книгу. Я на 50-й странице."
+        },
+        "why": {
+          "ru": "'ve been reading — длительная форма: книга ещё не дочитана. on page 50 — «на странице 50»."
+        }
+      },
+      {
+        "en": "Turn to page ten, please.",
+        "translation": {
+          "ru": "Откройте, пожалуйста, десятую страницу."
+        },
+        "why": {
+          "ru": "turn to page… — «перейти на страницу…». Номер стоит после page, без the."
+        }
+      }
+    ]
+  },
+  {
+    "id": "fence",
+    "word": "fence",
+    "ipa": "/fɛns/",
+    "pos": "noun",
+    "translation": {
+      "ru": "забор"
+    },
+    "examples": [
+      {
+        "en": "We've been painting the fence all day.",
+        "translation": {
+          "ru": "Мы весь день красим забор."
+        },
+        "why": {
+          "ru": "'ve been painting — процесс и срок (all day), Present Perfect Continuous."
+        }
+      },
+      {
+        "en": "Dad has painted the fence green.",
+        "translation": {
+          "ru": "Папа покрасил забор в зелёный."
+        },
+        "why": {
+          "ru": "has painted — результат: забор теперь зелёный."
+        }
+      },
+      {
+        "en": "The cat jumped over the fence.",
+        "translation": {
+          "ru": "Кот перепрыгнул через забор."
+        },
+        "why": {
+          "ru": "jumped — Past Simple, одно событие в прошлом. over the fence — «через забор»."
+        }
+      }
+    ]
+  },
+  {
+    "id": "bake",
+    "word": "bake",
+    "ipa": "/beɪk/",
+    "pos": "verb",
+    "translation": {
+      "ru": "печь (в духовке)"
+    },
+    "examples": [
+      {
+        "en": "Grandma has baked two cakes today!",
+        "translation": {
+          "ru": "Бабушка сегодня испекла два торта!"
+        },
+        "why": {
+          "ru": "has baked — результат, есть число (two cakes). Глагол правильный: baked."
+        }
+      },
+      {
+        "en": "Mom has been baking all morning.",
+        "translation": {
+          "ru": "Мама всё утро что-то печёт."
+        },
+        "why": {
+          "ru": "has been baking — процесс и срок (all morning). Перед -ing буква e уходит: baking."
+        }
+      },
+      {
+        "en": "We baked cookies for the party.",
+        "translation": {
+          "ru": "Мы испекли печенье для вечеринки."
+        },
+        "why": {
+          "ru": "baked — Past Simple: вечеринка уже была."
+        }
+      }
+    ],
+    "compare": {
+      "ru": "**Не путай с cook.** cook — готовить еду вообще, bake — печь в духовке: хлеб, торт, печенье."
+    }
+  },
+  {
+    "id": "mess",
+    "word": "mess",
+    "ipa": "/mɛs/",
+    "pos": "noun",
+    "translation": {
+      "ru": "беспорядок, бардак"
+    },
+    "examples": [
+      {
+        "en": "We've been cleaning our room all morning, and it's still a mess.",
+        "translation": {
+          "ru": "Мы всё утро убираем комнату, а там всё ещё бардак."
+        },
+        "why": {
+          "ru": "'ve been cleaning — процесс шёл всё утро, а результата нет. it's a mess — «там бардак»."
+        }
+      },
+      {
+        "en": "The kids have made a mess in the kitchen.",
+        "translation": {
+          "ru": "Дети устроили на кухне беспорядок."
+        },
+        "why": {
+          "ru": "make a mess — «устроить беспорядок». have made — результат: беспорядок сейчас."
+        }
+      },
+      {
+        "en": "Sorry about the mess!",
+        "translation": {
+          "ru": "Извини за беспорядок!"
+        },
+        "why": {
+          "ru": "Так говорят гостям, когда дома не убрано."
+        }
+      }
+    ]
+  }
+]

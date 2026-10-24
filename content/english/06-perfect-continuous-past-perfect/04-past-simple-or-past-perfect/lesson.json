@@ -2,6 +2,7 @@
   "title": { "ru": "Past Simple или Past Perfect" },
   "steps": [
     { "type": "theory", "text": { "ru": "01-in-order.ru.md" } },
+    { "type": "words", "file": "words.json" },
     { "type": "theory", "text": { "ru": "02-before-after.ru.md" } },
     { "type": "practice", "id": "order-of-events", "file": "practice/order-of-events.json" },
     { "type": "theory", "text": { "ru": "03-meaning.ru.md" } },

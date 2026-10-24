@@ -1,0 +1,197 @@
+[
+  {
+    "id": "usually",
+    "word": "usually",
+    "ipa": "/ˈjuʒuəli/",
+    "pos": "adverb",
+    "translation": { "ru": "обычно" },
+    "examples": [
+      {
+        "en": "I usually get up at seven.",
+        "translation": { "ru": "Я обычно встаю в семь." },
+        "why": { "ru": "Present Simple: так бывает почти каждый день. usually стоит перед глаголом get up." }
+      },
+      {
+        "en": "We usually play soccer after school.",
+        "translation": { "ru": "После школы мы обычно играем в футбол." },
+        "why": { "ru": "Привычка — Present Simple. usually стоит перед обычным глаголом play." }
+      },
+      {
+        "en": "My dad is usually at home on Sundays.",
+        "translation": { "ru": "По воскресеньям папа обычно дома." },
+        "why": { "ru": "Здесь глагол — is (форма be, «быть»), поэтому usually стоит после него." }
+      }
+    ]
+  },
+  {
+    "id": "always",
+    "word": "always",
+    "ipa": "/ˈɑlweɪz/",
+    "pos": "adverb",
+    "translation": { "ru": "всегда" },
+    "examples": [
+      {
+        "en": "I always win this game!",
+        "translation": { "ru": "Я всегда выигрываю в эту игру!" },
+        "why": { "ru": "always — каждый раз, без исключений. Стоит перед глаголом win." }
+      },
+      {
+        "en": "She always does her homework after dinner.",
+        "translation": { "ru": "Она всегда делает уроки после ужина." },
+        "why": { "ru": "Present Simple: так бывает каждый день. she → does." }
+      },
+      {
+        "en": "The bus is always late.",
+        "translation": { "ru": "Автобус всегда опаздывает." },
+        "why": { "ru": "always стоит после is. be late — «опаздывать»." }
+      }
+    ]
+  },
+  {
+    "id": "often",
+    "word": "often",
+    "ipa": "/ˈɑfən/",
+    "pos": "adverb",
+    "translation": { "ru": "часто" },
+    "examples": [
+      {
+        "en": "I often play video games with my friends.",
+        "translation": { "ru": "Я часто играю в видеоигры с друзьями." },
+        "why": { "ru": "Present Simple: так бывает много раз. often стоит перед глаголом play." }
+      },
+      {
+        "en": "Do you often go to the movies?",
+        "translation": { "ru": "Ты часто ходишь в кино?" },
+        "why": { "ru": "В вопросе often стоит после you, прямо перед глаголом go." }
+      },
+      {
+        "en": "It doesn't often rain here in summer.",
+        "translation": { "ru": "Летом здесь нечасто идут дожди." },
+        "why": { "ru": "В отрицании often стоит после doesn't, перед глаголом rain." }
+      }
+    ]
+  },
+  {
+    "id": "sometimes",
+    "word": "sometimes",
+    "ipa": "/ˈsʌmtaɪmz/",
+    "pos": "adverb",
+    "translation": { "ru": "иногда" },
+    "examples": [
+      {
+        "en": "Sometimes I help my mom in the kitchen.",
+        "translation": { "ru": "Иногда я помогаю маме на кухне." },
+        "why": { "ru": "sometimes можно поставить и в начало предложения — так тоже звучит естественно." }
+      },
+      {
+        "en": "My sister sometimes forgets her keys.",
+        "translation": { "ru": "Сестра иногда забывает ключи." },
+        "why": { "ru": "Present Simple: так бывает время от времени. sister = she, поэтому forgets с -s." }
+      },
+      {
+        "en": "The last level is sometimes very hard.",
+        "translation": { "ru": "Последний уровень иногда бывает очень сложным." },
+        "why": { "ru": "Глагол здесь — is (форма be), поэтому sometimes стоит после него." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с sometime.** sometimes — «иногда», sometime (без s) — «когда-нибудь»." }
+  },
+  {
+    "id": "rarely",
+    "word": "rarely",
+    "ipa": "/ˈrɛrli/",
+    "pos": "adverb",
+    "translation": { "ru": "редко" },
+    "examples": [
+      {
+        "en": "My grandpa rarely watches TV.",
+        "translation": { "ru": "Дедушка редко смотрит телевизор." },
+        "why": { "ru": "Present Simple: так бывает нечасто. grandpa = he, поэтому watches." }
+      },
+      {
+        "en": "We rarely eat fast food.",
+        "translation": { "ru": "Мы редко едим фастфуд." },
+        "why": { "ru": "rarely уже звучит почти как «нет», поэтому don't с ним не нужен." }
+      },
+      {
+        "en": "It rarely snows in Texas.",
+        "translation": { "ru": "В Техасе редко идёт снег." },
+        "why": { "ru": "rarely стоит перед глаголом. Про погоду говорят через it: it snows." }
+      }
+    ]
+  },
+  {
+    "id": "never",
+    "word": "never",
+    "ipa": "/ˈnɛvɚ/",
+    "pos": "adverb",
+    "translation": { "ru": "никогда" },
+    "examples": [
+      {
+        "en": "My cat never eats vegetables.",
+        "translation": { "ru": "Мой кот никогда не ест овощи." },
+        "why": { "ru": "never уже значит «не», поэтому doesn't не нужен. cat = it, поэтому eats с -s." }
+      },
+      {
+        "en": "We never go to school on Sundays.",
+        "translation": { "ru": "По воскресеньям мы никогда не ходим в школу." },
+        "why": { "ru": "Present Simple: так не бывает ни разу. never стоит перед глаголом go." }
+      },
+      {
+        "en": "He is never late for practice.",
+        "translation": { "ru": "Он никогда не опаздывает на тренировку." },
+        "why": { "ru": "Глагол здесь — is (форма be), поэтому never стоит после него. be late — «опаздывать»." }
+      }
+    ]
+  },
+  {
+    "id": "get-up",
+    "word": "get up",
+    "ipa": "/ɡɛt ˈʌp/",
+    "pos": "phrase",
+    "translation": { "ru": "вставать (с кровати)" },
+    "examples": [
+      {
+        "en": "I get up at seven on school days.",
+        "translation": { "ru": "В учебные дни я встаю в семь." },
+        "why": { "ru": "Present Simple: так бывает каждый день. get up — встать с кровати утром." }
+      },
+      {
+        "en": "Get up! We're late!",
+        "translation": { "ru": "Вставай! Мы опаздываем!" },
+        "why": { "ru": "Это просьба, почти приказ: глагол в начальной форме, без you." }
+      },
+      {
+        "en": "My brother doesn't get up early on weekends.",
+        "translation": { "ru": "По выходным брат не встаёт рано." },
+        "why": { "ru": "Отрицание в Present Simple: doesn't + get up, без -s." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с wake up.** wake up — «проснуться» (открыть глаза), get up — «встать» (с кровати)." }
+  },
+  {
+    "id": "late",
+    "word": "late",
+    "ipa": "/leɪt/",
+    "pos": "adverb",
+    "translation": { "ru": "поздно; be late — опаздывать" },
+    "examples": [
+      {
+        "en": "I go to bed late on Fridays.",
+        "translation": { "ru": "По пятницам я поздно ложусь спать." },
+        "why": { "ru": "late — «поздно», обычно стоит в конце. Так бывает каждую пятницу — Present Simple." }
+      },
+      {
+        "en": "Don't be late for dinner!",
+        "translation": { "ru": "Не опаздывай к ужину!" },
+        "why": { "ru": "be late — «опаздывать». Это просьба, поэтому Don't be." }
+      },
+      {
+        "en": "My dad often comes home late.",
+        "translation": { "ru": "Папа часто поздно приходит домой." },
+        "why": { "ru": "late — «поздно», стоит после home. Так бывает часто — Present Simple: dad = he → comes." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с later.** late — «поздно», later — «позже, потом»." }
+  }
+]

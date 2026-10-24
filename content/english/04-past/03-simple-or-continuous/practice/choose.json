@@ -55,7 +55,7 @@
       { "answer": "The kids talked when the teacher came in", "why": { "ru": "Так выйдет «учитель вошёл, и тогда дети заговорили». А разговор уже шёл — процесс: were talking." } }
     ],
     "hint": { "ru": "Что уже шло, а что случилось? Процесс — was / were + -ing." },
-    "explanation": { "ru": "Разговор шёл — процесс: the kids were talking. Учитель вошёл — событие: came in." }
+    "explanation": { "ru": "Разговор шёл — процесс: the kids were talking. Учитель вошёл — событие: came in (Past Simple от come in — «войти»)." }
   },
   {
     "kind": "translate",

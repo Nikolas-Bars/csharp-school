@@ -2,6 +2,7 @@
   "title": { "ru": "Past Simple или Past Continuous" },
   "steps": [
     { "type": "theory", "text": { "ru": "01-choice.ru.md" } },
+    { "type": "words", "file": "words.json" },
     { "type": "theory", "text": { "ru": "02-sequence.ru.md" } },
     { "type": "practice", "id": "choose", "file": "practice/choose.json" },
     { "type": "theory", "text": { "ru": "03-state-verbs.ru.md" } },
