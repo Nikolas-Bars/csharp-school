@@ -1,0 +1,71 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Сэм запыхался — он бегал. Это было вчера. Как сказать?" },
+    "options": [
+      { "text": "Sam was out of breath because he has been running.", "why": { "ru": "has — про «к сейчас». А Сэм запыхался в прошлом (was) — нужен had." } },
+      { "text": "Sam was out of breath because he had been running." },
+      { "text": "Sam was out of breath because he is running.", "why": { "ru": "is running — «бежит прямо сейчас». А рассказ о прошлом: he had been running." } },
+      { "text": "Sam was out of breath because he had been run.", "why": { "ru": "После been — глагол с -ing: running." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Бегал до момента в прошлом, а в тот момент был виден след — had been running." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Друзья ждут прямо сейчас. Вставь wait в длительной форме Perfect — три слова." },
+    "text": "Hurry up! Your friends ___ (wait) for you for twenty minutes.",
+    "accept": ["have been waiting"],
+    "mistakes": [
+      { "answer": "had been waiting", "why": { "ru": "had — до момента в прошлом. А друзья ждут прямо сейчас: have been waiting." } },
+      { "answer": "has been waiting", "why": { "ru": "friends — несколько, это they. С they нужен have." } },
+      { "answer": "are waiting", "why": { "ru": "Present Continuous не говорит, сколько уже длится. Со сроком — have been waiting." } },
+      { "answer": "have waited", "why": { "ru": "Так тоже можно, но задание — длительная форма: have been + -ing." } }
+    ],
+    "hint": { "ru": "Ждут сейчас или ждали тогда? friends — have или has?" },
+    "explanation": { "ru": "Ждут до сих пор — Present Perfect Continuous: Your friends have been waiting for you for twenty minutes." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Это было в прошлом. Вставь wait в длительной форме Perfect — три слова." },
+    "text": "When we finally arrived, our friends ___ (wait) for twenty minutes.",
+    "accept": ["had been waiting"],
+    "mistakes": [
+      { "answer": "have been waiting", "why": { "ru": "have — про «к сейчас». А мы пришли в прошлом (arrived) — нужен had." } },
+      { "answer": "were waiting", "why": { "ru": "Past Continuous не говорит, сколько процесс уже длился. Со сроком до момента в прошлом — had been waiting." } },
+      { "answer": "had waited", "why": { "ru": "Так тоже можно, но задание — длительная форма: had been + -ing." } },
+      { "answer": "had been wait", "why": { "ru": "После been — глагол с -ing: waiting." } }
+    ],
+    "hint": { "ru": "Ждут сейчас или ждали тогда, до нашего прихода?" },
+    "explanation": { "ru": "Ждали двадцать минут до момента в прошлом — Past Perfect Continuous: our friends had been waiting for twenty minutes." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "До турнира Макс тренировался три месяца. Как сказать?" },
+    "options": [
+      { "text": "Max has been training for three months before the tournament.", "why": { "ru": "has — про «к сейчас». А турнир уже был, это момент в прошлом: had been training." } },
+      { "text": "Max is training for three months before the tournament.", "why": { "ru": "is training — настоящее время. А турнир уже был, это момент в прошлом: had been training." } },
+      { "text": "Max had been training for three months before the tournament." }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "Сколько длилось до момента в прошлом (турнира) — had been + -ing: Max had been training for three months before the tournament." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Мы ждали уже полчаса, когда Макс наконец пришёл." },
+    "accept": [
+      "We had {already |}{been waiting|waited} {for |}{half an hour|thirty minutes|30 minutes}{| already} when Max {finally |}{came|arrived|showed up|got here|got there}",
+      "When Max {finally |}{came|arrived|showed up|got here|got there} we had {already |}{been waiting|waited} {for |}{half an hour|thirty minutes|30 minutes}{| already}"
+    ],
+    "mistakes": [
+      { "answer": "We were waiting for half an hour when Max finally {came|arrived}", "why": { "ru": "Past Continuous не говорит, сколько процесс уже длился. Сколько уже к моменту в прошлом — had been waiting." } },
+      { "answer": "We have been waiting for half an hour when Max finally {came|arrived}", "why": { "ru": "have — про «к сейчас». А Макс пришёл в прошлом — нужен had." } },
+      { "answer": "We had been waiting since half an hour when Max finally {came|arrived}", "why": { "ru": "Полчаса — срок, а не точка. Со сроком — for." } },
+      { "answer": "We had been wait for half an hour when Max finally {came|arrived}", "why": { "ru": "После been — глагол с -ing: waiting." } },
+      { "answer": "We had been waiting for half an hour when Max finally had come", "why": { "ru": "had не там: Макс пришёл — это момент, Past Simple: came. А had been waiting — то, что длилось до него." } }
+    ],
+    "hint": { "ru": "Ждали до момента в прошлом — had + been + -ing. «Полчаса» — half an hour, срок или точка?" },
+    "explanation": { "ru": "Ждали до момента в прошлом — We had been waiting for half an hour when Max finally came. Засчитаем и had waited." }
+  }
+]

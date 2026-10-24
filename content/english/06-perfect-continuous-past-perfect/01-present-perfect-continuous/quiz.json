@@ -1,0 +1,63 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как спросить «Сколько у тебя уже этот телефон?»" },
+    "options": [
+      { "text": "How long have you been having this phone?", "why": { "ru": "have здесь — «иметь, владеть», это глагол состояния: длительную форму с ним не употребляют. Нужно have you had." } },
+      { "text": "How long have you had this phone?" },
+      { "text": "How long do you have this phone?", "why": { "ru": "Present Simple не говорит, сколько это уже длится. Сколько уже — Present Perfect: have you had." } },
+      { "text": "How long are you having this phone?", "why": { "ru": "have = владеть — глагол состояния, -ing с ним не ставят. Сколько уже — have you had." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "have = владеть — глагол состояния. Сколько уже — простой Present Perfect: How long have you had this phone?" }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Дождь идёт с утра и не кончается. Вставь rain в длительной форме Present Perfect — три слова." },
+    "text": "Take an umbrella. It ___ (rain) all morning.",
+    "accept": ["has been raining"],
+    "mistakes": [
+      { "answer": "has rained", "why": { "ru": "Так тоже можно, но задание — длительная форма: has been + -ing." } },
+      { "answer": "have been raining", "why": { "ru": "it — с ним has." } },
+      { "answer": "is raining", "why": { "ru": "Present Continuous — только «сейчас». А «всё утро и до сих пор» — Present Perfect: has been raining." } },
+      { "answer": "was raining", "why": { "ru": "was — прошлое: так выйдет, что дождь уже кончился. А он идёт до сих пор: has been raining." } },
+      { "answer": "has been rain", "why": { "ru": "После been — глагол с -ing: raining." } }
+    ],
+    "hint": { "ru": "it — have или has? Дальше — been и глагол с -ing." },
+    "explanation": { "ru": "Идёт всё утро и до сих пор — has been + -ing: It has been raining all morning. Коротко — It's been raining." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "My brother has been playing this game since three hours.",
+    "wrong": 7,
+    "accept": ["for"],
+    "mistakes": [
+      { "answer": "from", "why": { "ru": "from обычно в паре с to. А «три часа» — срок: for." } },
+      { "answer": "during", "why": { "ru": "during — «во время чего-то»: during the game. Сколько длится — for." } },
+      { "answer": "since", "why": { "ru": "Это то же слово. «Три часа» — срок или точка?" } }
+    ],
+    "hint": { "ru": "«Три часа» — это срок или точка?" },
+    "explanation": { "ru": "Срок — for: My brother has been playing this game for three hours." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Мы ждём автобус уже двадцать минут." },
+    "accept": [
+      "We have {already |}been waiting for {the|a} bus for {twenty|20} minutes{| already| now}",
+      "We have {already |}been waiting {for |}{twenty|20} minutes for {the|a} bus",
+      "We have {already |}waited for {the|a} bus for {twenty|20} minutes{| already| now}",
+      "We have {already |}waited {for |}{twenty|20} minutes for {the|a} bus"
+    ],
+    "mistakes": [
+      { "answer": "We are waiting for {the|a} bus for {twenty|20} minutes", "why": { "ru": "Present Continuous не говорит, сколько уже длится. Сколько уже — Present Perfect: have been waiting." } },
+      { "answer": "We wait for {the|a} bus for {twenty|20} minutes", "why": { "ru": "По-русски «ждём», но речь о том, сколько это уже длится. Нужен Present Perfect: have been waiting." } },
+      { "answer": "We have been waiting for {the|a} bus since {twenty|20} minutes", "why": { "ru": "Двадцать минут — срок, а не точка. Со сроком — for." } },
+      { "answer": "We have been waiting {the|a} bus for {twenty|20} minutes", "why": { "ru": "Ждать кого-то или что-то — wait for: waiting for the bus." } },
+      { "answer": "We has been waiting for {the|a} bus for {twenty|20} minutes", "why": { "ru": "we — «мы», с ними нужен have." } }
+    ],
+    "hint": { "ru": "Ждём до сих пор — какое время? «Ждать автобус» — wait for the bus." },
+    "explanation": { "ru": "Длится до сих пор — have been + -ing, со сроком — for: We have been waiting for the bus for twenty minutes. Засчитаем и have waited." }
+  }
+]

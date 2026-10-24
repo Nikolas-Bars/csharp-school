@@ -1,0 +1,85 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Макс вошёл и тяжело дышит. Мама спрашивает: «Why are you out of breath?» Как Макс ответит «Я бегал»?" },
+    "options": [
+      { "text": "I'm running.", "why": { "ru": "Present Continuous — «бегу прямо сейчас». А Макс уже стоит дома: бег закончился, остался след — have been running." } },
+      { "text": "I've been running." },
+      { "text": "I've been run.", "why": { "ru": "После been — глагол с -ing: running." } },
+      { "text": "I've running.", "why": { "ru": "Пропущен been: длительная форма — have been + -ing." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Бег только что закончился, а след (Макс запыхался) виден сейчас — I've been running." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Спроси, сколько Лили уже ждёт. Вставь вопрос с she и wait в длительной форме — четыре слова." },
+    "text": "— How long ___ (she / wait) for the bus? — For twenty minutes.",
+    "accept": ["has she been waiting"],
+    "mistakes": [
+      { "answer": "is she waiting", "why": { "ru": "Present Continuous не говорит, сколько уже длится. Сколько уже — Present Perfect: has she been waiting." } },
+      { "answer": "she has been waiting", "why": { "ru": "В вопросе has встаёт перед she: How long has she…?" } },
+      { "answer": "have she been waiting", "why": { "ru": "she — с ней has." } },
+      { "answer": "has she waiting", "why": { "ru": "Пропущен been: длительная форма — has been + -ing." } },
+      { "answer": "has she been wait", "why": { "ru": "После been — глагол с -ing: waiting." } },
+      { "answer": "has she waited", "why": { "ru": "Так тоже можно, но задание — длительная форма: has she been waiting." } }
+    ],
+    "hint": { "ru": "В вопросе помощник встаёт перед she. Какой помощник с she?" },
+    "explanation": { "ru": "How long + has + she + been waiting: How long has she been waiting for the bus?" }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь sleep в Present Perfect Continuous с отрицанием — три слова (с краткой формой haven't)." },
+    "text": "I'm so tired. I ___ (not / sleep) well lately.",
+    "accept": ["haven't been sleeping"],
+    "mistakes": [
+      { "answer": "haven't slept", "why": { "ru": "Так тоже можно, но задание — Present Perfect Continuous: haven't been sleeping." } },
+      { "answer": "hasn't been sleeping", "why": { "ru": "I — «я», с ним нужен have: haven't." } },
+      { "answer": "haven't been sleep", "why": { "ru": "После been — глагол с -ing: sleeping." } },
+      { "answer": "don't sleep", "why": { "ru": "Present Simple — «обычно». А lately — «в последнее время», до сих пор: haven't been sleeping." } },
+      { "answer": "am not sleeping", "why": { "ru": "Так говорят в разговоре, но задание — Present Perfect Continuous: haven't been sleeping." } },
+      { "answer": "not been sleeping", "why": { "ru": "not само не работает — нужен помощник: haven't been sleeping." } }
+    ],
+    "hint": { "ru": "not встаёт после помощника have. Дальше — been и глагол с -ing." },
+    "explanation": { "ru": "Отрицание — not после have: I haven't been sleeping well lately." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Мы знаем Сэма три года»?" },
+    "options": [
+      { "text": "We've been knowing Sam for three years.", "why": { "ru": "know — глагол состояния, длительную форму с ним не употребляют. Сколько уже — простой Present Perfect: have known." } },
+      { "text": "We've known Sam for three years." },
+      { "text": "We know Sam for three years.", "why": { "ru": "По-русски «знаем», но речь о том, сколько это уже длится. Нужен Present Perfect: have known." } },
+      { "text": "We're knowing Sam for three years.", "why": { "ru": "know — глагол состояния, -ing с ним не ставят. Да и сколько уже длится — Present Perfect: have known." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "know — глагол состояния: сколько уже длится — простой Present Perfect, We've known Sam for three years." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "У Эммы красные глаза. Собери вопрос к ней: «Ты плакала?». Одна плитка лишняя." },
+    "tiles": ["crying", "you", "Are", "been", "Have"],
+    "accept": ["Have you been crying"],
+    "mistakes": [
+      { "answer": "Are you crying", "why": { "ru": "Так спрашивают, если Эмма плачет прямо сейчас. А она уже не плачет — остался след, красные глаза: Have you been crying?" } },
+      { "answer": "Have been you crying", "why": { "ru": "В вопросе вперёд выходит только have, been остаётся после you: Have you been…?" } }
+    ],
+    "hint": { "ru": "Плакала до этой минуты, а след виден сейчас. Что выходит вперёд в вопросе?" },
+    "explanation": { "ru": "Процесс закончился, след виден — Present Perfect Continuous. В вопросе вперёд выходит have: Have you been crying?" }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Сколько вы уже ждёте?" },
+    "accept": ["How long have you been waiting{| for}", "How long have you waited{| for}"],
+    "mistakes": [
+      { "answer": "How long are you waiting", "why": { "ru": "Present Continuous не говорит, сколько уже длится. Сколько уже — Present Perfect: have you been waiting." } },
+      { "answer": "How long do you wait", "why": { "ru": "Present Simple — про «обычно». А сколько уже длится — Present Perfect: have you been waiting." } },
+      { "answer": "How long you have been waiting", "why": { "ru": "В вопросе have встаёт перед you: How long have you…?" } },
+      { "answer": "How long have you been wait", "why": { "ru": "После been — глагол с -ing: waiting." } },
+      { "answer": "How much have you been waiting", "why": { "ru": "«Сколько времени» — How long. How much — сколько чего-то: денег, воды." } }
+    ],
+    "hint": { "ru": "«Сколько уже» — How long. Какой помощник выходит вперёд?" },
+    "explanation": { "ru": "Сколько уже длится — How long have you been waiting? Засчитаем и How long have you waited?" }
+  }
+]

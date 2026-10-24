@@ -1,0 +1,42 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Когда мама позвала ужинать, Макс играл в игру уже три часа. Как сказать?" },
+    "options": [
+      { "text": "Max had been playing the game for three hours when Mom called him." },
+      { "text": "Max has been playing the game for three hours when Mom called him.", "why": { "ru": "has — про «к сейчас». А мама позвала в прошлом (called) — нужен had." } },
+      { "text": "Max was playing the game for three hours when Mom called him.", "why": { "ru": "Past Continuous не говорит, сколько процесс уже длился. Сколько уже к моменту в прошлом — had been playing." } },
+      { "text": "Max is playing the game for three hours when Mom called him.", "why": { "ru": "is playing — настоящее время. А рассказ о прошлом: had been playing." } }
+    ],
+    "answer": 0,
+    "explanation": { "ru": "Играл три часа до момента в прошлом — had been + -ing: Max had been playing the game for three hours." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь cry в Past Perfect Continuous — три слова." },
+    "text": "Lily's eyes were red. She ___ (cry).",
+    "accept": ["had been crying"],
+    "mistakes": [
+      { "answer": "has been crying", "why": { "ru": "has — про «к сейчас». А глаза были красными в прошлом (were) — нужен had." } },
+      { "answer": "was crying", "why": { "ru": "Это Past Continuous — «плакала в тот момент». А задание — Past Perfect Continuous: плакала до этого, остался след." } },
+      { "answer": "had cried", "why": { "ru": "Так тоже можно, но задание — длительная форма: had been + -ing." } },
+      { "answer": "had been cry", "why": { "ru": "После been — глагол с -ing: crying." } }
+    ],
+    "hint": { "ru": "Какой помощник в Past Perfect? Что стоит после been?" },
+    "explanation": { "ru": "Плакала до момента в прошлом, след виден — had been crying: Lily's eyes were red. She had been crying." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "Ошибка в помощнике. Найди её и исправь." },
+    "text": "Sam was tired because he has been training all day.",
+    "wrong": 5,
+    "accept": ["had"],
+    "mistakes": [
+      { "answer": "have", "why": { "ru": "have — тоже про «к сейчас». А Сэм устал в прошлом (was tired) — нужен had." } },
+      { "answer": "was", "why": { "ru": "was been не бывает. Длилось до момента в прошлом — had been training." } },
+      { "answer": "has", "why": { "ru": "Это то же слово. has — про «к сейчас», а здесь момент в прошлом." } }
+    ],
+    "hint": { "ru": "was tired — момент в прошлом. Какой помощник у того, что длилось до него?" },
+    "explanation": { "ru": "Тренировался до момента в прошлом — had been training: Sam was tired because he had been training all day." }
+  }
+]

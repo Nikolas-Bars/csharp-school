@@ -1,0 +1,14 @@
+{
+  "title": { "ru": "Perfect Continuous и Past Perfect" },
+  "description": {
+    "ru": "have been + -ing: сколько уже длится и откуда след; результат или процесс — how many или how long; had + третья форма: что случилось раньше другого момента в прошлом; когда Past Perfect нужен, а когда хватит Past Simple; had been + -ing — учимся узнавать."
+  },
+  "lessons": [
+    "01-present-perfect-continuous",
+    "02-result-or-process",
+    "03-past-perfect",
+    "04-past-simple-or-past-perfect",
+    "05-past-perfect-continuous",
+    "06-module-test"
+  ]
+}

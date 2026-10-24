@@ -1,0 +1,80 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Расскажи по порядку: «Макс встал, позавтракал и пошёл в школу»." },
+    "options": [
+      { "text": "Max had gotten up, had had breakfast and had gone to school.", "why": { "ru": "События идут по порядку — Past Perfect не нужен. Его ставят, только когда рассказ возвращается назад, к тому, что было ещё раньше." } },
+      { "text": "Max got up, had breakfast and went to school." },
+      { "text": "Max has gotten up, has had breakfast and has gone to school.", "why": { "ru": "Present Perfect — про «к сейчас». А это рассказ о том, что было, по порядку: Past Simple." } },
+      { "text": "Max gets up, has breakfast and goes to school.", "why": { "ru": "Это настоящее время — «обычно встаёт». А рассказ о прошлом: got up, had, went." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "События по порядку — Past Simple: Max got up, had breakfast and went to school." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь finish в прошедшем времени — одно или два слова." },
+    "text": "After Emma ___ (finish) her homework, she called her friend.",
+    "accept": ["finished", "had finished"],
+    "mistakes": [
+      { "answer": "has finished", "why": { "ru": "has — Present Perfect, про «к сейчас». А рассказ о прошлом: finished или had finished." } },
+      { "answer": "have finished", "why": { "ru": "have — Present Perfect, про «к сейчас». А рассказ о прошлом: finished или had finished." } },
+      { "answer": "had finish", "why": { "ru": "После had — третья форма. У правильного глагола она с -ed: finished." } },
+      { "answer": "finishes", "why": { "ru": "Это настоящее время. А рассказ о прошлом (called): finished или had finished." } }
+    ],
+    "hint": { "ru": "Рассказ о прошлом. after уже показывает, что было раньше. Какие формы подходят?" },
+    "explanation": { "ru": "after сам показывает порядок — подходят оба: After Emma finished… и After Emma had finished…" }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «После того как фильм закончился, мы пошли есть пиццу». Одна плитка лишняя." },
+    "tiles": ["had ended", "we", "After", "went out for pizza", "the movie", "ended"],
+    "accept": [
+      "After the movie {ended|had ended} we went out for pizza",
+      "We went out for pizza after the movie {ended|had ended}"
+    ],
+    "mistakes": [
+      { "answer": "After we went out for pizza the movie ended", "why": { "ru": "Так выйдет, что фильм закончился после пиццы. А сначала был фильм: After the movie ended…" } }
+    ],
+    "hint": { "ru": "Что было сначала — фильм или пицца? after ставят перед тем, что было раньше." },
+    "explanation": { "ru": "after показывает порядок, поэтому подходят обе плитки: After the movie ended… и After the movie had ended…" }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "Ошибка во времени. Найди её и исправь." },
+    "text": "Max was hungry because he hasn't eaten all day.",
+    "wrong": 5,
+    "accept": ["hadn't"],
+    "mistakes": [
+      { "answer": "didn't", "why": { "ru": "После didn't — начальная форма eat, а здесь eaten. Третья форма работает с had: hadn't eaten." } },
+      { "answer": "haven't", "why": { "ru": "haven't — тоже Present Perfect, про «к сейчас». А Макс был голоден в прошлом (was hungry) — нужен hadn't." } },
+      { "answer": "hasn't", "why": { "ru": "Это то же слово. hasn't — про «к сейчас», а здесь момент в прошлом." } }
+    ],
+    "hint": { "ru": "was hungry — момент в прошлом. Какой помощник у того, что было до него?" },
+    "explanation": { "ru": "Не ел до момента в прошлом — Past Perfect: Max was hungry because he hadn't eaten all day." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Когда мы пришли на вокзал, поезд уже ушёл." },
+    "accept": [
+      "When we {got to|arrived at|reached|came to} the {station|train station} the train had {already |}{left|gone|departed}",
+      "When we {got to|arrived at|reached|came to} the {station|train station} the train had {left|gone|departed} already",
+      "When we {got to|arrived at|reached|came to} the {station|train station} the train was {already |}gone",
+      "The train had {already |}{left|gone|departed} when we {got to|arrived at|reached|came to} the {station|train station}",
+      "The train was {already |}gone when we {got to|arrived at|reached|came to} the {station|train station}",
+      "By the time we {got to|arrived at|reached|came to} the {station|train station} the train had {already |}{left|gone|departed}",
+      "By the time we {got to|arrived at|reached|came to} the {station|train station} the train was {already |}gone",
+      "The train had {left|gone|departed} already when we {got to|arrived at|reached|came to} the {station|train station}"
+    ],
+    "mistakes": [
+      { "answer": "When we {got to|arrived at} the station the train {already left|left already}", "why": { "ru": "В разговоре так иногда говорят, но есть момент в прошлом (when we got…) — поезд ушёл раньше: had already left." } },
+      { "answer": "When we {got to|arrived at} the station the train has {already |}left", "why": { "ru": "has — Present Perfect, про «к сейчас». А здесь момент в прошлом (we got) — нужен had." } },
+      { "answer": "When we {got to|arrived at} the station the train left", "why": { "ru": "Так выйдет, что поезд ушёл в ту минуту, когда мы пришли. А «уже ушёл» — раньше нас: had already left." } },
+      { "answer": "When we {got to|arrived at} the station the train had already went", "why": { "ru": "went — вторая форма. После had — третья: gone. Или left." } },
+      { "answer": "When we arrived to the station the train had already left", "why": { "ru": "Приехать куда-то — arrive at (или get to): arrived at the station." } }
+    ],
+    "hint": { "ru": "Что случилось раньше: мы пришли или поезд ушёл? «Прийти на вокзал» — get to the station." },
+    "explanation": { "ru": "Пришли — момент в прошлом, Past Simple. Поезд ушёл раньше — Past Perfect: When we got to the station, the train had already left. Подойдут и arrived at, reached, had gone, was gone." }
+  }
+]

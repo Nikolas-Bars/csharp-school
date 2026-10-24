@@ -1,0 +1,73 @@
+[
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь see в Past Perfect — вместе с never, три слова." },
+    "text": "Lily ___ (never / see) the ocean before that trip.",
+    "accept": ["had never seen"],
+    "mistakes": [
+      { "answer": "has never seen", "why": { "ru": "has — Present Perfect, про «к сейчас». А здесь — до той поездки, до момента в прошлом: had never seen." } },
+      { "answer": "never saw", "why": { "ru": "Так тоже можно, но задание — Past Perfect: had never seen." } },
+      { "answer": "had never saw", "why": { "ru": "saw — вторая форма. После had — третья: seen." } },
+      { "answer": "hadn't never seen", "why": { "ru": "never — уже отрицание. Второе «не» (hadn't) не нужно." } },
+      { "answer": "had ever seen", "why": { "ru": "ever — «когда-нибудь», для вопросов. «Никогда не» — never." } }
+    ],
+    "hint": { "ru": "«До той поездки» — момент в прошлом. Где стоит never? Три формы see: see — saw — …" },
+    "explanation": { "ru": "До момента в прошлом (той поездки) — Past Perfect: Lily had never seen the ocean before that trip." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Мама спрашивает Сэма: «Ты закончил уроки до того, как ушёл гулять?» Как это сказать в Past Perfect?" },
+    "options": [
+      { "text": "Have you finished your homework before you went out?", "why": { "ru": "have — Present Perfect, про «к сейчас». А «ушёл гулять» — момент в прошлом: Had you finished…?" } },
+      { "text": "Did you finished your homework before you went out?", "why": { "ru": "После did — начальная форма. Да и задание — Past Perfect: Had you finished…?" } },
+      { "text": "Had you finished your homework before you went out?" },
+      { "text": "Had you finish your homework before you went out?", "why": { "ru": "После had — третья форма: finished." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "В вопросе had выходит вперёд, дальше — третья форма: Had you finished your homework before you went out?" }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Ответь коротко «Нет»." },
+    "text": "— Had you met Emma before the party? — No, I ___.",
+    "accept": ["hadn't"],
+    "mistakes": [
+      { "answer": "didn't", "why": { "ru": "Краткий ответ повторяет помощника из вопроса. Вопрос был с had — и ответ с had: hadn't." } },
+      { "answer": "haven't", "why": { "ru": "Вопрос был с had, а не с have. Ответ — hadn't." } },
+      { "answer": "wasn't", "why": { "ru": "Краткий ответ повторяет помощника из вопроса. Вопрос был с had: hadn't." } },
+      { "answer": "had", "why": { "ru": "had — это «да». Ответ «нет» — с not: hadn't." } }
+    ],
+    "hint": { "ru": "Краткий ответ повторяет помощника из вопроса." },
+    "explanation": { "ru": "Had you…? — No, I hadn't. Краткий ответ повторяет помощника had." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «До той поездки мы ни разу не летали на самолёте». Одна плитка лишняя." },
+    "tiles": ["flown", "on a plane", "We", "never", "before that trip", "had", "have"],
+    "accept": [
+      "We had never flown on a plane before that trip",
+      "Before that trip we had never flown on a plane"
+    ],
+    "mistakes": [
+      { "answer": "We have never flown on a plane before that trip", "why": { "ru": "have — Present Perfect, про «к сейчас». А здесь — до той поездки, до момента в прошлом: had." } },
+      { "answer": "Before that trip we have never flown on a plane", "why": { "ru": "have — Present Perfect, про «к сейчас». А здесь — до той поездки, до момента в прошлом: had." } },
+      { "answer": "We never had flown on a plane before that trip", "why": { "ru": "never стоит между had и третьей формой: had never flown." } }
+    ],
+    "hint": { "ru": "«До той поездки» — момент в прошлом. Какой помощник нужен? Где стоит never?" },
+    "explanation": { "ru": "До момента в прошлом — Past Perfect: We had never flown on a plane before that trip." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь leave в Past Perfect вместе с already — три слова." },
+    "text": "By the time Dad got to the airport, the plane ___ (already / leave).",
+    "accept": ["had already left", "had left already"],
+    "mistakes": [
+      { "answer": "already left", "why": { "ru": "В разговоре так иногда говорят, но есть момент в прошлом (by the time Dad got…) — самолёт улетел раньше: had already left." } },
+      { "answer": "has already left", "why": { "ru": "has — Present Perfect, про «к сейчас». А здесь момент в прошлом (Dad got) — нужен had." } },
+      { "answer": "had already leaved", "why": { "ru": "leave — неправильный глагол: -ed к нему не добавляют. Его третья форма — left." } },
+      { "answer": "had already leave", "why": { "ru": "После had — третья форма, а не начальная: left." } }
+    ],
+    "hint": { "ru": "by the time — что случилось раньше: папа приехал или самолёт улетел? Где стоит already?" },
+    "explanation": { "ru": "Папа приехал — момент в прошлом. Самолёт улетел раньше — had already left." }
+  }
+]

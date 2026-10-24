@@ -1,0 +1,55 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Лили читает книгу и сейчас на середине. Что она скажет?" },
+    "options": [
+      { "text": "I've read this book.", "why": { "ru": "have read — «прочитала до конца». А Лили на середине: процесс ещё идёт — have been reading." } },
+      { "text": "I've been read this book.", "why": { "ru": "После been — глагол с -ing: reading." } },
+      { "text": "I've been reading this book." }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "Книга не дочитана — процесс ещё идёт: I've been reading this book." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь leave в Past Perfect вместе с already — три слова." },
+    "text": "When we called Max, he ___ (already / leave).",
+    "accept": ["had already left", "had left already"],
+    "mistakes": [
+      { "answer": "already left", "why": { "ru": "В разговоре так иногда говорят, но есть момент в прошлом (when we called) — Макс ушёл раньше: had already left." } },
+      { "answer": "has already left", "why": { "ru": "has — Present Perfect, про «к сейчас». А здесь момент в прошлом (we called) — нужен had." } },
+      { "answer": "had already leave", "why": { "ru": "После had — третья форма, а не начальная: left." } },
+      { "answer": "had already leaved", "why": { "ru": "leave — неправильный глагол: -ed к нему не добавляют. Его третья форма — left." } }
+    ],
+    "hint": { "ru": "we called — момент в прошлом. Какой помощник у того, что случилось раньше? Где стоит already?" },
+    "explanation": { "ru": "Позвонили — момент в прошлом. Макс ушёл раньше — had already left." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "Ошибка в помощнике. Найди её и исправь." },
+    "text": "By the time we got to the beach, it has stopped raining.",
+    "wrong": 9,
+    "accept": ["had"],
+    "mistakes": [
+      { "answer": "have", "why": { "ru": "have — тоже Present Perfect, про «к сейчас». А здесь момент в прошлом (we got) — нужен had." } },
+      { "answer": "already", "why": { "ru": "В разговоре так иногда говорят, но есть момент в прошлом (by the time we got…) — дождь кончился раньше: had stopped." } },
+      { "answer": "has", "why": { "ru": "Это то же слово. has — про «к сейчас», а здесь момент в прошлом." } }
+    ],
+    "hint": { "ru": "we got — момент в прошлом. Какой помощник у того, что случилось ещё раньше?" },
+    "explanation": { "ru": "Дождь кончился раньше момента в прошлом — Past Perfect: By the time we got to the beach, it had stopped raining." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери в длительной форме: «Мы играем в эту игру с утра». Одна плитка лишняя." },
+    "tiles": ["since", "this game", "We", "playing", "this morning", "have been", "for"],
+    "accept": [
+      "We have been playing this game since this morning",
+      "Since this morning we have been playing this game"
+    ],
+    "mistakes": [
+      { "answer": "We have been playing this game for this morning", "why": { "ru": "Утро — точка, с которой всё началось, а не срок. С точкой — since." } }
+    ],
+    "hint": { "ru": "«С утра» — это срок или точка?" },
+    "explanation": { "ru": "Играем с утра и до сих пор — have been playing, с точкой — since: We have been playing this game since this morning." }
+  }
+]

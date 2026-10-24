@@ -1,0 +1,14 @@
+{
+  "title": { "ru": "Past Perfect: раньше другого прошлого" },
+  "steps": [
+    { "type": "theory", "text": { "ru": "01-when.ru.md" } },
+    { "type": "theory", "text": { "ru": "02-form.ru.md" } },
+    { "type": "practice", "id": "form", "file": "practice/form.json" },
+    { "type": "theory", "text": { "ru": "03-questions.ru.md" } },
+    { "type": "theory", "text": { "ru": "04-markers.ru.md" } },
+    { "type": "theory", "text": { "ru": "05-american.ru.md" } },
+    { "type": "practice", "id": "markers", "file": "practice/markers.json" },
+    { "type": "theory", "text": { "ru": "06-mistakes.ru.md" } },
+    { "type": "quiz", "file": "quiz.json" }
+  ]
+}

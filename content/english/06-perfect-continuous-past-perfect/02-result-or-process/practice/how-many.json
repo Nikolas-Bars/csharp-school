@@ -1,0 +1,74 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Эмма уже написала три сообщения»?" },
+    "options": [
+      { "text": "Emma has been writing three messages.", "why": { "ru": "Три сообщения — число, сколько сделано. Это результат: has written. С числом длительную форму не ставят." } },
+      { "text": "Emma has written three messages." },
+      { "text": "Emma has wrote three messages.", "why": { "ru": "wrote — вторая форма. После has — третья: written." } },
+      { "text": "Emma is writing three messages.", "why": { "ru": "Present Continuous — «пишет прямо сейчас». А сообщения уже написаны — результат: has written." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Число — сколько сделано, результат: Emma has written three messages." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь bake: Present Perfect или Present Perfect Continuous? Два или три слова." },
+    "text": "Grandma ___ (bake) two cakes today!",
+    "accept": ["has baked"],
+    "mistakes": [
+      { "answer": "has been baking", "why": { "ru": "Два торта — число, сколько сделано. Это результат: has baked. С числом длительную форму не ставят." } },
+      { "answer": "have baked", "why": { "ru": "Grandma — один человек, это she. С she нужен has." } },
+      { "answer": "has bake", "why": { "ru": "После has — третья форма. У правильного глагола она с -ed: baked." } },
+      { "answer": "baked", "why": { "ru": "Так тоже можно (с today в Америке часто говорят в Past Simple), но выбери из двух: Present Perfect или Present Perfect Continuous." } }
+    ],
+    "hint": { "ru": "Два торта — это «сколько сделано» или «сколько длится»?" },
+    "explanation": { "ru": "Число — результат, простая форма: Grandma has baked two cakes today!" }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери в длительной форме: «Мы весь день красим забор». Одна плитка лишняя." },
+    "tiles": ["painting", "all day", "have", "We", "the fence", "been", "painted"],
+    "accept": ["We have been painting the fence all day", "All day we have been painting the fence"],
+    "mistakes": [
+      { "answer": "We have painted the fence all day", "why": { "ru": "Так тоже можно, но задание — длительная форма: have been + -ing." } },
+      { "answer": "We have been painted the fence all day", "why": { "ru": "После been — глагол с -ing: painting." } }
+    ],
+    "hint": { "ru": "Формула длительной формы: have + been + глагол с …" },
+    "explanation": { "ru": "Весь день — процесс, сколько длится: We have been painting the fence all day." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "Sam has been fix his bike all morning.",
+    "wrong": 3,
+    "accept": ["fixing"],
+    "mistakes": [
+      { "answer": "fixed", "why": { "ru": "После been нужен глагол с -ing: has been fixing. Третья форма fixed работает без been: has fixed." } },
+      { "answer": "fixes", "why": { "ru": "После been — глагол с -ing: fixing." } },
+      { "answer": "fix", "why": { "ru": "Это то же слово. После been — глагол с -ing." } }
+    ],
+    "hint": { "ru": "Формула: has been + глагол с …" },
+    "explanation": { "ru": "После been — глагол с -ing: Sam has been fixing his bike all morning." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Мы уже посмотрели три серии." },
+    "accept": [
+      "We have already {watched|seen} {three|3} episodes",
+      "We have {watched|seen} {three|3} episodes already",
+      "We already {watched|saw} {three|3} episodes",
+      "We {watched|saw} {three|3} episodes already",
+      "We have {watched|seen} {three|3} episodes"
+    ],
+    "mistakes": [
+      { "answer": "We have {already |}been watching {three|3} episodes", "why": { "ru": "Три серии — число, сколько сделано. Это результат: have watched. С числом длительную форму не ставят." } },
+      { "answer": "We have already watched {three|3} series", "why": { "ru": "series — это весь сериал. Одна серия — episode, три — three episodes." } },
+      { "answer": "We have already saw {three|3} episodes", "why": { "ru": "saw — вторая форма. После have — третья: seen. Или watched." } },
+      { "answer": "We has already watched {three|3} episodes", "why": { "ru": "we — «мы», с ними нужен have." } }
+    ],
+    "hint": { "ru": "Три серии — «сколько сделано» или «сколько длится»? «Серия» — episode." },
+    "explanation": { "ru": "Число — результат: We have already watched three episodes. В Америке скажут и We already watched three episodes — засчитываем оба." }
+  }
+]

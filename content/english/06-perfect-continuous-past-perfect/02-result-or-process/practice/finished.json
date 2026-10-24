@@ -1,0 +1,68 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Макс взял у Эммы книгу и читает её уже неделю — он на 50-й странице. Что он скажет?" },
+    "options": [
+      { "text": "I've read your book.", "why": { "ru": "have read — «прочитал до конца». А Макс только на 50-й странице: процесс ещё идёт — have been reading." } },
+      { "text": "I've been reading your book." },
+      { "text": "I've been read your book.", "why": { "ru": "После been — глагол с -ing: reading." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Книга не дочитана — процесс ещё идёт: I've been reading your book." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Папа красил кухню и сейчас отдыхает: кухня ещё не докрашена, руки в краске. Вставь paint: Present Perfect или Present Perfect Continuous? Два или три слова." },
+    "text": "Dad ___ (paint) the kitchen. Look at his hands!",
+    "accept": ["has been painting"],
+    "mistakes": [
+      { "answer": "has painted", "why": { "ru": "has painted — «покрасил», готово. А кухня ещё не докрашена: важен процесс и его след — has been painting." } },
+      { "answer": "have been painting", "why": { "ru": "Dad — один человек, это he. С he нужен has." } },
+      { "answer": "is painting", "why": { "ru": "Present Continuous — «красит прямо сейчас». А папа отдыхает: процесс шёл до этого, виден след — has been painting." } },
+      { "answer": "was painting", "why": { "ru": "Так тоже можно сказать в разговоре, но выбери из двух: Present Perfect или Present Perfect Continuous." } },
+      { "answer": "has been paint", "why": { "ru": "После been — глагол с -ing: painting." } }
+    ],
+    "hint": { "ru": "Кухня готова или работа ещё идёт? Что видно на руках?" },
+    "explanation": { "ru": "Дело не закончено, а след виден — длительная форма: Dad has been painting the kitchen." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Эмма дописала сочинение — вот оно. Собери: «Я написала сочинение». Две плитки лишние." },
+    "tiles": ["written", "been", "I", "my essay", "writing", "have"],
+    "accept": ["I have written my essay"],
+    "mistakes": [
+      { "answer": "I have been writing my essay", "why": { "ru": "Так выйдет «пишу сочинение» — процесс, ещё не дописано. А оно готово: have written." } }
+    ],
+    "hint": { "ru": "Сочинение готово — важен результат или процесс?" },
+    "explanation": { "ru": "Дело сделано, важен результат — простая форма: I have written my essay." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Мы живём в этом городе десять лет — и сейчас тоже. Здесь подходят обе формы Present Perfect. Вставь live в любой из них — два или три слова." },
+    "text": "We ___ (live) in this town for ten years.",
+    "accept": ["have lived", "have been living"],
+    "mistakes": [
+      { "answer": "live", "why": { "ru": "По-русски «живём», но речь о том, сколько это уже длится: десять лет и сейчас тоже. Нужен Present Perfect: have lived или have been living." } },
+      { "answer": "are living", "why": { "ru": "Present Continuous не говорит, сколько уже длится. «Десять лет и сейчас тоже» — Present Perfect: have lived или have been living." } },
+      { "answer": "has lived", "why": { "ru": "we — «мы», с ними нужен have." } },
+      { "answer": "have been live", "why": { "ru": "После been — глагол с -ing: living." } },
+      { "answer": "lived", "why": { "ru": "lived — Past Simple: так выйдет «жили», и уже не живём. А мы живём здесь и сейчас — Present Perfect." } }
+    ],
+    "hint": { "ru": "Живём до сих пор — какое время? Помощник для we — have или has?" },
+    "explanation": { "ru": "С live разницы почти нет: We have lived in this town for ten years = We have been living in this town for ten years. Засчитываем обе." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи — простой или длительной формой Present Perfect?" },
+    "text": { "ru": "Сколько страниц вы уже прочитали?" },
+    "accept": ["How many pages have you {already |}read{| already| so far}"],
+    "mistakes": [
+      { "answer": "How many pages have you {already |}been reading", "why": { "ru": "Сколько страниц — число, результат: have read. С числом длительную форму не ставят." } },
+      { "answer": "How many pages you have read", "why": { "ru": "В вопросе have встаёт перед you: How many pages have you…?" } },
+      { "answer": "How much pages have you read", "why": { "ru": "Страницы можно посчитать — с ними how many. How much — для того, что не считают: воды, времени." } },
+      { "answer": "How many pages did you {already |}read{| already}", "why": { "ru": "Так тоже можно (в Америке с already часто говорят в Past Simple), но задание — Present Perfect: have you read." } }
+    ],
+    "hint": { "ru": "Сколько страниц — «сколько сделано» или «сколько длится»? Что выходит вперёд в вопросе?" },
+    "explanation": { "ru": "Число — результат, простая форма: How many pages have you read?" }
+  }
+]

@@ -63,7 +63,7 @@ const NEGATABLE = new Set(
 
 /** Частые неправильные причастия (3-я форма): перед ними 's = has, 'd = had */
 const PARTICIPLES = new Set(
-  'been gone done seen had made said told bought brought taught thought found left lost met read run sent spent won written given taken eaten known begun broken chosen driven fallen flown forgotten got gotten heard held kept paid put sat slept stood understood swum spoken come become ridden drunk built felt grown shown thrown worn caught fought hidden stolen woken'.split(
+  'been gone done seen had made said told bought brought taught thought found left lost met read run sent spent won written given taken eaten known begun broken chosen driven fallen flown forgotten got gotten heard held kept paid put sat slept stood understood swum spoken come become ridden drunk built felt grown shown thrown worn caught fought hidden stolen woken sold cut hit shut set let hurt cost quit spread lent bent meant dealt dreamt learnt burnt lit hung dug stuck struck swung sung rung sunk drawn blown torn sworn bitten beaten forgiven frozen shaken risen fed led fled'.split(
     ' ',
   ),
 )
@@ -78,6 +78,10 @@ const PERFECT_ADVERBS = new Set([
   'not',
   'always',
   'recently',
+  'only',
+  'finally',
+  'also',
+  'lately',
 ])
 
 /** После 's / 'd идёт Perfect или had better — тогда это has / had; rest — слова после краткой формы */
