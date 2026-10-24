@@ -1,0 +1,80 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Мы видели Макса вчера»?" },
+    "options": [
+      { "text": "We have seen Max yesterday.", "why": { "ru": "yesterday — законченное время в прошлом. С ним — только Past Simple: saw." } },
+      { "text": "We saw Max yesterday." },
+      { "text": "We have saw Max yesterday.", "why": { "ru": "После have нужна третья форма, а с yesterday have вообще не нужен: We saw Max yesterday." } },
+      { "text": "We seen Max yesterday.", "why": { "ru": "seen — третья форма, без have она не работает. С yesterday — Past Simple: saw." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Время названо и закончилось (yesterday) — Past Simple: We saw Max yesterday." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол buy в нужной форме." },
+    "text": "My dad ___ (buy) a new car last week.",
+    "accept": ["bought"],
+    "mistakes": [
+      { "answer": "has bought", "why": { "ru": "last week — время названо и уже закончилось. С ним — только Past Simple: bought." } },
+      { "answer": "have bought", "why": { "ru": "last week — время закончилось, нужен Past Simple: bought." } },
+      { "answer": "buyed", "why": { "ru": "buy — неправильный глагол: -ed к нему не добавляют. Его вторая форма — bought." } },
+      { "answer": "buy", "why": { "ru": "last week — прошлое. Нужна прошедшая форма." } }
+    ],
+    "hint": { "ru": "last week — время закончилось или ещё идёт? buy — неправильный глагол." },
+    "explanation": { "ru": "Законченное время (last week) — Past Simple: My dad bought a new car last week." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Неделя ещё идёт. Вставь глагол have." },
+    "text": "We ___ (have) three tests this week!",
+    "accept": ["have had", "had"],
+    "mistakes": [
+      { "answer": "has had", "why": { "ru": "we — «мы», с ними нужен have." } }
+    ],
+    "hint": { "ru": "this week ещё идёт — можно Present Perfect. Третья форма have — …" },
+    "explanation": { "ru": "Неделя не закончилась — Present Perfect: We've had three tests this week! В Америке скажут и We had three tests this week — засчитываем оба." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "Фильм уже вышел — спроси когда. Одна ошибка в помощнике — найди её и исправь." },
+    "text": "When has the movie come out?",
+    "wrong": 1,
+    "accept": ["did"],
+    "mistakes": [
+      { "answer": "have", "why": { "ru": "when — «когда», вопрос о точном времени в прошлом. Такой вопрос — в Past Simple, с did." } },
+      { "answer": "does", "why": { "ru": "Так спрашивают о выходе по расписанию, в будущем. А фильм уже вышел — Past Simple: did." } },
+      { "answer": "will", "why": { "ru": "will — будущее. А фильм уже вышел — Past Simple: did." } },
+      { "answer": "has", "why": { "ru": "Это то же слово. Вопрос when о прошлом в Present Perfect не задают." } }
+    ],
+    "hint": { "ru": "Вопрос when о прошлом — какое время? Какой у него помощник?" },
+    "explanation": { "ru": "Вопрос when о прошлом — Past Simple: When did the movie come out? После did — начальная форма come." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «Эмма нашла кошелёк два дня назад». Одна плитка лишняя." },
+    "tiles": ["two days ago", "a wallet", "has found", "Emma", "found"],
+    "accept": ["Emma found a wallet two days ago", "Two days ago Emma found a wallet"],
+    "mistakes": [
+      { "answer": "Emma has found a wallet two days ago", "why": { "ru": "ago — «назад», время названо и закончилось. С ним — только Past Simple: found." } },
+      { "answer": "Two days ago Emma has found a wallet", "why": { "ru": "ago — «назад», время названо и закончилось. С ним — только Past Simple: found." } }
+    ],
+    "hint": { "ru": "two days ago — время закончилось или ещё идёт?" },
+    "explanation": { "ru": "Время названо (two days ago) — Past Simple: Emma found a wallet two days ago." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Лили сломала руку в прошлом месяце." },
+    "accept": ["Lily broke her {arm|hand} last month", "Last month Lily broke her {arm|hand}"],
+    "mistakes": [
+      { "answer": "Lily has broken her {arm|hand} last month", "why": { "ru": "last month — время названо и закончилось. С ним — только Past Simple: broke." } },
+      { "answer": "Lily has broke her {arm|hand} last month", "why": { "ru": "last month — время закончилось, has не нужен: Past Simple, broke." } },
+      { "answer": "Lily breaked her {arm|hand} last month", "why": { "ru": "break — неправильный глагол: -ed к нему не добавляют. Его вторая форма — broke." } },
+      { "answer": "Lily broken her {arm|hand} last month", "why": { "ru": "broken — третья форма, без has она не работает. С last month — Past Simple: broke." } }
+    ],
+    "hint": { "ru": "«В прошлом месяце» — last month. Время закончилось — какое время глагола? Три формы break: break — broke — broken." },
+    "explanation": { "ru": "Законченное время (last month) — Past Simple: Lily broke her arm last month." }
+  }
+]

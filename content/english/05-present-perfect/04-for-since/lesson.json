@@ -1,0 +1,13 @@
+{
+  "title": { "ru": "for и since: сколько уже длится" },
+  "steps": [
+    { "type": "theory", "text": { "ru": "01-how-long.ru.md" } },
+    { "type": "theory", "text": { "ru": "02-for-since.ru.md" } },
+    { "type": "practice", "id": "for-since", "file": "practice/for-since.json" },
+    { "type": "theory", "text": { "ru": "03-questions.ru.md" } },
+    { "type": "theory", "text": { "ru": "04-continuous.ru.md" } },
+    { "type": "practice", "id": "how-long", "file": "practice/how-long.json" },
+    { "type": "theory", "text": { "ru": "05-mistakes.ru.md" } },
+    { "type": "quiz", "file": "quiz.json" }
+  ]
+}

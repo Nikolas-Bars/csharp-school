@@ -1,0 +1,14 @@
+{
+  "title": { "ru": "Опыт: ever, never, been или gone" },
+  "steps": [
+    { "type": "theory", "text": { "ru": "01-experience.ru.md" } },
+    { "type": "theory", "text": { "ru": "02-ever-never.ru.md" } },
+    { "type": "practice", "id": "ever-never", "file": "practice/ever-never.json" },
+    { "type": "theory", "text": { "ru": "03-been-gone.ru.md" } },
+    { "type": "theory", "text": { "ru": "04-times.ru.md" } },
+    { "type": "theory", "text": { "ru": "05-best-ever.ru.md" } },
+    { "type": "practice", "id": "been-gone", "file": "practice/been-gone.json" },
+    { "type": "theory", "text": { "ru": "06-mistakes.ru.md" } },
+    { "type": "quiz", "file": "quiz.json" }
+  ]
+}

@@ -215,15 +215,18 @@ function checkWritten(problems: Problems, raw: Json, exercise: Exercise, where: 
     const answer = String(item.answer)
     problems.english(answer, `${at}.answer`)
     problems.texts(item.why, `${at}.why`)
-    problems.check(
-      !accept.some((pattern) => matches(answer, pattern, exercise.exact)),
-      `${at}: «${answer}» совпадает с правильным ответом`,
-    )
-    const verdict = checkAnswer(exercise, written(exercise, answer))
-    problems.check(
-      !verdict.right && verdict.mistake === ru(item.why),
-      `${at}: «${answer}» не показывает своё объяснение`,
-    )
+    // Каждый вариант ошибки (со всеми {a|b}) — неверен и объясняется своим текстом
+    for (const variant of expand(answer)) {
+      problems.check(
+        !accept.some((pattern) => matches(variant, pattern, exercise.exact)),
+        `${at}: «${variant}» совпадает с правильным ответом`,
+      )
+      const verdict = checkAnswer(exercise, written(exercise, variant))
+      problems.check(
+        !verdict.right && verdict.mistake === ru(item.why),
+        `${at}: «${variant}» не показывает своё объяснение`,
+      )
+    }
   })
 
   if (exercise.kind === 'gap') {
@@ -246,7 +249,10 @@ function checkWritten(problems: Problems, raw: Json, exercise: Exercise, where: 
     const tiles = Array.isArray(raw.tiles) ? exercise.tiles : []
     problems.check(tiles.length >= 2, `${where}.tiles: хотя бы две плитки`)
     tiles.forEach((tile, index) => problems.english(tile, `${where}.tiles[${index}]`))
-    const phrases = [...accept.flatMap(expand), ...exercise.mistakes.map((item) => item.answer)]
+    const phrases = [
+      ...accept.flatMap(expand),
+      ...exercise.mistakes.flatMap((item) => expand(item.answer)),
+    ]
     for (const phrase of phrases) {
       problems.check(buildable(phrase, tiles), `${where}: «${phrase}» не собрать из плиток`)
     }

@@ -1,0 +1,55 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Какое предложение верное?" },
+    "options": [
+      { "text": "Max has called me an hour ago.", "why": { "ru": "ago — «назад», время названо и закончилось. С ним — только Past Simple: called." } },
+      { "text": "Max called me an hour ago." },
+      { "text": "Max has call me an hour ago.", "why": { "ru": "С ago has не нужен — Past Simple: called." } },
+      { "text": "Max calls me an hour ago.", "why": { "ru": "calls — настоящее время. an hour ago — прошлое." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Время названо (an hour ago) — Past Simple: Max called me an hour ago." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Это опыт за всю жизнь. Вставь never и глагол be — три слова." },
+    "text": "I ___ (never / be) to a real concert.",
+    "accept": ["have never been", "haven't ever been"],
+    "mistakes": [
+      { "answer": "was never", "why": { "ru": "«Побывать где-то» — be to — так говорят в Present Perfect: have never been." } },
+      { "answer": "haven't never been", "why": { "ru": "never — уже отрицание. Второе «не» (haven't) не нужно." } },
+      { "answer": "have never was", "why": { "ru": "После have — третья форма. У be это been." } },
+      { "answer": "never been", "why": { "ru": "Без have третья форма не работает: have never been." } },
+      { "answer": "has never been", "why": { "ru": "I — «я», с ним нужен have." } }
+    ],
+    "hint": { "ru": "Время не названо, опыт за всю жизнь. Третья форма be — …" },
+    "explanation": { "ru": "Опыт без времени — Present Perfect: I have never been to a real concert." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «Мы переехали в Техас два года назад». Одна плитка лишняя." },
+    "tiles": ["two years ago", "to Texas", "moved", "We", "have moved"],
+    "accept": ["We moved to Texas two years ago", "Two years ago we moved to Texas"],
+    "mistakes": [
+      { "answer": "We have moved to Texas two years ago", "why": { "ru": "ago — «назад», время названо и закончилось. С ним — только Past Simple: moved." } },
+      { "answer": "Two years ago we have moved to Texas", "why": { "ru": "ago — «назад», время названо и закончилось. С ним — только Past Simple: moved." } }
+    ],
+    "hint": { "ru": "two years ago — время закончилось или ещё идёт?" },
+    "explanation": { "ru": "Время названо (two years ago) — Past Simple: We moved to Texas two years ago." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Когда вы приехали?" },
+    "accept": ["When did you {arrive|get here|come}"],
+    "mistakes": [
+      { "answer": "When have you arrived", "why": { "ru": "when — «когда», вопрос о точном времени в прошлом. Такой вопрос — в Past Simple, с did." } },
+      { "answer": "When did you arrived", "why": { "ru": "Прошлое уже показал did. Глагол после него — в начальной форме: arrive." } },
+      { "answer": "When you arrived", "why": { "ru": "Без помощника вопроса нет: When did you arrive?" } },
+      { "answer": "When have you come", "why": { "ru": "when — «когда», вопрос о точном времени в прошлом. Такой вопрос — в Past Simple, с did." } }
+    ],
+    "hint": { "ru": "Вопрос when о прошлом — какое время? «Приехать» — arrive." },
+    "explanation": { "ru": "Вопрос when о прошлом — Past Simple: When did you arrive?" }
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Какое предложение верное?" },
+    "options": [
+      { "text": "We have visited Grandma last weekend.", "why": { "ru": "last weekend — время названо и закончилось. С ним — только Past Simple: visited." } },
+      { "text": "Last weekend we have visited Grandma.", "why": { "ru": "last weekend — время названо и закончилось. С ним — только Past Simple: visited." } },
+      { "text": "We visited Grandma last weekend." },
+      { "text": "We have visit Grandma last weekend.", "why": { "ru": "С last weekend have не нужен — Past Simple: visited." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "Время названо (last weekend) — Past Simple: We visited Grandma last weekend." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Дружат с первого класса и сейчас. Вставь know в Present Perfect — два слова." },
+    "text": "Lily ___ (know) her best friend since first grade.",
+    "accept": ["has known"],
+    "mistakes": [
+      { "answer": "knows", "why": { "ru": "По-русски «знает», но речь о том, сколько это уже длится. Нужен Present Perfect: has known." } },
+      { "answer": "has knew", "why": { "ru": "knew — вторая форма. Третья у know — known." } },
+      { "answer": "have known", "why": { "ru": "Lily — один человек, это she. С she нужен has." } },
+      { "answer": "is knowing", "why": { "ru": "know — глагол состояния, -ing с ним не ставят. Сколько уже длится — Present Perfect." } },
+      { "answer": "knew", "why": { "ru": "Так выйдет «знала» — и уже нет. А знакомы до сих пор: has known." } }
+    ],
+    "hint": { "ru": "Lily — это she. Три формы know: know — knew — …" },
+    "explanation": { "ru": "Длится до сих пор — Present Perfect: Lily has known her best friend since first grade." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "Вопрос в Present Perfect. Одна ошибка в форме глагола — найди её и исправь." },
+    "text": "Has she ever drove a car?",
+    "wrong": 3,
+    "accept": ["driven"],
+    "mistakes": [
+      { "answer": "drive", "why": { "ru": "После has — не начальная форма, а третья: driven." } },
+      { "answer": "drived", "why": { "ru": "drive — неправильный глагол: -ed к нему не добавляют. Его третья форма — driven." } },
+      { "answer": "drives", "why": { "ru": "После has — третья форма: driven." } },
+      { "answer": "drove", "why": { "ru": "Это то же слово. drove — вторая форма, для Past Simple. После has нужна третья." } }
+    ],
+    "hint": { "ru": "Три формы drive: drive — drove — …" },
+    "explanation": { "ru": "После has — третья форма: drive — drove — driven. Has she ever driven a car?" }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Мы переехали в Даллас в 2019 году." },
+    "accept": ["We moved to Dallas in 2019", "In 2019 we moved to Dallas"],
+    "mistakes": [
+      { "answer": "We have moved to Dallas in 2019", "why": { "ru": "in 2019 — время названо и закончилось. С ним — только Past Simple: moved." } },
+      { "answer": "In 2019 we have moved to Dallas", "why": { "ru": "in 2019 — время названо и закончилось. С ним — только Past Simple: moved." } },
+      { "answer": "We moved in Dallas in 2019", "why": { "ru": "Переехать куда — move to: moved to Dallas." } },
+      { "answer": "We move to Dallas in 2019", "why": { "ru": "move — настоящее время. 2019 год — прошлое: moved." } }
+    ],
+    "hint": { "ru": "in 2019 — время закончилось или ещё идёт? «Переехать в» — move to." },
+    "explanation": { "ru": "Время названо (in 2019) — Past Simple: We moved to Dallas in 2019." }
+  }
+]

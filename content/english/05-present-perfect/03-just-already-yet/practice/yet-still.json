@@ -1,0 +1,79 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как спросить «Вы уже закончили проект?»" },
+    "options": [
+      { "text": "Have you finished yet your project?", "why": { "ru": "yet — в самом конце фразы, после project." } },
+      { "text": "Have you finished your project yet?" },
+      { "text": "Have you finished your project still?", "why": { "ru": "still — «всё ещё». В вопросе «уже?» — yet." } },
+      { "text": "Did you finished your project yet?", "why": { "ru": "После did — начальная форма: finish. Did you finish your project yet? — так тоже говорят в Америке." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "В вопросе «уже?» — yet, и стоит он в конце: Have you finished your project yet?" }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Поставь глагол в отрицание в Present Perfect — два слова (с краткой формой)." },
+    "text": "Don't worry, the movie ___ (not / start) yet.",
+    "accept": ["hasn't started"],
+    "mistakes": [
+      { "answer": "haven't started", "why": { "ru": "movie — один предмет, это it. С it нужен has: hasn't." } },
+      { "answer": "hasn't start", "why": { "ru": "После hasn't — третья форма. У правильного глагола она с -ed: started." } },
+      { "answer": "didn't start", "why": { "ru": "Так тоже можно (так часто говорят в Америке), но задание — Present Perfect: hasn't started." } },
+      { "answer": "isn't started", "why": { "ru": "is — не помощник Present Perfect. Нужен has: hasn't started." } },
+      { "answer": "not started", "why": { "ru": "not само не работает — нужен помощник: hasn't started." } }
+    ],
+    "hint": { "ru": "movie — это it. Какой помощник с it? Куда встаёт not?" },
+    "explanation": { "ru": "movie = it → hasn't, дальше третья форма: The movie hasn't started yet." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «Сэм до сих пор не ответил на моё сообщение». Одна плитка лишняя." },
+    "tiles": ["answered", "my message", "still", "Sam", "hasn't", "yet"],
+    "accept": [
+      "Sam still hasn't answered my message",
+      "Sam hasn't answered my message yet",
+      "Sam hasn't yet answered my message"
+    ],
+    "mistakes": [
+      { "answer": "Sam hasn't still answered my message", "why": { "ru": "still стоит перед hasn't: Sam still hasn't answered." } },
+      { "answer": "Sam hasn't answered yet my message", "why": { "ru": "yet — в самом конце фразы, после my message." } }
+    ],
+    "hint": { "ru": "«До сих пор не» — still. Где он стоит: до hasn't или после?" },
+    "explanation": { "ru": "still — перед hasn't: Sam still hasn't answered my message. С yet в конце тоже верно: Sam hasn't answered my message yet." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи в Present Perfect." },
+    "text": { "ru": "Эмма ещё не видела этот фильм." },
+    "accept": [
+      "Emma hasn't seen {this|that} {movie|film} yet",
+      "Emma hasn't yet seen {this|that} {movie|film}",
+      "Emma still hasn't seen {this|that} {movie|film}"
+    ],
+    "mistakes": [
+      { "answer": "Emma didn't see this movie yet", "why": { "ru": "Так тоже можно (так часто говорят в Америке), но задание — Present Perfect: hasn't seen." } },
+      { "answer": "Emma hasn't seen yet this movie", "why": { "ru": "yet — в самом конце фразы, после movie." } },
+      { "answer": "Emma hasn't saw this movie yet", "why": { "ru": "saw — вторая форма. После hasn't — третья: seen." } },
+      { "answer": "Emma haven't seen this movie yet", "why": { "ru": "Emma — один человек, это she. С she нужен has: hasn't." } },
+      { "answer": "Emma has seen this movie yet", "why": { "ru": "Пропало «не»: «ещё не» — это отрицание, hasn't … yet." } },
+      { "answer": "Emma hasn't seen this movie already", "why": { "ru": "already — «уже». В отрицании «ещё не» — yet." } }
+    ],
+    "hint": { "ru": "Эмма — это she. «Ещё не» — not … yet. Три формы see: see — saw — seen." },
+    "explanation": { "ru": "Отрицание в Present Perfect, yet — в конце: Emma hasn't seen this movie yet." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "Сочинение ещё не дописано. В предложении одна ошибка — найди её и исправь." },
+    "text": "I haven't finished my essay already.",
+    "wrong": 5,
+    "accept": ["yet"],
+    "mistakes": [
+      { "answer": "still", "why": { "ru": "still стоит перед haven't: I still haven't finished. В конце отрицания — yet." } },
+      { "answer": "just", "why": { "ru": "just — «только что», с отрицанием так не говорят. «Ещё не» — yet." } },
+      { "answer": "already", "why": { "ru": "Это то же слово. already — «уже». А в отрицании «ещё не» — другое слово." } }
+    ],
+    "hint": { "ru": "Какое слово значит «ещё не» в конце отрицания?" },
+    "explanation": { "ru": "В отрицании «ещё не» — yet, в конце: I haven't finished my essay yet." }
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Какое предложение верное?" },
+    "options": [
+      { "text": "They have went to the beach.", "why": { "ru": "went — вторая форма, для Past Simple. После have — третья: gone." } },
+      { "text": "They has gone to the beach.", "why": { "ru": "they — «они», с ними нужен have. has — для he, she, it." } },
+      { "text": "They have go to the beach.", "why": { "ru": "После have — третья форма, а не начальная: gone." } },
+      { "text": "They have gone to the beach." }
+    ],
+    "answer": 3,
+    "explanation": { "ru": "they → have, третья форма go — gone: They have gone to the beach." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Обед остался дома — сейчас его нет. Вставь forget в Present Perfect — два слова." },
+    "text": "Oh no! I ___ (forget) my lunch at home.",
+    "accept": ["have forgotten"],
+    "mistakes": [
+      { "answer": "forgot", "why": { "ru": "Так тоже можно — это Past Simple. Но задание — Present Perfect: have + третья форма." } },
+      { "answer": "have forgot", "why": { "ru": "forgot — вторая форма. Третья у forget — forgotten." } },
+      { "answer": "has forgotten", "why": { "ru": "I — «я», с ним нужен have. has — для he, she, it." } },
+      { "answer": "have forgetted", "why": { "ru": "forget — неправильный глагол: -ed к нему не добавляют. Его третья форма — forgotten." } },
+      { "answer": "have forget", "why": { "ru": "После have — третья форма, а не начальная: forgotten." } }
+    ],
+    "hint": { "ru": "Три формы forget: forget — forgot — …" },
+    "explanation": { "ru": "I → have, третья форма forget — forgotten: I have forgotten my lunch. Можно и коротко: I've forgotten." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «Лили не сделала домашнее задание» — оно до сих пор не готово. Одна плитка лишняя." },
+    "tiles": ["done", "Lily", "her homework", "haven't", "hasn't"],
+    "accept": ["Lily hasn't done her homework"],
+    "mistakes": [
+      { "answer": "Lily haven't done her homework", "why": { "ru": "Lily — один человек, это she. С she нужен has: hasn't." } }
+    ],
+    "hint": { "ru": "Lily — это she. Какой помощник с ней?" },
+    "explanation": { "ru": "Lily = she → hasn't, дальше третья форма do — done: Lily hasn't done her homework." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "Вопрос в Present Perfect. Одна ошибка в форме глагола — найди её и исправь." },
+    "text": "Have you ate breakfast?",
+    "wrong": 2,
+    "accept": ["eaten"],
+    "mistakes": [
+      { "answer": "eat", "why": { "ru": "После have — не начальная форма, а третья: eaten." } },
+      { "answer": "eated", "why": { "ru": "eat — неправильный глагол: -ed к нему не добавляют. Его третья форма — eaten." } },
+      { "answer": "ate", "why": { "ru": "Это то же слово. ate — вторая форма, для Past Simple. После have нужна третья." } }
+    ],
+    "hint": { "ru": "Три формы eat: eat — ate — …" },
+    "explanation": { "ru": "После have — третья форма: eat — ate — eaten. Have you eaten breakfast?" }
+  }
+]

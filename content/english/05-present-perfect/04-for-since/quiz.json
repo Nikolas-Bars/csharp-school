@@ -1,0 +1,55 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Я знаю Макса с пяти лет» (мы знакомы с тех пор, как нам было пять)?" },
+    "options": [
+      { "text": "I know Max since we were five.", "why": { "ru": "Знакомы с тех пор и до сих пор — это Present Perfect: have known." } },
+      { "text": "I have known Max since we are five.", "why": { "ru": "После since — точка в прошлом: Past Simple, were." } },
+      { "text": "I have known Max for we were five.", "why": { "ru": "После for — срок. А здесь точка: с тех пор, как… — since." } },
+      { "text": "I have known Max since we were five." }
+    ],
+    "answer": 3,
+    "explanation": { "ru": "Длится до сих пор — Present Perfect; с какого момента — since + Past Simple: since we were five." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь for или since." },
+    "text": "Grandma has had this car ___ a long time.",
+    "accept": ["for"],
+    "mistakes": [
+      { "answer": "since", "why": { "ru": "a long time — «долго», это срок, а не точка. Со сроком — for." } },
+      { "answer": "from", "why": { "ru": "from обычно в паре с to. Сколько длится — for." } }
+    ],
+    "hint": { "ru": "«Долго» — это срок или точка?" },
+    "explanation": { "ru": "Срок — for: Grandma has had this car for a long time." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "I have knew Max for five years.",
+    "wrong": 2,
+    "accept": ["known"],
+    "mistakes": [
+      { "answer": "know", "why": { "ru": "После have — не начальная форма, а третья: known." } },
+      { "answer": "knowed", "why": { "ru": "know — неправильный глагол: -ed к нему не добавляют. Его третья форма — known." } },
+      { "answer": "knew", "why": { "ru": "Это то же слово. knew — вторая форма, для Past Simple. После have нужна третья." } }
+    ],
+    "hint": { "ru": "Три формы know: know — knew — …" },
+    "explanation": { "ru": "После have — третья форма: know — knew — known. I have known Max for five years." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Как долго ты знаешь Эмму?" },
+    "accept": ["How long have you known Emma{| for}"],
+    "mistakes": [
+      { "answer": "How long do you know Emma", "why": { "ru": "По-русски «знаешь», но речь о том, сколько это уже длится. Нужен Present Perfect: have you known." } },
+      { "answer": "How long are you knowing Emma", "why": { "ru": "know — глагол состояния, -ing с ним не ставят. Сколько уже длится — Present Perfect: have you known." } },
+      { "answer": "How long have you knew Emma", "why": { "ru": "knew — вторая форма. После have — третья: known." } },
+      { "answer": "How long have you know Emma", "why": { "ru": "После have — третья форма, а не начальная: known." } },
+      { "answer": "How long you have known Emma", "why": { "ru": "В вопросе have встаёт перед you: How long have you…?" } }
+    ],
+    "hint": { "ru": "Сколько уже длится — какое время? Три формы know: know — knew — …" },
+    "explanation": { "ru": "How long + have you + третья форма: How long have you known Emma?" }
+  }
+]

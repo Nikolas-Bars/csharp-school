@@ -1,0 +1,56 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Это лучшая игра в моей жизни»?" },
+    "options": [
+      { "text": "This is the best game I've never played.", "why": { "ru": "never — «никогда не», смысл ломается. «Когда-либо» — ever." } },
+      { "text": "This is the best game I've ever played." },
+      { "text": "This is the best game I've ever play.", "why": { "ru": "После have ('ve) — третья форма: played." } },
+      { "text": "This is the best game I've ever playing.", "why": { "ru": "После have ('ve) — третья форма, а не -ing: played." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "«Лучший в жизни» — the best … I've ever + третья форма: I've ever played." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Ответь коротко «Нет»." },
+    "text": "— Have you ever ridden a horse? — No, I ___.",
+    "accept": ["haven't", "never have"],
+    "mistakes": [
+      { "answer": "didn't", "why": { "ru": "didn't — для вопросов с did. Вопрос был с have — и ответ с have." } },
+      { "answer": "don't", "why": { "ru": "don't — для вопросов с do. Вопрос был с have — и ответ с have." } },
+      { "answer": "hasn't", "why": { "ru": "has — для he, she, it. С I нужен have: haven't." } },
+      { "answer": "haven't never", "why": { "ru": "Два отрицания не нужны: haven't или never have." } },
+      { "answer": "have", "why": { "ru": "Ответ «нет» — нужно отрицание: haven't." } }
+    ],
+    "hint": { "ru": "Краткий ответ повторяет помощника из вопроса." },
+    "explanation": { "ru": "Have you…? — No, I haven't. Засчитаем и No, I never have." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери вопрос «Вы когда-нибудь бывали в Мексике?». Одна плитка лишняя." },
+    "tiles": ["been", "you", "to Mexico", "ever", "Have", "Did"],
+    "accept": ["Have you ever been to Mexico"],
+    "mistakes": [
+      { "answer": "Did you ever been to Mexico", "why": { "ru": "been — третья форма, она работает с have, а не с did." } },
+      { "answer": "Have you been ever to Mexico", "why": { "ru": "ever стоит перед третьей формой: Have you ever been…?" } }
+    ],
+    "hint": { "ru": "been — третья форма. С каким помощником она работает? Где стоит ever?" },
+    "explanation": { "ru": "Have + you + ever + been to Mexico: опыт — Present Perfect, ever перед третьей формой." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Макса нет дома — он сейчас в парке. Переведи в Present Perfect." },
+    "text": { "ru": "Макс ушёл в парк." },
+    "accept": ["Max has gone to the park"],
+    "mistakes": [
+      { "answer": "Max has been to the park", "why": { "ru": "been — сходил и вернулся. А Макс сейчас там — gone." } },
+      { "answer": "Max went to the park", "why": { "ru": "Так тоже можно — это Past Simple. Но задание — Present Perfect: has + третья форма." } },
+      { "answer": "Max has went to the park", "why": { "ru": "went — вторая форма. После has — третья: gone." } },
+      { "answer": "Max have gone to the park", "why": { "ru": "Max — один человек, это he. С he нужен has." } },
+      { "answer": "Max is gone to the park", "why": { "ru": "is — не помощник Present Perfect. Нужен has." } }
+    ],
+    "hint": { "ru": "Макс сейчас там — been или gone?" },
+    "explanation": { "ru": "Ушёл и сейчас там — gone: Max has gone to the park." }
+  }
+]
