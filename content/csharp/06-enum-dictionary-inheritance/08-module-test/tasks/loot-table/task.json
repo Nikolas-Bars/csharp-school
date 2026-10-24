@@ -1,0 +1,112 @@
+{
+  "title": {
+    "ru": "Добыча с врагов"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "override",
+      "min": 2
+    },
+    {
+      "kind": "variable",
+      "name": "loot",
+      "type": "Dictionary<string, int>"
+    },
+    {
+      "kind": "call",
+      "method": "Enemy.Loot"
+    },
+    {
+      "kind": "access",
+      "member": "System.Collections.Generic.KeyValuePair.Value"
+    },
+    {
+      "kind": "output",
+      "expected": "слизь: 2\nкость: 1\nчешуя: 1"
+    },
+    {
+      "kind": "output",
+      "expected": "чешуя: 2\nкость: 1",
+      "set": {
+        "defeated": [
+          "Дракон",
+          "Дракон",
+          "Скелет"
+        ]
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Своя добыча у слизня и дракона — методы Loot со словом override, а в Enemy метод Loot помечен virtual."
+    },
+    {
+      "ru": "Нужен словарь loot типа Dictionary<string, int>: предмет → сколько штук."
+    },
+    {
+      "ru": "Предмет узнавай у каждого врага из списка: enemy.Loot()."
+    },
+    {
+      "ru": "Количество печатай из пары: pair.Value."
+    },
+    {
+      "ru": "Сравни вывод. С двух слизней — 2 слизи, со скелета — кость, с дракона — чешуя. Если везде кость — в списке работает Loot класса Enemy: проверь virtual и override."
+    },
+    {
+      "ru": "С другими врагами и добыча другая. Считай предметы в цикле по enemies и печатай пары словаря, а не готовый текст."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "В Enemy: public virtual string Loot(). В Slime и Dragon — public override string Loot() со своим return."
+    },
+    {
+      "ru": "Словарь собирай, как в уроке о подсчёте: string item = enemy.Loot(); если item уже есть в loot — loot[item]++, если нет — loot.Add(item, 1)."
+    },
+    {
+      "ru": "foreach (KeyValuePair<string, int> pair in loot) { Console.WriteLine($\"{pair.Key}: {pair.Value}\"); }"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-no-override.cs",
+      "fails": [
+        0,
+        4,
+        5
+      ],
+      "why": "Забыт override (CS0114): со всех врагов падает кость"
+    },
+    {
+      "file": "wrong-count-names.cs",
+      "fails": [
+        2,
+        4,
+        5
+      ],
+      "why": "Считаются имена врагов, а не их добыча"
+    },
+    {
+      "file": "wrong-always-add.cs",
+      "fails": [
+        4,
+        5
+      ],
+      "why": "Add без проверки: вторая слизь — ArgumentException"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        3,
+        5
+      ],
+      "why": "Словарь собран, но напечатан готовый текст"
+    }
+  ]
+}

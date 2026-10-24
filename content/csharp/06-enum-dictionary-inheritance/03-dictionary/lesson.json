@@ -1,0 +1,98 @@
+{
+  "title": {
+    "ru": "Словарь: Dictionary"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-dictionary.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "02-write.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "shop-prices"
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "03-contains.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "loot-pickup"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "Dictionary<string, int> items — что здесь string, а что int?"
+          },
+          "options": [
+            {
+              "ru": "string — тип ключа, int — тип значения"
+            },
+            {
+              "ru": "string — тип значения, int — тип ключа"
+            },
+            {
+              "ru": "string — имя словаря, int — его размер"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "Сначала пишут тип ключа, потом тип значения: по строке-названию находится число-количество."
+          }
+        },
+        {
+          "question": {
+            "ru": "В словаре items нет ключа \"щит\". Что сделает items[\"щит\"] = 1;?"
+          },
+          "options": [
+            {
+              "ru": "Добавит пару щит → 1"
+            },
+            {
+              "ru": "Остановит программу с KeyNotFoundException"
+            },
+            {
+              "ru": "Ничего не сделает"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "Запись по ключу добавляет пару, если ключа не было, и меняет значение, если был. KeyNotFoundException бывает при чтении ключа, которого нет."
+          }
+        },
+        {
+          "question": {
+            "ru": "Что случится, если два раза вызвать items.Add(\"меч\", 1);?"
+          },
+          "options": [
+            {
+              "ru": "В словаре будет два меча"
+            },
+            {
+              "ru": "Второй вызов остановит программу: такой ключ уже есть"
+            },
+            {
+              "ru": "Количество мечей станет 2"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "Каждый ключ в словаре один. Второй Add с тем же ключом — ArgumentException. Чтобы прибавить, пиши items[\"меч\"] += 1;."
+          }
+        }
+      ]
+    }
+  ]
+}

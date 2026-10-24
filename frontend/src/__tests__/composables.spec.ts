@@ -55,6 +55,36 @@ describe('describeCheck', () => {
     ])
   })
 
+  it('перечисления, словари и наследование: конструкции, значение enum и имена без System', () => {
+    expect([
+      describeCheck({ kind: 'construct', construct: 'enum' }),
+      describeCheck({ kind: 'construct', construct: 'inheritance', min: 2 }),
+      describeCheck({ kind: 'construct', construct: 'virtual' }),
+      describeCheck({ kind: 'construct', construct: 'override' }),
+      describeCheck({ kind: 'construct', construct: 'protected' }),
+      describeCheck({ kind: 'construct', construct: 'baseConstructor' }),
+      describeCheck({ kind: 'access', member: 'State.Attack' }),
+      describeCheck({ kind: 'access', member: 'Hero.Hp' }),
+      describeCheck({ kind: 'access', member: 'System.Collections.Generic.KeyValuePair.Key' }),
+      describeCheck({ kind: 'call', method: 'System.Collections.Generic.Dictionary.Add' }),
+      describeCheck({ kind: 'call', method: 'Enemy.Attack', caller: 'Orc.Attack' }),
+      describeCheck({ kind: 'variable', name: 'items', type: 'Dictionary<string, int>' }),
+    ]).toEqual([
+      'Используется enum (перечисление)',
+      'Используется наследование (class Orc : Enemy)',
+      'Используется virtual (метод можно переопределить в наследнике)',
+      'Используется override (своя версия метода базового класса)',
+      'Используется protected (видно в классе и его наследниках)',
+      'Используется вызов конструктора базового класса: base(…)',
+      'Используется значение State.Attack',
+      'Используется значение Hero.Hp',
+      'Используется значение KeyValuePair.Key',
+      'Вызывается Dictionary.Add',
+      'Метод Enemy.Attack вызывается из Orc.Attack',
+      'Есть переменная items типа Dictionary<string, int>',
+    ])
+  })
+
   it('массив и список в set — как в C#: { 5, 9, 1 }', () => {
     expect(
       describeCheck({

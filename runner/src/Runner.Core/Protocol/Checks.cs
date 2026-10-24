@@ -70,6 +70,24 @@ public enum Construct
     /// <summary>Слово this: <c>this.hp = hp;</c>.</summary>
     This,
 
+    /// <summary>Объявление перечисления: <c>enum State { Idle, Walk, Attack }</c>.</summary>
+    Enum,
+
+    /// <summary>Класс с базовым классом: <c>class Orc : Enemy</c>. <c>min</c> — сколько таких классов-наследников.</summary>
+    Inheritance,
+
+    /// <summary>Метод с virtual: <c>public virtual void Attack()</c>.</summary>
+    Virtual,
+
+    /// <summary>Метод с override: <c>public override void Attack()</c> (override ToString тоже считается).</summary>
+    Override,
+
+    /// <summary>Член класса с protected — поле, метод, свойство, конструктор — или метод доступа свойства: <c>protected int hp;</c>, <c>{ get; protected set; }</c>.</summary>
+    Protected,
+
+    /// <summary>Вызов конструктора базового класса у конструктора: <c>public Orc(string name) : base(name, 60)</c>.</summary>
+    BaseConstructor,
+
     /// <summary>break, который выходит из цикла; break в switch не считается.</summary>
     Break,
     Continue,

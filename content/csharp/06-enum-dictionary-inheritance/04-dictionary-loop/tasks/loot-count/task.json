@@ -1,0 +1,109 @@
+{
+  "title": {
+    "ru": "Считаем добычу"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "variable",
+      "name": "counts",
+      "type": "Dictionary<string, int>"
+    },
+    {
+      "kind": "construct",
+      "construct": "foreach"
+    },
+    {
+      "kind": "access",
+      "member": "System.Collections.Generic.KeyValuePair.Key"
+    },
+    {
+      "kind": "access",
+      "member": "System.Collections.Generic.KeyValuePair.Value"
+    },
+    {
+      "kind": "output",
+      "expected": "монета: 3\nзелье: 2\nкость: 1"
+    },
+    {
+      "kind": "output",
+      "expected": "кость: 2\nмеч: 1",
+      "set": {
+        "loot": [
+          "кость",
+          "кость",
+          "меч"
+        ]
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужен словарь counts типа Dictionary<string, int>: предмет → сколько штук."
+    },
+    {
+      "ru": "Выведи словарь циклом foreach по парам: foreach (KeyValuePair<string, int> pair in counts)."
+    },
+    {
+      "ru": "Предмет печатай из пары: pair.Key."
+    },
+    {
+      "ru": "Количество печатай из пары: pair.Value, а не повторным чтением словаря по ключу."
+    },
+    {
+      "ru": "Сравни вывод построчно: предмет, двоеточие и сколько раз он встретился. Встреченный впервые предмет добавляется со счётом 1, а дальше счёт растёт. Если программа остановилась с ArgumentException — Add вызывается для предмета, который уже есть."
+    },
+    {
+      "ru": "С другой добычей и словарь другой. Считай предметы из loot в цикле и печатай пары словаря, а не готовые строки."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Первый цикл — foreach по loot: если предмет уже есть в counts, увеличь его счётчик, если нет — добавь со счётом 1. Второй цикл — по парам словаря."
+    },
+    {
+      "ru": "В первом цикле: if (counts.ContainsKey(item)) { counts[item]++; } else { counts.Add(item, 1); }"
+    },
+    {
+      "ru": "foreach (KeyValuePair<string, int> pair in counts) { Console.WriteLine($\"{pair.Key}: {pair.Value}\"); }"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        2,
+        3,
+        5
+      ],
+      "why": "Словарь собран, но напечатан готовый текст"
+    },
+    {
+      "file": "wrong-always-one.cs",
+      "fails": [
+        4,
+        5
+      ],
+      "why": "Счётчик каждый раз ставится в 1, а не растёт"
+    },
+    {
+      "file": "wrong-always-add.cs",
+      "fails": [
+        4,
+        5
+      ],
+      "why": "Add без проверки: вторая монета — ArgumentException"
+    },
+    {
+      "file": "wrong-read-by-key.cs",
+      "fails": [
+        3
+      ],
+      "why": "Количество читается из словаря по ключу, а не из pair.Value"
+    }
+  ]
+}

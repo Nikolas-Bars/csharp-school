@@ -1563,7 +1563,13 @@
                                     "constructor",
                                     "property",
                                     "privateSet",
-                                    "this"
+                                    "this",
+                                    "enum",
+                                    "inheritance",
+                                    "virtual",
+                                    "override",
+                                    "protected",
+                                    "baseConstructor"
                                 ]
                             },
                             "min": {
@@ -1619,7 +1625,7 @@
                                 ]
                             },
                             "member": {
-                                "description": "Класс и поле или свойство",
+                                "description": "Класс и поле, свойство или значение перечисления (`State.Attack`)",
                                 "type": "string",
                                 "example": "Hero.hp"
                             },

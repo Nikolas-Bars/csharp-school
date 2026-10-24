@@ -24,7 +24,7 @@ internal sealed class CheckRunner(StudentCompiler compiler, ProgramRunner runner
         {
             OutputCheck output => Output(index, output, program, model, onStart, onEnd),
             VariableCheck variable => Variable(index, variable, root, model),
-            ConstructCheck construct => Construct(index, construct, root),
+            ConstructCheck construct => Construct(index, construct, root, model),
             CallCheck call => Call(index, call, root, model),
             AccessCheck access => Access(index, access, root, model),
             _ => throw new NotSupportedException($"Неизвестная проверка {check.GetType().Name}"),
@@ -96,7 +96,7 @@ internal sealed class CheckRunner(StudentCompiler compiler, ProgramRunner runner
         return new CheckResult(index, passed, check.Type, declared.Count == 0 ? null : string.Join(", ", declared.Distinct()));
     }
 
-    private static CheckResult Construct(int index, ConstructCheck check, SyntaxNode root)
+    private static CheckResult Construct(int index, ConstructCheck check, SyntaxNode root, SemanticModel model)
     {
         var count = root.DescendantNodes().Count(node => check.Construct switch
         {
@@ -114,6 +114,12 @@ internal sealed class CheckRunner(StudentCompiler compiler, ProgramRunner runner
             Protocol.Construct.PrivateSet => node is AccessorDeclarationSyntax accessor
                 && accessor.IsKind(SyntaxKind.SetAccessorDeclaration) && accessor.Modifiers.Any(SyntaxKind.PrivateKeyword),
             Protocol.Construct.This => node is ThisExpressionSyntax,
+            Protocol.Construct.Enum => node is EnumDeclarationSyntax,
+            Protocol.Construct.Inheritance => node is ClassDeclarationSyntax declaration && HasBaseClass(declaration, model),
+            Protocol.Construct.Virtual => node is MethodDeclarationSyntax method && method.Modifiers.Any(SyntaxKind.VirtualKeyword),
+            Protocol.Construct.Override => node is MethodDeclarationSyntax method && method.Modifiers.Any(SyntaxKind.OverrideKeyword),
+            Protocol.Construct.Protected => node is MemberDeclarationSyntax or AccessorDeclarationSyntax && HasModifier(node, SyntaxKind.ProtectedKeyword),
+            Protocol.Construct.BaseConstructor => node.IsKind(SyntaxKind.BaseConstructorInitializer),
             Protocol.Construct.Break => node is BreakStatementSyntax && ExitsLoop(node),
             Protocol.Construct.Continue => node is ContinueStatementSyntax,
             _ => false,
@@ -121,6 +127,18 @@ internal sealed class CheckRunner(StudentCompiler compiler, ProgramRunner runner
 
         return new CheckResult(index, count >= check.Min, Text(check.Min), Text(count));
     }
+
+    /// <summary>Модификатор у члена класса или у метода доступа свойства: <c>protected int hp;</c>, <c>{ get; protected set; }</c>.</summary>
+    private static bool HasModifier(SyntaxNode node, SyntaxKind modifier) => node switch
+    {
+        MemberDeclarationSyntax member => member.Modifiers.Any(modifier),
+        AccessorDeclarationSyntax accessor => accessor.Modifiers.Any(modifier),
+        _ => false,
+    };
+
+    /// <summary>У класса есть базовый класс (<c>class Orc : Enemy</c>), а не только object: список после двоеточия может быть и из интерфейсов.</summary>
+    private static bool HasBaseClass(ClassDeclarationSyntax declaration, SemanticModel model) =>
+        model.GetDeclaredSymbol(declaration) is { BaseType: { SpecialType: not SpecialType.System_Object } };
 
     /// <summary>break выходит из ближайшего цикла или switch — считается только выход из цикла.</summary>
     private static bool ExitsLoop(SyntaxNode node) =>

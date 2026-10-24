@@ -1,0 +1,104 @@
+{
+  "title": {
+    "ru": "Перебор словаря"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-foreach.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "02-count.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "loot-count"
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "03-try-get-value.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "04-remove.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "sell-junk"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "Что такое pair в foreach (KeyValuePair<string, int> pair in items)?"
+          },
+          "options": [
+            {
+              "ru": "Одна пара словаря: ключ pair.Key и значение pair.Value"
+            },
+            {
+              "ru": "Номер шага цикла"
+            },
+            {
+              "ru": "Копия всего словаря"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "На каждом шаге foreach даёт одну пару. Её ключ — pair.Key, значение — pair.Value; менять их в цикле нельзя."
+          }
+        },
+        {
+          "question": {
+            "ru": "Что делает out в prices.TryGetValue(\"меч\", out int price)?"
+          },
+          "options": [
+            {
+              "ru": "Передаёт price в метод как обычный аргумент"
+            },
+            {
+              "ru": "Метод кладёт найденное значение в price"
+            },
+            {
+              "ru": "Удаляет меч из словаря"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "out — параметр-выход: через него метод отдаёт значение. А сам метод отвечает true или false — есть ли ключ."
+          }
+        },
+        {
+          "question": {
+            "ru": "Нужно удалить из словаря всех врагов с 0 HP. Как правильно?"
+          },
+          "options": [
+            {
+              "ru": "Вызывать Remove прямо внутри foreach по словарю"
+            },
+            {
+              "ru": "Собрать имена в список, а после цикла удалить их по списку"
+            },
+            {
+              "ru": "Никак: из словаря нельзя удалять"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "Пока foreach перебирает словарь, его не меняют: в Unity это InvalidOperationException. Сначала собираем ключи, потом удаляем."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "title": {
+    "ru": "Волна врагов"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "virtual"
+    },
+    {
+      "kind": "construct",
+      "construct": "override",
+      "min": 2
+    },
+    {
+      "kind": "output",
+      "expected": "Орк бьёт дубиной: 12 урона\nГоблин кидает камень: 4 урона\nКрыса кусает: 2 урона"
+    },
+    {
+      "kind": "output",
+      "expected": "Волк кусает: 2 урона\nГоблин кидает камень: 4 урона\nОрк бьёт дубиной: 12 урона",
+      "set": {
+        "wave": [
+          "Волк",
+          "Гоблин",
+          "Орк"
+        ]
+      }
+    },
+    {
+      "kind": "access",
+      "member": "Enemy.name",
+      "min": 3
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Разреши наследникам менять атаку: пометь Attack в классе Enemy словом virtual."
+    },
+    {
+      "ru": "У орка и гоблина — свои версии Attack со словом override."
+    },
+    {
+      "ru": "Сравни вывод построчно. Если орк и гоблин кусаются, как обычный враг, — в списке врагов работает версия Enemy: проверь virtual и override."
+    },
+    {
+      "ru": "С другой волной вывод другой. Атаки печатает цикл по списку врагов, а не готовый текст."
+    },
+    {
+      "ru": "Атака орка и гоблина печатает имя из поля name — как Attack у Enemy."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "В Enemy: public virtual void Attack(). В Orc и Goblin — методы с тем же именем и словом override."
+    },
+    {
+      "ru": "public override void Attack() { … } — внутри Console.WriteLine с именем name, как в Attack у Enemy."
+    },
+    {
+      "ru": "В Orc: public override void Attack() { Console.WriteLine($\"{name} бьёт дубиной: 12 урона\"); } — и так же в Goblin."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-no-override.cs",
+      "fails": [
+        1,
+        2,
+        3
+      ],
+      "why": "Забыт override (предупреждение CS0114): в списке работает атака Enemy"
+    },
+    {
+      "file": "wrong-no-virtual.cs",
+      "compileError": "CS0506",
+      "why": "override без virtual в базовом классе"
+    },
+    {
+      "file": "wrong-private-override.cs",
+      "compileError": "CS0507",
+      "why": "override без public: доступ не совпадает с базовым"
+    },
+    {
+      "file": "wrong-private-virtual.cs",
+      "compileError": "CS0621",
+      "why": "virtual без public: виртуальный метод не может быть private"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        3
+      ],
+      "why": "Атаки напечатаны готовым текстом"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "title": {
+    "ru": "Тролль восстанавливается"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "protected"
+    },
+    {
+      "kind": "call",
+      "method": "Troll.Regenerate"
+    },
+    {
+      "kind": "output",
+      "expected": "Тролль: 40 HP\nТролль: 55 HP"
+    },
+    {
+      "kind": "output",
+      "expected": "Тролль: 40 HP\nТролль: 100 HP",
+      "set": {
+        "heal": 80
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Поле hp должен видеть наследник, но не основной код: пометь его protected."
+    },
+    {
+      "ru": "Восстанавливай здоровье методом тролля: troll.Regenerate(heal)."
+    },
+    {
+      "ru": "Сравни вывод: тролль до и после восстановления, оба раза через Show."
+    },
+    {
+      "ru": "Здоровье тролля не может стать больше 100 — вспомни Math.Min. Прибавляй heal в Regenerate и печатай через Show, а не готовым текстом."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Слово доступа ставят перед типом поля. Метод Regenerate — внутри Troll: наследник видит protected-поле."
+    },
+    {
+      "ru": "protected int hp = 40; А в Regenerate: hp = Math.Min(hp + amount, 100);"
+    },
+    {
+      "ru": "В основном коде: troll.Show(); troll.Regenerate(heal); troll.Show();"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-private-hp.cs",
+      "compileError": "CS0122",
+      "why": "hp осталось private: тролль его не видит"
+    },
+    {
+      "file": "wrong-public-hp.cs",
+      "fails": [
+        0
+      ],
+      "why": "hp открыто словом public — его может испортить и основной код"
+    },
+    {
+      "file": "wrong-no-cap.cs",
+      "fails": [
+        3
+      ],
+      "why": "Здоровье растёт больше 100"
+    },
+    {
+      "file": "wrong-hp-in-main.cs",
+      "compileError": "CS0122",
+      "why": "protected-поле меняется из основного кода"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        1,
+        3
+      ],
+      "why": "Вывод напечатан готовым текстом"
+    }
+  ]
+}

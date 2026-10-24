@@ -53,6 +53,17 @@ public sealed class RunTests
         Assert.Equal(("IndexOutOfRangeException", 4), (response.Error?.Type, response.Error?.Line));
     }
 
+    [Theory]
+    [InlineData("int shields = items[\"щит\"];", "KeyNotFoundException")]
+    [InlineData("items.Add(\"меч\", 2);", "ArgumentException")]
+    public void DictionaryErrorsHaveTheirOwnTypes(string mistake, string type)
+    {
+        // Фронт объясняет их по типу (runtime.* в src/i18n/locales): нет ключа и Add с ключом, который уже есть
+        var response = Run($"using System.Collections.Generic;\nDictionary<string, int> items = new Dictionary<string, int>();\nitems.Add(\"меч\", 1);\n{mistake}");
+
+        Assert.Equal((type, 4), (response.Error?.Type, response.Error?.Line));
+    }
+
     [Fact]
     public void StopsEndlessOutput()
     {

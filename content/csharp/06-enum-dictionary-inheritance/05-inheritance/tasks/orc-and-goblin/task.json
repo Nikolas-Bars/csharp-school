@@ -1,0 +1,142 @@
+{
+  "title": {
+    "ru": "Орк и гоблин"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "inheritance",
+      "min": 2
+    },
+    {
+      "kind": "variable",
+      "name": "orc",
+      "type": "Orc"
+    },
+    {
+      "kind": "variable",
+      "name": "goblin",
+      "type": "Goblin"
+    },
+    {
+      "kind": "call",
+      "method": "Enemy.TakeDamage"
+    },
+    {
+      "kind": "call",
+      "method": "Orc.Roar"
+    },
+    {
+      "kind": "output",
+      "expected": "Грох: 50 HP\nСкрип: 15 HP\nГрох рычит! Ярость: 3\nСкрип крадёт монету"
+    },
+    {
+      "kind": "output",
+      "expected": "Грох: 30 HP\nСкрип: 0 HP\nГрох рычит! Ярость: 5\nСкрип крадёт монету",
+      "set": {
+        "hit": 30,
+        "orcRage": 5
+      }
+    },
+    {
+      "kind": "call",
+      "method": "Enemy.Info"
+    },
+    {
+      "kind": "call",
+      "method": "Goblin.Steal"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Объяви двух наследников Enemy: class Orc : Enemy и class Goblin : Enemy."
+    },
+    {
+      "ru": "Нужна переменная orc типа Orc."
+    },
+    {
+      "ru": "Нужна переменная goblin типа Goblin."
+    },
+    {
+      "ru": "Урон наноси методом TakeDamage, который наследники получили от Enemy, — не копируй его в Orc и Goblin."
+    },
+    {
+      "ru": "Рычит только орк: объяви метод Roar в классе Orc и вызови его у орка."
+    },
+    {
+      "ru": "Сравни вывод построчно: сначала здоровье обоих после удара, потом рык орка и кража гоблина. Если вместо имени пусто, а здоровье 0, — у наследника снова объявлены name или hp: убери их, они уже есть у Enemy."
+    },
+    {
+      "ru": "При другом ударе и другой ярости вывод меняется. Бей на hit, ярость бери из orcRage и печатай через Info и Roar, а не готовым текстом."
+    },
+    {
+      "ru": "Здоровье выводи методом Info, который наследники получили от Enemy."
+    },
+    {
+      "ru": "Крадёт только гоблин: объяви метод Steal в классе Goblin и вызови его у гоблина."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "class Orc : Enemy { … } — в фигурных скобках только то, чего нет у Enemy: поле rage и метод Roar. Так же Goblin со Steal."
+    },
+    {
+      "ru": "Roar: Console.WriteLine($\"{name} рычит! Ярость: {rage}\"); — name орк получил от Enemy. В основном коде: Orc orc = new Orc(); и поля через точку."
+    },
+    {
+      "ru": "orc.TakeDamage(hit); goblin.TakeDamage(hit); orc.Info(); goblin.Info(); orc.Roar(); goblin.Steal();"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-copy-classes.cs",
+      "fails": [
+        0,
+        3,
+        7
+      ],
+      "why": "Два отдельных класса с копией кода Enemy вместо наследования"
+    },
+    {
+      "file": "wrong-roar-in-enemy.cs",
+      "fails": [
+        4
+      ],
+      "why": "Рык и ярость в Enemy: рычать может любой враг, а не только орк"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        3,
+        4,
+        6,
+        7,
+        8
+      ],
+      "why": "Вывод напечатан готовым текстом"
+    },
+    {
+      "file": "wrong-fields-again.cs",
+      "fails": [
+        5,
+        6
+      ],
+      "why": "Наследник снова объявляет name и hp (CS0108): у орка два разных имени и здоровья"
+    },
+    {
+      "file": "wrong-goblin-roar.cs",
+      "compileError": "CS1061",
+      "why": "Гоблин вызывает Roar, которого у него нет"
+    },
+    {
+      "file": "wrong-public-class.cs",
+      "compileError": "CS0060",
+      "why": "public у наследника, а базовый класс без public"
+    }
+  ]
+}

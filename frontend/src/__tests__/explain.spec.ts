@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
+import { t } from '@/i18n'
 import en from '@/i18n/locales/en.json'
 import ru from '@/i18n/locales/ru.json'
 import {
@@ -94,6 +95,13 @@ const RUNNER_CODES = [
   'CS8070',
   'CS0131',
   'CS0145',
+  'CS0506',
+  'CS0115',
+  'CS0114',
+  'CS0108',
+  'CS0621',
+  'CS0507',
+  'CS0060',
 ]
 
 describe('объяснение ошибок', () => {
@@ -203,7 +211,7 @@ describe('объяснение ошибок', () => {
 
   it('классы и объекты: аргументы подставляются по порядку', () => {
     expect(explainDiagnostic(diagnostic('CS0122', ['Hero.hp']))).toBe(
-      'Доступ к «Hero.hp» есть только внутри его класса — сделай его public, если он нужен снаружи.',
+      'К «Hero.hp» отсюда доступа нет. private (и член класса без слова доступа) виден только внутри своего класса, protected — ещё и в наследниках. Обращайся к нему из методов класса или открой словом public то, что действительно нужно снаружи.',
     )
     expect(explainDiagnostic(diagnostic('CS8801', ['hp']))).toContain('не видно «hp»')
     expect(explainDiagnostic(diagnostic('CS1729', ['Hero', '2']))).toContain(
@@ -215,6 +223,86 @@ describe('объяснение ошибок', () => {
     )
     expect(explainDiagnostic({ ...diagnostic('CS1717'), severity: 'warning' })).toContain(
       'this.hp = hp',
+    )
+  })
+
+  it('перечисления, словари и наследование: аргументы по порядку и особые случаи', () => {
+    // Аргументы — как в CommonMistakesTests runner
+    expect(explainDiagnostic(diagnostic('CS0506', ['Orc.Attack()', 'Enemy.Attack()']))).toContain(
+      'Метод «Enemy.Attack()» в базовом классе не помечен virtual, поэтому «Orc.Attack()» не может',
+    )
+    expect(
+      explainDiagnostic(diagnostic('CS0507', ['Orc.Attack()', 'public', 'Enemy.Attack()'])),
+    ).toContain('«Orc.Attack()» переопределяет метод «Enemy.Attack()», у которого доступ public')
+    expect(explainDiagnostic(diagnostic('CS0060', ['Orc', 'Enemy']))).toContain(
+      'Класс «Orc» открыт словом public, а его базовый класс «Enemy» — нет',
+    )
+    expect(
+      explainDiagnostic({
+        ...diagnostic('CS0114', ['Orc.Attack()', 'Enemy.Attack()']),
+        severity: 'warning',
+      }),
+    ).toContain('допиши override')
+    expect(explainDiagnostic(diagnostic('CS8803'))).toContain('перечислений (enum)')
+
+    // Пара словаря в foreach, Length у словаря
+    expect(explainDiagnostic(diagnostic('CS0200', ['KeyValuePair<string, int>.Value']))).toBe(
+      ru.compilerCases.pairReadOnly,
+    )
+    expect(explainDiagnostic(diagnostic('CS0200', ['KeyValuePair<string, int>.Key']))).toBe(
+      ru.compilerCases.pairReadOnly,
+    )
+    expect(explainDiagnostic(diagnostic('CS1061', ['Dictionary<string, int>', 'Length']))).toBe(
+      ru.compilerCases.countOrLength,
+    )
+
+    // Число ↔ перечисление; между числами — обычный текст о потере данных
+    expect(explainDiagnostic(diagnostic('CS0266', ['int', 'State']))).toContain(
+      'в переменную типа State — это перечисление (enum)',
+    )
+    expect(explainDiagnostic(diagnostic('CS0266', ['State', 'int']))).toContain('(int)state')
+    expect(explainDiagnostic(diagnostic('CS0266', ['double', 'int']))).toBe(
+      'Значение типа double нельзя просто так положить в int: часть данных может потеряться — например, дробная часть числа.',
+    )
+    expect(explainDiagnostic(diagnostic('CS0266', ['long', 'int']))).toContain('часть данных')
+    expect(explainDiagnostic(diagnostic('CS0266', ['int', 'float']))).toContain('часть данных')
+    expect(explainDiagnostic(diagnostic('CS0266', ['int?', 'int']))).toContain('часть данных')
+    expect(explainDiagnostic(diagnostic('CS0266', ['object', 'int']))).toContain('часть данных')
+    // Базовый класс в переменной наследника
+    expect(explainDiagnostic(diagnostic('CS0266', ['Enemy', 'Orc']))).toContain(
+      'не каждый Enemy — это Orc',
+    )
+    // Списки, массивы и интерфейсы — общий текст
+    const general = 'Значение типа IEnumerable<int> нельзя просто так положить в List<int>'
+    expect(explainDiagnostic(diagnostic('CS0266', ['IEnumerable<int>', 'List<int>']))).toContain(
+      general,
+    )
+    expect(explainDiagnostic(diagnostic('CS0266', ['ITarget', 'Orc']))).toContain('часть данных')
+    expect(explainDiagnostic(diagnostic('CS0266', ['Enemy', 'Orc[]']))).toContain('часть данных')
+
+    // Поле, объявленное у наследника ещё раз, и метод с тем же именем — разные тексты
+    expect(
+      explainDiagnostic({ ...diagnostic('CS0108', ['Orc.hp', 'Enemy.hp']), severity: 'warning' }),
+    ).toBe(t('compilerCases.hiddenField', { arg0: 'Orc.hp', arg1: 'Enemy.hp' }))
+    expect(
+      explainDiagnostic({
+        ...diagnostic('CS0108', ['Orc.Attack()', 'Enemy.Attack()']),
+        severity: 'warning',
+      }),
+    ).toContain('пометь метод базового класса словом virtual')
+
+    // CS7036 у конструктора — new без значений или наследник без : base(…); у метода — обычный текст
+    const constructor = explainDiagnostic(diagnostic('CS7036', ['name', 'Enemy.Enemy(string)']))
+    expect(constructor).toContain('Конструктору Enemy.Enemy(string) не хватает значения для «name»')
+    expect(constructor).toContain(': base(…)')
+    expect(explainDiagnostic(diagnostic('CS7036', ['hp', 'Hero.Hero(int)']))).toBe(
+      t('compilerCases.constructorArgs', { arg0: 'hp', arg1: 'Hero.Hero(int)' }),
+    )
+    expect(explainDiagnostic(diagnostic('CS7036', ['b', 'Damage(int, int)']))).toContain(
+      'метода Damage(int, int)',
+    )
+    expect(explainDiagnostic(diagnostic('CS7036', ['hp', 'Hero.Heal(int)']))).toContain(
+      'метода Hero.Heal(int)',
     )
   })
 
@@ -321,7 +409,14 @@ describe('объяснение ошибок', () => {
     )
     expect(
       explainRuntimeError({ type: 'InvalidOperationException', message: '', line: 3 }),
-    ).toContain('пока он перебирается циклом foreach')
+    ).toContain('элементы списка или словаря, пока он перебирается циклом foreach')
+    // Словарь: нет ключа и Add с ключом, который уже есть (типы — из RunTests runner)
+    expect(explainRuntimeError({ type: 'KeyNotFoundException', message: '', line: 4 })).toContain(
+      'ContainsKey',
+    )
+    expect(explainRuntimeError({ type: 'ArgumentException', message: '', line: 4 })).toContain(
+      'такой ключ в словаре уже есть',
+    )
     // Ввода в курсе нет: пример без int.Parse
     expect(explainRuntimeError({ type: 'FormatException', message: '', line: 3 })).not.toContain(
       'Parse',

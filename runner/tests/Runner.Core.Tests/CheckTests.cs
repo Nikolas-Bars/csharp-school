@@ -160,6 +160,196 @@ public sealed class CheckTests
     }
 
     [Fact]
+    public void EnumAndInheritanceConstructsAreCounted()
+    {
+        const string code = """
+            using System;
+            using System.Collections.Generic;
+
+            List<Enemy> enemies = new List<Enemy> { new Orc("Грох"), new Goblin("Скрип") };
+            foreach (Enemy enemy in enemies)
+            {
+                enemy.Attack();
+            }
+
+            enum State { Idle, Walk, Attack }
+
+            interface ITarget { }
+
+            class Enemy : ITarget
+            {
+                protected string name;
+                protected int hp;
+                public State state;
+
+                public Enemy(string name, int hp) { this.name = name; this.hp = hp; }
+
+                public virtual void Attack() { Console.WriteLine(name); }
+            }
+
+            class Orc : Enemy
+            {
+                public Orc(string name) : base(name, 60) { }
+
+                public override void Attack() { base.Attack(); }
+
+                public override string ToString() { return name; }
+            }
+
+            class Goblin : Enemy
+            {
+                public Goblin(string name) : this(name, 30) { }
+
+                protected Goblin(string name, int hp) : base(name, hp) { }
+            }
+            """;
+
+        var response = Test(
+            code,
+            new ConstructCheck(Construct.Enum),
+            new ConstructCheck(Construct.Inheritance, Min: 2),
+            new ConstructCheck(Construct.Inheritance, Min: 3),
+            new ConstructCheck(Construct.Virtual),
+            new ConstructCheck(Construct.Override, Min: 2),
+            new ConstructCheck(Construct.Protected, Min: 3),
+            new ConstructCheck(Construct.BaseConstructor, Min: 2),
+            new ConstructCheck(Construct.BaseConstructor, Min: 3));
+
+        Assert.Equal([true, true, false, true, true, true, true, false], response.Results.Select(result => result.Passed));
+        // Наследники — Orc и Goblin; Enemy : ITarget — только интерфейс, базового класса у него нет
+        Assert.Equal("2", response.Results[2].Actual);
+        // : this(…) — не вызов базового конструктора
+        Assert.Equal("2", response.Results[7].Actual);
+    }
+
+    [Fact]
+    public void ProtectedSetOfPropertyCounts()
+    {
+        const string code = """
+            System.Console.WriteLine(new Enemy().Hp);
+
+            class Enemy
+            {
+                public int Hp { get; protected set; }
+            }
+            """;
+
+        var response = Test(code, new ConstructCheck(Construct.Protected), new ConstructCheck(Construct.Protected, Min: 2));
+
+        Assert.Equal([true, false], response.Results.Select(result => result.Passed));
+    }
+
+    [Fact]
+    public void ClassWithoutBaseHasNoInheritanceOrOverrides()
+    {
+        const string code = """
+            System.Console.WriteLine(new Enemy().Name());
+
+            class Enemy
+            {
+                private int hp;
+
+                public string Name() { return "Гоблин" + hp; }
+            }
+            """;
+
+        var response = Test(
+            code,
+            new ConstructCheck(Construct.Enum),
+            new ConstructCheck(Construct.Inheritance),
+            new ConstructCheck(Construct.Virtual),
+            new ConstructCheck(Construct.Override),
+            new ConstructCheck(Construct.Protected),
+            new ConstructCheck(Construct.BaseConstructor));
+
+        Assert.All(response.Results, result => Assert.Equal(("1", "0"), (result.Expected, result.Actual)));
+    }
+
+    [Fact]
+    public void EnumValueDictionaryAndPairAreFoundByFullName()
+    {
+        const string code = """
+            using System;
+            using System.Collections.Generic;
+
+            State state = State.Walk;
+            Dictionary<string, int> items = new Dictionary<string, int>();
+            items.Add("меч", 1);
+            items["зелье"] = 2;
+            if (items.TryGetValue("меч", out int swords) && items.ContainsKey("зелье"))
+            {
+                items.Remove("зелье");
+            }
+            foreach (KeyValuePair<string, int> pair in items)
+            {
+                Console.WriteLine($"{pair.Key}: {pair.Value + swords}");
+            }
+            switch (state)
+            {
+                case State.Attack:
+                    Console.WriteLine("Атака");
+                    break;
+            }
+
+            enum State { Idle, Walk, Attack }
+            """;
+
+        var response = Test(
+            code,
+            new VariableCheck("state", "State"),
+            new VariableCheck("items", "Dictionary<string, int>"),
+            new AccessCheck("State.Attack"),
+            new AccessCheck("State.Walk"),
+            new AccessCheck("State.Idle"),
+            new AccessCheck("System.Collections.Generic.KeyValuePair.Key"),
+            new CallCheck("System.Collections.Generic.Dictionary.Add"),
+            new CallCheck("System.Collections.Generic.Dictionary.TryGetValue"),
+            new CallCheck("System.Collections.Generic.Dictionary.ContainsKey"),
+            new CallCheck("System.Collections.Generic.Dictionary.Remove"),
+            new OutputCheck("меч: 2"));
+
+        Assert.Equal([true, true, true, true, false, true, true, true, true, true, true], response.Results.Select(result => result.Passed));
+    }
+
+    [Fact]
+    public void CallOfBaseMethodIsBaseClassMethod()
+    {
+        const string code = """
+            using System;
+            using System.Collections.Generic;
+
+            List<Enemy> enemies = new List<Enemy> { new Orc() };
+            foreach (Enemy enemy in enemies)
+            {
+                enemy.Attack();
+            }
+
+            class Enemy
+            {
+                public virtual void Attack() { Console.WriteLine("Удар"); }
+            }
+
+            class Orc : Enemy
+            {
+                public override void Attack()
+                {
+                    base.Attack();
+                    Console.WriteLine("Рык");
+                }
+            }
+            """;
+
+        var response = Test(
+            code,
+            new CallCheck("Enemy.Attack", Caller: "Orc.Attack"),
+            new CallCheck("Orc.Attack"),
+            new OutputCheck("Удар\nРык"));
+
+        // enemy.Attack() из List<Enemy> — вызов Enemy.Attack, хотя работает версия орка
+        Assert.Equal([true, false, true], response.Results.Select(result => result.Passed));
+    }
+
+    [Fact]
     public void CallerCanBeConstructorOrProperty()
     {
         const string code = """

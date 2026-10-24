@@ -67,7 +67,13 @@ public sealed class ProtocolJsonTests
                 { "kind": "construct", "construct": "property" },
                 { "kind": "construct", "construct": "privateSet" },
                 { "kind": "construct", "construct": "this" },
-                { "kind": "access", "member": "Hero.hp", "min": 2 }
+                { "kind": "access", "member": "Hero.hp", "min": 2 },
+                { "kind": "construct", "construct": "enum" },
+                { "kind": "construct", "construct": "inheritance", "min": 2 },
+                { "kind": "construct", "construct": "virtual" },
+                { "kind": "construct", "construct": "override" },
+                { "kind": "construct", "construct": "protected" },
+                { "kind": "construct", "construct": "baseConstructor" }
               ]
             }
             """;
@@ -82,6 +88,12 @@ public sealed class ProtocolJsonTests
         Assert.Contains("{\"index\":5,\"passed\":false,\"expected\":\"1\",\"actual\":\"0\"", response, StringComparison.Ordinal);
         Assert.Contains("{\"index\":6,\"passed\":false,\"expected\":\"1\",\"actual\":\"0\"", response, StringComparison.Ordinal);
         Assert.Contains("{\"index\":7,\"passed\":false,\"expected\":\"2\",\"actual\":\"0\"", response, StringComparison.Ordinal);
+        Assert.Contains("{\"index\":8,\"passed\":false,\"expected\":\"1\",\"actual\":\"0\"", response, StringComparison.Ordinal);
+        Assert.Contains("{\"index\":9,\"passed\":false,\"expected\":\"2\",\"actual\":\"0\"", response, StringComparison.Ordinal);
+        Assert.Contains("{\"index\":10,\"passed\":false,\"expected\":\"1\",\"actual\":\"0\"", response, StringComparison.Ordinal);
+        Assert.Contains("{\"index\":11,\"passed\":false,\"expected\":\"1\",\"actual\":\"0\"", response, StringComparison.Ordinal);
+        Assert.Contains("{\"index\":12,\"passed\":false,\"expected\":\"1\",\"actual\":\"0\"", response, StringComparison.Ordinal);
+        Assert.Contains("{\"index\":13,\"passed\":false,\"expected\":\"1\",\"actual\":\"0\"", response, StringComparison.Ordinal);
     }
 
     [Fact]

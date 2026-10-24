@@ -1,0 +1,98 @@
+{
+  "title": {
+    "ru": "Перечисления: enum"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-why.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "02-variable.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "guard-state"
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "03-numbers.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "new-enemy"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "Что такое перечисление (enum)?"
+          },
+          "options": [
+            {
+              "ru": "Свой тип с несколькими именованными значениями"
+            },
+            {
+              "ru": "Список, в который можно добавлять элементы"
+            },
+            {
+              "ru": "Строка, которую нельзя менять"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "enum State { Idle, Walk, Attack } — новый тип, и у него ровно эти три значения. Добавить новое во время работы программы нельзя."
+          }
+        },
+        {
+          "question": {
+            "ru": "Есть enum State { Idle, Walk, Attack }. Что напечатает Console.WriteLine(State.Walk);?"
+          },
+          "options": [
+            {
+              "ru": "1"
+            },
+            {
+              "ru": "Walk"
+            },
+            {
+              "ru": "State.Walk"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "Console.WriteLine печатает имя значения, без имени типа. Номер 1 напечатается, если написать (int)State.Walk."
+          }
+        },
+        {
+          "question": {
+            "ru": "У поля public State state; нет значения. Чему оно равно?"
+          },
+          "options": [
+            {
+              "ru": "null"
+            },
+            {
+              "ru": "Первому значению перечисления — Idle"
+            },
+            {
+              "ru": "Ничему: будет ошибка компиляции"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "Как у поля int по умолчанию 0, так у поля-перечисления по умолчанию значение с номером 0 — первое в списке."
+          }
+        }
+      ]
+    }
+  ]
+}

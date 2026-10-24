@@ -1,0 +1,133 @@
+{
+  "title": {
+    "ru": "Стражник у ворот"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "enum"
+    },
+    {
+      "kind": "variable",
+      "name": "state",
+      "type": "State"
+    },
+    {
+      "kind": "access",
+      "member": "State.Attack"
+    },
+    {
+      "kind": "output",
+      "expected": "Состояние: Walk"
+    },
+    {
+      "kind": "output",
+      "expected": "Состояние: Attack",
+      "set": {
+        "distance": 2
+      }
+    },
+    {
+      "kind": "output",
+      "expected": "Состояние: Idle",
+      "set": {
+        "distance": 15
+      }
+    },
+    {
+      "kind": "output",
+      "expected": "Состояние: Walk",
+      "set": {
+        "distance": 10
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Объяви перечисление State: enum State { … } в конце файла, после команд."
+    },
+    {
+      "ru": "Нужна переменная state типа State — не строка и не число."
+    },
+    {
+      "ru": "Когда герой близко, положи в state значение State.Attack: значение перечисления пишут через точку после имени типа."
+    },
+    {
+      "ru": "Сравни вывод с примером: «Состояние: » и имя значения. Печатай саму переменную state — C# выведет имя."
+    },
+    {
+      "ru": "Когда distance равно 2, стражник уже атакует: «не больше 2» включает и 2. Проверь знак сравнения."
+    },
+    {
+      "ru": "При другом расстоянии состояние должно меняться. Выбирай значение state через if по distance и печатай переменную, а не готовый текст."
+    },
+    {
+      "ru": "На расстоянии 10 стражник ещё идёт к герою: «не больше 10» включает и 10. Проверь знак во втором условии."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Сначала перечисление в самом низу: enum State { … }. Потом переменная state с начальным значением и цепочка if — else if по distance."
+    },
+    {
+      "ru": "State state = State.Idle; дальше if (distance <= 2) { … } else if (distance <= 10) { … } — внутри кладёшь в state State.Attack или State.Walk."
+    },
+    {
+      "ru": "if (distance <= 2) { state = State.Attack; } else if (distance <= 10) { state = State.Walk; } Console.WriteLine($\"Состояние: {state}\");"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        2,
+        4,
+        5
+      ],
+      "why": "Вывод напечатан готовым текстом, состояние не зависит от distance"
+    },
+    {
+      "file": "wrong-string-state.cs",
+      "fails": [
+        0,
+        1,
+        2
+      ],
+      "why": "Состояние хранится строкой, перечисления нет"
+    },
+    {
+      "file": "wrong-enum-first.cs",
+      "compileError": "CS8803",
+      "why": "Перечисление объявлено выше команд"
+    },
+    {
+      "file": "wrong-less.cs",
+      "fails": [
+        4
+      ],
+      "why": "< вместо <=: на расстоянии 2 стражник не атакует"
+    },
+    {
+      "file": "wrong-less-ten.cs",
+      "fails": [
+        6
+      ],
+      "why": "< вместо <= во втором условии: на расстоянии 10 стражник стоит"
+    },
+    {
+      "file": "wrong-number.cs",
+      "fails": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "why": "Напечатан номер значения, а не имя"
+    }
+  ]
+}
