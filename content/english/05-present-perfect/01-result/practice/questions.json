@@ -1,0 +1,71 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Тебя спрашивают: «Have you finished your project?» Как коротко ответить «Нет»?" },
+    "options": [
+      { "text": "No, I didn't.", "why": { "ru": "didn't — для вопросов с did. Вопрос был с have — и ответ с have." } },
+      { "text": "No, I don't.", "why": { "ru": "don't — для вопросов с do. Вопрос был с have — и ответ с have." } },
+      { "text": "No, I haven't." },
+      { "text": "No, I hasn't.", "why": { "ru": "has — для he, she, it. С I нужен have: haven't." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "Краткий ответ повторяет помощника из вопроса: Have you…? — No, I haven't." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Спроси в Present Perfect, нашёл ли Макс телефон, — три слова." },
+    "text": "___ (Max / find) his phone?",
+    "accept": ["Has Max found"],
+    "mistakes": [
+      { "answer": "Have Max found", "why": { "ru": "Max — один человек, это he. С he нужен has." } },
+      { "answer": "Did Max find", "why": { "ru": "Так тоже можно спросить — это Past Simple. Но задание — Present Perfect: has + третья форма." } },
+      { "answer": "Has Max find", "why": { "ru": "После has — третья форма. У find это found." } },
+      { "answer": "Max has found", "why": { "ru": "В вопросе помощник has встаёт перед Max: Has Max…?" } },
+      { "answer": "Did Max found", "why": { "ru": "После did — начальная форма. А в Present Perfect вопрос строится с has: Has Max found?" } }
+    ],
+    "hint": { "ru": "Что выходит вперёд в вопросе? Три формы find: find — found — found." },
+    "explanation": { "ru": "Max = he → has, в вопросе он выходит вперёд, дальше третья форма: Has Max found his phone?" }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери вопрос «Вы не видели мои ключи?». Одна плитка лишняя." },
+    "tiles": ["seen", "my keys", "you", "Have", "Did"],
+    "accept": ["Have you seen my keys"],
+    "mistakes": [
+      { "answer": "Did you seen my keys", "why": { "ru": "seen — третья форма, она идёт после have, а не после did: Have you seen…?" } },
+      { "answer": "You have seen my keys", "why": { "ru": "Это утверждение. В вопросе have встаёт перед you." } }
+    ],
+    "hint": { "ru": "seen — третья форма. С каким помощником она работает?" },
+    "explanation": { "ru": "Have + you + seen: в вопросе помощник have выходит вперёд, дальше третья форма." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "Отрицание в Present Perfect. Ошибка в помощнике — найди её и исправь." },
+    "text": "She haven't called me back.",
+    "wrong": 1,
+    "accept": ["hasn't"],
+    "mistakes": [
+      { "answer": "didn't", "why": { "ru": "После didn't — начальная форма, а здесь called. В Present Perfect с she — hasn't." } },
+      { "answer": "isn't", "why": { "ru": "is — не помощник Present Perfect. Нужен has: hasn't." } },
+      { "answer": "has", "why": { "ru": "Так пропало «не»: она уже перезвонила. А нужно отрицание: hasn't." } },
+      { "answer": "haven't", "why": { "ru": "Это то же слово. she — какая форма нужна: have или has?" } }
+    ],
+    "hint": { "ru": "she — это he, she, it. Какой помощник с ней?" },
+    "explanation": { "ru": "she → has, отрицание — hasn't: She hasn't called me back. Можно и полностью: has not." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Собаки до сих пор нет. Переведи в Present Perfect." },
+    "text": { "ru": "Мы не нашли собаку." },
+    "accept": ["We {still |}haven't found {the|our} dog{ yet|}"],
+    "mistakes": [
+      { "answer": "We didn't find {the|our} dog", "why": { "ru": "Так тоже можно — это Past Simple. Но задание — Present Perfect: haven't + третья форма." } },
+      { "answer": "We haven't find {the|our} dog", "why": { "ru": "После haven't — третья форма. У find это found." } },
+      { "answer": "We hasn't found {the|our} dog", "why": { "ru": "we — «мы», с ними нужен have: haven't." } },
+      { "answer": "We don't found {the|our} dog", "why": { "ru": "don't — помощник Present Simple. В Present Perfect отрицание — haven't." } },
+      { "answer": "We not found {the|our} dog", "why": { "ru": "not само не работает — нужен помощник: haven't found." } }
+    ],
+    "hint": { "ru": "we — have или has? Куда встаёт not? «Найти» — find — found — found." },
+    "explanation": { "ru": "Результат сейчас — Present Perfect, отрицание с haven't: We haven't found the dog." }
+  }
+]

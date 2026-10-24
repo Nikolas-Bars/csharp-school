@@ -1,0 +1,69 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как спросить «Сколько у тебя уже эта собака?»" },
+    "options": [
+      { "text": "How long do you have this dog?", "why": { "ru": "Present Simple не говорит, сколько это уже длится (так спросят «На какой срок тебе дали собаку?»). Сколько уже — Present Perfect: have you had." } },
+      { "text": "How long have you had this dog?" },
+      { "text": "How long have you have this dog?", "why": { "ru": "После have — третья форма. У have это had." } },
+      { "text": "How long you have had this dog?", "why": { "ru": "В вопросе have встаёт перед you: How long have you…?" } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Сколько уже длится — How long + have you + третья форма have — had." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь be в нужной форме." },
+    "text": "I have lived here since I ___ (be) six.",
+    "accept": ["was"],
+    "mistakes": [
+      { "answer": "am", "why": { "ru": "После since — точка в прошлом. Шесть лет было когда-то: Past Simple, was." } },
+      { "answer": "have been", "why": { "ru": "После since — точка в прошлом, это Past Simple: was." } },
+      { "answer": "were", "why": { "ru": "were — для you, we, they. С I нужен was." } },
+      { "answer": "be", "why": { "ru": "Нужна форма прошедшего времени — точка в прошлом." } }
+    ],
+    "hint": { "ru": "Шесть лет было в прошлом. Какое время после since?" },
+    "explanation": { "ru": "После since — точка в прошлом, Past Simple: since I was six — с шести лет." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь for или since." },
+    "text": "— How long have you been in the chess club? — ___ September.",
+    "accept": ["Since"],
+    "mistakes": [
+      { "answer": "For", "why": { "ru": "Сентябрь — точка, с которой всё началось, а не срок. С точкой — since." } },
+      { "answer": "From", "why": { "ru": "from обычно в паре с to. «С тех пор и до сих пор» — since." } }
+    ],
+    "hint": { "ru": "Сентябрь — это срок или точка?" },
+    "explanation": { "ru": "Точка — since: Since September — с сентября." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери вопрос «Сколько вы знаете Макса?». Одна плитка лишняя." },
+    "tiles": ["known", "How long", "Max", "you", "have", "do"],
+    "accept": ["How long have you known Max"],
+    "mistakes": [
+      { "answer": "How long you have known Max", "why": { "ru": "В вопросе have встаёт перед you: How long have you…?" } }
+    ],
+    "hint": { "ru": "known — третья форма. С каким помощником она работает?" },
+    "explanation": { "ru": "How long + have + you + known: сколько уже длится — Present Perfect." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Сэм работает в этом кафе два года." },
+    "accept": [
+      "Sam has worked {in|at} this {cafe|café|coffee shop} for {two|2} years",
+      "Sam has been working {in|at} this {cafe|café|coffee shop} for {two|2} years"
+    ],
+    "mistakes": [
+      { "answer": "Sam works at this cafe for two years", "why": { "ru": "По-русски «работает», но речь о том, сколько это уже длится. Нужен Present Perfect: has worked." } },
+      { "answer": "Sam is working at this cafe for two years", "why": { "ru": "Present Continuous — про то, что идёт сейчас. А сколько уже длится — Present Perfect: has worked." } },
+      { "answer": "Sam has worked at this cafe since two years", "why": { "ru": "«Два года» — срок, а не точка. Со сроком — for." } },
+      { "answer": "Sam worked at this cafe for two years", "why": { "ru": "Так выйдет «проработал два года» — и уже не работает. А Сэм работает до сих пор: has worked." } },
+      { "answer": "Sam have worked at this cafe for two years", "why": { "ru": "Sam — один человек, это he. С he нужен has." } }
+    ],
+    "hint": { "ru": "Сэм работает до сих пор — какое время? «Два года» — срок или точка?" },
+    "explanation": { "ru": "Длится до сих пор — Present Perfect, со сроком — for: Sam has worked at this cafe for two years. Засчитаем и has been working." }
+  }
+]

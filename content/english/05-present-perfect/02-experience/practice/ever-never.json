@@ -1,0 +1,75 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как спросить «Вы когда-нибудь бывали в Нью-Йорке?»" },
+    "options": [
+      { "text": "Did you ever been to New York?", "why": { "ru": "been — третья форма, она работает с have, а не с did: Have you ever been…?" } },
+      { "text": "Have you ever been to New York?" },
+      { "text": "Have ever you been to New York?", "why": { "ru": "ever стоит после you, перед третьей формой: Have you ever been…?" } },
+      { "text": "Have you ever was in New York?", "why": { "ru": "После have — третья форма. У be это been, а was — вторая." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Опыт — Present Perfect: Have + you + ever + been. Про поездку — been to." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь never и глагол eat в Present Perfect — три слова." },
+    "text": "I ___ (never / eat) sushi.",
+    "accept": ["have never eaten", "haven't ever eaten"],
+    "mistakes": [
+      { "answer": "haven't never eaten", "why": { "ru": "never — уже отрицание. Второе «не» (haven't) не нужно: have never eaten." } },
+      { "answer": "have never ate", "why": { "ru": "ate — вторая форма, для Past Simple. После have — третья: eaten." } },
+      { "answer": "never ate", "why": { "ru": "Так тоже говорят в разговоре — это Past Simple. Но задание — Present Perfect: have + never + третья форма." } },
+      { "answer": "have eaten never", "why": { "ru": "never стоит между have и третьей формой: have never eaten." } },
+      { "answer": "never eaten", "why": { "ru": "Без have третья форма не работает: have never eaten." } },
+      { "answer": "has never eaten", "why": { "ru": "I — «я», с ним нужен have. has — для he, she, it." } }
+    ],
+    "hint": { "ru": "Где стоит never? Какая третья форма у eat?" },
+    "explanation": { "ru": "Опыт — Present Perfect: have + never + третья форма eat — eaten. Можно и коротко: I've never eaten sushi." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери вопрос «Твой брат когда-нибудь был в Диснейленде?». Одна плитка лишняя." },
+    "tiles": ["been", "ever", "your brother", "Has", "to Disneyland", "Have"],
+    "accept": ["Has your brother ever been to Disneyland"],
+    "mistakes": [
+      { "answer": "Have your brother ever been to Disneyland", "why": { "ru": "brother — один человек, это he. С he нужен has." } },
+      { "answer": "Has ever your brother been to Disneyland", "why": { "ru": "ever стоит после того, кто делает, перед третьей формой: Has your brother ever been…?" } }
+    ],
+    "hint": { "ru": "brother — это he. Где стоит ever?" },
+    "explanation": { "ru": "Has + your brother + ever + been: помощник впереди, ever — перед третьей формой." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "Вопрос в Present Perfect. Одна ошибка в форме глагола — найди её и исправь." },
+    "text": "Have you ever swam in the ocean?",
+    "wrong": 3,
+    "accept": ["swum"],
+    "mistakes": [
+      { "answer": "swim", "why": { "ru": "После have — не начальная форма, а третья: swum." } },
+      { "answer": "swimmed", "why": { "ru": "swim — неправильный глагол: -ed к нему не добавляют. Его третья форма — swum." } },
+      { "answer": "swam", "why": { "ru": "Это то же слово. swam — вторая форма, для Past Simple. После have нужна третья." } }
+    ],
+    "hint": { "ru": "Три формы swim: swim — swam — …" },
+    "explanation": { "ru": "После have — третья форма: swim — swam — swum. Have you ever swum in the ocean?" }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Это опыт. Переведи в Present Perfect." },
+    "text": { "ru": "Мы никогда не были в Канаде." },
+    "accept": [
+      "We have never {been to|been in|visited|gone to} Canada{ before|}",
+      "We haven't ever {been to|been in|visited|gone to} Canada{ before|}"
+    ],
+    "mistakes": [
+      { "answer": "We haven't never {been to|been in|visited|gone to} Canada{ before|}", "why": { "ru": "never — уже отрицание. Второе «не» (haven't) не нужно: have never been." } },
+      { "answer": "We have ever {been to|been in|visited|gone to} Canada{ before|}", "why": { "ru": "ever — «когда-нибудь», а «никогда не» — never." } },
+      { "answer": "We have never be to Canada", "why": { "ru": "После have — третья форма. У be это been." } },
+      { "answer": "We has never {been to|been in|visited|gone to} Canada{ before|}", "why": { "ru": "we — «мы», с ними нужен have. has — для he, she, it." } },
+      { "answer": "We have never went to Canada{ before|}", "why": { "ru": "went — вторая форма. После have — третья: have never been." } },
+      { "answer": "We {were never in|never were in|never went to|never visited|never traveled to} Canada{ before|}", "why": { "ru": "Так тоже можно — это Past Simple. Но задание — Present Perfect: have never been." } }
+    ],
+    "hint": { "ru": "«Никогда не» — одно слово. Побывать где-то — be to, третья форма be — …" },
+    "explanation": { "ru": "Опыт — Present Perfect: We have never been to Canada. Можно и коротко: We've never been. Подойдёт и visited." }
+  }
+]

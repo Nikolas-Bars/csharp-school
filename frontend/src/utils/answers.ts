@@ -63,18 +63,31 @@ const NEGATABLE = new Set(
 
 /** Частые неправильные причастия (3-я форма): перед ними 's = has, 'd = had */
 const PARTICIPLES = new Set(
-  'been gone done seen had made said told bought brought taught thought found left lost met read run sent spent won written given taken eaten known begun broken chosen driven fallen flown forgotten got gotten heard held kept paid put sat slept stood understood'.split(
+  'been gone done seen had made said told bought brought taught thought found left lost met read run sent spent won written given taken eaten known begun broken chosen driven fallen flown forgotten got gotten heard held kept paid put sat slept stood understood swum spoken come become ridden drunk built felt grown shown thrown worn caught fought hidden stolen woken'.split(
     ' ',
   ),
 )
 
-/** После 's / 'd идёт Perfect или had better — тогда это has / had */
-function perfectFollows(next: string | undefined): boolean {
+/** Наречия между 's / 'd и причастием: «she's just left», «he's never been» */
+const PERFECT_ADVERBS = new Set([
+  'just',
+  'already',
+  'never',
+  'ever',
+  'still',
+  'not',
+  'always',
+  'recently',
+])
+
+/** После 's / 'd идёт Perfect или had better — тогда это has / had; rest — слова после краткой формы */
+function perfectFollows(rest: string[]): boolean {
+  const next = rest.find((word) => !PERFECT_ADVERBS.has(word))
   return next !== undefined && (PARTICIPLES.has(next) || next === 'better' || next.endsWith('ed'))
 }
 
-/** Слово с краткой формой — все его прочтения, включая само слово; next — следующее слово */
-function readings(word: string, next: string | undefined): string[] {
+/** Слово с краткой формой — все его прочтения, включая само слово; rest — слова после него */
+function readings(word: string, rest: string[]): string[] {
   const special: Record<string, string> = {
     "can't": 'cannot',
     "won't": 'will not',
@@ -105,8 +118,8 @@ function readings(word: string, next: string | undefined): string[] {
     "'re": ['are'],
     "'ve": ['have'],
     "'ll": ['will'],
-    "'s": perfectFollows(next) ? ['is', 'has'] : ['is'],
-    "'d": perfectFollows(next) ? ['would', 'had'] : ['would'],
+    "'s": perfectFollows(rest) ? ['is', 'has'] : ['is'],
+    "'d": perfectFollows(rest) ? ['would', 'had'] : ['would'],
   }
   return [
     word,
@@ -123,7 +136,7 @@ export function variants(text: string, exact = false): Set<string> {
   let results = ['']
   const list = cleaned.split(' ')
   for (const [index, word] of list.entries()) {
-    const options = readings(word, list[index + 1])
+    const options = readings(word, list.slice(index + 1))
     const next: string[] = []
     for (const start of results) {
       for (const option of options) {

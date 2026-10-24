@@ -1,0 +1,72 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "— Have you ever been to Canada? — Yes, we have. Как продолжить: «Мы ездили туда в 2022 году»?" },
+    "options": [
+      { "text": "We have gone there in 2022.", "why": { "ru": "in 2022 — время названо и закончилось. Подробности о том случае — Past Simple: went." } },
+      { "text": "We have been there in 2022.", "why": { "ru": "in 2022 — время названо и закончилось. Подробности о том случае — Past Simple: We went there или We were there." } },
+      { "text": "We went there in 2022." },
+      { "text": "We go there in 2022.", "why": { "ru": "go — настоящее время. 2022 год — прошлое: went." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "Начали с опыта (Have you ever…?), а подробность с точным временем — Past Simple: We went there in 2022." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь глагол see в нужной форме." },
+    "text": "— Have you seen my headphones? — Yes, I ___ (see) them on the kitchen table an hour ago.",
+    "accept": ["saw"],
+    "mistakes": [
+      { "answer": "have seen", "why": { "ru": "an hour ago — «час назад», время названо и закончилось. С ним — только Past Simple: saw." } },
+      { "answer": "seen", "why": { "ru": "seen — третья форма, без have она не работает. С ago — Past Simple: saw." } },
+      { "answer": "see", "why": { "ru": "an hour ago — прошлое. Нужна прошедшая форма." } }
+    ],
+    "hint": { "ru": "an hour ago — время закончилось или ещё идёт? Три формы see: see — saw — seen." },
+    "explanation": { "ru": "Вопрос — без времени, Present Perfect. А ответ с точным временем (an hour ago) — Past Simple: I saw them." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери вопрос «Когда вы познакомились с Максом?». Одна плитка лишняя." },
+    "tiles": ["meet", "When", "Max", "you", "did", "have"],
+    "accept": ["When did you meet Max"],
+    "mistakes": [
+      { "answer": "When have you meet Max", "why": { "ru": "when — «когда», вопрос о точном времени в прошлом. Такой вопрос — в Past Simple, с did." } },
+      { "answer": "When you did meet Max", "why": { "ru": "В вопросе did встаёт перед you: When did you…?" } }
+    ],
+    "hint": { "ru": "Вопрос when о прошлом — какое время? Что встаёт перед you?" },
+    "explanation": { "ru": "Вопрос when о прошлом — Past Simple: When + did + you + meet. После did — начальная форма." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Спроси в Present Perfect: you, ever и глагол try — четыре слова." },
+    "text": "— ___ (you / ever / try) sushi? — Yes, I tried it last summer.",
+    "accept": ["Have you ever tried"],
+    "mistakes": [
+      { "answer": "Did you ever try", "why": { "ru": "Так тоже можно (так часто говорят в Америке), но задание — Present Perfect: Have you ever tried." } },
+      { "answer": "Have you ever try", "why": { "ru": "После have — третья форма. У правильного глагола она с -ed: tried." } },
+      { "answer": "Have you ever tryed", "why": { "ru": "Перед y согласная r, поэтому y меняется на i: tried." } },
+      { "answer": "Have ever you tried", "why": { "ru": "ever стоит после you, перед третьей формой." } },
+      { "answer": "Did you ever tried", "why": { "ru": "После did — начальная форма. А задание — Present Perfect: Have you ever tried." } },
+      { "answer": "Has you ever tried", "why": { "ru": "you — с ним have. has — для he, she, it." } }
+    ],
+    "hint": { "ru": "Опыт — have + ever + третья форма. Как пишется try с -ed?" },
+    "explanation": { "ru": "Опыт без времени — Present Perfect: Have you ever tried sushi? А ответ с last summer — Past Simple: I tried it." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Мы были в Чикаго в прошлом году." },
+    "accept": [
+      "We {were in|went to|visited|traveled to} Chicago last year",
+      "Last year we {were in|went to|visited|traveled to} Chicago"
+    ],
+    "mistakes": [
+      { "answer": "We have been to Chicago last year", "why": { "ru": "last year — время названо и закончилось. С ним — только Past Simple: We were in Chicago." } },
+      { "answer": "We have been in Chicago last year", "why": { "ru": "last year — время названо и закончилось. С ним — только Past Simple: We were in Chicago." } },
+      { "answer": "We have visited Chicago last year", "why": { "ru": "last year — время закончилось. С ним — только Past Simple: visited." } },
+      { "answer": "We was in Chicago last year", "why": { "ru": "we — «мы», с ними нужен were." } }
+    ],
+    "hint": { "ru": "«В прошлом году» — last year. Время закончилось — какое время глагола?" },
+    "explanation": { "ru": "Законченное время (last year) — Past Simple: We were in Chicago last year. Подойдёт и went to, visited, traveled to." }
+  }
+]

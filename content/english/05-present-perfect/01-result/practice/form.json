@@ -1,0 +1,68 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Макс потерял ключи — и теперь не может попасть домой. Как это сказать?" },
+    "options": [
+      { "text": "Max have lost his keys.", "why": { "ru": "Max — один человек, это he. С he нужен has." } },
+      { "text": "Max has lose his keys.", "why": { "ru": "После has — третья форма, а не начальная. У lose это lost." } },
+      { "text": "Max has lost his keys." },
+      { "text": "Max has losted his keys.", "why": { "ru": "lose — неправильный глагол: -ed к нему не добавляют. Его третья форма — lost." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "Результат сейчас — Present Perfect. Max = he → has, и третья форма: has lost." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Уроки готовы — Миа свободна. Вставь глагол finish в Present Perfect — два слова." },
+    "text": "Mia ___ (finish) her homework, so she can go out now.",
+    "accept": ["has finished"],
+    "mistakes": [
+      { "answer": "have finished", "why": { "ru": "Mia — один человек, это she. С she нужен has." } },
+      { "answer": "finished", "why": { "ru": "Так тоже можно — это Past Simple. Но задание — Present Perfect: has + третья форма." } },
+      { "answer": "has finish", "why": { "ru": "После has — третья форма. У правильного глагола она с -ed: finished." } },
+      { "answer": "is finished", "why": { "ru": "is — не помощник Present Perfect. Нужен has: has finished." } }
+    ],
+    "hint": { "ru": "Mia — это she. Формула: have / has + третья форма." },
+    "explanation": { "ru": "Mia = she → has, третья форма правильного глагола — с -ed: has finished. Можно и коротко: Mia's finished." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «Мы купили новый телевизор» — он уже стоит дома. Одна плитка лишняя." },
+    "tiles": ["a new TV", "bought", "has", "We", "have"],
+    "accept": ["We have bought a new TV"],
+    "mistakes": [
+      { "answer": "We has bought a new TV", "why": { "ru": "we — «мы», с ними нужен have. has — для he, she, it." } }
+    ],
+    "hint": { "ru": "Кто купил? Какой помощник нужен с we?" },
+    "explanation": { "ru": "We + have + третья форма buy — bought: We have bought a new TV." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "Это Present Perfect. Одна ошибка в форме глагола — найди её и исправь." },
+    "text": "Oh no! Sam has broke the window.",
+    "wrong": 4,
+    "accept": ["broken"],
+    "mistakes": [
+      { "answer": "breaked", "why": { "ru": "break — неправильный глагол: -ed к нему не добавляют. Его третья форма — broken." } },
+      { "answer": "break", "why": { "ru": "После has — не начальная форма, а третья: broken." } },
+      { "answer": "broke", "why": { "ru": "Это то же слово. broke — вторая форма, для Past Simple. После has нужна третья." } }
+    ],
+    "hint": { "ru": "Вспомни три формы break: break — broke — …" },
+    "explanation": { "ru": "После has — третья форма: break — broke — broken. Oh no! Sam has broken the window." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Телефона у Эммы сейчас нет. Переведи в Present Perfect." },
+    "text": { "ru": "Эмма потеряла телефон." },
+    "accept": ["Emma has lost her {phone|cell phone|cellphone}"],
+    "mistakes": [
+      { "answer": "Emma lost her {phone|cell phone|cellphone}", "why": { "ru": "Так тоже можно — это Past Simple. Но задание — Present Perfect: has + третья форма." } },
+      { "answer": "Emma have lost her {phone|cell phone|cellphone}", "why": { "ru": "Emma — один человек, это she. С she нужен has." } },
+      { "answer": "Emma has lose her {phone|cell phone|cellphone}", "why": { "ru": "После has — третья форма, а не начальная. У lose это lost." } },
+      { "answer": "Emma has losted her {phone|cell phone|cellphone}", "why": { "ru": "lose — неправильный глагол: -ed к нему не добавляют. Его третья форма — lost." } },
+      { "answer": "Emma is lost her {phone|cell phone|cellphone}", "why": { "ru": "is — не помощник Present Perfect. Нужен has: has lost." } }
+    ],
+    "hint": { "ru": "Эмма — это she. «Потерять» — lose, три формы: lose — lost — lost." },
+    "explanation": { "ru": "Результат сейчас — Present Perfect: Emma has lost her phone." }
+  }
+]

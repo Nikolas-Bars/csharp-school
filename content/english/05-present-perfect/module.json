@@ -1,0 +1,14 @@
+{
+  "title": { "ru": "Present Perfect: прошлое, которое важно сейчас" },
+  "description": {
+    "ru": "have / has + третья форма: результат сейчас и опыт в жизни; ever, never, been или gone; just, already, yet, still; for и since; как выбрать между Present Perfect и Past Simple — на этом выборе русскоговорящие ошибаются чаще всего."
+  },
+  "lessons": [
+    "01-result",
+    "02-experience",
+    "03-just-already-yet",
+    "04-for-since",
+    "05-perfect-or-past",
+    "06-module-test"
+  ]
+}

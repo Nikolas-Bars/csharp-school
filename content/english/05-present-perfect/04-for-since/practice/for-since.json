@@ -1,0 +1,74 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Мы живём в Бостоне с 2018 года»?" },
+    "options": [
+      { "text": "We have lived in Boston for 2018.", "why": { "ru": "2018 — точка, с которой всё началось, а не срок. С точкой — since." } },
+      { "text": "We have lived in Boston since 2018." },
+      { "text": "We have lived in Boston from 2018.", "why": { "ru": "from обычно в паре с to: from 2018 to 2020. «С тех пор и до сих пор» — since." } },
+      { "text": "We live in Boston since 2018.", "why": { "ru": "Живём с 2018 года и до сих пор — это Present Perfect: have lived." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Длится с прошлого до сих пор — Present Perfect, а с точкой (2018) — since." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Знакомы шесть лет — и сейчас тоже. Вставь know в Present Perfect — два слова." },
+    "text": "I ___ (know) Emma for six years.",
+    "accept": ["have known"],
+    "mistakes": [
+      { "answer": "know", "why": { "ru": "По-русски «знаю», но речь о том, сколько это уже длится. Нужен Present Perfect: have known." } },
+      { "answer": "have knew", "why": { "ru": "knew — вторая форма. Третья у know — known." } },
+      { "answer": "have knowed", "why": { "ru": "know — неправильный глагол: -ed к нему не добавляют. Его третья форма — known." } },
+      { "answer": "am knowing", "why": { "ru": "know — глагол состояния, -ing с ним не ставят. Да и сколько уже длится — Present Perfect." } },
+      { "answer": "has known", "why": { "ru": "I — «я», с ним нужен have. has — для he, she, it." } }
+    ],
+    "hint": { "ru": "Три формы know: know — knew — …" },
+    "explanation": { "ru": "Началось в прошлом и длится до сих пор — Present Perfect: I have known Emma for six years." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «У Лили этот телефон с декабря». Одна плитка лишняя." },
+    "tiles": ["this phone", "since", "has had", "Lily", "December", "for"],
+    "accept": ["Lily has had this phone since December", "Since December Lily has had this phone"],
+    "mistakes": [
+      { "answer": "Lily has had this phone for December", "why": { "ru": "Декабрь — точка, с которой всё началось, а не срок. С точкой — since." } }
+    ],
+    "hint": { "ru": "Декабрь — это срок или точка?" },
+    "explanation": { "ru": "Точка в прошлом — since: Lily has had this phone since December." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "They have been friends since three years.",
+    "wrong": 4,
+    "accept": ["for"],
+    "mistakes": [
+      { "answer": "from", "why": { "ru": "from обычно в паре с to. А «три года» — срок: for." } },
+      { "answer": "during", "why": { "ru": "during — «во время чего-то»: during the game. Сколько длится — for." } },
+      { "answer": "since", "why": { "ru": "Это то же слово. «Три года» — срок или точка?" } }
+    ],
+    "hint": { "ru": "«Три года» — это срок или точка?" },
+    "explanation": { "ru": "Срок — for: They have been friends for three years." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Мы живём в этой квартире с 2020 года." },
+    "accept": [
+      "We have lived in this {apartment|flat} since 2020",
+      "We have been living in this {apartment|flat} since 2020",
+      "Since 2020 we have {lived|been living} in this {apartment|flat}"
+    ],
+    "mistakes": [
+      { "answer": "We live in this apartment since 2020", "why": { "ru": "По-русски «живём», но речь о том, сколько это уже длится. Нужен Present Perfect: have lived." } },
+      { "answer": "We are living in this apartment since 2020", "why": { "ru": "Present Continuous — про то, что идёт сейчас. А «с 2020 года и до сих пор» — Present Perfect: have lived." } },
+      { "answer": "We have lived in this apartment for 2020", "why": { "ru": "2020 — точка, а не срок. С точкой — since." } },
+      { "answer": "We have lived in this apartment from 2020", "why": { "ru": "from обычно в паре с to. «С тех пор и до сих пор» — since." } },
+      { "answer": "We lived in this apartment since 2020", "why": { "ru": "lived — Past Simple, так выйдет «жили» — и уже нет. А живём до сих пор: have lived." } },
+      { "answer": "We has lived in this apartment since 2020", "why": { "ru": "we — «мы», с ними нужен have." } }
+    ],
+    "hint": { "ru": "«С 2020 года» — срок или точка? Длится до сих пор — какое время?" },
+    "explanation": { "ru": "Длится с прошлого до сих пор — Present Perfect, с точкой — since: We have lived in this apartment since 2020. Засчитаем и have been living." }
+  }
+]

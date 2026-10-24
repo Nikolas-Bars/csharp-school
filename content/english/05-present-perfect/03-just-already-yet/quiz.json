@@ -1,0 +1,60 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Где yet стоит верно?" },
+    "options": [
+      { "text": "Have you called yet Grandma?", "why": { "ru": "yet — в самом конце фразы, после Grandma." } },
+      { "text": "Yet have you called Grandma?", "why": { "ru": "Вопрос начинается с помощника have. yet — в конце." } },
+      { "text": "Have you called Grandma yet?" }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "yet в вопросе — «уже?», стоит в конце: Have you called Grandma yet?" }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь just и глагол stop." },
+    "text": "Look! It ___ (just / stop) raining.",
+    "accept": ["has just stopped", "just stopped"],
+    "mistakes": [
+      { "answer": "has just stop", "why": { "ru": "После has — третья форма. У правильного глагола она с -ed: stopped." } },
+      { "answer": "have just stopped", "why": { "ru": "it — с ним has. have — для I, you, we, they." } },
+      { "answer": "just has stopped", "why": { "ru": "just стоит после has, перед третьей формой: has just stopped." } },
+      { "answer": "has just stoped", "why": { "ru": "stop — короткий глагол на гласную + согласную, поэтому p удваивается: stopped." } },
+      { "answer": "has stopped just", "why": { "ru": "just не ставят в конец. Его место — между has и третьей формой." } }
+    ],
+    "hint": { "ru": "it — have или has? Где стоит just? Как пишется stop с -ed?" },
+    "explanation": { "ru": "Present Perfect: It has just stopped raining. В Америке часто и Past Simple: It just stopped raining. Засчитываем оба." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери в Present Perfect: «Они уже видели этот фильм». Одна плитка лишняя." },
+    "tiles": ["this movie", "already", "They", "seen", "have", "saw"],
+    "accept": ["They have already seen this movie", "They have seen this movie already"],
+    "mistakes": [
+      { "answer": "They have already saw this movie", "why": { "ru": "saw — вторая форма. После have — третья: seen." } },
+      { "answer": "They already saw this movie", "why": { "ru": "Так тоже можно (так часто говорят в Америке), но задание — Present Perfect: have already seen." } },
+      { "answer": "They saw this movie already", "why": { "ru": "Так тоже можно (так часто говорят в Америке), но задание — Present Perfect: have already seen." } }
+    ],
+    "hint": { "ru": "Present Perfect — have + третья форма. Какая из плиток — третья форма see?" },
+    "explanation": { "ru": "They + have + already + seen this movie. already можно и в конец: They have seen this movie already." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи в Present Perfect." },
+    "text": { "ru": "Посылка ещё не пришла." },
+    "accept": [
+      "The {package|parcel} hasn't {arrived|come} yet",
+      "The {package|parcel} hasn't yet {arrived|come}",
+      "The {package|parcel} still hasn't {arrived|come}"
+    ],
+    "mistakes": [
+      { "answer": "The package didn't arrive yet", "why": { "ru": "Так тоже можно (так часто говорят в Америке), но задание — Present Perfect: hasn't arrived." } },
+      { "answer": "The package hasn't arrive yet", "why": { "ru": "После hasn't — третья форма. У правильного глагола она с -ed: arrived." } },
+      { "answer": "The package haven't arrived yet", "why": { "ru": "package — один предмет, это it. С it нужен has: hasn't." } },
+      { "answer": "The package isn't arrived yet", "why": { "ru": "is — не помощник Present Perfect. Нужен has: hasn't arrived." } },
+      { "answer": "The package hasn't arrived already", "why": { "ru": "already — «уже». В отрицании «ещё не» — yet." } }
+    ],
+    "hint": { "ru": "«Посылка» — package, «прийти» — arrive. Package — это it. «Ещё не» — not … yet." },
+    "explanation": { "ru": "Отрицание в Present Perfect, yet — в конце: The package hasn't arrived yet." }
+  }
+]

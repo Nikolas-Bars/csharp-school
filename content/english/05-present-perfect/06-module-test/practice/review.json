@@ -1,0 +1,192 @@
+[
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Кошелька сейчас нет. Вставь lose в Present Perfect — два слова." },
+    "text": "Oh no! I ___ (lose) my wallet.",
+    "accept": ["have lost"],
+    "mistakes": [
+      { "answer": "lost", "why": { "ru": "Так тоже можно — это Past Simple. Но задание — Present Perfect: have + третья форма." } },
+      { "answer": "have losed", "why": { "ru": "lose — неправильный глагол: -ed к нему не добавляют. Его третья форма — lost." } },
+      { "answer": "has lost", "why": { "ru": "I — «я», с ним нужен have. has — для he, she, it." } },
+      { "answer": "have lose", "why": { "ru": "После have — третья форма, а не начальная: lost." } }
+    ],
+    "hint": { "ru": "I — have или has? Три формы lose: lose — lost — …" },
+    "explanation": { "ru": "Результат сейчас — Present Perfect: I have lost my wallet. Можно и коротко: I've lost." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Ответь коротко «Да»." },
+    "text": "— Have you been to this museum before? — Yes, I ___.",
+    "accept": ["have"],
+    "forms": "exact",
+    "mistakes": [
+      { "answer": "did", "why": { "ru": "did — для вопросов с did. Вопрос был с have — и ответ с have." } },
+      { "answer": "do", "why": { "ru": "do — для вопросов с do. Вопрос был с have — и ответ с have." } },
+      { "answer": "has", "why": { "ru": "has — для he, she, it. С I нужен have." } },
+      { "answer": "am", "why": { "ru": "am — не помощник Present Perfect. Вопрос был с have — и ответ с have." } },
+      { "answer": "haven't", "why": { "ru": "haven't — это «нет». Ответ «да» — без not: have." } },
+      { "answer": "was", "why": { "ru": "Краткий ответ повторяет помощника из вопроса. Вопрос был с have." } },
+      { "answer": "'ve", "why": { "ru": "В кратком ответе «да» have не сокращают: Yes, I have. Краткую форму 've ставят только перед другими словами: I've been there." } }
+    ],
+    "hint": { "ru": "Краткий ответ повторяет помощника из вопроса." },
+    "explanation": { "ru": "Have you…? — Yes, I have. В кратком ответе «да» have не сокращают: не «Yes, I've»." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "— Где Лили? — Она уехала в лагерь (сейчас она там). Как сказать ответ?" },
+    "options": [
+      { "text": "She has been to camp.", "why": { "ru": "been — съездила и вернулась. А Лили сейчас там — gone." } },
+      { "text": "She has went to camp.", "why": { "ru": "went — вторая форма, для Past Simple. После has — третья: gone." } },
+      { "text": "She has gone to camp." }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "Уехала и сейчас там — gone: She has gone to camp." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери вопрос «Вы когда-нибудь играли в эту игру?». Одна плитка лишняя." },
+    "tiles": ["played", "ever", "you", "this game", "Have", "Did"],
+    "accept": ["Have you ever played this game"],
+    "mistakes": [
+      { "answer": "Did you ever played this game", "why": { "ru": "После did — начальная форма. А played как третья форма работает с have: Have you ever played…?" } },
+      { "answer": "Have ever you played this game", "why": { "ru": "ever стоит после you, перед третьей формой." } }
+    ],
+    "hint": { "ru": "Опыт — have + ever + третья форма. Где стоит ever?" },
+    "explanation": { "ru": "Have + you + ever + played this game: опыт — Present Perfect." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Это лучший фильм из всех, что мы видели»?" },
+    "options": [
+      { "text": "This is the best movie we've ever saw.", "why": { "ru": "saw — вторая форма, для Past Simple. После have ('ve) — третья: seen." } },
+      { "text": "This is the best movie we've never seen.", "why": { "ru": "never — «никогда не», смысл ломается. «Когда-либо» — ever." } },
+      { "text": "This is the best movie we've ever seen." },
+      { "text": "This is the best movie we ever have seen.", "why": { "ru": "ever стоит между have и третьей формой: we've ever seen." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "«Лучший в жизни» — the best … we've ever + третья форма: This is the best movie we've ever seen." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь just, already, yet или still." },
+    "text": "I haven't done my homework ___.",
+    "accept": ["yet"],
+    "mistakes": [
+      { "answer": "already", "why": { "ru": "already — «уже». В конце отрицания «ещё не» — yet." } },
+      { "answer": "still", "why": { "ru": "still с отрицанием стоит перед haven't: I still haven't done it. В конце — yet." } },
+      { "answer": "just", "why": { "ru": "just — «только что», в конец его не ставят и с отрицанием так не говорят." } }
+    ],
+    "hint": { "ru": "Какое из слов стоит в конце отрицания?" },
+    "explanation": { "ru": "«Ещё не» в конце отрицания — yet: I haven't done my homework yet." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи в Present Perfect." },
+    "text": { "ru": "Мы уже два раза видели этот фильм." },
+    "accept": ["We have already seen this {movie|film} {twice|two times}", "We have seen this {movie|film} {twice|two times} already"],
+    "mistakes": [
+      { "answer": "We have already saw this {movie|film} {twice|two times}", "why": { "ru": "saw — вторая форма. После have — третья: seen." } },
+      { "answer": "We have already seen {twice|two times} this {movie|film}", "why": { "ru": "Сколько раз — говорят в конце: this movie twice." } },
+      { "answer": "We already saw this {movie|film} {twice|two times}", "why": { "ru": "Так тоже можно (так часто говорят в Америке), но задание — Present Perfect: have already seen." } },
+      { "answer": "We has already seen this {movie|film} {twice|two times}", "why": { "ru": "we — «мы», с ними нужен have. has — для he, she, it." } },
+      { "answer": "We have seen already this {movie|film} {twice|two times}", "why": { "ru": "already стоит между have и третьей формой или в самом конце: have already seen." } },
+      { "answer": "We have already seen this {movie|film} once", "why": { "ru": "once — «один раз». «Два раза» — twice." } }
+    ],
+    "hint": { "ru": "Где стоит already? «Два раза» — одно слово. Три формы see: see — saw — …" },
+    "explanation": { "ru": "Present Perfect: We have already seen this movie twice. already — перед третьей формой, «сколько раз» — в конце." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "Max has lived in Seattle since four years.",
+    "wrong": 5,
+    "accept": ["for"],
+    "mistakes": [
+      { "answer": "from", "why": { "ru": "from обычно в паре с to. А «четыре года» — срок: for." } },
+      { "answer": "during", "why": { "ru": "during — «во время чего-то»: during the game. Сколько длится — for." } },
+      { "answer": "since", "why": { "ru": "Это то же слово. «Четыре года» — срок или точка?" } }
+    ],
+    "hint": { "ru": "«Четыре года» — это срок или точка?" },
+    "explanation": { "ru": "Срок — for: Max has lived in Seattle for four years." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Мы знаем друг друга с детского сада." },
+    "accept": ["We have known each other since {kindergarten|preschool|we were in kindergarten|we were in preschool}"],
+    "mistakes": [
+      { "answer": "We know each other since kindergarten", "why": { "ru": "По-русски «знаем», но речь о том, сколько это уже длится. Нужен Present Perfect: have known." } },
+      { "answer": "We have known each other for kindergarten", "why": { "ru": "Детский сад — точка, с которой всё началось. С точкой — since." } },
+      { "answer": "We have knew each other since kindergarten", "why": { "ru": "knew — вторая форма. После have — третья: known." } },
+      { "answer": "We are knowing each other since kindergarten", "why": { "ru": "know — глагол состояния, -ing с ним не ставят. Сколько уже длится — Present Perfect: have known." } }
+    ],
+    "hint": { "ru": "Знакомы до сих пор — какое время? «Детский сад» — kindergarten. Срок или точка?" },
+    "explanation": { "ru": "Длится до сих пор — Present Perfect, с точкой — since: We have known each other since kindergarten." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Спроси, сколько уже длится. Вставь вопрос с you и have — три слова." },
+    "text": "— How long ___ (you / have) this bike? — Since my birthday.",
+    "accept": ["have you had"],
+    "mistakes": [
+      { "answer": "do you have", "why": { "ru": "Сколько уже длится — Present Perfect: have you had." } },
+      { "answer": "have you have", "why": { "ru": "После have — третья форма. У have это had." } },
+      { "answer": "you have had", "why": { "ru": "В вопросе have встаёт перед you: How long have you…?" } },
+      { "answer": "did you have", "why": { "ru": "Велосипед у тебя до сих пор — нужен Present Perfect: have you had." } }
+    ],
+    "hint": { "ru": "Сколько уже длится — какое время? Три формы have: have — had — …" },
+    "explanation": { "ru": "How long + have you + третья форма: How long have you had this bike?" }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Спроси, когда куплены кроссовки. Вставь вопрос с you и buy — три слова." },
+    "text": "— When ___ (you / buy) these sneakers? — Last Saturday.",
+    "accept": ["did you buy"],
+    "mistakes": [
+      { "answer": "have you bought", "why": { "ru": "when — «когда», вопрос о точном времени в прошлом. Такой вопрос — в Past Simple: did you buy." } },
+      { "answer": "did you bought", "why": { "ru": "Прошлое уже показал did. Глагол после него — в начальной форме: buy." } },
+      { "answer": "you bought", "why": { "ru": "Без помощника вопроса нет: When did you buy…?" } },
+      { "answer": "have you buy", "why": { "ru": "Вопрос when о прошлом — Past Simple, с did: did you buy." } }
+    ],
+    "hint": { "ru": "Вопрос when о прошлом — какое время? Что встаёт перед you?" },
+    "explanation": { "ru": "Вопрос when о прошлом — Past Simple: When did you buy these sneakers?" }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Мы до сих пор не позвонили бабушке» — где стоит still?" },
+    "options": [
+      { "text": "We haven't still called Grandma.", "why": { "ru": "still стоит перед haven't: We still haven't called." } },
+      { "text": "We still haven't called Grandma." },
+      { "text": "We haven't called still Grandma.", "why": { "ru": "still не ставят между глаголом и тем, кому звонят. Его место — перед haven't." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "still с отрицанием — перед haven't: We still haven't called Grandma." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Это опыт. Переведи в Present Perfect." },
+    "text": { "ru": "Мои родители никогда не ели тайскую еду." },
+    "accept": ["My parents have never {eaten|had|tried} Thai food{ before|}", "My parents haven't ever {eaten|had|tried} Thai food{ before|}"],
+    "mistakes": [
+      { "answer": "My parents have never ate Thai food", "why": { "ru": "ate — вторая форма. После have — третья: eaten." } },
+      { "answer": "My parents haven't never eaten Thai food", "why": { "ru": "never — уже отрицание. Второе «не» (haven't) не нужно." } },
+      { "answer": "My parents never ate Thai food", "why": { "ru": "Так тоже говорят в разговоре — это Past Simple. Но задание — Present Perfect: have never eaten." } },
+      { "answer": "My parents has never eaten Thai food", "why": { "ru": "parents — несколько, это they. С they нужен have." } }
+    ],
+    "hint": { "ru": "«Никогда не» — одно слово. Три формы eat: eat — ate — …" },
+    "explanation": { "ru": "Опыт — Present Perfect: My parents have never eaten Thai food." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери в Present Perfect: «Мои друзья только что вернулись из отпуска». Одна плитка лишняя." },
+    "tiles": ["just", "from vacation", "My friends", "came back", "have", "come back"],
+    "accept": ["My friends have just come back from vacation"],
+    "mistakes": [
+      { "answer": "My friends have just came back from vacation", "why": { "ru": "came — вторая форма. После have — третья, а у come она как начальная: come." } },
+      { "answer": "My friends just came back from vacation", "why": { "ru": "Так тоже можно (так часто говорят в Америке), но задание — Present Perfect: have just come back." } },
+      { "answer": "My friends have come back just from vacation", "why": { "ru": "just стоит между have и третьей формой: have just come back." } }
+    ],
+    "hint": { "ru": "Три формы come: come — came — come. Где стоит just?" },
+    "explanation": { "ru": "My friends + have + just + come back from vacation: just — перед третьей формой." }
+  }
+]

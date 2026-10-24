@@ -1,0 +1,13 @@
+{
+  "title": { "ru": "Present Perfect или Past Simple" },
+  "steps": [
+    { "type": "theory", "text": { "ru": "01-choice.ru.md" } },
+    { "type": "theory", "text": { "ru": "02-finished-time.ru.md" } },
+    { "type": "theory", "text": { "ru": "03-when.ru.md" } },
+    { "type": "practice", "id": "choose", "file": "practice/choose.json" },
+    { "type": "theory", "text": { "ru": "04-conversation.ru.md" } },
+    { "type": "practice", "id": "dialog", "file": "practice/dialog.json" },
+    { "type": "theory", "text": { "ru": "05-mistakes.ru.md" } },
+    { "type": "quiz", "file": "quiz.json" }
+  ]
+}

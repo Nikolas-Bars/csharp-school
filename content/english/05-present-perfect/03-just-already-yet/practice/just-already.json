@@ -1,0 +1,74 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Автобус только что ушёл» в Present Perfect?" },
+    "options": [
+      { "text": "The bus just has left.", "why": { "ru": "just стоит после has, перед третьей формой: has just left." } },
+      { "text": "The bus has left just.", "why": { "ru": "just не ставят в конец. Его место — между has и третьей формой." } },
+      { "text": "The bus has just left." },
+      { "text": "The bus has just leave.", "why": { "ru": "После has — третья форма: leave — left — left." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "just — между has и третьей формой: The bus has just left. В Америке скажут и The bus just left." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь already и глагол eat." },
+    "text": "I'm not hungry. I ___ (already / eat).",
+    "accept": ["have already eaten", "have eaten already", "already ate", "ate already"],
+    "mistakes": [
+      { "answer": "have already ate", "why": { "ru": "ate — вторая форма. После have — третья: eaten." } },
+      { "answer": "have already eat", "why": { "ru": "После have — третья форма, а не начальная: eaten." } },
+      { "answer": "already eaten", "why": { "ru": "Без have третья форма не работает: have already eaten. Или Past Simple: already ate." } },
+      { "answer": "has already eaten", "why": { "ru": "I — «я», с ним нужен have. has — для he, she, it." } }
+    ],
+    "hint": { "ru": "I — have или has? Какая третья форма у eat? Где может стоять already?" },
+    "explanation": { "ru": "Present Perfect: I have already eaten (или I've eaten already). В Америке часто и Past Simple: I already ate. Засчитываем оба." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери в Present Perfect: «Мама только что пришла домой». Одна плитка лишняя." },
+    "tiles": ["home", "just", "Mom", "come", "has", "came"],
+    "accept": ["Mom has just come home"],
+    "mistakes": [
+      { "answer": "Mom has just came home", "why": { "ru": "came — вторая форма. После has — третья, а у come она как начальная: come." } },
+      { "answer": "Mom just came home", "why": { "ru": "Так тоже можно (так часто говорят в Америке), но задание — Present Perfect: has just come." } },
+      { "answer": "Mom has come home just", "why": { "ru": "just не ставят в конец. Его место — между has и третьей формой." } }
+    ],
+    "hint": { "ru": "Три формы come: come — came — come. Где стоит just?" },
+    "explanation": { "ru": "Mom + has + just + come home: just — между has и третьей формой, а третья форма come — come." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "Lily has already did her homework.",
+    "wrong": 3,
+    "accept": ["done"],
+    "mistakes": [
+      { "answer": "do", "why": { "ru": "После has — не начальная форма, а третья: done." } },
+      { "answer": "does", "why": { "ru": "После has — третья форма: done." } },
+      { "answer": "did", "why": { "ru": "Это то же слово. did — вторая форма, для Past Simple. После has нужна третья." } }
+    ],
+    "hint": { "ru": "Три формы do: do — did — …" },
+    "explanation": { "ru": "После has — третья форма: do — did — done. Lily has already done her homework." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Мы уже купили билеты." },
+    "accept": [
+      "We have already {bought|gotten|got} {the |our |}tickets",
+      "We have {bought|gotten|got} {the |our |}tickets already",
+      "We already {bought|got} {the |our |}tickets",
+      "We {bought|got} {the |our |}tickets already"
+    ],
+    "mistakes": [
+      { "answer": "We have already buyed {the |our |}tickets", "why": { "ru": "buy — неправильный глагол: -ed к нему не добавляют. Его третья форма — bought." } },
+      { "answer": "We have already buy {the |our |}tickets", "why": { "ru": "После have — третья форма, а не начальная: bought." } },
+      { "answer": "We has already {bought|gotten|got} {the |our |}tickets", "why": { "ru": "we — «мы», с ними нужен have. has — для he, she, it." } },
+      { "answer": "We have {bought|gotten|got} already {the |our |}tickets", "why": { "ru": "already не ставят между глаголом и билетами: have already bought the tickets или в конце." } }
+    ],
+    "hint": { "ru": "«Купить» — buy — bought — bought. Где может стоять already?" },
+    "explanation": { "ru": "Present Perfect: We have already bought the tickets. В Америке часто и Past Simple: We already bought the tickets. Засчитываем оба, подойдёт и got." }
+  }
+]

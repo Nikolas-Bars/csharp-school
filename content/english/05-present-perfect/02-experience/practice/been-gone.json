@@ -1,0 +1,71 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "— Где мама? — Она ушла в магазин (сейчас она там). Как сказать ответ?" },
+    "options": [
+      { "text": "She has been to the store.", "why": { "ru": "been — сходила и вернулась. А мама сейчас там — gone." } },
+      { "text": "She has gone to the store." },
+      { "text": "She has went to the store.", "why": { "ru": "went — вторая форма, для Past Simple. После has — третья: gone." } },
+      { "text": "She is gone to the store.", "why": { "ru": "is — не помощник Present Perfect. Нужен has: has gone." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Ушла и сейчас там — gone: She has gone to the store." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Макса здесь нет — он на тренировке. Вставь go в Present Perfect — два слова." },
+    "text": "Max isn't here. He ___ (go) to soccer practice.",
+    "accept": ["has gone"],
+    "mistakes": [
+      { "answer": "has been", "why": { "ru": "been — сходил и вернулся. А Макса здесь нет — он там: gone." } },
+      { "answer": "went", "why": { "ru": "Так тоже можно — это Past Simple. Но задание — Present Perfect: has + третья форма." } },
+      { "answer": "have gone", "why": { "ru": "he — с ним has. have — для I, you, we, they." } },
+      { "answer": "has went", "why": { "ru": "went — вторая форма, для Past Simple. Третья у go — gone." } },
+      { "answer": "is gone", "why": { "ru": "is — не помощник Present Perfect. Нужен has." } }
+    ],
+    "hint": { "ru": "Макс сейчас там или уже вернулся? he — have или has?" },
+    "explanation": { "ru": "Ушёл и сейчас там — gone: He has gone to soccer practice. Можно и коротко: He's gone." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «Эмма видела этот фильм три раза». Одна плитка лишняя." },
+    "tiles": ["three times", "has", "Emma", "this movie", "seen", "have"],
+    "accept": ["Emma has seen this movie three times"],
+    "mistakes": [
+      { "answer": "Emma have seen this movie three times", "why": { "ru": "Emma — один человек, это she. С she нужен has." } },
+      { "answer": "Emma has seen three times this movie", "why": { "ru": "Сколько раз — говорят в конце: this movie three times." } }
+    ],
+    "hint": { "ru": "Emma — это she. Где стоит «сколько раз»?" },
+    "explanation": { "ru": "Emma + has + seen + this movie, а «три раза» — в конце: three times." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи по образцу the best … I've ever …" },
+    "text": { "ru": "Это лучшая пицца в моей жизни." },
+    "accept": ["{This|It|That} is the best pizza I have ever {eaten|had|tried}"],
+    "mistakes": [
+      { "answer": "{This|It|That} is the best pizza I have ever ate", "why": { "ru": "ate — вторая форма. После have — третья: eaten." } },
+      { "answer": "{This|It|That} is the best pizza I have ever eat", "why": { "ru": "После have — третья форма, а не начальная: eaten." } },
+      { "answer": "{This|It|That} is the best pizza I have never eaten", "why": { "ru": "never — «никогда не», смысл ломается. «Когда-либо» — ever." } },
+      { "answer": "{This|It|That} is the best pizza I ever {ate|had|tried}", "why": { "ru": "Так тоже можно (так часто говорят в Америке), но задание — Present Perfect: I've ever eaten." } },
+      { "answer": "{This|It|That} is the best pizza ever", "why": { "ru": "Так тоже можно, но задание — по образцу: the best pizza I've ever eaten." } },
+      { "answer": "{This|It|That} is the best pizza of my life", "why": { "ru": "Так тоже можно, но задание — по образцу: the best pizza I've ever eaten." } }
+    ],
+    "hint": { "ru": "Образец — в задании. «Есть» — eat, а какая у него третья форма?" },
+    "explanation": { "ru": "«Лучший в жизни» — the best … I've ever + третья форма: This is the best pizza I've ever eaten." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "Папы нет дома — он сейчас в спортзале. Одна ошибка — найди её и исправь." },
+    "text": "Dad isn't home. He has been to the gym.",
+    "wrong": 5,
+    "accept": ["gone"],
+    "mistakes": [
+      { "answer": "went", "why": { "ru": "went — вторая форма, для Past Simple. После has — третья: gone." } },
+      { "answer": "go", "why": { "ru": "После has — не начальная форма, а третья: gone." } },
+      { "answer": "been", "why": { "ru": "Это то же слово. been — сходил и вернулся. А папа сейчас там." } }
+    ],
+    "hint": { "ru": "Папа уже вернулся или он сейчас там?" },
+    "explanation": { "ru": "Ушёл и сейчас там — gone: He has gone to the gym." }
+  }
+]
