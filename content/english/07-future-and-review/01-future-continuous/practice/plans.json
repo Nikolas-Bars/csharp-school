@@ -1,0 +1,91 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Вечером тебе нужен ноутбук, а им обычно пользуется сестра. Как вежливо узнать её планы?" },
+    "options": [
+      { "text": "Will you use the laptop tonight?", "why": { "ru": "Will you use…? звучит как просьба «воспользуйся ноутбуком» или даже требование. Чтобы вежливо узнать планы — will be + -ing." } },
+      { "text": "Will you be using the laptop tonight?" },
+      { "text": "Do you use the laptop tonight?", "why": { "ru": "Present Simple — про то, что бывает обычно, а не про планы на вечер." } },
+      { "text": "Will you be use the laptop tonight?", "why": { "ru": "После will be глагол нужен с -ing: using." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Вежливый вопрос о планах — Future Continuous: Will you be using the laptop tonight?" }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вежливо спроси о планах в Future Continuous — четыре слова." },
+    "text": "___ (you / go) to the store later? We're out of milk.",
+    "accept": ["Will you be going"],
+    "mistakes": [
+      { "answer": "Will you go", "why": { "ru": "Так звучит просьба: «Сходишь в магазин?» А задание — вежливо узнать планы, Future Continuous: Will you be going." } },
+      { "answer": "Are you going", "why": { "ru": "Так тоже можно — в Америке это тоже вежливо. Но задание — Future Continuous: Will you be going." } },
+      { "answer": "Will you be go", "why": { "ru": "После will be глагол нужен с -ing: going." } },
+      { "answer": "Will you going", "why": { "ru": "Пропущен be: Will you be going." } },
+      { "answer": "You will be going", "why": { "ru": "Это порядок утверждения. В вопросе will выходит вперёд, перед you." } },
+      { "answer": "Do you go", "why": { "ru": "Present Simple — про то, что бывает обычно. А вопрос о планах на потом." } }
+    ],
+    "hint": { "ru": "Вопрос в Future Continuous: что выходит вперёд? И какая форма go нужна после be?" },
+    "explanation": { "ru": "Вежливый вопрос о планах — Will you be + -ing: Will you be going to the store later?" }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери вежливый вопрос в Future Continuous: «Ты будешь работать в субботу?» Одна плитка лишняя." },
+    "tiles": ["working", "on Saturday", "be", "Will", "you", "are"],
+    "accept": ["Will you be working on Saturday", "On Saturday will you be working"],
+    "mistakes": [
+      { "answer": "Will you are working on Saturday", "why": { "ru": "После will — be в начальной форме, для всех одинаково. are здесь не нужен." } },
+      { "answer": "You will be working on Saturday", "why": { "ru": "Это утверждение. В вопросе will выходит вперёд, перед you." } },
+      { "answer": "{Are you working on Saturday|On Saturday are you working}", "why": { "ru": "Так тоже можно — в Америке это тоже вежливо. Но задание — Future Continuous: Will you be working on Saturday?" } }
+    ],
+    "hint": { "ru": "В вопросе will встаёт первым. Какая форма be нужна после will?" },
+    "explanation": { "ru": "Вопрос о планах в Future Continuous: Will + you + be + working." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Встреча с двоюродным братом на субботу уже назначена. Вставь see — подойдёт не одна форма, от двух до четырёх слов." },
+    "text": "Sorry, I can't hang out on Saturday. I ___ (see) my cousin.",
+    "accept": ["will be seeing", "am seeing", "am going to see", "am going to be seeing"],
+    "mistakes": [
+      { "answer": "see", "why": { "ru": "I see — Present Simple, про то, что бывает обычно. А встреча назначена — это договорённость." } },
+      { "answer": "will see", "why": { "ru": "will так звучит, будто ты решаешь прямо сейчас. А встреча уже назначена: I'll be seeing или I'm seeing." } },
+      { "answer": "am see", "why": { "ru": "После am глагол нужен с -ing: I'm seeing." } },
+      { "answer": "will seeing", "why": { "ru": "Пропущен be: will be seeing." } }
+    ],
+    "hint": { "ru": "Встреча назначена. Какие способы подходят для договорённости?" },
+    "explanation": { "ru": "Договорённость: I'll be seeing my cousin (Future Continuous — «так и будет, всё по плану») или I'm seeing my cousin (Present Continuous). Засчитаем и going to." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В вопросе одна ошибка. Найди её и исправь." },
+    "text": "Will Emma is working tomorrow?",
+    "wrong": 2,
+    "accept": ["be"],
+    "mistakes": [
+      { "answer": "are", "why": { "ru": "После will — be в начальной форме, а не are или is." } },
+      { "answer": "being", "why": { "ru": "После will — начальная форма, без -ing: be." } },
+      { "answer": "is", "why": { "ru": "Это то же слово. После will глагол стоит в начальной форме — какая она у is?" } }
+    ],
+    "hint": { "ru": "После will глагол всегда в начальной форме — и для Emma тоже. Подходит ли сюда is?" },
+    "explanation": { "ru": "Вопрос в Future Continuous: Will + Emma + be + working. После will — be, для всех одинаково." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи в Future Continuous." },
+    "text": { "ru": "В следующую субботу в это время мы будем кататься на лыжах." },
+    "accept": [
+      "{|At }this time next Saturday we {will|are going to} be skiing",
+      "We {will|are going to} be skiing {|at }this time next Saturday",
+      "Next Saturday at this time we {will|are going to} be skiing",
+      "We {will|are going to} be skiing next Saturday at this time"
+    ],
+    "mistakes": [
+      { "answer": "This time next Saturday we will skiing", "why": { "ru": "Пропущен be: will be skiing." } },
+      { "answer": "This time next Saturday we will be ski", "why": { "ru": "После will be глагол нужен с -ing: skiing." } },
+      { "answer": "This time next Saturday we will be skying", "why": { "ru": "ski + -ing — skiing, с двумя i. skying — от sky, «небо»." } },
+      { "answer": "This time next Saturday we will ski", "why": { "ru": "will ski — «покатаемся», просто будущее. А задание — Future Continuous: в это время катание будет идти." } },
+      { "answer": "This time next Saturday we are skiing", "why": { "ru": "Так тоже можно сказать (поездка назначена), но задание — Future Continuous: we'll be skiing." } }
+    ],
+    "hint": { "ru": "will + be + глагол с -ing. «Кататься на лыжах» — один глагол ski." },
+    "explanation": { "ru": "В тот момент катание будет идти — Future Continuous: This time next Saturday we'll be skiing." }
+  }
+]

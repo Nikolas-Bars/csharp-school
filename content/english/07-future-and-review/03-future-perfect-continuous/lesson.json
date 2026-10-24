@@ -1,0 +1,12 @@
+{
+  "title": { "ru": "Future Perfect Continuous: сколько будет длиться к моменту" },
+  "steps": [
+    { "type": "theory", "text": { "ru": "01-when.ru.md" } },
+    { "type": "theory", "text": { "ru": "02-form.ru.md" } },
+    { "type": "practice", "id": "recognize", "file": "practice/recognize.json" },
+    { "type": "theory", "text": { "ru": "03-three-futures.ru.md" } },
+    { "type": "practice", "id": "compare", "file": "practice/compare.json" },
+    { "type": "theory", "text": { "ru": "04-mistakes.ru.md" } },
+    { "type": "quiz", "file": "quiz.json" }
+  ]
+}

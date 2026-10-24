@@ -1,0 +1,53 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Друг спрашивает: «Can I call you at nine?» В девять ты будешь смотреть матч — он уже будет идти. Что ответишь?" },
+    "options": [
+      { "text": "Not at nine — I'll watch the game.", "why": { "ru": "I'll watch — «посмотрю», просто будущее или решение прямо сейчас. А в девять матч будет уже идти — will be watching." } },
+      { "text": "Not at nine — I watch the game.", "why": { "ru": "Present Simple — про то, что бывает обычно. А здесь процесс в момент в будущем." } },
+      { "text": "Not at nine — I'll watching the game.", "why": { "ru": "Пропущен be: I'll be watching." } },
+      { "text": "Not at nine — I'll be watching the game." }
+    ],
+    "answer": 3,
+    "explanation": { "ru": "В девять матч будет идти — Future Continuous: I'll be watching the game." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вежливо спроси о планах в Future Continuous — два слова." },
+    "text": "Will you ___ (use) the printer later? I need to print my homework.",
+    "accept": ["be using"],
+    "mistakes": [
+      { "answer": "use", "why": { "ru": "Will you use…? звучит как просьба «воспользуйся принтером». Вежливо узнать планы — will be + -ing: be using." } },
+      { "answer": "using", "why": { "ru": "Пропущен be: Will you be using." } },
+      { "answer": "be use", "why": { "ru": "После be глагол нужен с -ing: using." } }
+    ],
+    "hint": { "ru": "Future Continuous — will + be + -ing. will уже стоит в начале." },
+    "explanation": { "ru": "Вежливый вопрос о планах: Will you be using the printer later?" }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "This time next week we will be lie on the beach.",
+    "wrong": 7,
+    "accept": ["lying"],
+    "mistakes": [
+      { "answer": "lieing", "why": { "ru": "У lie перед -ing ie меняется на y: lying." } },
+      { "answer": "lies", "why": { "ru": "После will be — глагол с -ing, без -s." } },
+      { "answer": "lay", "why": { "ru": "lay — вторая форма lie, для прошлого. После will be — глагол с -ing." } }
+    ],
+    "hint": { "ru": "После will be — глагол с -ing. Как меняется ie перед -ing?" },
+    "explanation": { "ru": "Через неделю в это время мы будем лежать на пляже — will be + -ing. У lie: ie → y, lying." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «В субботу мы не будем играть в футбол». Одна плитка лишняя." },
+    "tiles": ["playing", "on Saturday", "We", "soccer", "won't be", "play"],
+    "accept": ["We won't be playing soccer on Saturday", "On Saturday we won't be playing soccer"],
+    "mistakes": [
+      { "answer": "We won't be play soccer on Saturday", "why": { "ru": "После won't be глагол нужен с -ing: playing." } },
+      { "answer": "On Saturday we won't be play soccer", "why": { "ru": "После won't be глагол нужен с -ing: playing." } }
+    ],
+    "hint": { "ru": "Отрицание — won't be. Какая форма глагола после be?" },
+    "explanation": { "ru": "Отрицание Future Continuous — won't be + -ing: We won't be playing soccer on Saturday." }
+  }
+]

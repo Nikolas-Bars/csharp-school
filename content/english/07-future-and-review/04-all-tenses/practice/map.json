@@ -1,0 +1,84 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Какое это время: «She had already left when I called»?" },
+    "options": [
+      { "text": "Past Simple", "why": { "ru": "В Past Simple было бы одно слово: left. А здесь had + третья форма." } },
+      { "text": "Present Perfect", "why": { "ru": "Present Perfect — have / has + третья форма. А здесь had — прошлая форма помощника." } },
+      { "text": "Past Perfect" },
+      { "text": "Past Continuous", "why": { "ru": "Past Continuous — was / were + -ing. А здесь had + третья форма." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "had + третья форма — Past Perfect: она ушла ещё до звонка." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Какое это время: «We've been waiting for the bus for twenty minutes»?" },
+    "options": [
+      { "text": "Present Perfect", "why": { "ru": "Present Perfect — have + третья форма: we've waited. А здесь have been + -ing." } },
+      { "text": "Present Perfect Continuous" },
+      { "text": "Present Continuous", "why": { "ru": "Present Continuous — am / is / are + -ing, без been." } },
+      { "text": "Past Perfect Continuous", "why": { "ru": "Past Perfect Continuous — had been + -ing. А 've — это have." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "have been + -ing — Present Perfect Continuous: сколько длится до сейчас." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь watch в Past Continuous — два слова." },
+    "text": "At 9 pm yesterday, Max ___ (watch) a movie with his dad.",
+    "accept": ["was watching"],
+    "mistakes": [
+      { "answer": "were watching", "why": { "ru": "Max — один человек, это he. С he нужен was." } },
+      { "answer": "watched", "why": { "ru": "watched — Past Simple: «посмотрел» или «начал смотреть в девять». А задание — Past Continuous: в девять фильм уже шёл." } },
+      { "answer": "was watch", "why": { "ru": "После was глагол нужен с -ing: watching." } },
+      { "answer": "is watching", "why": { "ru": "is — настоящее время. А речь о вчера: was watching." } },
+      { "answer": "will be watching", "why": { "ru": "will be + -ing — процесс в будущем. А речь о вчера: was watching." } }
+    ],
+    "hint": { "ru": "Past Continuous — was / were + -ing. Max — это he." },
+    "explanation": { "ru": "Вчера в девять процесс шёл — Past Continuous: Max was watching a movie." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь leave в Past Perfect — два слова." },
+    "text": "When we got to the station, the train ___ (leave).",
+    "accept": ["had {already |}left", "had left already"],
+    "mistakes": [
+      { "answer": "left", "why": { "ru": "left — «ушёл, когда мы пришли», в тот же момент. А задание — Past Perfect: поезд ушёл раньше — had left." } },
+      { "answer": "has left", "why": { "ru": "has left — Present Perfect, результат к сейчас. А момент в прошлом — when we got to the station: had left." } },
+      { "answer": "already left", "why": { "ru": "Есть второй момент в прошлом — when we got to the station, а поезд ушёл раньше него. В разговоре так иногда говорят, но правильно — had already left." } },
+      { "answer": "had leave", "why": { "ru": "После had — третья форма: leave — left — left." } },
+      { "answer": "had leaved", "why": { "ru": "leave — неправильный глагол: leave — left — left." } },
+      { "answer": "was leaving", "why": { "ru": "Так тоже можно сказать (поезд как раз отходил), но задание — Past Perfect: had left." } }
+    ],
+    "hint": { "ru": "Past Perfect — had + третья форма. leave — неправильный глагол: -ed к нему не добавляют." },
+    "explanation": { "ru": "Поезд ушёл раньше другого момента в прошлом — Past Perfect: the train had left." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь just и finish в Present Perfect — три слова." },
+    "text": "Emma ___ (just / finish) her homework, so now she can play.",
+    "accept": ["has just finished"],
+    "mistakes": [
+      { "answer": "just finished", "why": { "ru": "Так тоже можно (так часто говорят в Америке), но задание — Present Perfect: has just finished." } },
+      { "answer": "have just finished", "why": { "ru": "Emma — одна, это she. С she нужен has." } },
+      { "answer": "has finished just", "why": { "ru": "just стоит между has и третьей формой: has just finished." } },
+      { "answer": "had just finished", "why": { "ru": "had — Past Perfect, раньше другого момента в прошлом. А результат важен сейчас: has just finished." } },
+      { "answer": "has just finish", "why": { "ru": "После has — третья форма. У правильного глагола она с -ed: finished." } }
+    ],
+    "hint": { "ru": "Present Perfect — have / has + третья форма. Куда встаёт just?" },
+    "explanation": { "ru": "Результат сейчас — Present Perfect: Emma has just finished her homework. just — между has и третьей формой." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери вопрос «Сколько ты уже ждёшь?». Одна плитка лишняя." },
+    "tiles": ["been", "How long", "waiting", "you", "have", "are"],
+    "accept": ["How long have you been waiting"],
+    "mistakes": [
+      { "answer": "How long are you waiting", "why": { "ru": "Present Continuous не говорит, сколько уже длится. Сколько до сейчас — have been + -ing." } },
+      { "answer": "How long you have been waiting", "why": { "ru": "В вопросе have встаёт перед you: How long have you…?" } }
+    ],
+    "hint": { "ru": "Сколько длится до сейчас — какое время? Что встаёт перед you в вопросе?" },
+    "explanation": { "ru": "Сколько длится до сейчас — Present Perfect Continuous: How long + have + you + been + waiting." }
+  }
+]

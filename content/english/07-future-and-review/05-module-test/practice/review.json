@@ -1,0 +1,209 @@
+[
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Это привычка сейчас. Вставь walk в нужной форме." },
+    "text": "My sister usually ___ (walk) to school.",
+    "accept": ["walks"],
+    "mistakes": [
+      { "answer": "walk", "why": { "ru": "sister — это she, а с she к глаголу нужно -s: walks." } },
+      { "answer": "is walking", "why": { "ru": "usually — «обычно», это привычка. Present Continuous — про то, что идёт сейчас." } },
+      { "answer": "walked", "why": { "ru": "walked — прошедшее: «раньше обычно ходила». А привычка сейчас — Present Simple: walks." } },
+      { "answer": "has walked", "why": { "ru": "has walked — результат к сейчас. А usually — привычка: Present Simple, walks." } }
+    ],
+    "hint": { "ru": "usually — маркер какого времени? И sister — это he, she или it?" },
+    "explanation": { "ru": "Привычка — Present Simple, с she — -s: My sister usually walks to school." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Смотришь в окно: прямо сейчас идёт снег. Что скажешь?" },
+    "options": [
+      { "text": "Look! It snows.", "why": { "ru": "It snows — Present Simple, про то, что бывает обычно. А снег идёт прямо сейчас: It's snowing." } },
+      { "text": "Look! It's snowing." },
+      { "text": "Look! It was snowing.", "why": { "ru": "was snowing — процесс в прошлом. А снег идёт сейчас: It's snowing." } },
+      { "text": "Look! It will be snowing.", "why": { "ru": "will be + -ing — процесс в момент в будущем. А снег идёт прямо сейчас." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Look! — маркер «прямо сейчас», процесс идёт — Present Continuous: It's snowing." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь lose в нужной форме." },
+    "text": "Max ___ (lose) his phone two days ago.",
+    "accept": ["lost"],
+    "mistakes": [
+      { "answer": "has lost", "why": { "ru": "ago — «назад», время названо и закончилось. С ним — только Past Simple: lost." } },
+      { "answer": "had lost", "why": { "ru": "Past Perfect нужен, только когда есть второй момент в прошлом и что-то случилось раньше него. Здесь его нет — Past Simple: lost." } },
+      { "answer": "losed", "why": { "ru": "lose — неправильный глагол: lose — lost — lost." } },
+      { "answer": "loses", "why": { "ru": "loses — настоящее время. А two days ago — прошлое: lost." } }
+    ],
+    "hint": { "ru": "ago — время закончилось или ещё идёт? lose — неправильный глагол: -ed к нему не добавляют." },
+    "explanation": { "ru": "Время названо и закончилось (two days ago) — Past Simple: Max lost his phone two days ago." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Звонок застал тебя во сне. Вставь sleep в нужной форме — два слова." },
+    "text": "I ___ (sleep) when you called last night.",
+    "accept": ["was sleeping"],
+    "mistakes": [
+      { "answer": "slept", "why": { "ru": "slept — сон целиком, как событие. А звонок застал процесс: was sleeping." } },
+      { "answer": "were sleeping", "why": { "ru": "were — для you, we, they. С I нужен was." } },
+      { "answer": "am sleeping", "why": { "ru": "am — настоящее время. А речь о прошлой ночи: was sleeping." } },
+      { "answer": "was sleep", "why": { "ru": "После was глагол нужен с -ing: sleeping." } },
+      { "answer": "had been sleeping", "why": { "ru": "had been + -ing — сколько уже длился сон к звонку. Срока здесь нет — сон просто шёл в тот момент: was sleeping." } }
+    ],
+    "hint": { "ru": "Процесс шёл, когда случилось короткое событие. was или were + …" },
+    "explanation": { "ru": "Сон шёл, звонок прервал его — Past Continuous: I was sleeping when you called." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Это опыт. Переведи в Present Perfect." },
+    "text": { "ru": "Мы никогда не были в Канаде." },
+    "accept": [
+      "We have never {been to|been in|visited|gone to} Canada",
+      "We haven't ever {been to|been in|visited|gone to} Canada"
+    ],
+    "mistakes": [
+      { "answer": "We {never went to|were never in|never visited} Canada", "why": { "ru": "Так тоже говорят в Америке, но задание — Present Perfect: We have never been to Canada." } },
+      { "answer": "We haven't never been to Canada", "why": { "ru": "never — уже отрицание. Второе «не» (haven't) не нужно." } },
+      { "answer": "We have ever been to Canada", "why": { "ru": "ever — для вопросов. «Никогда не» — never." } },
+      { "answer": "We has never been to Canada", "why": { "ru": "we — с ним have. has — для he, she, it." } },
+      { "answer": "We have never was in Canada", "why": { "ru": "После have — третья форма be: been." } },
+      { "answer": "We had never been to Canada", "why": { "ru": "had — Past Perfect, к моменту в прошлом. А опыт за всю жизнь до сейчас — have never been." } }
+    ],
+    "hint": { "ru": "Опыт к сейчас — have + третья форма. Куда встаёт never? Какая третья форма у be?" },
+    "explanation": { "ru": "Опыт к сейчас — Present Perfect: We have never been to Canada." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Друг запыхался, процесс только что закончился. Вставь run в Present Perfect Continuous — три слова." },
+    "text": "— Why are you out of breath? — I ___ (run).",
+    "accept": ["have been running"],
+    "mistakes": [
+      { "answer": "was running", "why": { "ru": "Так тоже можно сказать, но задание — Present Perfect Continuous: have been running." } },
+      { "answer": "have run", "why": { "ru": "have run — результат, «пробежал» (например, пять километров). А задание — Present Perfect Continuous: бег только что закончился, и виден след." } },
+      { "answer": "am running", "why": { "ru": "am running — бегу прямо сейчас. А бег уже закончился, остался след: have been running." } },
+      { "answer": "have been run", "why": { "ru": "После have been глагол нужен с -ing: running." } },
+      { "answer": "has been running", "why": { "ru": "I — с ним have. has — для he, she, it." } },
+      { "answer": "have been runing", "why": { "ru": "run кончается на гласную + согласную, поэтому n удваивается: running." } }
+    ],
+    "hint": { "ru": "have been + -ing. Как пишется run с -ing?" },
+    "explanation": { "ru": "Процесс только что закончился, и виден след — Present Perfect Continuous: I've been running." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Лили ушла раньше, чем мы пришли. Вставь go в нужной форме — два слова." },
+    "text": "By the time we got to the party, Lily ___ (go) home.",
+    "accept": ["had {already |}gone", "had gone already"],
+    "mistakes": [
+      { "answer": "went", "why": { "ru": "by the time — «к тому моменту»: Лили ушла раньше, чем мы пришли. Что случилось раньше другого момента в прошлом — had gone." } },
+      { "answer": "has gone", "why": { "ru": "has gone — Present Perfect, к сейчас. А момент в прошлом — by the time we got to the party: had gone." } },
+      { "answer": "had went", "why": { "ru": "went — вторая форма. После had — третья: gone." } },
+      { "answer": "already went", "why": { "ru": "Есть второй момент в прошлом — by the time we got to the party, а Лили ушла раньше него. В разговоре так иногда говорят, но правильно — had already gone." } },
+      { "answer": "was going", "why": { "ru": "was going — «как раз уходила». А Лили ушла ещё до нашего прихода: had gone." } }
+    ],
+    "hint": { "ru": "Лили ушла раньше другого момента в прошлом — какое это время? Три формы go: go — went — …" },
+    "explanation": { "ru": "Раньше другого момента в прошлом — Past Perfect: By the time we got to the party, Lily had gone home." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Мы ждали уже час, когда наконец пришёл автобус»?" },
+    "options": [
+      { "text": "We have been waiting for an hour when the bus finally came.", "why": { "ru": "have been — сколько длится до сейчас. А момент в прошлом (when the bus came): had been waiting." } },
+      { "text": "We were waiting for an hour when the bus finally came.", "why": { "ru": "В разговоре иногда скажут и так, но правильнее — had been waiting: сколько длилось до момента в прошлом." } },
+      { "text": "We had been waiting for an hour when the bus finally came." },
+      { "text": "We had been wait for an hour when the bus finally came.", "why": { "ru": "После had been глагол нужен с -ing: waiting." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "Сколько длилось до момента в прошлом — Past Perfect Continuous: We had been waiting for an hour when the bus finally came." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Решение принято прямо сейчас. Вставь get в нужной форме — два слова." },
+    "text": "— Someone's at the door! — I ___ (get) it.",
+    "accept": ["will get"],
+    "mistakes": [
+      { "answer": "am going to get", "why": { "ru": "going to — для того, что решено раньше. А решение рождается прямо сейчас — will: I'll get it." } },
+      { "answer": "get", "why": { "ru": "I get — Present Simple, про то, что бывает обычно. Решение в эту секунду — will." } },
+      { "answer": "am getting", "why": { "ru": "Present Continuous — то, что уже идёт, или договорённость. Решение в эту секунду — will: I'll get it." } },
+      { "answer": "will to get", "why": { "ru": "После will глагол идёт сразу, без to." } }
+    ],
+    "hint": { "ru": "Решение прямо сейчас — какой способ сказать о будущем?" },
+    "explanation": { "ru": "Решение в эту секунду — will: I'll get it." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь lie («лежать») в Future Continuous с will — три слова." },
+    "text": "This time next week we ___ (lie) on the beach in Florida.",
+    "accept": ["will be lying"],
+    "mistakes": [
+      { "answer": "will be lieing", "why": { "ru": "У lie перед -ing ie меняется на y: lying." } },
+      { "answer": "will lie", "why": { "ru": "will lie — просто «полежим». А задание — Future Continuous: в этот момент мы уже будем лежать на пляже." } },
+      { "answer": "will lying", "why": { "ru": "Пропущен be: will be lying." } },
+      { "answer": "are lying", "why": { "ru": "Так тоже можно сказать (поездка назначена), но задание — Future Continuous с will: will be lying." } },
+      { "answer": "are going to be lying", "why": { "ru": "Так тоже можно сказать, но задание — с will: will be lying." } }
+    ],
+    "hint": { "ru": "will + be + глагол с -ing. Как меняется ie перед -ing?" },
+    "explanation": { "ru": "Стоп-кадр из будущего — Future Continuous: This time next week we'll be lying on the beach." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «К тому времени, как мы туда доберёмся, игра уже начнётся». Одна плитка лишняя." },
+    "tiles": ["will have", "By the time", "started", "get there", "the game", "we", "will"],
+    "accept": [
+      "By the time we get there the game will have started",
+      "The game will have started by the time we get there"
+    ],
+    "mistakes": [
+      { "answer": "By the time we will get there the game will have started", "why": { "ru": "После by the time о будущем will не ставят: by the time we get there." } },
+      { "answer": "The game will have started by the time we will get there", "why": { "ru": "После by the time о будущем will не ставят: by the time we get there." } }
+    ],
+    "hint": { "ru": "После by the time о будущем — Present Simple. В главной части — will have + третья форма." },
+    "explanation": { "ru": "После by the time — Present Simple (we get there), в главной части — Future Perfect (the game will have started)." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "Lily has knew Emma since kindergarten.",
+    "wrong": 2,
+    "accept": ["known"],
+    "mistakes": [
+      { "answer": "know", "why": { "ru": "После has — не начальная форма, а третья: known." } },
+      { "answer": "knowed", "why": { "ru": "know — неправильный глагол: know — knew — known." } },
+      { "answer": "knew", "why": { "ru": "Это то же слово. knew — вторая форма, для Past Simple. После has нужна третья." } }
+    ],
+    "hint": { "ru": "Три формы know: know — knew — …" },
+    "explanation": { "ru": "Дружат с детского сада до сих пор — Present Perfect, после has третья форма: Lily has known Emma since kindergarten." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «В августе будет три года, как Сэм играет за школьную команду»?" },
+    "options": [
+      { "text": "By August, Sam will be playing for the school team for three years.", "why": { "ru": "will be + -ing — процесс в момент. А «сколько уже к августу» — will have been playing." } },
+      { "text": "By August, Sam has been playing for the school team for three years.", "why": { "ru": "has been + -ing — сколько длится до сейчас. А август впереди: will have been playing." } },
+      { "text": "By August, Sam had been playing for the school team for three years.", "why": { "ru": "had been + -ing — до момента в прошлом. А август впереди: will have been playing." } },
+      { "text": "By August, Sam will have been playing for the school team for three years." }
+    ],
+    "answer": 3,
+    "explanation": { "ru": "Сколько будет длиться к моменту в будущем — Future Perfect Continuous: will have been playing for three years." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "После того как Макс сделал уроки, он пошёл гулять." },
+    "accept": [
+      "After {Max|he} {did|finished|had done|had finished} his homework {he|Max} {went out|went outside|went for a walk|went out for a walk|went out to play|went outside to play|went to play outside|took a walk|went walking}",
+      "{Max|He} {went out|went outside|went for a walk|went out for a walk|went out to play|went outside to play|went to play outside|took a walk|went walking} after he {did|finished|had done|had finished} his homework",
+      "After {doing|finishing|having done|having finished} his homework {Max|he} {went out|went outside|went for a walk|went out for a walk|went out to play|went outside to play|went to play outside|took a walk|went walking}",
+      "{Max|He} {went out|went outside|went for a walk|went out for a walk|went out to play|went outside to play|went to play outside|took a walk|went walking} after {doing|finishing|having done|having finished} his homework"
+    ],
+    "mistakes": [
+      { "answer": "After Max had did his homework he went out", "why": { "ru": "did — вторая форма. После had — третья: done." } },
+      { "answer": "After Max has done his homework he went out", "why": { "ru": "has done — Present Perfect, к сейчас. А всё было в прошлом: did или had done." } },
+      { "answer": "After Max {did|finished|had done|had finished} his homework he had gone {out|for a walk}", "why": { "ru": "Гулять пошёл позже — это второе событие, Past Simple: went. had — для того, что было раньше." } },
+      { "answer": "After Max {did|had done} his homework he goes out", "why": { "ru": "goes — настоящее время. А всё было в прошлом: went." } },
+      { "answer": "After Max does his homework he went out", "why": { "ru": "does — настоящее время. Уроки делал в прошлом: did или had done." } }
+    ],
+    "hint": { "ru": "Оба события в прошлом. «Пошёл гулять» — went out или went for a walk." },
+    "explanation": { "ru": "С after порядок и так ясен: After Max did his homework, he went out. Засчитаем и had done — так подчёркивают, что уроки были раньше." }
+  }
+]

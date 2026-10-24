@@ -1,0 +1,14 @@
+{
+  "title": { "ru": "Все 12 времён: карта и как выбрать" },
+  "steps": [
+    { "type": "theory", "text": { "ru": "01-map.ru.md" } },
+    { "type": "theory", "text": { "ru": "02-simple-continuous.ru.md" } },
+    { "type": "theory", "text": { "ru": "03-perfect.ru.md" } },
+    { "type": "practice", "id": "map", "file": "practice/map.json" },
+    { "type": "theory", "text": { "ru": "04-questions.ru.md" } },
+    { "type": "theory", "text": { "ru": "05-markers.ru.md" } },
+    { "type": "practice", "id": "choose", "file": "practice/choose.json" },
+    { "type": "theory", "text": { "ru": "06-mistakes.ru.md" } },
+    { "type": "quiz", "file": "quiz.json" }
+  ]
+}

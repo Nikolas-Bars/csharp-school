@@ -1,0 +1,56 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Сейчас 10 утра, мы пришли в парк в 9 и всё ещё здесь. Как сказать «Мы здесь уже час»?" },
+    "options": [
+      { "text": "We're here for an hour.", "why": { "ru": "Present Simple от be не говорит, сколько уже длится. Сколько до сейчас — Present Perfect: We've been here." } },
+      { "text": "We were here for an hour.", "why": { "ru": "were — «были» и уже ушли. А мы всё ещё здесь: We've been here." } },
+      { "text": "We've been here for an hour." },
+      { "text": "We had been here for an hour.", "why": { "ru": "had been — до момента в прошлом. А час длится до сейчас: We've been here." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "Началось в прошлом и длится до сейчас — Present Perfect, be — глагол состояния: We've been here for an hour." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь leave в нужной форме." },
+    "text": "Don't forget to turn off the lights before you ___ (leave).",
+    "accept": ["leave"],
+    "mistakes": [
+      { "answer": "will leave", "why": { "ru": "После before о будущем will не ставят — как после when. Нужен Present Simple: leave." } },
+      { "answer": "left", "why": { "ru": "left — прошедшее время. А речь о будущем: после before — Present Simple." } },
+      { "answer": "leaves", "why": { "ru": "you — без -s: you leave." } },
+      { "answer": "are leaving", "why": { "ru": "После before о будущем обычно просто Present Simple: before you leave." } }
+    ],
+    "hint": { "ru": "before работает, как when. Какое время после него о будущем?" },
+    "explanation": { "ru": "После before о будущем — Present Simple: before you leave." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "Yesterday at five we was playing basketball.",
+    "wrong": 4,
+    "accept": ["were"],
+    "mistakes": [
+      { "answer": "are", "why": { "ru": "are — настоящее время. А речь о вчера: were." } },
+      { "answer": "was", "why": { "ru": "Это то же слово. was — для I, he, she, it. С we нужна другая форма." } }
+    ],
+    "hint": { "ru": "Past Continuous: was или were? С we — какое?" },
+    "explanation": { "ru": "Вчера в пять процесс шёл — Past Continuous, с we — were: we were playing basketball." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Я знаю Лили с первого класса." },
+    "accept": ["I have known Lily {ever |}since {first grade|the first grade|we were in first grade|we were in the first grade}"],
+    "mistakes": [
+      { "answer": "I know Lily since first grade", "why": { "ru": "По-русски «знаю», но речь о том, сколько это уже длится. Нужен Present Perfect: I've known." } },
+      { "answer": "I have been knowing Lily since first grade", "why": { "ru": "know — глагол состояния, -ing с ним не ставят: I've known." } },
+      { "answer": "I have known Lily for first grade", "why": { "ru": "Первый класс — точка, с которой началось. С точкой — since." } },
+      { "answer": "I knew Lily since first grade", "why": { "ru": "knew — прошедшее время, будто знакомство осталось в прошлом. А знакомы до сих пор: I've known." } },
+      { "answer": "I have knew Lily since first grade", "why": { "ru": "knew — вторая форма. После have — третья: known." } }
+    ],
+    "hint": { "ru": "Длится до сейчас — какое время? know — глагол состояния. «С первого класса» — since." },
+    "explanation": { "ru": "Длится до сейчас, know — глагол состояния — Present Perfect: I've known Lily since first grade." }
+  }
+]
