@@ -1,0 +1,176 @@
+[
+  {
+    "id": "right-now",
+    "word": "right now",
+    "ipa": "/raɪt ˈnaʊ/",
+    "pos": "phrase",
+    "translation": { "ru": "прямо сейчас; немедленно" },
+    "examples": [
+      {
+        "en": "Mom is busy right now. She's cooking.",
+        "translation": { "ru": "Мама сейчас занята — она готовит." },
+        "why": { "ru": "right now — в эту минуту, пока говорим. Поэтому Present Continuous: she's cooking." }
+      },
+      {
+        "en": "What are you doing right now?",
+        "translation": { "ru": "Что ты делаешь прямо сейчас?" },
+        "why": { "ru": "Вопрос в Present Continuous: are перед you, к глаголу -ing." }
+      },
+      {
+        "en": "Do it right now, please!",
+        "translation": { "ru": "Сделай это прямо сейчас, пожалуйста!" },
+        "why": { "ru": "Здесь right now — «немедленно». Это просьба, поэтому глагол в начальной форме." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с right — «правый, правильный».** В right now это слово значит «прямо»: прямо сейчас." }
+  },
+  {
+    "id": "at-the-moment",
+    "word": "at the moment",
+    "ipa": "/æt ðə ˈmoʊmənt/",
+    "pos": "phrase",
+    "translation": { "ru": "сейчас, в данный момент" },
+    "examples": [
+      {
+        "en": "My dad is sleeping at the moment.",
+        "translation": { "ru": "Папа сейчас спит." },
+        "why": { "ru": "at the moment — «сейчас». Действие идёт — Present Continuous." }
+      },
+      {
+        "en": "We aren't playing at the moment.",
+        "translation": { "ru": "Сейчас мы не играем." },
+        "why": { "ru": "Отрицание в Present Continuous: aren't + глагол с -ing." }
+      },
+      {
+        "en": "At the moment she is talking on the phone.",
+        "translation": { "ru": "В данный момент она говорит по телефону." },
+        "why": { "ru": "at the moment можно поставить и в начало. Идёт сейчас — Present Continuous." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с in a moment.** at the moment — «сейчас», in a moment — «через минутку»." }
+  },
+  {
+    "id": "listen",
+    "word": "listen",
+    "ipa": "/ˈlɪsən/",
+    "pos": "verb",
+    "translation": { "ru": "слушать" },
+    "examples": [
+      {
+        "en": "Listen! Someone is knocking at the door.",
+        "translation": { "ru": "Слушай! Кто-то стучит в дверь." },
+        "why": { "ru": "Listen! — просят послушать, значит, это происходит сейчас. Поэтому is knocking." }
+      },
+      {
+        "en": "I'm listening to music right now.",
+        "translation": { "ru": "Я сейчас слушаю музыку." },
+        "why": { "ru": "Слушаю прямо сейчас — Present Continuous. Что слушают — после to: listen to music." }
+      },
+      {
+        "en": "Please listen to me!",
+        "translation": { "ru": "Пожалуйста, послушай меня!" },
+        "why": { "ru": "Это просьба — начальная форма. Кого слушают — тоже после to." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с hear.** listen — «слушать» (специально), hear — «слышать» (звук сам доходит до тебя)." }
+  },
+  {
+    "id": "lie",
+    "word": "lie",
+    "ipa": "/laɪ/",
+    "pos": "verb",
+    "translation": { "ru": "лежать" },
+    "forms": ["lie", "lay", "lain"],
+    "examples": [
+      {
+        "en": "The cat is lying on my bed. It always lies there!",
+        "translation": { "ru": "Кот лежит на моей кровати. Он всегда там лежит!" },
+        "why": { "ru": "is lying — лежит сейчас, Present Continuous; lies — так бывает всегда, Present Simple. Перед -ing ie меняется на y: lying." }
+      },
+      {
+        "en": "Don't lie on the floor, it's cold!",
+        "translation": { "ru": "Не лежи на полу, он холодный!" },
+        "why": { "ru": "Это просьба с Don't — глагол lie в начальной форме." }
+      },
+      {
+        "en": "Yesterday we lay on the beach all day.",
+        "translation": { "ru": "Вчера мы весь день лежали на пляже." },
+        "why": { "ru": "Past Simple: lie — неправильный глагол, его прошедшая форма — lay." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с lie — «врать».** Слово то же, но формы у него правильные: lie, lied, lied." }
+  },
+  {
+    "id": "snow",
+    "word": "snow",
+    "ipa": "/snoʊ/",
+    "pos": "verb",
+    "translation": { "ru": "идти (о снеге); snow — ещё и «снег»" },
+    "examples": [
+      {
+        "en": "It's snowing outside. Let's make a snowman!",
+        "translation": { "ru": "На улице идёт снег. Давай слепим снеговика!" },
+        "why": { "ru": "Снег идёт прямо сейчас — Present Continuous. Про погоду говорят через it: it's snowing." }
+      },
+      {
+        "en": "It often snows here in January.",
+        "translation": { "ru": "Здесь в январе часто идёт снег." },
+        "why": { "ru": "Так бывает обычно — Present Simple. it → snows." }
+      },
+      {
+        "en": "It snowed all night.",
+        "translation": { "ru": "Снег шёл всю ночь." },
+        "why": { "ru": "Past Simple: снег уже закончился. snow — правильный глагол: snowed." }
+      }
+    ]
+  },
+  {
+    "id": "outside",
+    "word": "outside",
+    "ipa": "/ˌaʊtˈsaɪd/",
+    "pos": "adverb",
+    "translation": { "ru": "на улице, снаружи; на улицу" },
+    "examples": [
+      {
+        "en": "My friends are waiting for me outside.",
+        "translation": { "ru": "Друзья ждут меня на улице." },
+        "why": { "ru": "outside — «на улице», не дома. Ждут прямо сейчас — Present Continuous." }
+      },
+      {
+        "en": "It's cold outside. Take your hat!",
+        "translation": { "ru": "На улице холодно. Возьми шапку!" },
+        "why": { "ru": "Про погоду — it's. outside обычно стоит в конце." }
+      },
+      {
+        "en": "Let's go outside!",
+        "translation": { "ru": "Пойдём на улицу!" },
+        "why": { "ru": "С глаголом движения go outside значит «на улицу, наружу»." }
+      }
+    ]
+  },
+  {
+    "id": "quiet",
+    "word": "quiet",
+    "ipa": "/ˈkwaɪət/",
+    "pos": "adjective",
+    "translation": { "ru": "тихий; спокойный" },
+    "examples": [
+      {
+        "en": "Be quiet! The baby is sleeping.",
+        "translation": { "ru": "Тише! Малыш спит." },
+        "why": { "ru": "Be quiet! — «Тише!», дословно «будь тихим». Малыш спит сейчас — Present Continuous." }
+      },
+      {
+        "en": "Our street is very quiet at night.",
+        "translation": { "ru": "Ночью на нашей улице очень тихо." },
+        "why": { "ru": "quiet — «тихий, спокойный». Так бывает всегда — Present Simple." }
+      },
+      {
+        "en": "Why are you so quiet today?",
+        "translation": { "ru": "Почему ты сегодня молчишь?" },
+        "why": { "ru": "quiet про человека — «молчаливый»: говорит мало или совсем молчит." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с quite.** quiet — «тихий» (два слога: квай-эт), quite — «довольно, вполне» (один слог)." }
+  }
+]

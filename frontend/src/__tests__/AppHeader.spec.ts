@@ -1,15 +1,18 @@
 import { mount } from '@vue/test-utils'
 import { createPinia, setActivePinia } from 'pinia'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import { tokenStorage } from '@/api/tokenStorage'
 import AppHeader from '@/components/layout/AppHeader.vue'
 import { useAuthStore } from '@/stores/auth'
+import { useCourseStore } from '@/stores/course'
+
+import { apiReply, englishCourse, wordsCourse } from './lessonFixtures'
 
 import { testRouter } from './support/router'
 
-async function mountHeader(pinia = createPinia()) {
-  return mount(AppHeader, { global: { plugins: [pinia, await testRouter()] } })
+async function mountHeader(pinia = createPinia(), path = '/') {
+  return mount(AppHeader, { global: { plugins: [pinia, await testRouter(path)] } })
 }
 
 describe('AppHeader', () => {
@@ -47,5 +50,29 @@ describe('AppHeader', () => {
     expect(user.text()).toContain('Аккаунт: anya')
     expect(user.findAll('nav a').map((link) => link.text())).toEqual(['Курсы'])
     expect(user.findAll('button').map((button) => button.text())).toContain('Выйти')
+  })
+
+  it('«Мой словарь» — только на страницах курса с карточками слов', async () => {
+    tokenStorage.clear()
+    const links = (header: Awaited<ReturnType<typeof mountHeader>>) =>
+      header.findAll('nav a').map((link) => link.text())
+
+    for (const [map, shown] of [
+      [wordsCourse, true],
+      [englishCourse, false],
+    ] as const) {
+      // stubGlobal не годится: unstubAllGlobals снял бы и замену matchMedia из setup.ts
+      const fetchSpy = vi.spyOn(globalThis, 'fetch').mockImplementation(async () => apiReply(map))
+      const pinia = createPinia()
+      setActivePinia(pinia)
+      await useCourseStore().load('english')
+      const header = await mountHeader(pinia, '/courses/english')
+
+      expect(links(header).some((text) => text.startsWith('Мой словарь'))).toBe(shown)
+      fetchSpy.mockRestore()
+    }
+
+    const home = await mountHeader(createPinia(), '/')
+    expect(links(home).some((text) => text.startsWith('Мой словарь'))).toBe(false)
   })
 })

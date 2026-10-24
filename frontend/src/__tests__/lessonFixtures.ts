@@ -1,4 +1,6 @@
 import type {
+  CourseWord,
+  WordCard,
   ChoiceExercise,
   Course,
   CourseSummary,
@@ -64,6 +66,7 @@ export const course: Course = {
           title: 'Первая программа',
           kind: 'lesson',
           tasks: 1,
+          words: 0,
           steps: ['hello-world', 'quiz'],
         },
         {
@@ -71,6 +74,7 @@ export const course: Course = {
           title: 'Ошибки — это нормально',
           kind: 'lesson',
           tasks: 0,
+          words: 0,
           steps: ['quiz'],
         },
       ],
@@ -93,6 +97,7 @@ export const twoModules: Course = {
           title: 'Первая программа',
           kind: 'lesson',
           tasks: 1,
+          words: 0,
           steps: ['hello-world', 'quiz'],
         },
         {
@@ -100,6 +105,7 @@ export const twoModules: Course = {
           title: 'Контрольная: гоблин',
           kind: 'test',
           tasks: 1,
+          words: 0,
           steps: ['goblin', 'quiz'],
         },
       ],
@@ -109,12 +115,20 @@ export const twoModules: Course = {
       title: 'Циклы',
       description: 'while и for',
       lessons: [
-        { slug: '01-while', title: 'Цикл while', kind: 'lesson', tasks: 0, steps: ['quiz'] },
+        {
+          slug: '01-while',
+          title: 'Цикл while',
+          kind: 'lesson',
+          tasks: 0,
+          words: 0,
+          steps: ['quiz'],
+        },
         {
           slug: '02-module-test',
           title: 'Контрольная: подземелье',
           kind: 'test',
           tasks: 0,
+          words: 0,
           steps: ['quiz'],
         },
       ],
@@ -234,12 +248,69 @@ export const englishCourse: Course = {
           title: 'Что происходит сейчас',
           kind: 'lesson',
           tasks: 0,
+          words: 0,
           steps: ['form', 'quiz'],
         },
       ],
     },
   ],
 }
+
+export const wearCard: WordCard = {
+  id: 'wear',
+  word: 'wear',
+  ipa: '/wɛr/',
+  pos: 'verb',
+  translation: 'носить (одежду)',
+  forms: ['wear', 'wore', 'worn'],
+  examples: [
+    {
+      en: 'She is wearing a red jacket.',
+      translation: 'На ней красная куртка.',
+      why: 'Сейчас — Present Continuous.',
+    },
+  ],
+  compare: '**Не путай с put on.** put on — ==надеть==.',
+}
+
+export const momentCard: WordCard = {
+  id: 'at-the-moment',
+  word: 'at the moment',
+  ipa: '/æt ðə ˈmoʊmənt/',
+  pos: 'phrase',
+  translation: 'сейчас',
+  forms: null,
+  examples: [
+    { en: 'I am busy at the moment.', translation: 'Я сейчас занят.', why: 'Маркер Continuous.' },
+  ],
+  compare: null,
+}
+
+/** Урок английского с карточками слов вторым шагом */
+export const wordsLesson: Lesson = {
+  ...englishLesson,
+  steps: [
+    englishLesson.steps[0]!,
+    { type: 'words', words: [wearCard, momentCard] },
+    ...englishLesson.steps.slice(1),
+  ],
+}
+
+/** Курс английского, где в уроке есть карточки */
+export const wordsCourse: Course = {
+  ...englishCourse,
+  modules: englishCourse.modules.map((module) => ({
+    ...module,
+    lessons: module.lessons.map((item) => ({ ...item, words: 2 })),
+  })),
+}
+
+/** Слова курса для словаря — как отдаёт GET courses/english/words */
+export const courseWords: CourseWord[] = [wearCard, momentCard].map((card) => ({
+  ...card,
+  module: { slug: '01-present', title: 'Настоящее время' },
+  lesson: { slug: '01-right-now', title: 'Что происходит сейчас' },
+}))
 
 export function apiReply(data: unknown, status = 200) {
   return new Response(JSON.stringify({ status: 'success', message: '', data, errors: {} }), {

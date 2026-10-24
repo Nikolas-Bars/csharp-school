@@ -1,0 +1,176 @@
+[
+  {
+    "id": "ever",
+    "word": "ever",
+    "ipa": "/ˈɛvɚ/",
+    "pos": "adverb",
+    "translation": { "ru": "когда-нибудь, хоть раз; когда-либо" },
+    "examples": [
+      {
+        "en": "Have you ever seen a real snake?",
+        "translation": { "ru": "Вы когда-нибудь видели живую змею?" },
+        "why": { "ru": "Have you ever…? — вопрос про опыт в Present Perfect. ever стоит между have и третьей формой." }
+      },
+      {
+        "en": "Has your sister ever ridden a horse? — No, she hasn't.",
+        "translation": { "ru": "Твоя сестра когда-нибудь каталась на лошади? — Нет." },
+        "why": { "ru": "Has … ever ridden — опыт за всю жизнь, когда именно — неважно. ridden — третья форма ride." }
+      },
+      {
+        "en": "This is the best pizza I have ever eaten!",
+        "translation": { "ru": "Это лучшая пицца в моей жизни!" },
+        "why": { "ru": "the best … I have ever… — «лучший за всю жизнь»: ever здесь — «когда-либо», время — Present Perfect." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с never.** ever — «когда-нибудь» (в вопросе), never — «никогда не»: I have never seen it. never — уже отрицание, not к нему не нужен." }
+  },
+  {
+    "id": "once",
+    "word": "once",
+    "ipa": "/wʌns/",
+    "pos": "adverb",
+    "translation": { "ru": "один раз; однажды" },
+    "examples": [
+      {
+        "en": "We have been to Moscow once.",
+        "translation": { "ru": "Мы были в Москве один раз." },
+        "why": { "ru": "once — «один раз», стоит в конце. Present Perfect — опыт: когда именно, неважно." }
+      },
+      {
+        "en": "Max has won this game only once.",
+        "translation": { "ru": "Макс выигрывал в эту игру всего один раз." },
+        "why": { "ru": "has won — опыт к сегодняшнему дню, Present Perfect. only once — «всего один раз»." }
+      },
+      {
+        "en": "We go swimming once a week.",
+        "translation": { "ru": "Мы ходим плавать раз в неделю." },
+        "why": { "ru": "once a week — «раз в неделю»: как часто. Привычка — Present Simple." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с one.** one — число «один» (one cat), once — «один раз» (once a week)." }
+  },
+  {
+    "id": "twice",
+    "word": "twice",
+    "ipa": "/twaɪs/",
+    "pos": "adverb",
+    "translation": { "ru": "два раза, дважды" },
+    "examples": [
+      {
+        "en": "Emma has read this book twice.",
+        "translation": { "ru": "Эмма прочитала эту книгу два раза." },
+        "why": { "ru": "twice — в конце фразы. Present Perfect — опыт: сколько раз уже было к сегодняшнему дню." }
+      },
+      {
+        "en": "I brush my teeth twice a day.",
+        "translation": { "ru": "Я чищу зубы два раза в день." },
+        "why": { "ru": "twice a day — «два раза в день»: привычка, поэтому Present Simple." }
+      },
+      {
+        "en": "Sam called me twice yesterday.",
+        "translation": { "ru": "Вчера Сэм звонил мне два раза." },
+        "why": { "ru": "called — Past Simple: время названо (yesterday)." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с two times.** Так тоже понятно, но обычно говорят twice. А с трёх раз — уже times: three times, many times." }
+  },
+  {
+    "id": "many-times",
+    "word": "many times",
+    "ipa": "/ˈmɛni ˈtaɪmz/",
+    "pos": "phrase",
+    "translation": { "ru": "много раз" },
+    "examples": [
+      {
+        "en": "We have played this level many times!",
+        "translation": { "ru": "Мы проходили этот уровень много раз!" },
+        "why": { "ru": "many times — в конце фразы. Present Perfect — опыт: сколько раз уже было." }
+      },
+      {
+        "en": "How many times have you been to the zoo?",
+        "translation": { "ru": "Сколько раз вы были в зоопарке?" },
+        "why": { "ru": "How many times…? — «сколько раз?». Вопрос про опыт — Present Perfect." }
+      },
+      {
+        "en": "Mom has told you many times: wash your hands!",
+        "translation": { "ru": "Мама тебе много раз говорила: мой руки!" },
+        "why": { "ru": "has told — Present Perfect: повторялось до сегодняшнего дня. told — третья форма tell." }
+      }
+    ]
+  },
+  {
+    "id": "been-to",
+    "word": "been to",
+    "ipa": "/ˈbɪn tu/",
+    "pos": "phrase",
+    "translation": { "ru": "побывать где-то (и вернуться), бывать в…" },
+    "examples": [
+      {
+        "en": "Have you ever been to the sea?",
+        "translation": { "ru": "Вы когда-нибудь бывали на море?" },
+        "why": { "ru": "been to — опыт: побывал там и вернулся. Present Perfect, потому что когда — неважно." }
+      },
+      {
+        "en": "My grandpa has been to twenty countries!",
+        "translation": { "ru": "Мой дедушка побывал в двадцати странах!" },
+        "why": { "ru": "has been to — опыт за всю жизнь. been — третья форма be." }
+      },
+      {
+        "en": "We have never been to a real concert.",
+        "translation": { "ru": "Мы ни разу не были на настоящем концерте." },
+        "why": { "ru": "have never been — Present Perfect, опыт: ни разу за всю жизнь. never стоит между have и been, второе отрицание (not) не нужно." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с gone to.** been to — «побывал и вернулся», gone to — «ушёл, уехал и ещё там»." }
+  },
+  {
+    "id": "gone-to",
+    "word": "gone to",
+    "ipa": "/ˈɡɑn tu/",
+    "pos": "phrase",
+    "translation": { "ru": "ушёл / уехал куда-то (и ещё там)" },
+    "examples": [
+      {
+        "en": "Where's Dad? — He's gone to work.",
+        "translation": { "ru": "Где папа? — Ушёл на работу." },
+        "why": { "ru": "He's gone = he has gone: ушёл и ещё не вернулся, поэтому его нет дома." }
+      },
+      {
+        "en": "My friends have gone to the beach without me!",
+        "translation": { "ru": "Друзья ушли на пляж без меня!" },
+        "why": { "ru": "have gone to — Present Perfect: результат сейчас — друзей здесь нет, они на пляже." }
+      },
+      {
+        "en": "Emma isn't at school today. She has gone to London with her parents.",
+        "translation": { "ru": "Эммы сегодня нет в школе. Она уехала в Лондон с родителями." },
+        "why": { "ru": "has gone to — уехала и ещё там. gone — третья форма go." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с been to.** He has gone to Paris — уехал и сейчас там. He has been to Paris — побывал и вернулся." }
+  },
+  {
+    "id": "ocean",
+    "word": "ocean",
+    "ipa": "/ˈoʊʃən/",
+    "pos": "noun",
+    "translation": { "ru": "океан" },
+    "examples": [
+      {
+        "en": "Have you ever swum in the ocean?",
+        "translation": { "ru": "Вы когда-нибудь плавали в океане?" },
+        "why": { "ru": "Опыт — Present Perfect с ever. swum — третья форма swim." }
+      },
+      {
+        "en": "The Pacific Ocean is the biggest ocean in the world.",
+        "translation": { "ru": "Тихий океан — самый большой океан в мире." },
+        "why": { "ru": "is — Present Simple: факт, который верен всегда." }
+      },
+      {
+        "en": "We saw dolphins in the ocean last summer.",
+        "translation": { "ru": "Прошлым летом мы видели в океане дельфинов." },
+        "why": { "ru": "saw — Past Simple: время названо и закончилось (last summer)." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с sea.** sea — море, ocean — океан. Американцы на побережье часто говорят the ocean там, где мы сказали бы «море»." }
+  }
+]

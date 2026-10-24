@@ -1,0 +1,144 @@
+[
+  {
+    "id": "normally",
+    "word": "normally",
+    "ipa": "/ˈnɔrməli/",
+    "pos": "adverb",
+    "translation": { "ru": "обычно" },
+    "examples": [
+      {
+        "en": "I normally walk to school, but today Dad is driving me.",
+        "translation": { "ru": "Обычно я хожу в школу пешком, но сегодня меня везёт папа." },
+        "why": { "ru": "normally — про привычку: Present Simple. today — сегодня не так, как обычно: Present Continuous." }
+      },
+      {
+        "en": "Normally we have lunch at one.",
+        "translation": { "ru": "Обычно мы обедаем в час." },
+        "why": { "ru": "normally можно ставить в начало. Привычка — Present Simple." }
+      },
+      {
+        "en": "The store is normally open on Sundays.",
+        "translation": { "ru": "По воскресеньям магазин обычно открыт." },
+        "why": { "ru": "Глагол здесь — is (форма be), поэтому normally стоит после него." }
+      }
+    ]
+  },
+  {
+    "id": "on-weekends",
+    "word": "on weekends",
+    "ipa": "/ɑn ˈwikɛndz/",
+    "pos": "phrase",
+    "translation": { "ru": "по выходным" },
+    "examples": [
+      {
+        "en": "I don't get up early on weekends.",
+        "translation": { "ru": "По выходным я не встаю рано." },
+        "why": { "ru": "on weekends — каждые выходные, регулярно. Поэтому Present Simple." }
+      },
+      {
+        "en": "What do you do on weekends?",
+        "translation": { "ru": "Чем ты занимаешься по выходным?" },
+        "why": { "ru": "Вопрос о привычке — Present Simple с do." }
+      },
+      {
+        "en": "On weekends my dad cooks breakfast.",
+        "translation": { "ru": "По выходным завтрак готовит папа." },
+        "why": { "ru": "on weekends можно поставить в начало. dad = he → cooks." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с this weekend.** on weekends — «по выходным» (каждые выходные), this weekend — «в эти выходные» (один раз)." }
+  },
+  {
+    "id": "wear",
+    "word": "wear",
+    "ipa": "/wɛr/",
+    "pos": "verb",
+    "translation": { "ru": "носить (одежду, очки, часы), быть одетым в…" },
+    "forms": ["wear", "wore", "worn"],
+    "examples": [
+      {
+        "en": "Look! Dad is wearing my hat!",
+        "translation": { "ru": "Смотри! Папа надел мою шапку!" },
+        "why": { "ru": "is wearing — что на нём прямо сейчас. Look! подсказывает Present Continuous." }
+      },
+      {
+        "en": "I wear glasses.",
+        "translation": { "ru": "Я ношу очки." },
+        "why": { "ru": "Present Simple — это верно всегда. wear подходит и к одежде, и к очкам, и к часам." }
+      },
+      {
+        "en": "He wore a funny costume to the party.",
+        "translation": { "ru": "На вечеринку он пришёл в смешном костюме." },
+        "why": { "ru": "Past Simple: wear — неправильный глагол, его прошедшая форма — wore." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с put on.** wear — «быть в чём-то» (состояние), put on — «надеть» (действие)." }
+  },
+  {
+    "id": "wash",
+    "word": "wash",
+    "ipa": "/wɑʃ/",
+    "pos": "verb",
+    "translation": { "ru": "мыть; стирать" },
+    "examples": [
+      {
+        "en": "I'm washing the dishes. I'll call you later.",
+        "translation": { "ru": "Я мою посуду. Перезвоню позже." },
+        "why": { "ru": "Мою прямо сейчас — Present Continuous. wash the dishes — мыть посуду." }
+      },
+      {
+        "en": "Wash your hands before dinner!",
+        "translation": { "ru": "Помой руки перед ужином!" },
+        "why": { "ru": "Это просьба — начальная форма wash." }
+      },
+      {
+        "en": "Mom washes our clothes on Saturdays.",
+        "translation": { "ru": "По субботам мама стирает нашу одежду." },
+        "why": { "ru": "wash — и «мыть», и «стирать». Привычка — Present Simple; после sh добавляем -es." }
+      }
+    ]
+  },
+  {
+    "id": "wait",
+    "word": "wait",
+    "ipa": "/weɪt/",
+    "pos": "verb",
+    "translation": { "ru": "ждать" },
+    "examples": [
+      {
+        "en": "Wait for me! I'm coming!",
+        "translation": { "ru": "Подожди меня! Уже иду!" },
+        "why": { "ru": "wait for — «ждать кого-то». Это просьба — начальная форма." }
+      },
+      {
+        "en": "We're waiting for the bus.",
+        "translation": { "ru": "Мы ждём автобус." },
+        "why": { "ru": "Ждём прямо сейчас — Present Continuous. Кого или что ждут — после for." }
+      },
+      {
+        "en": "My dog always waits for me at the door.",
+        "translation": { "ru": "Собака всегда ждёт меня у двери." },
+        "why": { "ru": "always — так бывает каждый день, Present Simple. dog = it → waits." }
+      }
+    ]
+  },
+  {
+    "id": "vegetarian",
+    "word": "vegetarian",
+    "ipa": "/ˌvɛdʒəˈtɛriən/",
+    "pos": "adjective",
+    "translation": { "ru": "вегетарианский; вегетарианец" },
+    "examples": [
+      {
+        "en": "My sister is vegetarian. She doesn't eat meat.",
+        "translation": { "ru": "Сестра — вегетарианка. Она не ест мясо." },
+        "why": { "ru": "Present Simple: это верно всегда, а не только сегодня." }
+      },
+      {
+        "en": "Do you have vegetarian pizza?",
+        "translation": { "ru": "У вас есть вегетарианская пицца?" },
+        "why": { "ru": "Здесь vegetarian — «без мяса», стоит перед словом pizza." }
+      }
+    ]
+  }
+]

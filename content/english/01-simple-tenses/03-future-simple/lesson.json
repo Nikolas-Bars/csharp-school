@@ -2,6 +2,7 @@
   "title": { "ru": "Future Simple: will" },
   "steps": [
     { "type": "theory", "text": { "ru": "01-form.ru.md" } },
+    { "type": "words", "file": "words.json" },
     { "type": "practice", "id": "form", "file": "practice/form.json" },
     { "type": "theory", "text": { "ru": "02-when.ru.md" } },
     { "type": "practice", "id": "when", "file": "practice/when.json" },

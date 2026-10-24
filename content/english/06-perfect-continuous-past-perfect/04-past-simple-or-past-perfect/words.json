@@ -1,0 +1,285 @@
+[
+  {
+    "id": "reach",
+    "word": "reach",
+    "ipa": "/ritʃ/",
+    "pos": "verb",
+    "translation": {
+      "ru": "добраться до, достичь; дотянуться"
+    },
+    "examples": [
+      {
+        "en": "By the time we reached the station, the train had left.",
+        "translation": {
+          "ru": "К тому времени, как мы добрались до вокзала, поезд уже ушёл."
+        },
+        "why": {
+          "ru": "reached — Past Simple, момент в прошлом. Поезд ушёл раньше — had left."
+        }
+      },
+      {
+        "en": "We reached the top of the hill at noon.",
+        "translation": {
+          "ru": "В полдень мы добрались до вершины холма."
+        },
+        "why": {
+          "ru": "reached — «добрались», достигли места. Глагол правильный: -ed."
+        }
+      },
+      {
+        "en": "I can't reach the top shelf.",
+        "translation": {
+          "ru": "Я не могу дотянуться до верхней полки."
+        },
+        "why": {
+          "ru": "Здесь reach — «дотянуться» рукой."
+        }
+      }
+    ],
+    "compare": {
+      "ru": "**Не путай с get to.** После reach нет to: reach the station, а get to the station."
+    }
+  },
+  {
+    "id": "build",
+    "word": "build",
+    "ipa": "/bɪld/",
+    "pos": "verb",
+    "translation": {
+      "ru": "строить"
+    },
+    "forms": [
+      "build",
+      "built",
+      "built"
+    ],
+    "examples": [
+      {
+        "en": "My grandpa built this house fifty years ago.",
+        "translation": {
+          "ru": "Мой дедушка построил этот дом пятьдесят лет назад."
+        },
+        "why": {
+          "ru": "built — Past Simple: есть время в прошлом (fifty years ago). «Давно» — не повод для Past Perfect: второго момента нет."
+        }
+      },
+      {
+        "en": "The kids are building a snowman.",
+        "translation": {
+          "ru": "Дети лепят снеговика."
+        },
+        "why": {
+          "ru": "are building — Present Continuous: идёт сейчас. Снеговика по-английски «строят»."
+        }
+      },
+      {
+        "en": "We've built a big castle in Minecraft.",
+        "translation": {
+          "ru": "Мы построили большой замок в Minecraft."
+        },
+        "why": {
+          "ru": "'ve built — Present Perfect: результат сейчас, замок готов."
+        }
+      }
+    ]
+  },
+  {
+    "id": "abroad",
+    "word": "abroad",
+    "ipa": "/əˈbrɑd/",
+    "pos": "adverb",
+    "translation": {
+      "ru": "за границей, за границу"
+    },
+    "examples": [
+      {
+        "en": "We went to Paris in 2010. We had never been abroad before.",
+        "translation": {
+          "ru": "В 2010 году мы поехали в Париж. До этого мы ни разу не были за границей."
+        },
+        "why": {
+          "ru": "had never been — Past Perfect: опыт до момента в прошлом (до поездки в Париж)."
+        }
+      },
+      {
+        "en": "My cousin is studying abroad this year.",
+        "translation": {
+          "ru": "Мой двоюродный брат в этом году учится за границей."
+        },
+        "why": {
+          "ru": "is studying — Present Continuous: идёт временно, в этом году."
+        }
+      },
+      {
+        "en": "Do you want to go abroad?",
+        "translation": {
+          "ru": "Хочешь поехать за границу?"
+        },
+        "why": {
+          "ru": "go abroad — без to перед abroad."
+        }
+      }
+    ],
+    "compare": {
+      "ru": "**Не путай с go to.** go to Paris, но go abroad — перед abroad to не ставят."
+    }
+  },
+  {
+    "id": "nervous",
+    "word": "nervous",
+    "ipa": "/ˈnɝvəs/",
+    "pos": "adjective",
+    "translation": {
+      "ru": "взволнованный, нервный; be nervous — волноваться, нервничать"
+    },
+    "examples": [
+      {
+        "en": "Max was nervous because he had never flown before.",
+        "translation": {
+          "ru": "Макс волновался, потому что раньше ни разу не летал на самолёте."
+        },
+        "why": {
+          "ru": "was nervous — состояние в прошлом. А опыта не было ещё раньше — had never flown."
+        }
+      },
+      {
+        "en": "I'm always nervous before tests.",
+        "translation": {
+          "ru": "Я всегда волнуюсь перед контрольными."
+        },
+        "why": {
+          "ru": "По-русски глагол «волноваться», а по-английски be nervous — «быть взволнованным»."
+        }
+      },
+      {
+        "en": "Don't be nervous — you'll do great!",
+        "translation": {
+          "ru": "Не волнуйся — у тебя всё получится!"
+        },
+        "why": {
+          "ru": "you'll do great — Future Simple: обещание и поддержка."
+        }
+      }
+    ]
+  },
+  {
+    "id": "guest",
+    "word": "guest",
+    "ipa": "/ɡɛst/",
+    "pos": "noun",
+    "translation": {
+      "ru": "гость"
+    },
+    "examples": [
+      {
+        "en": "We cleaned up after the guests had left.",
+        "translation": {
+          "ru": "Мы прибрались после того, как ушли гости."
+        },
+        "why": {
+          "ru": "after уже показывает порядок, поэтому подходят оба: after the guests left и after the guests had left."
+        }
+      },
+      {
+        "en": "We're having guests tonight.",
+        "translation": {
+          "ru": "Сегодня вечером у нас гости."
+        },
+        "why": {
+          "ru": "have guests — «принимать гостей». 're having — Present Continuous о плане на вечер."
+        }
+      },
+      {
+        "en": "How many guests came to your party?",
+        "translation": {
+          "ru": "Сколько гостей пришло к тебе на вечеринку?"
+        },
+        "why": {
+          "ru": "came — Past Simple: вечеринка уже была."
+        }
+      }
+    ]
+  },
+  {
+    "id": "turn-off",
+    "word": "turn off",
+    "ipa": "/ˌtɝn ˈɑf/",
+    "pos": "phrase",
+    "translation": {
+      "ru": "выключить"
+    },
+    "examples": [
+      {
+        "en": "Don't forget to turn off the TV.",
+        "translation": {
+          "ru": "Не забудь выключить телевизор."
+        },
+        "why": {
+          "ru": "turn off — выключить свет, телевизор, телефон. off — «прочь», «отключено»."
+        }
+      },
+      {
+        "en": "Please turn off your phones.",
+        "translation": {
+          "ru": "Пожалуйста, выключите телефоны."
+        },
+        "why": {
+          "ru": "Повелительная форма — просьба без you."
+        }
+      },
+      {
+        "en": "I always turn off the light when I leave a room.",
+        "translation": {
+          "ru": "Я всегда выключаю свет, когда выхожу из комнаты."
+        },
+        "why": {
+          "ru": "turn off — Present Simple: привычка (always). В прошлом — turned off."
+        }
+      }
+    ],
+    "compare": {
+      "ru": "**Не путай с turn on.** turn on — «включить», turn off — «выключить»."
+    }
+  },
+  {
+    "id": "clean-up",
+    "word": "clean up",
+    "ipa": "/ˌklin ˈʌp/",
+    "pos": "phrase",
+    "translation": {
+      "ru": "убрать, прибраться"
+    },
+    "examples": [
+      {
+        "en": "We had to clean up after the guests left.",
+        "translation": {
+          "ru": "После ухода гостей нам пришлось прибраться."
+        },
+        "why": {
+          "ru": "had to — «пришлось». Гости ушли (left), потом уборка — всё по порядку, Past Simple."
+        }
+      },
+      {
+        "en": "Let's clean up the kitchen.",
+        "translation": {
+          "ru": "Давай приберёмся на кухне."
+        },
+        "why": {
+          "ru": "Let's — «давай»: предложение что-то сделать вместе."
+        }
+      },
+      {
+        "en": "Please clean up your room before dinner.",
+        "translation": {
+          "ru": "Пожалуйста, убери в комнате до ужина."
+        },
+        "why": {
+          "ru": "clean up — навести порядок: разложить вещи, убрать мусор."
+        }
+      }
+    ],
+    "compare": {
+      "ru": "**Не путай с clean.** clean — чистить, мыть (clean the windows), clean up — навести порядок, прибраться."
+    }
+  }
+]

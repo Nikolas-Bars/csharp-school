@@ -12,7 +12,7 @@ CLAUDE.md, Makefile и Docker:
 - `runner` — компилятор и запуск C# в браузере: Roslyn + .NET 10 в WebAssembly,
   внутри Web Worker. Сборка кладётся во фронт (`public/runner`).
 - `content` — учебные курсы файлами (`content/<курс>/`, список — `content/courses.json`): теория
-  (Markdown), задачи, проверки, эталоны и неверные решения, упражнения английского
+  (Markdown), задачи, проверки, эталоны и неверные решения, упражнения и карточки слов английского
   (`content/README.md`). Тесты курса C# — в runner (`tests/Content.Tests`), английского — в Vitest
   фронта (`src/__tests__/englishContent.spec.ts`), в базу — `course:import`.
 - `deploy` — production: `docker-compose.prod.yml` (Caddy с HTTPS → API → MariaDB, Redis),

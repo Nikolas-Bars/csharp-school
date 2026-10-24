@@ -1,0 +1,172 @@
+[
+  {
+    "id": "used-to",
+    "word": "used to",
+    "ipa": "/ˈjust tu/",
+    "pos": "phrase",
+    "translation": { "ru": "раньше (делал, был…), бывало — а теперь нет" },
+    "examples": [
+      {
+        "en": "My grandpa used to work on a farm.",
+        "translation": { "ru": "Раньше дедушка работал на ферме." },
+        "why": { "ru": "used to + work — так было долго, а теперь нет. Форма одна для всех." }
+      },
+      {
+        "en": "We used to live in a small town.",
+        "translation": { "ru": "Раньше мы жили в маленьком городе." },
+        "why": { "ru": "used to — состояние в прошлом: жили там долго, а теперь живём в другом месте." }
+      },
+      {
+        "en": "Did you use to have a pet? — Yes, I used to have a hamster.",
+        "translation": { "ru": "У тебя раньше был питомец? — Да, раньше у меня был хомяк." },
+        "why": { "ru": "В вопросе — did + use, без -d. В утверждении — used, с -d." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с be used to.** I'm used to it — «мне это привычно»: другое выражение, с am / is / are." }
+  },
+  {
+    "id": "when-i-was-little",
+    "word": "when I was little",
+    "ipa": "/wɛn aɪ wəz ˈlɪtəl/",
+    "pos": "phrase",
+    "translation": { "ru": "в детстве (дословно: «когда я был маленьким» или «была маленькой»)" },
+    "examples": [
+      {
+        "en": "When I was little, we used to live near the sea.",
+        "translation": { "ru": "В детстве мы жили у моря." },
+        "why": { "ru": "when I was little — «в детстве». was — Past Simple от be: это было давно." }
+      },
+      {
+        "en": "When I was little, I didn't like vegetables.",
+        "translation": { "ru": "В детстве мне не нравились овощи." },
+        "why": { "ru": "Past Simple: так было в детстве. С used to тоже можно: I didn't use to like vegetables." }
+      },
+      {
+        "en": "When I was little, my favorite toy was a red car.",
+        "translation": { "ru": "В детстве моей любимой игрушкой была красная машинка." },
+        "why": { "ru": "Часть с when говорит, когда это было. Она стоит первой — поэтому после неё запятая." }
+      }
+    ]
+  },
+  {
+    "id": "afraid",
+    "word": "afraid",
+    "ipa": "/əˈfreɪd/",
+    "pos": "adjective",
+    "translation": { "ru": "be afraid (of) — бояться (чего-то)" },
+    "examples": [
+      {
+        "en": "My little sister is afraid of spiders.",
+        "translation": { "ru": "Младшая сестра боится пауков." },
+        "why": { "ru": "is afraid of — «боится». afraid — не глагол, поэтому с is, а после него of." }
+      },
+      {
+        "en": "Don't be afraid! The dog is friendly.",
+        "translation": { "ru": "Не бойся! Собака добрая." },
+        "why": { "ru": "Don't be afraid — «не бойся»: с be, как и в утверждении." }
+      },
+      {
+        "en": "Max used to be afraid of water.",
+        "translation": { "ru": "Раньше Макс боялся воды." },
+        "why": { "ru": "used to be afraid — раньше боялся, а теперь нет. После to — начальная форма: be." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с глаголом.** afraid — не глагол, поэтому без am / is / are не работает: I'm afraid, а не I afraid." }
+  },
+  {
+    "id": "travel",
+    "word": "travel",
+    "ipa": "/ˈtrævəl/",
+    "pos": "verb",
+    "translation": { "ru": "путешествовать, ездить" },
+    "examples": [
+      {
+        "en": "Last year we traveled to Italy.",
+        "translation": { "ru": "В прошлом году мы ездили в Италию." },
+        "why": { "ru": "traveled — Past Simple: одна поездка, есть точный момент — last year. В Америке пишут traveled, в Британии — travelled." }
+      },
+      {
+        "en": "My parents used to travel a lot.",
+        "translation": { "ru": "Раньше родители много путешествовали." },
+        "why": { "ru": "used to travel — так было часто, а теперь нет." }
+      },
+      {
+        "en": "I love traveling by train.",
+        "translation": { "ru": "Обожаю ездить на поезде." },
+        "why": { "ru": "После love глагол может быть с -ing. by train — «на поезде»." }
+      }
+    ]
+  },
+  {
+    "id": "pet",
+    "word": "pet",
+    "ipa": "/pɛt/",
+    "pos": "noun",
+    "translation": { "ru": "домашнее животное, питомец" },
+    "examples": [
+      {
+        "en": "Do you have a pet?",
+        "translation": { "ru": "У тебя есть питомец?" },
+        "why": { "ru": "Present Simple: вопрос с do. have — «есть, иметь»." }
+      },
+      {
+        "en": "We used to have a pet rabbit.",
+        "translation": { "ru": "Раньше у нас был кролик." },
+        "why": { "ru": "used to have — раньше был, а теперь нет. pet rabbit — «домашний кролик»." }
+      },
+      {
+        "en": "Pets need a lot of love.",
+        "translation": { "ru": "Питомцам нужно много любви." },
+        "why": { "ru": "pets — несколько питомцев. Present Simple: это общий факт. need — глагол состояния, -ing с ним не ставят." }
+      }
+    ]
+  },
+  {
+    "id": "cartoon",
+    "word": "cartoon",
+    "ipa": "/kɑrˈtun/",
+    "pos": "noun",
+    "translation": { "ru": "мультфильм, мультик" },
+    "examples": [
+      {
+        "en": "Mia used to watch cartoons every morning.",
+        "translation": { "ru": "Раньше Мия каждое утро смотрела мультики." },
+        "why": { "ru": "used to watch — привычка, которой теперь нет." }
+      },
+      {
+        "en": "My little brother is watching cartoons.",
+        "translation": { "ru": "Младший брат смотрит мультики." },
+        "why": { "ru": "is watching — Present Continuous: прямо сейчас." }
+      },
+      {
+        "en": "What's your favorite cartoon?",
+        "translation": { "ru": "Какой твой любимый мультфильм?" },
+        "why": { "ru": "What's = What is. Present Simple с be: вопрос о том, что есть сейчас." }
+      }
+    ]
+  },
+  {
+    "id": "vegetables",
+    "word": "vegetables",
+    "ipa": "/ˈvɛdʒtəbəlz/",
+    "pos": "noun",
+    "translation": { "ru": "овощи" },
+    "examples": [
+      {
+        "en": "I didn't use to like vegetables.",
+        "translation": { "ru": "Раньше мне не нравились овощи." },
+        "why": { "ru": "didn't use to like — раньше не нравились, а теперь нравятся. После did — use, без -d." }
+      },
+      {
+        "en": "Eat your vegetables!",
+        "translation": { "ru": "Ешь овощи!" },
+        "why": { "ru": "Так говорят родители. Глагол в начальной форме — просьба или совет." }
+      },
+      {
+        "en": "Mom buys fresh vegetables at the market every Saturday.",
+        "translation": { "ru": "Каждую субботу мама покупает свежие овощи на рынке." },
+        "why": { "ru": "Present Simple: так бывает каждую неделю. mom = she, поэтому buys." }
+      }
+    ]
+  }
+]

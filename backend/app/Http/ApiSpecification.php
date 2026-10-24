@@ -39,6 +39,7 @@ use stdClass;
 #[OA\Tag(name: 'Auth', description: 'Регистрация, вход, выход и текущий ученик')]
 #[OA\Tag(name: 'Course', description: 'Курс: карта и уроки. Открыто всем, учиться можно без аккаунта')]
 #[OA\Tag(name: 'Progress', description: 'Пройденные шаги и код решений. Только вошедшим')]
+#[OA\Tag(name: 'Vocabulary', description: 'Мой словарь: выученные слова и интервальное повторение. Только вошедшим')]
 #[OA\Parameter(
     parameter: 'AcceptLanguage',
     name: 'Accept-Language',

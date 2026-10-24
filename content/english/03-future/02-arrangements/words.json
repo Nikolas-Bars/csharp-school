@@ -1,0 +1,170 @@
+[
+  {
+    "id": "meet",
+    "word": "meet",
+    "ipa": "/mit/",
+    "pos": "verb",
+    "translation": { "ru": "встречаться (с кем-то); знакомиться" },
+    "forms": ["meet", "met", "met"],
+    "examples": [
+      {
+        "en": "I'm meeting Tom at six tomorrow.",
+        "translation": { "ru": "Завтра в шесть я встречаюсь с Томом." },
+        "why": { "ru": "am meeting — Present Continuous о будущем: встреча уже назначена." }
+      },
+      {
+        "en": "Nice to meet you!",
+        "translation": { "ru": "Приятно познакомиться!" },
+        "why": { "ru": "Здесь meet — «познакомиться». Так говорят, когда видят человека в первый раз." }
+      },
+      {
+        "en": "We met at the park yesterday.",
+        "translation": { "ru": "Вчера мы встретились в парке." },
+        "why": { "ru": "met — Past Simple: meet — неправильный глагол." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с meet with.** «Встретиться с Томом» — meet Tom, без with. meet with говорят о деловой встрече." }
+  },
+  {
+    "id": "come-over",
+    "word": "come over",
+    "ipa": "/kʌm ˈoʊvɚ/",
+    "pos": "phrase",
+    "translation": { "ru": "зайти, прийти в гости (к кому-то домой)" },
+    "examples": [
+      {
+        "en": "Can you come over after school?",
+        "translation": { "ru": "Можешь зайти ко мне после школы?" },
+        "why": { "ru": "come over — «зайти в гости», к кому-то домой. После can — начальная форма." }
+      },
+      {
+        "en": "Do you want to come over on Saturday?",
+        "translation": { "ru": "Хочешь прийти ко мне в гости в субботу?" },
+        "why": { "ru": "Present Simple: do впереди, «хочешь» — сейчас. О будущем подсказывает on Saturday." }
+      },
+      {
+        "en": "Grandma is coming over tonight.",
+        "translation": { "ru": "Сегодня вечером к нам придёт бабушка." },
+        "why": { "ru": "is coming over — Present Continuous о будущем: о визите уже договорились." }
+      }
+    ]
+  },
+  {
+    "id": "one-day",
+    "word": "one day",
+    "ipa": "/wʌn ˈdeɪ/",
+    "pos": "phrase",
+    "translation": { "ru": "когда-нибудь (в будущем); однажды (в прошлом)" },
+    "examples": [
+      {
+        "en": "I'm going to visit Japan one day.",
+        "translation": { "ru": "Когда-нибудь я собираюсь побывать в Японии." },
+        "why": { "ru": "one day о будущем — «когда-нибудь»: ни даты, ни билетов. Поэтому going to, а не Present Continuous." }
+      },
+      {
+        "en": "One day I'll have a big dog.",
+        "translation": { "ru": "Когда-нибудь у меня будет большая собака." },
+        "why": { "ru": "will — просто мечта, мнение о будущем. one day обычно стоит в начале или в конце фразы." }
+      },
+      {
+        "en": "One day a cat came into our classroom.",
+        "translation": { "ru": "Однажды к нам в класс зашёл кот." },
+        "why": { "ru": "О прошлом one day — «однажды», так начинают истории. came — Past Simple от come." }
+      }
+    ]
+  },
+  {
+    "id": "concert",
+    "word": "concert",
+    "ipa": "/ˈkɑnsɚt/",
+    "pos": "noun",
+    "translation": { "ru": "концерт" },
+    "examples": [
+      {
+        "en": "I'm going to a concert with my friends on Saturday.",
+        "translation": { "ru": "В субботу я иду с друзьями на концерт." },
+        "why": { "ru": "am going to a concert — Present Continuous от go, «иду»: билеты уже куплены. После to здесь место, а не глагол." }
+      },
+      {
+        "en": "Are you coming to the school concert on Friday?",
+        "translation": { "ru": "Ты придёшь на школьный концерт в пятницу?" },
+        "why": { "ru": "Are you coming…? — Present Continuous о будущем: концерт уже назначен." }
+      },
+      {
+        "en": "We went to a rock concert last summer.",
+        "translation": { "ru": "Прошлым летом мы ходили на рок-концерт." },
+        "why": { "ru": "went — Past Simple от go: было и закончилось." }
+      }
+    ]
+  },
+  {
+    "id": "dentist",
+    "word": "dentist",
+    "ipa": "/ˈdɛntɪst/",
+    "pos": "noun",
+    "translation": { "ru": "стоматолог, зубной врач" },
+    "examples": [
+      {
+        "en": "I'm going to the dentist tomorrow.",
+        "translation": { "ru": "Завтра я иду к стоматологу." },
+        "why": { "ru": "Запись к врачу уже есть — это договорённость, поэтому Present Continuous. «К стоматологу» — to the dentist." }
+      },
+      {
+        "en": "My mom is a dentist.",
+        "translation": { "ru": "Моя мама — стоматолог." },
+        "why": { "ru": "Present Simple с is: кем мама работает. Перед профессией ставят a." }
+      }
+    ]
+  },
+  {
+    "id": "fly",
+    "word": "fly",
+    "ipa": "/flaɪ/",
+    "pos": "verb",
+    "translation": { "ru": "лететь, летать (на самолёте)" },
+    "forms": ["fly", "flew", "flown"],
+    "examples": [
+      {
+        "en": "We're flying to Rome next week.",
+        "translation": { "ru": "На следующей неделе мы летим в Рим." },
+        "why": { "ru": "are flying — Present Continuous о будущем: билеты уже куплены." }
+      },
+      {
+        "en": "Birds fly south in the fall.",
+        "translation": { "ru": "Осенью птицы улетают на юг." },
+        "why": { "ru": "Present Simple: так бывает каждый год. in the fall — «осенью», по-американски." }
+      },
+      {
+        "en": "My uncle flew to New York last month.",
+        "translation": { "ru": "В прошлом месяце дядя летал в Нью-Йорк." },
+        "why": { "ru": "flew — Past Simple: fly — неправильный глагол." }
+      }
+    ]
+  },
+  {
+    "id": "fall",
+    "word": "fall",
+    "ipa": "/fɑl/",
+    "pos": "verb",
+    "translation": { "ru": "падать, упасть" },
+    "forms": ["fall", "fell", "fallen"],
+    "examples": [
+      {
+        "en": "Look at that kid! He's going to fall.",
+        "translation": { "ru": "Посмотри на того ребёнка! Он сейчас упадёт." },
+        "why": { "ru": "Видно, что он вот-вот упадёт, — это прогноз по признакам: going to." }
+      },
+      {
+        "en": "In winter snow falls almost every day.",
+        "translation": { "ru": "Зимой снег идёт почти каждый день." },
+        "why": { "ru": "Present Simple: так бывает обычно. Снег по-английски «падает» — falls." }
+      },
+      {
+        "en": "Max fell off his bike yesterday.",
+        "translation": { "ru": "Вчера Макс упал с велосипеда." },
+        "why": { "ru": "fell — Past Simple от fall. fall off — «упасть с чего-то»." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с fall — «осень».** Это то же слово: в Америке осень — fall, в Британии — autumn." }
+  }
+]

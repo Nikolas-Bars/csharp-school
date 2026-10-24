@@ -16,6 +16,8 @@ Laravel 12, PHP 8.3, RoadRunner, MariaDB 11.4, Redis 7, Laravel Sanctum (Bearer-
     `make artisan cmd='course:import'` после правки уроков загружает все курсы `courses.json`;
     `api/courses` (список для главной), `api/courses/*`;
   - `Progress` — пройденные шаги и код решений (`api/progress/*`, только вошедшим).
+  - `Vocabulary` — словарь ученика и интервальное повторение слов (`api/vocabulary/*`, только вошедшим);
+    карточки — `api/courses/{course}/words` модуля Course.
 - `app/` вне модулей — общее ядро: `ApiResponder`, `Translator`, `ApiException`, `BaseRepository`,
   `ModuleServiceProvider`, middleware `SetLocale` и `ForceJsonResponse`.
 - `bootstrap/app.php` — ответы на ошибки в общем формате.

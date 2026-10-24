@@ -1,0 +1,125 @@
+[
+  {
+    "id": "get-dressed",
+    "word": "get dressed",
+    "ipa": "/ɡɛt ˈdrɛst/",
+    "pos": "phrase",
+    "translation": { "ru": "одеваться, одеться" },
+    "examples": [
+      {
+        "en": "I get dressed after breakfast.",
+        "translation": { "ru": "Я одеваюсь после завтрака." },
+        "why": { "ru": "Present Simple: так бывает каждый день." }
+      },
+      {
+        "en": "Hurry up and get dressed! We're leaving.",
+        "translation": { "ru": "Быстрее одевайся! Мы уходим." },
+        "why": { "ru": "get dressed — одеться целиком. We're leaving — Present Continuous: уходим прямо сейчас." }
+      },
+      {
+        "en": "Did Max get dressed? — Yes, he did.",
+        "translation": { "ru": "Макс оделся? — Да." },
+        "why": { "ru": "Вопрос в Past Simple: did впереди, после него начальная форма — get dressed. В утверждении — got dressed." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с put on.** get dressed — одеться целиком, а put on — надеть что-то одно: put on a jacket." }
+  },
+  {
+    "id": "come-in",
+    "word": "come in",
+    "ipa": "/kʌm ˈɪn/",
+    "pos": "phrase",
+    "translation": { "ru": "входить, войти; заходить" },
+    "examples": [
+      {
+        "en": "Come in, please!",
+        "translation": { "ru": "Входи, пожалуйста!" },
+        "why": { "ru": "Come in! — так приглашают войти. Глагол в начальной форме — просьба." }
+      },
+      {
+        "en": "Can I come in?",
+        "translation": { "ru": "Можно войти?" },
+        "why": { "ru": "Can I…? — «Можно мне…?». После can — начальная форма." }
+      },
+      {
+        "en": "Please knock before you come in.",
+        "translation": { "ru": "Пожалуйста, стучи, перед тем как войти." },
+        "why": { "ru": "После before — Present Simple: you come in. В прошедшем — came in: come — неправильный глагол." }
+      }
+    ]
+  },
+  {
+    "id": "asleep",
+    "word": "asleep",
+    "ipa": "/əˈslip/",
+    "pos": "adjective",
+    "translation": { "ru": "спящий: be asleep — спать; fall asleep — уснуть" },
+    "examples": [
+      {
+        "en": "When we got home, Tom was asleep.",
+        "translation": { "ru": "Когда мы пришли домой, Том спал." },
+        "why": { "ru": "was asleep — то же, что was sleeping. asleep — не глагол, поэтому без -ing." }
+      },
+      {
+        "en": "The baby is asleep. Please be quiet.",
+        "translation": { "ru": "Малыш спит. Пожалуйста, тише." },
+        "why": { "ru": "is asleep — «спит» прямо сейчас: am / is / are + asleep." }
+      },
+      {
+        "en": "Max fell asleep during the movie.",
+        "translation": { "ru": "Макс уснул во время фильма." },
+        "why": { "ru": "fall asleep — «уснуть». fell — Past Simple от fall." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с sleep.** sleep — глагол: She was sleeping. asleep — состояние после be: She was asleep." }
+  },
+  {
+    "id": "scream",
+    "word": "scream",
+    "ipa": "/skrim/",
+    "pos": "verb",
+    "translation": { "ru": "кричать, закричать, визжать (от страха или радости)" },
+    "examples": [
+      {
+        "en": "Mia saw a spider and screamed.",
+        "translation": { "ru": "Мия увидела паука и закричала." },
+        "why": { "ru": "Одно за другим — Past Simple: сначала saw, потом screamed." }
+      },
+      {
+        "en": "The kids were screaming and laughing.",
+        "translation": { "ru": "Дети визжали и смеялись." },
+        "why": { "ru": "were screaming — Past Continuous: шло долго, как фон." }
+      },
+      {
+        "en": "Don't scream! It's only a toy.",
+        "translation": { "ru": "Не кричи! Это просто игрушка." },
+        "why": { "ru": "Don't + глагол — «не делай»." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с shout.** shout — громко сказать, позвать; scream — пронзительно закричать от страха или радости." }
+  },
+  {
+    "id": "puppy",
+    "word": "puppy",
+    "ipa": "/ˈpʌpi/",
+    "pos": "noun",
+    "translation": { "ru": "щенок" },
+    "examples": [
+      {
+        "en": "Emma opened the box and saw a puppy.",
+        "translation": { "ru": "Эмма открыла коробку и увидела щенка." },
+        "why": { "ru": "Одно за другим — Past Simple: opened, потом saw." }
+      },
+      {
+        "en": "Our puppy is sleeping on my bed.",
+        "translation": { "ru": "Наш щенок спит на моей кровати." },
+        "why": { "ru": "is sleeping — Present Continuous: прямо сейчас." }
+      },
+      {
+        "en": "The puppies were playing in the garden.",
+        "translation": { "ru": "Щенки играли в саду." },
+        "why": { "ru": "puppies — несколько щенков: y на конце меняется на i, и добавляется -es. were playing — процесс в прошлом." }
+      }
+    ]
+  }
+]

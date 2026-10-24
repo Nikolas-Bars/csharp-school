@@ -8,10 +8,11 @@ use App\Modules\Course\DTO\CourseContentDTO;
 use App\Modules\Course\Repositories\CourseModuleRepository;
 use App\Modules\Course\Repositories\CourseRepository;
 use App\Modules\Course\Repositories\LessonRepository;
+use App\Modules\Course\Repositories\WordRepository;
 
 /**
  * Записывает курс в базу так, чтобы она совпала с content/: тем же slug — те же id (на них
- * будет ссылаться прогресс), удалённое из контента удаляется. Запросов — по одному на таблицу.
+ * будет ссылаться прогресс и словарь), удалённое из контента удаляется. Запросов — по одному-два на таблицу.
  */
 final readonly class SaveCourseTask
 {
@@ -19,6 +20,7 @@ final readonly class SaveCourseTask
         private CourseRepository $courses,
         private CourseModuleRepository $modules,
         private LessonRepository $lessons,
+        private WordRepository $words,
     ) {}
 
     public function run(CourseContentDTO $content): void
@@ -47,5 +49,23 @@ final readonly class SaveCourseTask
         }
 
         $this->lessons->replace(array_values($moduleIds), $lessons);
+
+        // Карточки слов — по порядку курса, каждая со своим уроком
+        $lessonIds = $this->lessons->idsByModule(array_values($moduleIds));
+        $words = [];
+        foreach ($content->modules as $module) {
+            foreach ($module->lessons as $lesson) {
+                foreach ($lesson->cards() as $card) {
+                    $words[] = [
+                        'lesson_id' => $lessonIds["{$moduleIds[$module->slug]}|{$lesson->slug}"],
+                        // id — slug, проверен при чтении (ReadCourseContentTask)
+                        'slug'     => \is_string($card['id'] ?? null) ? $card['id'] : '',
+                        'position' => \count($words) + 1,
+                        'card'     => $card,
+                    ];
+                }
+            }
+        }
+        $this->words->replace($course->id, $words);
     }
 }

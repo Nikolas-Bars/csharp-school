@@ -36,10 +36,20 @@ use OpenApi\Attributes as OA;
         new OA\Property(property: 'steps', description: 'Шаги урока по порядку', type: 'array', items: new OA\Items(oneOf: [
             new OA\Schema(ref: '#/components/schemas/TheoryStep'),
             new OA\Schema(ref: '#/components/schemas/TaskStep'),
+            new OA\Schema(ref: '#/components/schemas/WordsStep'),
             new OA\Schema(ref: '#/components/schemas/PracticeStep'),
             new OA\Schema(ref: '#/components/schemas/QuizStep'),
             new OA\Schema(ref: '#/components/schemas/ExerciseQuizStep'),
         ])),
+    ],
+)]
+#[OA\Schema(
+    schema: 'WordsStep',
+    description: 'Новые слова урока английского: карточки по одной. В прогресс не засчитывается, слова уходят в словарь ученика',
+    required: ['type', 'words'],
+    properties: [
+        new OA\Property(property: 'type', type: 'string', enum: ['words']),
+        new OA\Property(property: 'words', type: 'array', items: new OA\Items(ref: '#/components/schemas/WordCard')),
     ],
 )]
 #[OA\Schema(
@@ -271,6 +281,7 @@ final class LessonResource extends JsonResource
                 'messages'  => self::texts($step['messages']),
                 'hints'     => self::texts($step['hints']),
             ],
+            'words'    => ['type' => 'words', 'words' => array_map(WordCardResource::card(...), self::list($step['words']))],
             'practice' => [
                 'type'      => 'practice',
                 'id'        => $step['id'],

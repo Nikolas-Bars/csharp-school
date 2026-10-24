@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace App\Modules\Course\Tests\Feature;
 
 use App\Modules\Course\Contracts\LessonDirectory;
+use App\Modules\Course\Contracts\WordDirectory;
 use App\Modules\Course\Enums\LessonKind;
 use App\Modules\Course\Models\Course;
 use App\Modules\Course\Models\Lesson;
+use App\Modules\Course\Models\Word;
 use App\Modules\Course\Tests\CourseTestCase;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\File;
@@ -348,6 +350,80 @@ final class ImportCourseCommandTest extends CourseTestCase
         $this->artisan('course:import')->assertSuccessful();
 
         self::assertTrue(Course::query()->where('slug', 'csharp')->exists());
+    }
+
+    public function testWordsAreSavedWithStableIds(): void
+    {
+        $this->copy = $this->copyFixture();
+        $this->artisan('course:import', ['path' => $this->copy])->assertSuccessful();
+        $lesson = Lesson::query()->where('slug', '01-check')->sole();
+        $wear = Word::query()->where('slug', 'wear')->sole();
+
+        self::assertSame(['wear' => 1, 'at-the-moment' => 2], Word::query()->orderBy('position')->pluck('position', 'slug')->all());
+        self::assertSame($lesson->id, $wear->lesson_id);
+        self::assertSame(['ru' => 'носить (одежду)', 'en' => 'to have clothes on'], $wear->card['translation']);
+        // Шаг слов не засчитывается в прогресс
+        self::assertSame(['form', 'quiz'], $lesson->countedSteps());
+
+        $directory = $this->app?->make(WordDirectory::class);
+        self::assertInstanceOf(WordDirectory::class, $directory);
+        self::assertEqualsCanonicalizing([$wear->id => 'wear', $wear->id + 1 => 'at-the-moment'], $directory->wordsOf('other-course'));
+        self::assertSame([], $directory->wordsOf('test-course'));
+
+        // Карточку убрали из урока: её строки нет, у оставшейся id прежний, словарь видит это сразу
+        $words = json_decode(File::get("{$this->copy}/other-course/01-only/01-check/words.json"), true);
+        self::assertIsArray($words);
+        File::put("{$this->copy}/other-course/01-only/01-check/words.json", json_encode([$words[0]], JSON_THROW_ON_ERROR));
+        $this->artisan('course:import', ['path' => $this->copy])->assertSuccessful();
+
+        self::assertSame([$wear->id => 'wear'], Word::query()->pluck('slug', 'id')->all());
+        self::assertSame([$wear->id => 'wear'], $directory->wordsOf('other-course'));
+    }
+
+    public function testWordKeepsIdWhenLessonOrModuleIsRenamed(): void
+    {
+        $this->copy = $this->copyFixture();
+        $this->artisan('course:import', ['path' => $this->copy])->assertSuccessful();
+        $ids = Word::query()->pluck('id', 'slug')->all();
+
+        // Папку урока переименовали, потом — папку модуля: на id карточки ссылается словарь учеников
+        File::moveDirectory("{$this->copy}/other-course/01-only/01-check", "{$this->copy}/other-course/01-only/01-final");
+        File::put("{$this->copy}/other-course/01-only/module.json", '{"title":{"ru":"М"},"description":{"ru":"М"},"lessons":["01-final"]}');
+        $this->artisan('course:import', ['path' => $this->copy])->assertSuccessful();
+        self::assertSame($ids, Word::query()->pluck('id', 'slug')->all());
+
+        File::moveDirectory("{$this->copy}/other-course/01-only", "{$this->copy}/other-course/01-moved");
+        File::put("{$this->copy}/other-course/course.json", '{"slug":"other-course","title":{"ru":"x"},"description":{"ru":"x"},"modules":["01-moved"]}');
+        $this->artisan('course:import', ['path' => $this->copy])->assertSuccessful();
+
+        self::assertSame($ids, Word::query()->pluck('id', 'slug')->all());
+        $lesson = Lesson::query()->where('slug', '01-final')->sole();
+        self::assertSame([$lesson->id], Word::query()->distinct()->pluck('lesson_id')->all());
+    }
+
+    /**
+     * @return iterable<string, array{string, string}>
+     */
+    public static function brokenWords(): iterable
+    {
+        yield 'нет id' => ['[{"word":"wear"}]', 'words.json: [0]: id'];
+        yield 'id не slug' => ['[{"id":"Wear It","word":"wear"}]', 'words.json: [0]: имена папок'];
+        yield 'нет слова' => ['[{"id":"wear"}]', 'words.json: [0]: word'];
+        yield 'пустой список' => ['[]', 'words.json: список карточек'];
+        yield 'id повторяется в курсе' => ['[{"id":"wear","word":"wear"},{"id":"wear","word":"wear out"}]', 'слово wear уже есть'];
+    }
+
+    #[DataProvider('brokenWords')]
+    public function testBrokenWordsAreRejected(string $words, string $error): void
+    {
+        $this->copy = $this->copyFixture();
+        File::put("{$this->copy}/other-course/01-only/01-check/words.json", $words);
+
+        $this->artisan('course:import', ['path' => $this->copy])
+            ->expectsOutputToContain($error)
+            ->assertFailed();
+
+        self::assertSame(0, Word::query()->count());
     }
 
     private function copyFixture(): string

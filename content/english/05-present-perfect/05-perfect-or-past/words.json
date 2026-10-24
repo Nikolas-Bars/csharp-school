@@ -1,0 +1,140 @@
+[
+  {
+    "id": "happen",
+    "word": "happen",
+    "ipa": "/ˈhæpən/",
+    "pos": "verb",
+    "translation": { "ru": "случаться, происходить" },
+    "examples": [
+      {
+        "en": "What happened? Why are you crying?",
+        "translation": { "ru": "Что случилось? Почему ты плачешь?" },
+        "why": { "ru": "What happened? — Past Simple: так в Америке обычно спрашивают о том, что только что случилось. happen — правильный глагол: happened." }
+      },
+      {
+        "en": "Something terrible has happened: the dog has eaten my homework!",
+        "translation": { "ru": "Случилось ужасное: собака съела мою домашку!" },
+        "why": { "ru": "has happened — Present Perfect: свежая новость, время не названо, важен результат сейчас." }
+      },
+      {
+        "en": "When did it happen? — Yesterday after school.",
+        "translation": { "ru": "Когда это случилось? — Вчера после школы." },
+        "why": { "ru": "When…? о прошлом — только Past Simple: did … happen." }
+      }
+    ]
+  },
+  {
+    "id": "come-out",
+    "word": "come out",
+    "ipa": "/ˌkʌm ˈaʊt/",
+    "pos": "phrase",
+    "translation": { "ru": "выйти (о фильме, игре, книге); выйти наружу" },
+    "examples": [
+      {
+        "en": "The new game has just come out!",
+        "translation": { "ru": "Новая игра только что вышла!" },
+        "why": { "ru": "has just come out — Present Perfect с just: свежая новость. Третья форма come — тоже come." }
+      },
+      {
+        "en": "When did the first Harry Potter book come out?",
+        "translation": { "ru": "Когда вышла первая книга о Гарри Поттере?" },
+        "why": { "ru": "When о прошлом — Past Simple: did + начальная форма come out." }
+      },
+      {
+        "en": "Come out! Let's play outside.",
+        "translation": { "ru": "Выходи! Пойдём играть на улицу." },
+        "why": { "ru": "Здесь come out — «выйти наружу» (из дома, из комнаты). Просьба — начальная форма." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с go out.** come out про фильм, игру или книгу — «выйти, появиться», а go out — «пойти погулять, сходить куда-то»." }
+  },
+  {
+    "id": "wallet",
+    "word": "wallet",
+    "ipa": "/ˈwɑlɪt/",
+    "pos": "noun",
+    "translation": { "ru": "кошелёк, бумажник" },
+    "examples": [
+      {
+        "en": "Dad has lost his wallet!",
+        "translation": { "ru": "Папа потерял бумажник!" },
+        "why": { "ru": "has lost — Present Perfect: время не названо, важно сейчас — бумажника нет." }
+      },
+      {
+        "en": "Sam found a wallet in the park last week.",
+        "translation": { "ru": "На прошлой неделе Сэм нашёл в парке кошелёк." },
+        "why": { "ru": "found — Past Simple: время названо и закончилось (last week)." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с purse.** wallet — кошелёк для денег и карт, а purse в Америке чаще значит женскую сумочку." }
+  },
+  {
+    "id": "arm",
+    "word": "arm",
+    "ipa": "/ɑrm/",
+    "pos": "noun",
+    "translation": { "ru": "рука (от плеча до кисти)" },
+    "examples": [
+      {
+        "en": "Max has broken his arm, so he can't play soccer.",
+        "translation": { "ru": "Макс сломал руку, поэтому не может играть в футбол." },
+        "why": { "ru": "has broken — Present Perfect: результат сейчас — рука в гипсе." }
+      },
+      {
+        "en": "Lily broke her arm last winter.",
+        "translation": { "ru": "Лили сломала руку прошлой зимой." },
+        "why": { "ru": "broke — Past Simple: время названо и закончилось (last winter)." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с hand.** arm — вся рука от плеча, hand — кисть, ладонь с пальцами: wash your hands." }
+  },
+  {
+    "id": "fall-off",
+    "word": "fall off",
+    "ipa": "/ˌfɑl ˈɑf/",
+    "pos": "phrase",
+    "translation": { "ru": "упасть (с чего-то)" },
+    "examples": [
+      {
+        "en": "Be careful, don't fall off the bike!",
+        "translation": { "ru": "Осторожно, не упади с велосипеда!" },
+        "why": { "ru": "fall off + то, с чего падают. Просьба — после don't начальная форма." }
+      },
+      {
+        "en": "Did Max fall off his skateboard? — Yes, but he's OK.",
+        "translation": { "ru": "Макс упал со скейта? — Да, но с ним всё в порядке." },
+        "why": { "ru": "Вопрос о конкретном случае — Past Simple: после did начальная форма. Без did — fell off: He fell off his skateboard." }
+      },
+      {
+        "en": "Leaves fall off the trees in October.",
+        "translation": { "ru": "В октябре с деревьев опадают листья." },
+        "why": { "ru": "Present Simple — так бывает каждый год. Здесь fall off — «опадать»." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с fall down.** fall off — упасть с чего-то (с велосипеда, с кровати), fall down — просто упасть на землю." }
+  },
+  {
+    "id": "superhero",
+    "word": "superhero",
+    "ipa": "/ˈsupɚˌhɪroʊ/",
+    "pos": "noun",
+    "translation": { "ru": "супергерой" },
+    "examples": [
+      {
+        "en": "Have you ever watched a superhero movie?",
+        "translation": { "ru": "Вы когда-нибудь смотрели фильм про супергероев?" },
+        "why": { "ru": "Опыт — Present Perfect с ever. superhero movie — «фильм про супергероев»: первое слово говорит, о чём фильм." }
+      },
+      {
+        "en": "My little brother wants to be a superhero.",
+        "translation": { "ru": "Мой младший брат хочет стать супергероем." },
+        "why": { "ru": "wants — Present Simple: желание, которое есть сейчас. С he — окончание -s." }
+      },
+      {
+        "en": "We dressed up as superheroes for the party last year.",
+        "translation": { "ru": "В прошлом году мы нарядились супергероями на праздник." },
+        "why": { "ru": "dressed up — Past Simple: время названо (last year). superheroes — много супергероев, окончание -es." }
+      }
+    ]
+  }
+]

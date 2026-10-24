@@ -19,4 +19,22 @@ final class LessonContentDTO extends Data
         public array $steps,
         public LessonKind $kind = LessonKind::Lesson,
     ) {}
+
+    /**
+     * Карточки слов урока (шаги words) по порядку.
+     *
+     * @return list<array<array-key, mixed>>
+     */
+    public function cards(): array
+    {
+        $cards = [];
+
+        foreach ($this->steps as $step) {
+            if ($step['type'] === 'words' && \is_array($step['words'])) {
+                array_push($cards, ...array_values(array_filter($step['words'], \is_array(...))));
+            }
+        }
+
+        return $cards;
+    }
 }

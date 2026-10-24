@@ -57,6 +57,7 @@ final readonly class ReadCourseContentTask
         if ($this->string($course, 'slug', $file) !== $directory) {
             throw $this->invalid($file, "slug — как имя папки курса: {$directory}");
         }
+        $this->uniqueWords($modules, $directory);
 
         return new CourseContentDTO(
             $directory,
@@ -96,6 +97,7 @@ final readonly class ReadCourseContentTask
             $steps[] = match ($this->string($step, 'type', $where)) {
                 'theory'   => ['type' => 'theory', 'text' => $this->markdown($root, $directory, $this->texts($step, 'text', $where), $where)],
                 'task'     => $this->task($root, "{$directory}/tasks/" . $this->slug($this->string($step, 'task', $where), $where)),
+                'words'    => ['type' => 'words', 'words' => $this->words($root, $directory, $step, $where)],
                 'practice' => [
                     'type'      => 'practice',
                     'id'        => $this->slug($this->string($step, 'id', $where), $where),
@@ -105,7 +107,7 @@ final readonly class ReadCourseContentTask
                 'quiz' => \is_array($step) && \array_key_exists('file', $step)
                     ? ['type' => 'quiz', 'exercises' => $this->exercises($root, $directory, $step, $where)]
                     : ['type' => 'quiz', 'questions' => $this->list($step, 'questions', $where)],
-                default => throw $this->invalid($where, 'type: theory, task, practice или quiz'),
+                default => throw $this->invalid($where, 'type: theory, task, words, practice или quiz'),
             };
         }
 
@@ -167,6 +169,64 @@ final readonly class ReadCourseContentTask
     }
 
     /**
+     * Карточки слов урока (шаг words) — из файла рядом с уроком: список, у каждой карточки id (slug) и
+     * слово. Остальное (транскрипция, примеры, перевод) проверяют тесты контента фронта.
+     *
+     * @return list<array<array-key, mixed>>
+     */
+    private function words(string $root, string $directory, mixed $step, string $where): array
+    {
+        $file = "{$directory}/" . $this->fileName($step, $where);
+        $cards = $this->json($root, $file);
+
+        if ($cards === [] || !array_is_list($cards)) {
+            throw $this->invalid($file, 'список карточек слов, хотя бы одна');
+        }
+
+        return array_map(function (mixed $card, int $index) use ($file): array {
+            $where = "{$file}: [{$index}]";
+            $this->slug($this->string($card, 'id', $where), $where);
+            $this->string($card, 'word', $where);
+
+            /** @var array<array-key, mixed> $card строка id и слово проверены выше */
+            return $card;
+        }, $cards, array_keys($cards));
+    }
+
+    /**
+     * id карточки — один на весь курс: по нему словарь ученика помнит слово.
+     *
+     * @param list<ModuleContentDTO> $modules
+     */
+    private function uniqueWords(array $modules, string $course): void
+    {
+        $seen = [];
+
+        foreach ($modules as $module) {
+            foreach ($module->lessons as $lesson) {
+                foreach ($lesson->cards() as $card) {
+                    $id = \is_string($card['id'] ?? null) ? $card['id'] : '';
+                    if (isset($seen[$id])) {
+                        throw $this->invalid("{$course}/{$module->slug}/{$lesson->slug}/lesson.json", "слово {$id} уже есть в {$seen[$id]} — id карточки один на курс");
+                    }
+                    $seen[$id] = "{$module->slug}/{$lesson->slug}";
+                }
+            }
+        }
+    }
+
+    /** Имя JSON-файла шага: рядом с уроком или в его подпапке, без путей наружу */
+    private function fileName(mixed $step, string $where): string
+    {
+        $name = $this->string($step, 'file', $where);
+        if (preg_match('#^[a-z0-9][a-z0-9-]*(/[a-z0-9][a-z0-9-]*)?\.json$#', $name) !== 1) {
+            throw $this->invalid($where, "file — JSON рядом с уроком или в его подпапке: practice/form.json, не {$name}");
+        }
+
+        return $name;
+    }
+
+    /**
      * Упражнения английского (практика или проверка знаний) — из файла рядом с уроком: список, у
      * каждого известный «kind». Остальные поля упражнения проверяют тесты контента фронта — той же
      * функцией, что проверяет ответ ученика (frontend/src/utils/answers.ts).
@@ -175,11 +235,7 @@ final readonly class ReadCourseContentTask
      */
     private function exercises(string $root, string $directory, mixed $step, string $where): array
     {
-        $name = $this->string($step, 'file', $where);
-        if (preg_match('#^[a-z0-9][a-z0-9-]*(/[a-z0-9][a-z0-9-]*)?\.json$#', $name) !== 1) {
-            throw $this->invalid($where, "file — JSON рядом с уроком или в его подпапке: practice/form.json, не {$name}");
-        }
-        $file = "{$directory}/{$name}";
+        $file = "{$directory}/" . $this->fileName($step, $where);
         $exercises = $this->json($root, $file);
 
         if ($exercises === [] || !array_is_list($exercises)) {

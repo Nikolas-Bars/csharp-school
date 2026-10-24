@@ -1,0 +1,32 @@
+[
+  {
+    "id": "wear",
+    "word": "wear",
+    "ipa": "/wɛr/",
+    "pos": "verb",
+    "translation": { "ru": "носить (одежду)", "en": "to have clothes on" },
+    "forms": ["wear", "wore", "worn"],
+    "examples": [
+      {
+        "en": "She is wearing a red jacket.",
+        "translation": { "ru": "На ней красная куртка." },
+        "why": { "ru": "Сейчас — Present Continuous." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с put on.**" }
+  },
+  {
+    "id": "at-the-moment",
+    "word": "at the moment",
+    "ipa": "/æt ðə ˈmoʊmənt/",
+    "pos": "phrase",
+    "translation": { "ru": "сейчас" },
+    "examples": [
+      {
+        "en": "I am busy at the moment.",
+        "translation": { "ru": "Я сейчас занят." },
+        "why": { "ru": "Маркер Continuous." }
+      }
+    ]
+  }
+]

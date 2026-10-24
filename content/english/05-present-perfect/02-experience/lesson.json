@@ -2,6 +2,7 @@
   "title": { "ru": "Опыт: ever, never, been или gone" },
   "steps": [
     { "type": "theory", "text": { "ru": "01-experience.ru.md" } },
+    { "type": "words", "file": "words.json" },
     { "type": "theory", "text": { "ru": "02-ever-never.ru.md" } },
     { "type": "practice", "id": "ever-never", "file": "practice/ever-never.json" },
     { "type": "theory", "text": { "ru": "03-been-gone.ru.md" } },

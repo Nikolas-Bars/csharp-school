@@ -76,6 +76,27 @@ final class ShowLessonControllerTest extends CourseTestCase
         self::assertArrayNotHasKey('questions', (array) $response->json('data.steps.1'));
     }
 
+    public function testReturnsWordCards(): void
+    {
+        $this->importFixture();
+
+        $this->getJson('/api/courses/other-course/modules/01-only/lessons/01-check')
+            ->assertOk()
+            ->assertJsonPath('data.steps.2.type', 'words')
+            ->assertJsonPath('data.steps.2.words.0', [
+                'id'          => 'wear',
+                'word'        => 'wear',
+                'ipa'         => '/wɛr/',
+                'pos'         => 'verb',
+                'translation' => 'носить (одежду)',
+                'forms'       => ['wear', 'wore', 'worn'],
+                'examples'    => [['en' => 'She is wearing a red jacket.', 'translation' => 'На ней красная куртка.', 'why' => 'Сейчас — Present Continuous.']],
+                'compare'     => '**Не путай с put on.**',
+            ])
+            ->assertJsonPath('data.steps.2.words.1.forms', null)
+            ->assertJsonPath('data.steps.2.words.1.compare', null);
+    }
+
     public function testExercisesInEnglishWithRussianFallback(): void
     {
         $this->importFixture();

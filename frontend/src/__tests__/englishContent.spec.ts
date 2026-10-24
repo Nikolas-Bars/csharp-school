@@ -29,7 +29,20 @@ const json = (file: string) => JSON.parse(read(file)) as unknown
 
 const KINDS = ['choice', 'gap', 'order', 'translate', 'fix'] as const
 type Kind = (typeof KINDS)[number]
-const STEP_TYPES = ['theory', 'practice', 'quiz']
+const STEP_TYPES = ['theory', 'words', 'practice', 'quiz']
+const PARTS_OF_SPEECH = [
+  'noun',
+  'verb',
+  'adjective',
+  'adverb',
+  'pronoun',
+  'preposition',
+  'conjunction',
+  'determiner',
+  'auxiliary',
+  'phrase',
+]
+const IPA = /^\/[^/\s][^/]*\/$/
 const SLUG = /^[a-z0-9][a-z0-9-]{0,63}$/
 const FILE = /^[a-z0-9][a-z0-9-]*(\/[a-z0-9][a-z0-9-]*)?\.json$/
 const CYRILLIC = /[а-яё]/i
@@ -321,6 +334,115 @@ function checkTheory(problems: Problems, file: string) {
   }
 }
 
+/**
+ * Слово карточки (или его форма) есть в тексте: проверка мягкая — wear найдёт wears и wearing, cry —
+ * cries, call back — called me back (между частями фразы до двух слов). Её дело — поймать карточку не
+ * из этого урока. Неправильную форму фразы (fell off) мягкая проверка не узнаёт.
+ */
+function mentions(text: string, word: string, forms: string[] = []): boolean {
+  const haystack = text.toLowerCase()
+  const escape = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const stem = (part: string) => escape(part.length >= 3 ? part.replace(/[ey]$/, '') : part)
+  return [word, ...forms].some((form) => {
+    const parts = clean(form)
+      .split(' ')
+      .map((part) => `${stem(part)}\\p{L}*`)
+    const pattern = parts.join("(?:\\s+[\\p{L}']+){0,2}?\\s+")
+    return new RegExp(`(?<![\\p{L}])${pattern}`, 'u').test(haystack)
+  })
+}
+
+/** Карточки слов урока: формат и связь с уроком. Возвращает id и слова — для проверки повторов */
+function checkCards(problems: Problems, file: string, lessonText: string) {
+  if (!problems.check(existsSync(path(file)), `${file}: файла нет`)) {
+    return []
+  }
+  const list = json(file)
+  if (!problems.check(Array.isArray(list), `${file}: список карточек`)) {
+    return []
+  }
+  const cards = list as unknown[]
+  problems.check(cards.length >= 3 && cards.length <= 8, `${file}: 3–8 карточек`)
+  return cards.flatMap((raw, index) => {
+    const where = `${file}[${index}]`
+    const fields = ['id', 'word', 'ipa', 'pos', 'translation', 'examples']
+    if (!problems.fields(raw, fields, ['forms', 'compare'], where)) {
+      return []
+    }
+    const card = raw as Json
+    const word = String(card.word)
+    problems.check(SLUG.test(String(card.id)), `${where}.id: slug — at-the-moment`)
+    problems.english(card.word, `${where}.word`)
+    problems.check(
+      typeof card.ipa === 'string' && IPA.test(card.ipa) && !CYRILLIC.test(card.ipa),
+      `${where}.ipa: транскрипция в косых чертах — /ˈjuʒuəli/`,
+    )
+    problems.check(
+      PARTS_OF_SPEECH.includes(String(card.pos)),
+      `${where}.pos: ${PARTS_OF_SPEECH.join(', ')}`,
+    )
+    problems.texts(card.translation, `${where}.translation`)
+
+    let forms: string[] = []
+    if ('forms' in card) {
+      const ok =
+        Array.isArray(card.forms) &&
+        card.forms.length === 3 &&
+        card.forms.every((form) => typeof form === 'string' && form.trim() !== '')
+      if (problems.check(ok, `${where}.forms: три формы глагола — ["go", "went", "gone"]`)) {
+        forms = card.forms as string[]
+        forms.forEach((form, at) => problems.english(form, `${where}.forms[${at}]`))
+        problems.check(card.pos === 'verb', `${where}.forms: формы — только у глагола`)
+        problems.check(clean(forms[0] ?? '') === clean(word), `${where}.forms: первая — само слово`)
+      }
+    }
+    if ('compare' in card) {
+      problems.texts(card.compare, `${where}.compare`)
+    }
+
+    const examples = Array.isArray(card.examples) ? (card.examples as unknown[]) : []
+    problems.check(examples.length >= 2 && examples.length <= 3, `${where}: 2–3 примера`)
+    examples.forEach((example, at) => {
+      const place = `${where}.examples[${at}]`
+      if (!problems.fields(example, ['en', 'translation', 'why'], [], place)) {
+        return
+      }
+      const item = example as Json
+      problems.english(item.en, `${place}.en`)
+      problems.texts(item.translation, `${place}.translation`)
+      problems.texts(item.why, `${place}.why`)
+      problems.check(
+        mentions(String(item.en), word, forms),
+        `${place}: в примере нет слова «${word}»`,
+      )
+    })
+    problems.check(
+      mentions(lessonText, word, forms),
+      `${where}: «${word}» нет ни в теории, ни в упражнениях урока — карточка не из этого урока`,
+    )
+    return [{ id: String(card.id), word: clean(word), where }]
+  })
+}
+
+/** Весь текст урока для поиска слов карточек: теория и файлы упражнений */
+function lessonText(lessonDir: string, steps: Json[]): string {
+  return steps
+    .flatMap((step) => {
+      if (step.type === 'theory' && isObject(step.text)) {
+        return Object.values(step.text).map((name) => `${lessonDir}/${String(name)}`)
+      }
+      return step.type === 'practice' || step.type === 'quiz'
+        ? [`${lessonDir}/${String(step.file)}`]
+        : []
+    })
+    .filter((file) => existsSync(path(file)))
+    .map(read)
+    .join('\n')
+}
+
+/** Карточки, найденные в уроках: id и слова не повторяются во всём курсе */
+const allCards: { id: string; word: string; where: string }[] = []
+
 function checkLesson(lessonDir: string, isLast: boolean): string[] {
   const problems = new Problems()
   const file = `${lessonDir}/lesson.json`
@@ -339,6 +461,22 @@ function checkLesson(lessonDir: string, isLast: boolean): string[] {
   steps.forEach((step, index) => {
     const where = `${file}: steps[${index}]`
     if (!problems.check(STEP_TYPES.includes(String(step.type)), `${where}: type — ${STEP_TYPES}`)) {
+      return
+    }
+    if (step.type === 'words') {
+      problems.fields(step, ['type', 'file'], [], where)
+      problems.check(
+        index === 1 && steps[0]?.type === 'theory',
+        `${where}: новые слова — сразу после первого экрана теории`,
+      )
+      if (problems.check(FILE.test(String(step.file)), `${where}.file: JSON рядом с уроком`)) {
+        const cards = checkCards(
+          problems,
+          `${lessonDir}/${String(step.file)}`,
+          lessonText(lessonDir, steps),
+        )
+        allCards.push(...cards)
+      }
       return
     }
     if (step.type === 'theory') {
@@ -373,6 +511,13 @@ function checkLesson(lessonDir: string, isLast: boolean): string[] {
   problems.check(
     new Set(practiceIds).size === practiceIds.length,
     `${file}: id практик повторяются`,
+  )
+  const wordSteps = steps.filter((step) => step.type === 'words').length
+  problems.check(
+    isLast ? wordSteps === 0 : wordSteps === 1,
+    isLast
+      ? `${file}: в контрольной нет новых слов`
+      : `${file}: в уроке один шаг новых слов (words)`,
   )
   return problems.list
 }
@@ -424,5 +569,20 @@ describe('курс английского (content/english)', () => {
         expect(checkLesson(`${moduleDir}/${lesson}`, last)).toEqual([])
       },
     )
+  })
+
+  // После уроков: allCards собран их тестами (Vitest идёт по порядку внутри файла)
+  it('карточки слов: id и слова не повторяются во всём курсе', () => {
+    const problems = new Problems()
+    const seen = new Map<string, string>()
+    for (const card of allCards) {
+      for (const key of [`id ${card.id}`, `слово «${card.word}»`]) {
+        const first = seen.get(key)
+        problems.check(first === undefined, `${card.where}: ${key} уже есть — ${first}`)
+        seen.set(key, first ?? card.where)
+      }
+    }
+
+    expect(problems.list).toEqual([])
   })
 })

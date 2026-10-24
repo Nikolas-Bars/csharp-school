@@ -2,6 +2,7 @@
   "title": { "ru": "Past Continuous: что происходило в тот момент" },
   "steps": [
     { "type": "theory", "text": { "ru": "01-when.ru.md" } },
+    { "type": "words", "file": "words.json" },
     { "type": "theory", "text": { "ru": "02-form.ru.md" } },
     { "type": "practice", "id": "form", "file": "practice/form.json" },
     { "type": "theory", "text": { "ru": "03-questions.ru.md" } },

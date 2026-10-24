@@ -2,6 +2,7 @@
   "title": { "ru": "Временное, отрицания и вопросы" },
   "steps": [
     { "type": "theory", "text": { "ru": "01-temporary.ru.md" } },
+    { "type": "words", "file": "words.json" },
     { "type": "practice", "id": "temporary", "file": "practice/temporary.json" },
     { "type": "theory", "text": { "ru": "02-negative.ru.md" } },
     { "type": "theory", "text": { "ru": "03-questions.ru.md" } },

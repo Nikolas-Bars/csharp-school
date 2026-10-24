@@ -1,0 +1,167 @@
+[
+  {
+    "id": "lose",
+    "word": "lose",
+    "ipa": "/luz/",
+    "pos": "verb",
+    "translation": { "ru": "терять; проигрывать (игру, матч)" },
+    "forms": ["lose", "lost", "lost"],
+    "examples": [
+      {
+        "en": "Max has lost his keys again.",
+        "translation": { "ru": "Макс опять потерял ключи." },
+        "why": { "ru": "has lost — Present Perfect: важен результат сейчас — ключей нет, домой не попасть. Когда потерял — не сказано." }
+      },
+      {
+        "en": "Our team lost the game yesterday.",
+        "translation": { "ru": "Наша команда вчера проиграла матч." },
+        "why": { "ru": "lost — Past Simple: время названо (yesterday). Здесь lose — «проиграть»." }
+      },
+      {
+        "en": "Don't lose your phone at the park!",
+        "translation": { "ru": "Не потеряй телефон в парке!" },
+        "why": { "ru": "Просьба-совет: после don't — начальная форма lose." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с loose** /lus/ — «свободный, болтающийся»: a loose tooth — шатающийся зуб. «Терять» — lose: одна o и звук /z/." }
+  },
+  {
+    "id": "find",
+    "word": "find",
+    "ipa": "/faɪnd/",
+    "pos": "verb",
+    "translation": { "ru": "находить, найти" },
+    "forms": ["find", "found", "found"],
+    "examples": [
+      {
+        "en": "Has Max found his phone? — Yes, he has.",
+        "translation": { "ru": "Макс нашёл свой телефон? — Да." },
+        "why": { "ru": "Has … found — вопрос в Present Perfect: важно, есть ли телефон сейчас. found — третья форма find." }
+      },
+      {
+        "en": "I can't find my headphones.",
+        "translation": { "ru": "Не могу найти наушники." },
+        "why": { "ru": "После can't — начальная форма: find." }
+      },
+      {
+        "en": "Emma found a cool stone in the park yesterday.",
+        "translation": { "ru": "Вчера Эмма нашла в парке классный камень." },
+        "why": { "ru": "found — Past Simple: время названо (yesterday). Вторая и третья формы find одинаковые — found." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с find out** — «узнать» (новость, правду): I found out the answer. find — найти вещь, которую искали." }
+  },
+  {
+    "id": "forget",
+    "word": "forget",
+    "ipa": "/fɚˈɡɛt/",
+    "pos": "verb",
+    "translation": { "ru": "забывать, забыть" },
+    "forms": ["forget", "forgot", "forgotten"],
+    "examples": [
+      {
+        "en": "Oh no, Sam has forgotten his lunch!",
+        "translation": { "ru": "Ой, Сэм забыл свой обед!" },
+        "why": { "ru": "has forgotten — Present Perfect: результат сейчас — обеда с собой нет. forgotten — третья форма forget." }
+      },
+      {
+        "en": "Don't forget your homework!",
+        "translation": { "ru": "Не забудь домашку!" },
+        "why": { "ru": "Просьба: после don't — начальная форма forget." }
+      },
+      {
+        "en": "Lily forgot my birthday last year.",
+        "translation": { "ru": "В прошлом году Лили забыла про мой день рождения." },
+        "why": { "ru": "forgot — Past Simple: время названо и закончилось (last year)." }
+      }
+    ]
+  },
+  {
+    "id": "break",
+    "word": "break",
+    "ipa": "/breɪk/",
+    "pos": "verb",
+    "translation": { "ru": "ломать, разбить; сломаться" },
+    "forms": ["break", "broke", "broken"],
+    "examples": [
+      {
+        "en": "The kids have broken the window with a ball.",
+        "translation": { "ru": "Дети разбили мячом окно." },
+        "why": { "ru": "have broken — Present Perfect: результат сейчас — окно разбито. kids — несколько, поэтому have." }
+      },
+      {
+        "en": "My headphones broke last week.",
+        "translation": { "ru": "Мои наушники сломались на прошлой неделе." },
+        "why": { "ru": "broke — Past Simple: время названо (last week). Здесь break — «сломаться», само по себе." }
+      },
+      {
+        "en": "Be careful, don't break the cup!",
+        "translation": { "ru": "Осторожно, не разбей чашку!" },
+        "why": { "ru": "Просьба: после don't — начальная форма break." }
+      }
+    ]
+  },
+  {
+    "id": "key",
+    "word": "key",
+    "ipa": "/ki/",
+    "pos": "noun",
+    "translation": { "ru": "ключ" },
+    "examples": [
+      {
+        "en": "Where are my keys? — They're on the table.",
+        "translation": { "ru": "Где мои ключи? — На столе." },
+        "why": { "ru": "Present Simple: где ключи сейчас. keys — несколько ключей, поэтому are. They're = they are." }
+      },
+      {
+        "en": "Dad has found the car key under the sofa.",
+        "translation": { "ru": "Папа нашёл ключ от машины под диваном." },
+        "why": { "ru": "has found — Present Perfect: ключ снова есть. car key — «ключ от машины»: первое слово говорит, от чего ключ." }
+      }
+    ]
+  },
+  {
+    "id": "fix",
+    "word": "fix",
+    "ipa": "/fɪks/",
+    "pos": "verb",
+    "translation": { "ru": "чинить, починить; исправлять (ошибку)" },
+    "examples": [
+      {
+        "en": "Dad has fixed the TV, so we can watch the game!",
+        "translation": { "ru": "Папа починил телевизор, так что можем смотреть матч!" },
+        "why": { "ru": "has fixed — Present Perfect: результат сейчас — телевизор работает. fix — правильный глагол: fixed." }
+      },
+      {
+        "en": "Can you fix this mistake in your essay?",
+        "translation": { "ru": "Можешь исправить эту ошибку в сочинении?" },
+        "why": { "ru": "Здесь fix — «исправить». После can — начальная форма." }
+      },
+      {
+        "en": "Sam fixed his skateboard last weekend.",
+        "translation": { "ru": "Сэм починил свой скейт в прошлые выходные." },
+        "why": { "ru": "fixed — Past Simple: время названо и закончилось (last weekend)." }
+      }
+    ]
+  },
+  {
+    "id": "call-back",
+    "word": "call back",
+    "ipa": "/ˌkɑl ˈbæk/",
+    "pos": "phrase",
+    "translation": { "ru": "перезвонить" },
+    "examples": [
+      {
+        "en": "I'm in class now. I'll call back in an hour.",
+        "translation": { "ru": "Я сейчас на уроке. Перезвоню через час." },
+        "why": { "ru": "I'll call back — will: решение и обещание прямо сейчас. call back — позвонить в ответ." }
+      },
+      {
+        "en": "Mom is busy. Please call back after six.",
+        "translation": { "ru": "Мама занята. Перезвони, пожалуйста, после шести." },
+        "why": { "ru": "Просьба — начальная форма: call back." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с call.** call — «позвонить», call back — «перезвонить». Кому — ставят в середину: call me back, She hasn't called me back." }
+  }
+]

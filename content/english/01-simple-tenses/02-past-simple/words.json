@@ -1,0 +1,176 @@
+[
+  {
+    "id": "yesterday",
+    "word": "yesterday",
+    "ipa": "/ˈjɛstɚdeɪ/",
+    "pos": "adverb",
+    "translation": { "ru": "вчера" },
+    "examples": [
+      {
+        "en": "We played soccer yesterday.",
+        "translation": { "ru": "Вчера мы играли в футбол." },
+        "why": { "ru": "yesterday — вчера, это уже прошло и закончилось. Поэтому Past Simple: played." }
+      },
+      {
+        "en": "Yesterday my sister made pancakes.",
+        "translation": { "ru": "Вчера сестра испекла блинчики." },
+        "why": { "ru": "yesterday можно ставить в начало или в конец. make — неправильный глагол: made." }
+      },
+      {
+        "en": "Did they win yesterday?",
+        "translation": { "ru": "Они вчера выиграли?" },
+        "why": { "ru": "Вопрос в Past Simple — с did, а глагол win остаётся в начальной форме." }
+      }
+    ]
+  },
+  {
+    "id": "ago",
+    "word": "ago",
+    "ipa": "/əˈɡoʊ/",
+    "pos": "adverb",
+    "translation": { "ru": "назад (тому назад)" },
+    "examples": [
+      {
+        "en": "We moved here two years ago.",
+        "translation": { "ru": "Мы переехали сюда два года назад." },
+        "why": { "ru": "ago стоит после срока: two years ago. Это уже в прошлом — Past Simple." }
+      },
+      {
+        "en": "My friend called me five minutes ago.",
+        "translation": { "ru": "Друг позвонил мне пять минут назад." },
+        "why": { "ru": "five minutes ago — прошло пять минут. Past Simple: called." }
+      },
+      {
+        "en": "The movie started an hour ago.",
+        "translation": { "ru": "Фильм начался час назад." },
+        "why": { "ru": "an hour ago — «час назад». Past Simple: started." }
+      }
+    ]
+  },
+  {
+    "id": "last",
+    "word": "last",
+    "ipa": "/læst/",
+    "pos": "determiner",
+    "translation": { "ru": "прошлый; последний" },
+    "examples": [
+      {
+        "en": "We went to the beach last summer.",
+        "translation": { "ru": "Прошлым летом мы ездили на море." },
+        "why": { "ru": "last summer — «прошлым летом», без the и без in. Past Simple: go → went." }
+      },
+      {
+        "en": "We watched this movie last week.",
+        "translation": { "ru": "Мы смотрели этот фильм на прошлой неделе." },
+        "why": { "ru": "last week — «на прошлой неделе». Past Simple: watched." }
+      },
+      {
+        "en": "This is the last question.",
+        "translation": { "ru": "Это последний вопрос." },
+        "why": { "ru": "Здесь last — «последний»: после него больше ничего нет." }
+      }
+    ]
+  },
+  {
+    "id": "buy",
+    "word": "buy",
+    "ipa": "/baɪ/",
+    "pos": "verb",
+    "translation": { "ru": "покупать, купить" },
+    "forms": ["buy", "bought", "bought"],
+    "examples": [
+      {
+        "en": "Mom bought a new phone yesterday.",
+        "translation": { "ru": "Мама вчера купила новый телефон." },
+        "why": { "ru": "yesterday — Past Simple. buy — неправильный глагол, его прошедшая форма — bought." }
+      },
+      {
+        "en": "I always buy ice cream after school.",
+        "translation": { "ru": "После школы я всегда покупаю мороженое." },
+        "why": { "ru": "Present Simple: так бывает каждый раз." }
+      },
+      {
+        "en": "Did Dad buy the tickets?",
+        "translation": { "ru": "Папа купил билеты?" },
+        "why": { "ru": "В вопросе с did глагол в начальной форме: buy, а не bought." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с bring.** buy — bought — «купить», bring — brought — «принести». Формы похожи — смотри на начало: bou- и brou-." }
+  },
+  {
+    "id": "write",
+    "word": "write",
+    "ipa": "/raɪt/",
+    "pos": "verb",
+    "translation": { "ru": "писать, написать" },
+    "forms": ["write", "wrote", "written"],
+    "examples": [
+      {
+        "en": "He wrote a song for his band last year.",
+        "translation": { "ru": "В прошлом году он написал песню для своей группы." },
+        "why": { "ru": "last year — Past Simple. write — неправильный глагол: wrote." }
+      },
+      {
+        "en": "Write your name here, please.",
+        "translation": { "ru": "Напиши здесь своё имя, пожалуйста." },
+        "why": { "ru": "Это просьба: глагол в начальной форме, без you." }
+      },
+      {
+        "en": "My friend writes stories about dragons.",
+        "translation": { "ru": "Друг пишет истории про драконов." },
+        "why": { "ru": "Present Simple: это его увлечение, так бывает вообще. friend = he, поэтому writes." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с right.** write («писать») и right («правильный, правый») звучат одинаково — /raɪt/, а пишутся по-разному." }
+  },
+  {
+    "id": "bring",
+    "word": "bring",
+    "ipa": "/brɪŋ/",
+    "pos": "verb",
+    "translation": { "ru": "приносить, привозить (с собой)" },
+    "forms": ["bring", "brought", "brought"],
+    "examples": [
+      {
+        "en": "Bring your ball! Let's play in the park.",
+        "translation": { "ru": "Возьми с собой мяч! Давай поиграем в парке." },
+        "why": { "ru": "Просьба — начальная форма bring. bring — «принести с собой туда, где будет тот, кто говорит»." }
+      },
+      {
+        "en": "She brought cookies to school yesterday.",
+        "translation": { "ru": "Вчера она принесла в школу печенье." },
+        "why": { "ru": "yesterday — Past Simple. bring — неправильный глагол: brought." }
+      },
+      {
+        "en": "I always bring my lunch to school.",
+        "translation": { "ru": "Я всегда беру обед с собой в школу." },
+        "why": { "ru": "Present Simple: так бывает каждый день. bring — «приносить с собой»." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с take.** bring — «принести сюда», take — «взять, унести отсюда»." }
+  },
+  {
+    "id": "move",
+    "word": "move",
+    "ipa": "/muv/",
+    "pos": "verb",
+    "translation": { "ru": "переезжать; двигать(ся)" },
+    "examples": [
+      {
+        "en": "My best friend moved to another city last year.",
+        "translation": { "ru": "В прошлом году мой лучший друг переехал в другой город." },
+        "why": { "ru": "last year — Past Simple. move кончается на -e, поэтому добавляем только -d: moved." }
+      },
+      {
+        "en": "Don't move! There's a bee on your arm.",
+        "translation": { "ru": "Не двигайся! У тебя на руке пчела." },
+        "why": { "ru": "Здесь move — «двигаться». Это просьба, поэтому Don't + начальная форма." }
+      },
+      {
+        "en": "Help me move the sofa, please.",
+        "translation": { "ru": "Помоги мне подвинуть диван, пожалуйста." },
+        "why": { "ru": "Здесь move — «передвинуть». После help me глагол в начальной форме." }
+      }
+    ]
+  }
+]

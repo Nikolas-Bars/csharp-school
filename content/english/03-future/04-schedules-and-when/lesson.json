@@ -2,6 +2,7 @@
   "title": { "ru": "Расписание и будущее после when и if" },
   "steps": [
     { "type": "theory", "text": { "ru": "01-schedules.ru.md" } },
+    { "type": "words", "file": "words.json" },
     { "type": "practice", "id": "schedules", "file": "practice/schedules.json" },
     { "type": "theory", "text": { "ru": "02-when-if.ru.md" } },
     { "type": "theory", "text": { "ru": "03-negative.ru.md" } },

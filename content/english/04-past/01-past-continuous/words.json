@@ -1,0 +1,117 @@
+[
+  {
+    "id": "at-that-moment",
+    "word": "at that moment",
+    "ipa": "/æt ðæt ˈmoʊmənt/",
+    "pos": "phrase",
+    "translation": { "ru": "в тот момент" },
+    "examples": [
+      {
+        "en": "At that moment we were eating pizza.",
+        "translation": { "ru": "В тот момент мы ели пиццу." },
+        "why": { "ru": "at that moment — точка в прошлом. Мы уже ели, процесс шёл — Past Continuous: were eating." }
+      },
+      {
+        "en": "Was it raining at that moment? — No, it wasn't.",
+        "translation": { "ru": "В тот момент шёл дождь? — Нет." },
+        "why": { "ru": "Вопрос в Past Continuous: was выходит вперёд. Краткий ответ — без -ing: No, it wasn't." }
+      },
+      {
+        "en": "My brother wasn't listening at that moment.",
+        "translation": { "ru": "Брат в тот момент не слушал." },
+        "why": { "ru": "wasn't listening — Past Continuous с not: в тот момент он не слушал, отвлёкся." }
+      }
+    ]
+  },
+  {
+    "id": "at-this-time-yesterday",
+    "word": "at this time yesterday",
+    "ipa": "/æt ðɪs ˈtaɪm ˈjɛstɚdeɪ/",
+    "pos": "phrase",
+    "translation": { "ru": "вчера в это же время" },
+    "examples": [
+      {
+        "en": "At this time yesterday we were flying to Rome.",
+        "translation": { "ru": "Вчера в это же время мы летели в Рим." },
+        "why": { "ru": "Как стоп-кадр: вчера в этот час полёт шёл — Past Continuous." }
+      },
+      {
+        "en": "What was Emma doing at this time yesterday? — She was swimming.",
+        "translation": { "ru": "Что делала Эмма вчера в это же время? — Плавала." },
+        "why": { "ru": "Вопрос в Past Continuous: was выходит вперёд. В ответе — что шло в тот момент." }
+      },
+      {
+        "en": "At this time yesterday it was snowing.",
+        "translation": { "ru": "Вчера в это же время шёл снег." },
+        "why": { "ru": "it was snowing — о погоде: снег шёл в тот момент." }
+      }
+    ]
+  },
+  {
+    "id": "all-evening",
+    "word": "all evening",
+    "ipa": "/ɑl ˈivnɪŋ/",
+    "pos": "phrase",
+    "translation": { "ru": "весь вечер" },
+    "examples": [
+      {
+        "en": "My sister was talking on the phone all evening.",
+        "translation": { "ru": "Сестра весь вечер разговаривала по телефону." },
+        "why": { "ru": "all evening — процесс шёл долго. Past Continuous подчёркивает: шло без остановки." }
+      },
+      {
+        "en": "We played board games all evening.",
+        "translation": { "ru": "Весь вечер мы играли в настольные игры." },
+        "why": { "ru": "С all evening подходит и Past Simple — это просто факт: так прошёл вечер." }
+      }
+    ]
+  },
+  {
+    "id": "midnight",
+    "word": "midnight",
+    "ipa": "/ˈmɪdnaɪt/",
+    "pos": "noun",
+    "translation": { "ru": "полночь" },
+    "examples": [
+      {
+        "en": "What was Tom doing at midnight? — He was playing video games.",
+        "translation": { "ru": "Что делал Том в полночь? — Играл в видеоигры." },
+        "why": { "ru": "at midnight — момент в прошлом. Что тогда шло — Past Continuous." }
+      },
+      {
+        "en": "We stayed up until midnight.",
+        "translation": { "ru": "Мы не ложились спать до полуночи." },
+        "why": { "ru": "stayed up — Past Simple от stay up, «не ложиться спать». until midnight — «до полуночи»." }
+      },
+      {
+        "en": "The party ends at midnight.",
+        "translation": { "ru": "Вечеринка заканчивается в полночь." },
+        "why": { "ru": "Время по плану — Present Simple, как в расписании. «В полночь» — at midnight." }
+      }
+    ]
+  },
+  {
+    "id": "shower",
+    "word": "shower",
+    "ipa": "/ˈʃaʊɚ/",
+    "pos": "noun",
+    "translation": { "ru": "душ; короткий дождь" },
+    "examples": [
+      {
+        "en": "Dad was singing in the shower.",
+        "translation": { "ru": "Папа пел в душе." },
+        "why": { "ru": "in the shower — «в душе». Past Continuous: пел в тот момент." }
+      },
+      {
+        "en": "I take a shower every morning.",
+        "translation": { "ru": "Каждое утро я принимаю душ." },
+        "why": { "ru": "take a shower — «принять душ». Present Simple: так бывает каждый день." }
+      },
+      {
+        "en": "Max was taking a shower at 8 pm.",
+        "translation": { "ru": "В 8 вечера Макс принимал душ." },
+        "why": { "ru": "was taking — Past Continuous: в 8 вечера Макс был в душе, процесс уже шёл." }
+      }
+    ]
+  }
+]

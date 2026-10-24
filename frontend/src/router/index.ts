@@ -22,6 +22,17 @@ const router = createRouter({
       name: 'course',
       component: () => import('@/views/CourseMapView.vue'),
     },
+    // Статичные «words» и «review» по правилам vue-router сильнее параметров урока
+    {
+      path: '/courses/:course/words',
+      name: 'vocabulary',
+      component: () => import('@/views/VocabularyView.vue'),
+    },
+    {
+      path: '/courses/:course/words/review',
+      name: 'review',
+      component: () => import('@/views/ReviewView.vue'),
+    },
     {
       path: '/courses/:course/:module/:lesson',
       name: 'lesson',

@@ -66,6 +66,8 @@ export interface LessonSummary {
   kind: LessonKind
   /** Сколько в уроке задач с кодом */
   tasks: number
+  /** Сколько в уроке карточек новых слов (английский) */
+  words: number
   /** Засчитываемые шаги: id задач и практик и «quiz». Урок пройден, когда пройдены все */
   steps: string[]
 }
@@ -79,7 +81,8 @@ export interface Lesson {
   steps: LessonStep[]
 }
 
-export type LessonStep = TheoryStep | TaskStep | PracticeStep | QuizStep | ExerciseQuizStep
+export type LessonStep =
+  TheoryStep | TaskStep | WordsStep | PracticeStep | QuizStep | ExerciseQuizStep
 
 /** Экран теории: Markdown */
 export interface TheoryStep {
@@ -112,6 +115,74 @@ export interface QuizQuestion {
   options: string[]
   answer: number
   explanation: string
+}
+
+/** Часть речи слова — название в локалях: words.pos.* */
+export type PartOfSpeech =
+  | 'noun'
+  | 'verb'
+  | 'adjective'
+  | 'adverb'
+  | 'pronoun'
+  | 'preposition'
+  | 'conjunction'
+  | 'determiner'
+  | 'auxiliary'
+  | 'phrase'
+
+/** Карточка слова — WordCardResource модуля Course: тексты для ученика уже на его языке */
+export interface WordCard {
+  /** Slug слова — один на курс, по нему слово помнит словарь */
+  id: string
+  word: string
+  /** Американская транскрипция: /wɛr/ */
+  ipa: string
+  pos: PartOfSpeech
+  translation: string
+  /** Три формы неправильного глагола; у остальных слов — null */
+  forms: string[] | null
+  examples: { en: string; translation: string; why: string }[]
+  /** «Не путай с…»: **жирный** и ==маркер== как в теории */
+  compare: string | null
+}
+
+/** Новые слова урока английского: карточки по одной, в прогресс не засчитываются */
+export interface WordsStep {
+  type: 'words'
+  words: WordCard[]
+}
+
+/** Слово курса для словаря — WordResource: карточка и урок, где оно появилось */
+export interface CourseWord extends WordCard {
+  module: { slug: string; title: string }
+  lesson: { slug: string; title: string }
+}
+
+/** Слово в словаре ученика: коробка повторения и когда повторить (ISO 8601) */
+export interface LearnedWord {
+  word: string
+  /** 0 — новое или забытое … 4 — выучено */
+  box: number
+  due_at: string
+  reviewed_at: string | null
+}
+
+/** Словарь по курсу — VocabularyResource модуля Vocabulary */
+export interface Vocabulary {
+  words: LearnedWord[]
+}
+
+/** Новое слово для словаря; у словаря гостя после входа — с его расписанием */
+export interface NewWord {
+  word: string
+  box?: number
+  due_at?: string
+}
+
+/** Итог повторения слова: «Помню» или «Не помню» */
+export interface WordReview {
+  word: string
+  remembered: boolean
 }
 
 /** Практика английского: упражнения по одному, проверка — в браузере (utils/answers.ts) */

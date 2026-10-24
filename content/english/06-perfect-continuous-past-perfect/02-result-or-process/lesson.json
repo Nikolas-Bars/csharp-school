@@ -2,6 +2,7 @@
   "title": { "ru": "Результат или процесс: how many или how long" },
   "steps": [
     { "type": "theory", "text": { "ru": "01-how-many.ru.md" } },
+    { "type": "words", "file": "words.json" },
     { "type": "practice", "id": "how-many", "file": "practice/how-many.json" },
     { "type": "theory", "text": { "ru": "02-finished.ru.md" } },
     { "type": "theory", "text": { "ru": "03-both.ru.md" } },

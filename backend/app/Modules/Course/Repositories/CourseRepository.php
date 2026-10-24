@@ -19,6 +19,11 @@ final class CourseRepository extends BaseRepository
         return $this->query()->with('modules.lessons')->where('slug', $slug)->first();
     }
 
+    public function findBySlug(string $slug): ?Course
+    {
+        return $this->query()->where('slug', $slug)->first();
+    }
+
     /**
      * Курсы для главной по порядку — только те, что есть в courses.json (position > 0). Модули и
      * уроки — только slug и порядок (счётчики и первый урок), без шагов: шаги урока — самая тяжёлая колонка.

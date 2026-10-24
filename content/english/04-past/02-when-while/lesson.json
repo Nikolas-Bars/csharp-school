@@ -2,6 +2,7 @@
   "title": { "ru": "when и while: процесс и событие" },
   "steps": [
     { "type": "theory", "text": { "ru": "01-interrupted.ru.md" } },
+    { "type": "words", "file": "words.json" },
     { "type": "theory", "text": { "ru": "02-when-while.ru.md" } },
     { "type": "practice", "id": "interrupted", "file": "practice/interrupted.json" },
     { "type": "theory", "text": { "ru": "03-same-time.ru.md" } },

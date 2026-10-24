@@ -1,0 +1,175 @@
+[
+  {
+    "id": "these-days",
+    "word": "these days",
+    "ipa": "/ðiz ˈdeɪz/",
+    "pos": "phrase",
+    "translation": { "ru": "в последнее время, в эти дни" },
+    "examples": [
+      {
+        "en": "I'm reading a lot these days.",
+        "translation": { "ru": "В последнее время я много читаю." },
+        "why": { "ru": "these days — в эти дни, временно. Поэтому Present Continuous: I'm reading." }
+      },
+      {
+        "en": "What are you doing these days?",
+        "translation": { "ru": "Чем ты сейчас занимаешься?" },
+        "why": { "ru": "Вопрос не про эту минуту, а про последнее время. Present Continuous." }
+      },
+      {
+        "en": "My dad is working a lot these days.",
+        "translation": { "ru": "Папа в последнее время много работает." },
+        "why": { "ru": "these days — не всегда, а сейчас, в этот период. Поэтому is working." }
+      }
+    ]
+  },
+  {
+    "id": "stay",
+    "word": "stay",
+    "ipa": "/steɪ/",
+    "pos": "verb",
+    "translation": { "ru": "оставаться; жить временно (в гостях, в отеле)" },
+    "examples": [
+      {
+        "en": "We are staying at a hotel near the beach.",
+        "translation": { "ru": "Мы живём в отеле у моря." },
+        "why": { "ru": "stay — «жить временно»: в гостях или в отеле. Это ненадолго — Present Continuous." }
+      },
+      {
+        "en": "Stay here, I'll come back soon.",
+        "translation": { "ru": "Побудь здесь, я скоро вернусь." },
+        "why": { "ru": "Здесь stay — «оставаться на месте». Это просьба — начальная форма." }
+      },
+      {
+        "en": "We usually stay at home on Sundays.",
+        "translation": { "ru": "По воскресеньям мы обычно сидим дома." },
+        "why": { "ru": "stay at home — «сидеть дома, никуда не ходить». usually — Present Simple." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с live.** live — жить постоянно, stay — пожить где-то временно." }
+  },
+  {
+    "id": "aunt",
+    "word": "aunt",
+    "ipa": "/ænt/",
+    "pos": "noun",
+    "translation": { "ru": "тётя" },
+    "examples": [
+      {
+        "en": "My aunt lives in Florida.",
+        "translation": { "ru": "Моя тётя живёт во Флориде." },
+        "why": { "ru": "Present Simple: она живёт там постоянно. aunt = she, поэтому lives." }
+      },
+      {
+        "en": "My aunt is helping us with the garden this month.",
+        "translation": { "ru": "В этом месяце тётя помогает нам с садом." },
+        "why": { "ru": "this month — временно, поэтому Present Continuous." }
+      },
+      {
+        "en": "Aunt Kate always brings us presents.",
+        "translation": { "ru": "Тётя Кейт всегда привозит нам подарки." },
+        "why": { "ru": "Перед именем Aunt пишется с большой буквы и без my." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с ant.** В американском английском aunt («тётя») и ant («муравей») обычно звучат одинаково — /ænt/." }
+  },
+  {
+    "id": "exam",
+    "word": "exam",
+    "ipa": "/ɪɡˈzæm/",
+    "pos": "noun",
+    "translation": { "ru": "экзамен" },
+    "examples": [
+      {
+        "en": "My brother is studying for an exam these days.",
+        "translation": { "ru": "Брат сейчас готовится к экзамену." },
+        "why": { "ru": "Готовится в эти дни, временно — Present Continuous. study for — готовиться к чему-то." }
+      },
+      {
+        "en": "She passed the exam!",
+        "translation": { "ru": "Она сдала экзамен!" },
+        "why": { "ru": "pass an exam — «сдать экзамен». Past Simple: уже сдала." }
+      },
+      {
+        "en": "The exam was easy.",
+        "translation": { "ru": "Экзамен был лёгким." },
+        "why": { "ru": "Past Simple от be: exam = it → was." }
+      }
+    ]
+  },
+  {
+    "id": "learn",
+    "word": "learn",
+    "ipa": "/lɝn/",
+    "pos": "verb",
+    "translation": { "ru": "учить, изучать; учиться (что-то делать)" },
+    "examples": [
+      {
+        "en": "I'm learning English this year.",
+        "translation": { "ru": "В этом году я учу английский." },
+        "why": { "ru": "this year — временно, пока идёт этот год. Поэтому Present Continuous." }
+      },
+      {
+        "en": "My little sister is learning to swim.",
+        "translation": { "ru": "Младшая сестра учится плавать." },
+        "why": { "ru": "learn to + глагол — «учиться что-то делать». Это идёт в эти дни." }
+      },
+      {
+        "en": "We learned a new song yesterday.",
+        "translation": { "ru": "Вчера мы выучили новую песню." },
+        "why": { "ru": "Past Simple: learned. В американском английском learn — правильный глагол." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с teach.** learn — «учиться» самому, teach — «учить» кого-то: My mom teaches me." }
+  },
+  {
+    "id": "drive",
+    "word": "drive",
+    "ipa": "/draɪv/",
+    "pos": "verb",
+    "translation": { "ru": "водить (машину); ехать на машине" },
+    "forms": ["drive", "drove", "driven"],
+    "examples": [
+      {
+        "en": "My dad drives to work every day.",
+        "translation": { "ru": "Папа каждый день ездит на работу на машине." },
+        "why": { "ru": "Present Simple: так бывает каждый день. dad = he → drives." }
+      },
+      {
+        "en": "Mom can't talk now, she's driving.",
+        "translation": { "ru": "Мама сейчас не может говорить — она за рулём." },
+        "why": { "ru": "Ведёт машину прямо сейчас — Present Continuous. e на конце перед -ing убираем: driving." }
+      },
+      {
+        "en": "We drove to the lake last weekend.",
+        "translation": { "ru": "В прошлые выходные мы ездили на озеро." },
+        "why": { "ru": "Past Simple: drive — неправильный глагол, его прошедшая форма — drove." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с ride.** drive — вести машину, ride — ехать на велосипеде или на лошади." }
+  },
+  {
+    "id": "work-from-home",
+    "word": "work from home",
+    "ipa": "/wɝk frəm ˈhoʊm/",
+    "pos": "phrase",
+    "translation": { "ru": "работать из дома (на удалёнке)" },
+    "examples": [
+      {
+        "en": "My parents work from home on Fridays.",
+        "translation": { "ru": "По пятницам родители работают из дома." },
+        "why": { "ru": "Present Simple: так каждую пятницу. А если только на этой неделе — are working from home." }
+      },
+      {
+        "en": "Does your mom work from home?",
+        "translation": { "ru": "Твоя мама работает из дома?" },
+        "why": { "ru": "Вопрос в Present Simple — с does, а глагол work в начальной форме." }
+      },
+      {
+        "en": "Don't worry, I'll work from home tomorrow.",
+        "translation": { "ru": "Не волнуйся, завтра я поработаю из дома." },
+        "why": { "ru": "Решение, принятое прямо сейчас, — will." }
+      }
+    ]
+  }
+]

@@ -427,6 +427,74 @@
                 "security": []
             }
         },
+        "/api/courses/{course}/words": {
+            "get": {
+                "tags": [
+                    "Course"
+                ],
+                "summary": "Слова курса",
+                "description": "Карточки слов курса по порядку уроков, с уроком, где слово появилось. Тексты — на языке запроса. Открыто всем, вход не нужен. В курсе без карточек — пустой список.",
+                "operationId": "listWords",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Course"
+                    },
+                    {
+                        "$ref": "#/components/parameters/Cursor"
+                    },
+                    {
+                        "$ref": "#/components/parameters/AcceptLanguage"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Страница слов",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/ApiSuccess"
+                                        },
+                                        {
+                                            "properties": {
+                                                "data": {
+                                                    "required": [
+                                                        "items",
+                                                        "next_cursor"
+                                                    ],
+                                                    "properties": {
+                                                        "items": {
+                                                            "type": "array",
+                                                            "items": {
+                                                                "$ref": "#/components/schemas/CourseWord"
+                                                            }
+                                                        },
+                                                        "next_cursor": {
+                                                            "description": "Курсор следующей страницы; на последней — null",
+                                                            "type": [
+                                                                "string",
+                                                                "null"
+                                                            ]
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "security": []
+            }
+        },
         "/api/courses/{course}": {
             "get": {
                 "tags": [
@@ -705,6 +773,191 @@
                     }
                 ]
             }
+        },
+        "/api/vocabulary/courses/{course}/words": {
+            "post": {
+                "tags": [
+                    "Vocabulary"
+                ],
+                "summary": "Добавить слова в словарь",
+                "description": "Слова урока (ученик прошёл карточки) или словарь гостя пачкой после входа (`guest: true` — со своим расписанием). Слово добавляется один раз и ждёт повторения сразу; неизвестные слова пропускаются. Не больше 30 запросов в минуту.",
+                "operationId": "addWords",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Course"
+                    },
+                    {
+                        "$ref": "#/components/parameters/AcceptLanguage"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AddWordsRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Сохранено: словарь по курсу после записи",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/ApiSuccess"
+                                        },
+                                        {
+                                            "properties": {
+                                                "data": {
+                                                    "$ref": "#/components/schemas/Vocabulary"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationFailed"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/TooManyRequests"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/vocabulary/courses/{course}/reviews": {
+            "post": {
+                "tags": [
+                    "Vocabulary"
+                ],
+                "summary": "Сохранить повторение",
+                "description": "Итоги повторения: «Помню» — следующая коробка (повторить через 3, 7, 14, 30 дней), «Не помню» — коробка 0, повторить завтра. Засчитываются только слова из словаря, которые пора повторять (с запасом в сутки на часовой пояс); одно слово в пачке — один раз. Не больше 30 запросов в минуту.",
+                "operationId": "reviewWords",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Course"
+                    },
+                    {
+                        "$ref": "#/components/parameters/AcceptLanguage"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReviewWordsRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Сохранено: словарь по курсу после записи",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/ApiSuccess"
+                                        },
+                                        {
+                                            "properties": {
+                                                "data": {
+                                                    "$ref": "#/components/schemas/Vocabulary"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationFailed"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/TooManyRequests"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/vocabulary/courses/{course}": {
+            "get": {
+                "tags": [
+                    "Vocabulary"
+                ],
+                "summary": "Мой словарь",
+                "description": "Выученные слова курса и когда их повторять. Карточки — `GET /api/courses/{course}/words`. Нет такого курса — пустой словарь. Не больше 120 запросов в минуту.",
+                "operationId": "showVocabulary",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/Course"
+                    },
+                    {
+                        "$ref": "#/components/parameters/AcceptLanguage"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Словарь по курсу",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/ApiSuccess"
+                                        },
+                                        {
+                                            "properties": {
+                                                "data": {
+                                                    "$ref": "#/components/schemas/Vocabulary"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthenticated"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/TooManyRequests"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
         }
     },
     "components": {
@@ -905,6 +1158,7 @@
                                             "title",
                                             "kind",
                                             "tasks",
+                                            "words",
                                             "steps"
                                         ],
                                         "properties": {
@@ -929,6 +1183,11 @@
                                                 "description": "Сколько в уроке задач с кодом",
                                                 "type": "integer",
                                                 "example": 2
+                                            },
+                                            "words": {
+                                                "description": "Сколько в уроке карточек новых слов (английский)",
+                                                "type": "integer",
+                                                "example": 0
                                             },
                                             "steps": {
                                                 "description": "Засчитываемые шаги: id задач и практик и `quiz`. Урок пройден, когда пройдены все — так и гость видит, пройден ли урок",
@@ -1075,6 +1334,9 @@
                                     "$ref": "#/components/schemas/TaskStep"
                                 },
                                 {
+                                    "$ref": "#/components/schemas/WordsStep"
+                                },
+                                {
                                     "$ref": "#/components/schemas/PracticeStep"
                                 },
                                 {
@@ -1084,6 +1346,28 @@
                                     "$ref": "#/components/schemas/ExerciseQuizStep"
                                 }
                             ]
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "WordsStep": {
+                "description": "Новые слова урока английского: карточки по одной. В прогресс не засчитывается, слова уходят в словарь ученика",
+                "required": [
+                    "type",
+                    "words"
+                ],
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "words"
+                        ]
+                    },
+                    "words": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/WordCard"
                         }
                     }
                 },
@@ -1639,6 +1923,160 @@
                     }
                 ]
             },
+            "WordCard": {
+                "description": "Карточка слова: тексты для ученика — на языке запроса",
+                "required": [
+                    "id",
+                    "word",
+                    "ipa",
+                    "pos",
+                    "translation",
+                    "forms",
+                    "examples",
+                    "compare"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "Slug слова — один на курс",
+                        "type": "string",
+                        "example": "wear"
+                    },
+                    "word": {
+                        "type": "string",
+                        "example": "wear"
+                    },
+                    "ipa": {
+                        "description": "Американская транскрипция",
+                        "type": "string",
+                        "example": "/wɛr/"
+                    },
+                    "pos": {
+                        "description": "Часть речи",
+                        "type": "string",
+                        "example": "verb",
+                        "enum": [
+                            "noun",
+                            "verb",
+                            "adjective",
+                            "adverb",
+                            "pronoun",
+                            "preposition",
+                            "conjunction",
+                            "determiner",
+                            "auxiliary",
+                            "phrase"
+                        ]
+                    },
+                    "translation": {
+                        "type": "string",
+                        "example": "носить (одежду), быть одетым в…"
+                    },
+                    "forms": {
+                        "description": "Три формы неправильного глагола; у остальных слов — null",
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "example": [
+                                    "wear",
+                                    "wore",
+                                    "worn"
+                                ]
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "examples": {
+                        "type": "array",
+                        "items": {
+                            "required": [
+                                "en",
+                                "translation",
+                                "why"
+                            ],
+                            "properties": {
+                                "en": {
+                                    "type": "string",
+                                    "example": "She is wearing a red jacket today."
+                                },
+                                "translation": {
+                                    "type": "string",
+                                    "example": "Сегодня на ней красная куртка."
+                                },
+                                "why": {
+                                    "description": "Почему так: время, значение слова здесь",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "compare": {
+                        "description": "«Не путай с…»: **жирный** и ==маркер== как в теории",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    }
+                },
+                "type": "object"
+            },
+            "CourseWord": {
+                "description": "Карточка слова и урок, где оно появилось",
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/WordCard"
+                    },
+                    {
+                        "required": [
+                            "module",
+                            "lesson"
+                        ],
+                        "properties": {
+                            "module": {
+                                "required": [
+                                    "slug",
+                                    "title"
+                                ],
+                                "properties": {
+                                    "slug": {
+                                        "description": "Слово курса для словаря: карточка и урок, где оно появилось. Фронт: CourseWord в src/types/api.ts.",
+                                        "type": "string",
+                                        "example": "02-present-continuous"
+                                    },
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Present Continuous: сейчас и в эти дни"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "lesson": {
+                                "required": [
+                                    "slug",
+                                    "title"
+                                ],
+                                "properties": {
+                                    "slug": {
+                                        "type": "string",
+                                        "example": "01-right-now"
+                                    },
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Present Continuous: что происходит прямо сейчас"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
             "CompleteStepsRequest": {
                 "required": [
                     "steps"
@@ -1778,6 +2216,129 @@
                         },
                         "additionalProperties": {
                             "type": "string"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "AddWordsRequest": {
+                "required": [
+                    "words"
+                ],
+                "properties": {
+                    "words": {
+                        "type": "array",
+                        "items": {
+                            "required": [
+                                "word"
+                            ],
+                            "properties": {
+                                "word": {
+                                    "description": "Slug карточки слова",
+                                    "type": "string",
+                                    "pattern": "^[a-z0-9][a-z0-9-]{0,63}$",
+                                    "example": "wear"
+                                },
+                                "box": {
+                                    "description": "Только со словарём гостя: коробка повторения",
+                                    "type": "integer",
+                                    "maximum": 4,
+                                    "minimum": 0
+                                },
+                                "due_at": {
+                                    "description": "Только со словарём гостя: когда повторить. Позже, чем позволяет коробка (часы гостя убежали), — срок обрезается",
+                                    "type": "string",
+                                    "format": "date-time"
+                                }
+                            },
+                            "type": "object",
+                            "additionalProperties": false
+                        },
+                        "maxItems": 500,
+                        "minItems": 1
+                    },
+                    "guest": {
+                        "description": "Словарь гостя после входа: переносит своё расписание, но только для слов, которых в аккаунте нет",
+                        "type": "boolean",
+                        "default": false
+                    }
+                },
+                "type": "object"
+            },
+            "ReviewWordsRequest": {
+                "required": [
+                    "reviews"
+                ],
+                "properties": {
+                    "reviews": {
+                        "type": "array",
+                        "items": {
+                            "required": [
+                                "word",
+                                "remembered"
+                            ],
+                            "properties": {
+                                "word": {
+                                    "description": "Slug карточки слова",
+                                    "type": "string",
+                                    "pattern": "^[a-z0-9][a-z0-9-]{0,63}$",
+                                    "example": "wear"
+                                },
+                                "remembered": {
+                                    "description": "«Помню» — true, «Не помню» — false",
+                                    "type": "boolean"
+                                }
+                            },
+                            "type": "object",
+                            "additionalProperties": false
+                        },
+                        "maxItems": 500,
+                        "minItems": 1
+                    }
+                },
+                "type": "object"
+            },
+            "Vocabulary": {
+                "description": "Выученные слова курса и когда их повторять",
+                "required": [
+                    "words"
+                ],
+                "properties": {
+                    "words": {
+                        "type": "array",
+                        "items": {
+                            "required": [
+                                "word",
+                                "box",
+                                "due_at",
+                                "reviewed_at"
+                            ],
+                            "properties": {
+                                "word": {
+                                    "description": "Slug карточки слова",
+                                    "type": "string",
+                                    "example": "wear"
+                                },
+                                "box": {
+                                    "description": "Коробка повторения: 0 — новое или забытое, 4 — выучено",
+                                    "type": "integer",
+                                    "example": 1
+                                },
+                                "due_at": {
+                                    "description": "Когда повторить",
+                                    "type": "string",
+                                    "format": "date-time"
+                                },
+                                "reviewed_at": {
+                                    "description": "Последнее повторение",
+                                    "type": [
+                                        "string",
+                                        "null"
+                                    ],
+                                    "format": "date-time"
+                                }
+                            },
+                            "type": "object"
                         }
                     }
                 },
@@ -2001,6 +2562,10 @@
         {
             "name": "Progress",
             "description": "Пройденные шаги и код решений. Только вошедшим"
+        },
+        {
+            "name": "Vocabulary",
+            "description": "Мой словарь: выученные слова и интервальное повторение. Только вошедшим"
         }
     ]
 }

@@ -1,13 +1,25 @@
 <script setup lang="ts">
-import { RouterLink, useRouter } from 'vue-router'
+import { computed } from 'vue'
+import { RouterLink, useRoute, useRouter } from 'vue-router'
 
 import ThemeToggle from '@/components/layout/ThemeToggle.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import { t } from '@/i18n'
 import { useAuthStore } from '@/stores/auth'
+import { useCourseStore } from '@/stores/course'
 
 const auth = useAuthStore()
 const router = useRouter()
+const route = useRoute()
+const courses = useCourseStore()
+
+/** «Мой словарь» — на страницах курса, где есть карточки слов (по карте курса) */
+const vocabularyCourse = computed(() => {
+  const slug = typeof route.params.course === 'string' ? route.params.course : null
+  const map = slug === null ? null : courses.map(slug)
+  const hasWords = map?.modules.some((module) => module.lessons.some((lesson) => lesson.words > 0))
+  return hasWords ? slug : null
+})
 
 async function logout() {
   await auth.logout()
@@ -23,6 +35,15 @@ async function logout() {
     </RouterLink>
     <nav class="header__nav" :aria-label="t('nav.label')">
       <RouterLink class="header__link" :to="{ name: 'home' }">{{ t('nav.courses') }}</RouterLink>
+      <RouterLink
+        v-if="vocabularyCourse"
+        class="header__link"
+        active-class="header__link--active"
+        :to="{ name: 'vocabulary', params: { course: vocabularyCourse } }"
+      >
+        <span class="header__full">{{ t('nav.vocabulary') }}</span>
+        <span class="header__short">{{ t('nav.vocabularyShort') }}</span>
+      </RouterLink>
       <template v-if="auth.isLoggedIn">
         <span class="header__account">{{
           t('nav.account', { nickname: auth.user?.nickname ?? '' })
@@ -113,6 +134,12 @@ async function logout() {
   background: var(--color-surface-muted);
 }
 
+.header__link--active {
+  background: var(--color-primary-soft);
+  color: var(--color-accent-text);
+  font-weight: 600;
+}
+
 .header__cta {
   padding-inline: var(--space-5);
   background: var(--color-inverse);
@@ -133,7 +160,19 @@ async function logout() {
     gap: var(--space-2);
   }
 
-  .header__account {
+  .header__account,
+  .header__full {
+    display: none;
+  }
+
+  .header__link {
+    padding-inline: var(--space-3);
+  }
+}
+
+/* «Мой словарь» на телефоне — «Словарь»: иначе шапка урока уходит в третью строку */
+@media (min-width: 40.0625rem) {
+  .header__short {
     display: none;
   }
 }

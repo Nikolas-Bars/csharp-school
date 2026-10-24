@@ -2,6 +2,7 @@
   "title": { "ru": "just, already, yet, still" },
   "steps": [
     { "type": "theory", "text": { "ru": "01-just-already.ru.md" } },
+    { "type": "words", "file": "words.json" },
     { "type": "theory", "text": { "ru": "02-position.ru.md" } },
     { "type": "practice", "id": "just-already", "file": "practice/just-already.json" },
     { "type": "theory", "text": { "ru": "03-yet-still.ru.md" } },

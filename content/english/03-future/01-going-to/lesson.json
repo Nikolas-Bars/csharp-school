@@ -2,6 +2,7 @@
   "title": { "ru": "be going to: план и прогноз" },
   "steps": [
     { "type": "theory", "text": { "ru": "01-plans.ru.md" } },
+    { "type": "words", "file": "words.json" },
     { "type": "theory", "text": { "ru": "02-form.ru.md" } },
     { "type": "practice", "id": "form", "file": "practice/form.json" },
     { "type": "theory", "text": { "ru": "03-evidence.ru.md" } },

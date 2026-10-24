@@ -1,0 +1,172 @@
+[
+  {
+    "id": "mean",
+    "word": "mean",
+    "ipa": "/min/",
+    "pos": "verb",
+    "translation": { "ru": "значить; иметь в виду" },
+    "forms": ["mean", "meant", "meant"],
+    "examples": [
+      {
+        "en": "What does this sign mean?",
+        "translation": { "ru": "Что значит этот знак?" },
+        "why": { "ru": "Вопрос в Present Simple — с does, поэтому mean без -s." }
+      },
+      {
+        "en": "Sorry, that's not what I mean.",
+        "translation": { "ru": "Прости, я не это имею в виду." },
+        "why": { "ru": "Здесь mean — «иметь в виду». Present Simple." }
+      },
+      {
+        "en": "Red means stop.",
+        "translation": { "ru": "Красный значит «стой»." },
+        "why": { "ru": "Это факт — Present Simple. red = it, поэтому means." }
+      }
+    ]
+  },
+  {
+    "id": "hungry",
+    "word": "hungry",
+    "ipa": "/ˈhʌŋɡri/",
+    "pos": "adjective",
+    "translation": { "ru": "голодный; be hungry — хотеть есть" },
+    "examples": [
+      {
+        "en": "Are you hungry?",
+        "translation": { "ru": "Хочешь есть?" },
+        "why": { "ru": "hungry — не глагол, а «голодный», поэтому вопрос с be: Are you…? По-русски чаще говорят «хочешь есть»." }
+      },
+      {
+        "en": "The kids are always hungry after soccer.",
+        "translation": { "ru": "После футбола дети всегда голодные." },
+        "why": { "ru": "always стоит после are (форма be)." }
+      },
+      {
+        "en": "He wasn't hungry, so he didn't eat lunch.",
+        "translation": { "ru": "Он не был голоден и не стал обедать." },
+        "why": { "ru": "Отрицание с be в прошлом — wasn't, а с обычным глаголом eat — didn't." }
+      }
+    ],
+    "compare": { "ru": "**Не путай с angry.** hungry — «голодный», angry — «злой, сердитый»." }
+  },
+  {
+    "id": "tired",
+    "word": "tired",
+    "ipa": "/ˈtaɪɚd/",
+    "pos": "adjective",
+    "translation": { "ru": "уставший; be tired — устать" },
+    "examples": [
+      {
+        "en": "She is tired after school.",
+        "translation": { "ru": "После школы она устаёт." },
+        "why": { "ru": "tired — не глагол, а «уставший», поэтому нужен be: she is tired." }
+      },
+      {
+        "en": "Are the players tired? — Yes, they are.",
+        "translation": { "ru": "Игроки устали? — Да, устали." },
+        "why": { "ru": "Краткий ответ повторяет be: Yes, they are." }
+      },
+      {
+        "en": "We were tired, so we went home.",
+        "translation": { "ru": "Мы устали и пошли домой." },
+        "why": { "ru": "Past Simple от be: we → were." }
+      }
+    ]
+  },
+  {
+    "id": "sad",
+    "word": "sad",
+    "ipa": "/sæd/",
+    "pos": "adjective",
+    "translation": { "ru": "грустный" },
+    "examples": [
+      {
+        "en": "Why are you sad?",
+        "translation": { "ru": "Почему ты грустишь?" },
+        "why": { "ru": "Вопрос с be: Why + are + you. sad — не глагол, а «грустный»." }
+      },
+      {
+        "en": "The end of the movie is very sad.",
+        "translation": { "ru": "Конец у фильма очень грустный." },
+        "why": { "ru": "Present Simple от be: end = it → is." }
+      },
+      {
+        "en": "He was sad when his team lost.",
+        "translation": { "ru": "Он расстроился, когда его команда проиграла." },
+        "why": { "ru": "Past Simple: was (be), lose → lost." }
+      }
+    ]
+  },
+  {
+    "id": "ready",
+    "word": "ready",
+    "ipa": "/ˈrɛdi/",
+    "pos": "adjective",
+    "translation": { "ru": "готовый" },
+    "examples": [
+      {
+        "en": "Are you ready, kids? Let's go!",
+        "translation": { "ru": "Дети, вы готовы? Пошли!" },
+        "why": { "ru": "ready — не глагол, а «готовый», поэтому вопрос с be: Are you ready?" }
+      },
+      {
+        "en": "Dinner is ready!",
+        "translation": { "ru": "Ужин готов!" },
+        "why": { "ru": "Present Simple от be: dinner = it → is." }
+      },
+      {
+        "en": "We aren't ready for the test.",
+        "translation": { "ru": "Мы не готовы к контрольной." },
+        "why": { "ru": "Отрицание с be — aren't. ready for — «готовый к чему-то»." }
+      }
+    ]
+  },
+  {
+    "id": "spider",
+    "word": "spider",
+    "ipa": "/ˈspaɪdɚ/",
+    "pos": "noun",
+    "translation": { "ru": "паук" },
+    "examples": [
+      {
+        "en": "There is a big spider in the bathroom!",
+        "translation": { "ru": "В ванной большой паук!" },
+        "why": { "ru": "There is — «есть, находится». spider — один паук, поэтому is." }
+      },
+      {
+        "en": "Are you afraid of spiders?",
+        "translation": { "ru": "Ты боишься пауков?" },
+        "why": { "ru": "be afraid of — «бояться». afraid — не глагол, поэтому вопрос с be: Are you…? spiders — пауки вообще." }
+      },
+      {
+        "en": "A spider has eight legs.",
+        "translation": { "ru": "У паука восемь ног." },
+        "why": { "ru": "Факт — Present Simple. spider = it, поэтому has." }
+      }
+    ]
+  },
+  {
+    "id": "come-back",
+    "word": "come back",
+    "ipa": "/kʌm ˈbæk/",
+    "pos": "phrase",
+    "translation": { "ru": "вернуться, возвращаться" },
+    "examples": [
+      {
+        "en": "When will you come back?",
+        "translation": { "ru": "Когда ты вернёшься?" },
+        "why": { "ru": "Вопрос с will: вопросительное слово when, потом will, you и глагол." }
+      },
+      {
+        "en": "Please come back soon!",
+        "translation": { "ru": "Пожалуйста, возвращайся скорее!" },
+        "why": { "ru": "Это просьба: глагол в начальной форме. come back — «вернуться», прийти обратно." }
+      },
+      {
+        "en": "Our cat didn't come back home last night.",
+        "translation": { "ru": "Вчера вечером наш кот не вернулся домой." },
+        "why": { "ru": "Отрицание в Past Simple: didn't + come back в начальной форме." }
+      }
+    ]
+  }
+]

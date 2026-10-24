@@ -31,7 +31,7 @@ use OpenApi\Attributes as OA;
                 new OA\Property(property: 'title', type: 'string', example: 'Первые программы'),
                 new OA\Property(property: 'description', type: 'string'),
                 new OA\Property(property: 'lessons', type: 'array', items: new OA\Items(
-                    required: ['slug', 'title', 'kind', 'tasks', 'steps'],
+                    required: ['slug', 'title', 'kind', 'tasks', 'words', 'steps'],
                     properties: [
                         new OA\Property(property: 'slug', type: 'string', example: '02-variables'),
                         new OA\Property(property: 'title', type: 'string', example: 'Переменные'),
@@ -43,6 +43,7 @@ use OpenApi\Attributes as OA;
                             example: 'lesson',
                         ),
                         new OA\Property(property: 'tasks', description: 'Сколько в уроке задач с кодом', type: 'integer', example: 2),
+                        new OA\Property(property: 'words', description: 'Сколько в уроке карточек новых слов (английский)', type: 'integer', example: 0),
                         new OA\Property(
                             property: 'steps',
                             description: 'Засчитываемые шаги: id задач и практик и `quiz`. Урок пройден, когда пройдены все — так и гость видит, пройден ли урок',
@@ -77,6 +78,7 @@ final class CourseResource extends JsonResource
                     'title' => Localized::pick($lesson->title),
                     'kind'  => $lesson->kind->value,
                     'tasks' => \count(array_filter($lesson->steps, static fn(array $step): bool => $step['type'] === 'task')),
+                    'words' => array_sum(array_map(static fn(array $step): int => $step['type'] === 'words' && \is_array($step['words']) ? \count($step['words']) : 0, $lesson->steps)),
                     // Засчитываемые шаги (id задач и quiz) — чтобы и гость видел, пройден ли урок
                     'steps' => $lesson->countedSteps(),
                 ])->values(),
