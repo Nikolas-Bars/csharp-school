@@ -1,0 +1,13 @@
+{
+  "title": { "ru": "Редкие времена будущего и итог" },
+  "description": {
+    "ru": "Future Continuous — что будет идти в момент в будущем; Future Perfect — что будет сделано к моменту; Future Perfect Continuous — сколько будет длиться к моменту. А в конце — карта всех 12 времён, как выбрать нужное по вопросам, и итоговая контрольная."
+  },
+  "lessons": [
+    "01-future-continuous",
+    "02-future-perfect",
+    "03-future-perfect-continuous",
+    "04-all-tenses",
+    "05-module-test"
+  ]
+}

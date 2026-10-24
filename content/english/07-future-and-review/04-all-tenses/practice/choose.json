@@ -1,0 +1,94 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Папа позвонил, когда мы ужинали. Как сказать?" },
+    "options": [
+      { "text": "Dad was calling when we had dinner.", "why": { "ru": "Наоборот: процесс — ужин, он шёл. А звонок — короткое событие, которое случилось посреди ужина." } },
+      { "text": "Dad called when we were having dinner." },
+      { "text": "Dad called when we had dinner.", "why": { "ru": "we had dinner — ужин целиком, как событие. А ужин шёл, когда позвонил папа: were having." } },
+      { "text": "Dad had called when we were having dinner.", "why": { "ru": "had called — «позвонил ещё раньше». А звонок пришёлся на ужин, это Past Simple: called." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Ужин шёл — Past Continuous (were having), звонок прервал его — Past Simple (called)." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь live в Present Perfect Continuous — три слова." },
+    "text": "We ___ (live) in Chicago since 2019.",
+    "accept": ["have been living"],
+    "mistakes": [
+      { "answer": "have lived", "why": { "ru": "Так тоже можно сказать, но задание — Present Perfect Continuous: have been living." } },
+      { "answer": "are living", "why": { "ru": "Present Continuous не говорит, с каких пор. С since до сейчас — have been living." } },
+      { "answer": "live", "why": { "ru": "По-русски «живём», но с since до сейчас нужен Perfect: have been living." } },
+      { "answer": "lived", "why": { "ru": "lived — «жили» и уже нет. А живём до сих пор: have been living." } },
+      { "answer": "had been living", "why": { "ru": "had been + -ing — сколько длилось до момента в прошлом. А живём до сих пор: have been living." } },
+      { "answer": "has been living", "why": { "ru": "we — с ним have. has — для he, she, it." } }
+    ],
+    "hint": { "ru": "have been + -ing. we — have или has?" },
+    "explanation": { "ru": "Длится с 2019 года до сейчас — Present Perfect Continuous: We have been living in Chicago since 2019." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "We were watching TV when the lights go out.",
+    "wrong": 7,
+    "accept": ["went"],
+    "mistakes": [
+      { "answer": "gone", "why": { "ru": "gone — третья форма, без have или had она не работает. Короткое событие в прошлом — Past Simple: went." } },
+      { "answer": "goes", "why": { "ru": "goes — настоящее время. А всё случилось в прошлом: went." } },
+      { "answer": "go", "why": { "ru": "Это то же слово. Свет погас в прошлом — какая форма go нужна?" } }
+    ],
+    "hint": { "ru": "Всё случилось в прошлом. Какая вторая форма у go?" },
+    "explanation": { "ru": "Процесс шёл — were watching, короткое событие прервало его — Past Simple: the lights went out." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "«Завтра в это время мы будем сидеть в самолёте». Какое время нужно для «будем сидеть»?" },
+    "options": [
+      { "text": "Future Simple", "why": { "ru": "Future Simple — will + глагол: просто «сядем». А в тот момент процесс будет идти." } },
+      { "text": "Future Perfect", "why": { "ru": "Future Perfect — что будет готово к моменту. А здесь процесс в момент." } },
+      { "text": "Future Perfect Continuous", "why": { "ru": "will have been + -ing — сколько будет длиться к моменту. Срока здесь нет — просто процесс в момент." } },
+      { "text": "Future Continuous" }
+    ],
+    "answer": 3,
+    "explanation": { "ru": "Стоп-кадр из будущего, процесс идёт — Future Continuous: This time tomorrow we'll be sitting on the plane." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Эмма уже сделала уроки." },
+    "accept": [
+      "Emma has already {done|finished} her homework",
+      "Emma has {done|finished} her homework already",
+      "Emma already {did|finished} her homework",
+      "Emma {did|finished} her homework already",
+      "Emma has {done|finished} her homework"
+    ],
+    "mistakes": [
+      { "answer": "Emma has already did her homework", "why": { "ru": "did — вторая форма. После has — третья: done." } },
+      { "answer": "Emma have already done her homework", "why": { "ru": "Emma — одна, это she. С she нужен has." } },
+      { "answer": "Emma had already done her homework", "why": { "ru": "had — Past Perfect, раньше другого момента в прошлом. А его здесь нет — результат важен сейчас: has already done." } },
+      { "answer": "Emma has done already her homework", "why": { "ru": "already стоит между has и третьей формой или в самом конце." } },
+      { "answer": "Emma is already doing her homework", "why": { "ru": "is doing — «делает» прямо сейчас. А уроки уже сделаны: has done." } }
+    ],
+    "hint": { "ru": "Результат сейчас, время не названо. «Уже» — already. Три формы do: do — did — done." },
+    "explanation": { "ru": "Результат сейчас — Present Perfect: Emma has already done her homework. Засчитаем и американское Emma already did her homework." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «Когда мы пришли, фильм уже начался». Одна плитка лишняя." },
+    "tiles": ["had", "When we arrived", "already started", "the movie", "has"],
+    "accept": [
+      "When we arrived the movie had already started",
+      "The movie had already started when we arrived"
+    ],
+    "mistakes": [
+      { "answer": "When we arrived the movie has already started", "why": { "ru": "has — Present Perfect, к сейчас. А момент в прошлом (when we arrived), и фильм начался раньше него — had." } },
+      { "answer": "The movie has already started when we arrived", "why": { "ru": "has — Present Perfect, к сейчас. А момент в прошлом (when we arrived), и фильм начался раньше него — had." } },
+      { "answer": "When we arrived the movie already started", "why": { "ru": "Есть второй момент в прошлом — when we arrived, а фильм начался раньше него. В разговоре так иногда говорят, но правильно — had already started." } },
+      { "answer": "The movie already started when we arrived", "why": { "ru": "Есть второй момент в прошлом — when we arrived, а фильм начался раньше него. В разговоре так иногда говорят, но правильно — had already started." } }
+    ],
+    "hint": { "ru": "Фильм начался раньше, чем мы пришли. Какой помощник показывает «раньше другого момента в прошлом»?" },
+    "explanation": { "ru": "Раньше другого момента в прошлом — Past Perfect: When we arrived, the movie had already started." }
+  }
+]

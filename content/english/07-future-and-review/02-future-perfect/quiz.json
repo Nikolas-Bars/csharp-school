@@ -1,0 +1,58 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Какое предложение верное?" },
+    "options": [
+      { "text": "I'll have finished the book until Sunday.", "why": { "ru": "until — «вплоть до», всё время до. «К воскресенью, не позже» — by." } },
+      { "text": "I'll have finish the book by Sunday.", "why": { "ru": "После have — третья форма: finished." } },
+      { "text": "I'll have finished the book by Sunday." },
+      { "text": "I'll finished the book by Sunday.", "why": { "ru": "I'll — это I will. После него пропущен have: I'll have finished." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "Future Perfect — will have + третья форма, и «к, не позже» — by: I'll have finished the book by Sunday." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь graduate («окончить учёбу») в Future Perfect — три слова." },
+    "text": "By 2030, my brother ___ (graduate) from college.",
+    "accept": ["will have {already |}graduated"],
+    "mistakes": [
+      { "answer": "will graduate", "why": { "ru": "Так тоже можно сказать, но задание — Future Perfect: will have graduated." } },
+      { "answer": "will have graduate", "why": { "ru": "После have — третья форма. У правильного глагола она с -ed: graduated." } },
+      { "answer": "will has graduated", "why": { "ru": "После will — всегда have, даже с he." } },
+      { "answer": "has graduated", "why": { "ru": "has graduated — Present Perfect, результат к сейчас. А 2030 год впереди: will have graduated." } }
+    ],
+    "hint": { "ru": "will + have + третья форма. graduate — правильный глагол." },
+    "explanation": { "ru": "К 2030 году учёба будет окончена — Future Perfect: my brother will have graduated." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "By the time we'll get there, the game will have started.",
+    "wrong": 3,
+    "accept": ["we"],
+    "mistakes": [
+      { "answer": "we will", "why": { "ru": "we'll — это и есть we will. После by the time о будущем will не ставят." } }
+    ],
+    "hint": { "ru": "Посмотри на часть с by the time. Какое время там нужно о будущем?" },
+    "explanation": { "ru": "После by the time — Present Simple, без will: By the time we get there, the game will have started." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи в Future Perfect." },
+    "text": { "ru": "К концу лета Макс прочитает пять книг." },
+    "accept": [
+      "By the end of {the |this |}summer Max will have read {five|5} books",
+      "Max will have read {five|5} books by the end of {the |this |}summer"
+    ],
+    "mistakes": [
+      { "answer": "Max will read five books by the end of the summer", "why": { "ru": "Так тоже можно сказать, но задание — Future Perfect: will have read." } },
+      { "answer": "Max will have readed five books by the end of the summer", "why": { "ru": "read — неправильный глагол: read — read — read. -ed к нему не добавляют." } },
+      { "answer": "Max will have read five books until the end of the summer", "why": { "ru": "«К концу лета, не позже» — by. until — «вплоть до», всё время до." } },
+      { "answer": "Max has read five books by the end of the summer", "why": { "ru": "has read — Present Perfect, результат к сейчас. А конец лета впереди: will have read." } },
+      { "answer": "Max will has read five books by the end of the summer", "why": { "ru": "После will — всегда have, даже с he." } }
+    ],
+    "hint": { "ru": "Какое слово значит «к концу лета, не позже»? Дальше — Future Perfect, а три формы read пишутся одинаково." },
+    "explanation": { "ru": "К концу лета книги будут прочитаны — Future Perfect: Max will have read five books by the end of the summer." }
+  }
+]

@@ -1,0 +1,84 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Завтра в 8 вечера тренировка Сэма будет идти. Как сказать?" },
+    "options": [
+      { "text": "At 8 pm tomorrow, Sam will be practicing." },
+      { "text": "At 8 pm tomorrow, Sam will have practiced.", "why": { "ru": "will have practiced — «уже потренируется», результат к моменту. А в восемь тренировка будет идти." } },
+      { "text": "At 8 pm tomorrow, Sam will have been practicing.", "why": { "ru": "will have been + -ing говорит, сколько длится к моменту, а срока здесь нет. Процесс в момент — will be practicing." } },
+      { "text": "At 8 pm tomorrow, Sam practices.", "why": { "ru": "Present Simple — про то, что бывает обычно. А здесь процесс в момент в будущем." } }
+    ],
+    "answer": 0,
+    "explanation": { "ru": "В момент в будущем идёт процесс — Future Continuous: Sam will be practicing." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "К концу дня Лили напишет все три сочинения. Как сказать?" },
+    "options": [
+      { "text": "By the end of the day, Lily will have been writing all three essays.", "why": { "ru": "Три сочинения — сколько сделано, результат. С числом Continuous не ставят: will have written." } },
+      { "text": "By the end of the day, Lily will be writing all three essays.", "why": { "ru": "will be + -ing — процесс в момент. А к концу дня сочинения будут готовы: will have written." } },
+      { "text": "By the end of the day, Lily will have written all three essays." },
+      { "text": "By the end of the day, Lily will have wrote all three essays.", "why": { "ru": "wrote — вторая форма. После have — третья: write — wrote — written." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "Результат к моменту, сколько сделано — Future Perfect: Lily will have written all three essays." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "В пять будет уже два часа, как Макс ждёт. Как сказать?" },
+    "options": [
+      { "text": "By five, Max will be waiting for two hours.", "why": { "ru": "will be + -ing — процесс в момент. А «сколько уже к пяти» — will have been waiting." } },
+      { "text": "By five, Max has been waiting for two hours.", "why": { "ru": "has been waiting — сколько длится к сейчас. А момент — пять часов, он впереди." } },
+      { "text": "By five, Max will have been wait for two hours.", "why": { "ru": "После have been глагол нужен с -ing: waiting." } },
+      { "text": "By five, Max will have been waiting for two hours." }
+    ],
+    "answer": 3,
+    "explanation": { "ru": "Сколько будет длиться к моменту в будущем — Future Perfect Continuous: will have been waiting for two hours." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Важно, сколько сделано. Вставь watch в Future Perfect — три слова." },
+    "text": "By Friday, we ___ (watch) all eight episodes.",
+    "accept": ["will have {already |}watched"],
+    "mistakes": [
+      { "answer": "will have been watching", "why": { "ru": "Восемь серий — сколько сделано, результат. С числом Continuous не ставят: will have watched." } },
+      { "answer": "will watch", "why": { "ru": "Так тоже можно сказать, но задание — Future Perfect: will have watched." } },
+      { "answer": "will be watching", "why": { "ru": "will be + -ing — процесс в момент. А к пятнице все серии будут досмотрены: will have watched." } },
+      { "answer": "have watched", "why": { "ru": "have watched — Present Perfect, результат к сейчас. А пятница впереди: will have watched." } }
+    ],
+    "hint": { "ru": "Результат к моменту — will have + третья форма." },
+    "explanation": { "ru": "К пятнице все восемь серий будут досмотрены — Future Perfect: we will have watched all eight episodes." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "В семь ужин будет идти. Вставь have в Future Continuous — три слова." },
+    "text": "Don't call at seven. We ___ (have) dinner then.",
+    "accept": ["will be having"],
+    "mistakes": [
+      { "answer": "will have had", "why": { "ru": "will have had — «уже поужинаем», результат. А в семь ужин будет идти: will be having." } },
+      { "answer": "will have been having", "why": { "ru": "will have been + -ing говорит, сколько длится, а срока здесь нет. Процесс в момент — will be having." } },
+      { "answer": "will have", "why": { "ru": "will have dinner — «поужинаем», сядем за стол. А задание — Future Continuous: в семь ужин будет уже идти." } },
+      { "answer": "are having", "why": { "ru": "Так тоже можно сказать, но задание — Future Continuous: will be having." } }
+    ],
+    "hint": { "ru": "Процесс в момент в будущем — will + be + -ing." },
+    "explanation": { "ru": "В семь ужин будет идти — Future Continuous: We'll be having dinner then. have dinner — «ужинать», это действие, с ним -ing можно." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи в Future Perfect Continuous." },
+    "text": { "ru": "В декабре будет два года, как Лили учит японский." },
+    "accept": [
+      "{By|In} December Lily will have been {learning|studying} Japanese for {two|2} years",
+      "Lily will have been {learning|studying} Japanese for {two|2} years {by|in} December"
+    ],
+    "mistakes": [
+      { "answer": "{By|In} December Lily will have {studied|learned} Japanese for two years", "why": { "ru": "Так тоже можно сказать (со сроком подходит и Future Perfect), но задание — Future Perfect Continuous: will have been studying." } },
+      { "answer": "{By|In} December Lily will be {learning|studying} Japanese for two years", "why": { "ru": "will be + -ing — процесс в момент. «Сколько уже к декабрю» — will have been + -ing." } },
+      { "answer": "{By|In} December Lily has been {learning|studying} Japanese for two years", "why": { "ru": "has been + -ing — сколько длится к сейчас. А декабрь впереди: will have been." } },
+      { "answer": "{By|In} December Lily will have been {learning|studying} Japanese since two years", "why": { "ru": "Два года — срок, а не точка. Со сроком — for." } },
+      { "answer": "{By|In} December Lily will been {learning|studying} Japanese for two years", "why": { "ru": "Пропущен have: will have been." } }
+    ],
+    "hint": { "ru": "will have been + -ing, срок — с for. «Учить язык» — learn или study." },
+    "explanation": { "ru": "Сколько будет длиться к декабрю — Future Perfect Continuous: By December, Lily will have been studying Japanese for two years." }
+  }
+]

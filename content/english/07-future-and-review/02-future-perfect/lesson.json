@@ -1,0 +1,13 @@
+{
+  "title": { "ru": "Future Perfect: что будет сделано к моменту" },
+  "steps": [
+    { "type": "theory", "text": { "ru": "01-when.ru.md" } },
+    { "type": "theory", "text": { "ru": "02-form.ru.md" } },
+    { "type": "practice", "id": "form", "file": "practice/form.json" },
+    { "type": "theory", "text": { "ru": "03-by-the-time.ru.md" } },
+    { "type": "theory", "text": { "ru": "04-by-or-until.ru.md" } },
+    { "type": "practice", "id": "by-until", "file": "practice/by-until.json" },
+    { "type": "theory", "text": { "ru": "05-mistakes.ru.md" } },
+    { "type": "quiz", "file": "quiz.json" }
+  ]
+}

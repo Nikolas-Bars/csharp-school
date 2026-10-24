@@ -1,0 +1,88 @@
+[
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь finish в Future Perfect — три слова." },
+    "text": "By Friday, Max ___ (finish) his science project.",
+    "accept": ["will have {already |}finished"],
+    "mistakes": [
+      { "answer": "will finish", "why": { "ru": "Так тоже можно сказать, но задание — Future Perfect: will have finished." } },
+      { "answer": "will have finish", "why": { "ru": "После have — третья форма. У правильного глагола она с -ed: finished." } },
+      { "answer": "will finished", "why": { "ru": "Пропущен have: will have finished." } },
+      { "answer": "will has finished", "why": { "ru": "После will — всегда have, даже с he." } },
+      { "answer": "has finished", "why": { "ru": "has finished — Present Perfect, результат к сейчас. А момент — пятница, она впереди: will have finished." } }
+    ],
+    "hint": { "ru": "Формула: will + have + третья форма." },
+    "explanation": { "ru": "К пятнице проект будет готов — Future Perfect: Max will have finished his science project." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь read в Future Perfect — три слова." },
+    "text": "By the end of the summer, Lily ___ (read) twenty books.",
+    "accept": ["will have {already |}read"],
+    "mistakes": [
+      { "answer": "will have readed", "why": { "ru": "read — неправильный глагол: read — read — read. -ed к нему не добавляют." } },
+      { "answer": "will has read", "why": { "ru": "После will — всегда have, даже с she." } },
+      { "answer": "will read", "why": { "ru": "Так тоже можно сказать, но задание — Future Perfect: will have read." } },
+      { "answer": "has read", "why": { "ru": "has read — Present Perfect, результат к сейчас. А конец лета впереди: will have read." } },
+      { "answer": "will have reading", "why": { "ru": "После have — третья форма, а не -ing: read." } }
+    ],
+    "hint": { "ru": "will have + третья форма. Три формы read пишутся одинаково." },
+    "explanation": { "ru": "К концу лета книги будут прочитаны — Future Perfect: Lily will have read twenty books." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «К шести мы уже поужинаем»?" },
+    "options": [
+      { "text": "We will have ate dinner by six.", "why": { "ru": "ate — вторая форма. После have — третья: eat — ate — eaten." } },
+      { "text": "We will eaten dinner by six.", "why": { "ru": "Пропущен have: will have eaten." } },
+      { "text": "We will have eaten dinner by six." },
+      { "text": "We have eaten dinner by six.", "why": { "ru": "have eaten — Present Perfect, результат к сейчас. А шесть часов впереди: will have eaten." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "К шести ужин уже будет позади — will have + третья форма: We will have eaten dinner by six." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «К пятнице мы ещё не закончим проект». Одна плитка лишняя." },
+    "tiles": ["by Friday", "finished", "We", "the project", "won't have", "finish"],
+    "accept": [
+      "We won't have finished the project by Friday",
+      "By Friday we won't have finished the project"
+    ],
+    "mistakes": [
+      { "answer": "We won't have finish the project by Friday", "why": { "ru": "После have — третья форма: finished." } },
+      { "answer": "By Friday we won't have finish the project", "why": { "ru": "После have — третья форма: finished." } }
+    ],
+    "hint": { "ru": "Отрицание — won't have. Какая форма глагола после have?" },
+    "explanation": { "ru": "Отрицание Future Perfect — won't have + третья форма: We won't have finished the project by Friday." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "Max will has finished his homework by dinner.",
+    "wrong": 2,
+    "accept": ["have"],
+    "mistakes": [
+      { "answer": "had", "why": { "ru": "had — для прошлого. После will нужна начальная форма: have." } },
+      { "answer": "has", "why": { "ru": "Это то же слово. После will — начальная форма, без -s, даже с he." } }
+    ],
+    "hint": { "ru": "Какая форма глагола всегда стоит после will?" },
+    "explanation": { "ru": "После will — начальная форма have для всех: Max will have finished his homework by dinner." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Мама спрашивает детей. Переведи в Future Perfect." },
+    "text": { "ru": "Вы закончите к шести?" },
+    "accept": ["Will you {all |guys |}have finished{| it} by {six|6|6 pm|six o'clock|6 o'clock}"],
+    "mistakes": [
+      { "answer": "Will you finish{| it} by six", "why": { "ru": "Так тоже можно сказать, но задание — Future Perfect: Will you have finished." } },
+      { "answer": "Will you be {done|finished} by six", "why": { "ru": "Так тоже можно сказать, но задание — Future Perfect: Will you have finished." } },
+      { "answer": "Will you have finish by six", "why": { "ru": "После have — третья форма: finished." } },
+      { "answer": "Have you finished by six", "why": { "ru": "Have you finished — Present Perfect, результат к сейчас. А шесть часов впереди: Will you have finished." } },
+      { "answer": "Will you have finished until six", "why": { "ru": "«К шести, не позже» — by. until — «вплоть до», всё время до." } },
+      { "answer": "You will have finished by six", "why": { "ru": "Это порядок утверждения. В вопросе will выходит вперёд, перед you." } }
+    ],
+    "hint": { "ru": "Future Perfect — will have + третья форма. В вопросе will выходит вперёд. «К шести, не позже» — какое слово?" },
+    "explanation": { "ru": "Вопрос в Future Perfect: Will + you + have + finished — by six." }
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Какое это время: «By next June, my brother will have graduated»?" },
+    "options": [
+      { "text": "Future Simple", "why": { "ru": "Future Simple — will + глагол: will graduate. А здесь will have + третья форма." } },
+      { "text": "Future Perfect" },
+      { "text": "Future Perfect Continuous", "why": { "ru": "Future Perfect Continuous — will have been + -ing. Здесь нет been и -ing." } },
+      { "text": "Present Perfect", "why": { "ru": "Present Perfect — have / has + третья форма, без will: к сейчас. А здесь к моменту в будущем." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "will have + третья форма — Future Perfect: к июню учёба будет окончена." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь see в нужной форме." },
+    "text": "We ___ (see) that movie last Saturday.",
+    "accept": ["saw"],
+    "mistakes": [
+      { "answer": "have seen", "why": { "ru": "last Saturday — время названо и закончилось. С ним — только Past Simple: saw." } },
+      { "answer": "had seen", "why": { "ru": "Past Perfect нужен, только когда есть второй момент в прошлом и что-то случилось раньше него. Здесь его нет — Past Simple: saw." } },
+      { "answer": "seen", "why": { "ru": "seen — третья форма, без have она не работает. Время названо — Past Simple: saw." } },
+      { "answer": "were seeing", "why": { "ru": "were seeing — процесс в какой-то момент: «как раз смотрели». А здесь фильм посмотрели целиком, время названо — Past Simple: saw." } }
+    ],
+    "hint": { "ru": "last Saturday — время закончилось или ещё идёт? Какая форма see нужна для такого времени?" },
+    "explanation": { "ru": "Время названо и закончилось (last Saturday) — Past Simple: We saw that movie last Saturday." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "She has been waiting for the bus since twenty minutes.",
+    "wrong": 7,
+    "accept": ["for"],
+    "mistakes": [
+      { "answer": "from", "why": { "ru": "from обычно в паре с to. Срок — «сколько длится» — for." } },
+      { "answer": "during", "why": { "ru": "during — «во время чего-то». Срок — «сколько длится» — for." } },
+      { "answer": "since", "why": { "ru": "Это то же слово. since — для точки, с которой началось. А двадцать минут — срок." } }
+    ],
+    "hint": { "ru": "Двадцать минут — это срок или точка?" },
+    "explanation": { "ru": "Срок — for: She has been waiting for the bus for twenty minutes." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Играем уже два часа, и игра всё ещё идёт. Как сказать?" },
+    "options": [
+      { "text": "We're playing this game for two hours.", "why": { "ru": "Present Continuous не говорит, сколько уже длится. Сколько до сейчас — have been + -ing." } },
+      { "text": "We play this game for two hours.", "why": { "ru": "Present Simple — про то, что бывает обычно. Сколько длится до сейчас — Present Perfect Continuous." } },
+      { "text": "We had been playing this game for two hours.", "why": { "ru": "had been + -ing — сколько длилось до момента в прошлом. А игра идёт сейчас: have been playing." } },
+      { "text": "We've been playing this game for two hours." }
+    ],
+    "answer": 3,
+    "explanation": { "ru": "Сколько длится до сейчас — Present Perfect Continuous: We've been playing this game for two hours." }
+  }
+]

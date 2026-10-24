@@ -1,0 +1,52 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Какое предложение верное?" },
+    "options": [
+      { "text": "By next summer, I'll have been playing the guitar for three years." },
+      { "text": "By next summer, I'll have been play the guitar for three years.", "why": { "ru": "После have been глагол нужен с -ing: playing." } },
+      { "text": "By next summer, I'll be playing the guitar for three years.", "why": { "ru": "will be + -ing — процесс в момент. «Сколько уже к моменту» — will have been playing." } },
+      { "text": "By next summer, I've been playing the guitar for three years.", "why": { "ru": "I've been playing — сколько длится к сейчас. А момент — следующее лето, оно впереди." } }
+    ],
+    "answer": 0,
+    "explanation": { "ru": "Срок к моменту в будущем — Future Perfect Continuous: I'll have been playing the guitar for three years." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Какое это время: «At ten tonight, we'll be driving home»?" },
+    "options": [
+      { "text": "Future Perfect", "why": { "ru": "Future Perfect — will have + третья форма: we'll have driven. А здесь will be + -ing." } },
+      { "text": "Future Continuous" },
+      { "text": "Future Perfect Continuous", "why": { "ru": "Future Perfect Continuous — will have been + -ing. А здесь нет have been — только will be." } },
+      { "text": "Present Continuous", "why": { "ru": "Present Continuous — am / is / are + -ing. А здесь will be + -ing." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "will be + -ing — Future Continuous: в десять поездка будет идти." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "By June, I'll have been studying English since a year.",
+    "wrong": 7,
+    "accept": ["for"],
+    "mistakes": [
+      { "answer": "from", "why": { "ru": "from обычно в паре с to. Срок — «сколько длится» — for." } },
+      { "answer": "during", "why": { "ru": "during — «во время чего-то». Срок — «сколько длится» — for." } },
+      { "answer": "since", "why": { "ru": "Это то же слово. since — для точки, с которой началось. А год — срок." } }
+    ],
+    "hint": { "ru": "Год — это срок или точка?" },
+    "explanation": { "ru": "Срок — for: I'll have been studying English for a year." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «В мае будет пять лет, как я знаю Эмму»?" },
+    "options": [
+      { "text": "By May, I'll have been knowing Emma for five years.", "why": { "ru": "know — глагол состояния, -ing с ним не ставят. Нужен Future Perfect: I'll have known." } },
+      { "text": "By May, I'll have known Emma for five years." },
+      { "text": "By May, I'll be knowing Emma for five years.", "why": { "ru": "know — глагол состояния, -ing с ним не ставят. И «сколько уже к моменту» — will have + третья форма." } },
+      { "text": "By May, I know Emma for five years.", "why": { "ru": "Present Simple не говорит, сколько это будет длиться к моменту. Нужно will have known." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "know — глагол состояния, поэтому не Continuous, а Future Perfect: By May, I'll have known Emma for five years." }
+  }
+]

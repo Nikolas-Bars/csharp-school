@@ -1,0 +1,87 @@
+[
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь get в нужной форме." },
+    "text": "Hurry up! By the time we ___ (get) to the theater, the movie will have started.",
+    "accept": ["get"],
+    "mistakes": [
+      { "answer": "will get", "why": { "ru": "После by the time о будущем will не ставят — как после when. Нужен Present Simple: get." } },
+      { "answer": "will have gotten", "why": { "ru": "После by the time о будущем — Present Simple, без will: get." } },
+      { "answer": "got", "why": { "ru": "got — прошедшее время. А речь о будущем: после by the time — Present Simple." } },
+      { "answer": "gets", "why": { "ru": "we — без -s: we get." } }
+    ],
+    "hint": { "ru": "by the time работает, как when. Какое время после него о будущем?" },
+    "explanation": { "ru": "После by the time — Present Simple: By the time we get to the theater. will — только в главной части: the movie will have started." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Сочинение будет готово к воскресенью, не позже. Вставь by или until." },
+    "text": "I'll have finished my essay ___ Sunday.",
+    "accept": ["by"],
+    "mistakes": [
+      { "answer": "until", "why": { "ru": "until — «вплоть до», всё время до. А «к воскресенью, не позже» — by." } },
+      { "answer": "till", "why": { "ru": "till — то же, что until: «вплоть до». «К воскресенью, не позже» — by." } },
+      { "answer": "before", "why": { "ru": "before Sunday — «до воскресенья», то есть ещё в субботу. Так тоже можно сказать, но задание — by или until." } }
+    ],
+    "hint": { "ru": "Какое слово значит «к, не позже», а какое — «всё время до»?" },
+    "explanation": { "ru": "В утверждении с Future Perfect — by: I'll have finished my essay by Sunday." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Проект будет готов только в пятницу, не раньше. Вставь by или until." },
+    "text": "Sorry, I can't hang out tonight. I won't finish my project ___ Friday.",
+    "accept": ["until", "till"],
+    "mistakes": [
+      { "answer": "before", "why": { "ru": "Так тоже можно сказать, но задание — by или until." } },
+      { "answer": "by", "why": { "ru": "won't finish by Friday — «к пятнице не закончу», то есть закончу позже. А проект будет готов именно в пятницу, не раньше, — until." } }
+    ],
+    "hint": { "ru": "В отрицании «только в пятницу, не раньше» — какое слово?" },
+    "explanation": { "ru": "won't … until — «не раньше чем», «только в»: I won't finish my project until Friday — закончу только в пятницу." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Мы уйдём раньше, чем ты придёшь. Какое предложение верное?" },
+    "options": [
+      { "text": "By the time you will arrive, we'll have left.", "why": { "ru": "После by the time о будущем will не ставят: By the time you arrive." } },
+      { "text": "By the time you arrive, we'll have left." },
+      { "text": "Until you arrive, we'll have left.", "why": { "ru": "until — «вплоть до», всё время до. «К тому времени, как» — by the time." } },
+      { "text": "By the time you arrive, we'll have leave.", "why": { "ru": "После have — третья форма: leave — left — left." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "После by the time — Present Simple (you arrive), в главной части — Future Perfect (we'll have left)." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "I'll have cleaned my room until dinner.",
+    "wrong": 5,
+    "accept": ["by", "before"],
+    "mistakes": [
+      { "answer": "till", "why": { "ru": "till — то же, что until: «вплоть до». А комната будет убрана к ужину, не позже, — by." } },
+      { "answer": "until", "why": { "ru": "Это то же слово. until — «вплоть до», всё время до. А «к ужину, не позже» — другое слово." } }
+    ],
+    "hint": { "ru": "Какое слово значит «к, не позже»?" },
+    "explanation": { "ru": "В утверждении с Future Perfect — by: I'll have cleaned my room by dinner. Засчитаем и before dinner." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи в Future Perfect." },
+    "text": { "ru": "К тому времени, как мама вернётся домой, мы уже сделаем уроки." },
+    "accept": [
+      "By the time {Mom|my mom|my mother} {gets home|gets back|gets back home|comes home|comes back|comes back home|returns|returns home|is home|is back|is back home} we will {have|have already|already have} {done|finished} our homework",
+      "By the time {Mom|my mom|my mother} {gets home|gets back|gets back home|comes home|comes back|comes back home|returns|returns home|is home|is back|is back home} we will have {done|finished} our homework already",
+      "We will {have|have already|already have} {done|finished} our homework by the time {Mom|my mom|my mother} {gets home|gets back|gets back home|comes home|comes back|comes back home|returns|returns home|is home|is back|is back home}"
+    ],
+    "mistakes": [
+      { "answer": "By the time Mom will {get|come} {home|back} we will have done our homework", "why": { "ru": "После by the time о будущем will не ставят: By the time Mom gets home." } },
+      { "answer": "By the time Mom {get|come} {home|back} we will have done our homework", "why": { "ru": "Mom — это she, а с she к глаголу нужно -s: gets." } },
+      { "answer": "By the time Mom gets home we will do our homework", "why": { "ru": "will do — «будем делать», «сделаем потом». А к её приходу уроки уже будут сделаны: will have done." } },
+      { "answer": "By the time Mom gets home we will finish our homework", "why": { "ru": "will finish — «закончим», просто будущее. А задание — Future Perfect: к её приходу всё уже будет сделано — will have finished." } },
+      { "answer": "By the time Mom gets home we have done our homework", "why": { "ru": "have done — Present Perfect, результат к сейчас. А мама вернётся в будущем: will have done." } },
+      { "answer": "By the time Mom gets home we will have did our homework", "why": { "ru": "did — вторая форма. После have — третья: done." } },
+      { "answer": "Until Mom gets home we will have done our homework", "why": { "ru": "until — «вплоть до», всё время до. «К тому времени, как» — by the time." } }
+    ],
+    "hint": { "ru": "«К тому времени, как» — by the time, после него Present Simple. В главной части — will have + третья форма." },
+    "explanation": { "ru": "После by the time — Present Simple (Mom gets home), в главной части — Future Perfect (we'll have done our homework)." }
+  }
+]

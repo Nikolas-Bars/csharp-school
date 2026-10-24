@@ -1,0 +1,69 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Какое предложение в Future Perfect Continuous?" },
+    "options": [
+      { "text": "By June, I'll have studied English for a year.", "why": { "ru": "Это Future Perfect — will have + третья форма. Так тоже верно, но Future Perfect Continuous — will have been + -ing." } },
+      { "text": "In June, I'll be studying English.", "why": { "ru": "Это Future Continuous — will be + -ing: процесс в момент, без «сколько уже»." } },
+      { "text": "I've been studying English for a year.", "why": { "ru": "Это длительная форма Present Perfect — have been + -ing: год к сейчас, а не к моменту в будущем." } },
+      { "text": "By June, I'll have been studying English for a year." }
+    ],
+    "answer": 3,
+    "explanation": { "ru": "Future Perfect Continuous — will have been + -ing: By June, I'll have been studying English for a year." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «В июле будет десять лет, как родители живут в этом доме»?" },
+    "options": [
+      { "text": "In July, my parents will be living in this house for ten years.", "why": { "ru": "will be + -ing — процесс в момент. А «сколько уже длится к моменту» — will have been + -ing." } },
+      { "text": "In July, my parents will have been living in this house for ten years." },
+      { "text": "In July, my parents have been living in this house for ten years.", "why": { "ru": "have been living — сколько длится к сейчас. А момент — июль, он впереди: will have been living." } },
+      { "text": "In July, my parents will have been live in this house for ten years.", "why": { "ru": "После have been глагол нужен с -ing: living." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Сколько будет длиться к моменту в будущем — will have been + -ing: will have been living for ten years." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Выбери верную форму: «В конце месяца будет год, как Эмма работает в кафе»." },
+    "options": [
+      { "text": "By the end of the month, Emma will been working at the cafe for a year.", "why": { "ru": "Пропущен have: will have been working." } },
+      { "text": "By the end of the month, Emma will have been worked at the cafe for a year.", "why": { "ru": "После have been глагол нужен с -ing: working." } },
+      { "text": "By the end of the month, Emma will has been working at the cafe for a year.", "why": { "ru": "После will — всегда have, даже с she." } },
+      { "text": "By the end of the month, Emma will have been working at the cafe for a year." }
+    ],
+    "answer": 3,
+    "explanation": { "ru": "will + have + been + глагол с -ing — одно для всех: Emma will have been working." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь play в Future Perfect Continuous — четыре слова." },
+    "text": "By 6 pm, Max ___ (play) video games for five hours!",
+    "accept": ["will have been playing"],
+    "mistakes": [
+      { "answer": "will have played", "why": { "ru": "Так тоже можно сказать (со сроком подходит и Future Perfect), но задание — Future Perfect Continuous: will have been playing." } },
+      { "answer": "will be playing", "why": { "ru": "will be + -ing — процесс в момент. А «сколько уже к шести» — will have been playing." } },
+      { "answer": "has been playing", "why": { "ru": "has been playing — сколько длится к сейчас. А момент — шесть вечера, он впереди: will have been playing." } },
+      { "answer": "will have been play", "why": { "ru": "После have been глагол нужен с -ing: playing." } },
+      { "answer": "will been playing", "why": { "ru": "Пропущен have: will have been playing." } },
+      { "answer": "will has been playing", "why": { "ru": "После will — всегда have, даже с he." } }
+    ],
+    "hint": { "ru": "Срок к моменту в будущем. Формула — как have been + -ing, только впереди will." },
+    "explanation": { "ru": "К шести будет пять часов игры — Future Perfect Continuous: Max will have been playing for five hours." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «К сентябрю мы будем ходить в шахматный клуб уже год». Одна плитка лишняя." },
+    "tiles": ["going", "By September", "we'll have", "to the chess club", "been", "for a year", "be"],
+    "accept": [
+      "By September we'll have been going to the chess club for a year",
+      "We'll have been going to the chess club for a year by September"
+    ],
+    "mistakes": [
+      { "answer": "By September we'll have be going to the chess club for a year", "why": { "ru": "После have — третья форма be: been." } },
+      { "answer": "We'll have be going to the chess club for a year by September", "why": { "ru": "После have — третья форма be: been." } }
+    ],
+    "hint": { "ru": "Формула: will have been + -ing. Какая форма be стоит после have?" },
+    "explanation": { "ru": "Сколько будет длиться к сентябрю — Future Perfect Continuous: we'll have been going to the chess club for a year." }
+  }
+]

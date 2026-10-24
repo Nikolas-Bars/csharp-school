@@ -1,0 +1,94 @@
+[
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь fly в Future Continuous с will — три слова." },
+    "text": "This time tomorrow we ___ (fly) to Denver.",
+    "accept": ["will be flying"],
+    "mistakes": [
+      { "answer": "will flying", "why": { "ru": "Пропущен be: без него время не строится — will be flying." } },
+      { "answer": "will be fly", "why": { "ru": "После will be глагол нужен с -ing: flying." } },
+      { "answer": "will fly", "why": { "ru": "will fly — просто «полетим». А задание — Future Continuous: завтра в это время полёт будет уже идти — will be flying." } },
+      { "answer": "are flying", "why": { "ru": "Так тоже можно сказать (полёт — договорённость), но задание — Future Continuous: will be flying." } },
+      { "answer": "are going to be flying", "why": { "ru": "Так тоже можно сказать, но задание — с will: will be flying." } }
+    ],
+    "hint": { "ru": "Формула: will + be + глагол с -ing." },
+    "explanation": { "ru": "Завтра в это время полёт будет идти — Future Continuous: we'll be flying." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Завтра в шесть мы будем ехать домой»?" },
+    "options": [
+      { "text": "At six tomorrow we will driving home.", "why": { "ru": "Пропущен be: will be driving." } },
+      { "text": "At six tomorrow we will be driving home." },
+      { "text": "At six tomorrow we will be drive home.", "why": { "ru": "После will be глагол нужен с -ing: driving." } },
+      { "text": "At six tomorrow we are be driving home.", "why": { "ru": "are и be подряд не ставят. Будущее показывает will: will be driving." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "В шесть поездка будет идти — will be + -ing: we will be driving home." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь play в Future Continuous с will — три слова." },
+    "text": "At 8 pm tomorrow, Lily ___ (play) the piano at the school concert.",
+    "accept": ["will be playing"],
+    "mistakes": [
+      { "answer": "will be play", "why": { "ru": "После will be глагол нужен с -ing: playing." } },
+      { "answer": "will playing", "why": { "ru": "Пропущен be: will be playing." } },
+      { "answer": "will be plays", "why": { "ru": "После will be — глагол с -ing, без -s: playing." } },
+      { "answer": "is playing", "why": { "ru": "Так тоже можно сказать (концерт назначен), но задание — Future Continuous: will be playing." } },
+      { "answer": "is going to be playing", "why": { "ru": "Так тоже можно сказать, но задание — с will: will be playing." } }
+    ],
+    "hint": { "ru": "will и be одни для всех — и для Lily тоже. Что добавить к глаголу?" },
+    "explanation": { "ru": "В 8 вечера выступление будет идти — Future Continuous: Lily will be playing." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «Завтра в это время я буду сидеть на уроке математики». Одна плитка лишняя." },
+    "tiles": ["sitting", "This time tomorrow", "in math class", "I'll be", "sit"],
+    "accept": [
+      "This time tomorrow I'll be sitting in math class",
+      "I'll be sitting in math class this time tomorrow"
+    ],
+    "mistakes": [
+      { "answer": "This time tomorrow I'll be sit in math class", "why": { "ru": "После will be глагол нужен с -ing: sitting." } },
+      { "answer": "I'll be sit in math class this time tomorrow", "why": { "ru": "После will be глагол нужен с -ing: sitting." } }
+    ],
+    "hint": { "ru": "После I'll be — какая форма глагола?" },
+    "explanation": { "ru": "Завтра в это время урок будет идти — Future Continuous: I'll be sitting in math class. Время можно поставить в начало или в конец." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "This time next week Max will be swim in the ocean.",
+    "wrong": 7,
+    "accept": ["swimming"],
+    "mistakes": [
+      { "answer": "swiming", "why": { "ru": "swim кончается на гласную + согласную, поэтому m удваивается: swimming." } },
+      { "answer": "swims", "why": { "ru": "После will be — глагол с -ing, без -s." } },
+      { "answer": "swam", "why": { "ru": "swam — вторая форма, для прошлого. После will be — глагол с -ing." } }
+    ],
+    "hint": { "ru": "Что всегда стоит после will be? Вспомни, как пишется -ing у run." },
+    "explanation": { "ru": "Через неделю в это время Макс будет плавать — will be + -ing. У swim m удваивается: swimming." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи в Future Continuous с will." },
+    "text": { "ru": "Завтра в шесть Макс будет тренироваться." },
+    "accept": [
+      "{At six|At 6|At 6 pm|At six pm|At six o'clock|At 6 o'clock} tomorrow Max will be {practicing|training|working out}",
+      "Tomorrow at {six|6|6 pm|six pm|six o'clock|6 o'clock} Max will be {practicing|training|working out}",
+      "Max will be {practicing|training|working out} {at six|at 6|at 6 pm|at six pm|at six o'clock|at 6 o'clock} tomorrow",
+      "Max will be {practicing|training|working out} tomorrow at {six|6|6 pm|six pm|six o'clock|6 o'clock}"
+    ],
+    "mistakes": [
+      { "answer": "Max will practicing at six tomorrow", "why": { "ru": "Пропущен be: will be practicing." } },
+      { "answer": "Max will be practice at six tomorrow", "why": { "ru": "После will be глагол нужен с -ing: practicing." } },
+      { "answer": "Max will be practiceing at six tomorrow", "why": { "ru": "Перед -ing немая e на конце пропадает: practice → practicing." } },
+      { "answer": "Max will practice at six tomorrow", "why": { "ru": "will practice — «потренируется», просто будущее. А задание — Future Continuous: в шесть тренировка будет идти — will be practicing." } },
+      { "answer": "{Max is going to be practicing at six tomorrow|At six tomorrow Max is going to be practicing|Max is going to be practicing tomorrow at six|Tomorrow at six Max is going to be practicing}", "why": { "ru": "Так тоже можно сказать, но задание — с will: will be practicing." } },
+      { "answer": "Max is practicing at six tomorrow", "why": { "ru": "Так тоже можно сказать (тренировка назначена), но задание — Future Continuous с will: will be practicing." } }
+    ],
+    "hint": { "ru": "will + be + глагол с -ing. «Тренироваться» — practice или train." },
+    "explanation": { "ru": "В шесть тренировка будет идти — Future Continuous: Max will be practicing at six tomorrow." }
+  }
+]
