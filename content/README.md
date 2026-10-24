@@ -72,10 +72,15 @@ content/
 { "kind": "output", "expected": "Сумма: 15", "set": { "scores": [5, 9, 1] } }
 { "kind": "output", "expected": "", "set": { "count": 0 } }
 { "kind": "variable", "name": "hp", "type": "int" }
+{ "kind": "variable", "name": "items", "type": "Dictionary<string, int>" }
 { "kind": "construct", "construct": "for", "min": 1 }
+{ "kind": "construct", "construct": "override", "min": 2 }
 { "kind": "call", "method": "System.Math.Max" }
 { "kind": "call", "method": "Program.GetStatus", "caller": "Program.Report" }
+{ "kind": "call", "method": "System.Collections.Generic.Dictionary.Add" }
+{ "kind": "call", "method": "Enemy.Attack", "caller": "Orc.Attack" }
 { "kind": "access", "member": "Hero.hp", "min": 1 }
+{ "kind": "access", "member": "State.Attack" }
 ```
 
 - `output` — что печатает программа. `stdin` — что она прочитает через `Console.ReadLine`,
@@ -87,7 +92,11 @@ content/
     блока `{ }` или метода. Поэтому в стартовом коде её объявляют заранее: `int height = 3;`;
   - значение — JSON-число, строка или `true`/`false`, по типу переменной: `int`, `long` ← целое
     (`5`, не `5.0`); `double`, `float`, `decimal` ← любое число; `string` ← строка; `char` ← строка
-    из одного символа; `bool` ← `true`/`false`. Другие типы не подменяются;
+    из одного символа; `bool` ← `true`/`false`. Другие типы не подменяются — ни свой класс, ни
+    перечисление (`enum`), ни словарь (`Dictionary`). Тогда подменяй простую переменную, от которой
+    зависит ответ: ключ (`string item = "щит";` → `"set": { "item": "зелье" }`), массив, из которого
+    словарь собирается в цикле (`string[] loot = { … }`), или число, по которому выбирается
+    состояние (`int hp = 30;` → `"set": { "hp": 5 }`);
   - массив (`int[]`, `string[]`…) и список (`List<int>`…) таких типов ← JSON-массив, каждый элемент
     по правилам выше: `"set": { "scores": [5, 9, 1] }` подменяет `int[] scores = { 3, 4 };`,
     `new int[] { … }`, `new[] { … }`, `new int[2] { … }` (длина берётся из нового списка) и
@@ -107,22 +116,43 @@ content/
   без `set` — её вывод ученик видит под проверками.
 - `expected: ""` — программа ничего не печатает (например, с `set` цикл не выполнился ни разу:
   `"set": { "count": 0 }`). С `match: "contains"` пустой текст есть в любом выводе — так не пиши.
-- `variable` — объявлена переменная (регистр важен), `type` — необязательно: `int`, `List<int>`.
+- `variable` — объявлена переменная или поле класса (регистр важен), `type` — необязательно: `int`,
+  `List<int>`, `Dictionary<string, int>`, свой класс или перечисление (`State`). Ловит «не тот
+  тип»: состояние строкой вместо перечисления, два списка вместо словаря.
 - `construct` — конструкция встречается не меньше `min` раз (по умолчанию 1): `if`, `else`, `for`,
   `foreach`, `while`, `doWhile`, `switch`, `method`, `class`, `break` (только выход из цикла —
   `break` в `switch` не считается), `continue`, `constructor` (объявление конструктора класса),
   `property` (объявление свойства), `privateSet` (`private set` у свойства), `this` (слово `this`,
-  например `this.hp = hp;`).
+  например `this.hp = hp;`), `enum` (объявление перечисления), `inheritance` (класс с базовым
+  классом: `class Orc : Enemy`; `min` — сколько таких наследников), `virtual` (метод с `virtual`),
+  `override` (метод с `override`; `override ToString` тоже считается — проверяй вместе с выводом),
+  `protected` (член класса с `protected`: поле, метод, свойство, конструктор), `baseConstructor`
+  (вызов конструктора базового класса `: base(…)`; `: this(…)` не считается).
 - `call` — вызывается метод: полное имя `System.Console.WriteLine`, свои методы — `Program.Имя`.
   `caller` — необязательно: вызов засчитывается, только если он внутри этого метода
   (`Program.Report`, метод класса — `Hero.Heal`), конструктора (`Hero.Hero` — имя класса дважды) или
   свойства (`Hero.Hp` — в `get` или `set`) — прямо в теле, во вложенном методе или лямбде внутри него. Вызов из
   основного кода тогда не считается. Методы сравниваются по имени: перегрузки (несколько методов
-  с одним именем и разными параметрами) не различаются.
+  с одним именем и разными параметрами) не различаются. У методов списка и словаря имя без типов
+  в угловых скобках: `System.Collections.Generic.Dictionary.Add`, `.ContainsKey`, `.TryGetValue`,
+  `.Remove`. Метод наследника, полученный от базового класса, — метод базового: `orc.TakeDamage(5)` —
+  это `Enemy.TakeDamage`. `base.Attack()` внутри `Orc` — `Enemy.Attack`, а просто `Attack()` —
+  `Orc.Attack`. Имя берётся из объявленного типа переменной: `enemy.Attack()` у элемента
+  `List<Enemy>` — `Enemy.Attack`, даже если работает версия орка. Поэтому `override` проверяй
+  выводом через `List<Enemy>`, а не `call` на `Orc.Attack`.
+  Изменение коллекции внутри её `foreach` (`Remove` в цикле по этому же словарю) проверки не видят, а
+  в браузере (.NET 10) оно не падает, хотя в Unity падает. Учим этому в теории, а неверное решение
+  ловим по другим признакам (например, нет списка, куда сначала собирают ключи).
 - `access` — значение поля или свойства читается не меньше `min` раз (по умолчанию 1): `member` —
   класс и имя, `Hero.hp`. Чтение — `hero.hp`, `this.hp` или `hp` внутри класса; запись (`=`, `+=`,
   `++`) не считается. Ловит печать исходной переменной вместо поля объекта:
-  `Console.WriteLine(hp)` вместо `Console.WriteLine(hero.hp)`.
+  `Console.WriteLine(hp)` вместо `Console.WriteLine(hero.hp)`. Значение перечисления — тоже:
+  `State.Attack` (считается и `case State.Attack:`), свойство пары словаря —
+  `System.Collections.Generic.KeyValuePair.Key` / `.Value`. Чтение словаря по ключу (`items[key]`)
+  не видят ни `access`, ни `call` — требуй словарь через `variable` с типом и вывод с `set`.
+  Обязательный способ (`через Add`, `через TryGetValue`, `через pair.Key и pair.Value`) называй
+  в условии: тогда проверка `call` или `access` на него честна, и её сообщение говорит, что нужен
+  именно он.
 
 ## Что проверяют тесты
 

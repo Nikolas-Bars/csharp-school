@@ -1,0 +1,92 @@
+{
+  "title": {
+    "ru": "Рыцарь и лучница"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "baseConstructor",
+      "min": 2
+    },
+    {
+      "kind": "construct",
+      "construct": "inheritance",
+      "min": 2
+    },
+    {
+      "kind": "call",
+      "method": "Archer.Shoot"
+    },
+    {
+      "kind": "output",
+      "expected": "Артур: 120 HP\nМира: 70 HP\nМира стреляет. Стрел: 1\nМира стреляет. Стрел: 0\nМира: стрелы кончились"
+    },
+    {
+      "kind": "output",
+      "expected": "Артур: 120 HP\nМира: 70 HP\nМира стреляет. Стрел: 4\nМира стреляет. Стрел: 3\nМира стреляет. Стрел: 2",
+      "set": {
+        "arrows": 5
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Оба наследника передают имя и здоровье в конструктор Unit: допиши к их конструкторам : base(…)."
+    },
+    {
+      "ru": "Объяви двух наследников Unit: class Knight : Unit и class Archer : Unit."
+    },
+    {
+      "ru": "Стреляет лучник методом Shoot — вызови его у лучницы."
+    },
+    {
+      "ru": "Сравни вывод построчно. Каждый выстрел тратит одну стрелу, а когда стрел нет, стрелять нечем — число не уходит ниже нуля."
+    },
+    {
+      "ru": "С другим числом стрел вывод меняется. Передай arrows в конструктор лучника, храни их в поле и печатай поле, а не готовый текст."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "У наследника конструктор пишется со своими параметрами, а после скобок — : base(…) со значениями для Unit."
+    },
+    {
+      "ru": "У лучника: public Archer(string name, int arrows) : base(name, 70) { this.arrows = arrows; } Shoot: if (arrows > 0) { … } else { … }."
+    },
+    {
+      "ru": "В Shoot: arrows--; Console.WriteLine($\"{name} стреляет. Стрел: {arrows}\"); а в else — Console.WriteLine($\"{name}: стрелы кончились\");"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-no-base.cs",
+      "compileError": "CS7036",
+      "why": "Конструктор рыцаря не вызывает конструктор Unit"
+    },
+    {
+      "file": "wrong-swapped-base.cs",
+      "compileError": "CS1503",
+      "why": "В base(…) перепутан порядок значений"
+    },
+    {
+      "file": "wrong-no-check.cs",
+      "fails": [
+        3
+      ],
+      "why": "Нет проверки стрел: их становится -1"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        2,
+        4
+      ],
+      "why": "Выстрелы напечатаны готовым текстом"
+    }
+  ]
+}

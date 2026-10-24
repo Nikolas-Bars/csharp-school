@@ -1,0 +1,108 @@
+{
+  "title": {
+    "ru": "Ярость берсерка"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "override"
+    },
+    {
+      "kind": "call",
+      "method": "Enemy.Attack",
+      "caller": "Berserker.Attack"
+    },
+    {
+      "kind": "construct",
+      "construct": "baseConstructor"
+    },
+    {
+      "kind": "output",
+      "expected": "Скелет бьёт: 4 урона\nБерсерк бьёт: 9 урона\nБерсерк в ярости!\nБерсерк бьёт: 9 урона"
+    },
+    {
+      "kind": "output",
+      "expected": "Скелет бьёт: 4 урона\nБерсерк бьёт: 9 урона",
+      "set": {
+        "berserkerHp": 20
+      }
+    },
+    {
+      "kind": "access",
+      "member": "Enemy.name",
+      "min": 2
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Своя атака берсерка — метод Attack со словом override."
+    },
+    {
+      "ru": "Удар берсерка — это атака базового класса: вызови base.Attack() внутри своей Attack, а не копируй Console.WriteLine."
+    },
+    {
+      "ru": "Имя, здоровье и урон передай в конструктор Enemy: допиши к конструктору Berserker : base(…)."
+    },
+    {
+      "ru": "Сравни вывод. Раненый берсерк (меньше 20 HP) бьёт два раза, а между ударами впадает в ярость. Если он бьёт один раз — проверь override: без него в списке работает атака Enemy."
+    },
+    {
+      "ru": "Берсерк с 20 HP ещё не в ярости: «меньше 20» не включает 20. Он бьёт один раз — проверь знак сравнения в Attack и не печатай готовый текст."
+    },
+    {
+      "ru": "Ярость берсерка печатай с его именем из поля name, а не готовым словом."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "class Berserker : Enemy — конструктор с : base(…) и метод public override void Attack()."
+    },
+    {
+      "ru": "Конструктор: public Berserker(string name, int hp) : base(name, hp, 9) { }. В Attack: base.Attack(); потом if (hp < 20) { … } — hp наследник видит, оно protected."
+    },
+    {
+      "ru": "if (hp < 20) { Console.WriteLine($\"{name} в ярости!\"); base.Attack(); } В основном коде: party.Add(new Berserker(\"Берсерк\", berserkerHp));"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-copy-attack.cs",
+      "fails": [
+        1
+      ],
+      "why": "Удар скопирован в Berserker вместо base.Attack()"
+    },
+    {
+      "file": "wrong-no-override.cs",
+      "fails": [
+        0,
+        3
+      ],
+      "why": "Забыт override (CS0114): в списке берсерк бьёт как обычный враг"
+    },
+    {
+      "file": "wrong-rage-boundary.cs",
+      "fails": [
+        4
+      ],
+      "why": "<= вместо <: берсерк с 20 HP уже в ярости"
+    },
+    {
+      "file": "wrong-no-base-constructor.cs",
+      "compileError": "CS7036",
+      "why": "Конструктор берсерка не вызывает конструктор Enemy"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        4
+      ],
+      "why": "Атаки напечатаны готовым текстом"
+    }
+  ]
+}

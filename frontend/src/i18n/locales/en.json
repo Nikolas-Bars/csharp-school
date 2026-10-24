@@ -85,7 +85,7 @@
     "CS0219": "A value was put into the variable «{arg0}», but it is never used after that.",
     "CS0168": "The variable «{arg0}» is declared but never used.",
     "CS8773": "This can't be written in C# 9: it appeared in C# {arg1}. We learn C# 9 — the version Unity understands. Try writing it another way.",
-    "CS8803": "Program commands must come before class declarations: commands first, classes at the end of the file.",
+    "CS8803": "Program commands must come before declarations of classes and enumerations (enum): commands first, classes and enumerations at the end of the file.",
     "CS1001": "A name is expected here — for example, a variable name. If you wrote a decimal number, separate the fraction with a dot: 0.3, not 0,3.",
     "CS5001": "The program has no commands to run. Add at least one, for example printing with Console.WriteLine.",
     "CS7036": "An argument for the parameter «{arg0}» of the method {arg1} is missing. When calling a method, pass a value for every parameter — in order, separated by commas.",
@@ -114,7 +114,7 @@
     "CS1579": "A value of type {arg0} can't be looped over with foreach: you can only loop over a set of elements — an array, a list or a text. Check that a set, not a single value, comes after in.",
     "CS0665": "The condition has a single «=» — it puts a value into the variable instead of comparing. To compare, write two signs: ==.",
     "CS1660": "There is «=>» here — that is how C# writes a lambda (a short form of a method), but a value of type {arg1} is needed. If you compare «greater than or equal», write >=: hp >= 5.",
-    "CS0122": "«{arg0}» can be accessed only inside its class — make it public if you need it outside.",
+    "CS0122": "«{arg0}» can't be accessed from here. private (and a class member without an access word) is visible only inside its class, protected — also in subclasses. Use it from the class's methods or open with public what is really needed outside.",
     "CS0120": "«{arg0}» is used through an object, not through the class name. First create an object — for example, Hero hero = new Hero(); — and use it: hero.hp. If the value is shared by all objects, mark it with the word static.",
     "CS0104": "The name «{arg0}» exists in two namespaces (sets of types you connect with using): {arg1} and {arg2}. C# doesn't know which one to take. Write the full name, for example {arg2}, or rename your class.",
     "CS8801": "«{arg0}» from the main code can't be seen inside a class: variables and methods of the main code are available only there. Pass the value into the class through a constructor or method parameter, or make «{arg0}» a part of the class itself.",
@@ -127,7 +127,14 @@
     "CS0163": "A switch case ({arg0}) must end with break. Without it the program would “fall through” into the next case, and C# does not allow that. Add break; as the last command of the case.",
     "CS8070": "A switch case ({arg0}) must end with break — even the last one. Add break; as the last command.",
     "CS0131": "The left side of «=» must be a variable you can put a value into. If it is a constant (const), its value can't change: set it once when declaring it, or remove const.",
-    "CS0145": "A constant (const) needs its value right away, when it is declared: const int maxHp = 100;."
+    "CS0145": "A constant (const) needs its value right away, when it is declared: const int maxHp = 100;.",
+    "CS0506": "The method «{arg1}» in the base class isn't marked virtual, so «{arg0}» can't override it. Add virtual to the base class method: public virtual void …",
+    "CS0115": "«{arg0}» is marked override, but the base class has no method that can be overridden this way. Check the method's name and parameters and that the class has a base class: class Orc : Enemy.",
+    "CS0114": "The method «{arg0}» hides the method «{arg1}» of the base class. The program will run, but through a variable of the base type — for example, an enemy from a list of enemies — the base class version will work. To make this one work, add override: public override void …",
+    "CS0108": "The method «{arg0}» hides the method «{arg1}» of the base class with the same name. If the subclass needs its own version of the method, mark the base class method virtual and this one override.",
+    "CS0621": "The method «{arg0}» is marked virtual, but it is private (this also happens without an access word) — subclasses don't see it, so there is nothing to override. Add public: public virtual void …",
+    "CS0507": "«{arg0}» overrides the method «{arg2}», whose access is {arg1}. A method with override must have the same access: put {arg1} before override instead of the other access word.",
+    "CS0060": "The class «{arg0}» is opened with public, but its base class «{arg1}» isn't. A subclass can't be more open than its base class. Write both classes the same way — in our programs without public."
   },
   "compilerCases": {
     "voidInInterpolation": "Inside the curly braces $\"…{'{'} {'}'}\" there is a call of a void method. Such a method returns nothing — there is nothing to put into the text. If the method should answer, replace void with the type of the answer and return a value with return.",
@@ -135,10 +142,16 @@
     "voidValue": "The method returns nothing (void), so its result can't be put into a variable or passed on. If the method should answer, replace void with the type of the answer and return a value with return.",
     "methodGroup": "There is a method name without parentheses here — that is not a call yet. To call the method and get its answer, add parentheses, for example Damage().",
     "assignInCondition": "Here is a value of type {arg0}, but true or false is needed. If you compare, write two signs ==; a single = puts a value into a variable.",
-    "countOrLength": "A list's number of elements is Count, an array's is Length.",
+    "countOrLength": "The number of elements of a list or a dictionary is Count, of an array — Length.",
     "missingSeparator": "A sign is missing: most likely «;» at the end of a command on this line or above, or «,» between values.",
     "foreachVariable": "You can't assign a new value to «{arg0}»: it is a foreach loop variable, it only shows the elements one by one. To change an array element, use a for loop and an index — the element's number: items[i] = 5.",
-    "stringChar": "A character in a string can't be changed: a string in C# doesn't change after it is created. Build a new string from the parts you need and put it into the variable."
+    "stringChar": "A character in a string can't be changed: a string in C# doesn't change after it is created. Build a new string from the parts you need and put it into the variable.",
+    "pairReadOnly": "A pair from a dictionary can't be changed in foreach: Key and Value are read-only here. A new value is written by key — items[key] = …, and not in the same foreach but after the loop: in the loop remember what to change.",
+    "intToEnum": "A number can't simply be put into a variable of type {arg1} — it is an enumeration (enum). Write the value by name after a dot: {arg1}, a dot and one of the names from enum {arg1} — for example, State.Walk.",
+    "enumToInt": "A value of the enumeration {arg0} doesn't turn into a number by itself. If you need its number, add (int) before the value: (int)state.",
+    "baseToDerived": "A value of type {arg0} can't simply be put into a variable of type {arg1}: not every {arg0} is a {arg1}. The other way round works: a subclass object goes into a base class variable — for example, Enemy enemy = new Orc();.",
+    "hiddenField": "The subclass declares «{arg0}» again, but the base class already has it — «{arg1}». A subclass gets the base class fields and properties by itself: remove this declaration from the subclass, otherwise there will be two different values with the same name.",
+    "constructorArgs": "The constructor {arg1} lacks a value for «{arg0}». If the error is at new — pass the values in the parentheses. If it is at a subclass or its constructor — call the base class constructor: add : base(…) with the values to the subclass constructor. If the subclass has no constructor — declare one."
   },
   "runtime": {
     "unknown": "The program stopped with the error {type}.",
@@ -149,8 +162,9 @@
     "FormatException": "The text is not written the way it should be. For example, the text «ten» can't be turned into a number — it needs «10».",
     "OverflowException": "The number is too big or too small for this type.",
     "InvalidCastException": "The value can't be turned into this type.",
-    "KeyNotFoundException": "The dictionary has no such key.",
-    "InvalidOperationException": "This action can't be done right now. For example, you can't add or remove list elements while a foreach loop goes through the list, and you can't take the first element of an empty list."
+    "KeyNotFoundException": "The dictionary has no such key. Check the key with ContainsKey before reading or read the value with TryGetValue.",
+    "ArgumentException": "A method got an unsuitable value. Most often it is Add on a dictionary: the dictionary already has this key, and each key can be there only once. Check the key with ContainsKey or write the value by key: items[key] = 5.",
+    "InvalidOperationException": "This action can't be done right now. For example, you can't add or remove elements of a list or a dictionary while a foreach loop goes through it, and you can't take the first element of an empty list."
   },
   "playground": {
     "title": "Runner check",
@@ -309,6 +323,7 @@
     "call": "{method} is called",
     "callFrom": "The method {method} is called from {caller}",
     "access": "The value {name} of a {type} object is used",
+    "accessMember": "The value {type}.{name} is used",
     "constructs": {
       "if": "if",
       "else": "else",
@@ -324,7 +339,13 @@
       "constructor": "a constructor",
       "property": "a property",
       "privateSet": "private set (can be changed only inside the class)",
-      "this": "this (a field of its own object)"
+      "this": "this (a field of its own object)",
+      "enum": "enum (an enumeration)",
+      "inheritance": "inheritance (class Orc : Enemy)",
+      "virtual": "virtual (a method a subclass can override)",
+      "override": "override (own version of a base class method)",
+      "protected": "protected (visible in the class and its subclasses)",
+      "baseConstructor": "a call of the base class constructor: base(…)"
     },
     "setError": {
       "notFound": "This check runs the program with another value of {variable}, but there is no variable {variable} in the main code. Declare it with a value at the start of the program, outside loops and methods, as in the starting code, and don't rename it.",

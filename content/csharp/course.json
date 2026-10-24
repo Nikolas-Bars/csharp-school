@@ -4,5 +4,5 @@
   "description": {
     "ru": "Настоящий компилятор прямо в браузере, тесты честно скажут, что работает, подсказки — по шагам. Примеры из игр: здоровье, урон, инвентарь."
   },
-  "modules": ["01-first-programs", "02-loops", "03-collections", "04-methods", "05-classes"]
+  "modules": ["01-first-programs", "02-loops", "03-collections", "04-methods", "05-classes", "06-enum-dictionary-inheritance"]
 }

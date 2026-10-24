@@ -1,0 +1,152 @@
+{
+  "title": {
+    "ru": "Зоопарк монстров"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "enum"
+    },
+    {
+      "kind": "variable",
+      "name": "state",
+      "type": "State"
+    },
+    {
+      "kind": "construct",
+      "construct": "switch"
+    },
+    {
+      "kind": "construct",
+      "construct": "override"
+    },
+    {
+      "kind": "call",
+      "method": "Monster.Act",
+      "caller": "Wolf.Act"
+    },
+    {
+      "kind": "output",
+      "expected": "Слизень охотится\nВолк воет и бросается в атаку\nЛетучая мышь убегает"
+    },
+    {
+      "kind": "output",
+      "expected": "Слизень спит\nВолк спит\nЛетучая мышь убегает",
+      "set": {
+        "noise": 2
+      }
+    },
+    {
+      "kind": "output",
+      "expected": "Слизень охотится\nВолк воет и бросается в атаку\nЛетучая мышь убегает",
+      "set": {
+        "noise": 5
+      }
+    },
+    {
+      "kind": "construct",
+      "construct": "protected",
+      "min": 2
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Объяви перечисление State после основного кода: Sleep, Hunt, Flee."
+    },
+    {
+      "ru": "У монстра нужно поле state типа State."
+    },
+    {
+      "ru": "Act выбирает действие через switch по state."
+    },
+    {
+      "ru": "У волка своя версия Act со словом override, а в Monster метод Act помечен virtual."
+    },
+    {
+      "ru": "Когда волк не охотится, он ведёт себя как любой монстр: вызови base.Act() внутри своей Act."
+    },
+    {
+      "ru": "Сравни вывод построчно. Раненая летучая мышь (меньше 10 HP) убегает даже от громкого шума — здоровье проверяй первым. Если волк просто «охотится» — проверь virtual и override."
+    },
+    {
+      "ru": "Тихий шум никого не будит: монстры спят, а раненая мышь всё равно убегает. Печатай действия через Act в цикле, а не готовым текстом."
+    },
+    {
+      "ru": "Шум 5 уже будит монстров: «не меньше 5» включает и 5."
+    },
+    {
+      "ru": "Поле state пометь protected: его видит волк, но не основной код."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Порядок: enum State после основного кода, в Monster — поле protected State state; и методы. Hear только меняет state, Act только печатает."
+    },
+    {
+      "ru": "Hear: if (hp < 10) { state = State.Flee; } else if (noise >= 5) { state = State.Hunt; }. Act — public virtual void Act() со switch (state) и тремя case."
+    },
+    {
+      "ru": "В Wolf: public override void Act() { if (state == State.Hunt) { Console.WriteLine($\"{name} воет и бросается в атаку\"); } else { base.Act(); } }"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-no-override.cs",
+      "fails": [
+        3,
+        5,
+        7
+      ],
+      "why": "Забыт override (CS0114): в списке волк ведёт себя как любой монстр"
+    },
+    {
+      "file": "wrong-string-state.cs",
+      "fails": [
+        0,
+        1
+      ],
+      "why": "Состояние хранится строкой, перечисления нет"
+    },
+    {
+      "file": "wrong-noise-first.cs",
+      "fails": [
+        5,
+        7
+      ],
+      "why": "Шум проверяется раньше здоровья: раненая мышь охотится"
+    },
+    {
+      "file": "wrong-greater.cs",
+      "fails": [
+        7
+      ],
+      "why": "> вместо >=: шум 5 никого не будит"
+    },
+    {
+      "file": "wrong-hp-boundary.cs",
+      "fails": [
+        5,
+        6,
+        7
+      ],
+      "why": "<= вместо <: слизень с 10 HP убегает"
+    },
+    {
+      "file": "wrong-private-state.cs",
+      "compileError": "CS0122",
+      "why": "Поле state private: волк его не видит"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        6
+      ],
+      "why": "Действия напечатаны готовым текстом"
+    }
+  ]
+}

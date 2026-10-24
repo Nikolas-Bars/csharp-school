@@ -1,0 +1,116 @@
+{
+  "title": {
+    "ru": "Новый враг"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "enum"
+    },
+    {
+      "kind": "variable",
+      "name": "state",
+      "type": "State"
+    },
+    {
+      "kind": "access",
+      "member": "Enemy.state",
+      "min": 2
+    },
+    {
+      "kind": "output",
+      "expected": "Гоблин: Idle (0)\nГоблин: Walk (1)"
+    },
+    {
+      "kind": "output",
+      "expected": "Орк: Idle (0)\nОрк: Attack (2)",
+      "set": {
+        "enemyName": "Орк",
+        "noise": 8
+      }
+    },
+    {
+      "kind": "output",
+      "expected": "Гоблин: Idle (0)\nГоблин: Walk (1)",
+      "set": {
+        "noise": 5
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Объяви перечисление State в конце файла: Idle, Walk, Attack."
+    },
+    {
+      "ru": "У класса Enemy нужно поле state типа State."
+    },
+    {
+      "ru": "Печатай состояние из поля врага — enemy.state — в обеих строках."
+    },
+    {
+      "ru": "Сравни вывод с примером: имя, двоеточие, состояние и его номер в скобках. Номер даёт (int) перед значением, а первое значение перечисления — номер 0."
+    },
+    {
+      "ru": "При другом шуме враг переходит в другое состояние, и номер тоже меняется. Выбирай состояние через if по noise и печатай поле state, а не готовый текст."
+    },
+    {
+      "ru": "Шум 5 — это ещё не «больше 5»: враг только идёт. Проверь знак сравнения."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Перечисление и класс — в конце файла. Поле state оставь без значения: оно само станет первым значением перечисления."
+    },
+    {
+      "ru": "Номер значения — (int)enemy.state. В $\"…\" его пишут в фигурных скобках целиком: {(int)enemy.state}."
+    },
+    {
+      "ru": "Console.WriteLine($\"{enemy.name}: {enemy.state} ({(int)enemy.state})\"); потом if (noise > 5) { enemy.state = State.Attack; } else { enemy.state = State.Walk; } — и тот же вывод ещё раз."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        2,
+        4
+      ],
+      "why": "Вывод напечатан готовым текстом"
+    },
+    {
+      "file": "wrong-name-twice.cs",
+      "fails": [
+        3,
+        4,
+        5
+      ],
+      "why": "Без (int): в скобках напечатано имя, а не номер"
+    },
+    {
+      "file": "wrong-int-state.cs",
+      "compileError": "CS0266",
+      "why": "В поле-перечисление кладётся число вместо значения по имени"
+    },
+    {
+      "file": "wrong-greater-equal.cs",
+      "fails": [
+        5
+      ],
+      "why": ">= вместо >: шум 5 уже злит врага"
+    },
+    {
+      "file": "wrong-order.cs",
+      "fails": [
+        3,
+        4,
+        5
+      ],
+      "why": "Значения перечисления в другом порядке: по умолчанию Walk, номера сдвинулись"
+    }
+  ]
+}

@@ -39,7 +39,10 @@ export type Check =
    * Hero.Heal), конструктора (Hero.Hero) или свойства (Hero.Hp)
    */
   | { kind: 'call'; method: string; caller?: string | null }
-  /** Поле или свойство (Hero.hp) читается не меньше min раз; запись (=, +=, ++) не считается */
+  /**
+   * Поле или свойство (Hero.hp) читается не меньше min раз; запись (=, +=, ++) не считается.
+   * Значение перечисления (State.Attack) — тоже, и в case State.Attack:
+   */
   | { kind: 'access'; member: string; min?: number }
 
 export type SetScalar = number | string | boolean
@@ -66,6 +69,18 @@ export type Construct =
   /** Метод доступа set с private: { get; private set; } */
   | 'privateSet'
   | 'this'
+  /** Объявление перечисления: enum State { Idle, Walk } */
+  | 'enum'
+  /** Класс с базовым классом: class Orc : Enemy; min — сколько наследников */
+  | 'inheritance'
+  /** Метод с virtual */
+  | 'virtual'
+  /** Метод с override (override ToString тоже считается) */
+  | 'override'
+  /** Член класса с protected */
+  | 'protected'
+  /** Вызов конструктора базового класса: : base(…) */
+  | 'baseConstructor'
 
 /** Ошибка или предупреждение компилятора; позиции с 1, message — оригинал на английском */
 export interface Diagnostic {

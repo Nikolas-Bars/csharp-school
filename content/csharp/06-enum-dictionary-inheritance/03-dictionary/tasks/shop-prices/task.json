@@ -1,0 +1,103 @@
+{
+  "title": {
+    "ru": "Цены в лавке"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "variable",
+      "name": "prices",
+      "type": "Dictionary<string, int>"
+    },
+    {
+      "kind": "call",
+      "method": "System.Collections.Generic.Dictionary.Add"
+    },
+    {
+      "kind": "output",
+      "expected": "щит: 35 золотых\nТоваров: 3"
+    },
+    {
+      "kind": "output",
+      "expected": "зелье: 10 золотых\nТоваров: 3",
+      "set": {
+        "item": "зелье"
+      }
+    },
+    {
+      "kind": "access",
+      "member": "System.Collections.Generic.Dictionary.Count"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Нужен словарь prices типа Dictionary<string, int>: ключ — название товара, значение — цена."
+    },
+    {
+      "ru": "Товары добавь в словарь через Add: prices.Add(название, цена);"
+    },
+    {
+      "ru": "Сравни вывод с примером. Число товаров — Count словаря. Если программа остановилась с ошибкой, проверь, что каждый товар добавлен один раз."
+    },
+    {
+      "ru": "У другого товара другая цена. Бери её из словаря по ключу item, а не готовым числом или текстом."
+    },
+    {
+      "ru": "Число товаров бери из словаря: prices.Count."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Сначала словарь: Dictionary<string, int> prices = new Dictionary<string, int>(); потом три вызова Add."
+    },
+    {
+      "ru": "prices.Add(\"меч\", 50); и так же щит и зелье. Цена товара — prices[item], число товаров — prices.Count."
+    },
+    {
+      "ru": "Console.WriteLine($\"{item}: {prices[item]} золотых\"); Console.WriteLine($\"Товаров: {prices.Count}\");"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        3,
+        4
+      ],
+      "why": "Вывод напечатан готовым текстом"
+    },
+    {
+      "file": "wrong-literal-key.cs",
+      "fails": [
+        3
+      ],
+      "why": "Цена берётся по ключу \"щит\", а не по item"
+    },
+    {
+      "file": "wrong-if-chain.cs",
+      "fails": [
+        0,
+        1,
+        4
+      ],
+      "why": "Цепочка if вместо словаря"
+    },
+    {
+      "file": "wrong-duplicate.cs",
+      "fails": [
+        2,
+        3
+      ],
+      "why": "Add второй раз с ключом \"щит\" — ArgumentException"
+    },
+    {
+      "file": "wrong-length.cs",
+      "compileError": "CS1061",
+      "why": "Length вместо Count у словаря"
+    }
+  ]
+}

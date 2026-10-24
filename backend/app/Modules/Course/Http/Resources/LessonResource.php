@@ -205,7 +205,7 @@ use OpenApi\Attributes as OA;
             required: ['kind', 'construct'],
             properties: [
                 new OA\Property(property: 'kind', type: 'string', enum: ['construct']),
-                new OA\Property(property: 'construct', type: 'string', enum: ['if', 'else', 'for', 'foreach', 'while', 'doWhile', 'switch', 'method', 'class', 'break', 'continue', 'constructor', 'property', 'privateSet', 'this']),
+                new OA\Property(property: 'construct', type: 'string', enum: ['if', 'else', 'for', 'foreach', 'while', 'doWhile', 'switch', 'method', 'class', 'break', 'continue', 'constructor', 'property', 'privateSet', 'this', 'enum', 'inheritance', 'virtual', 'override', 'protected', 'baseConstructor']),
                 new OA\Property(property: 'min', type: 'integer', default: 1, minimum: 1),
             ],
             type: 'object',
@@ -227,7 +227,7 @@ use OpenApi\Attributes as OA;
             required: ['kind', 'member'],
             properties: [
                 new OA\Property(property: 'kind', type: 'string', enum: ['access']),
-                new OA\Property(property: 'member', description: 'Класс и поле или свойство', type: 'string', example: 'Hero.hp'),
+                new OA\Property(property: 'member', description: 'Класс и поле, свойство или значение перечисления (`State.Attack`)', type: 'string', example: 'Hero.hp'),
                 new OA\Property(property: 'min', type: 'integer', default: 1, minimum: 1),
             ],
             type: 'object',

@@ -1,0 +1,110 @@
+{
+  "title": {
+    "ru": "Наследование"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-inheritance.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "02-own.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "orc-and-goblin"
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "03-unity.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "04-protected.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "troll-regen"
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "05-base-variable.ru.md"
+      }
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "Что значит class Orc : Enemy?"
+          },
+          "options": [
+            {
+              "ru": "Orc — наследник Enemy: получает его поля и методы"
+            },
+            {
+              "ru": "Enemy — наследник Orc"
+            },
+            {
+              "ru": "Orc и Enemy — один и тот же класс"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "После двоеточия пишут базовый класс. Orc построен на Enemy: у орка есть всё, что есть у врага, и ещё своё."
+          }
+        },
+        {
+          "question": {
+            "ru": "В классе Enemy поле объявлено так: protected int hp;. Где его можно менять?"
+          },
+          "options": [
+            {
+              "ru": "Только в основном коде"
+            },
+            {
+              "ru": "В классе Enemy и в его наследниках"
+            },
+            {
+              "ru": "Где угодно"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "protected открывает поле своему классу и наследникам. Для основного кода оно закрыто, как private."
+          }
+        },
+        {
+          "question": {
+            "ru": "Можно ли написать Enemy enemy = new Orc();?"
+          },
+          "options": [
+            {
+              "ru": "Да: орк — тоже враг"
+            },
+            {
+              "ru": "Нет: типы слева и справа разные"
+            },
+            {
+              "ru": "Да, и enemy.Roar() тоже сработает"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "В переменную базового типа можно положить наследника. Но через неё видно только то, что есть у Enemy: Roar не вызвать — ошибка CS1061."
+          }
+        }
+      ]
+    }
+  ]
+}

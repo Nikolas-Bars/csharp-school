@@ -100,6 +100,25 @@ public sealed class CommonMistakesTests
         { "int state = 0;\nswitch (state)\n{\n    case 0:\n        System.Console.WriteLine(0);\n        break;\n    default:\n        System.Console.WriteLine(1);\n}", "CS8070", ["default:"] },
         { "const int maxHp = 100;\nmaxHp = 120;", "CS0131", [] },
         { "const int maxHp;", "CS0145", [] },
+        // Перечисления, словари и наследование (модуль 6). Особые случаи на фронте: KeyValuePair в foreach,
+        // Length у словаря, число ↔ перечисление, CS7036 у конструктора (базового — у наследника без : base)
+        { "enum State { Idle, Walk }\nState state = State.Walk;\nSystem.Console.WriteLine(state);", "CS8803", [] },
+        { "State state = 1;\nSystem.Console.WriteLine(state);\nenum State { Idle, Walk }", "CS0266", ["int", "State"] },
+        { "State state = State.Walk;\nint n = state;\nenum State { Idle, Walk }", "CS0266", ["State", "int"] },
+        { "Orc orc = new Enemy();\nclass Enemy { }\nclass Orc : Enemy { }", "CS0266", ["Enemy", "Orc"] },
+        { "using System.Collections.Generic;\nDictionary<string, int> items = new Dictionary<string, int>();\nint n = items.Length;", "CS1061", ["Dictionary<string, int>", "Length"] },
+        { "using System.Collections.Generic;\nDictionary<string, int> items = new Dictionary<string, int>();\nforeach (KeyValuePair<string, int> pair in items)\n{\n    pair.Value = 0;\n}", "CS0200", ["KeyValuePair<string, int>.Value"] },
+        { "System.Console.WriteLine(1);\nclass Enemy { public Enemy(string name) { } }\nclass Orc : Enemy { public Orc() { } }", "CS7036", ["name", "Enemy.Enemy(string)"] },
+        { "System.Console.WriteLine(1);\nclass Enemy { public void Attack() { } }\nclass Orc : Enemy { public override void Attack() { } }", "CS0506", ["Orc.Attack()", "Enemy.Attack()"] },
+        { "System.Console.WriteLine(1);\nclass Enemy { }\nclass Orc : Enemy { public override void Attack() { } }", "CS0115", ["Orc.Attack()"] },
+        { "System.Console.WriteLine(1);\nclass Enemy { public virtual void Attack() { } }\nclass Orc : Enemy { public void Attack() { } }", "CS0114", ["Orc.Attack()", "Enemy.Attack()"] },
+        { "System.Console.WriteLine(1);\nclass Enemy { public void Attack() { } }\nclass Orc : Enemy { public void Attack() { } }", "CS0108", ["Orc.Attack()", "Enemy.Attack()"] },
+        // Поле базового класса объявлено у наследника ещё раз — у метода в аргументах скобки, у поля нет
+        { "System.Console.WriteLine(1);\nclass Enemy { public int hp; }\nclass Orc : Enemy { public int hp; }", "CS0108", ["Orc.hp", "Enemy.hp"] },
+        { "System.Console.WriteLine(1);\nclass Enemy { virtual void Attack() { } }", "CS0621", ["Enemy.Attack()"] },
+        { "System.Console.WriteLine(1);\nclass Enemy { public virtual void Attack() { } }\nclass Orc : Enemy { override void Attack() { } }", "CS0507", ["Orc.Attack()", "public", "Enemy.Attack()"] },
+        { "System.Console.WriteLine(1);\nclass Enemy { }\npublic class Orc : Enemy { }", "CS0060", ["Orc", "Enemy"] },
+        { "Enemy enemy = new Enemy();\nSystem.Console.WriteLine(enemy.hp);\nclass Enemy { protected int hp; }", "CS0122", ["Enemy.hp"] },
     };
 
     [Theory]

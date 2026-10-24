@@ -1,0 +1,114 @@
+{
+  "title": {
+    "ru": "Продаём хлам"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "call",
+      "method": "System.Collections.Generic.Dictionary.TryGetValue"
+    },
+    {
+      "kind": "variable",
+      "name": "sold",
+      "type": "List<string>"
+    },
+    {
+      "kind": "call",
+      "method": "System.Collections.Generic.Dictionary.Remove"
+    },
+    {
+      "kind": "output",
+      "expected": "Золото: 11\nмеч: 1\nзелье: 2"
+    },
+    {
+      "kind": "output",
+      "expected": "Золото: 15\nмеч: 1\nзелье: 2",
+      "set": {
+        "bonePrice": 3
+      }
+    },
+    {
+      "kind": "access",
+      "member": "System.Collections.Generic.KeyValuePair.Key"
+    },
+    {
+      "kind": "access",
+      "member": "System.Collections.Generic.KeyValuePair.Value"
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Цену узнавай через prices.TryGetValue(…, out int price): проверка и чтение — в одном вызове."
+    },
+    {
+      "ru": "Проданные предметы собирай в список sold типа List<string>: сумку внутри её foreach не меняют."
+    },
+    {
+      "ru": "Проданное удаляй из сумки через Remove — в отдельном цикле по sold."
+    },
+    {
+      "ru": "Сравни вывод. Золото — цена, умноженная на количество, за каждый проданный предмет. В сумке остаются только предметы, которых нет в prices."
+    },
+    {
+      "ru": "При другой цене кости золота должно быть больше. Бери цену из prices, количество — из сумки и печатай gold, а не готовое число."
+    },
+    {
+      "ru": "Предмет бери из пары: pair.Key."
+    },
+    {
+      "ru": "Количество бери из пары: pair.Value."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Три шага: цикл по bag с TryGetValue, цикл по sold с Remove, потом вывод gold и цикл по bag."
+    },
+    {
+      "ru": "Список sold объяви перед циклом. В цикле: if (prices.TryGetValue(pair.Key, out int price)) { gold += price * pair.Value; sold.Add(pair.Key); }"
+    },
+    {
+      "ru": "foreach (string item in sold) { bag.Remove(item); } Console.WriteLine($\"Золото: {gold}\"); и foreach по bag с выводом pair.Key и pair.Value."
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        6
+      ],
+      "why": "Вывод напечатан готовым текстом"
+    },
+    {
+      "file": "wrong-remove-in-loop.cs",
+      "fails": [
+        1
+      ],
+      "why": "Удаление внутри foreach по сумке: в браузере (.NET 10) не падает, а в Unity — InvalidOperationException. Ловится только отсутствием списка sold: если список есть, а Remove всё равно внутри foreach, проверки этого не видят — известное ограничение"
+    },
+    {
+      "file": "wrong-index-read.cs",
+      "fails": [
+        0
+      ],
+      "why": "ContainsKey и чтение по ключу вместо TryGetValue"
+    },
+    {
+      "file": "wrong-no-multiply.cs",
+      "fails": [
+        3,
+        4
+      ],
+      "why": "Цена не умножается на количество"
+    }
+  ]
+}

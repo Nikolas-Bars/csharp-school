@@ -1,0 +1,18 @@
+{
+  "title": {
+    "ru": "Перечисления, словари и наследование"
+  },
+  "description": {
+    "ru": "Состояния врага (enum и switch), инвентарь (Dictionary), виды врагов: наследование, base, virtual и override"
+  },
+  "lessons": [
+    "01-enum",
+    "02-enum-switch",
+    "03-dictionary",
+    "04-dictionary-loop",
+    "05-inheritance",
+    "06-base-constructor",
+    "07-virtual-override",
+    "08-module-test"
+  ]
+}

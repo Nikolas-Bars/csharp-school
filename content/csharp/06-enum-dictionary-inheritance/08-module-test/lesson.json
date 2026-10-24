@@ -1,0 +1,107 @@
+{
+  "title": {
+    "ru": "Контрольная: зоопарк монстров"
+  },
+  "kind": "test",
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-intro.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "monster-zoo"
+    },
+    {
+      "type": "task",
+      "task": "loot-table"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "enum State { Idle, Walk, Attack } и State s = State.Attack;. Что напечатает Console.WriteLine((int)s);?"
+          },
+          "options": [
+            {
+              "ru": "Attack"
+            },
+            {
+              "ru": "2"
+            },
+            {
+              "ru": "3"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "Номера значений идут по порядку с нуля: Idle — 0, Walk — 1, Attack — 2. Без (int) напечаталось бы имя Attack."
+          }
+        },
+        {
+          "question": {
+            "ru": "Как узнать цену меча из словаря prices так, чтобы программа не упала, если меча нет?"
+          },
+          "options": [
+            {
+              "ru": "int price = prices[\"меч\"];"
+            },
+            {
+              "ru": "if (prices.TryGetValue(\"меч\", out int price)) { … }"
+            },
+            {
+              "ru": "prices.Add(\"меч\", 0);"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "TryGetValue отвечает false, если ключа нет, и не падает. Чтение prices[\"меч\"] без ключа — KeyNotFoundException."
+          }
+        },
+        {
+          "question": {
+            "ru": "У Enemy есть конструктор Enemy(string name, int hp). Как начать конструктор class Orc : Enemy?"
+          },
+          "options": [
+            {
+              "ru": "public Orc(string name) : base(name, 60)"
+            },
+            {
+              "ru": "public Orc(string name) : Enemy(name, 60)"
+            },
+            {
+              "ru": "public Orc(string name) { Enemy(name, 60); }"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "Конструктор базового класса вызывают через : base(…) после скобок конструктора наследника."
+          }
+        },
+        {
+          "question": {
+            "ru": "Какое слово пишут у метода наследника, чтобы в List<Enemy> работала его версия?"
+          },
+          "options": [
+            {
+              "ru": "virtual"
+            },
+            {
+              "ru": "override"
+            },
+            {
+              "ru": "protected"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "virtual ставят у метода базового класса, override — у версии наследника. protected — про доступ, а не про замену метода."
+          }
+        }
+      ]
+    }
+  ]
+}

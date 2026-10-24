@@ -1,0 +1,94 @@
+{
+  "title": {
+    "ru": "Враг в броне"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "baseConstructor"
+    },
+    {
+      "kind": "call",
+      "method": "Enemy.TakeDamage",
+      "caller": "ArmoredEnemy.Block"
+    },
+    {
+      "kind": "output",
+      "expected": "Чёрный рыцарь: 43 HP\nЧёрный рыцарь: 43 HP"
+    },
+    {
+      "kind": "output",
+      "expected": "Чёрный рыцарь: 32 HP\nЧёрный рыцарь: 31 HP",
+      "set": {
+        "armor": 2,
+        "hit": 20
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Имя и здоровье передай в конструктор Enemy: допиши к конструктору ArmoredEnemy : base(…)."
+    },
+    {
+      "ru": "Остаток урона наноси внутри Block методом TakeDamage, полученным от Enemy, — не меняй hp напрямую."
+    },
+    {
+      "ru": "Сравни вывод. Удар 12 при броне 5 снимает 7, а слабый удар 3 броня поглощает целиком: урон не бывает меньше нуля и не лечит рыцаря."
+    },
+    {
+      "ru": "С другой бронёй и другим ударом здоровье другое. Сохрани armor из конструктора в поле, вычитай его в Block и печатай через Info, а не готовым текстом."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Конструктор: public ArmoredEnemy(string name, int hp, int armor) : base(name, hp) { … } — внутри сохрани броню в поле через this."
+    },
+    {
+      "ru": "В Block сначала посчитай остаток: Math.Max(damage - armor, 0) — он не бывает меньше нуля."
+    },
+    {
+      "ru": "Block: TakeDamage(Math.Max(damage - armor, 0)); В основном коде: knight.Block(hit); knight.Info(); knight.Block(3); knight.Info();"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        3
+      ],
+      "why": "Вывод напечатан готовым текстом, Block не вызывается"
+    },
+    {
+      "file": "wrong-negative.cs",
+      "fails": [
+        2
+      ],
+      "why": "Слабый удар даёт отрицательный урон — рыцарь лечится"
+    },
+    {
+      "file": "wrong-hp-directly.cs",
+      "fails": [
+        1
+      ],
+      "why": "Block меняет hp сам, а не через TakeDamage"
+    },
+    {
+      "file": "wrong-armor-not-saved.cs",
+      "fails": [
+        2,
+        3
+      ],
+      "why": "Броня не сохранена в поле: armor = armor присваивает параметр сам себе"
+    },
+    {
+      "file": "wrong-no-base.cs",
+      "compileError": "CS7036",
+      "why": "Конструктор наследника не вызывает конструктор Enemy"
+    }
+  ]
+}

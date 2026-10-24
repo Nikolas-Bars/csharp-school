@@ -1,0 +1,72 @@
+{
+  "title": {
+    "ru": "switch по перечислению"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-switch.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "orc-turn"
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "02-field.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "sleepy-guard"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "Как правильно написать вариант switch для значения Walk перечисления State?"
+          },
+          "options": [
+            {
+              "ru": "case Walk:"
+            },
+            {
+              "ru": "case State.Walk:"
+            },
+            {
+              "ru": "case \"Walk\":"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "Значение перечисления пишут с именем типа. Просто Walk компилятор не найдёт (CS0103), а \"Walk\" — строка, а не значение State."
+          }
+        },
+        {
+          "question": {
+            "ru": "Метод врага SeeHero делает state = State.Attack;. У кого поменяется состояние?"
+          },
+          "options": [
+            {
+              "ru": "Только у того врага, у которого вызвали SeeHero"
+            },
+            {
+              "ru": "У всех врагов сразу"
+            },
+            {
+              "ru": "Ни у кого: поле нельзя менять в методе"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "Поле без static у каждого объекта своё. wolf.SeeHero() меняет состояние именно волка, остальные враги не меняются."
+          }
+        }
+      ]
+    }
+  ]
+}

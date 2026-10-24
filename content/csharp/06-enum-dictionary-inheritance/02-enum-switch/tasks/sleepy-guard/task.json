@@ -1,0 +1,125 @@
+{
+  "title": {
+    "ru": "Сонный стражник"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "variable",
+      "name": "state",
+      "type": "State"
+    },
+    {
+      "kind": "construct",
+      "construct": "switch"
+    },
+    {
+      "kind": "access",
+      "member": "Guard.state"
+    },
+    {
+      "kind": "output",
+      "expected": "Стражник дремлет\nСтражник осматривается"
+    },
+    {
+      "kind": "output",
+      "expected": "Стражник дремлет\nСтражник поднимает тревогу!",
+      "set": {
+        "noise": 10
+      }
+    },
+    {
+      "kind": "output",
+      "expected": "Стражник дремлет\nСтражник дремлет",
+      "set": {
+        "noise": 2
+      }
+    },
+    {
+      "kind": "output",
+      "expected": "Стражник дремлет\nСтражник осматривается",
+      "set": {
+        "noise": 5
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "У стражника нужно поле state типа State. Перечисление объяви в конце файла."
+    },
+    {
+      "ru": "Act выбирает действие через switch по полю state."
+    },
+    {
+      "ru": "Act должен смотреть на поле стражника: switch (state)."
+    },
+    {
+      "ru": "Сравни вывод построчно. Сначала стражник в состоянии по умолчанию — Idle, а шум 7 делает его настороженным. Hear должен менять поле state, а не новую переменную."
+    },
+    {
+      "ru": "Громкий шум (10 и больше) поднимает тревогу. Проверь порядок условий в Hear: сначала самое строгое — не меньше 10."
+    },
+    {
+      "ru": "Тихий шум не меняет состояние: стражник дремлет дальше. Печатай действие через Act, а не готовым текстом."
+    },
+    {
+      "ru": "Шум 5 уже настораживает: «не меньше 5» включает и 5. Проверь знак во втором условии Hear."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "Поле state — без значения: стражник начинает в Idle. Hear только меняет поле, Act только печатает."
+    },
+    {
+      "ru": "Hear: if (noise >= 10) { state = State.Alarm; } else if (noise >= 5) { … }. Act: switch (state) с тремя case и break в каждом."
+    },
+    {
+      "ru": "В Act: case State.Idle: Console.WriteLine(\"Стражник дремлет\"); break; case State.Alert: … break; case State.Alarm: … break;"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-string-state.cs",
+      "fails": [
+        0
+      ],
+      "why": "Состояние хранится строкой, а не перечислением"
+    },
+    {
+      "file": "wrong-local-state.cs",
+      "fails": [
+        3,
+        4,
+        6
+      ],
+      "why": "Hear меняет новую переменную state, а не поле стражника"
+    },
+    {
+      "file": "wrong-order.cs",
+      "fails": [
+        4
+      ],
+      "why": "Сначала проверяется «не меньше 5» — до тревоги дело не доходит"
+    },
+    {
+      "file": "wrong-greater.cs",
+      "fails": [
+        4,
+        6
+      ],
+      "why": "> вместо >=: шумы 10 и 5 не действуют"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        4,
+        5
+      ],
+      "why": "Вывод напечатан готовым текстом, Act не вызывается"
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "title": {
+    "ru": "Подбираем добычу"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "call",
+      "method": "System.Collections.Generic.Dictionary.ContainsKey"
+    },
+    {
+      "kind": "call",
+      "method": "System.Collections.Generic.Dictionary.Add"
+    },
+    {
+      "kind": "output",
+      "expected": "стрела: 15\nВидов предметов: 2"
+    },
+    {
+      "kind": "output",
+      "expected": "кольцо: 1\nВидов предметов: 3",
+      "set": {
+        "found": "кольцо",
+        "amount": 1
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Проверь, есть ли предмет в инвентаре, через ContainsKey."
+    },
+    {
+      "ru": "Новый предмет добавляй через Add."
+    },
+    {
+      "ru": "Сравни вывод. Стрелы уже есть: к 10 прибавляется 5, а новый вид не появляется. Если программа остановилась с ArgumentException — Add вызывается и для предмета, который уже есть."
+    },
+    {
+      "ru": "Кольца в инвентаре нет: его нужно добавить, и видов станет больше. Если программа остановилась с KeyNotFoundException — читается ключ, которого нет. Печатай значения из словаря, а не готовый текст."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "if (inventory.ContainsKey(found)) { … } else { … } — в одной ветке меняешь количество, в другой добавляешь пару."
+    },
+    {
+      "ru": "Если предмет есть: inventory[found] += amount; если нет: inventory.Add(found, amount);"
+    },
+    {
+      "ru": "После if: Console.WriteLine($\"{found}: {inventory[found]}\"); Console.WriteLine($\"Видов предметов: {inventory.Count}\");"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-always-add.cs",
+      "fails": [
+        0,
+        2
+      ],
+      "why": "Add без проверки: для стрел, которые уже есть, — ArgumentException"
+    },
+    {
+      "file": "wrong-replace.cs",
+      "fails": [
+        2
+      ],
+      "why": "Количество заменяется на amount, а не прибавляется"
+    },
+    {
+      "file": "wrong-no-check.cs",
+      "fails": [
+        0,
+        1,
+        3
+      ],
+      "why": "Без проверки: чтение кольца, которого нет, — KeyNotFoundException"
+    },
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        0,
+        1,
+        3
+      ],
+      "why": "Вывод напечатан готовым текстом"
+    }
+  ]
+}

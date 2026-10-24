@@ -1,0 +1,124 @@
+{
+  "title": {
+    "ru": "virtual и override"
+  },
+  "steps": [
+    {
+      "type": "theory",
+      "text": {
+        "ru": "01-virtual.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "02-list.ru.md"
+      }
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "03-forgot-override.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "enemy-wave"
+    },
+    {
+      "type": "theory",
+      "text": {
+        "ru": "04-base-call.ru.md"
+      }
+    },
+    {
+      "type": "task",
+      "task": "berserker-rage"
+    },
+    {
+      "type": "quiz",
+      "questions": [
+        {
+          "question": {
+            "ru": "Зачем слово virtual у метода базового класса?"
+          },
+          "options": [
+            {
+              "ru": "Разрешает наследникам заменить метод своей версией"
+            },
+            {
+              "ru": "Прячет метод от основного кода"
+            },
+            {
+              "ru": "Запрещает вызывать метод"
+            }
+          ],
+          "answer": 0,
+          "explanation": {
+            "ru": "virtual — «можно заменить». Наследник заменяет такой метод своей версией со словом override."
+          }
+        },
+        {
+          "question": {
+            "ru": "В List<Enemy> лежит орк, у которого своя Attack с override. Что сработает при enemy.Attack()?"
+          },
+          "options": [
+            {
+              "ru": "Attack класса Enemy: переменная ведь типа Enemy"
+            },
+            {
+              "ru": "Attack орка"
+            },
+            {
+              "ru": "Ошибка компиляции"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "С virtual и override C# смотрит на настоящий объект: это орк — работает его атака. Это и есть полиморфизм."
+          }
+        },
+        {
+          "question": {
+            "ru": "В базовом классе Attack — virtual, а у наследника Attack без override. Что будет?"
+          },
+          "options": [
+            {
+              "ru": "Ошибка компиляции"
+            },
+            {
+              "ru": "Предупреждение CS0114, и через переменную Enemy сработает атака базового класса"
+            },
+            {
+              "ru": "Всё работает так же, как с override"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "Без override метод наследника только прячет базовый. Программа запустится, но в List<Enemy> враг будет атаковать по-старому."
+          }
+        },
+        {
+          "question": {
+            "ru": "Как внутри своей Attack с override вызвать атаку базового класса?"
+          },
+          "options": [
+            {
+              "ru": "Attack();"
+            },
+            {
+              "ru": "base.Attack();"
+            },
+            {
+              "ru": "Enemy.Attack();"
+            }
+          ],
+          "answer": 1,
+          "explanation": {
+            "ru": "base. — обращение к базовому классу. Просто Attack() вызовет сам себя снова и снова, а Enemy.Attack() не сработает: Attack — метод объекта, а не класса."
+          }
+        }
+      ]
+    }
+  ]
+}

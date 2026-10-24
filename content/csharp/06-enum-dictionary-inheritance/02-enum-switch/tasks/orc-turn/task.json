@@ -1,0 +1,95 @@
+{
+  "title": {
+    "ru": "Ход орка"
+  },
+  "statement": {
+    "ru": "statement.ru.md"
+  },
+  "starter": "starter.cs",
+  "checks": [
+    {
+      "kind": "construct",
+      "construct": "switch"
+    },
+    {
+      "kind": "output",
+      "expected": "Орк атакует: 12 урона"
+    },
+    {
+      "kind": "output",
+      "expected": "Орк убегает",
+      "set": {
+        "hp": 10
+      }
+    },
+    {
+      "kind": "output",
+      "expected": "Орк ходит дозором",
+      "set": {
+        "distance": 9
+      }
+    }
+  ],
+  "messages": [
+    {
+      "ru": "Выбирай действие через switch (state) — с вариантом case на каждое значение."
+    },
+    {
+      "ru": "Сравни вывод с примером: текст каждого варианта — как в условии."
+    },
+    {
+      "ru": "Раненый орк (hp меньше 15) убегает. Проверь вариант case State.Flee: и его текст."
+    },
+    {
+      "ru": "Когда герой далеко, орк ходит дозором. Проверь вариант case State.Patrol: и что действие печатает switch, а не готовый текст."
+    }
+  ],
+  "hints": [
+    {
+      "ru": "switch (state) { … } — внутри три варианта, по одному на каждое значение State."
+    },
+    {
+      "ru": "Вариант пишется так: case State.Patrol: — команда вывода — break;. Значение — с именем типа и точкой."
+    },
+    {
+      "ru": "case State.Patrol: Console.WriteLine(\"Орк ходит дозором\"); break; case State.Attack: … break; case State.Flee: … break;"
+    }
+  ],
+  "solution": "solution.cs",
+  "wrong": [
+    {
+      "file": "wrong-ready-answer.cs",
+      "fails": [
+        0,
+        2,
+        3
+      ],
+      "why": "Вывод напечатан готовым текстом, без switch"
+    },
+    {
+      "file": "wrong-no-prefix.cs",
+      "compileError": "CS0103",
+      "why": "В case значения без имени типа: case Patrol: вместо case State.Patrol:"
+    },
+    {
+      "file": "wrong-no-break.cs",
+      "compileError": "CS0163",
+      "why": "Забыт break в конце варианта"
+    },
+    {
+      "file": "wrong-if-chain.cs",
+      "fails": [
+        0
+      ],
+      "why": "Цепочка if вместо switch"
+    },
+    {
+      "file": "wrong-swapped.cs",
+      "fails": [
+        2,
+        3
+      ],
+      "why": "Тексты Patrol и Flee перепутаны"
+    }
+  ]
+}
