@@ -1,0 +1,73 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Эмма ждала уже час, когда пришёл автобус»?" },
+    "options": [
+      { "text": "Emma was waiting for an hour when the bus came.", "why": { "ru": "Past Continuous говорит, что ожидание шло, но не сколько оно уже длилось. Сколько уже к моменту в прошлом — had been waiting." } },
+      { "text": "Emma has been waiting for an hour when the bus came.", "why": { "ru": "has — про «к сейчас». А автобус пришёл в прошлом (came) — нужен had." } },
+      { "text": "Emma had been waiting for an hour when the bus came." },
+      { "text": "Emma had been wait for an hour when the bus came.", "why": { "ru": "После been — глагол с -ing: waiting." } }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "Ожидание длилось час до момента в прошлом (bus came) — had been + -ing: Emma had been waiting for an hour." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь play в Past Perfect Continuous — три слова." },
+    "text": "The kids were tired. They ___ (play) soccer all afternoon.",
+    "accept": ["had been playing"],
+    "mistakes": [
+      { "answer": "have been playing", "why": { "ru": "have — про «к сейчас». А дети устали в прошлом (were tired) — нужен had." } },
+      { "answer": "were playing", "why": { "ru": "Так тоже можно сказать, но задание — Past Perfect Continuous: had been playing." } },
+      { "answer": "had played", "why": { "ru": "Так тоже можно, но задание — длительная форма: had been + -ing." } },
+      { "answer": "had been play", "why": { "ru": "После been — глагол с -ing: playing." } },
+      { "answer": "has been playing", "why": { "ru": "has — про «к сейчас», да и с they его не ставят. В прошлом — had been playing." } }
+    ],
+    "hint": { "ru": "Какой помощник в Past Perfect? Что стоит после been?" },
+    "explanation": { "ru": "Играли до момента в прошлом, и видно, что устали — had been + -ing: They had been playing soccer all afternoon." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь вопрос с you и wait в Past Perfect Continuous — четыре слова." },
+    "text": "— How long ___ (you / wait) when the doctor called you in? — About an hour.",
+    "accept": ["had you been waiting"],
+    "mistakes": [
+      { "answer": "have you been waiting", "why": { "ru": "have — про «к сейчас». А врач пригласил в прошлом (called) — нужен had." } },
+      { "answer": "you had been waiting", "why": { "ru": "В вопросе had встаёт перед you: How long had you…?" } },
+      { "answer": "were you waiting", "why": { "ru": "В разговоре так тоже спросят, но задание — Past Perfect Continuous: had you been waiting." } },
+      { "answer": "had you waited", "why": { "ru": "Так тоже можно, но задание — длительная форма: had you been waiting." } },
+      { "answer": "had you been wait", "why": { "ru": "После been — глагол с -ing: waiting." } }
+    ],
+    "hint": { "ru": "В вопросе had выходит вперёд, been и глагол с -ing остаются после you." },
+    "explanation": { "ru": "How long + had + you + been waiting: сколько уже длилось к моменту в прошлом." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «Мы гуляли уже два часа, когда пошёл дождь». Одна плитка лишняя." },
+    "tiles": ["walking", "when", "We", "have been", "for two hours", "it", "had been", "started to rain"],
+    "accept": [
+      "We had been walking for two hours when it started to rain",
+      "When it started to rain we had been walking for two hours"
+    ],
+    "mistakes": [
+      { "answer": "We have been walking for two hours when it started to rain", "why": { "ru": "have — про «к сейчас». А дождь пошёл в прошлом (started) — нужен had." } },
+      { "answer": "When it started to rain we have been walking for two hours", "why": { "ru": "have — про «к сейчас». А дождь пошёл в прошлом (started) — нужен had." } }
+    ],
+    "hint": { "ru": "Дождь пошёл в прошлом. Какой помощник у того, что длилось до этого момента?" },
+    "explanation": { "ru": "Гуляли два часа до момента в прошлом — had been + -ing: We had been walking for two hours when it started to rain." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "We had been waiting since two hours when the bus finally came.",
+    "wrong": 4,
+    "accept": ["for"],
+    "mistakes": [
+      { "answer": "from", "why": { "ru": "from обычно в паре с to. А «два часа» — срок: for." } },
+      { "answer": "during", "why": { "ru": "during — «во время чего-то»: during the game. Сколько длилось — for." } },
+      { "answer": "since", "why": { "ru": "Это то же слово. «Два часа» — срок или точка?" } }
+    ],
+    "hint": { "ru": "«Два часа» — это срок или точка?" },
+    "explanation": { "ru": "Срок — for: We had been waiting for two hours when the bus finally came." }
+  }
+]

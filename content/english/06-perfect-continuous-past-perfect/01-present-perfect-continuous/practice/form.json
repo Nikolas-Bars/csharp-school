@@ -1,0 +1,76 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Мы ждём тебя уже час»?" },
+    "options": [
+      { "text": "We're waiting for you for an hour.", "why": { "ru": "Present Continuous — только «сейчас»: он не говорит, сколько уже длится. «Уже час» — Present Perfect: have been waiting." } },
+      { "text": "We were waiting for you for an hour.", "why": { "ru": "were — прошлое: так выйдет «ждали», и уже не ждём. А ждём до сих пор: have been waiting." } },
+      { "text": "We've been wait for you for an hour.", "why": { "ru": "После been — глагол с -ing: waiting." } },
+      { "text": "We've been waiting for you for an hour." }
+    ],
+    "answer": 3,
+    "explanation": { "ru": "Ожидание началось час назад и идёт до сих пор — have been + -ing: We've been waiting for you for an hour." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь play в длительной форме Present Perfect — три слова." },
+    "text": "The kids ___ (play) video games all afternoon.",
+    "accept": ["have been playing"],
+    "mistakes": [
+      { "answer": "has been playing", "why": { "ru": "kids — несколько, это they. С they нужен have." } },
+      { "answer": "have played", "why": { "ru": "Так тоже можно, но задание — длительная форма: have been + -ing." } },
+      { "answer": "have been play", "why": { "ru": "После been — глагол с -ing: playing." } },
+      { "answer": "have playing", "why": { "ru": "Пропущен been: длительная форма — have been + -ing." } },
+      { "answer": "are playing", "why": { "ru": "Present Continuous — только «сейчас». А «весь день и до сих пор» — Present Perfect: have been playing." } }
+    ],
+    "hint": { "ru": "kids — have или has? Формула: помощник + been + глагол с -ing." },
+    "explanation": { "ru": "Играют с обеда и до сих пор — have been + -ing: The kids have been playing video games all afternoon." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «Эмма учит испанский с сентября». Одна плитка лишняя." },
+    "tiles": ["Spanish", "since", "has been", "learning", "Emma", "for", "September"],
+    "accept": [
+      "Emma has been learning Spanish since September",
+      "Since September Emma has been learning Spanish"
+    ],
+    "mistakes": [
+      { "answer": "Emma has been learning Spanish for September", "why": { "ru": "Сентябрь — точка, с которой всё началось, а не срок. С точкой — since." } }
+    ],
+    "hint": { "ru": "Сентябрь — это срок или точка?" },
+    "explanation": { "ru": "Учит с сентября и до сих пор — has been learning, с точкой — since: Emma has been learning Spanish since September." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "We have been wait for the bus for twenty minutes.",
+    "wrong": 3,
+    "accept": ["waiting"],
+    "mistakes": [
+      { "answer": "waited", "why": { "ru": "После been нужен глагол с -ing: have been waiting. Без been было бы have waited." } },
+      { "answer": "waitting", "why": { "ru": "В wait t не удваивают: перед ней две гласные. Пишется waiting." } },
+      { "answer": "wait", "why": { "ru": "Это то же слово. После been — глагол с -ing." } }
+    ],
+    "hint": { "ru": "Формула: have been + глагол с …" },
+    "explanation": { "ru": "После been — глагол с -ing: We have been waiting for the bus for twenty minutes." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Макс играет в шахматы с шести лет." },
+    "accept": [
+      "Max has {been playing|played} chess since {he turned six|he turned 6|he was six|he was 6|he was six years old|he was 6 years old|age six|age 6|the age of six|the age of 6}",
+      "Since {he turned six|he turned 6|he was six|he was 6|he was six years old|he was 6 years old|age six|age 6|the age of six|the age of 6} Max has {been playing|played} chess"
+    ],
+    "mistakes": [
+      { "answer": "Max plays chess since he was six", "why": { "ru": "По-русски «играет», но речь о том, сколько это уже длится. Нужен Present Perfect: has been playing." } },
+      { "answer": "Max is playing chess since he was six", "why": { "ru": "Present Continuous — только «сейчас». А с шести лет и до сих пор — Present Perfect: has been playing." } },
+      { "answer": "Max has been playing chess since he is six", "why": { "ru": "После since — точка в прошлом: Past Simple, was." } },
+      { "answer": "Max have been playing chess since he was six", "why": { "ru": "Max — один человек, это he. С he нужен has." } },
+      { "answer": "Max has {been playing|played} chess for six years", "why": { "ru": "for six years — «шесть лет». А «с шести лет» — точка: since he was six." } },
+      { "answer": "Max has been playing chess since six years", "why": { "ru": "since six years так не говорят. «С шести лет» — since he was six." } }
+    ],
+    "hint": { "ru": "Играет с детства и до сих пор — какое время? «С шести лет» — срок или точка? После since — Past Simple." },
+    "explanation": { "ru": "Длится до сих пор — Present Perfect, с точкой — since: Max has been playing chess since he was six. Засчитаем и has played." }
+  }
+]

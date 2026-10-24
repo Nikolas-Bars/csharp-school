@@ -1,0 +1,67 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Фильм начался ровно в ту минуту, когда мы вошли в зал. Как сказать?" },
+    "options": [
+      { "text": "When we arrived, the movie had started.", "why": { "ru": "had started — фильм начался раньше, мы опоздали. А он начался при нас: started." } },
+      { "text": "When we arrived, the movie started." },
+      { "text": "When we arrived, the movie has started.", "why": { "ru": "has — Present Perfect, про «к сейчас». А рассказ о прошлом." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Мы пришли — и фильм начался: события по порядку, оба в Past Simple." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Мы опоздали: фильм начался до нашего прихода. Вставь start в нужном времени — одно или два слова." },
+    "text": "We were late. When we got to the theater, the movie ___ (start).",
+    "accept": ["had started", "had already started", "had started already"],
+    "mistakes": [
+      { "answer": "started", "why": { "ru": "Так выйдет, что фильм начался при нас. А мы опоздали — он начался раньше: had started." } },
+      { "answer": "already started", "why": { "ru": "В разговоре так иногда говорят, но есть момент в прошлом (when we got…) — фильм начался раньше: had started." } },
+      { "answer": "has started", "why": { "ru": "has — Present Perfect, про «к сейчас». А здесь момент в прошлом (we got) — нужен had." } },
+      { "answer": "was starting", "why": { "ru": "was starting — «как раз начинался». А мы опоздали: фильм начался раньше — had started." } }
+    ],
+    "hint": { "ru": "Мы опоздали — значит, фильм начался до нашего прихода или при нас?" },
+    "explanation": { "ru": "Фильм начался раньше момента в прошлом — Past Perfect: the movie had started." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «Когда папа пришёл домой, мы уже приготовили ужин». Одна плитка лишняя." },
+    "tiles": ["dinner", "had", "When", "came home", "we", "Dad", "already", "made", "have"],
+    "accept": [
+      "When Dad came home we had {already made dinner|made dinner already}",
+      "We had {already made dinner|made dinner already} when Dad came home"
+    ],
+    "mistakes": [
+      { "answer": "When Dad came home we have already made dinner", "why": { "ru": "have — Present Perfect, про «к сейчас». А здесь момент в прошлом (Dad came home) — нужен had." } },
+      { "answer": "When Dad came home we already made dinner", "why": { "ru": "В разговоре так иногда говорят, но есть момент в прошлом (when Dad came home) — ужин приготовили раньше: had already made." } },
+      { "answer": "When Dad came home we made dinner", "why": { "ru": "Так выйдет: папа пришёл — и тогда мы взялись готовить. А ужин был готов раньше: had already made." } }
+    ],
+    "hint": { "ru": "Что было раньше: папа пришёл или ужин готов? Где стоит already?" },
+    "explanation": { "ru": "Папа пришёл — Past Simple. Ужин приготовили раньше — had already made: When Dad came home, we had already made dinner." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Какое предложение верное?" },
+    "options": [
+      { "text": "My grandpa had built this house in 1985.", "why": { "ru": "Past Perfect не значит «давно». Второго момента в прошлом нет — просто Past Simple: built." } },
+      { "text": "My grandpa has built this house in 1985.", "why": { "ru": "in 1985 — время названо и закончилось. С ним — только Past Simple: built." } },
+      { "text": "My grandpa built this house in 1985." }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "Одно событие, время названо — Past Simple: My grandpa built this house in 1985." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "Ошибка в помощнике. Найди её и исправь." },
+    "text": "Max was nervous because he has never flown before.",
+    "wrong": 5,
+    "accept": ["had"],
+    "mistakes": [
+      { "answer": "have", "why": { "ru": "have — тоже Present Perfect, про «к сейчас». А Макс волновался в прошлом (was nervous) — нужен had." } },
+      { "answer": "has", "why": { "ru": "Это то же слово. has — про «к сейчас», а здесь момент в прошлом." } }
+    ],
+    "hint": { "ru": "was nervous — момент в прошлом. Какой помощник у того, что было до него?" },
+    "explanation": { "ru": "До момента в прошлом Макс ни разу не летал — Past Perfect: he had never flown before." }
+  }
+]

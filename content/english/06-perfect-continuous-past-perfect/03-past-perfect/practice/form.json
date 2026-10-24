@@ -1,0 +1,81 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Мы пришли на вокзал, а поезд ушёл ещё до нас. Как сказать?" },
+    "options": [
+      { "text": "When we got to the station, the train left.", "why": { "ru": "Так выйдет, что поезд ушёл в ту минуту, когда мы пришли, — при нас. А он ушёл раньше: had left." } },
+      { "text": "When we got to the station, the train had left." },
+      { "text": "When we got to the station, the train has left.", "why": { "ru": "has — Present Perfect, про «к сейчас». А здесь момент в прошлом (we got) — нужен had." } },
+      { "text": "When we had gotten to the station, the train left.", "why": { "ru": "Наоборот: раньше ушёл поезд, had ставят к нему — the train had left." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Пришли — момент в прошлом, Past Simple. Поезд ушёл ещё раньше — Past Perfect: the train had left." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Уроки были готовы ещё до прихода мамы. Вставь finish в Past Perfect — два слова." },
+    "text": "When Mom came home, we ___ (finish) our homework.",
+    "accept": ["had finished", "had already finished"],
+    "mistakes": [
+      { "answer": "finished", "why": { "ru": "Так выйдет: мама пришла — и тогда мы закончили. А уроки были готовы раньше: had finished." } },
+      { "answer": "have finished", "why": { "ru": "have — Present Perfect, про «к сейчас». А здесь момент в прошлом (Mom came) — нужен had." } },
+      { "answer": "had finish", "why": { "ru": "После had — третья форма. У правильного глагола она с -ed: finished." } },
+      { "answer": "has finished", "why": { "ru": "has — Present Perfect, про «к сейчас». В Past Perfect помощник один для всех — had." } }
+    ],
+    "hint": { "ru": "Что случилось раньше — мама пришла или уроки сделаны? После помощника Past Perfect — третья форма." },
+    "explanation": { "ru": "Мама пришла — момент в прошлом. Уроки сделаны ещё раньше — had + третья форма: we had finished our homework." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери: «Когда мы пришли в кинотеатр, фильм уже начался». Одна плитка лишняя." },
+    "tiles": ["the movie", "When", "already", "we", "got to", "has", "the theater", "started", "had"],
+    "accept": [
+      "When we got to the theater the movie had {already started|started already}",
+      "The movie had {already started|started already} when we got to the theater"
+    ],
+    "mistakes": [
+      { "answer": "When we got to the theater the movie has already started", "why": { "ru": "has — Present Perfect, про «к сейчас». А здесь момент в прошлом (we got) — нужен had." } },
+      { "answer": "The movie has already started when we got to the theater", "why": { "ru": "has — Present Perfect, про «к сейчас». А здесь момент в прошлом (we got) — нужен had." } },
+      { "answer": "When we got to the theater the movie already started", "why": { "ru": "В разговоре так иногда говорят, но есть момент в прошлом (when we got…) — фильм начался раньше: had already started." } },
+      { "answer": "When we got to the theater the movie started", "why": { "ru": "Так выйдет, что фильм начался в ту минуту, когда мы пришли. А он начался раньше: had already started." } }
+    ],
+    "hint": { "ru": "Что случилось раньше — мы пришли или фильм начался? Где стоит already?" },
+    "explanation": { "ru": "Пришли — Past Simple: we got. Фильм начался раньше — had already started. already — между had и третьей формой." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "When I called Max, he had already went to bed.",
+    "wrong": 7,
+    "accept": ["gone"],
+    "mistakes": [
+      { "answer": "go", "why": { "ru": "После had — не начальная форма, а третья: gone." } },
+      { "answer": "goed", "why": { "ru": "go — неправильный глагол: -ed к нему не добавляют. Его третья форма — gone." } },
+      { "answer": "went", "why": { "ru": "Это то же слово. went — вторая форма, для Past Simple. После had нужна третья." } }
+    ],
+    "hint": { "ru": "Три формы go: go — went — …" },
+    "explanation": { "ru": "После had — третья форма: go — went — gone. When I called Max, he had already gone to bed." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "К тому времени, как мы пришли, Сэм уже ушёл." },
+    "accept": [
+      "By the time we {arrived|got there|got here|came|showed up} Sam had {already |}{left|gone}",
+      "By the time we {arrived|got there|got here|came|showed up} Sam had {left|gone} already",
+      "By the time we {arrived|got there|got here|came|showed up} Sam was {already |}gone",
+      "Sam had {already |}{left|gone} by the time we {arrived|got there|got here|came|showed up}",
+      "Sam was {already |}gone by the time we {arrived|got there|got here|came|showed up}",
+      "Sam had {left|gone} already by the time we {arrived|got there|got here|came|showed up}",
+      "When we {arrived|got there} Sam had {already |}{left|gone}"
+    ],
+    "mistakes": [
+      { "answer": "By the time we {arrived|got there} Sam already left", "why": { "ru": "В разговоре так иногда говорят, но есть момент в прошлом (by the time we arrived) — Сэм ушёл раньше: had already left." } },
+      { "answer": "By the time we {arrived|got there} Sam has already left", "why": { "ru": "has — Present Perfect, про «к сейчас». А здесь момент в прошлом (we arrived) — нужен had." } },
+      { "answer": "By the time we had {arrived|gotten there} Sam {already left|left}", "why": { "ru": "Наоборот: раньше ушёл Сэм, had ставят к нему — Sam had already left." } },
+      { "answer": "By the time we {arrived|got there} Sam had already went", "why": { "ru": "went — вторая форма. После had — третья: gone. Или left." } }
+    ],
+    "hint": { "ru": "«К тому времени, как» — by the time. Что случилось раньше: мы пришли или Сэм ушёл?" },
+    "explanation": { "ru": "Пришли — момент в прошлом, Past Simple. Сэм ушёл раньше — Past Perfect: By the time we arrived, Sam had already left." }
+  }
+]

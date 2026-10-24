@@ -1,0 +1,54 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Какое предложение верное?" },
+    "options": [
+      { "text": "I've been eating three apples today.", "why": { "ru": "Три яблока — число, сколько сделано. С числом длительную форму не ставят: I've eaten." } },
+      { "text": "I've eaten three apples today." },
+      { "text": "I've ate three apples today.", "why": { "ru": "ate — вторая форма. После have — третья: eaten." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Число — результат, простая форма: I've eaten three apples today." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Сэм с обеда чинит велосипед, а тот всё ещё не едет. Вставь fix: Present Perfect или Present Perfect Continuous? Два или три слова." },
+    "text": "Sam ___ (fix) his bike since lunch, but it still doesn't work.",
+    "accept": ["has been fixing"],
+    "mistakes": [
+      { "answer": "has fixed", "why": { "ru": "has fixed — «починил», готово. А велосипед всё ещё не едет: работа идёт — has been fixing." } },
+      { "answer": "is fixing", "why": { "ru": "since — «с обеда и до сих пор»: сколько уже длится. Нужен Present Perfect: has been fixing." } },
+      { "answer": "have been fixing", "why": { "ru": "Sam — один человек, это he. С he нужен has." } },
+      { "answer": "has been fix", "why": { "ru": "После been — глагол с -ing: fixing." } }
+    ],
+    "hint": { "ru": "Велосипед починен или работа ещё идёт?" },
+    "explanation": { "ru": "Дело не закончено, длится с обеда — длительная форма: Sam has been fixing his bike since lunch." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Собери в Present Perfect — простой или длительной форме: «Мы уже прочитали две главы». Одна плитка лишняя." },
+    "tiles": ["two chapters", "read", "We", "already", "been reading", "have"],
+    "accept": ["We have already read two chapters", "We have read two chapters already"],
+    "mistakes": [
+      { "answer": "We have already been reading two chapters", "why": { "ru": "Две главы — число, сколько сделано. С числом длительную форму не ставят: have read." } },
+      { "answer": "We already read two chapters", "why": { "ru": "Так тоже можно (в Америке с already часто говорят в Past Simple), но задание — Present Perfect: have already read." } },
+      { "answer": "We have been reading two chapters already", "why": { "ru": "Две главы — число, сколько сделано. С числом длительную форму не ставят: have read." } }
+    ],
+    "hint": { "ru": "Две главы — «сколько сделано» или «сколько длится»?" },
+    "explanation": { "ru": "Число — результат, простая форма: We have already read two chapters." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Сколько вы уже играете в эту игру?" },
+    "accept": ["How long have you {been playing|played} this game{| for}"],
+    "mistakes": [
+      { "answer": "How long are you playing this game", "why": { "ru": "Present Continuous не говорит, сколько уже длится. Сколько уже — Present Perfect: have you been playing." } },
+      { "answer": "How long do you play this game", "why": { "ru": "Present Simple — про «обычно». А сколько уже длится — Present Perfect: have you been playing." } },
+      { "answer": "How long you have been playing this game", "why": { "ru": "В вопросе have встаёт перед you: How long have you…?" } },
+      { "answer": "How long have you been play this game", "why": { "ru": "После been — глагол с -ing: playing." } }
+    ],
+    "hint": { "ru": "Сколько уже длится — какое время? Что выходит вперёд в вопросе?" },
+    "explanation": { "ru": "Сколько длится — обычно длительная форма: How long have you been playing this game? Засчитаем и have you played." }
+  }
+]

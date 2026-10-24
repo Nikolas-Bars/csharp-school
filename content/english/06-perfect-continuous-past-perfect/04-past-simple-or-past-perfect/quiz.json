@@ -1,0 +1,52 @@
+[
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Какой вариант значит «фильм начался ещё до нашего прихода»?" },
+    "options": [
+      { "text": "When we arrived, the movie started.", "why": { "ru": "Так выйдет, что фильм начался при нас — в ту минуту, когда мы пришли." } },
+      { "text": "When we arrived, the movie had started." },
+      { "text": "When we had arrived, the movie started.", "why": { "ru": "had стоит не там: так выйдет, что раньше пришли мы. А раньше начался фильм — the movie had started." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Фильм начался раньше нашего прихода — Past Perfect: the movie had started." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь leave в прошедшем времени — одно или два слова." },
+    "text": "We cleaned up after the guests ___ (leave).",
+    "accept": ["left", "had left"],
+    "mistakes": [
+      { "answer": "have left", "why": { "ru": "have — Present Perfect, про «к сейчас». А рассказ о прошлом (cleaned up): left или had left." } },
+      { "answer": "leaved", "why": { "ru": "leave — неправильный глагол: -ed к нему не добавляют. Его вторая форма — left." } },
+      { "answer": "had leaved", "why": { "ru": "leave — неправильный глагол: -ed к нему не добавляют. Его третья форма — left." } },
+      { "answer": "leave", "why": { "ru": "Рассказ о прошлом (cleaned up). Нужна прошедшая форма." } }
+    ],
+    "hint": { "ru": "after уже показывает, что было раньше. Три формы leave: leave — left — …" },
+    "explanation": { "ru": "after сам показывает порядок — подходят оба: after the guests left и after the guests had left." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "By the time Dad came back, the dog had ate the pizza.",
+    "wrong": 9,
+    "accept": ["eaten"],
+    "mistakes": [
+      { "answer": "eat", "why": { "ru": "После had — не начальная форма, а третья: eaten." } },
+      { "answer": "eated", "why": { "ru": "eat — неправильный глагол: -ed к нему не добавляют. Его третья форма — eaten." } },
+      { "answer": "ate", "why": { "ru": "Это то же слово. ate — вторая форма, для Past Simple. После had нужна третья." } }
+    ],
+    "hint": { "ru": "Три формы eat: eat — ate — …" },
+    "explanation": { "ru": "После had — третья форма: eat — ate — eaten. By the time Dad came back, the dog had eaten the pizza." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Расскажи по порядку: «Сэм выключил свет, закрыл дверь и лёг спать». Одна плитка лишняя." },
+    "tiles": ["went to bed", "the light", "Sam", "closed the door", "had turned off", "and", "turned off"],
+    "accept": ["Sam turned off the light closed the door and went to bed"],
+    "mistakes": [
+      { "answer": "Sam had turned off the light closed the door and went to bed", "why": { "ru": "События идут по порядку — Past Perfect не нужен: turned off." } }
+    ],
+    "hint": { "ru": "События идут по порядку. Нужен ли здесь had?" },
+    "explanation": { "ru": "По порядку — Past Simple: Sam turned off the light, closed the door and went to bed." }
+  }
+]

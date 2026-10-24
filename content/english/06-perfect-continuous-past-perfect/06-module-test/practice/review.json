@@ -1,0 +1,202 @@
+[
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь learn в длительной форме Present Perfect — три слова." },
+    "text": "My sister ___ (learn) to play the guitar since January.",
+    "accept": ["has been learning"],
+    "mistakes": [
+      { "answer": "is learning", "why": { "ru": "since — «с января и до сих пор»: сколько уже длится. Нужен Present Perfect: has been learning." } },
+      { "answer": "has learned", "why": { "ru": "has learned — «научилась», результат. А задание — длительная форма: процесс идёт, has been learning." } },
+      { "answer": "have been learning", "why": { "ru": "sister — один человек, это she. С she нужен has." } },
+      { "answer": "has been learn", "why": { "ru": "После been — глагол с -ing: learning." } },
+      { "answer": "learns", "why": { "ru": "Present Simple — про «обычно». А since January — с января и до сих пор: has been learning." } }
+    ],
+    "hint": { "ru": "sister — have или has? Формула: помощник + been + глагол с -ing." },
+    "explanation": { "ru": "Учится с января и до сих пор — has been + -ing: My sister has been learning to play the guitar since January." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Как сказать «Мы знаем друг друга десять лет»?" },
+    "options": [
+      { "text": "We've been knowing each other for ten years.", "why": { "ru": "know — глагол состояния, длительную форму с ним не употребляют. Сколько уже — простой Present Perfect: have known." } },
+      { "text": "We know each other for ten years.", "why": { "ru": "По-русски «знаем», но речь о том, сколько это уже длится. Нужен Present Perfect: have known." } },
+      { "text": "We've known each other for ten years." }
+    ],
+    "answer": 2,
+    "explanation": { "ru": "know — глагол состояния: сколько уже длится — простой Present Perfect, We've known each other for ten years." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "У Сэма грязные руки. Собери вопрос к нему: «Ты чинил велосипед?». Одна плитка лишняя." },
+    "tiles": ["fixing", "your bike", "Have", "been", "Did", "you"],
+    "accept": ["Have you been fixing your bike"],
+    "mistakes": [
+      { "answer": "Have been you fixing your bike", "why": { "ru": "В вопросе вперёд выходит только have, been остаётся после you: Have you been…?" } }
+    ],
+    "hint": { "ru": "Процесс закончился, а след виден сейчас. Что выходит вперёд в вопросе?" },
+    "explanation": { "ru": "След виден сейчас — Present Perfect Continuous: Have you been fixing your bike?" }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь score: Present Perfect или Present Perfect Continuous? Два или три слова." },
+    "text": "Wow! Max ___ (score) three goals in this game!",
+    "accept": ["has scored"],
+    "mistakes": [
+      { "answer": "has been scoring", "why": { "ru": "Три гола — число, сколько сделано. Это результат: has scored. С числом длительную форму не ставят." } },
+      { "answer": "have scored", "why": { "ru": "Max — один человек, это he. С he нужен has." } },
+      { "answer": "scored", "why": { "ru": "Так тоже можно (Past Simple), но выбери из двух: Present Perfect или Present Perfect Continuous." } },
+      { "answer": "has score", "why": { "ru": "После has — третья форма. У правильного глагола она с -ed: scored." } }
+    ],
+    "hint": { "ru": "Три гола — «сколько сделано» или «сколько длится»?" },
+    "explanation": { "ru": "Число — результат, простая форма: Max has scored three goals in this game!" }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Сколько вы уже учите английский?" },
+    "accept": ["How long have you {been learning|been studying|studied} English{| for}"],
+    "mistakes": [
+      { "answer": "How long do you {learn|study} English", "why": { "ru": "Present Simple — про «обычно». А сколько уже длится — Present Perfect: have you been learning." } },
+      { "answer": "How long are you {learning|studying} English", "why": { "ru": "Present Continuous не говорит, сколько уже длится. Сколько уже — Present Perfect: have you been learning." } },
+      { "answer": "How long you have been {learning|studying} English", "why": { "ru": "В вопросе have встаёт перед you: How long have you…?" } },
+      { "answer": "How long have you been {learn|study} English", "why": { "ru": "После been — глагол с -ing: learning или studying." } }
+    ],
+    "hint": { "ru": "Сколько уже длится — какое время? Что выходит вперёд в вопросе?" },
+    "explanation": { "ru": "Сколько уже длится — How long have you been learning English? Засчитаем и studying, и простую форму." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Когда мы приехали в аэропорт, самолёт уже улетел. Как сказать?" },
+    "options": [
+      { "text": "When we got to the airport, the plane has already left.", "why": { "ru": "has — Present Perfect, про «к сейчас». А здесь момент в прошлом (we got) — нужен had." } },
+      { "text": "When we got to the airport, the plane had already left." },
+      { "text": "When we had gotten to the airport, the plane already left.", "why": { "ru": "Наоборот: раньше улетел самолёт, had ставят к нему — the plane had already left." } },
+      { "text": "When we got to the airport, the plane left.", "why": { "ru": "Так выйдет, что самолёт улетел в ту минуту, когда мы приехали, — при нас. А он улетел раньше: had already left." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Приехали — момент в прошлом. Самолёт улетел раньше — had already left." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь finish в Past Perfect — два слова." },
+    "text": "By the time the guests arrived, Mom ___ (finish) cooking.",
+    "accept": ["had finished", "had already finished"],
+    "mistakes": [
+      { "answer": "finished", "why": { "ru": "by the time — «к тому времени, как»: готовка закончилась раньше прихода гостей. Нужен had: had finished." } },
+      { "answer": "has finished", "why": { "ru": "has — Present Perfect, про «к сейчас». А здесь момент в прошлом (guests arrived) — нужен had." } },
+      { "answer": "had finish", "why": { "ru": "После had — третья форма. У правильного глагола она с -ed: finished." } },
+      { "answer": "already finished", "why": { "ru": "В разговоре так иногда говорят, но есть момент в прошлом (by the time the guests arrived) — нужен had: had finished." } }
+    ],
+    "hint": { "ru": "by the time — что было раньше: гости пришли или готовка закончилась? Формула: had + третья форма." },
+    "explanation": { "ru": "Готовка закончилась раньше момента в прошлом — had finished: By the time the guests arrived, Mom had finished cooking." }
+  },
+  {
+    "kind": "fix",
+    "prompt": { "ru": "В предложении одна ошибка. Найди её и исправь." },
+    "text": "We had never saw snow before we moved to Denver.",
+    "wrong": 3,
+    "accept": ["seen"],
+    "mistakes": [
+      { "answer": "see", "why": { "ru": "После had — не начальная форма, а третья: seen." } },
+      { "answer": "seed", "why": { "ru": "see — неправильный глагол: -ed к нему не добавляют. Его третья форма — seen." } },
+      { "answer": "saw", "why": { "ru": "Это то же слово. saw — вторая форма, для Past Simple. После had нужна третья." } }
+    ],
+    "hint": { "ru": "Три формы see: see — saw — …" },
+    "explanation": { "ru": "После had — третья форма: see — saw — seen. We had never seen snow before we moved to Denver." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь eat в прошедшем времени — одно или два слова." },
+    "text": "After we ___ (eat) dinner, we played a board game.",
+    "accept": ["ate", "had eaten"],
+    "mistakes": [
+      { "answer": "have eaten", "why": { "ru": "have — Present Perfect, про «к сейчас». А рассказ о прошлом (played): ate или had eaten." } },
+      { "answer": "eated", "why": { "ru": "eat — неправильный глагол: -ed к нему не добавляют. Его вторая форма — ate." } },
+      { "answer": "had ate", "why": { "ru": "ate — вторая форма. После had — третья: eaten." } },
+      { "answer": "eat", "why": { "ru": "Рассказ о прошлом (played). Нужна прошедшая форма." } }
+    ],
+    "hint": { "ru": "after уже показывает, что было раньше. Три формы eat: eat — ate — …" },
+    "explanation": { "ru": "after сам показывает порядок — подходят оба: After we ate dinner… и After we had eaten dinner…" }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь вопрос с you и finish — три слова." },
+    "text": "— ___ (you / finish) your homework before the game started? — Yes, I had.",
+    "accept": ["Had you finished"],
+    "mistakes": [
+      { "answer": "Did you finish", "why": { "ru": "Ответ — Yes, I had: краткий ответ повторяет помощника из вопроса. Значит, и вопрос с had: Had you finished…?" } },
+      { "answer": "Have you finished", "why": { "ru": "have — Present Perfect, про «к сейчас». А здесь момент в прошлом (the game started), и ответ — Yes, I had." } },
+      { "answer": "You had finished", "why": { "ru": "В вопросе had встаёт перед you: Had you finished…?" } },
+      { "answer": "Had you finish", "why": { "ru": "После had — третья форма. У правильного глагола она с -ed: finished." } },
+      { "answer": "Did you finished", "why": { "ru": "После did — начальная форма. Да и ответ — Yes, I had: вопрос с had, Had you finished…?" } }
+    ],
+    "hint": { "ru": "Посмотри на краткий ответ: какой в нём помощник? Он и выходит вперёд в вопросе." },
+    "explanation": { "ru": "Ответ Yes, I had — значит, вопрос в Past Perfect: Had you finished your homework before the game started?" }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь finish в Past Perfect с отрицанием — два слова (с краткой формой)." },
+    "text": "By the time the school bus came, Max ___ (not / finish) his breakfast.",
+    "accept": ["hadn't finished"],
+    "mistakes": [
+      { "answer": "didn't finish", "why": { "ru": "by the time — «к тому времени, как»: важно, что было до прихода автобуса. Нужен had: hadn't finished." } },
+      { "answer": "hasn't finished", "why": { "ru": "hasn't — Present Perfect, про «к сейчас». А здесь момент в прошлом (the bus came) — нужен hadn't." } },
+      { "answer": "hadn't finish", "why": { "ru": "После hadn't — третья форма. У правильного глагола она с -ed: finished." } },
+      { "answer": "haven't finished", "why": { "ru": "haven't — Present Perfect, про «к сейчас». А здесь момент в прошлом (the bus came) — нужен hadn't." } }
+    ],
+    "hint": { "ru": "by the time — момент в прошлом. Какой помощник у того, что было до него? Куда встаёт not?" },
+    "explanation": { "ru": "К моменту в прошлом завтрак не был доеден — Past Perfect с отрицанием: Max hadn't finished his breakfast." }
+  },
+  {
+    "kind": "choice",
+    "prompt": { "ru": "Какое предложение верное?" },
+    "options": [
+      { "text": "My parents had met in 2005.", "why": { "ru": "Past Perfect не значит «давно». Второго момента в прошлом нет — просто Past Simple: met." } },
+      { "text": "My parents met in 2005." },
+      { "text": "My parents have met in 2005.", "why": { "ru": "in 2005 — время названо и закончилось. С ним — только Past Simple: met." } }
+    ],
+    "answer": 1,
+    "explanation": { "ru": "Одно событие, время названо — Past Simple: My parents met in 2005." }
+  },
+  {
+    "kind": "gap",
+    "prompt": { "ru": "Вставь wait в Past Perfect Continuous — три слова." },
+    "text": "We ___ (wait) for forty minutes when the pizza finally arrived.",
+    "accept": ["had been waiting"],
+    "mistakes": [
+      { "answer": "have been waiting", "why": { "ru": "have — про «к сейчас». А пицца приехала в прошлом (arrived) — нужен had." } },
+      { "answer": "were waiting", "why": { "ru": "Past Continuous не говорит, сколько процесс уже длился. Со сроком до момента в прошлом — had been waiting." } },
+      { "answer": "had waited", "why": { "ru": "Так тоже можно, но задание — длительная форма: had been + -ing." } },
+      { "answer": "had been wait", "why": { "ru": "После been — глагол с -ing: waiting." } }
+    ],
+    "hint": { "ru": "Какой помощник в Past Perfect? Что стоит после been?" },
+    "explanation": { "ru": "Ждали сорок минут до момента в прошлом — had been waiting: We had been waiting for forty minutes when the pizza finally arrived." }
+  },
+  {
+    "kind": "order",
+    "prompt": { "ru": "Расскажи по порядку: «Мы пришли домой, поужинали и посмотрели фильм». Одна плитка лишняя." },
+    "tiles": ["had watched", "We", "and", "had dinner", "got home", "watched", "a movie"],
+    "accept": ["We got home had dinner and watched a movie"],
+    "mistakes": [
+      { "answer": "We got home had dinner and had watched a movie", "why": { "ru": "События идут по порядку — Past Perfect не нужен: watched." } }
+    ],
+    "hint": { "ru": "События идут по порядку. Нужен ли здесь Past Perfect?" },
+    "explanation": { "ru": "По порядку — Past Simple: We got home, had dinner and watched a movie. had dinner здесь — просто «поужинали»." }
+  },
+  {
+    "kind": "translate",
+    "prompt": { "ru": "Переведи на английский." },
+    "text": { "ru": "Мы не пошли в кино, потому что уже видели этот фильм." },
+    "accept": [
+      "We didn't go to the {movies|movie theater|theater|cinema} {because|since|as} we had {already |}seen {it|this movie|that movie|the movie|this film|that film|the film}{| already| before}"
+    ],
+    "mistakes": [
+      { "answer": "We didn't go to the {movies|movie theater|theater|cinema} because we have already seen {it|this movie|that movie|the movie|this film|that film|the film}", "why": { "ru": "have — Present Perfect, про «к сейчас». А рассказ о прошлом (didn't go) — фильм видели раньше: had seen." } },
+      { "answer": "We didn't go to the {movies|movie theater|theater|cinema} because we already saw {it|this movie|that movie|the movie|this film|that film|the film}", "why": { "ru": "В разговоре так иногда говорят, но есть момент в прошлом (didn't go) — фильм видели раньше: had already seen." } },
+      { "answer": "We didn't go to the {movies|movie theater|theater|cinema} because we had already saw {it|this movie|that movie|the movie|this film|that film|the film}", "why": { "ru": "saw — вторая форма. После had — третья: seen." } },
+      { "answer": "We didn't went to the movies because we had already seen {it|this movie|the movie}", "why": { "ru": "После didn't — начальная форма: go." } }
+    ],
+    "hint": { "ru": "Что было раньше: видели фильм или не пошли в кино? Три формы see: see — saw — …" },
+    "explanation": { "ru": "Не пошли — момент в прошлом. Видели раньше — had already seen: We didn't go to the movies because we had already seen this movie." }
+  }
+]
